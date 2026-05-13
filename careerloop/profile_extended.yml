@@ -1,0 +1,59 @@
+adjacent_roles: []
+assignment_burden_tolerance: 6
+confirmed_skills:
+- python
+- fastapi
+- postgresql
+- redis
+- docker
+- aws
+- llm apis
+- rag pipelines
+- embeddings
+- prompt engineering
+- tool calling
+- multi-model routing
+- agentic workflows
+- langchain
+- langgraph
+- sse streaming
+- websockets
+- etl pipelines
+- power bi
+- sql
+ctc_currency: INR
+current_ctc_lakhs: null
+expected_ctc_lakhs: 60
+interview_weaknesses: []
+max_commute_minutes: 60
+max_company_size: null
+min_company_size: null
+notice_period_days: 30
+preferred_company_types:
+- saas
+- ai-native
+- fintech
+- devtools
+- product
+preferred_sources: []
+rejected_company_types:
+- consulting
+- body-shop
+- services
+rejected_roles:
+- frontend
+- mobile
+- devops only
+- qa
+- support
+rejection_learnings: []
+relocation_cities: []
+resume_tone: confident
+salary_floor_lakhs: 25
+startup_tolerance: 8
+weak_skills:
+- go
+- rust
+- kubernetes
+- system design interviews
+willing_to_relocate: false

@@ -1,0 +1,1181 @@
+[
+  {
+    "job_id": "loop-0001",
+    "title": "Senior AI Engineer",
+    "company": "Example Corp",
+    "location": "Bangalore",
+    "source": "linkedin",
+    "source_url": "https://linkedin.com/jobs/view/123",
+    "status": "SHORTLISTED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.559024+00:00",
+        "reason": "Discovered via linkedin"
+      },
+      {
+        "status": "SHORTLISTED",
+        "date": "2026-05-13T19:11:18.857905+00:00",
+        "reason": "Auto-shortlisted"
+      }
+    ],
+    "fit_score": 64,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.559024+00:00",
+    "updated_at": "2026-05-13T19:11:18.857912+00:00",
+    "fit_result": {
+      "overall_score": 64,
+      "recommendation": "MAYBE",
+      "reason": "Role matches target Senior AI Engineer but lacks details on company, salary, and work mode.",
+      "risks": [
+        "Unknown company type could be a rejected type (consulting, body-shop, services)",
+        "Missing salary information may not meet expectations",
+        "No work mode specified; could be remote or in-office mismatch"
+      ],
+      "why_user_might_like_it": "Senior AI Engineer is a direct target role, and Bangalore is a major tech hub with good opportunities.",
+      "why_user_might_hate_it": "Lack of transparency on company type, salary, and work mode makes it uncertain if it fits preferences.",
+      "missing_info": [
+        "Company type (could be consulting or services, which user rejects)",
+        "Salary range",
+        "Work mode (remote/hybrid/onsite)",
+        "Required skills and job description"
+      ],
+      "confidence": 0.4,
+      "dimensions": {
+        "role_fit": 8,
+        "skill_fit": 7,
+        "location_fit": 8,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 5,
+        "brand_value": 5,
+        "career_trajectory": 7,
+        "response_likelihood": 7
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:08:44.112283+00:00"
+    },
+    "recommendation": "MAYBE"
+  },
+  {
+    "job_id": "loop-0002",
+    "title": "Senior Software Engineer",
+    "company": "Twilio",
+    "location": "Remote - Ireland",
+    "source": "greenhouse",
+    "source_url": "https://job-boards.greenhouse.io/twilio/jobs/7234666",
+    "status": "DISCOVERED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.559561+00:00",
+        "reason": "Discovered via greenhouse"
+      }
+    ],
+    "fit_score": 30,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.559561+00:00",
+    "updated_at": "2026-05-13T19:08:34.559561+00:00",
+    "fit_result": {
+      "overall_score": 30,
+      "recommendation": "SKIP",
+      "reason": "The role is a generic Senior Software Engineer at Twilio, not aligned with the user's target AI-focused roles, and the remote location in Ireland introduces timezone and work authorization challenges for an India-based user.",
+      "risks": [
+        "Role is not AI-specific, which is the user's primary career focus.",
+        "Remote Ireland location may require work authorization and inconvenient timezone."
+      ],
+      "why_user_might_like_it": "Twilio is a reputable SaaS company with strong brand value and remote work flexibility.",
+      "why_user_might_hate_it": "The role lacks AI/ML exposure, and the Ireland-based remote setup could complicate work-life balance for an Indian user.",
+      "missing_info": [
+        "Skills required for the role",
+        "Work mode (fully remote, hybrid, or office)",
+        "Salary range",
+        "Company type (though Twilio is known as SaaS)"
+      ],
+      "confidence": 0.3,
+      "dimensions": {
+        "role_fit": 2,
+        "skill_fit": 5,
+        "location_fit": 2,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 8,
+        "brand_value": 7,
+        "career_trajectory": 3,
+        "response_likelihood": 3
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:08:51.648735+00:00"
+    },
+    "recommendation": "SKIP"
+  },
+  {
+    "job_id": "loop-0003",
+    "title": "Senior Forward Deployed Engineer",
+    "company": "Cloudflare",
+    "location": "Hybrid",
+    "source": "greenhouse",
+    "source_url": "https://boards.greenhouse.io/cloudflare/jobs/7731685?gh_jid=7731685",
+    "status": "SHORTLISTED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.559947+00:00",
+        "reason": "Discovered via greenhouse"
+      },
+      {
+        "status": "SHORTLISTED",
+        "date": "2026-05-13T19:11:18.856540+00:00",
+        "reason": "Auto-shortlisted"
+      }
+    ],
+    "fit_score": 67,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.559947+00:00",
+    "updated_at": "2026-05-13T19:11:18.856562+00:00",
+    "fit_result": {
+      "overall_score": 67,
+      "recommendation": "MAYBE",
+      "reason": "Cloudflare's strong brand and stability are attractive, but the role is not clearly AI-focused and lacks detail, creating uncertainty for this AI-centric candidate.",
+      "risks": [
+        "Role may require Go/Rust/Kubernetes skills which user rates as weak",
+        "Forward Deployed Engineer often involves customer-facing deployment, not pure AI engineering",
+        "Missing salary and location information makes it hard to assess fit"
+      ],
+      "why_user_might_like_it": "Cloudflare is a top-tier tech brand with good compensation potential and career growth; hybrid work mode may offer flexibility.",
+      "why_user_might_hate_it": "The role may not align with user's AI product engineering focus and could involve non-AI tasks like on-call or customer support.",
+      "missing_info": [
+        "Location (city/country)",
+        "Salary range",
+        "Specific skills required",
+        "Work mode details",
+        "Job description"
+      ],
+      "confidence": 0.3,
+      "dimensions": {
+        "role_fit": 5,
+        "skill_fit": 6,
+        "location_fit": 7,
+        "salary_fit": 5,
+        "work_mode_fit": 7,
+        "company_stability": 9,
+        "brand_value": 9,
+        "career_trajectory": 6,
+        "response_likelihood": 6
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:09:02.738369+00:00"
+    },
+    "recommendation": "MAYBE"
+  },
+  {
+    "job_id": "loop-0004",
+    "title": "Staff AI Engineer - Notebooks",
+    "company": "Datadog",
+    "location": "France, Remote; Germany, Remote; Ireland, Remote; Italy, Remote; Spain, Remote; Switzerland, Remote",
+    "source": "unknown",
+    "source_url": "https://careers.datadoghq.com/detail/7627429/?gh_jid=7627429",
+    "status": "SHORTLISTED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.560131+00:00",
+        "reason": "Discovered via unknown"
+      },
+      {
+        "status": "SHORTLISTED",
+        "date": "2026-05-13T19:11:18.859870+00:00",
+        "reason": "Auto-shortlisted"
+      }
+    ],
+    "fit_score": 62,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.560131+00:00",
+    "updated_at": "2026-05-13T19:11:18.859874+00:00",
+    "fit_result": {
+      "overall_score": 62,
+      "recommendation": "MAYBE",
+      "reason": "Role aligns well with target AI engineer roles at a top SaaS company, but location restricted to Europe without global remote eligibility or salary info.",
+      "risks": [
+        "Location restricted to European countries, user in India may not be eligible",
+        "No salary information provided, uncertainty about meeting salary floor",
+        "No skills required listed, unknown if user's strengths perfectly match"
+      ],
+      "why_user_might_like_it": "It's a Staff AI Engineer role at Datadog (preferred devtools/SaaS company), fully remote, and leverages AI/LLM skills.",
+      "why_user_might_hate_it": "Location restriction to Europe likely requires relocation or work authorization, and lack of salary transparency could mean below expectations.",
+      "missing_info": [
+        "Global remote eligibility or work authorization requirements",
+        "Salary range or compensation details",
+        "Required skills and responsibilities"
+      ],
+      "confidence": 0.3,
+      "dimensions": {
+        "role_fit": 8,
+        "skill_fit": 7,
+        "location_fit": 2,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 8,
+        "brand_value": 8,
+        "career_trajectory": 8,
+        "response_likelihood": 5
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:09:11.158388+00:00"
+    },
+    "recommendation": "MAYBE"
+  },
+  {
+    "job_id": "loop-0005",
+    "title": "Applied AI Architect, Industries",
+    "company": "Anthropic",
+    "location": "Paris, France",
+    "source": "greenhouse",
+    "source_url": "https://job-boards.greenhouse.io/anthropic/jobs/4977626008",
+    "status": "SHORTLISTED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.560320+00:00",
+        "reason": "Discovered via greenhouse"
+      },
+      {
+        "status": "SHORTLISTED",
+        "date": "2026-05-13T19:11:18.861030+00:00",
+        "reason": "Auto-shortlisted"
+      }
+    ],
+    "fit_score": 60,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.560320+00:00",
+    "updated_at": "2026-05-13T19:11:18.861032+00:00",
+    "fit_result": {
+      "overall_score": 60,
+      "recommendation": "MAYBE",
+      "reason": "The role aligns well with the user's AI engineering skills and target roles, but the Paris location and missing details reduce fit.",
+      "risks": [
+        "Relocation to Paris required, with potential visa and cultural adjustment challenges",
+        "No salary or work mode details provided, making it hard to assess compensation and flexibility"
+      ],
+      "why_user_might_like_it": "Anthropic is a top-tier AI-native company, and the 'Applied AI Architect' role likely leverages the user's strong LLM, RAG, and agentic workflow skills.",
+      "why_user_might_hate_it": "The Paris location is far from India, and the 'Architect' title may involve less hands-on engineering than the user prefers.",
+      "missing_info": [
+        "Salary range",
+        "Work mode (remote/hybrid/onsite)",
+        "Company type details",
+        "Full job description with required skills",
+        "Visa sponsorship availability"
+      ],
+      "confidence": 0.3,
+      "dimensions": {
+        "role_fit": 6,
+        "skill_fit": 7,
+        "location_fit": 2,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 8,
+        "brand_value": 9,
+        "career_trajectory": 7,
+        "response_likelihood": 5
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:09:21.172253+00:00"
+    },
+    "recommendation": "MAYBE"
+  },
+  {
+    "job_id": "loop-0006",
+    "title": "Senior Developer Advocate",
+    "company": "MongoDB",
+    "location": "Ireland",
+    "source": "unknown",
+    "source_url": "https://www.mongodb.com/careers/job/?gh_jid=7241758",
+    "status": "DISCOVERED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.560529+00:00",
+        "reason": "Discovered via unknown"
+      }
+    ],
+    "fit_score": 32,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.560529+00:00",
+    "updated_at": "2026-05-13T19:08:34.560529+00:00",
+    "fit_result": {
+      "overall_score": 32,
+      "recommendation": "SKIP",
+      "reason": "Role is Senior Developer Advocate, not aligned with user's target AI engineering roles, and location Ireland is unsuitable.",
+      "risks": [
+        "Role type mismatch: user targets AI product/engineering roles, not developer advocacy",
+        "Location in Ireland: user is likely India-based, requiring relocation",
+        "No details on salary, work mode, or required skills to evaluate fit"
+      ],
+      "why_user_might_like_it": "MongoDB is a strong devtools brand and could offer exposure to database ecosystem, but this is not the user's career focus.",
+      "why_user_might_hate_it": "The role is not in AI engineering, involves public speaking and community work rather than building AI systems, and requires moving to Ireland.",
+      "missing_info": [
+        "Required skills and experience for the role",
+        "Work mode (remote/hybrid/onsite)",
+        "Salary range",
+        "Full job description",
+        "Location of user (assumed India based on salary preferences)"
+      ],
+      "confidence": 0.3,
+      "dimensions": {
+        "role_fit": 1,
+        "skill_fit": 2,
+        "location_fit": 0,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 7,
+        "brand_value": 8,
+        "career_trajectory": 3,
+        "response_likelihood": 2
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:09:28.031655+00:00"
+    },
+    "recommendation": "SKIP"
+  },
+  {
+    "job_id": "loop-0007",
+    "title": "Senior Solutions Architect",
+    "company": "MongoDB",
+    "location": "Amsterdam",
+    "source": "unknown",
+    "source_url": "https://www.mongodb.com/careers/job/?gh_jid=7560436",
+    "status": "DISCOVERED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.560764+00:00",
+        "reason": "Discovered via unknown"
+      }
+    ],
+    "fit_score": 38,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.560764+00:00",
+    "updated_at": "2026-05-13T19:08:34.560764+00:00",
+    "fit_result": {
+      "overall_score": 38,
+      "recommendation": "SKIP",
+      "reason": "Role is Solutions Architect, not AI engineering, and location is Amsterdam, far from India.",
+      "risks": [
+        "Relocation required to Amsterdam",
+        "Role mismatch with AI engineering aspirations",
+        "No salary or work mode information provided"
+      ],
+      "why_user_might_like_it": "MongoDB is a well-known, stable product company with strong brand value.",
+      "why_user_might_hate_it": "The role is not in AI engineering, requires relocation abroad, and lacks details on remote work or compensation.",
+      "missing_info": [
+        "Salary",
+        "Work mode",
+        "Required skills",
+        "Job description"
+      ],
+      "confidence": 0.6,
+      "dimensions": {
+        "role_fit": 1,
+        "skill_fit": 2,
+        "location_fit": 0,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 8,
+        "brand_value": 8,
+        "career_trajectory": 3,
+        "response_likelihood": 2
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:09:36.225272+00:00"
+    },
+    "recommendation": "SKIP"
+  },
+  {
+    "job_id": "loop-0008",
+    "title": "Software Engineer 3",
+    "company": "MongoDB",
+    "location": "Gurugram",
+    "source": "unknown",
+    "source_url": "https://www.mongodb.com/careers/job/?gh_jid=7597723",
+    "status": "SHORTLISTED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.561037+00:00",
+        "reason": "Discovered via unknown"
+      },
+      {
+        "status": "SHORTLISTED",
+        "date": "2026-05-13T19:11:18.858777+00:00",
+        "reason": "Auto-shortlisted"
+      }
+    ],
+    "fit_score": 64,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.561037+00:00",
+    "updated_at": "2026-05-13T19:11:18.858780+00:00",
+    "fit_result": {
+      "overall_score": 64,
+      "recommendation": "MAYBE",
+      "reason": "MongoDB is a strong brand in devtools, but the generic Software Engineer 3 role may not align with user's specialized AI focus.",
+      "risks": [
+        "Role likely not AI-specific, user may be underutilized",
+        "Salary unknown could be below user's floor of 25L",
+        "No work mode or team details to assess fit"
+      ],
+      "why_user_might_like_it": "Working at MongoDB offers high brand value, stability, and potential to work on impactful infrastructure software in a product company.",
+      "why_user_might_hate_it": "The role may not involve AI/ML work, forcing user into generic backend development away from their target career path.",
+      "missing_info": [
+        "Job description",
+        "Required skills",
+        "Salary range",
+        "Work mode (remote/hybrid/onsite)",
+        "Team or product focus"
+      ],
+      "confidence": 0.3,
+      "dimensions": {
+        "role_fit": 4,
+        "skill_fit": 6,
+        "location_fit": 8,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 9,
+        "brand_value": 9,
+        "career_trajectory": 7,
+        "response_likelihood": 5
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:09:47.040035+00:00"
+    },
+    "recommendation": "MAYBE"
+  },
+  {
+    "job_id": "loop-0009",
+    "title": "Solutions Architect",
+    "company": "MongoDB",
+    "location": "South Korea",
+    "source": "unknown",
+    "source_url": "https://www.mongodb.com/careers/job/?gh_jid=7621674",
+    "status": "DISCOVERED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.561316+00:00",
+        "reason": "Discovered via unknown"
+      }
+    ],
+    "fit_score": 25,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.561316+00:00",
+    "updated_at": "2026-05-13T19:08:34.561316+00:00",
+    "fit_result": {
+      "overall_score": 25,
+      "recommendation": "SKIP",
+      "reason": "The Solutions Architect role at MongoDB is outside the user's target AI engineering roles and is not aligned with their skillset or career trajectory.",
+      "risks": [
+        "Role mismatch: User targets AI Engineer roles, not Solutions Architect",
+        "Location mismatch: Job is in South Korea, user likely based in India",
+        "Lack of information: No details on skills, salary, or work mode to assess fit"
+      ],
+      "why_user_might_like_it": "MongoDB is a strong product/SaaS brand that user's profile indicates preference for.",
+      "why_user_might_hate_it": "The role is pre-sales/technical sales rather than hands-on AI engineering, which user likely wants.",
+      "missing_info": [
+        "Skills required",
+        "Work mode (remote/hybrid/onsite)",
+        "Salary range",
+        "Company type (product vs services)",
+        "Job description and responsibilities"
+      ],
+      "confidence": 0.2,
+      "dimensions": {
+        "role_fit": 1,
+        "skill_fit": 3,
+        "location_fit": 2,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 8,
+        "brand_value": 7,
+        "career_trajectory": 2,
+        "response_likelihood": 1
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:09:52.171202+00:00"
+    },
+    "recommendation": "SKIP"
+  },
+  {
+    "job_id": "loop-0010",
+    "title": "Senior Solutions Architect",
+    "company": "MongoDB",
+    "location": "Stockholm; Sweden",
+    "source": "unknown",
+    "source_url": "https://www.mongodb.com/careers/job/?gh_jid=7920855",
+    "status": "DISCOVERED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.561610+00:00",
+        "reason": "Discovered via unknown"
+      }
+    ],
+    "fit_score": 25,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.561610+00:00",
+    "updated_at": "2026-05-13T19:08:34.561610+00:00",
+    "fit_result": {
+      "overall_score": 25,
+      "recommendation": "SKIP",
+      "reason": "The role is a Solutions Architect in Sweden, far from the user's India location and not aligned with their AI engineering target roles.",
+      "risks": [
+        "Location mismatch: Stockholm, Sweden vs India; requires relocation or remote work which is uncertain.",
+        "Role mismatch: Solutions Architect differs from user's target AI Product Engineer/Applied AI roles.",
+        "Unknown work mode and salary may not meet user's expectations."
+      ],
+      "why_user_might_like_it": "MongoDB is a strong product company (SaaS/devtools) with good brand value, and the architect role could offer broader systems exposure.",
+      "why_user_might_hate_it": "It is not an AI engineering role, requires relocation to Sweden, and may involve more client-facing and system design work which the user lists as weak skill.",
+      "missing_info": [
+        "Salary range",
+        "Work mode (remote/hybrid/onsite)",
+        "Job description and required skills",
+        "Company type (but MongoDB is product/SaaS)"
+      ],
+      "confidence": 0.4,
+      "dimensions": {
+        "role_fit": 2,
+        "skill_fit": 3,
+        "location_fit": 1,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 8,
+        "brand_value": 8,
+        "career_trajectory": 3,
+        "response_likelihood": 2
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:09:57.557165+00:00"
+    },
+    "recommendation": "SKIP"
+  },
+  {
+    "job_id": "loop-0011",
+    "title": "Solutions Architect",
+    "company": "MongoDB",
+    "location": "Munich",
+    "source": "unknown",
+    "source_url": "https://www.mongodb.com/careers/job/?gh_jid=7815444",
+    "status": "DISCOVERED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.561905+00:00",
+        "reason": "Discovered via unknown"
+      }
+    ],
+    "fit_score": 28,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.561905+00:00",
+    "updated_at": "2026-05-13T19:08:34.561905+00:00",
+    "fit_result": {
+      "overall_score": 28,
+      "recommendation": "SKIP",
+      "reason": "The Solutions Architect role at MongoDB in Munich does not match your AI engineering target roles and requires relocation outside India.",
+      "risks": [
+        "Role is not aligned with your target AI engineering positions",
+        "Location in Munich, Germany requires international relocation",
+        "Unknown work mode and salary create uncertainty"
+      ],
+      "why_user_might_like_it": "MongoDB is a strong brand with a stable product-focused company, potentially offering good career growth in a different domain.",
+      "why_user_might_hate_it": "The role is not in AI engineering, may involve significant system design and infrastructure work, and requires relocating to a different country.",
+      "missing_info": [
+        "Skills required for the role",
+        "Work mode (remote/hybrid/onsite)",
+        "Salary range",
+        "Company type (though MongoDB is likely product/SaaS)"
+      ],
+      "confidence": 0.3,
+      "dimensions": {
+        "role_fit": 1,
+        "skill_fit": 3,
+        "location_fit": 0,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 8,
+        "brand_value": 8,
+        "career_trajectory": 4,
+        "response_likelihood": 3
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:10:05.601785+00:00"
+    },
+    "recommendation": "SKIP"
+  },
+  {
+    "job_id": "loop-0012",
+    "title": "Senior Solutions Architect",
+    "company": "MongoDB",
+    "location": "Shenzhen",
+    "source": "unknown",
+    "source_url": "https://www.mongodb.com/careers/job/?gh_jid=7157100",
+    "status": "DISCOVERED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.562270+00:00",
+        "reason": "Discovered via unknown"
+      }
+    ],
+    "fit_score": 28,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.562270+00:00",
+    "updated_at": "2026-05-13T19:08:34.562270+00:00",
+    "fit_result": {
+      "overall_score": 28,
+      "recommendation": "SKIP",
+      "reason": "The role is a Solutions Architect, not an AI engineering role, and is located in Shenzhen, far from the user's likely India base.",
+      "risks": [
+        "Role mismatch: user targets AI engineering, not solutions architecture",
+        "Location in Shenzhen, China \u2013 no indication of remote or relocation support",
+        "No salary, skills, or description provided, making fit assessment unreliable"
+      ],
+      "why_user_might_like_it": "MongoDB is a strong product brand (database SaaS) which aligns with user's preference for product companies.",
+      "why_user_might_hate_it": "The role is not in AI/ML engineering, is located in a different country, and lacks any details to evaluate desirability.",
+      "missing_info": [
+        "Job description",
+        "Required skills",
+        "Salary range",
+        "Work mode (remote/hybrid/on-site)",
+        "Company type (though MongoDB is known as product company)"
+      ],
+      "confidence": 0.2,
+      "dimensions": {
+        "role_fit": 0,
+        "skill_fit": 5,
+        "location_fit": 0,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 8,
+        "brand_value": 8,
+        "career_trajectory": 3,
+        "response_likelihood": 2
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:10:15.113033+00:00"
+    },
+    "recommendation": "SKIP"
+  },
+  {
+    "job_id": "loop-0013",
+    "title": "Solutions Architect",
+    "company": "MongoDB",
+    "location": "Hamburg",
+    "source": "unknown",
+    "source_url": "https://www.mongodb.com/careers/job/?gh_jid=7815443",
+    "status": "SHORTLISTED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.562626+00:00",
+        "reason": "Discovered via unknown"
+      },
+      {
+        "status": "SHORTLISTED",
+        "date": "2026-05-13T19:11:18.865612+00:00",
+        "reason": "Auto-shortlisted"
+      }
+    ],
+    "fit_score": 42,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.562626+00:00",
+    "updated_at": "2026-05-13T19:11:18.865614+00:00",
+    "fit_result": {
+      "overall_score": 42,
+      "recommendation": "SKIP",
+      "reason": "Role of Solutions Architect does not align with user's target AI engineering roles and is located in Hamburg, far from India, with insufficient information to assess fit.",
+      "risks": [
+        "Potential mismatch in role expectations (architecture vs. AI engineering)",
+        "Location in Hamburg may require relocation or visa sponsorship not preferred",
+        "No salary or work mode details to evaluate compensation and flexibility"
+      ],
+      "why_user_might_like_it": "MongoDB is a strong brand in the SaaS/product space, which matches user's preferred company type, and the role could offer exposure to large-scale systems.",
+      "why_user_might_hate_it": "The role is not an AI engineering position; it likely involves system design and architecture where user has weak skills, and the location in Germany may be undesirable.",
+      "missing_info": [
+        "Job description and required skills",
+        "Work mode (remote/hybrid/onsite)",
+        "Salary range",
+        "Company type (assumed product but not confirmed)",
+        "Posting date and source"
+      ],
+      "confidence": 0.25,
+      "dimensions": {
+        "role_fit": 2,
+        "skill_fit": 3,
+        "location_fit": 0,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 8,
+        "brand_value": 9,
+        "career_trajectory": 4,
+        "response_likelihood": 2
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:10:24.258592+00:00"
+    },
+    "recommendation": "SKIP"
+  },
+  {
+    "job_id": "loop-0014",
+    "title": "Senior Solutions Architect",
+    "company": "MongoDB",
+    "location": "Dublin; Ireland",
+    "source": "unknown",
+    "source_url": "https://www.mongodb.com/careers/job/?gh_jid=7595025",
+    "status": "SHORTLISTED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.562982+00:00",
+        "reason": "Discovered via unknown"
+      },
+      {
+        "status": "SHORTLISTED",
+        "date": "2026-05-13T19:11:18.861813+00:00",
+        "reason": "Auto-shortlisted"
+      }
+    ],
+    "fit_score": 50,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.562982+00:00",
+    "updated_at": "2026-05-13T19:11:18.861816+00:00",
+    "fit_result": {
+      "overall_score": 50,
+      "recommendation": "MAYBE",
+      "reason": "LLM scoring unavailable (Expecting value: line 1 column 1 (char 0)). Manual review needed.",
+      "risks": [
+        "Automated scoring failed \u2014 review manually"
+      ],
+      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "missing_info": [
+        "Full JD text",
+        "Salary details",
+        "Work mode"
+      ],
+      "confidence": 0.3,
+      "_scoring_mode": "fallback",
+      "_error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    "recommendation": "MAYBE"
+  },
+  {
+    "job_id": "loop-0015",
+    "title": "Solutions Architect",
+    "company": "MongoDB",
+    "location": "Frankfurt",
+    "source": "unknown",
+    "source_url": "https://www.mongodb.com/careers/job/?gh_jid=7815442",
+    "status": "SHORTLISTED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.563357+00:00",
+        "reason": "Discovered via unknown"
+      },
+      {
+        "status": "SHORTLISTED",
+        "date": "2026-05-13T19:11:18.862832+00:00",
+        "reason": "Auto-shortlisted"
+      }
+    ],
+    "fit_score": 47,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.563357+00:00",
+    "updated_at": "2026-05-13T19:11:18.862835+00:00",
+    "fit_result": {
+      "overall_score": 47,
+      "recommendation": "SKIP",
+      "reason": "The role is a Solutions Architect in Frankfurt, not aligned with user's AI engineering focus and location preference in India.",
+      "risks": [
+        "Location mismatch: Frankfurt vs India, likely requiring relocation or remote not confirmed",
+        "Role not AI-focused: Solutions Architect at MongoDB likely involves database architecture, not the applied AI roles user targets",
+        "User has weak system design interviews, which may be required for this role"
+      ],
+      "why_user_might_like_it": "MongoDB is a well-known, stable product company with strong brand value, which aligns with user's preferred company types.",
+      "why_user_might_hate_it": "The role is in a different country and not in AI, which directly conflicts with user's target roles and location.",
+      "missing_info": [
+        "Salary details",
+        "Work mode (remote/hybrid/onsite)",
+        "Job description and required skills",
+        "Exact company type (though MongoDB is product/SaaS)"
+      ],
+      "confidence": 0.3,
+      "dimensions": {
+        "role_fit": 2,
+        "skill_fit": 3,
+        "location_fit": 2,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 9,
+        "brand_value": 8,
+        "career_trajectory": 5,
+        "response_likelihood": 3
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:10:42.867139+00:00"
+    },
+    "recommendation": "SKIP"
+  },
+  {
+    "job_id": "loop-0016",
+    "title": "Senior Solutions Architect",
+    "company": "MongoDB",
+    "location": "Bengaluru",
+    "source": "unknown",
+    "source_url": "https://www.mongodb.com/careers/job/?gh_jid=7581417",
+    "status": "DISCOVERED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.563745+00:00",
+        "reason": "Discovered via unknown"
+      }
+    ],
+    "fit_score": 35,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.563745+00:00",
+    "updated_at": "2026-05-13T19:08:34.563745+00:00",
+    "fit_result": {
+      "overall_score": 35,
+      "recommendation": "SKIP",
+      "reason": "The Senior Solutions Architect role is a pre-sales/technical sales position at MongoDB, which does not align with the user's target AI engineering roles.",
+      "risks": [
+        "Role is customer-facing and not hands-on AI engineering",
+        "No skills match between job posting and user's AI/ML stack"
+      ],
+      "why_user_might_like_it": "MongoDB is a strong product company with good brand value, and Bengaluru is a tech hub in India.",
+      "why_user_might_hate_it": "The role is a solutions architect, far from the AI engineering roles the user actively seeks; likely involves sales support and demos rather than building AI products.",
+      "missing_info": [
+        "Work mode preference",
+        "User's current location",
+        "Salary details",
+        "Job description to confirm responsibilities"
+      ],
+      "confidence": 0.6,
+      "dimensions": {
+        "role_fit": 2,
+        "skill_fit": 1,
+        "location_fit": 7,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 9,
+        "brand_value": 8,
+        "career_trajectory": 4,
+        "response_likelihood": 3
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:10:48.376795+00:00"
+    },
+    "recommendation": "SKIP"
+  },
+  {
+    "job_id": "loop-0017",
+    "title": "Solutions Architect",
+    "company": "MongoDB",
+    "location": "D\u00fcsseldorf",
+    "source": "unknown",
+    "source_url": "https://www.mongodb.com/careers/job/?gh_jid=7815441",
+    "status": "SHORTLISTED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.564201+00:00",
+        "reason": "Discovered via unknown"
+      },
+      {
+        "status": "SHORTLISTED",
+        "date": "2026-05-13T19:11:18.863801+00:00",
+        "reason": "Auto-shortlisted"
+      }
+    ],
+    "fit_score": 46,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.564201+00:00",
+    "updated_at": "2026-05-13T19:11:18.863803+00:00",
+    "fit_result": {
+      "overall_score": 46,
+      "recommendation": "SKIP",
+      "reason": "Role (Solutions Architect) does not match target AI engineering roles and location is in Germany, not India.",
+      "risks": [
+        "Location is D\u00fcsseldorf, Germany, which likely requires relocation or remote work for an Indian-based candidate.",
+        "Role is a Solutions Architect, which may be pre-sales/consulting oriented and not aligned with AI engineering career goals.",
+        "No job description or required skills available, making it impossible to assess fit."
+      ],
+      "why_user_might_like_it": "MongoDB is a strong brand in the database space and might offer competitive compensation and stability.",
+      "why_user_might_hate_it": "The role deviates from AI product engineering, and the location or lack of remote flexibility could be a dealbreaker.",
+      "missing_info": [
+        "Required skills and technologies",
+        "Salary information",
+        "Work mode (remote/hybrid/onsite)",
+        "Job description and responsibilities"
+      ],
+      "confidence": 0.3,
+      "dimensions": {
+        "role_fit": 2,
+        "skill_fit": 5,
+        "location_fit": 2,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 8,
+        "brand_value": 7,
+        "career_trajectory": 4,
+        "response_likelihood": 3
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:10:58.686328+00:00"
+    },
+    "recommendation": "SKIP"
+  },
+  {
+    "job_id": "loop-0018",
+    "title": "Solutions Architect",
+    "company": "MongoDB",
+    "location": "Berlin",
+    "source": "unknown",
+    "source_url": "https://www.mongodb.com/careers/job/?gh_jid=7721912",
+    "status": "DISCOVERED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.564661+00:00",
+        "reason": "Discovered via unknown"
+      }
+    ],
+    "fit_score": 22,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.564661+00:00",
+    "updated_at": "2026-05-13T19:08:34.564661+00:00",
+    "fit_result": {
+      "overall_score": 22,
+      "recommendation": "SKIP",
+      "reason": "The user targets AI engineering roles, but this is a Solutions Architect position at MongoDB, which is misaligned in role and location (Berlin vs India).",
+      "risks": [
+        "Role is not AI engineering; likely pre-sales or technical consulting, not hands-on building.",
+        "Location in Berlin is outside India, requiring relocation or remote work with timezone issues."
+      ],
+      "why_user_might_like_it": "MongoDB is a strong devtools brand with good stability, appealing to someone interested in the data infrastructure space.",
+      "why_user_might_hate_it": "The role is not engineering-focused, lacks alignment with AI/ML work, and location mismatch reduces practicality.",
+      "missing_info": [
+        "Work mode (remote/hybrid/onsite)",
+        "Salary range",
+        "Required skills",
+        "Company type (likely product but unconfirmed)"
+      ],
+      "confidence": 0.3,
+      "dimensions": {
+        "role_fit": 0,
+        "skill_fit": 0,
+        "location_fit": 1,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 8,
+        "brand_value": 9,
+        "career_trajectory": 2,
+        "response_likelihood": 3
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:11:09.004933+00:00"
+    },
+    "recommendation": "SKIP"
+  },
+  {
+    "job_id": "loop-0019",
+    "title": "Solutions Architect",
+    "company": "MongoDB",
+    "location": "Seoul",
+    "source": "unknown",
+    "source_url": "https://www.mongodb.com/careers/job/?gh_jid=7820448",
+    "status": "SHORTLISTED",
+    "status_history": [
+      {
+        "status": "DISCOVERED",
+        "date": "2026-05-13T19:08:34.565083+00:00",
+        "reason": "Discovered via unknown"
+      },
+      {
+        "status": "SHORTLISTED",
+        "date": "2026-05-13T19:11:18.864599+00:00",
+        "reason": "Auto-shortlisted"
+      }
+    ],
+    "fit_score": 43,
+    "fit_breakdown": null,
+    "user_decision": null,
+    "decision_reason": null,
+    "follow_up_dates": [],
+    "recruiter_name": null,
+    "recruiter_linkedin": null,
+    "recruiter_email": null,
+    "notes": "",
+    "created_at": "2026-05-13T19:08:34.565083+00:00",
+    "updated_at": "2026-05-13T19:11:18.864602+00:00",
+    "fit_result": {
+      "overall_score": 43,
+      "recommendation": "SKIP",
+      "reason": "The Solutions Architect role at MongoDB is not aligned with your AI engineering career goals and requires relocation to Seoul, making it a poor fit.",
+      "risks": [
+        "Role is outside your target AI/engineering roles",
+        "Requires relocation to Seoul, India not mentioned",
+        "Your weaker areas (system design, Kubernetes) are likely critical for this role"
+      ],
+      "why_user_might_like_it": "MongoDB is a prestigious SaaS company with strong brand value and stability.",
+      "why_user_might_hate_it": "The role is not focused on AI/ML engineering, and you would need to relocate to Seoul, away from your current location.",
+      "missing_info": [
+        "Salary and compensation details",
+        "Required skills and responsibilities",
+        "Work mode (remote/hybrid/onsite)",
+        "Company type (not specified but MongoDB is SaaS)",
+        "Job description and responsibilities"
+      ],
+      "confidence": 0.6,
+      "dimensions": {
+        "role_fit": 2,
+        "skill_fit": 3,
+        "location_fit": 2,
+        "salary_fit": 5,
+        "work_mode_fit": 5,
+        "company_stability": 8,
+        "brand_value": 7,
+        "career_trajectory": 4,
+        "response_likelihood": 3
+      },
+      "_model": "deepseek-v4-flash",
+      "_timestamp": "2026-05-13T19:11:18.852836+00:00"
+    },
+    "recommendation": "SKIP"
+  }
+]
