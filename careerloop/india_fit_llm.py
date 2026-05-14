@@ -18,12 +18,45 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
+try:
+    import yaml
+except ImportError:
+    yaml = None
+
 from dotenv import load_dotenv
 
 # Load env from career-ops root
 _ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
 if _ENV_PATH.exists():
     load_dotenv(_ENV_PATH)
+
+
+def _load_fit_model_config() -> dict:
+    """Load fit engine model config from config/models.yml, with env override."""
+    defaults = {
+        "model": "deepseek-chat",
+        "temperature": 0.3,
+        "max_tokens": 2000,
+    }
+    if yaml is None:
+        return defaults
+    config_path = Path(__file__).resolve().parent.parent / "config" / "models.yml"
+    if config_path.exists():
+        try:
+            with open(config_path, encoding="utf-8") as f:
+                cfg = yaml.safe_load(f)
+            fit = cfg.get("fit_engine", {})
+            defaults["model"] = fit.get("model", defaults["model"])
+            defaults["temperature"] = fit.get("temperature", defaults["temperature"])
+            defaults["max_tokens"] = fit.get("max_tokens", defaults["max_tokens"])
+        except Exception:
+            pass
+    # Env override always wins
+    env_model = os.getenv("CAREERLOOP_FIT_MODEL", "")
+    if env_model:
+        defaults["model"] = env_model
+    return defaults
+
 
 from careerloop.models import JobPosting, Recommendation
 
@@ -69,10 +102,13 @@ RULES:
 - confidence: 0-1 (how confident are you in this score given available info)
 - Be honest: low info = low confidence"""
 
-    def __init__(self, api_key: str = None, model: str = "deepseek-v4-flash"):
+    def __init__(self, api_key: str = None, model: str = None):
         self.api_key = api_key or os.getenv("DEEPSEEK_API_KEY", "")
         self.base_url = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com/v1")
-        self.model = model
+        _cfg = _load_fit_model_config()
+        self.model = model or _cfg["model"]
+        self._temperature = _cfg["temperature"]
+        self._max_tokens = _cfg["max_tokens"]
 
     def score_job(self, job: JobPosting, user_profile: dict) -> dict:
         """Score a single job against a user profile. Returns full JSON result."""
@@ -91,8 +127,8 @@ RULES:
                         {"role": "system", "content": self.SYSTEM_PROMPT},
                         {"role": "user", "content": user_prompt},
                     ],
-                    "temperature": 0.3,
-                    "max_tokens": 2000,
+                    "temperature": self._temperature,
+                    "max_tokens": self._max_tokens,
                 },
                 timeout=30,
             )

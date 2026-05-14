@@ -45,7 +45,7 @@ class JobSpyAdapter:
         from jobspy import scrape_jobs
 
         if sites is None:
-            sites = ["linkedin", "indeed", "glassdoor"]
+            sites = ["linkedin", "indeed"]
 
         try:
             jobs_df = scrape_jobs(

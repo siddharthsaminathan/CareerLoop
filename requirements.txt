@@ -1,0 +1,21 @@
+# CareerLoop — Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core HTTP + scraping
+requests>=2.32
+beautifulsoup4>=4.14
+lxml>=6.0
+
+# Search
+duckduckgo-search>=8.1
+
+# Config & env
+python-dotenv>=1.0
+PyYAML>=6.0
+
+# Multi-board job search (optional — requires C compiler to build on Windows)
+# pip install python-jobspy
+# python-jobspy>=1.1
+
+# LLM extraction (optional — heavyweight, install separately)
+# pip install scrapegraphai

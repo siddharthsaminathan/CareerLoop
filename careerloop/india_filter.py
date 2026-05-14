@@ -96,21 +96,19 @@ def is_india_job(location: str, description: str = "", url: str = "") -> tuple[b
 
     # (URL-based India board check is at the top of this function)
 
-    # Non-India rejection
+    # Non-India rejection — check location field only (not description body)
     for signal in NON_INDIA_SIGNALS:
         if signal in loc_lower:
             return False, f"non-India location: {signal}"
 
-    # Global remote without India mention
-    if "remote" in loc_lower and "india" not in combined:
-        return False, "global remote without India mention"
-
-    # Check description for India city mentions
-    for city in INDIA_CITIES:
-        if city in desc_lower:
-            return True, f"description mentions {city}"
+    # Global remote without India explicitly in location field → reject
+    # NOTE: We do NOT check description body here — global office footers like
+    # "offices in NYC, Dublin, Gurugram" would otherwise pass non-India jobs.
+    if "remote" in loc_lower and "india" not in loc_lower:
+        return False, "global remote without India in location field"
 
     # Check for Indian state codes and ", IN" suffix (common in JobSpy results)
+    # Only from location field — not description body
     india_state_codes = {
         "tn", "ka", "mh", "ap", "ts", "kl", "dl", "hr", "up", "wb",
         "rj", "gj", "mp", "pb", "or", "br", "jh", "ct", "ga",
@@ -118,17 +116,22 @@ def is_india_job(location: str, description: str = "", url: str = "") -> tuple[b
         "telangana", "kerala", "haryana", "uttar pradesh", "west bengal",
         "rajasthan", "gujarat", "madhya pradesh", "punjab", "odisha",
     }
+    india_cities = {
+        "chennai", "bengaluru", "bangalore", "hyderabad", "mumbai", "pune", "delhi", 
+        "gurugram", "gurgaon", "noida", "kolkata", "kochi", "coimbatore", "ahmedabad",
+        "jaipur", "chandigarh", "lucknow", "indore", "thiruvananthapuram", "trivandrum"
+    }
     loc_parts = [p.strip() for p in loc_lower.split(",")]
     if loc_parts:
         last = loc_parts[-1].strip()
         if last in ("in", "india", "ind"):
-            return True, f"location ends with India country code"
-        if any(part in india_state_codes for part in loc_parts):
-            return True, f"location contains Indian state code"
+            return True, "location ends with India country code"
+        if any(part in india_state_codes or part in india_cities for part in loc_parts):
+            return True, "location contains Indian city or state code"
 
-    # Unknown location — reject conservatively
+    # Unknown or blank location — reject conservatively
     if loc_lower and loc_lower not in ("", "unknown", "not specified"):
-        return False, f"unknown location: {location}"
+        return False, f"unknown location (not India): {location}"
 
     return False, "no India signals found"
 

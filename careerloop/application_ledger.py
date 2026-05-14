@@ -83,6 +83,12 @@ class ApplicationLedger:
             "location": job.get("location", ""),
             "source": source,
             "source_url": job.get("url") or job.get("source_url", ""),
+            "application_url": job.get("application_url") or job.get("apply_url", ""),
+            "raw_description": job.get("raw_description") or job.get("description") or job.get("jd_text", ""),
+            "description": job.get("description") or job.get("raw_description") or job.get("jd_text", ""),
+            "work_mode": job.get("work_mode", ""),
+            "salary_range": job.get("salary_range") or job.get("salary", ""),
+            "skills_required": job.get("skills_required") or job.get("skills", []),
             "status": "DISCOVERED",
             "status_history": [
                 {"status": "DISCOVERED", "date": now, "reason": f"Discovered via {source}"}

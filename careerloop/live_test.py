@@ -82,9 +82,9 @@ def run_live_test():
         for j in unverified[:5]:
             print(f"   • {j.get('title','')} @ {j.get('company','')}: {j.get('verification_reason','')}")
 
-    # Final shortlist
-    final = report.get("final_shortlist", [])
-    print(f"\n✅ Final Verified India Jobs ({len(final)}):")
+    # Verified internal jobs
+    final = report.get("verified_job_postings", [])
+    print(f"\n✅ Verified Internal Jobs ({len(final)}):")
     for i, job in enumerate(final[:10], 1):
         route = getattr(job, 'application_url', '') or ''
         print(f"   {i}. {job.company} — {job.role_title}")

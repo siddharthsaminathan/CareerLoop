@@ -11,11 +11,31 @@ import logging
 from typing import Optional
 from pathlib import Path
 
+try:
+    import yaml
+except ImportError:
+    yaml = None
+
 from dotenv import load_dotenv
 
 _ENV_PATH = Path(__file__).resolve().parent.parent.parent / ".env"
 if _ENV_PATH.exists():
     load_dotenv(_ENV_PATH)
+
+
+def _load_scrape_model() -> str:
+    """Load scrape engine model from config/models.yml, with env override."""
+    default = "deepseek/deepseek-chat"
+    if yaml is not None:
+        config_path = Path(__file__).resolve().parent.parent.parent / "config" / "models.yml"
+        if config_path.exists():
+            try:
+                with open(config_path, encoding="utf-8") as f:
+                    cfg = yaml.safe_load(f)
+                default = cfg.get("scrape_engine", {}).get("model", default)
+            except Exception:
+                pass
+    return os.getenv("CAREERLOOP_SCRAPE_MODEL", default)
 
 logger = logging.getLogger(__name__)
 
@@ -42,6 +62,7 @@ class ScrapeGraphAdapter:
         self._available = None
         self.api_key = os.getenv("DEEPSEEK_API_KEY", "")
         self.base_url = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com/v1")
+        self.model = _load_scrape_model()
 
     @property
     def available(self) -> bool:
@@ -71,7 +92,7 @@ class ScrapeGraphAdapter:
         config = {
             "llm": {
                 "api_key": self.api_key,
-                "model": "deepseek/deepseek-chat",
+                "model": self.model,
                 "base_url": self.base_url,
             },
             "headless": True,

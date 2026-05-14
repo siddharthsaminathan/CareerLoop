@@ -11,25 +11,74 @@ import time
 import logging
 from urllib.parse import urlparse
 
+from careerloop.models import CandidateURL, SearchResult, URLType, VerificationOutcome, classify_url_type
+
 logger = logging.getLogger(__name__)
 
-JOB_URL_PATTERNS = [
+# India-native job board URL patterns — ONLY these pass through.
+# All non-India ATS boards (greenhouse, lever, etc.) are explicitly rejected.
+INDIA_JOB_URL_PATTERNS = [
     r"linkedin\.com/jobs/view/",
+    r"linkedin\.com/jobs/collections/",
     r"naukri\.com/job-listings-",
     r"naukri\.com/job/",
+    r"naukri\.com/[^/]+-jobs-",
     r"cutshort\.io/",
     r"instahyre\.com/",
-    r"wellfound\.com/",
-    r"greenhouse\.io/.+/jobs/",
-    r"boards\.greenhouse\.io/",
-    r"lever\.co/.+/",
-    r"indeed\.com/viewjob",
+    r"wellfound\.com/jobs",
+    r"wellfound\.com/l/",
     r"hirist\.tech/",
     r"iimjobs\.com/",
     r"foundit\.in/",
+    r"workindia\.in/",
+    r"apna\.co/",
+    r"shine\.com/",
 ]
 
+# India-native job board domains (fallback domain check)
+INDIA_JOB_DOMAINS = [
+    "naukri.com",
+    "cutshort.io",
+    "instahyre.com",
+    "hirist.tech",
+    "iimjobs.com",
+    "foundit.in",
+    "workindia.in",
+    "apna.co",
+    "shine.com",
+]
+
+# LinkedIn jobs are allowed but only the /jobs/view/ path (not company pages etc.)
+LINKEDIN_JOBS_DOMAINS = ["linkedin.com"]
+
+# Domains to always skip — non-India ATS boards, news, social, etc.
 SKIP_DOMAINS = [
+    # Non-India ATS boards — these surface global/US/EU jobs
+    "greenhouse.io",
+    "boards.greenhouse.io",
+    "job-boards.greenhouse.io",
+    "lever.co",
+    "jobs.lever.co",
+    "ashbyhq.com",
+    "jobs.ashbyhq.com",
+    "workable.com",
+    "apply.workable.com",
+    "myworkdayjobs.com",
+    "icims.com",
+    "taleo.net",
+    "smartrecruiters.com",
+    "bamboohr.com",
+    "jobvite.com",
+    "recruitee.com",
+    "indeed.com",       # Global, not India-specific
+    "glassdoor.com",
+    "monster.com",
+    "ziprecruiter.com",
+    "remotive.com",
+    "weworkremotely.com",
+    "remoteok.com",
+    "wellfound.com/company",  # Company pages, not job listings
+    # Social / news / review sites
     "youtube.com", "wikipedia.org", "quora.com", "reddit.com",
     "facebook.com", "twitter.com", "x.com", "medium.com",
     "glassdoor.com/Reviews", "glassdoor.com/Salaries",
@@ -70,22 +119,37 @@ class SearchAdapter:
                 url = r.get("url", "")
                 if not url or url in seen_urls:
                     continue
+                url_type = classify_url_type(url)
+                if url_type == URLType.BLOG_ARTICLE:
+                    continue
                 if not self._is_job_url(url):
                     continue
                 if self._is_skip_domain(url):
                     continue
 
                 seen_urls.add(url)
-                all_results.append({
-                    "url": url,
-                    "title": r.get("title", ""),
-                    "snippet": r.get("snippet", ""),
-                    "source_query": query_str,
-                    "source_role": q.get("role", ""),
-                    "source_city": q.get("city", ""),
-                    "source_site": q.get("site", ""),
-                    "search_engine": r.get("engine", "google"),
-                })
+                search_result = SearchResult(
+                    url=url,
+                    title=r.get("title", ""),
+                    snippet=r.get("snippet", ""),
+                    source_query=query_str,
+                    source_role=q.get("role", ""),
+                    source_city=q.get("city", ""),
+                    source_site=q.get("site", ""),
+                    search_engine=r.get("engine", "google"),
+                )
+                outcome = VerificationOutcome.VERIFIED_MAYBE.value
+                reason = "classified candidate URL"
+                if url_type in (URLType.SEARCH_PAGE, URLType.CATEGORY_PAGE, URLType.COMPANY_CAREERS_PAGE):
+                    outcome = VerificationOutcome.NEEDS_MORE_DATA.value
+                    reason = "discovery lead only"
+                candidate = CandidateURL(
+                    **search_result.to_dict(),
+                    url_type=url_type.value,
+                    verification_outcome=outcome,
+                    reason=reason,
+                )
+                all_results.append(candidate.to_dict())
 
             if i < len(queries) - 1:
                 time.sleep(self.delay)
@@ -156,23 +220,46 @@ class SearchAdapter:
         return results
 
     def _search_ddg(self, query: str) -> list[dict]:
-        """Search using DuckDuckGo (free)."""
-        from duckduckgo_search import DDGS
+        """Search using DuckDuckGo (free) via the ddgs library."""
+        from ddgs import DDGS
         with DDGS() as ddgs:
             results = list(ddgs.text(query, max_results=self.max_results, region="in-en"))
         return [{"url": r.get("href",""), "title": r.get("title",""), "snippet": r.get("body",""), "engine": "duckduckgo"} for r in results]
 
     def _is_job_url(self, url: str) -> bool:
+        """Only allow URLs from India-native job boards."""
         url_lower = url.lower()
-        for p in JOB_URL_PATTERNS:
+        from urllib.parse import urlparse
+        parsed = urlparse(url_lower)
+        netloc = parsed.netloc
+
+        url_type = classify_url_type(url)
+        if url_type in (
+            URLType.INDIVIDUAL_JOB,
+            URLType.SEARCH_PAGE,
+            URLType.COMPANY_CAREERS_PAGE,
+            URLType.CATEGORY_PAGE,
+        ):
+            return True
+
+        if "linkedin.com" in netloc:
+            return "/jobs/" in url_lower
+
+        # Wellfound: only job listings, not company profile pages
+        if "wellfound.com" in netloc:
+            return "/jobs" in url_lower or "/l/" in url_lower
+
+        # India-specific board URL patterns
+        for p in INDIA_JOB_URL_PATTERNS:
             if re.search(p, url_lower):
                 return True
-        job_segs = ["/jobs/", "/job/", "/careers/", "/apply/", "/opening/"]
-        if any(s in url_lower for s in job_segs):
-            return True
-        parsed = urlparse(url)
-        job_doms = ["linkedin.com","naukri.com","cutshort.io","instahyre.com","wellfound.com","hirist.tech","iimjobs.com","foundit.in"]
-        return any(d in parsed.netloc for d in job_doms)
+
+        # India-specific board domains
+        for d in INDIA_JOB_DOMAINS:
+            if d in netloc:
+                return True
+
+        return False
 
     def _is_skip_domain(self, url: str) -> bool:
         url_lower = url.lower()

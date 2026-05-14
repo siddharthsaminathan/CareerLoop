@@ -58,6 +58,11 @@ Raw discovery creates extreme decision paralysis. Phase 1.5 and 1.6 implement pe
 
 Phase 2 builds directly upon finalized strategic tracks to prepare application assets natively, avoiding brute-force automation loops.
 
+Detailed Phase 2 documents:
+- `docs/PHASE_2_RESUME_COUNCIL.md`
+- `docs/PHASE_2_IMPLEMENTATION_PLAN.md`
+- `docs/PHASE_1_GAP_TRACKER.md`
+
 ### Deliverables Roadmap
 - `[ ]` **Multi-Agent Resume Council Integration**: Expose pre-compiled, highly optimized **Shared Resume Variants** mapped strictly to high-level tracks rather than generating redundant single-job documents.
 - `[ ]` **Drop-In Pack Formatter**: Package customized framing narratives, cover letter structures, and screening parameters directly into isolated staging elements.

@@ -1,0 +1,35 @@
+# CareerLoop — Model Configuration
+# ─────────────────────────────────────────────────────────────────
+# All LLM model names and API routing live here.
+# Actual API keys go in .env (never in this file).
+#
+# To switch providers: change the model names and update your .env.
+# ─────────────────────────────────────────────────────────────────
+
+# ── Scoring Engine (india_fit_llm.py) ─────────────────────────────
+# Used by the LLM India Fit Engine to score job fit across 14 dimensions.
+# Override via env: CAREERLOOP_FIT_MODEL
+fit_engine:
+  provider: deepseek
+  model: deepseek-chat            # DeepSeek v3 (fast, cheap, good reasoning)
+  # model: deepseek-reasoner      # DeepSeek R1 (slower, better for complex fits)
+  # model: gpt-4o-mini            # OpenAI alternative (set OPENAI_API_KEY)
+  temperature: 0.3
+  max_tokens: 2000
+
+# ── Extraction Engine (scrapegraph_adapter.py) ────────────────────
+# Used by ScrapeGraphAI to extract structured job data from raw URLs.
+# Override via env: CAREERLOOP_SCRAPE_MODEL
+scrape_engine:
+  provider: deepseek
+  model: deepseek/deepseek-chat   # ScrapeGraphAI expects "provider/model" format
+  # model: openai/gpt-4o-mini     # OpenAI alternative
+
+# ── Resume Council (Phase 2) ─────────────────────────────────────
+# Triggered only after explicit user interest/apply intent.
+resume_council:
+  provider: deepseek
+  strategy_model: deepseek-chat    # Override via CAREERLOOP_COUNCIL_STRATEGY_MODEL
+  writer_model: deepseek-chat      # Override via CAREERLOOP_COUNCIL_WRITER_MODEL
+  temperature: 0.2
+  max_tokens: 3000

@@ -8,16 +8,24 @@ Output: 5-12 site-specific search queries for free search engines.
 from typing import Optional
 
 
-# Indian job board domains for site-scoped searches
-JOB_SITES = [
-    "linkedin.com",
-    "naukri.com",
-    "cutshort.io",
-    "instahyre.com",
+# India-only job board sites for site-scoped search queries
+# These are the ONLY sources. No greenhouse, no lever, no global ATS.
+INDIA_JOB_SITES = [
+    # Tier 1 — highest India AI job volume
+    {"site": "linkedin.com/jobs",   "label": "LinkedIn",    "tier": 1},
+    {"site": "naukri.com",          "label": "Naukri",      "tier": 1},
+    {"site": "cutshort.io",         "label": "Cutshort",   "tier": 1},
+    # Tier 2 — high-quality India tech boards
+    {"site": "instahyre.com",       "label": "Instahyre",  "tier": 2},
+    {"site": "hirist.tech",         "label": "Hirist",     "tier": 2},
+    {"site": "iimjobs.com",         "label": "IIMJobs",    "tier": 2},
+    {"site": "foundit.in",          "label": "Foundit",    "tier": 2},
+    # Tier 3 — startup-focused India boards
+    {"site": "wellfound.com",       "label": "Wellfound",  "tier": 3},
 ]
 
-# Broad search (no site scope) as fallback
-BROAD_SUFFIXES = ["India", "Bangalore", "remote India"]
+# India city / location suffixes to append to broad queries
+INDIA_LOCATIONS = ["Bangalore", "Hyderabad", "Mumbai", "Pune", "Chennai", "Gurugram", "Remote India"]
 
 
 class RoleStrategyGenerator:
@@ -73,83 +81,79 @@ class RoleStrategyGenerator:
 
         queries = []
 
-        # Strategy: primary roles × primary city × top 2 sites
-        # Then: adjacent roles × primary city × 1 site
-        # Then: primary roles × secondary cities × 1 site
-        # Then: broad (no site scope) queries
+        tier1_sites = [s for s in INDIA_JOB_SITES if s["tier"] == 1]  # LinkedIn, Naukri, Cutshort
+        tier2_sites = [s for s in INDIA_JOB_SITES if s["tier"] == 2]  # Instahyre, Hirist, IIMJobs, Foundit
+        tier3_sites = [s for s in INDIA_JOB_SITES if s["tier"] == 3]  # Wellfound
 
         primary_city = cities[0] if cities else "Bangalore"
         secondary_cities = cities[1:3] if len(cities) > 1 else []
 
-        # Phase 1: Primary roles on top sites
-        for role_info in [r for r in all_roles if r["priority"] == 1]:
+        primary_roles = [r for r in all_roles if r["priority"] == 1]
+        adjacent_roles_list = [r for r in all_roles if r["priority"] == 2]
+
+        # Phase 1: Primary roles × Tier 1 sites × primary city
+        # e.g. site:linkedin.com/jobs "AI Engineer" Bangalore
+        for role_info in primary_roles:
             role = role_info["role"]
-            for site in JOB_SITES[:2]:  # LinkedIn + Naukri
+            for s in tier1_sites:
                 queries.append({
-                    "query": f'site:{site} "{role}" {primary_city}',
+                    "query": f'site:{s["site"]} "{role}" {primary_city}',
                     "role": role,
                     "city": primary_city,
-                    "site": site,
+                    "site": s["site"],
                     "priority": 1,
                 })
 
-        # Phase 2: Primary roles on secondary sites
-        for role_info in [r for r in all_roles if r["priority"] == 1][:2]:
+        # Phase 2: Primary roles × Tier 1 sites × secondary cities
+        for city in secondary_cities:
+            for role_info in primary_roles[:2]:
+                role = role_info["role"]
+                for s in tier1_sites[:2]:  # LinkedIn + Naukri only
+                    queries.append({
+                        "query": f'site:{s["site"]} "{role}" {city}',
+                        "role": role,
+                        "city": city,
+                        "site": s["site"],
+                        "priority": 1,
+                    })
+
+        # Phase 3: Primary roles × Tier 2 India boards (no city needed, board is India-only)
+        # e.g. site:cutshort.io "AI Engineer"  |  site:hirist.tech "ML Engineer"
+        for role_info in primary_roles[:2]:
             role = role_info["role"]
-            for site in JOB_SITES[2:]:  # cutshort, instahyre
+            for s in tier2_sites:
                 queries.append({
-                    "query": f'site:{site} "{role}" India',
+                    "query": f'site:{s["site"]} "{role}"',
                     "role": role,
                     "city": "India",
-                    "site": site,
+                    "site": s["site"],
                     "priority": 2,
                 })
 
-        # Phase 3: Adjacent roles on top site
-        for role_info in [r for r in all_roles if r["priority"] == 2][:3]:
+        # Phase 4: Adjacent roles × Tier 1 sites × primary city
+        for role_info in adjacent_roles_list[:3]:
             role = role_info["role"]
-            queries.append({
-                "query": f'site:linkedin.com "{role}" {primary_city} jobs',
-                "role": role,
-                "city": primary_city,
-                "site": "linkedin.com",
-                "priority": 2,
-            })
-
-        # Phase 4: Primary roles in secondary cities
-        for city in secondary_cities:
-            for role_info in [r for r in all_roles if r["priority"] == 1][:2]:
-                role = role_info["role"]
+            for s in tier1_sites[:2]:
                 queries.append({
-                    "query": f'site:naukri.com "{role}" {city}',
+                    "query": f'site:{s["site"]} "{role}" {primary_city}',
                     "role": role,
-                    "city": city,
-                    "site": "naukri.com",
-                    "priority": 3,
+                    "city": primary_city,
+                    "site": s["site"],
+                    "priority": 2,
                 })
 
-        # Phase 5: Broad search (no site scope) for coverage
-        for role_info in [r for r in all_roles if r["priority"] == 1][:2]:
-            role = role_info["role"]
-            queries.append({
-                "query": f'"{role}" jobs {primary_city} India apply',
-                "role": role,
-                "city": primary_city,
-                "site": "broad",
-                "priority": 3,
-            })
-
-        # Startup-specific queries if tolerance is high
-        if startup_tolerance >= 7:
-            for role_info in [r for r in all_roles if r["priority"] == 1][:1]:
+        # Phase 5: Startup-focused (Wellfound) if user is startup-tolerant
+        if startup_tolerance >= 6:
+            for role_info in primary_roles[:2]:
                 role = role_info["role"]
-                queries.append({
-                    "query": f'site:wellfound.com "{role}" India',
-                    "role": role,
-                    "city": "India",
-                    "site": "wellfound.com",
-                    "priority": 3,
-                })
+                for s in tier3_sites:
+                    queries.append({
+                        "query": f'site:{s["site"]} "{role}" India',
+                        "role": role,
+                        "city": "India",
+                        "site": s["site"],
+                        "priority": 3,
+                    })
 
         # Deduplicate
         seen = set()
@@ -160,8 +164,8 @@ class RoleStrategyGenerator:
                 seen.add(key)
                 unique_queries.append(q)
 
-        # Cap at 12
-        return unique_queries[:12]
+        # Cap at 20 (8 India boards × roles, respects DDG rate limits)
+        return unique_queries[:20]
 
     def _get_cities(self) -> list[str]:
         """Extract preferred cities from profile."""

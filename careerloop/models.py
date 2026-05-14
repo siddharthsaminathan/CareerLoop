@@ -11,6 +11,7 @@ from dataclasses import dataclass, field, asdict
 from datetime import datetime, timezone
 from typing import Optional
 from enum import Enum
+from urllib.parse import urlparse
 
 
 class Decision(str, Enum):
@@ -42,6 +43,121 @@ class SourceType(str, Enum):
     REFERRAL = "referral"
     RECRUITER = "recruiter"
     UNKNOWN = "unknown"
+
+
+class URLType(str, Enum):
+    INDIVIDUAL_JOB = "INDIVIDUAL_JOB"
+    SEARCH_PAGE = "SEARCH_PAGE"
+    COMPANY_CAREERS_PAGE = "COMPANY_CAREERS_PAGE"
+    BLOG_ARTICLE = "BLOG_ARTICLE"
+    CATEGORY_PAGE = "CATEGORY_PAGE"
+    UNKNOWN = "UNKNOWN"
+
+
+class VerificationOutcome(str, Enum):
+    VERIFIED_STRONG = "VERIFIED_STRONG"
+    VERIFIED_MAYBE = "VERIFIED_MAYBE"
+    NEEDS_MORE_DATA = "NEEDS_MORE_DATA"
+    REJECTED = "REJECTED"
+    NOISE = "NOISE"
+
+
+@dataclass
+class SearchResult:
+    url: str
+    title: str = ""
+    snippet: str = ""
+    source_query: str = ""
+    source_role: str = ""
+    source_city: str = ""
+    source_site: str = ""
+    search_engine: str = "unknown"
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+@dataclass
+class CandidateURL:
+    url: str
+    url_type: str
+    title: str = ""
+    snippet: str = ""
+    source_query: str = ""
+    source_role: str = ""
+    source_city: str = ""
+    source_site: str = ""
+    search_engine: str = "unknown"
+    verification_outcome: str = VerificationOutcome.NEEDS_MORE_DATA.value
+    reason: str = ""
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+@dataclass
+class ExtractedJob:
+    title: str
+    company: str
+    location: str
+    jd_text: str
+    apply_url: str
+    source_url: str
+    url_type: str = URLType.INDIVIDUAL_JOB.value
+    source: str = "unknown"
+    work_mode: str = ""
+    salary_range: str = ""
+    skills_required: list[str] = field(default_factory=list)
+    posted_at: str = ""
+    verification_outcome: str = VerificationOutcome.NEEDS_MORE_DATA.value
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+@dataclass
+class VerifiedJob:
+    job: "JobPosting"
+    verification_outcome: str
+    verification_reason: str = ""
+
+    def to_dict(self) -> dict:
+        d = self.job.to_dict()
+        d["verification_outcome"] = self.verification_outcome
+        d["verification_reason"] = self.verification_reason
+        return d
+
+
+@dataclass
+class ScoredJob:
+    job: "JobPosting"
+    heuristic_score: float
+    fit_score: Optional[float] = None
+    fit_result: dict = field(default_factory=dict)
+
+    def to_dict(self) -> dict:
+        d = self.job.to_dict()
+        d["heuristic_score"] = self.heuristic_score
+        d["fit_score"] = self.fit_score
+        d["fit_result"] = self.fit_result
+        return d
+
+
+@dataclass
+class UserVisibleOpportunity:
+    company: str
+    role_title: str
+    location: str
+    source_url: str
+    apply_url: str
+    overall_score: float
+    recommendation: str
+    why_user_might_like_it: str = ""
+    risks: list[str] = field(default_factory=list)
+    confidence: float = 0
+
+    def to_dict(self) -> dict:
+        return asdict(self)
 
 
 @dataclass
@@ -219,3 +335,74 @@ def make_fingerprint(company: str, role: str, location: str, domain: str) -> str
     """Create a deterministic fingerprint for deduplication."""
     key = f"{company}|{role}|{location}|{domain}"
     return hashlib.sha256(key.encode()).hexdigest()[:16]
+
+
+def classify_url_type(url: str) -> URLType:
+    if not url:
+        return URLType.UNKNOWN
+
+    parsed = urlparse(url.lower())
+    netloc = parsed.netloc.replace("www.", "")
+    path = parsed.path.rstrip("/")
+    query = parsed.query
+    blog_tokens = (
+        "/blog", "/blogs", "/article", "/articles", "/news", "/press",
+        "/insights", "/resources", "/stories", "/learn"
+    )
+    if any(token in path for token in blog_tokens) or any(d in netloc for d in ("medium.com", "substack.com")):
+        return URLType.BLOG_ARTICLE
+
+    if "linkedin.com" in netloc:
+        if path.startswith("/jobs/search"):
+            return URLType.SEARCH_PAGE
+        if re.search(r"^/jobs/view/\d+", path):
+            return URLType.INDIVIDUAL_JOB
+        if path.startswith("/jobs/collections") or path == "/jobs":
+            return URLType.SEARCH_PAGE
+        return URLType.UNKNOWN
+
+    if "naukri.com" in netloc:
+        if path.startswith("/job-listings-") or "/job-listings-" in path:
+            return URLType.INDIVIDUAL_JOB
+        if "jobs-in-" in path or path.endswith("-jobs") or path in ("", "/") or any(k in query for k in ("keyword=", "k=", "location=", "l=", "experience=")):
+            return URLType.SEARCH_PAGE
+        if any(token in path for token in ("/browse-jobs", "/top-jobs", "/jobsearch")):
+            return URLType.CATEGORY_PAGE
+        return URLType.UNKNOWN
+
+    if "cutshort.io" in netloc:
+        if path.startswith("/job/"):
+            return URLType.INDIVIDUAL_JOB
+        if path.startswith("/jobs"):
+            return URLType.CATEGORY_PAGE
+        return URLType.UNKNOWN
+
+    if "instahyre.com" in netloc:
+        if re.search(r"/job-\d+", path):
+            return URLType.INDIVIDUAL_JOB
+        return URLType.SEARCH_PAGE if path.startswith("/jobs") else URLType.UNKNOWN
+
+    if "hirist.tech" in netloc:
+        if path.startswith("/j/"):
+            return URLType.INDIVIDUAL_JOB
+        return URLType.SEARCH_PAGE if "jobs" in path else URLType.UNKNOWN
+
+    if "foundit.in" in netloc:
+        if path.startswith("/career-advice") or path.startswith("/career-advice/"):
+            return URLType.BLOG_ARTICLE
+        if "job" in path and re.search(r"\d+", path):
+            return URLType.INDIVIDUAL_JOB
+        return URLType.SEARCH_PAGE if "job" in path else URLType.UNKNOWN
+
+    if any(token in path for token in ("/category", "/categories", "/browse", "/tag/", "/tags/", "/roles")):
+        return URLType.CATEGORY_PAGE
+
+    if any(token in path for token in ("/careers", "/career", "/jobs", "/openings", "/positions")):
+        if re.search(r"(/jobs?|/openings|/positions)/[^/]*\d", path) or re.search(r"/(gh_jid|jobs?)/", path):
+            return URLType.INDIVIDUAL_JOB
+        return URLType.COMPANY_CAREERS_PAGE
+
+    if re.search(r"/job[-/]?([a-z0-9-]*\d+|details|view)", path) or "jobid=" in query or "job_id=" in query:
+        return URLType.INDIVIDUAL_JOB
+
+    return URLType.UNKNOWN

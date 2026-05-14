@@ -41,3 +41,18 @@ bun.lock
 .claude/memory/
 career-dashboard
 package-lock.json
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local run artifacts
+scratch/
+reports/*/
+!reports/.gitkeep
+docs/phase1_results_*.json
+fix_emoji.py
+parse_ledger.py
+show_queries.py

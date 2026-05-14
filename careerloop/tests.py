@@ -15,8 +15,8 @@ CAREER_OPS_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, CAREER_OPS_ROOT)
 
 from careerloop.models import (
-    JobPosting, normalize_company, normalize_role, normalize_location,
-    make_fingerprint
+    JobPosting, URLType, UserVisibleOpportunity, classify_url_type,
+    normalize_company, normalize_role, normalize_location, make_fingerprint
 )
 from careerloop.dedupe import DedupeEngine
 
@@ -118,7 +118,7 @@ def test_csv_import():
         # Create test CSV
         csv_path = engine.import_dir / "2026-05-14.csv"
         csv_path.parent.mkdir(parents=True, exist_ok=True)
-        with open(csv_path, 'w', newline='') as f:
+        with open(csv_path, 'w', newline='', encoding='utf-8') as f:
             w = csv.writer(f)
             w.writerow(["source", "company", "role", "url", "location", "description",
                         "posted_at", "work_mode", "salary_range", "experience_required",
@@ -312,7 +312,7 @@ def test_audit_report():
         path = audit.generate(entries, "Siddharth", "2026-05-14")
         check("Audit CSV file created", os.path.exists(path), path)
 
-        with open(path) as f:
+        with open(path, encoding='utf-8') as f:
             content = f.read()
             check("Person column present", "Siddharth" in content)
             check("Company column present", "Anthropic" in content)
@@ -347,7 +347,7 @@ def test_full_pipeline():
         # Create import CSV
         import_dir = root / "data" / "imports" / "jobs"
         import_dir.mkdir(parents=True, exist_ok=True)
-        with open(import_dir / "2026-05-14.csv", 'w', newline='') as f:
+        with open(import_dir / "2026-05-14.csv", 'w', newline='', encoding='utf-8') as f:
             w = csv.writer(f)
             w.writerow(["source", "company", "role", "url", "location", "description",
                         "posted_at", "work_mode", "salary_range", "experience_required",
@@ -433,6 +433,92 @@ def test_apply_route():
     check("Has backup URLs", len(route["backup_urls"]) >= 1)
 
 
+def test_url_classification_and_visibility_lifecycle():
+    """N. URL classification and user-visible lifecycle gates."""
+    print("\n── N. URL Classification & Visibility Lifecycle ──")
+
+    check("LinkedIn search is SEARCH_PAGE",
+          classify_url_type("https://www.linkedin.com/jobs/search/?keywords=ai") == URLType.SEARCH_PAGE)
+    check("LinkedIn view is INDIVIDUAL_JOB",
+          classify_url_type("https://www.linkedin.com/jobs/view/123456789") == URLType.INDIVIDUAL_JOB)
+    check("Naukri category/search is SEARCH_PAGE",
+          classify_url_type("https://www.naukri.com/python-jobs-in-bangalore") == URLType.SEARCH_PAGE)
+    check("Naukri job listing is INDIVIDUAL_JOB",
+          classify_url_type("https://www.naukri.com/job-listings-senior-ai-engineer-acme-bengaluru-5-to-8-years-123456") == URLType.INDIVIDUAL_JOB)
+    check("Blog article is BLOG_ARTICLE",
+          classify_url_type("https://example.com/blog/how-to-hire-ai-engineers") == URLType.BLOG_ARTICLE)
+
+    from careerloop.discovery import DiscoveryEngine
+    with tempfile.TemporaryDirectory() as tmp:
+        discovery = DiscoveryEngine(tmp)
+        incomplete = {
+            "title": "AI Engineer",
+            "company": "",
+            "location": "Bangalore",
+            "url": "https://www.linkedin.com/jobs/view/123456789",
+            "url_type": URLType.INDIVIDUAL_JOB.value,
+            "description": "Build AI systems",
+            "apply_url": "https://www.linkedin.com/jobs/view/123456789",
+        }
+        complete = {**incomplete, "company": "Acme"}
+        search_page = {**complete, "url_type": URLType.SEARCH_PAGE.value}
+        check("Missing company needs more data, not scorable", not discovery._is_scorable_job_dict(incomplete))
+        check("Complete individual job is scorable", discovery._is_scorable_job_dict(complete))
+        check("Search page is not scorable", not discovery._is_scorable_job_dict(search_page))
+
+    visible = UserVisibleOpportunity(
+        company="Acme",
+        role_title="AI Engineer",
+        location="Bangalore",
+        source_url="https://www.linkedin.com/jobs/view/123456789",
+        apply_url="https://www.linkedin.com/jobs/view/123456789",
+        overall_score=82,
+        recommendation="APPLY",
+    ).to_dict()
+    check("Final opportunity has user-visible shape", set(["company", "role_title", "overall_score", "apply_url"]).issubset(visible.keys()))
+
+
+def test_resume_council_gating_and_preview():
+    """O. Resume Council — requires explicit intent and produces one-job preview."""
+    print("\n── O. Resume Council Gating & Preview ──")
+
+    import tempfile
+    import yaml
+    from careerloop.application_ledger import ApplicationLedger
+    from careerloop.council.orchestrator import ResumeCouncilOrchestrator
+
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        (root / "config").mkdir(parents=True, exist_ok=True)
+        (root / "config" / "profile.yml").write_text(yaml.dump({
+            "candidate": {"full_name": "Test User"},
+            "narrative": {},
+            "location": {"city": "Chennai"},
+            "target_roles": {"primary": ["AI Engineer"], "archetypes": []},
+            "compensation": {"minimum": "₹25L"},
+        }), encoding="utf-8")
+
+        ledger = ApplicationLedger(str(root))
+        job_id = ledger.add_job({
+            "company": "Google",
+            "title": "Software Engineer, AI/ML",
+            "location": "Bengaluru, India",
+            "source_url": "https://www.linkedin.com/jobs/view/123",
+            "application_url": "https://www.linkedin.com/jobs/view/123",
+            "description": "Build AI and ML systems with Python.",
+        }, source="linkedin")
+        ledger.entries[-1]["fit_score"] = 65
+        ledger._save()
+
+        council = ResumeCouncilOrchestrator(str(root))
+        blocked = council.run(job_id, "")
+        check("Council blocks missing intent", not blocked.allowed)
+        result = council.run(job_id, "INTERESTED")
+        check("Council allows explicit interest", result.allowed)
+        check("Council creates application pack", result.application_pack is not None)
+        check("Council stays one-job scoped", result.application_pack.job_id == job_id)
+
+
 def run_tests(runner=None):
     global PASS, FAIL
     PASS = 0
@@ -453,6 +539,8 @@ def run_tests(runner=None):
     test_india_filter()
     test_role_strategy()
     test_apply_route()
+    test_url_classification_and_visibility_lifecycle()
+    test_resume_council_gating_and_preview()
 
     print(f"\n{'=' * 60}")
     print(f"Results: {PASS} passed, {FAIL} failed out of {PASS + FAIL}")

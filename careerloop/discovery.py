@@ -12,11 +12,12 @@ No ATS-first. No paid APIs. No fake fallbacks.
 import csv
 import os
 import logging
+import re
 from datetime import datetime, timezone
 from typing import Optional
 from pathlib import Path
 
-from careerloop.models import JobPosting, SourceType
+from careerloop.models import JobPosting, SourceType, URLType, VerificationOutcome, classify_url_type
 from careerloop.role_strategy import RoleStrategyGenerator
 from careerloop.sources.search_adapter import SearchAdapter
 from careerloop.sources.scrapegraph_adapter import ScrapeGraphAdapter
@@ -73,11 +74,16 @@ class DiscoveryEngine:
             "queries": [],
             "search_results": [],
             "jobspy_results": [],
+            "candidate_urls": [],
+            "discovery_leads": [],
             "extracted_jobs": [],
             "india_jobs": [],
             "rejected_jobs": [],
             "verified_jobs": [],
             "unverified_jobs": [],
+            "verified_job_postings": [],
+            "scored_jobs": [],
+            "user_visible_opportunities": [],
             "final_shortlist": [],
             "source_stats": {},
         }
@@ -93,8 +99,20 @@ class DiscoveryEngine:
         # Step 2a: Free search → candidate URLs
         search_results = self.search.search_all(queries)
         report["search_results"] = search_results
+        report["candidate_urls"] = search_results
         report["source_stats"]["ddg_urls"] = len(search_results)
         logger.info(f"DDG search found {len(search_results)} candidate URLs")
+
+        report["source_stats"]["raw_search_results_count"] = len(search_results)
+        report["source_stats"]["rejected_noise_count"] = len([
+            r for r in search_results
+            if r.get("verification_outcome") == VerificationOutcome.NOISE.value
+            or r.get("url_type") == URLType.BLOG_ARTICLE.value
+        ])
+        report["source_stats"]["search_category_pages_count"] = len([
+            r for r in search_results
+            if r.get("url_type") in (URLType.SEARCH_PAGE.value, URLType.CATEGORY_PAGE.value)
+        ])
 
         # Step 2b: JobSpy multi-board search
         try:
@@ -112,73 +130,143 @@ class DiscoveryEngine:
         report["source_stats"]["csv_imports"] = len(csv_jobs)
 
         # Step 3: Extract structured data from search URLs using ScrapeGraphAI
+        # IMPORTANT: India filter runs AFTER extraction so we use the REAL scraped
+        # location, not the fake query city passed by the search adapter.
         extracted = []
-        if search_results and self.scraper.available:
-            logger.info(f"ScrapeGraphAI active. Processing up to 15 discovered URLs...")
-            for i, r in enumerate(search_results[:15]):
+        scorable_search_results = []
+        discovery_leads = []
+        rejected_noise = []
+        for r in search_results:
+            url_type = r.get("url_type") or classify_url_type(r.get("url", "")).value
+            r["url_type"] = url_type
+            if url_type == URLType.BLOG_ARTICLE.value:
+                r["verification_outcome"] = VerificationOutcome.NOISE.value
+                r["reason"] = "blog/article rejected from scoring"
+                rejected_noise.append(r)
+            elif url_type in (URLType.SEARCH_PAGE.value, URLType.CATEGORY_PAGE.value, URLType.COMPANY_CAREERS_PAGE.value):
+                r["verification_outcome"] = VerificationOutcome.NEEDS_MORE_DATA.value
+                r["reason"] = "discovery lead only"
+                discovery_leads.append(r)
+            elif url_type == URLType.INDIVIDUAL_JOB.value:
+                scorable_search_results.append(r)
+            else:
+                r["verification_outcome"] = VerificationOutcome.NEEDS_MORE_DATA.value
+                r["reason"] = "unknown URL shape"
+                discovery_leads.append(r)
+
+        report["discovery_leads"] = discovery_leads
+        report["rejected_jobs"].extend(rejected_noise)
+        report["source_stats"]["rejected_noise_count"] = len(rejected_noise)
+        report["source_stats"]["search_category_pages_count"] = len([
+            r for r in discovery_leads
+            if r.get("url_type") in (URLType.SEARCH_PAGE.value, URLType.CATEGORY_PAGE.value)
+        ])
+
+        if scorable_search_results and self.scraper.available:
+            logger.info(f"ScrapeGraphAI active. Processing up to 15 individual job URLs...")
+            for i, r in enumerate(scorable_search_results[:15]):
                 url = r["url"]
-                logger.info(f"Deep Extraction [{i+1}/{min(len(search_results), 15)}]: {url}")
+                logger.info(f"Deep Extraction [{i+1}/{min(len(scorable_search_results), 15)}]: {url}")
                 data = self.scraper.extract(url)
                 if data:
                     extracted.append(data)
                     job = self._extraction_to_job(data)
                     if job:
-                        # Enrich with source query context
                         job["_search_query"] = r.get("source_query", "")
-                        all_candidate_jobs.append(job)
+                        job["url_type"] = r.get("url_type", URLType.INDIVIDUAL_JOB.value)
+                        if not job.get("location"):
+                            job["location"] = self._infer_location_from_url(url)
+                        # Filter here — real location now available from extraction
+                        if self._is_scorable_job_dict(job):
+                            india_jobs_single, _ = filter_india_jobs([self._job_to_filter_dict(job)])
+                        else:
+                            india_jobs_single = []
+                            job["verification_outcome"] = VerificationOutcome.NEEDS_MORE_DATA.value
+                            report["discovery_leads"].append(job)
+                        if india_jobs_single:
+                            job["verification_outcome"] = VerificationOutcome.VERIFIED_MAYBE.value
+                            all_candidate_jobs.append(job)
+                        else:
+                            logger.info(f"Rejected post-extraction (non-India): {job.get('location', '')} — {url}")
                 else:
-                    logger.info(f"Extraction returned None for {url}, falling back to basic search info preservation.")
+                    # Fallback: use search snippet metadata
+                    # These have no real location, so apply a strict URL-based filter only.
                     job = self._search_result_to_job(r)
                     if job:
-                        all_candidate_jobs.append(job)
-            
-            # Process remaining search results beyond 15 with basic info fallback to guarantee zero URL loss
-            for r in search_results[15:]:
+                        job["verification_outcome"] = VerificationOutcome.NEEDS_MORE_DATA.value
+                        report["discovery_leads"].append(job)
+
+            # Remaining search results beyond 15 — basic metadata fallback
+            for r in scorable_search_results[15:]:
                 job = self._search_result_to_job(r)
                 if job:
-                    all_candidate_jobs.append(job)
+                    job["verification_outcome"] = VerificationOutcome.NEEDS_MORE_DATA.value
+                    report["discovery_leads"].append(job)
         else:
             logger.info("ScrapeGraphAI unavailable or 0 search hits. Using basic search metadata mapping.")
-            for r in search_results:
+            for r in scorable_search_results:
                 job = self._search_result_to_job(r)
                 if job:
-                    all_candidate_jobs.append(job)
+                    job["verification_outcome"] = VerificationOutcome.NEEDS_MORE_DATA.value
+                    report["discovery_leads"].append(job)
 
         report["extracted_jobs"] = extracted
         report["source_stats"]["scrapegraph_extracted"] = len(extracted)
 
-        # Add JobSpy results
+        # Add JobSpy results — these have real locations from the board scraper
         for r in jobspy_results:
             job = self._jobspy_to_job(r)
             if job:
-                all_candidate_jobs.append(job)
+                if self._is_scorable_job_dict(job):
+                    india_jobs_single, _ = filter_india_jobs([self._job_to_filter_dict(job)])
+                else:
+                    india_jobs_single = []
+                    job["verification_outcome"] = VerificationOutcome.NEEDS_MORE_DATA.value
+                    report["discovery_leads"].append(job)
+                if india_jobs_single:
+                    job["verification_outcome"] = VerificationOutcome.VERIFIED_MAYBE.value
+                    all_candidate_jobs.append(job)
 
-        # Add CSV imports
+        # Add CSV imports — always trusted as manually curated India jobs
         for job in csv_jobs:
-            all_candidate_jobs.append(job)
+            if self._is_scorable_job_dict(job):
+                job["verification_outcome"] = VerificationOutcome.VERIFIED_MAYBE.value
+                all_candidate_jobs.append(job)
+            else:
+                job["verification_outcome"] = VerificationOutcome.NEEDS_MORE_DATA.value
+                report["discovery_leads"].append(job)
 
-        logger.info(f"Total candidate jobs before filter: {len(all_candidate_jobs)}")
+        logger.info(f"Total India-verified candidate jobs: {len(all_candidate_jobs)}")
 
-        # Step 4: India-only filter
-        job_dicts = [self._job_to_filter_dict(j) for j in all_candidate_jobs]
-        india_jobs, rejected = filter_india_jobs(job_dicts)
+        # Step 4: Final pass to collect filter stats (all jobs already filtered above)
+        india_jobs = [self._job_to_filter_dict(j) for j in all_candidate_jobs]
+        rejected_count = (
+            len(search_results) + len(jobspy_results)
+            - len(india_jobs)  # approximate
+        )
         report["india_jobs"] = india_jobs
-        report["rejected_jobs"] = rejected
         report["source_stats"]["india_passed"] = len(india_jobs)
-        report["source_stats"]["india_rejected"] = len(rejected)
+        report["source_stats"]["india_rejected"] = max(0, rejected_count)
 
         # Step 5: Cross-source merge
         merged = merge_cross_source(india_jobs)
         report["source_stats"]["after_merge"] = len(merged)
 
         # Step 6: Verify active
-        verified_all = self.verifier.verify_batch(merged, max_verify=20)
+        max_v = int(os.getenv("MAX_VERIFY_JOBS", 100))
+        verified_all = self.verifier.verify_batch(merged, max_verify=max_v)
         verified_active = self.verifier.get_verified_active(verified_all)
         unverified = [j for j in verified_all if j.get("verification_status") != "VERIFIED_ACTIVE"]
+
+        for job in verified_active:
+            job["verification_outcome"] = VerificationOutcome.VERIFIED_STRONG.value
+        for job in unverified:
+            job["verification_outcome"] = VerificationOutcome.REJECTED.value
 
         report["verified_jobs"] = verified_active
         report["unverified_jobs"] = unverified
         report["source_stats"]["verified_active"] = len(verified_active)
+        report["source_stats"]["verified_jobs_count"] = len(verified_active)
         report["source_stats"]["unverified"] = len(unverified)
 
         # Step 7: Convert to JobPosting objects for scorer
@@ -187,8 +275,9 @@ class DiscoveryEngine:
             posting = self._dict_to_job_posting(job_dict)
             final.append(posting)
 
-        report["final_shortlist"] = final
+        report["verified_job_postings"] = final
         report["source_stats"]["final_count"] = len(final)
+        report["source_stats"]["final_user_visible_opportunities"] = 0
 
         return report
 
@@ -228,10 +317,11 @@ class DiscoveryEngine:
         return {
             "title": data.get("title", ""),
             "company": data.get("company", ""),
-            "location": data.get("location", ""),
+            "location": data.get("location", "") or self._infer_location_from_url(data.get("_source_url", data.get("apply_url", ""))),
             "url": data.get("_source_url", data.get("apply_url", "")),
             "apply_url": data.get("apply_url", ""),
             "description": data.get("description", ""),
+            "jd_text": data.get("description", ""),
             "skills": data.get("skills", []),
             "salary": data.get("salary", ""),
             "work_mode": data.get("work_mode", ""),
@@ -249,7 +339,9 @@ class DiscoveryEngine:
             "company": "",
             "location": result.get("source_city", ""),
             "url": result.get("url", ""),
+            "url_type": result.get("url_type", classify_url_type(result.get("url", "")).value),
             "description": result.get("snippet", ""),
+            "jd_text": "",
             "skills": [],
             "salary": "",
             "work_mode": "",
@@ -265,7 +357,10 @@ class DiscoveryEngine:
             "company": result.get("company", ""),
             "location": result.get("location", ""),
             "url": result.get("url", ""),
+            "url_type": classify_url_type(result.get("url", "")).value,
+            "apply_url": result.get("url", ""),
             "description": result.get("description", ""),
+            "jd_text": result.get("description", ""),
             "skills": [],
             "salary": result.get("salary", ""),
             "work_mode": "remote" if "True" in str(result.get("work_mode", "")) else "",
@@ -281,6 +376,33 @@ class DiscoveryEngine:
         if hasattr(job, 'to_dict'):
             return job.to_dict()
         return {}
+
+    def _infer_location_from_url(self, url: str) -> str:
+        url_lower = (url or "").lower()
+        cities = [
+            "chennai", "bengaluru", "bangalore", "hyderabad", "mumbai", "pune",
+            "delhi", "gurugram", "gurgaon", "noida", "kolkata", "kochi",
+            "coimbatore", "ahmedabad", "jaipur", "chandigarh", "lucknow", "indore",
+        ]
+        found = []
+        for city in cities:
+            if re.search(rf"(^|[-_/]){re.escape(city)}($|[-_/])", url_lower):
+                found.append("Bangalore" if city == "bengaluru" else "Gurugram" if city == "gurgaon" else city.title())
+        return ", ".join(dict.fromkeys(found))
+
+    def _is_scorable_job_dict(self, job: dict) -> bool:
+        url = job.get("url", job.get("source_url", ""))
+        url_type = job.get("url_type") or classify_url_type(url).value
+        apply_url = job.get("apply_url") or job.get("application_url") or url
+        jd_text = job.get("jd_text") or job.get("description") or job.get("raw_description") or ""
+        return (
+            url_type == URLType.INDIVIDUAL_JOB.value
+            and bool(job.get("title") or job.get("role_title"))
+            and bool(job.get("company"))
+            and bool(job.get("location"))
+            and bool(str(jd_text).strip())
+            and bool(apply_url)
+        )
 
     def _dict_to_job_posting(self, d: dict) -> JobPosting:
         """Convert verified job dict to JobPosting for scoring."""
@@ -311,6 +433,7 @@ class DiscoveryEngine:
             skills = [s.strip() for s in skills.split(",") if s.strip()]
 
         route = d.get("apply_route", {})
+        apply_url = route.get("apply_url") or d.get("apply_url") or d.get("application_url") or url
 
         return JobPosting(
             source=source,
@@ -322,7 +445,7 @@ class DiscoveryEngine:
             salary_range=d.get("salary", d.get("salary_range", "")),
             skills_required=skills if isinstance(skills, list) else [],
             raw_description=d.get("description", d.get("raw_description", "")),
-            application_url=route.get("apply_url", url),
+            application_url=apply_url,
             posted_at=d.get("posted_at", ""),
             extraction_confidence=0.8 if d.get("_source_type") == "scrapegraph" else 0.6,
         )
