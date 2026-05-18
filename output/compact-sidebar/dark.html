@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siddharth Saminathan - Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f172a;
+    --slate: #475569;
+    --muted: #94a3b8;
+    --rule: #e2e8f0;
+    --accent: #1d4ed8;
+    --bg-sidebar: #f8fafc;
+    --display: 'DM Serif Display', Georgia, serif;
+    --body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--body);
+    font-size: 10px;
+    line-height: 1.45;
+    color: var(--ink);
+    background: #fff;
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 28px 32px 24px 32px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Header ──────────────────────────── */
+  .header {
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid var(--rule);
+  }
+  .header h1 {
+    font-family: var(--display);
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 2px;
+  }
+  .header .subtitle {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--slate);
+    margin-bottom: 6px;
+  }
+  .header .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    font-size: 9px;
+    color: var(--slate);
+  }
+  .header .contact-row a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .header .contact-row .sep {
+    color: var(--muted);
+  }
+
+  /* ── Two-Column Layout ───────────────── */
+  .layout {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 0 24px;
+  }
+
+  /* ── Sidebar ─────────────────────────── */
+  .sidebar {
+    background: var(--bg-sidebar);
+    padding: 14px 16px;
+    font-size: 9px;
+    line-height: 1.4;
+  }
+  .sidebar .sblock {
+    margin-bottom: 14px;
+  }
+  .sidebar .sblock:last-child { margin-bottom: 0; }
+  .sidebar .stitle {
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    margin-bottom: 6px;
+    padding-bottom: 3px;
+    border-bottom: 0.75px solid var(--rule);
+  }
+  .sidebar a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .sidebar .edu-item {
+    margin-bottom: 6px;
+  }
+  .sidebar .edu-item .degree {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 9px;
+  }
+  .sidebar .edu-item .school {
+    color: var(--slate);
+    font-size: 8.5px;
+  }
+  .sidebar .skill-cat {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 9px;
+    margin-top: 5px;
+  }
+  .sidebar .skill-cat:first-child { margin-top: 0; }
+  .sidebar .skill-tags {
+    color: var(--slate);
+    font-size: 8.5px;
+    line-height: 1.35;
+    margin-bottom: 4px;
+  }
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  .sidebar li {
+    margin-bottom: 2px;
+    font-size: 9px;
+    color: var(--slate);
+  }
+
+  /* ── Main Content ────────────────────── */
+  .main { min-width: 0; }
+
+  .section {
+    margin-bottom: 12px;
+  }
+  .section:last-child { margin-bottom: 0; }
+
+  .section-title {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--ink);
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+    border-bottom: 0.75px solid var(--rule);
+  }
+
+  .profile-text {
+    font-size: 10px;
+    line-height: 1.45;
+    color: var(--slate);
+  }
+
+  /* ── Experience ──────────────────────── */
+  .exp-item {
+    margin-bottom: 10px;
+  }
+  .exp-item:last-child { margin-bottom: 0; }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+  .exp-header .role {
+    font-weight: 700;
+    font-size: 10.5px;
+    color: var(--ink);
+  }
+  .exp-header .meta {
+    text-align: right;
+    font-size: 9px;
+    color: var(--slate);
+    flex-shrink: 0;
+  }
+  .exp-desc {
+    font-size: 9.5px;
+    color: var(--slate);
+    margin-bottom: 3px;
+    line-height: 1.4;
+  }
+  ul.bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  ul.bullets li {
+    position: relative;
+    padding-left: 10px;
+    margin-bottom: 1px;
+    font-size: 9.5px;
+    line-height: 1.4;
+    color: var(--slate);
+  }
+  ul.bullets li::before {
+    content: ' - ';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 8px;
+  }
+
+  /* ── Achievements ────────────────────── */
+  .achievements ul {
+    list-style: none;
+    padding: 0;
+  }
+  .achievements li {
+    font-size: 9.5px;
+    line-height: 1.4;
+    color: var(--slate);
+    margin-bottom: 2px;
+    padding-left: 10px;
+    position: relative;
+  }
+  .achievements li::before {
+    content: ' - ';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 8px;
+  }
+
+  /* ── Print ───────────────────────────── */
+  @media print {
+    body {
+      padding: 28px 32px 24px 32px;
+      background: #fff;
+    }
+    @page {
+      margin: 0;
+      size: A4;
+    }
+    .exp-item { break-inside: avoid; }
+    .section-title { break-after: avoid; }
+    .sidebar { background: #f8fafc; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+
+<style>
+  :root {
+    --ink: #f1f5f9 !important;
+    --slate: #94a3b8 !important;
+    --muted: #64748b !important;
+    --rule: #334155 !important;
+    --accent: #60a5fa !important;
+    --bg-sidebar: #1e293b !important;
+  }
+  body { background: #0f172a !important; color: #f1f5f9 !important; }
+  .sidebar { background: #1e293b !important; }
+  .header h1 { color: #f1f5f9 !important; }
+  .section-title { color: #f1f5f9 !important; }
+  .exp-header .role { color: #f1f5f9 !important; }
+  @media print {
+    body { background: #0f172a !important; }
+    .sidebar { background: #1e293b !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header">
+  <h1>Siddharth Saminathan</h1>
+  <div class="subtitle">AI Product Engineer with 4+ years building and shipping production AI systems that automate mission-critical enterprise </div>
+  <div class="contact-row">
+    <span>+91 7299707403</span><span class="sep">|</span>
+    <span>siddharthsaminathan99@gmail.com</span><span class="sep">|</span>
+    <span>Chennai, India</span><span class="sep">|</span>
+    <a href="https://emotenow.app/">emotenow.app</a><span class="sep">|</span>
+    <a href="https://github.com/siddharthsaminathan">GitHub</a><span class="sep">|</span>
+    
+  </div>
+</header>
+
+<!-- ═══ TWO-COLUMN LAYOUT ═══ -->
+<div class="layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sblock"><div class="stitle">Contact</div><div>siddharthsaminathan99@gmail.com</div><div>+91 7299707403</div><div>Chennai, India</div><div><a href="https://emotenow.app/">emotenow.app</a></div><div><a href="https://github.com/siddharthsaminathan">GitHub</a></div></div>
+    <div class="sblock"><div class="stitle">Education</div><div class="edu-item"><div class="degree">M.Sc. Statistics and Machine Learning</div><div class="school">Linköping University, 2020-2022</div></div><div class="edu-item"><div class="degree">B.Tech Computer Science and Engineering</div><div class="school">SRM University, 2016-2020</div></div></div>
+    <div class="sblock"><div class="stitle">Skills</div><div class="skill-cat">Programming</div><div class="skill-tags">Python, SQL</div><div class="skill-cat">AI Systems</div><div class="skill-tags">LLM APIs, RAG pipelines, embeddings, prompt engineering, tool calling</div><div class="skill-cat">Backend</div><div class="skill-tags">FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines</div><div class="skill-cat">Systems Design</div><div class="skill-tags">Stateful systems, workflow orchestration, memory systems, context modeling, distributed pipelines</div><div class="skill-cat">Infra</div><div class="skill-tags">Docker, AWS, Fly.io, logging, tracing</div><div class="skill-cat">Data</div><div class="skill-tags">ETL pipelines, data validation, Power BI, Tableau</div></div>
+    <div class="sblock"><div class="stitle">Languages</div><ul><li>English (Fluent)</li><li>Tamil</li><li>Hindi</li></ul></div>
+    <div class="sblock"><div class="stitle">Thesis</div><div style="font-size:8.5px;color:var(--slate)">Developed a machine learning pipeline utilizing autoencoders and classifiers to predict colorectal cancer metastasis from RNA sequencing data. Employed transfer learning, PCA, and network analysis for...</div></div>
+  </aside>
+
+  <!-- RIGHT MAIN -->
+  <main class="main">
+    <div class="section"><div class="section-title">Profile</div><div class="profile-text"><strong>AI Product Engineer</strong> with 4+ years building and shipping production AI systems that automate mission-critical enterprise workflows, from AI-driven quality management (DFMEA. PFMEA, Control Plans, 8D) to real-time AI products at scale. I take systems from concept to production and optimize them relentlessly: latency, cost, reliability, and user outcomes. Multi-agent orchestration, tool-driven architectures, and memory systems. What I build doesn't just respond, it improves over time.</div></div>
+    <div class="section"><div class="section-title">Experience</div><div class="exp-item">
+<div class="exp-header">
+<span class="role">AI Engineer</span>
+<span class="exp-meta">
+<span class="company">Omnex Systems, Chennai</span><span class="dates">Jul 2025 - Present</span>
+</span>
+</div>
+<p>Omnex is an <strong>Enterprise AI Quality Platform (EQMS)</strong> serving global manufacturing. I built their agentic AI system for end-to-end manufacturing quality digitalization, automating the core quality engineering workflows that automotive, aerospace, and industrial OEMs run on.</p>
+<ul>
+<li>Built a production multi-agent AI system that automates end-to-end manufacturing quality workflows: DFMEA (Design Failure Mode), PFMEA (Process Failure Mode), Control Plans, and 8D corrective action, reducing manual engineering effort and improving consistency across global supply chains.</li>
+<li>Designed a tool-driven orchestration layer that dynamically selects tools, routes data across internal and external enterprise systems, and executes multi-step quality workflows (generate to validate to update to act) with full traceability.</li>
+<li>Enabled context-aware quality decisioning: the system maps inputs to production hierarchies (part/process/plant), retrieves relevant historical quality cases, and suggests structured corrective actions and process updates.</li>
+<li>Improved system performance and reliability, reduced workflow latency (~12.5s to ~8s), built validation layers and retry logic, and instrumented full observability (logging, tracing, metrics) for production manufacturing environments.</li>
+</ul>
+</div>
+<div class="exp-item">
+<div class="exp-header">
+<span class="role">Co-Founder / AI Engineer</span>
+<span class="exp-meta">
+<span class="company">Emote (emotenow.app)</span><span class="dates">Apr 2024 - Present</span>
+</span>
+</div>
+<ul>
+<li>Built and iterated a production AI system that learns from user interactions over time, modeling context, relationships, and behavioral patterns across sessions to improve response quality and continuity</li>
+<li>Designed and scaled the end-to-end backend architecture (FastAPI, Redis, PostgreSQL, real-time pipelines, multi-model routing), enabling low-latency, stateful AI interactions in production</li>
+<li>Drove core system performance and efficiency, reducing latency (~15s to ~3s) and Inference cost (~$1.20 to ~$0.023) through pipeline optimization, caching, and model selection</li>
+<li>Owned the full product loop (0 to 1 to iteration): scaled to 450+ users with 40+ power users, improved activation (20% to 75%) and retention (5% to 13-15%) by continuously shipping improvements based on real user behavior and feedback.</li>
+</ul>
+</div>
+<div class="exp-item">
+<div class="exp-header">
+<span class="role">Data Engineer</span>
+<span class="exp-meta">
+<span class="company">Akkodis AB, Sweden</span><span class="dates">Nov 2022 - Nov 2024</span>
+</span>
+</div>
+<ul>
+<li>Led migration from Azure to PostgreSQL, automating ETL processes using Docker, Argo, and Python.</li>
+<li>Developed and optimized Cron jobs to enhance workflow efficiency.</li>
+<li>Improved Power BI dashboards and metrics pipelines, resulting in 5% increase in business reporting accuracy.</li>
+<li>Constructed automated validation layers to ensure data quality and integrity across enterprise reporting systems.</li>
+<li>Enhanced ETL workflows through Docker containerization and PostgreSQL optimization.</li>
+</ul>
+</div>
+<div class="exp-item">
+<div class="exp-header">
+<span class="role">Data Analyst</span>
+<span class="exp-meta">
+<span class="company">Positive Integers Pvt Ltd, Chennai</span><span class="dates">Sep 2019 - May 2020</span>
+</span>
+</div>
+<ul>
+<li>Analyzed financial datasets related to loan portfolios, credit risk, and customer behavior patterns for an NBFC</li>
+<li>Developed interactive dashboards using Tableau and Grafana to visualize business KPIs and financial metrics</li>
+<li>Constructed SQL-based ETL workflows.</li>
+</ul>
+</div></div>
+    <div class="section"><div class="section-title">Key Achievements</div><div class="achievements"><ul><li><strong>Built Emote from zero:</strong> Took product from vision to production, grew to 450+ users, achieved 13-15% weekly retention through continuous iteration.</li><li><strong>Latency reduction:</strong> Drove inference latency from ~15s to ~3s and cost from ~$1.20 to ~$0.023 per session at Emote.</li><li><strong>Enterprise migration:</strong> Led Azure to PostgreSQL data platform migration at Akkodis for Ericsson systems; recognized for improving reporting reliability and delivery.</li><li><strong>Agentic manufacturing quality system:</strong> Built production multi-agent AI for enterprise quality management (EQMS) at Omnex Systems, automates DFMEA, PFMEA, Control Plans, and 8D across global manufacturing supply chains (12.5s to 8s latency).</li></ul></div></div>
+  </main>
+
+</div>
+
+</body>
+</html>
