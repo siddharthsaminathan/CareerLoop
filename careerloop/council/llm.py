@@ -72,8 +72,77 @@ class CouncilLLMClient:
                 "max_tokens": self.max_tokens,
                 "response_format": {"type": "json_object"},
             },
-            timeout=90,
+            timeout=120,
         )
         response.raise_for_status()
         content = response.json()["choices"][0]["message"]["content"]
-        return json.loads(content)
+
+        # Try direct parse first
+        try:
+            return json.loads(content)
+        except json.JSONDecodeError as e:
+            import logging
+            logging.warning(f"JSON parse error at char {e.pos}: {e.msg}. Attempting repair...")
+
+        # Repair: try to close unclosed strings/brackets
+        repaired = self._repair_truncated_json(content)
+        if repaired is not None:
+            return repaired
+
+        # Last resort: strip to last valid JSON object
+        return self._extract_partial_json(content)
+
+    @staticmethod
+    def _repair_truncated_json(text: str) -> dict | None:
+        """Attempt to repair truncated JSON by closing brackets and strings."""
+        import re
+
+        # Count brackets
+        open_braces = text.count("{") - text.count("}")
+        open_brackets = text.count("[") - text.count("]")
+
+        # If we have unclosed string, add closing quote
+        in_string = False
+        repaired = list(text)
+        for i, ch in enumerate(text):
+            if ch == '"' and (i == 0 or text[i-1] != '\\\\'):
+                in_string = not in_string
+
+        if in_string:
+            repaired.append('"')
+
+        # Close remaining brackets
+        text2 = "".join(repaired)
+        text2 += "]" * open_brackets
+        text2 += "}" * open_braces
+
+        try:
+            return json.loads(text2)
+        except json.JSONDecodeError:
+            return None
+
+    @staticmethod
+    def _extract_partial_json(text: str) -> dict:
+        """Extract whatever valid JSON we can from a broken response."""
+        import re
+
+        result = {}
+
+        # Try to extract top-level key-value pairs with regex
+        # Match "key": "value" or "key": [...] or "key": {...}
+        pairs = re.findall(
+            r'"(\\w+)":\s*("(?:[^"\\\\]|\\\\.)*"|\\[[^\\]]*\\]|\\{[^{}]*\\}|\\d+\\.?\\d*)',
+            text
+        )
+        for key, value in pairs:
+            try:
+                result[key] = json.loads(value)
+            except (json.JSONDecodeError, TypeError):
+                result[key] = value.strip('"')
+
+        if not result:
+            # Absolute fallback: return empty dict with error note
+            result["_parse_error"] = True
+            result["_raw_preview"] = text[:200]
+
+        return result
