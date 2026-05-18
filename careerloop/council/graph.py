@@ -115,9 +115,23 @@ def contract_node(state: CouncilState) -> CouncilState:
 
 # ─── System 3: Company Intelligence ───────────────────────────────────────────
 
-_S3_SYSTEM = """You are a senior company researcher. Analyze the target company.
+_S3_SYSTEM = """You are a senior company researcher. Analyze the target company and output JSON.
 Do NOT invent facts. If unknown, say UNKNOWN.
-Output ONLY valid JSON."""
+
+EXAMPLE JSON OUTPUT:
+{
+    "summary": "Nicobar is a D2C lifestyle brand based in Delhi...",
+    "business_model": "Direct-to-consumer e-commerce, premium home and apparel",
+    "india_presence": "Headquarters in Delhi, retail stores across Tier-1 cities",
+    "maturity": "growth",
+    "hiring_urgency": "HIGH",
+    "culture_signals": ["design-driven", "lean team", "founder-led"],
+    "red_flags": [],
+    "positioning_implications": "Lead with AI automation experience in consumer-facing products",
+    "interview_implications": "Expect design-thinking + technical depth mix",
+    "confidence": 0.7,
+    "missing_data": ["funding_round", "employee_count"]
+}"""
 
 
 def company_intelligence_node(state: CouncilState) -> CouncilState:
@@ -135,21 +149,21 @@ def company_intelligence_node(state: CouncilState) -> CouncilState:
 
 # ─── System 4: Role Decoder ───────────────────────────────────────────────────
 
-_S4_SYSTEM = """You are a master role decoder. Extract what the job actually wants.
+_S4_SYSTEM = """You are a master role decoder. Extract what the job actually wants from the JD.
 Separate must-haves from nice-to-haves. Identify hidden expectations.
-Output ONLY valid JSON.
+Output JSON matching the example format below.
 
-Required JSON schema:
+EXAMPLE JSON OUTPUT:
 {
-  "normalized_title": "...",
-  "seniority": "...",
-  "must_haves": ["..."],
-  "nice_to_haves": ["..."],
-  "hidden_expectations": ["..."],
-  "day_one_deliverables": ["..."],
-  "screening_keywords": ["..."],
-  "disqualifiers": ["..."],
-  "confidence": 0.9
+  "normalized_title": "AI Product Engineer",
+  "seniority": "mid-senior",
+  "must_haves": ["Python", "LLM API experience", "SQL", "frontend skills"],
+  "nice_to_haves": ["retail/e-commerce experience", "IIT/BITS/NIT"],
+  "hidden_expectations": ["CEO-facing communication", "business-outcome thinking"],
+  "day_one_deliverables": ["Customer personalization intelligence layer"],
+  "screening_keywords": ["AI-native", "clienteling", "business intelligence"],
+  "disqualifiers": ["no LLM experience", "no coding skills"],
+  "confidence": 0.85
 }"""
 
 
@@ -176,11 +190,22 @@ def role_decode_node(state: CouncilState) -> CouncilState:
 
 # ─── System 5: User Truth ─────────────────────────────────────────────────────
 
-_S5_SYSTEM = """You are a rigorous auditor. Build a truthful evidence map.
+_S5_SYSTEM = """You are a rigorous auditor. Build a truthful evidence map in JSON.
 Map candidate's experience to role requirements. Calculate seniority accurately.
 Seniority is locked based on the earliest professional date in the resume.
 Today is {today}.
-Output ONLY valid JSON."""
+
+EXAMPLE JSON OUTPUT:
+{{
+  "total_years_experience": 4.5,
+  "confirmed_skills": [{{"skill": "Python", "years": 4, "evidence": "Built production AI systems"}}],
+  "weak_skills": ["Kubernetes"],
+  "evidence_bank": {{"Python": ["Built AI quality management system", "Multi-agent orchestration"]}},
+  "strongest_proof_points": ["Shipped AI that automates enterprise workflows"],
+  "claims_allowed": ["4+ years Python", "LLM API experience", "Agent architectures"],
+  "claims_not_allowed": ["10 years AI experience", "Deep learning expert"],
+  "private_constraints": ["min salary 25L", "Chennai location preferred"]
+}}"""
 
 
 def user_truth_node(state: CouncilState) -> CouncilState:
@@ -205,9 +230,22 @@ def user_truth_node(state: CouncilState) -> CouncilState:
 
 # ─── System 6: Positioning Strategy ───────────────────────────────────────────
 
-_S6_SYSTEM = """You are a senior career strategist. Create the strategic narrative.
+_S6_SYSTEM = """You are a senior career strategist. Create the strategic narrative in JSON.
 Do NOT rewrite the resume. Decide on the application stance and angle.
-Output ONLY valid JSON."""
+Base all proof points on evidence from User Truth evidence_bank only.
+
+EXAMPLE JSON OUTPUT:
+{
+  "one_line_positioning": "AI Product Engineer who ships enterprise AI from concept to production",
+  "narrative_angle": "Product-minded AI engineer with manufacturing quality digitization experience",
+  "lead_strengths": ["LLM API production experience", "Multi-agent orchestration", "End-to-end shipping"],
+  "proof_points_to_emphasize": ["Built AI quality management from scratch", "Real-time AI at scale"],
+  "things_to_downplay": ["Academic research background", "Non-e-commerce experience"],
+  "tone_guidance": "Direct, technical, business-outcome focused",
+  "recruiter_first_impression_target": "Engineer who thinks in business outcomes, not just code",
+  "application_stance": "CAREFUL_PUSH",
+  "reasoning": "Strong AI engineering match; D2C retail domain is new but transferable"
+}"""
 
 
 def positioning_node(state: CouncilState) -> CouncilState:
@@ -229,7 +267,7 @@ def positioning_node(state: CouncilState) -> CouncilState:
 
 # ─── System 7: Section Rewrites ───────────────────────────────────────────────
 
-_S7_SYSTEM = """You are a senior technical writer. Rewrite only the allowed sections.
+_S7_SYSTEM = """You are a senior technical writer. Rewrite only the allowed sections in JSON.
 CRITICAL:
 1. Preserve all links [Text](URL).
 2. No 'cope' language or AI-slop.
@@ -237,20 +275,19 @@ CRITICAL:
 4. Do NOT touch private strategy metadata sections.
 Only rewrite sections whose section_id appears in preservation_contract.ordering_rules
 and are NOT in preservation_contract.sections_to_exclude.
-Output ONLY valid JSON.
 
-Required JSON schema:
+EXAMPLE JSON OUTPUT:
 {
   "rewrites": {
-    "section_id": {
-      "section_id": "...",
-      "original_text": "...",
-      "rewritten_text": "...",
+    "experience": {
+      "section_id": "experience",
+      "original_text": "Built AI at XYZ Corp.",
+      "rewritten_text": "Built production AI systems at XYZ Corp.",
       "change_type": "KEEP",
-      "change_reason": "...",
-      "claims_added": ["..."],
-      "claims_removed": ["..."],
-      "evidence_used": ["..."],
+      "change_reason": "Added specificity",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": ["Python ML pipeline (cv line 15)"],
       "risk_level": "low"
     }
   }
@@ -357,17 +394,17 @@ def truth_guard_node(state: CouncilState) -> CouncilState:
 
 # ─── System 8: Safe Assembler ─────────────────────────────────────────────────
 
-_COVER_NOTE_SYSTEM = """Write a 3-sentence cover note for a job application.
-Be direct and specific. No AI-slop. Use only confirmed experience.
-Output ONLY valid JSON.
-Required JSON schema:
-{"cover_note": "..."}"""
+_COVER_NOTE_SYSTEM = """Write a 3-sentence cover note for a job application in JSON.
+Be direct and specific. No AI-slop. Use only confirmed experience from the user truth.
 
-_RECRUITER_DM_SYSTEM = """Write a 2-sentence LinkedIn DM to a recruiter.
-One sentence on the role, one sentence on why the candidate fits. No fluff.
-Output ONLY valid JSON.
-Required JSON schema:
-{"recruiter_message": "..."}"""
+EXAMPLE JSON OUTPUT:
+{"cover_note": "I build AI that ships. At Emote, I took an AI quality management system from concept to production, handling everything from multi-agent orchestration to real-time inference. For Nicobar's AI Product Engineer role, I would bring the same end-to-end ownership to customer personalization and store clienteling."}"""
+
+_RECRUITER_DM_SYSTEM = """Write a 2-sentence LinkedIn DM to a recruiter in JSON.
+One sentence on the role, one sentence on why the candidate fits. Under 250 chars. No fluff, no "I'm excited to apply".
+
+EXAMPLE JSON OUTPUT:
+{"recruiter_message": "Your AI Product Engineer role caught my eye — exactly the kind of AI-native, CEO-office work I thrive on. I shipped production AI from zero at Emote (agentic quality management, multi-agent orchestration) and would bring that same builder mindset to Nicobar."}"""
 
 
 def assembly_node(state: CouncilState) -> CouncilState:
