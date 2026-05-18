@@ -204,10 +204,8 @@ class ResumeCouncilOrchestrator:
                 f.write(pack.get("resume_markdown", ""))
             with open(os.path.join(output_dir, "11_cover_note.md"), "w") as f:
                 f.write(pack.get("cover_note", ""))
-            with open(
-                os.path.join(output_dir, "15_quality_report.md"), "w"
-            ) as f:
-                report = pack.get("quality_report", {})
+            with open(os.path.join(output_dir, "15_quality_report.md"), "w") as f:
+                report = pack.get("quality_report", {}) or {}
                 f.write(
                     f"# Quality Report\n\n## Changed\n"
                     + "\n".join(

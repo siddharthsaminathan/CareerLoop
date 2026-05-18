@@ -288,35 +288,70 @@ def truth_guard_node(state: CouncilState) -> CouncilState:
     if _has_errors(state):
         print("  → SKIPPING (previous errors)")
         return state
-    import re
 
+    from careerloop.council.truth_guard import TruthGuard
+
+    guard = TruthGuard()
     rewrites = state.get("section_rewrites", {})
     user_truth = state.get("user_truth", {})
-    not_allowed = (
+    evidence_bank = user_truth.get("evidence_bank", {}) if user_truth else {}
+    claims_not_allowed = (
         user_truth.get("claims_not_allowed", []) if user_truth else []
     )
     errors = state.get("errors", [])
+    all_claims = []
 
-    if not_allowed and rewrites and "rewrites" in rewrites:
+    if rewrites and "rewrites" in rewrites:
         for section_id, rewrite in rewrites["rewrites"].items():
             text = rewrite.get("rewritten_text", "")
-            for claim in not_allowed:
-                if claim and claim.lower() in text.lower():
-                    print(
-                        f"  !! Truth Guard caught violation: "
-                        f"'{claim}' in {section_id}"
-                    )
-                    errors.append(
-                        f"Truth Guard removed disallowed claim: {claim}"
-                    )
-                    text = re.sub(
-                        re.escape(claim), "", text, flags=re.IGNORECASE
-                    )
-                    rewrites["rewrites"][section_id][
-                        "rewritten_text"
-                    ] = text
 
-    return {**state, "section_rewrites": rewrites, "errors": errors}
+            # Validate every claim in the text
+            claims = guard.validate(
+                text, user_truth, evidence_bank, claims_not_allowed
+            )
+            all_claims.extend(claims)
+
+            # Only repair if there are issues beyond VERIFIED/WEAK
+            flagged = [
+                c for c in claims
+                if c.risk_level in ("UNSUPPORTED", "EXAGGERATED", "FABRICATED")
+            ]
+            if flagged:
+                repaired = guard.repair(text, claims)
+                rewrites["rewrites"][section_id]["rewritten_text"] = repaired
+                print(
+                    f"  → Truth Guard repaired {section_id}: "
+                    f"{len(flagged)} claims flagged"
+                )
+
+            # Log issues at EXAGGERATED and FABRICATED level
+            for claim in claims:
+                if claim.risk_level in ("EXAGGERATED", "FABRICATED"):
+                    msg = (
+                        f"Truth Guard [{claim.risk_level}]: "
+                        f"'{claim.text[:60]}...' → "
+                        f"{claim.repair_suggestion or 'minimized'}"
+                    )
+                    errors.append(msg)
+                    print(f"  ⚠️ {msg}")
+
+    report = guard.generate_report(all_claims)
+    verified_pct = (
+        (report.verified / max(1, report.total_claims)) * 100
+    )
+    print(
+        f"  → Truth Guard report: {report.total_claims} claims — "
+        f"{report.verified} verified ({verified_pct:.0f}%), "
+        f"{report.weak} weak, {report.unsupported} unsupported, "
+        f"{report.exaggerated} exaggerated, {report.fabricated} fabricated"
+    )
+
+    return {
+        **state,
+        "section_rewrites": rewrites,
+        "errors": errors,
+        "truth_guard_report": report,
+    }
 
 
 # ─── System 8: Safe Assembler ─────────────────────────────────────────────────

@@ -9,6 +9,7 @@ from careerloop.council.models import (
     QualityReport
 )
 from careerloop.council.orchestrator import ResumeCouncilOrchestrator
+from careerloop.council.truth_guard import Claim, TruthGuard, TruthGuardReport
 
 __all__ = [
     "get_council_graph",
@@ -20,4 +21,7 @@ __all__ = [
     "ApplicationPack",
     "QualityReport",
     "ResumeCouncilOrchestrator",
+    "Claim",
+    "TruthGuard",
+    "TruthGuardReport",
 ]
