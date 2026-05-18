@@ -16,6 +16,7 @@ import json
 import os
 import sys
 import textwrap
+from datetime import datetime
 from pathlib import Path
 
 # Force UTF-8 output on Windows so box-drawing chars don't crash
@@ -86,29 +87,28 @@ JD_BY_ID = {
         "url": "https://www.linkedin.com/feed/update/urn:li:activity:7329475396732014592",
         "jd": """Job Title: AI Product Engineer — CEO's Office
 Company: Nicobar Design Pvt. Ltd. (nicobar.com)
-Location: India
-Employment Type: Full-Time
+Location: Delhi
+Experience: 3-5 years
 
-About Nicobar:
-Nicobar is a design-first Indian lifestyle brand that has spent a decade building a brand that looks and feels unmistakably Nicobar. Now they want to build a company that thinks and operates the same way — evolving from a human-centered digital brand into a human-centered AI brand that retains Soul and Authenticity.
+THE OPPORTUNITY
+We’ve spent a decade building a brand that looks and feels unmistakably Nicobar. The next chapter is building a company that thinks the same way — every store, every collection, every customer conversation: sharper, faster, unmistakably ours. AI-native, not in theory, but in every room we walk into.
 
-Role Context:
-This is a greenfield mandate in the CEO's Office — no legacy systems, no committees. Just real problems and full room to build. You'll work directly with the Co-Founder (Raul Rai) and CEO.
+WHAT YOU’LL OWN
+01 Customer Personalization : Build the intelligence layer beneath all our customer communication that understands who each customer actually is, what they are likely to want next, and where they are in their journey with us.
+02 Store Clienteling : Build the clienteling tool our store teams reach for every day to help them understand who’s in front of them, what do they love, etc.
+03 Business Intelligence : Replace Microsoft BI dashboards with a live, conversational intelligence layer which can be used by teams such as merchandising to make quick and smart decisions.
+04 Smoothen Design Workstreams : Remove friction so the creative team can make more, better, faster. Brief-to-mood board, trend research, print iteration, copy drafts.
+05 Open Mandate : Demand forecasting, an AI stylist on nicobar.com, a gifting concierge for wedding season, supplier communication.
 
-What You'll Own:
-1. Personalisation at scale — so every customer feels known and remembered, not marketed to
-2. Store clienteling — so every store associate starts interactions already knowing the customer
-3. Conversational BI — so any team can address any question with real answers in seconds
-4. Design Team Workstreams — remove friction so the creative team can make more, better, faster
-
-What They're Looking For:
-- Engineers who think about business outcomes first and can explain what they're building and why (with conviction) to cross-functional teams
-- NOT someone who chases AI trends
-- Someone who can find and prioritize other areas where AI can bring transformation — areas they haven't thought of yet
-
-Requirements:
-- Must share something relevant built in past experience: a GitHub repo, a deployed tool, or a short Loom walkthrough
-- Must add a brief description explaining what was done and its business impact""",
+WHAT WE’RE LOOKING FOR
+Engineering degree from IIT, BITS, NIT or equivalent with 3-5 years of experience.
+You’ve built something real with an LLM API - OpenAI, Claude, Gemini, etc.
+Fluent in Python/ NodeJS. Comfortable writing and querying SQL.
+Comfortable connecting systems that weren’t designed to talk to each other: APIs, webhooks, data pipelines.
+Familiarity with Shopify’s API ecosystem, or e-commerce data generally.
+Experience with MoEngage or any CRM / marketing automation platform.
+Exposure to ERP - Microsoft Dynamics 365.
+Ability to build front-ends that don’t embarrass the brand. We’re visual people.""",
     },
 }
 
@@ -196,6 +196,7 @@ def run_council(job_id: str, intent: str = "INTERESTED") -> dict:
         "jd_text": job["jd"],
         "cv_text": cv,
         "profile": profile,
+        "today": datetime.now().strftime("%B %Y"),
         "company_intelligence": None,
         "role_decode": None,
         "user_truth": None,
