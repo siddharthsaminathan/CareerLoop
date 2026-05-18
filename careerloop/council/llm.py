@@ -25,7 +25,7 @@ def load_council_model_config() -> dict[str, Any]:
         "strategy_model": "deepseek-chat",
         "writer_model": "deepseek-chat",
         "temperature": 0.2,
-        "max_tokens": 8000,
+        "max_tokens": 10000,
     }
     config_path = ROOT / "config" / "models.yml"
     if yaml is not None and config_path.exists():
