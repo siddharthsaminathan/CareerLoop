@@ -339,3 +339,135 @@ The user should feel:
 **Overall product maturity: ~20–25% of vision.** (Audit-recalibrated 2026-05-18 — net neutral after deep inspection.)
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
+
+---
+
+## 18. Employer Discovery Engine (Addendum — 2026-05-18)
+
+> This section extends Section 5 (Discovery Engine). Job boards are not the complete market. This layer finds employers first, then surfaces opportunities from them.
+
+### The Gap
+
+Job boards capture roles companies actively broadcast. They miss: companies using proprietary ATS that don't syndicate everywhere, companies that rely on direct recruiter outreach, and roles that appear only on internal career portals. For high-quality employers (funded startups, MNCs, product-first companies), their own career page is the source of truth.
+
+### Architecture
+
+**Discover employers → Enrich them → Infer hiring functions → Scrape career pages → Deduplicate against job boards**
+
+This is distinct from job board scraping. The input is not a search query. The input is: geography + sector + function.
+
+**Stage 1 — Company Universe Discovery**
+
+Sources (priority order):
+- Google Maps — real operating businesses, best regional coverage
+- LinkedIn Companies — employee count, industry, growth signals
+- YC / Wellfound / Crunchbase — funded startups with high hiring velocity
+- Inc42 / StartupIndia / YourStory — India-specific startup directories
+- Apollo / Clearbit — domain enrichment, tech stack signals
+
+Not used: JustDial, MCA registrations (too much noise, too many shell companies).
+
+**Stage 2 — Company Enrichment**
+
+Per company: detect ATS provider (Greenhouse/Lever/Ashby/Workday/SmartRecruiters), find career page URL, find LinkedIn, identify engineering blog / hiring signals.
+
+ATS detection is the most valuable step — it turns the company into a structured crawl target rather than an unstructured HTML page.
+
+**Stage 3 — Function Probability Engine**
+
+Not every company hires every function. A garment manufacturer has low ML engineering probability. Myntra has high ML probability. This layer infers function-hiring likelihood from: employee LinkedIn titles, tech stack, historical posting patterns, company category.
+
+This prevents irrelevant company suggestions. A user searching for MLOps jobs does not see companies with near-zero ML hiring probability.
+
+**Stage 4 — Career Page Scraping**
+
+Priority: ATS structured APIs first (Greenhouse `/jobs`, Lever `/postings`, Ashby GraphQL) — these return clean JSON, no scraping needed. Then: career page HTML via ScrapeGraph + Playwright. Then: LinkedIn jobs for that company. Then: Naukri company page.
+
+**Stage 5 — Cross-Source Deduplication**
+
+Same job appearing on Naukri AND company career portal must appear once. Dedup key: `sha256(normalize(company) + normalize(title) + normalize(city))`. Both records are stored (provenance preserved); users see one result.
+
+### MECE Sector Map
+
+15 sectors cover all Indian employers. Functions are horizontal (cross-sector). Discovery routes by `Function → Geography → Company Universe`, not by industry alone.
+
+| Sector | Examples |
+|--------|---------|
+| Technology & Software | SaaS, AI/ML, DevTools, IT Services, GCCs, Cybersecurity |
+| Financial Services | Fintech, Payments, Lending, Banking, Insurtech, Wealthtech |
+| Consulting & Professional Services | Strategy, Big 4 Audit, Tax, Legal, Staffing |
+| Retail & Commerce | Fashion, Fast Fashion, D2C, E-commerce, FMCG |
+| Manufacturing & Industrial | Automotive, Electronics, Textiles, Chemicals |
+| Healthcare & Life Sciences | Hospitals, Pharma, Biotech, Healthtech, Diagnostics |
+| Media & Creative | Advertising, Marketing Agencies, Film/TV, Creator Economy |
+| Education | EdTech, Universities, Coaching, Corporate Training |
+| Logistics & Mobility | Logistics, Supply Chain, Last-mile, Mobility |
+| Real Estate & Infra | Construction, PropTech, Facility Management |
+| Energy & Utilities | Oil & Gas, Renewables, EV Infra |
+| Government & Public Sector | PSUs, GovTech, Smart City |
+| Hospitality & Travel | Hotels, Tourism, Travel Tech |
+| Agriculture & Food | AgriTech, Food Processing, Farming Supply Chain |
+| Nonprofit & Social Impact | NGOs, Climate Orgs, Social Enterprise |
+
+---
+
+## 19. Human Pipeline Layer — Referral, Recruiter, Cold Outreach (Addendum — 2026-05-18)
+
+> This section formalizes the four application paths and positions CareerLoop's role in each.
+
+### The Four Paths to a Role
+
+The job market operates on four distinct channels. CareerLoop must understand and assist with all four, not just the first.
+
+| Path | Description | What CareerLoop Does |
+|------|-------------|---------------------|
+| **1. Direct Application** | Apply via ATS or career portal | Fully covered: discovery → scoring → application pack → submit |
+| **2. Recruiter Inbound** | Respond to recruiter outreach (LinkedIn, email) | Evaluate the role, prep positioning, draft reply, fast-track Council |
+| **3. Warm Referral** | Someone inside the company refers you | Find employees at target company → identify likely connectors → draft outreach → track referral ask |
+| **4. Cold Outreach** | Proactively contact hiring manager, recruiter, or relevant employee | Find the right person → draft cold DM/email → personalize per company → track responses |
+
+### Recruiter Discovery
+
+For every high-priority company in the employer graph:
+- Find active recruiters at that company (LinkedIn: "recruiter at {company}", "talent acquisition at {company}")
+- Find relevant hiring managers (LinkedIn: "{function} manager at {company}", "{team} lead at {company}")
+- Store as `people` records with: name, title, LinkedIn URL, company_id, discovered_at
+
+This turns the employer graph into a people graph over time.
+
+### Warm Referral Path
+
+Steps:
+1. User marks a company as high-priority
+2. System scans user's 1st-degree LinkedIn connections at that company
+3. Identifies best connection based on: relationship depth, function relevance, seniority
+4. Drafts a referral ask message — personal, specific, non-generic
+5. Tracks: asked → responded → submitted referral → outcome
+
+### Cold Outreach Path
+
+Steps:
+1. User targets a company with no open roles or no connection
+2. System finds: hiring manager or senior IC in the relevant function
+3. Drafts cold DM (LinkedIn) or cold email: specific to their work, company context, user's positioning
+4. Output: ready-to-send message, not a template
+5. Tracks: sent → replied → call booked → outcome
+
+### The People Graph
+
+The people layer compounds over time. Every recruiter who replied, every hiring manager who responded, every referral that converted — these are signals. The system learns: which outreach patterns work per sector, which companies are referral-friendly, which recruiters are responsive.
+
+This is the real long-term moat. Not scraped job counts. **Career transition conversion rate.**
+
+### Implementation Priority
+
+| Component | Priority | Status |
+|-----------|----------|--------|
+| Employer discovery (Stage 1-2) | P0 | Not started |
+| Career page scraping (Stage 4) | P0 | Not started |
+| Cross-source dedup (Stage 5) | P0 | Partial (job boards only) |
+| Function probability engine (Stage 3) | P1 | Not started |
+| Recruiter discovery | P1 | Not started |
+| Warm referral path | P2 | Not started |
+| Cold outreach path | P2 | Not started |
+| People graph persistence | P3 | Not started |

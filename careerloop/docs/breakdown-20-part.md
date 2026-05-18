@@ -481,3 +481,262 @@ daily-dev-blog-2026-05-14.md    — May 14 dev log
 ---
 
 *v2 vision drafted May 17, 2026. v1 locked + validated.*
+
+---
+
+## ADDENDUM — EMPLOYER DISCOVERY ENGINE (v2 Layer 2)
+### Added: 2026-05-18 | Triggered by: LLM Council + architecture session
+
+---
+
+## PART 21 — WHY THE JOB BOARD LAYER IS NOT ENOUGH
+
+**The honest audit:**
+
+Job boards (Naukri, LinkedIn, Cutshort, Instahyre) capture postings that companies *choose to broadcast publicly*. That is not 100% of available roles. Companies with Greenhouse/Lever/Ashby ATS systems publish directly to their own career portals without syndicating everywhere. High-quality employers (MNCs, funded startups, product companies) often rely on their own portals + targeted recruiter outreach. Referral hires and warm-pipeline hires never appear on any board.
+
+**The bounded claim:**
+This is NOT "70% of jobs are hidden." The real claim is: structured career-page jobs from high-quality employers that don't fully syndicate to job boards are systematically missed. That is still a large, high-value pool.
+
+**What Phase 2 solves:**
+Phase 2 does not solve informal hiring (WhatsApp, referrals, internal moves). That is addressed in Part 22. Phase 2 solves: *finding and scraping employer career pages that are never fully visible via job boards.*
+
+---
+
+## PART 22 — EMPLOYER DISCOVERY ENGINE: ARCHITECTURE
+
+**Core principle:** Discover employers first. Jobs second.
+
+The system must answer: *"Given this geography and function, which companies are likely to hire this role?"* — before any job posting exists.
+
+### Layer 1: Company Universe Discovery
+
+**Sources, in priority order:**
+
+| Source | Why | What to extract |
+|--------|-----|----------------|
+| Google Maps | Real operating businesses, India coverage | name, domain, address, category, coordinates |
+| LinkedIn Companies | Employee count, industry, growth signals | name, LinkedIn URL, headcount, HQ, hiring activity |
+| YC / Wellfound / Crunchbase | Funded startups, high hiring velocity | name, funding stage, domain, sector |
+| Inc42 / StartupIndia / YourStory | India-specific startup directories | name, city, sector, founding year |
+| Apollo / Clearbit enrichment | Domain → employee estimate, tech stack | domain, employee range, tech stack signals |
+
+**Do NOT use:** JustDial (noise), MCA registrations (shell companies), generic web crawls.
+
+**Discovery query patterns:**
+```
+Google Maps: "{sector} companies in {city}"
+             "{industry} startups in {city}"
+             "{function} firms in {city}"
+
+LinkedIn:    industry={sector}, geography={city}, employees=50-5000
+
+YC:          batch filter → India HQ or India office
+Wellfound:   location=India, market={sector}
+```
+
+**Output per company (raw):**
+```json
+{
+  "name": "Razorpay",
+  "domain": "razorpay.com",
+  "city": "Bangalore",
+  "industry": "Fintech",
+  "subindustry": "Payments",
+  "employee_estimate": 3500,
+  "source": "linkedin",
+  "source_confidence": 0.92,
+  "discovered_at": "2026-05-18"
+}
+```
+
+### Layer 2: Company Enrichment
+
+For every discovered company, extract:
+- Career page URL (`/careers`, `/jobs`, `/work-with-us`)
+- ATS provider (Greenhouse, Lever, Ashby, Workday, SmartRecruiters, custom)
+- LinkedIn company URL
+- Engineering blog (hiring signal)
+- Recruiter profiles on LinkedIn
+
+**ATS detection patterns:**
+```
+boards.greenhouse.io/{company}
+jobs.lever.co/{company}
+{company}.ashbyhq.com
+{company}.workday.com/en-US/external/jobs
+{company}.smartrecruiters.com
+```
+
+**Enriched company object:**
+```json
+{
+  "id": "razorpay",
+  "name": "Razorpay",
+  "domain": "razorpay.com",
+  "city": "Bangalore",
+  "industry": "Fintech",
+  "ats_provider": "greenhouse",
+  "career_page_url": "razorpay.com/careers",
+  "ats_url": "boards.greenhouse.io/razorpay",
+  "linkedin_url": "linkedin.com/company/razorpay",
+  "employee_estimate": 3500,
+  "last_crawled_at": null,
+  "crawl_status": "pending"
+}
+```
+
+### Layer 3: Function Probability Engine
+
+Not all companies hire all functions. A pure fashion brand has low ML probability. Myntra has high ML probability. This layer infers: *"How likely is this company to hire for this function?"*
+
+**Inference signals:**
+- Existing employee LinkedIn titles (scrape company employee list)
+- Tech stack (BuiltWith / Stackshare)
+- Historical job posting patterns
+- Company category × function correlation table
+
+**Output:**
+```json
+{
+  "company_id": "myntra",
+  "function_probabilities": {
+    "ml_engineering": 0.91,
+    "data_science": 0.93,
+    "fashion_buying": 0.88,
+    "supply_chain": 0.72,
+    "frontend_engineering": 0.85
+  }
+}
+```
+
+This prevents surfacing a garment manufacturer to an ML engineer.
+
+### Layer 4: Career Page Scraping + Job Extraction
+
+Only runs AFTER enrichment confirms an ATS or career page exists.
+
+**Priority order:**
+1. ATS structured APIs (Greenhouse `/jobs`, Lever `/postings`, Ashby GraphQL) — zero scraping, structured JSON
+2. Company career page HTML scrape (ScrapeGraph + Playwright)
+3. LinkedIn jobs for that company
+4. Naukri company page
+
+### Layer 5: Cross-Source Deduplication
+
+A job posted on Naukri AND on Greenhouse must not appear twice.
+
+**Dedup key:**
+```python
+canonical_id = sha256(
+    normalize(company_name) +
+    normalize(job_title) +
+    normalize(city)
+)
+```
+
+Both records survive in storage (preserve provenance). One is marked `canonical=True`, the other `canonical_id → primary record`. Users see one result.
+
+### Crawl Scheduling
+
+Not all companies are crawled equally:
+
+| Status | Frequency | Trigger |
+|--------|-----------|---------|
+| Active (recent hire signals) | Every 6 hours | Hiring activity detected |
+| Warm (funded, growing) | Daily | Default |
+| Cold (no signals) | Weekly | Maintenance |
+| Dead (closed/frozen) | Never | Marked inactive |
+
+---
+
+## PART 23 — MECE SECTOR TAXONOMY
+
+Every company in the discovery graph maps to exactly one Sector + Subsector. Functions are horizontal (cross-sector).
+
+| # | Sector | Key Subsectors | High-probability Functions |
+|---|--------|---------------|---------------------------|
+| 1 | Technology & Software | B2B SaaS, B2C SaaS, AI/ML, DevTools, IT Services, GCCs, Cybersecurity | Engineering, Product, Data, ML, DevOps, Security, Customer Success |
+| 2 | Financial Services | Fintech, Payments, Lending, Neo-banks, Banking, Insurtech, Wealthtech, Crypto | Risk, Compliance, Analytics, Finance, Product, Operations |
+| 3 | Consulting & Professional Services | Strategy, Management, Tech Consulting, Big 4 Audit, Tax, Legal, Staffing | Consulting, Business Analysis, PMO, Finance, HR, Legal |
+| 4 | Retail & Commerce | Fashion, Fast Fashion, Luxury, E-commerce, D2C, Omni-channel, FMCG | Buying, Merchandising, Sourcing, Category Management, Inventory, Growth |
+| 5 | Manufacturing & Industrial | Automotive, Electronics, Textiles, Chemicals, Aerospace, Packaging | Supply Chain, Procurement, Plant Ops, Quality, Industrial Engineering |
+| 6 | Healthcare & Life Sciences | Hospitals, Pharma, Biotech, Healthtech, Diagnostics, Medical Devices | Clinical Ops, Pharma Sales, Healthcare Analytics, Regulatory, Research |
+| 7 | Media & Creative | Advertising, Marketing Agencies, PR, Film/TV, Publishing, Creator Economy | Design, Content, Branding, Social Media, Creative Strategy, Production |
+| 8 | Education | EdTech, Universities, Coaching, Corporate Training | Instruction, Curriculum, Learning Ops, Admissions, Growth |
+| 9 | Logistics & Mobility | Logistics, Supply Chain, Shipping, Last-mile, Mobility, Aviation | Fleet Ops, Logistics Analytics, Warehouse Ops, Procurement |
+| 10 | Real Estate & Infra | Construction, PropTech, Commercial RE, Facility Management | Project Management, Procurement, Operations, Sales |
+| 11 | Energy & Utilities | Oil & Gas, Renewable Energy, EV Infra, Utilities | Engineering, Operations, Sustainability, Project Management |
+| 12 | Government & Public Sector | PSUs, Smart City, GovTech, Defense | Administration, Procurement, Technology, Analytics |
+| 13 | Hospitality & Travel | Hotels, Tourism, Food Service, Travel Tech | Operations, Guest Experience, Revenue Management, Procurement |
+| 14 | Agriculture & Food | AgriTech, Food Processing, Farming Supply Chain | Sourcing, Supply Chain, Quality, Operations |
+| 15 | Nonprofit & Social Impact | NGOs, Foundations, Climate Orgs, Social Enterprise | Fundraising, Operations, Policy, Research |
+
+**Key principle:** Functions are horizontal. An ML engineer can exist in Sector 1 (AI SaaS) AND Sector 4 (Myntra, Meesho) AND Sector 6 (HealthAI). Discovery routing goes: `Intent → Function → Geography → Company Universe` — not `Intent → Industry → companies`.
+
+---
+
+## PART 24 — DATA MODEL (v2 Employer Graph)
+
+Addendum to Part 9 schema. Four core entities:
+
+```sql
+-- Global employer graph (shared across users)
+CREATE TABLE companies (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    domain TEXT,
+    city TEXT,
+    sector TEXT,
+    subsector TEXT,
+    ats_provider TEXT,        -- greenhouse|lever|ashby|workday|custom|none
+    career_page_url TEXT,
+    ats_url TEXT,
+    linkedin_url TEXT,
+    employee_estimate INTEGER,
+    last_crawled_at TIMESTAMP,
+    crawl_status TEXT,        -- pending|active|warm|cold|dead
+    is_active BOOLEAN DEFAULT true
+);
+
+-- Function probability per company
+CREATE TABLE company_functions (
+    company_id TEXT REFERENCES companies(id),
+    function TEXT,            -- ml_engineering|data_science|buying|etc
+    probability REAL,         -- 0.0-1.0
+    signal_source TEXT,       -- employee_titles|tech_stack|historical_jobs
+    updated_at TIMESTAMP,
+    PRIMARY KEY (company_id, function)
+);
+
+-- Jobs with cross-source dedup
+CREATE TABLE jobs (
+    id TEXT PRIMARY KEY,
+    company_id TEXT REFERENCES companies(id),
+    canonical_id TEXT REFERENCES jobs(id), -- NULL = this is canonical
+    title TEXT,
+    location TEXT,
+    source TEXT,              -- greenhouse|lever|naukri|linkedin|career_page
+    source_url TEXT,
+    posted_at TIMESTAMP,
+    verified_active BOOLEAN,
+    raw_jd_text TEXT,
+    scraped_at TIMESTAMP
+);
+
+-- Crawl source registry per company
+CREATE TABLE company_sources (
+    company_id TEXT REFERENCES companies(id),
+    source_type TEXT,
+    crawl_url TEXT,
+    last_crawled_at TIMESTAMP,
+    last_job_count INTEGER,
+    PRIMARY KEY (company_id, source_type)
+);
+```
+
+**Storage note:** SQLite is sufficient through ~500K jobs. Do not migrate to Postgres until that threshold is hit and query performance degrades. Premature migration is waste.
+
+---
+
+*Addendum drafted 2026-05-18. Triggered by LLM Council architecture session.*
