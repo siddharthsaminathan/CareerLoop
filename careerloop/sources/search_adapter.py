@@ -22,6 +22,8 @@ INDIA_JOB_URL_PATTERNS = [
     r"linkedin\.com/jobs/collections/\d+",   # curated collection (numeric ID required)
     r"naukri\.com/job-listings-",
     r"naukri\.com/job/",
+    r"in\.indeed\.com/viewjob",              # Indeed India individual job page
+    r"in\.indeed\.com/rc/clk",              # Indeed India click-through
     r"cutshort\.io/[^/]+/jobs/",             # company-specific job: cutshort.io/{company}/jobs/{slug}
     r"cutshort\.io/jobs/[a-z0-9-]+-[a-z0-9]+$",  # individual job slug (ends with ID, not /jobs/)
     r"instahyre\.com/",
@@ -95,7 +97,7 @@ SKIP_DOMAINS = [
     "bamboohr.com",
     "jobvite.com",
     "recruitee.com",
-    "indeed.com",       # Global, not India-specific
+    "www.indeed.com",   # Global Indeed (not India) — in.indeed.com is allowed via IndeedScraper
     "glassdoor.com",
     "monster.com",
     "ziprecruiter.com",

@@ -1,0 +1,75 @@
+adjacent_roles:
+- category manager fashion
+- fashion product manager
+- assortment planner
+- retail buying manager
+assignment_burden_tolerance: 5
+benefits_must_have:
+- health insurance
+confirmed_skills:
+- fashion buying
+- fashion merchandising
+- assortment planning
+- vendor management
+- PO/PI coordination
+- product lifecycle management
+- category management
+- inventory management
+- sourcing
+- negotiation
+- excel
+- data analysis
+- trend analysis
+- sell-through analysis
+- retail operations
+- e-commerce merchandising
+- SAP
+ctc_currency: INR
+current_ctc_lakhs: null
+equity_required: false
+esops_min_percent: null
+expected_ctc_lakhs: 13
+interview_weaknesses: []
+max_commute_minutes: 60
+max_company_size: null
+min_company_size: null
+notice_period_days: 30
+preferred_company_types:
+- retail
+- fashion
+- ecommerce
+- d2c
+preferred_sources: []
+rejected_company_types: []
+rejected_roles:
+- data entry
+- content writer
+- graphic designer
+- software engineer
+rejection_learnings: []
+relocation_cities:
+- Bangalore
+- Chennai
+resume_tone: confident
+salary_ceiling_lakhs: 20
+salary_floor_lakhs: 11
+sector_preferences:
+- Fashion & Retail
+- Apparel & Textiles
+- E-commerce & D2C
+- Consumer Goods
+sector_rejections:
+- Technology & Software
+- Finance & Fintech
+startup_tolerance: 6
+target_functions:
+- fashion buyer
+- fashion merchandiser
+- buying and merchandising
+- category manager fashion
+- retail buyer
+- fashion category manager
+weak_skills:
+- software development
+- coding
+willing_to_relocate: true

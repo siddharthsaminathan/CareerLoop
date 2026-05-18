@@ -16,6 +16,7 @@ from typing import Optional
 from urllib.parse import urlparse
 
 import requests
+from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 
@@ -232,7 +233,11 @@ class LeverAdapter:
         self.session.headers["User-Agent"] = "Mozilla/5.0 (compatible; CareerLoopBot/1.0)"
 
     def _slug_from_url(self, ats_url: str) -> Optional[str]:
-        m = re.search(r"lever\.co/([a-z0-9_-]+)", ats_url, re.IGNORECASE)
+        # Handle stored API URLs: https://api.lever.co/v0/postings/{slug}?mode=json
+        m = re.search(r"lever\.co/v0/postings/([a-z0-9_-]+)", ats_url, re.IGNORECASE)
+        if not m:
+            # Handle job board URLs: https://jobs.lever.co/{slug}
+            m = re.search(r"jobs\.lever\.co/([a-z0-9_-]+)", ats_url, re.IGNORECASE)
         return m.group(1) if m else None
 
     def fetch(self, company_id: str, company_name: str, ats_url: str) -> list[ATSJob]:
@@ -422,6 +427,273 @@ class AshbyAdapter:
             return None
 
 
+class WorkdayAdapter:
+    """
+    Fetches jobs from Workday public job board APIs.
+
+    Tries two endpoint patterns (both are public, no auth required):
+      1. POST https://{slug}.wd{N}.myworkdayjobs.com/wday/cxs/{slug}/{slug}/jobs
+         Body: {"limit":100,"offset":0,"searchText":""}
+      2. GET  https://{slug}.wd{N}.myworkdayjobs.com/api/v1/jobs?limit=100
+
+    Falls back to the second if the first returns no results.
+    """
+
+    def __init__(self):
+        self.session = requests.Session()
+        self.session.headers["User-Agent"] = "Mozilla/5.0 (compatible; CareerLoopBot/1.0)"
+
+    def _parse_url(self, ats_url: str) -> tuple[Optional[str], Optional[str]]:
+        """Extract (slug, wd_subdomain) from a Workday job board URL."""
+        # https://{slug}.wd{N}.myworkdayjobs.com/en-US/{slug}/jobs
+        m = re.search(
+            r"([a-z0-9_-]+)\.(wd\d+)\.myworkdayjobs\.com",
+            ats_url, re.IGNORECASE,
+        )
+        if m:
+            return m.group(1), m.group(2).lower()
+        return None, None
+
+    def _try_post_api(self, slug: str, wd_sub: str) -> list[dict]:
+        """POST to the Workday CXS jobs endpoint."""
+        url = f"https://{slug}.{wd_sub}.myworkdayjobs.com/wday/cxs/{slug}/{slug}/jobs"
+        try:
+            resp = self.session.post(
+                url,
+                json={"limit": 100, "offset": 0, "searchText": ""},
+                headers={"Content-Type": "application/json", "Accept": "application/json"},
+                timeout=REQUEST_TIMEOUT,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            return data.get("jobPostings", [])
+        except Exception:
+            return []
+
+    def _try_rest_api(self, slug: str, wd_sub: str) -> list[dict]:
+        """GET the Workday REST jobs endpoint."""
+        url = f"https://{slug}.{wd_sub}.myworkdayjobs.com/api/v1/jobs?limit=100"
+        try:
+            resp = self.session.get(url, timeout=REQUEST_TIMEOUT)
+            resp.raise_for_status()
+            data = resp.json()
+            # REST API can return a list directly or {"jobs": [...]}
+            if isinstance(data, list):
+                return data
+            return data.get("jobs", [])
+        except Exception:
+            return []
+
+    def fetch(self, company_id: str, company_name: str, ats_url: str) -> list[ATSJob]:
+        slug, wd_sub = self._parse_url(ats_url)
+        if not slug or not wd_sub:
+            logger.warning(f"[Workday] Could not parse URL: {ats_url}")
+            return []
+
+        # Try POST API first, then GET
+        raw_jobs = self._try_post_api(slug, wd_sub)
+        api_used = "post"
+        if not raw_jobs:
+            raw_jobs = self._try_rest_api(slug, wd_sub)
+            api_used = "get"
+
+        if not raw_jobs:
+            logger.warning(f"[Workday] {company_name}: both APIs returned no jobs")
+            return []
+
+        results = []
+        for job in raw_jobs:
+            # POST API shape: {"title": "...", "locationsText": "...", "externalPath": "...", "bulletFields": [...]}
+            # REST API shape:  {"title": "...", "location": "...", "slug": "...", "description": "..."}
+            title = job.get("title", "")
+            location = job.get("locationsText", "") or job.get("location", "")
+            if isinstance(location, dict):
+                location = location.get("name", "") or location.get("descriptor", "")
+            if not _is_india_location(location):
+                continue
+
+            # Build apply URL
+            external_path = job.get("externalPath", "") or job.get("slug", "")
+            if external_path:
+                external_path = external_path.lstrip("/")
+                apply_url = f"https://{slug}.{wd_sub}.myworkdayjobs.com/en-US/{slug}/job/{external_path}"
+            else:
+                apply_url = ats_url
+
+            # Extract JD text
+            jd_text = ""
+            # POST API: bulletFields
+            bullet_fields = job.get("bulletFields", [])
+            if bullet_fields:
+                parts = []
+                for bf in bullet_fields:
+                    if isinstance(bf, str):
+                        parts.append(bf)
+                    elif isinstance(bf, dict):
+                        parts.append(bf.get("label", ""))
+                jd_text = " ".join(parts)
+            # REST API: description field
+            if not jd_text:
+                desc = job.get("description", "") or job.get("descriptionText", "")
+                if desc:
+                    jd_text = _strip_html(desc)
+
+            sections = _split_jd_sections(jd_text)
+            raw_text = " ".join(sections.values()).strip() or jd_text
+
+            job_id = str(job.get("bulletId", "") or job.get("id", "") or job.get("slug", ""))
+
+            results.append(ATSJob(
+                title=title,
+                company_id=company_id,
+                company_name=company_name,
+                source="workday",
+                source_url=apply_url,
+                location_raw=location,
+                role_summary=sections.get("role_summary", ""),
+                responsibilities=sections.get("responsibilities", ""),
+                requirements=sections.get("requirements", ""),
+                benefits=sections.get("benefits", ""),
+                raw_jd_text=raw_text,
+                job_id_ats=job_id,
+            ))
+
+        logger.info(f"[Workday] {company_name}: {len(results)} India jobs (via {api_used})")
+        return results
+
+
+class CareerPageScraperAdapter:
+    """
+    Generic adapter for ATS providers without structured public APIs (SuccessFactors, iCIMS, etc.).
+
+    Uses requests + BeautifulSoup to:
+      1. Fetch the career page listing URL
+      2. Extract individual job URLs from the listing page
+      3. Fetch each job page and extract JD text
+      4. Return list[ATSJob]
+    """
+
+    JOB_LINK_PATTERNS = [
+        r"/job[/-]",
+        r"/career",
+        r"/position",
+        r"/opening",
+        r"/vacanc",
+        r"/requisition",
+        r"/apply",
+        r"jobid",
+        r"reqid",
+        r"j_id",
+    ]
+
+    def __init__(self):
+        self.session = requests.Session()
+        self.session.headers["User-Agent"] = (
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+        )
+
+    def _is_job_url(self, url: str, base_domain: str) -> bool:
+        """Heuristic: does this URL look like an individual job posting page?"""
+        url_lower = url.lower()
+        # Skip listing/search pages
+        skip = {"search", "list", "category", "location", "team", "department"}
+        if any(f"/{s}" in url_lower for s in skip):
+            return False
+        return any(re.search(p, url_lower) for p in self.JOB_LINK_PATTERNS)
+
+    def _extract_job_links(self, listing_url: str) -> list[str]:
+        """Parse the listing page and extract individual job URLs."""
+        try:
+            resp = self.session.get(listing_url, timeout=REQUEST_TIMEOUT)
+            resp.raise_for_status()
+            soup = BeautifulSoup(resp.text, "html.parser")
+        except Exception as e:
+            logger.warning(f"[CareerPageScraper] Failed to fetch listing: {e}")
+            return []
+
+        domain = urlparse(listing_url).netloc
+        base = f"{urlparse(listing_url).scheme}://{domain}"
+        links = set()
+
+        for a in soup.find_all("a", href=True):
+            href = a["href"]
+            if href.startswith("/"):
+                href = base + href
+            elif not href.startswith("http"):
+                href = listing_url.rstrip("/") + "/" + href.lstrip("/")
+            if self._is_job_url(href, domain):
+                links.add(href)
+
+        return list(links)
+
+    def _fetch_job_page(self, url: str) -> Optional[str]:
+        """Fetch a single job page and return its text content."""
+        try:
+            resp = self.session.get(url, timeout=REQUEST_TIMEOUT)
+            resp.raise_for_status()
+            soup = BeautifulSoup(resp.text, "html.parser")
+            # Remove script/style tags
+            for tag in soup(["script", "style", "nav", "footer", "header"]):
+                tag.decompose()
+            text = soup.get_text(separator="\n", strip=True)
+            return text
+        except Exception as e:
+            logger.debug(f"[CareerPageScraper] Failed to fetch job page {url}: {e}")
+            return None
+
+    def fetch(self, company_id: str, company_name: str, ats_url: str,
+              source_label: str = "scraped") -> list[ATSJob]:
+        """
+        Scrape jobs from a career page listing. Returns list[ATSJob].
+        source_label should be "successfactors", "icims", etc.
+        """
+        job_links = self._extract_job_links(ats_url)
+        if not job_links:
+            logger.warning(f"[CareerPageScraper] No job links found on {ats_url}")
+            return []
+
+        results = []
+        for url in job_links[:20]:  # Cap at 20 to be polite
+            text = self._fetch_job_page(url)
+            if not text:
+                continue
+
+            sections = _split_jd_sections(text)
+            raw_text = " ".join(sections.values()).strip()
+
+            # Extract title from first heading or first non-empty line
+            try:
+                resp = self.session.get(url, timeout=REQUEST_TIMEOUT)
+                soup = BeautifulSoup(resp.text, "html.parser")
+                for tag in soup(["script", "style"]):
+                    tag.decompose()
+                title_tag = soup.find("h1") or soup.find("h2") or soup.find("title")
+                title = title_tag.get_text(strip=True) if title_tag else ""
+            except Exception:
+                title = ""
+
+            results.append(ATSJob(
+                title=title,
+                company_id=company_id,
+                company_name=company_name,
+                source=source_label,
+                source_url=url,
+                location_raw="",
+                role_summary=sections.get("role_summary", ""),
+                responsibilities=sections.get("responsibilities", ""),
+                requirements=sections.get("requirements", ""),
+                benefits=sections.get("benefits", ""),
+                raw_jd_text=raw_text,
+                jd_confidence=0.7,
+                job_id_ats=url,
+            ))
+            time.sleep(0.4)  # polite rate limiting
+
+        logger.info(f"[CareerPageScraper] {company_name}: {len(results)} jobs scraped")
+        return results
+
+
 class ATSAdapter:
     """
     Unified adapter — routes to correct ATS based on company ats_provider field.
@@ -432,6 +704,8 @@ class ATSAdapter:
         self._greenhouse = GreenhouseAdapter()
         self._lever = LeverAdapter()
         self._ashby = AshbyAdapter()
+        self._workday = WorkdayAdapter()
+        self._scraper = CareerPageScraperAdapter()
 
     def fetch_jobs(self, company_id: str, company_name: str,
                    ats_provider: str, ats_url: str) -> list[ATSJob]:
@@ -449,9 +723,13 @@ class ATSAdapter:
                 return self._lever.fetch(company_id, company_name, ats_url)
             elif ats_provider == "ashby":
                 return self._ashby.fetch(company_id, company_name, ats_url)
-            elif ats_provider in ("workday", "successfactors", "icims", "taleo", "none", "custom"):
-                # No structured API adapter — caller falls back to career page crawler
-                logger.debug(f"[ATS] {ats_provider} for {company_name}: no API adapter, use career page crawler")
+            elif ats_provider == "workday":
+                return self._workday.fetch(company_id, company_name, ats_url)
+            elif ats_provider in ("successfactors", "icims"):
+                return self._scraper.fetch(company_id, company_name, ats_url,
+                                           source_label=ats_provider)
+            elif ats_provider in ("taleo", "none", "custom"):
+                # taleo requires auth; custom/none have no known endpoint
                 return []
             else:
                 logger.debug(f"[ATS] Unknown provider '{ats_provider}' for {company_name}")

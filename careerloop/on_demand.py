@@ -25,6 +25,7 @@ from careerloop.company_targeting import CompanyTargeting
 from careerloop.sources.search_adapter import SearchAdapter
 from careerloop.sources.jobspy_adapter import JobSpyAdapter
 from careerloop.sources.scrapegraph_adapter import ScrapeGraphAdapter
+from careerloop.sources.indeed_scraper import IndeedScraper
 from careerloop.models import URLType, classify_url_type
 from careerloop.profile_manager import ProfileManager
 
@@ -56,6 +57,7 @@ class OnDemandSearch:
         self.search = SearchAdapter()
         self.jobspy = JobSpyAdapter()
         self.scraper = ScrapeGraphAdapter()
+        self._indeed = IndeedScraper()
         self._ats = None
         self._portal = None
 
@@ -124,26 +126,46 @@ class OnDemandSearch:
         # 4. India filter
         india_filtered, _ = filter_india_jobs(all_jobs)
 
-        # 4b. Role relevance prefilter — drop jobs with zero title overlap to avoid
-        #     scoring entire company job dumps (e.g., all 200 Meesho jobs regardless of role)
+        # 4b. Role relevance prefilter
         role_tokens = set(role.lower().split())
-        target_fns = set(" ".join(self.profile.target_functions).lower().split())
-        role_signal = role_tokens | target_fns | {"product", "ai", "ml", "engineer", "manager", "pm", "technical"}
-        HARD_REJECT_TITLES = {
-            "hr", "legal", "finance", "accounting", "logistics", "transport",
-            "social media", "copywriter", "talent", "recruiter", "sales",
-            "business development", "executive assistant", "security engineer",
-        }
+        # Collect first-word signals from target_functions (not all tokens — avoids "manager" pollution)
+        # e.g. "category manager fashion" → only "category", "fashion buyer" → "fashion"
+        tf_head_tokens = set()
+        # Generic business words that appear in almost every job title — exclude from domain signals
+        _generic = {"with", "and", "for", "the", "that", "from", "into", "this", "your",
+                    "manager", "senior", "associate", "lead", "head", "director", "specialist",
+                    "analyst", "executive", "officer", "coordinator", "consultant", "principal"}
+        for fn in (self.profile.target_functions or []):
+            words = fn.lower().split()
+            tf_head_tokens.update(w for w in words if len(w) >= 4 and w not in _generic)
+        # role_signal: the search role tokens + domain words from profile functions
+        role_signal = role_tokens | tf_head_tokens
+
+        rejected_role_terms = {r.lower() for r in (self.profile.rejected_roles or [])}
 
         def _title_relevant(job: dict) -> bool:
             title = job.get("title", "").lower()
             title_tokens = set(title.split())
-            # Hard reject clearly off-role titles
-            for reject in HARD_REJECT_TITLES:
+
+            # Profile-driven rejection
+            for reject in rejected_role_terms:
                 if reject in title:
                     return False
-            # Must have at least one token overlap with role signal
-            return bool(title_tokens & role_signal)
+
+            # For "engineer" roles: tighten so we don't match QA/hardware/manufacturing engineers.
+            if "engineer" in title_tokens and "engineer" in role_tokens:
+                eng_qualifier = role_tokens - {"engineer"}
+                generic_sw = {"software", "data", "platform", "backend", "frontend",
+                              "fullstack", "full-stack", "sre", "cloud", "mobile"}
+                if eng_qualifier and not (title_tokens & (eng_qualifier | generic_sw)):
+                    return False
+
+            # Title must overlap with the actual search role tokens first.
+            # This is the primary signal — derived purely from the search query.
+            if title_tokens & role_tokens:
+                return True
+            # Broader domain match from profile target_functions (domain-specific words only)
+            return bool(title_tokens & tf_head_tokens)
 
         relevant = [j for j in india_filtered if _title_relevant(j)]
         result.notes.append(f"role filter: {len(india_filtered)} → {len(relevant)} relevant")
@@ -165,6 +187,7 @@ class OnDemandSearch:
     # ── Internals ─────────────────────────────────────────────────────
 
     def _scrape_targeted_companies(self, ranked) -> list[dict]:
+        from careerloop.sources.spireai_adapter import discover_workspace_id, fetch_jobs as spire_fetch
         ats = self._get_ats()
         crawler, extractor = self._get_portal()
         jobs: list[dict] = []
@@ -181,28 +204,36 @@ class OnDemandSearch:
                         d["_source_type"] = aj.source
                         jobs.append(d)
                 elif company.career_page_url:
-                    urls = crawler.crawl(company.career_page_url)
-                    for url in urls[:10]:
-                        try:
-                            jd = extractor.extract(url)
-                            if jd.extraction_confidence >= 0.6:
-                                jobs.append({
-                                    "title": jd.job_title,
-                                    "company": company.name,
-                                    "location": jd.location,
-                                    "url": url,
-                                    "apply_url": url,
-                                    "url_type": URLType.INDIVIDUAL_JOB.value,
-                                    "description": jd.raw_text,
-                                    "role_summary": jd.role_summary,
-                                    "responsibilities": jd.responsibilities,
-                                    "requirements": jd.requirements,
-                                    "benefits": jd.benefits,
-                                    "extraction_confidence": jd.extraction_confidence,
-                                    "_source_type": "company_portal",
-                                })
-                        except Exception:
-                            pass
+                    # Try Spire AI first (used by Myntra and other Indian companies)
+                    ws_id = discover_workspace_id(company.career_page_url)
+                    if ws_id:
+                        spire_jobs = spire_fetch(ws_id, company.name, company.career_page_url)
+                        jobs.extend(spire_jobs)
+                        logger.info(f"[OnDemand] {company.name}: {len(spire_jobs)} jobs via SpireAI")
+                    else:
+                        # Fallback: crawl career page + extract JDs
+                        urls = crawler.crawl(company.career_page_url)
+                        for url in urls[:10]:
+                            try:
+                                jd = extractor.extract(url)
+                                if jd.extraction_confidence >= 0.6:
+                                    jobs.append({
+                                        "title": jd.job_title,
+                                        "company": company.name,
+                                        "location": jd.location,
+                                        "url": url,
+                                        "apply_url": url,
+                                        "url_type": URLType.INDIVIDUAL_JOB.value,
+                                        "description": jd.raw_text,
+                                        "role_summary": jd.role_summary,
+                                        "responsibilities": jd.responsibilities,
+                                        "requirements": jd.requirements,
+                                        "benefits": jd.benefits,
+                                        "extraction_confidence": jd.extraction_confidence,
+                                        "_source_type": "company_portal",
+                                    })
+                            except Exception:
+                                pass
             except Exception as e:
                 logger.debug(f"[OnDemand] {company.name}: {e}")
         return jobs
@@ -220,9 +251,13 @@ class OnDemandSearch:
             url_type = classify_url_type(url).value
             if url_type != URLType.INDIVIDUAL_JOB.value:
                 continue
-            # Try deep extraction
+            # Try deep extraction: ScrapeGraph first, then Indeed for Indeed URLs
             data = self.scraper.extract(url) if self.scraper.available else None
+            if not data and self._indeed.can_handle(url):
+                data = self._indeed.extract(url)
             if data:
+                extraction_method = data.get("_extraction_method", "scrapegraph")
+                source_type = "scrapegraph" if extraction_method == "scrapegraphai" else "indeed_direct"
                 jobs.append({
                     "title": data.get("title", r.get("title", "")),
                     "company": data.get("company", ""),
@@ -234,7 +269,7 @@ class OnDemandSearch:
                     "skills": data.get("skills", []),
                     "salary": data.get("salary", ""),
                     "work_mode": data.get("work_mode", ""),
-                    "_source_type": "scrapegraph",
+                    "_source_type": source_type,
                 })
             else:
                 jobs.append({

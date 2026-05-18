@@ -21,7 +21,7 @@
 
 | System | % | Status | Blocking? | Notes |
 |--------|---|--------|-----------|-------|
-| India-first discovery | 75% | 🟡 | No | ATS adapter, portal scraper, on-demand search, role keywords shipped |
+| India-first discovery | 75% | 🟡 | No | ATS adapter + Spire AI adapter; portal layer still ~0% for JS-heavy sites |
 | Verification & filtering | 60% | 🟡 | No | detect_ats_pass.py; Block G not hoisted |
 | Opportunity scoring (14-dim) | 55% | 🟡 | No | function_probability.py + metrics.py; needs calibration |
 | Decision compression / triage | 20% | 🔴 | No | modes/ofertas.md reusable; no UX |
@@ -40,7 +40,7 @@
 | WhatsApp/transport UX | 15% | 🔴 | No | Concept only |
 | Monetization logic | 30% | 🟡 | No | Strategic understanding solid |
 
-**Overall product maturity: ~30-35% of vision.** (+10% after 6-agent stabilization.)
+**Overall product maturity: ~30-35% of vision.** (No change — 2026-05-19 session fixed bugs in discovery pipeline but did not extend capabilities.)
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -80,6 +80,25 @@
 ---
 
 ## Session Log
+
+---
+
+### 2026-05-19 — Session: Discovery Pipeline Debugging (Varsha dry run)
+
+**What was done:**
+- Lever slug bug fixed (was extracting "v0" instead of company name)
+- Sector→function probability fixed: Finance & Fintech companies now correctly excluded from fashion buyer targeting (fn_prob 0.5→0.02)
+- Role relevance filter de-hardcoded: `rejected_roles` from YAML, generic business words ("manager", "senior", etc.) excluded from domain signal tokens
+- Spire AI adapter built (`careerloop/sources/spireai_adapter.py`): REST API discovery for Spire AI career portals; Myntra confirmed → 14 jobs
+- 16 fashion company career URLs seeded in DB
+- Varsha dry run: 39 jobs (fashion buyer / Bangalore), top results from Myntra SpireAI + JobSpy LinkedIn/Indeed
+- Discovery pipeline status doc fully rewritten
+
+**What didn't work:** 15/16 fashion company portals return 0 jobs (JS-heavy SPAs). Meesho Lever board still contaminates fashion results. Score range still compressed (47-67). Profile bleed: Varsha dry run uses Hayagreev's target_roles.
+
+**Vision alignment verdict:** ⚠️ PARTIALLY ALIGNED — bugs fixed but no new capability shipped. Discovery portal layer still broken for fashion companies.
+
+**No progress on:** tailoring delta, company intel engine, Nicobar golden run.
 
 ---
 

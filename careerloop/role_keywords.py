@@ -208,9 +208,9 @@ Rules:
             f'"{head}" jobs in {loc}',
             f'"{head}" hiring {loc} site:linkedin.com/jobs/view',
             f'"{head}" {loc} site:naukri.com',
+            f'"{head}" {loc} site:cutshort.io',
             f'"{head}" {loc} site:wellfound.com',
-            f'"{head}" {loc} site:boards.greenhouse.io',
-            f'"{head}" {loc} site:jobs.lever.co',
+            f'"{head}" {loc} site:instahyre.com',
         ]
 
     def evict_stale(self, days: int = 30):

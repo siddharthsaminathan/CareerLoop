@@ -61,6 +61,17 @@ SECTOR_FUNCTION_MATRIX = {
         "data": 0.60, "engineering": 0.50, "product": 0.55, "ml_engineering": 0.40,
         "design": 0.55, "finance": 0.50,
     },
+    "Fashion & Retail": {
+        "buying": 0.95, "merchandising": 0.95, "sourcing": 0.90, "category_management": 0.90,
+        "inventory": 0.85, "design": 0.80, "marketing": 0.80, "operations": 0.70,
+        "growth": 0.65, "data": 0.50, "product": 0.45, "engineering": 0.30,
+        "finance": 0.45, "ml_engineering": 0.20,
+    },
+    "Apparel & Textiles": {
+        "buying": 0.95, "merchandising": 0.95, "sourcing": 0.90, "category_management": 0.85,
+        "inventory": 0.80, "design": 0.85, "operations": 0.70, "quality": 0.70,
+        "marketing": 0.65, "data": 0.40, "product": 0.35, "engineering": 0.25,
+    },
     "Manufacturing & Industrial": {
         "supply_chain": 0.90, "procurement": 0.85, "plant_operations": 0.85,
         "quality": 0.85, "industrial_engineering": 0.80, "operations": 0.80,
@@ -283,14 +294,28 @@ class FunctionProbabilityEngine:
         except Exception:
             return ""
 
+    # Aliases for sector names stored in DB → matrix keys
+    _SECTOR_ALIASES = {
+        "finance & fintech": "Financial Services",
+        "fintech": "Financial Services",
+        "financial services": "Financial Services",
+        "apparel & textiles": "Apparel & Textiles",
+        "fashion & retail": "Fashion & Retail",
+        "retail & commerce": "Retail & Commerce",
+        "technology & software": "Technology & Software",
+        "tech": "Technology & Software",
+    }
+
     def _infer_from_sector(self, sector: str, function: str) -> float:
         if not sector:
             return 0.5
-        # Match sector name case-insensitively + allow prefix matching
+        # Alias lookup first
+        canonical = self._SECTOR_ALIASES.get(sector.lower())
+        if canonical and canonical in SECTOR_FUNCTION_MATRIX:
+            probs = SECTOR_FUNCTION_MATRIX[canonical]
+            return probs.get(function, 0.25)
+        # Substring match fallback
         for sector_name, fn_probs in SECTOR_FUNCTION_MATRIX.items():
             if sector.lower() in sector_name.lower() or sector_name.lower() in sector.lower():
-                if function in fn_probs:
-                    return fn_probs[function]
-                # Soft penalty if sector is known but function is uncommon
-                return 0.25
+                return fn_probs.get(function, 0.25)
         return 0.5  # unknown sector → neutral

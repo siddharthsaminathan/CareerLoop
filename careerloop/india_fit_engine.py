@@ -132,20 +132,32 @@ def _parse_salary_lakhs(text: str) -> tuple[Optional[float], Optional[float]]:
     if not text:
         return None, None
     t = text.lower().replace(",", "")
+
+    def _to_float(s: str) -> Optional[float]:
+        try:
+            v = float(s)
+            return v if v > 0 else None
+        except (ValueError, TypeError):
+            return None
+
     # Range pattern first
     m = _SALARY_PATTERNS[0].search(t)
     if m:
-        return float(m.group(1)), float(m.group(2))
+        lo, hi = _to_float(m.group(1)), _to_float(m.group(2))
+        if lo is not None and hi is not None:
+            return lo, hi
     # Single-number lakhs
     m = _SALARY_PATTERNS[1].search(t)
     if m:
-        v = float(m.group(1))
-        return v, v
+        v = _to_float(m.group(1))
+        if v is not None:
+            return v, v
     # Raw INR
     m = _SALARY_PATTERNS[2].search(t)
     if m:
-        v = float(m.group(1)) / 100000
-        return v, v
+        v = _to_float(m.group(1))
+        if v is not None:
+            return v / 100000, v / 100000
     return None, None
 
 

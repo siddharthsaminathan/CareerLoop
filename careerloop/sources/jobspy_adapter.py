@@ -90,7 +90,7 @@ class JobSpyAdapter:
                 continue
             seen.add(key)
 
-            results = self.search(role=role, location=city, results_wanted=5)
+            results = self.search(role=role, location=city, results_wanted=20)
             all_results.extend(results)
 
         return all_results

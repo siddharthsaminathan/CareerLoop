@@ -173,4 +173,61 @@ output/regression_test/                      ← Regression test results
 
 ---
 
-*End of daily dev blog. This session moved CareerLoop from ~15% to ~30-35% of the vision.*
+*End of 2026-05-18 sessions.*
+
+---
+
+# CareerLoop — Daily Dev Blog: 2026-05-19
+
+**Session focus:** Discovery pipeline debugging — Varsha dry run (fashion buyer/merchandiser, Bangalore/Chennai)  
+**What was attempted:** Get real jobs from company career portals for Indian fashion companies  
+**Net result:** Spire AI adapter works (Myntra 14 jobs). Everything else still broken.
+
+---
+
+## What Was Done
+
+### Lever Slug Bug Fixed
+Regex `r"lever\.co/([a-z0-9_-]+)"` was extracting "v0" from `api.lever.co/v0/postings/meesho`. Fixed to match the full path. Now Meesho (45 jobs), Paytm (116), CRED, Freshworks all fetch correctly.
+
+### Sector → Function Probability Fixed
+Finance & Fintech companies (Paytm, Razorpay) were getting fn_prob=0.5 (neutral) for fashion buying because "Finance & Fintech" didn't match any key in the sector matrix. Added explicit `_SECTOR_ALIASES` mapping + Fashion & Retail / Apparel & Textiles sectors. Paytm now scores fn_prob=0.02 for buying → correctly excluded from Varsha's fashion pipeline.
+
+### Role Relevance Filter De-hardcoded
+Replaced hardcoded `HARD_REJECT_TITLES` and `ENGINEER_SIGNALS` lists with profile-driven logic. `rejected_roles` comes from `profile.yml`. Domain signal tokens derived from `target_functions` with generic business words ("manager", "senior", "associate", "lead", "director", etc.) stripped from the set to prevent false positives like "Engineering Manager Backend" matching a fashion buyer search.
+
+### Spire AI Adapter (NEW — `careerloop/sources/spireai_adapter.py`)
+Discovered that `jobs.myntra.com` is a Flutter SPA powered by Spire AI (`spire2grow.com`). The platform exposes a clean REST API:
+- `GET /ies/v1/p/workspaceId?domain={domain}` → workspace ID discovery (no auth)
+- `GET /ies/v1/p/requisition/_search` with `workspaceid` header → paginated job list
+
+Implemented adapter. Wired into `_scrape_targeted_companies` as first attempt before `CareerPageCrawler`. Result: Myntra 14 jobs including "Principal Associate - Buying & Merchandising", "Lead Associate - Category Management (Women's Ethnic Wear)".
+
+Tested other fashion companies (Nykaa, Fabindia, Ajio) — all return 404 from workspace lookup. Only Myntra confirmed on Spire AI.
+
+### Career Page URLs Seeded for 16 Fashion Companies
+16 fashion/retail companies (Myntra, Nykaa, Fabindia, Arvind, Bliss Club, etc.) now have `career_page_url` in the DB. Most return 0 jobs because their pages are JS-heavy SPAs or Shopify-based with no structured listings.
+
+### Varsha Dry Run — Results
+- fashion buyer / Bangalore: 39 jobs after dedup (95 raw)
+- fashion buyer / Chennai: 6 jobs
+- fashion merchandiser / Bangalore: running
+- fashion merchandiser / Chennai: running
+- Top genuine matches: Myntra buying/merchandising roles (SpireAI), Bene Kleed Senior Buyer (LinkedIn), Arvind Lifestyle Brands Retail Planning (Cutshort)
+- Main contamination source: Meesho Lever board (45 jobs, all functions) — Analytics Manager, Engineering Manager, HR roles all passing role filter due to "category" matching
+
+## What Didn't Work / Still Broken
+
+- **15/16 fashion company portals: 0 jobs.** Bliss Club, Snitch = Shopify stores. Fabindia, Arvind = custom SPAs. Nykaa, Ajio = different platform than Spire AI. `CareerPageCrawler` gets empty HTML shells from all of them.
+- **ATS detection wasted ~45 minutes.** Ran `detect_ats_pass.py` on all 62 companies. Fashion companies returned "no ATS detected" because none use Lever/Greenhouse/Ashby. Wrong approach — should have gone straight to Spire AI discovery.
+- **Meesho contamination.** 45 Lever jobs from Meesho flood every Bangalore search. Role filter is not tight enough post-ATS-fetch.
+- **Workday: still 0 jobs.** BrowserStack, Uniphore detected but no adapter.
+- **Score compression.** Without full JD, scores cluster 47-67. No discrimination.
+- **Profile bleed in dry run.** `target_roles` and `archetypes` come from Hayagreev's `config/profile.yml` even during Varsha's dry run — inflates role_fit scores for tech roles.
+
+## Discovery Pipeline Status Updated
+`careerloop/docs/DISCOVERY_PIPELINE_STATUS_20260518.md` fully rewritten with current state, module-by-module status, and remaining problems.
+
+---
+
+*This session did not move the overall product maturity needle. Discovery pipeline is still at ~75% and mostly broken for company portal layer.*

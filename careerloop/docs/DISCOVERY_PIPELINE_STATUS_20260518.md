@@ -1,516 +1,247 @@
-# Discovery Pipeline Status — 2026-05-18
+# Discovery Pipeline Status — 2026-05-19 (updated)
 
-**Author:** Hayagreev Sivakumar (dry run subject) + Claude (doc author)  
-**Dry run output:** `test data/output/dry_run_hayagreev_20260518_1254.md`  
-**Target:** 150-200 ranked jobs per run | **Actual:** 23 jobs
+**Last updated:** 2026-05-19  
+**Dry run outputs:** `test data/output/dry_run_varsha_20260518_19xx.md` (79 jobs), `test data/output/dry_run_hayagreev_20260518_1627.md` (59 jobs)  
+**Target:** 150-200 ranked jobs per run | **Actual:** 39-79 jobs (up from 23)
 
 ---
 
-## 1. End-to-End Flow (As-Built)
+## 1. End-to-End Flow (As-Built — 2026-05-19)
 
 ```
-Resume (test data/hayagreev_resume_0426.md)
-    ↓
-ProfileManager (config/profile.yml + careerloop/profile_extended.yml)
+Resume / Profile (config/profile.yml + careerloop/profile_extended.yml OR profile_varsha.yml)
     ↓
 RoleKeywordCache.get(role, city)
-    ├── Cache hit: load keywords → re-derive city-specific queries (never use cached queries)
+    ├── Cache hit: load keywords → re-derive city-specific queries
     └── Cache miss: token-based fallback (LLM fallback requires ANTHROPIC_API_KEY)
     ↓
 OnDemandSearch.run(role, city, max_results=50, portal_companies=20)
     │
-    ├── [LAYER 1] CompanyTargeting.top_n(function, city, n=20)
-    │       → ranks companies by fn_prob×40 + ats×15 + crawl×10 + employee×15 + brand×10 + velocity×10
-    │       → for each company:
+    ├── [LAYER 1] CompanyTargeting.top_n(function, city, n=20, min_function_probability=0.35)
+    │       → for each ranked company:
     │           IF ats_provider not in (unknown, none, ""):
     │               ATSAdapter.fetch_jobs(id, name, provider, url)
-    │                   ├── greenhouse → boards.greenhouse.io JSON API
-    │                   ├── lever → api.lever.co/v0/postings JSON API
-    │                   ├── ashby → api.ashbyhq.com/posting-api/job-board (posting-api) or
-    │                   │           {slug}.ashbyhq.com/api/non-user-facing/job-board (legacy)
-    │                   └── workday/custom/none → log "no API adapter, use career page crawler"
+    │                   ├── lever     → api.lever.co/v0/postings/{slug}?mode=json
+    │                   ├── greenhouse → boards.greenhouse.io/embed/job_board/jobs?for={slug}
+    │                   ├── ashby     → api.ashbyhq.com/posting-api/job-board/{slug}
+    │                   └── workday/taleo/custom → log "no API adapter"
     │           ELIF career_page_url:
-    │               CareerPageCrawler.crawl(url) → up to 10 JD URLs
-    │               JDSectionExtractor.extract(url) → structured JD (confidence ≥ 0.6)
+    │               [NEW] SpireAIAdapter.discover_workspace_id(career_page_url)
+    │                   → GET io.spire2grow.com/ies/v1/p/workspaceId?domain={domain}
+    │                   → IF workspace found: fetch all jobs via REST API (no scraping needed)
+    │                   → ELSE: CareerPageCrawler.crawl(url) → JDSectionExtractor (Playwright fallback)
     │
-    ├── [LAYER 2] Board Search (if include_boards=True and queries available)
-    │       ├── SearchAdapter.search_queries(queries[:6])
-    │       │       └── DDG DDGS (duckduckgo_search package) → individual job URLs
-    │       │           (ScrapeGraphAdapter.available=False → no full JD extraction)
-    │       │           → raw title + snippet only
-    │       └── JobSpyAdapter.search_from_queries([{role, city, query}] × 2)
-    │               → indeed.com + linkedin.com scrape
+    ├── [LAYER 2] Board Search (DDG + JobSpy)
+    │       ├── SearchAdapter.search_queries(queries[:6]) → DDG → individual job URLs
+    │       └── JobSpyAdapter.search_from_queries([{role, city}] × 2) → LinkedIn + Indeed
     │
     ↓
-filter_india_jobs(all_jobs) — location string filter for India/TN/KA etc.
+filter_india_jobs(all_jobs)
     ↓
 Role relevance prefilter
-    → role_signal = role_tokens | target_fn_tokens | {product, ai, ml, engineer, manager, pm, technical}
-    → HARD_REJECT: hr, legal, finance, accounting, logistics, transport, social media, talent, recruiter, etc.
-    → drop jobs with zero title overlap
+    → role_tokens from search query
+    → tf_head_tokens from profile.target_functions (domain-specific words only — "manager", "senior",
+      "associate", "lead", "director", "specialist" etc. EXCLUDED as generic)
+    → primary: title ∩ role_tokens → pass
+    → secondary: title ∩ tf_head_tokens → pass (fashion/buying/merchandising domain words)
+    → rejected_roles from profile.rejected_roles (YAML-driven, no hardcoding)
     ↓
 deduplicate_canonical(relevant)
-    → sha256(normalize(company)|normalize(title)|city[:30])[:16]
-    → priority: company_portal=1 > greenhouse/lever/ashby=2 > workday=3 > naukri=4 > linkedin=5
     ↓
 IndiaFitEngine.score_jobs_batch(deduped)
-    → 15 dimensions: title_fit, skill_fit, seniority_fit, work_mode_fit, ctc_fit, company_size_fit,
-      sector_fit, startup_risk_fit, location_fit, growth_signal, jd_clarity, ai_ml_relevance,
-      pedigree_bonus, ats_quality, description_depth
-    → score = weighted sum → 0-100
     ↓
-Top-N ranked output → test data/output/dry_run_hayagreev_{timestamp}.{md,json}
+Top-N ranked output → test data/output/dry_run_{candidate}_{timestamp}.{md,json}
 ```
 
 ---
 
-## 2. Module-by-Module Audit
+## 2. What Changed Since 2026-05-18
 
-### 2.1 RoleKeywordCache (`careerloop/role_keywords.py`)
+### 2.1 Spire AI Adapter — NEW
 
-| Status | Working |
-|--------|---------|
-| Cache hit/miss | ✅ Works |
-| Token-based keyword fallback | ✅ Works (narrow) |
-| City-specific query derivation | ✅ Fixed (was storing city-embedded queries in cache, causing Bangalore to get Chennai queries) |
-| LLM-generated keywords (CouncilLLMClient) | ⚠️ Requires `ANTHROPIC_API_KEY` in env — not set in this run |
+**File:** `careerloop/sources/spireai_adapter.py`
 
-**Bottleneck:** Token-based fallback produces generic queries like `"ai product engineer Chennai site:linkedin.com"`. LLM path generates richer, role-aware expansions (e.g., "AI/ML product manager fintech", "technical PM LLM startup"). LLM keywords would likely 2-3× the candidate yield.
+Spire AI (`spire2grow.com`) is a career portal platform used by Indian companies. Discovery is via a public REST endpoint — no scraping needed.
 
-**Fix:** Set `ANTHROPIC_API_KEY` in `.env` or env before running.
+```
+GET io.spire2grow.com/ies/v1/p/workspaceId?domain={career_page_domain}
+→ returns workspace ID string (e.g. "MYNTRA-93as3")
 
----
+GET io.spire2grow.com/ies/v1/p/requisition/_search
+    Header: workspaceid: MYNTRA-93as3
+→ returns paginated job listings (JSON)
+```
 
-### 2.2 CompanyTargeting (`careerloop/company_targeting.py`)
+**Result:** Myntra (`jobs.myntra.com`) → 14 jobs including "Principal Associate - Buying & Merchandising", "Lead Associate - Category Management (Women's Ethnic Wear)", etc.
 
-| Status | Working |
-|--------|---------|
-| DB load | ✅ Works |
-| Scoring formula | ✅ Works |
-| fn_prob computation | ✅ Works (from company sector + role heuristic) |
-| City filter | ✅ Works |
+**How it works in pipeline:** `_scrape_targeted_companies` now tries `discover_workspace_id(career_page_url)` for every company with `ats_provider=unknown/none`. If a workspace ID is found → fetch jobs via API. Otherwise → fall through to `CareerPageCrawler`.
 
-**Observation:** fn_prob drives 40% of ranking. Companies with `ats_provider="none"` get `ats×15=0` (no ATS bonus). Since 34/42 companies are `"none"`, ATS bonus barely differentiates — effectively company size and brand dominate.
+**Companies confirmed using Spire AI:** Myntra only (as of this run). Other fashion companies (Nykaa, Fabindia, Ajio, etc.) return 404 from workspace lookup.
 
 ---
 
-### 2.3 ATS Detection (`careerloop/detect_ats_pass.py`)
+### 2.2 Career Page URLs Seeded for Fashion Companies
 
-**Run result (2026-05-18):**
+16 Indian fashion/retail companies now have `career_page_url` in the DB:
 
-| Company | City | Detected ATS | URL |
-|---------|------|-------------|-----|
-| Meesho | Bangalore | lever | `api.lever.co/v0/postings/meesho` |
-| CRED | Bangalore | lever | `api.lever.co/v0/postings/cred.club` |
-| Freshworks | Chennai | lever | `api.lever.co/v0/postings/freshworks` *(slug issue — see §4.3)* |
-| Paytm | Bangalore | lever | `api.lever.co/v0/postings/paytm` |
-| Sarvam AI | Bangalore | ashby | `api.ashbyhq.com/posting-api/job-board/sarvam-ai` |
-| BrowserStack | Bangalore | workday | `browserstack.wd1.myworkdayjobs.com/...` |
-| Uniphore | Chennai | workday | `uniphore.wd1.myworkdayjobs.com/...` |
-| **34 others** | both | **none** | — |
+| Company | Career URL |
+|---------|-----------|
+| Myntra | https://jobs.myntra.com |
+| Nykaa Fashion | https://careers.nykaa.com |
+| Ajio | https://careers.ril.com |
+| Fabindia | https://fabindia.com/in_en/careers |
+| Arvind Fashions | https://www.arvindfashions.com/careers |
+| Shoppers Stop | https://www.shoppersstop.com/careers |
+| H&M India | https://career.hm.com/content/hmcareer/en_in.html |
+| Bliss Club | https://blissclub.in/pages/career |
+| Go Colors | https://gocolors.com/pages/careers |
+| Snitch | https://snitch.co.in/pages/careers |
+| Max Fashion | https://careers.maxfashion.in |
+| Lifestyle Stores | https://www.lifestylestores.com/in/en/careers |
+| Westside (Tata) | https://www.westside.com/pages/careers |
+| Bewakoof | https://www.bewakoof.com/careers |
+| Limeroad | https://www.limeroad.com/careers |
+| Pantaloons | https://www.pantaloons.com/careers |
 
-**34/42 = "none":** Their ATS is one of:
-- Workday with non-standard subdomain (not `{slug}.wd1.myworkdayjobs.com`)
-- SAP SuccessFactors (not probed via API)
-- iCIMS / Taleo / SmartRecruiters (SmartRecruiters excluded — returns 200 for any slug = false positive)
-- JavaScript-rendered career pages (HTML regex can't extract ATS signals from JS bundles)
-- Custom in-house portals (TCS iBegin, Infosys career portal, etc.)
+**Status of these URLs:** Most return 0 jobs because:
+- They're Shopify storefronts (Bliss Club, Snitch) with no structured job listing markup
+- JS-rendered SPAs (Fabindia, Arvind) — `CareerPageCrawler` requests fallback gets empty HTML
+- Some 404/403 on static fetch
 
-**SmartRecruiters note:** Explicitly excluded from `ATS_PROBES` because it returns HTTP 200 for any slug, making it impossible to validate existence. Previous version had all 38 companies "detected" as SmartRecruiters — all false positives.
-
----
-
-### 2.4 ATSAdapter (`careerloop/sources/ats_adapter.py`)
-
-| Provider | Status | Notes |
-|----------|--------|-------|
-| Greenhouse | ✅ | Boards API → JSON list of jobs with full description |
-| Lever | ✅ | `postings?mode=json` → full JD text in description field |
-| Ashby | ✅ | posting-api (new) + non-user-facing (legacy) both supported. `descriptionPlain` inline. |
-| Workday | ⚠️ | Detected but no API adapter — falls through to career page crawler |
-| SmartRecruiters | — | Not probed (false-positive risk) |
-| iCIMS/Taleo/SuccessFactors | — | No adapters implemented |
-| none/custom | — | Falls through to career page crawler |
-
-**Upstream implication:** Only 5/42 companies (Meesho, CRED, Freshworks, Paytm, Sarvam AI) produce structured JD data via ATS adapters. BrowserStack and Uniphore are Workday = no API adapter = career page crawler fallback.
+Only Myntra (Spire AI) actually contributes jobs from this layer.
 
 ---
 
-### 2.5 Company Portal Scraper (`careerloop/sources/company_portal_scraper.py`)
+### 2.3 Role Relevance Filter — Tightened
 
-| Component | Status |
-|-----------|--------|
-| CareerPageCrawler | ✅ Functional |
-| JDSectionExtractor | ✅ Functional (confidence threshold: 0.6) |
+**Before:** `tf_head_tokens` included every word ≥4 chars from `target_functions` — including "manager", "senior", "associate", "lead".  
+**After:** Extended stopword list excludes generic business titles:
 
-**Efficiency analysis (from dry run — portal layer):**
-
-Crawl results observed for `ats_provider="none"` companies:
-- Cognizant career page: ~4 URLs extracted
-- Accenture India: ~4 URLs extracted  
-- Ola Electric: ~7 URLs extracted
-- Most others: 0-2 URLs (JS-heavy, require Playwright render)
-
-**Root cause for low portal yield:**
-1. `requests`-based crawler cannot execute JavaScript — modern career pages (Workday, SAP SF, custom React SPAs) render job listings entirely in JS
-2. JDSectionExtractor confidence threshold (0.6) drops jobs where the HTML structure is ambiguous
-3. Only 10 URLs extracted per company even if more exist
-
-**Downstream implication:** Portal layer contributes near-zero jobs for most companies. Actual portal contributions in dry run: estimated <5 jobs total.
-
----
-
-### 2.6 Job Board Scraper (`careerloop/sources/search_adapter.py` + `jobspy_adapter.py`)
-
-#### SearchAdapter (DDG)
-
-| Metric | Value |
-|--------|-------|
-| Queries fired | Up to 6 per (role × city) |
-| Source | DuckDuckGo (`duckduckgo_search` package) |
-| URL type filter | Only `URLType.INDIVIDUAL_JOB` pass through |
-| JD extraction | None (ScrapeGraph disabled) |
-| Output per query | ~3-8 individual job URLs (highly variable) |
-
-**Efficiency:** DDG returns a mix of job board aggregate pages (linkedin.com/jobs/search, naukri.com/...) and individual listings. URL classifier filters aggregates. Individual job pages pass through but with only snippet text (20-50 words) — no full JD → scoring is title + snippet only.
-
-**Import fix applied:** DDG package import uses try/except:
 ```python
-try:
-    from ddgs import DDGS
-except ImportError:
-    from duckduckgo_search import DDGS
+_generic = {"with", "and", "for", "the", ... ,
+            "manager", "senior", "associate", "lead", "head", "director",
+            "specialist", "analyst", "executive", "officer", "coordinator",
+            "consultant", "principal"}
 ```
 
-#### JobSpyAdapter
-
-| Metric | Value |
-|--------|-------|
-| Sources scraped | indeed.com + linkedin.com |
-| Queries | 2 per (role × city) |
-| Role/city passing | ✅ Fixed (was passing empty strings) |
-| Description length | Full HTML stripped text (~200-800 words) |
-
-**Before fix:** `{"query": q, "city": "", "site": ""}` → `role=""`, `city=""` → `JobSpy.scrape_jobs(site_name=["indeed", "linkedin"], search_term="", location="India")` → generic India results (random roles)
-
-**After fix:** `{"role": role, "city": city or "India", "query": q}` → targeted results
-
-**Efficiency:** JobSpy is the primary source of result volume in the dry run. 15-20 of the 23 final jobs came from JobSpy (Indeed + LinkedIn). Full descriptions available when JobSpy extracts them → better scoring.
+**Effect:** "Meesho Engineering Manager Backend" no longer passes role filter for "fashion buyer" search. "category" and "fashion" and "buying" remain as domain signals.
 
 ---
 
-### 2.7 ScrapeGraphAdapter (`careerloop/sources/scrapegraph_adapter.py`)
+### 2.4 ATS Sector Mapping Fixed (from 2026-05-18 session)
 
-| Status | ❌ Inactive |
-|--------|------------|
-| `available` | `False` |
-| Reason | `SCRAPEGRAPH_API_KEY` not set |
-| Impact | SearchAdapter falls through to raw snippet-only mode |
-
-**What it would do if active:** For each individual job URL from DDG, ScrapeGraph would extract structured JSON:
-```json
-{
-  "title": "...", "company": "...", "location": "...",
-  "description": "...(full text)...", "skills": [...],
-  "salary": "...", "work_mode": "remote/hybrid/onsite"
-}
-```
-
-**Downstream impact of absence:**
-- DDG-sourced jobs have ~30-word snippets only
-- `skill_fit`, `ctc_fit`, `work_mode_fit`, `description_depth` dimensions all default to neutral (0.5) → scores compressed into 44-62 range
-- Full JD would spread scores 30-90 → much better discrimination
-
-**Fix:** Set `SCRAPEGRAPH_API_KEY=<key>` in env. ScrapeGraph is a paid API (~$0.001/page).
+- Paytm/fintech companies now correctly map to "Financial Services" → fn_prob(buying) = 0.02 → dropped from fashion buyer targeting
+- Fashion & Retail, Apparel & Textiles sectors added to `SECTOR_FUNCTION_MATRIX`
+- `_SECTOR_ALIASES` added to `FunctionProbabilityEngine` for canonical sector name matching
 
 ---
 
-### 2.8 IndiaFitEngine (`careerloop/india_fit_engine.py`)
+### 2.5 Lever Slug Bug Fixed (from 2026-05-18 session)
 
-| Status | ✅ Functional |
-|--------|--------------|
-| Dimensions | 15 (all active) |
-| Score range observed | 44.7 – 61.7 |
-| Profile source | `careerloop/profile_extended.yml` |
+Regex `r"lever\.co/([a-z0-9_-]+)"` was extracting "v0" from `api.lever.co/v0/postings/meesho`. Fixed to `r"lever\.co/v0/postings/([a-z0-9_-]+)"`.
 
-**Score compression cause:** Without full JD text, 7 of 15 dimensions default to neutral:
-- `skill_fit` (0.5) — no skills list in JD → can't match against profile skills
-- `work_mode_fit` (0.5) — mode not specified in snippet
-- `ctc_fit` (0.5) — salary not in snippet
-- `description_depth` (0.2) — short snippets score low
-- `ai_ml_relevance` (0.5) — can't detect ML stack from title alone
-- `jd_clarity` (0.3) — snippets are unclear
-- `growth_signal` (0.5) — no company growth signals in snippet
-
-**Active dimensions (scoring correctly):**
-- `title_fit` — working well (title matching to target roles)
-- `seniority_fit` — working (APM/PM/Sr PM level detection)
-- `location_fit` — working (Chennai/Bangalore match)
-- `company_size_fit` — working (employee_estimate in DB)
-- `sector_fit` — working (company sector vs profile sector_preferences)
-- `startup_risk_fit` — working (startup_tolerance vs employee_estimate)
-- `pedigree_bonus` — working (Tier-1 company recognition)
-- `ats_quality` — working (ATS provider bonus)
+**Result:** Paytm (116 jobs), Meesho (45 jobs), CRED, Freshworks all fetching correctly.
 
 ---
 
-### 2.9 Role Relevance Prefilter (`careerloop/on_demand.py`)
+## 3. Current Module Status
 
-| Status | ✅ Working |
-|--------|-----------|
-| Hard rejects | hr, legal, finance, accounting, logistics, transport, social media, copywriter, talent, recruiter, sales, business development, executive assistant, security engineer |
-| Role signal | role_tokens ∪ target_fn_tokens ∪ {product, ai, ml, engineer, manager, pm, technical} |
-
-**Before filter:** Meesho Lever board returned ~42 jobs (all functions). Pipeline ingested HR, Logistics, Social Media roles.  
-**After filter:** Only relevant titles pass. Dry run notes confirm `role filter: 12 → 5 relevant` (AI PE/Chennai), `10 → 6 relevant` (AI PE/Bangalore).
-
-**Edge case known:** "Quality Engineer" and "Design Automation Engineer" passed filter (contain "engineer") but are hardware/manufacturing roles, not AI product engineering. Filter is title-token-based only — cannot understand job function semantics. Symptom: ranks 44-53 scores for these jobs.
-
----
-
-### 2.10 Deduplication (`careerloop/apply_route.py`)
-
-| Status | ✅ Working |
-|--------|-----------|
-| Algorithm | sha256(normalize(company)∥normalize(title)∥city[:30])[:16] |
-| Source priority | company_portal=1, greenhouse/lever/ashby=2, workday=3, naukri=4, linkedin=5 |
-
-**Observed dedup rate:** 
-- AI PE / Chennai: 33 raw → 4 after dedup (88% dedup rate — same jobs appearing on multiple boards)
-- AI PE / Bangalore: 15 raw → 6 (60%)
-- AI PM / Chennai: 33 raw → 6 (82%)
-- AI PM / Bangalore: 11 raw → 7 (36%)
-
-High dedup rates confirm: job board aggregators cross-post same listings heavily.
+| Module | Status | Notes |
+|--------|--------|-------|
+| RoleKeywordCache | ✅ Working | Token-based fallback only (no LLM key) |
+| CompanyTargeting | ✅ Working | fn_prob correctly excludes finance/tech for fashion roles |
+| ATSAdapter (Lever) | ✅ Working | Meesho 45 jobs, Paytm 116 jobs (excluded for fashion) |
+| ATSAdapter (Greenhouse) | ✅ Working | Ready when companies detected |
+| ATSAdapter (Ashby) | ✅ Working | Sarvam AI etc. |
+| ATSAdapter (Workday) | ❌ No adapter | Detected but 0 jobs fetched |
+| SpireAI Adapter | ✅ NEW | Myntra 14 jobs |
+| CareerPageCrawler | ⚠️ Partial | Only works for static HTML pages; JS-heavy pages return 0 |
+| SearchAdapter (DDG) | ✅ Working | 15-20 URLs per run |
+| JobSpyAdapter | ✅ Working | LinkedIn + Indeed, 20 results per query |
+| IndiaFitEngine | ✅ Working | 15 dimensions, scores 47-67 range |
+| Role relevance filter | ✅ Improved | Generic business words no longer pollute domain signals |
+| India location filter | ✅ Working | |
+| Deduplication | ✅ Working | |
 
 ---
 
-## 3. Job Board Scraper Efficiency Summary
+## 4. Sources Breakdown — Varsha Dry Run (2026-05-19)
 
-| Source | Jobs contributed | JD quality | Notes |
-|--------|-----------------|------------|-------|
-| JobSpy (Indeed) | ~12 | Medium (HTML stripped) | Best volume source |
-| JobSpy (LinkedIn) | ~6 | Medium | Requires JS execution sometimes |
-| DDG + snippets | ~5 | Poor (30-word snippet) | ScrapeGraph would upgrade to full JD |
-| ATS direct (Lever/Greenhouse/Ashby) | ~3 | High (full JSON) | Only 5 companies have working ATS |
-| Company portal crawler | ~0-2 | Medium (when works) | JS-heavy pages = zero yield |
-| **Total** | **~23-28** | Mixed | Target: 150-200 |
-
----
-
-## 4. Bottlenecks and RCA
-
-### 4.1 Primary: 34/42 Companies Have No Working ATS → Portal Crawler Fails on JS Pages
-
-**Cause:** Most Indian tech companies (TCS, Infosys, Wipro, Razorpay, PhonePe, Flipkart, Amazon India, Google India, etc.) use:
-- JavaScript-rendered career pages (React SPA, Workday embedded widget)
-- Non-standard Workday subdomains (not `{slug}.wd1.myworkdayjobs.com`)
-- SAP SuccessFactors (no public API)
-- Custom portals (TCS iBegin, Infosys BPM portal)
-
-**Current behavior:** `requests.get(career_page_url)` → gets empty HTML shell → regex finds nothing → `ats_provider="none"` → career page crawler also gets empty shell → 0 URLs extracted.
-
-**Fix path:**
-1. Add Playwright-based career page renderer to `detect_ats_pass.py` — renders JS, re-runs HTML signal scan
-2. Add Workday scraper: probe `{slug}.wd5.myworkdayjobs.com` variants (not just wd1)
-3. Add SAP SuccessFactors detection: look for `successfactors.com` or `sap.com/careers` in rendered HTML
-
-**Estimated uplift:** +15-20 companies with working ATS → +50-80 additional structured jobs per run
+| Source | Jobs (fashion buyer / Bangalore) | Quality |
+|--------|----------------------------------|---------|
+| Lever (Meesho) | ~30 (after role filter) | Mixed — Meesho non-fashion roles still leak |
+| SpireAI (Myntra) | 14 | ✅ High — actual buying/merchandising roles |
+| JobSpy (Indeed+LinkedIn) | 28 | Medium |
+| DDG search | ~17 URLs | Low (snippet only) |
+| Company portals (static) | 0 | ❌ JS-heavy pages return nothing |
+| **Total after filter+dedup** | **39** | |
 
 ---
 
-### 4.2 Primary: ScrapeGraph Inactive → DDG Results Are Snippet-Only
+## 5. Remaining Problems
 
-**Cause:** `SCRAPEGRAPH_API_KEY` not set.
+### 5.1 Meesho Jobs Contaminating Fashion Results
 
-**Impact:** Every DDG result is a job URL with a 30-word title + snippet. No skill list, no salary, no work mode → 7/15 scoring dimensions default to neutral.
+Meesho (Lever, 45 jobs) ranks too highly for fashion buyer searches. Root cause:
+- Meesho is Retail & Commerce → fn_prob(buying)=0.90 → correctly targeted
+- But Meesho Lever board returns ALL functions (Engineering, HR, Finance, Sales, etc.)
+- Role filter blocks some but "Design Manager", "Analytics Manager", "Portfolio Strategy" etc. pass through because they contain fashion-domain adjacent words
+- **Fix needed:** After ATS fetch, score each job's title against the target function before including — not just at the prefilter stage
 
-**Fix:** Set `SCRAPEGRAPH_API_KEY` in `.env`. Estimated cost: ~$0.10-0.30 per dry run (100-300 pages × $0.001).
+### 5.2 Fashion Company Portals = 0 Jobs
 
-**Alternative without ScrapeGraph:** Implement a free HTML extractor for known job board URL patterns:
-- `in.indeed.com/viewjob?jk=` → scrape with `requests` + `BeautifulSoup` (no JS needed for Indeed India)
-- `linkedin.com/jobs/view/` → requires cookie/auth, limited viability
+15/16 seeded fashion company career URLs return 0 jobs because:
+- JS-rendered SPAs (React, Flutter, Angular) — `requests` gets empty shell
+- `CareerPageCrawler` Playwright fallback has 20s timeout — slow and still often fails
+- Companies like Bliss Club, Snitch use Shopify + basic "contact us" forms, no structured job listings
+- **Fix:** Check if company uses Darwinbox / Keka / Greenhouse (not detected yet) via Playwright-rendered HTML signal scan
 
----
+### 5.3 Workday 0 Jobs
 
-### 4.3 Secondary: Freshworks Lever Slug Detection Bug
+BrowserStack, Uniphore detected as Workday but no jobs fetched. No Workday API adapter implemented. Workday requires authenticated sessions for their jobs API.
 
-**Symptom:** `detect_ats_pass.py` log showed slug "v0" being extracted for Freshworks. However `_probe_api()` derives slug from domain, not URL: `freshworks.com` → `freshworks`. The `_probe_html()` path's HTML signal extraction regex may be triggering for a different URL pattern. Not fully reproduced.
+### 5.4 Score Range Too Compressed (47-67)
 
-**Impact:** If Freshworks Lever URL stored as `api.lever.co/v0/postings/v0`, the ATS fetch returns 404 → 0 jobs from Freshworks.
+Without full JD text (description, skills, salary), 7/15 scoring dimensions default to neutral. Scores cluster. Real discrimination only possible with full JD.  
+**Fix:** Activate ScrapeGraph (`SCRAPEGRAPH_API_KEY`) or Indeed direct scraper for full JD extraction.
 
-**Fix:** Add test: after detect_ats_pass run, query DB for Freshworks ATS URL, verify slug is "freshworks" not "v0". If wrong, run `detect_ats_pass --force --city Chennai` and inspect HTML signal log.
+### 5.5 Scoring Uses Wrong Profile for Dry Runs with patched ProfileManager
 
----
-
-### 4.4 Secondary: Company DB Too Small (42 companies for 2 cities)
-
-**Target from PRD:** 100+ companies per Tier-1 city.  
-**Current:** 15 Chennai + 27 Bangalore = 42 total.
-
-**Missing categories:**
-- Chennai: Cognizant BFS, Fintech startups (Kyndryl, Tvisha, Indium), mid-size AI startups
-- Bangalore: Healthtech (Practo, MediBuddy), Edtech (Byju's, Unacademy, upGrad), SaaS (Druva, Icertis, Mindtickle), gaming/media, mid-tier IT services
-
-**Fix:** Expand `seed_companies.py` to 150+ companies. ATS detection pass then auto-discovers ATS for new entrants.
+`target_roles` and `archetypes` in `IndiaFitEngine` are loaded from `config/profile.yml` (Hayagreev's base profile), even when running Varsha's dry run. This inflates `role_fit` scores for AI/tech roles when scoring against Varsha's fashion target. Not yet fixed.
 
 ---
 
-### 4.5 Minor: LLM Keywords Not Active
+## 6. What Works End-to-End
 
-**Cause:** `ANTHROPIC_API_KEY` not set in env at run time → CouncilLLMClient falls back to token-based keyword generation.
-
-**Token-based queries (actual, for "AI product engineer", Chennai):**
-```
-ai product engineer Chennai site:linkedin.com
-ai product engineer Chennai site:naukri.com
-product engineer Chennai AI ML jobs
-```
-
-**LLM-generated queries (expected, if active):**
-```
-AI product manager ML platform Chennai startup
-technical product manager LLM inference India
-AI/ML product engineer RLHF RAG Chennai
-product manager generative AI B2B SaaS Bangalore
-```
-
-**Impact:** ~30% fewer relevant results, narrower role coverage.
-
-**Fix:** Set `ANTHROPIC_API_KEY` in env. Keyword cache populated on first run, amortized across reruns.
+- ✅ Role → keywords (dynamic, no hardcoding)
+- ✅ Keywords → company targeting (fn_prob from sector matrix)
+- ✅ Company → ATS jobs (Lever/Greenhouse/Ashby)
+- ✅ Company → Spire AI jobs (Myntra)
+- ✅ Job boards (DDG + JobSpy LinkedIn/Indeed)
+- ✅ India location filter
+- ✅ Role relevance filter (profile-driven, no hardcoded lists)
+- ✅ Dedup across sources
+- ✅ 15-dimension scoring
+- ✅ MD + JSON output
 
 ---
 
-## 5. Dry Run Output Analysis
+## 7. What Is NOT Working
 
-**File:** `test data/output/dry_run_hayagreev_20260518_1254.md`
-
-### Quality Assessment
-
-| Combo | Raw → Dedup | Score Range | Quality Verdict |
-|-------|-------------|-------------|----------------|
-| AI PE / Chennai | 33 → 4 | 45-50.5 | ❌ Hardware QA/Mfg roles dominating (role filter too broad for "engineer") |
-| AI PE / Bangalore | 15 → 6 | 44-53.7 | ❌ QA/NPI/Verification engineers — not AI PE |
-| AI PM / Chennai | 33 → 6 | 44-61.7 | ✅ Revolut, Intellect Design, enGen, Amazon PM — genuine matches |
-| AI PM / Bangalore | 11 → 7 | 45-59.1 | ✅ Nykaa PM, ShareChat APM, DigiCert PM, Google PM — genuine matches |
-
-**AI Product Manager results are good.** Role signal is strong: "product manager" is specific, HARD_REJECT filters hardware roles correctly.
-
-**AI Product Engineer results are poor.** "Engineer" is too generic — QA engineers, manufacturing engineers, verification engineers all pass the title filter. Needs a tighter prefilter: require at least one of {ai, ml, product, llm, platform, backend} in title when role contains "engineer".
+- ❌ Fashion company portals (Bliss Club, Fabindia, Arvind, Nykaa etc.) → 0 jobs (JS-heavy)
+- ❌ Workday adapter (BrowserStack, Uniphore detected but no jobs)
+- ❌ LLM keywords (ANTHROPIC_API_KEY not set)
+- ❌ ScrapeGraph JD extraction (SCRAPEGRAPH_API_KEY not set)
+- ❌ Score discrimination (compressed 47-67 range due to missing JD text)
+- ❌ Profile bleed: Varsha dry run uses Hayagreev's target_roles for scoring
 
 ---
 
-### Genuine Matches (Human Assessment)
+## 8. Next Engineering Priorities
 
-**Likely worth pursuing:**
-1. Google — Product Manager, Payment Platform (Bangalore) — 57.9
-2. Nykaa — Product Manager II - Personalisation (Bangalore) — 59.1
-3. Amazon — Senior Product Manager, Retail Business Services (Chennai) — 56.7
-4. Revolut — Operations Manager (Product) (Chennai) — 61.7
-5. ShareChat — Associate Product Manager (Bangalore) — 59.1
-6. Intellect Design Arena — Product Manager (Chennai) — 61.7
-
-**False positives:**
-- Cisco Quality Engineer NPI — hardware manufacturing
-- Flipkart Design Automation Engineer — chip design automation
-- Intel IP Verification Engineer — semiconductor verification
-- Nokia Manufacturing CI Engineer — manufacturing ops
-
----
-
-## 6. Path to 150-200 Jobs
-
-| Action | Estimated Yield Increase | Effort |
-|--------|------------------------|--------|
-| Set `ANTHROPIC_API_KEY` → LLM keywords | +15-30 jobs | 1 min (env var) |
-| Set `SCRAPEGRAPH_API_KEY` → full JD from DDG | +0 jobs (better quality only) | 1 min (env var) |
-| Add Playwright to `detect_ats_pass.py` | +50-80 jobs (from JS-heavy companies) | Medium (2-4 hrs) |
-| Expand company DB to 150 companies | +30-50 jobs | Low (1 hr) |
-| Workday wd3/wd5 subdomain probing | +10-20 jobs | Low (30 min) |
-| Add SAP SuccessFactors detection | +5-10 jobs | Low (1 hr) |
-| Tighten "AI Product Engineer" role filter | 0 new jobs, -5 false positives | Low (15 min) |
-| Indeed India direct scraper (no ScrapeGraph needed) | +20-40 jobs with full JD | Medium (2 hrs) |
-
-**Realistic path:** LLM keywords + 150 companies + Playwright ATS detection → ~80-120 jobs per run. Full ScrapeGraph + Indeed direct scraper → 150-200.
-
----
-
-## 7. What Is Working
-
-- ✅ End-to-end pipeline runs without crashing
-- ✅ Real job links with URLs in output (not mocks)
-- ✅ India location filter (TN/KA/IN city codes)
-- ✅ Role relevance prefilter (prevents full company job dumps)
-- ✅ City-aware search queries (Bangalore gets Bangalore queries)
-- ✅ ATS detection is dynamic (no hardcoded slugs)
-- ✅ Lever/Greenhouse/Ashby adapters return full JD JSON
-- ✅ JobSpy (Indeed + LinkedIn) working with correct role+city targeting
-- ✅ Deduplication across sources
-- ✅ 15-dimension scoring with profile-aware weights
-- ✅ MD + JSON output to test data/output/
-- ✅ DB-backed company registry (SQLite)
-- ✅ Seeded 42 companies with clean identity data (no hardcoded ATS)
-
----
-
-## 8. What Is Not Working
-
-- ❌ 34/42 companies have no working ATS → portal layer contributes near-zero jobs
-- ❌ ScrapeGraph inactive (`SCRAPEGRAPH_API_KEY` not set) → DDG results are snippet-only
-- ❌ LLM keywords inactive (`ANTHROPIC_API_KEY` not set at run time) → narrow token-based queries
-- ❌ JS-heavy career pages yield 0 from HTML scraper (Workday, SAP SF, React SPAs)
-- ❌ "AI Product Engineer" role filter too broad → hardware QA/verification jobs pass through
-- ❌ Company DB too small (42 vs 150+ target)
-- ❌ Workday adapter not implemented (BrowserStack, Uniphore detected but no jobs fetched)
-- ❌ Freshworks Lever slug possibly incorrect (needs verification)
-- ❌ No SmartRecruiters adapter (false-positive risk prevents adding)
-- ❌ DeepSeek LLM provider not integrated in CouncilLLMClient (pending)
-
----
-
-## 9. Upstream/Downstream Implications
-
-### If ATS detection improves (Playwright rendering):
-- Upstream: detect_ats_pass.py runs longer (10-30s per company vs 2s)
-- Downstream: ATSAdapter gets real provider+url → structured JD for 30+ more companies → skill_fit/work_mode_fit/ctc_fit score correctly → score range spreads from 44-62 to 30-90 → ranking becomes meaningful
-
-### If ScrapeGraph activates:
-- Downstream: all DDG-sourced URLs get full JD extraction → same scoring improvement as above
-- Cost: ~$0.10-0.30/run
-
-### If company DB expands to 150:
-- Upstream: detect_ats_pass.py needs one more detection pass after seeding
-- Downstream: CompanyTargeting.top_n has more candidates → better fn_prob distribution → portal layer more targeted
-
-### If "AI Product Engineer" title filter tightens:
-- Downstream: false positives drop → precision improves → user trust in results increases
-- Risk: may over-filter legitimate AI infra / platform engineering roles
-
-### If DeepSeek integrates in CouncilLLMClient:
-- Upstream: RoleKeywordCache can use DeepSeek as LLM fallback (cheaper than Anthropic per token)
-- Downstream: Better keywords → better DDG queries → more relevant candidates
-
----
-
-## 10. Next Engineering Priorities (Ordered)
-
-1. **Set env vars** — `ANTHROPIC_API_KEY` for LLM keywords, `SCRAPEGRAPH_API_KEY` for JD extraction  
-   *Impact: highest ROI per minute of work*
-
-2. **Tighten AI PE role filter** — require {ai, ml, product, llm, platform} in title when role is "product engineer"  
-   *Impact: eliminates hardware false positives immediately*
-
-3. **Expand company DB** — add 50-100 companies to seed_companies.py (healthtech, edtech, SaaS, gaming)  
-   *Impact: more portal candidates, more ATS hits*
-
-4. **Workday wd3/wd5 probing** — add to ATS_PROBES in detect_ats_pass.py  
-   *Impact: BrowserStack, Uniphore, possibly 5-10 more companies*
-
-5. **Playwright ATS detection** — render JS career pages, re-run HTML signal scan  
-   *Impact: biggest yield increase but most engineering effort*
-
-6. **DeepSeek in CouncilLLMClient** — OpenAI-compatible, `api.deepseek.com`, model `deepseek-v4-pro`  
-   *Impact: cheaper LLM fallback for keyword generation*
-
-7. **Indeed India direct scraper** — `requests` + `BeautifulSoup` for `in.indeed.com/viewjob?jk=` URLs  
-   *Impact: free full JD extraction for Indeed results without ScrapeGraph*
+1. **Fix profile bleed** — `dry_run_varsha.py` should pass a fully overridden profile so `target_roles`/`archetypes` don't come from Hayagreev's `config/profile.yml`
+2. **Post-ATS role filter** — after Lever/Greenhouse fetch, drop jobs whose title has 0 overlap with target_functions before adding to candidate pool
+3. **Expand SpireAI discovery** — probe all company career URLs for Spire AI workspace → potential to find more companies using the platform
+4. **Naukri integration** — Naukri.com has structured company pages with job listings; India's largest job board, not yet scraped
+5. **Workday API adapter** — or Playwright-based Workday scraper
+6. **Set env vars** — `ANTHROPIC_API_KEY` for LLM keywords, `SCRAPEGRAPH_API_KEY` for JD extraction

@@ -42,7 +42,10 @@ TIMEOUT = 10
 # slug = domain minus TLD, e.g. "meesho.com" → "meesho"
 
 def _slug(domain: str) -> str:
-    return re.sub(r"\.(com|in|io|co|net|org|ai|club|money|tech)$", "", domain.lower().strip())
+    d = domain.lower().strip()
+    d = re.sub(r"\.co\.in$", "", d)
+    d = re.sub(r"\.(com|in|io|co|net|org|ai|club|money|tech|dev|app|gg|pro|careers)$", "", d)
+    return d
 
 
 ATS_PROBES = [
@@ -52,9 +55,20 @@ ATS_PROBES = [
     ("greenhouse",  lambda s: f"https://boards.greenhouse.io/embed/job_board/jobs?for={s}"),
     # Ashby posting API — 200 only if company exists
     ("ashby",       lambda s: f"https://api.ashbyhq.com/posting-api/job-board/{s}"),
-    # Workday — pattern: {slug}.wd1.myworkdayjobs.com/jobs (JSON endpoint)
-    ("workday",     lambda s: f"https://{s}.wd1.myworkdayjobs.com/en-US/{s}/jobs"),
-    # NOTE: SmartRecruiters excluded — returns 200 for ANY slug, can't validate existence
+    # Workday — probe wd1 through wd5
+    ("workday", lambda s: f"https://{s}.wd1.myworkdayjobs.com/en-US/{s}/jobs"),
+    ("workday", lambda s: f"https://{s}.wd2.myworkdayjobs.com/en-US/{s}/jobs"),
+    ("workday", lambda s: f"https://{s}.wd3.myworkdayjobs.com/en-US/{s}/jobs"),
+    ("workday", lambda s: f"https://{s}.wd4.myworkdayjobs.com/en-US/{s}/jobs"),
+    ("workday", lambda s: f"https://{s}.wd5.myworkdayjobs.com/en-US/{s}/jobs"),
+    # SAP SuccessFactors — probe standard career page path
+    ("successfactors", lambda s: f"https://{s}.successfactors.com/careers"),
+    # SmartRecruiters — check if it returns actual job listings (not just 200 for any slug)
+    ("smartrecruiters", lambda s: f"https://{s}.smartrecruiters.com/api/v1/companies/{s}/postings"),
+    # iCIMS — standard career portal URL pattern
+    ("icims", lambda s: f"https://careers.{s}.icims.com/jobs"),
+    # Taleo — standard career portal URL pattern
+    ("taleo", lambda s: f"https://{s}.taleo.net/careersection/2/jobsearch.ftl"),
 ]
 
 # HTML signals in career page source that identify ATS
@@ -75,6 +89,19 @@ ATS_HTML_SIGNALS = [
 ]
 
 
+def _validate_smartrecruiters(url: str) -> bool:
+    """Check if SmartRecruiters API returns actual job postings (non-empty JSON array)."""
+    try:
+        r = SESSION.get(url, timeout=TIMEOUT)
+        if r.status_code == 200:
+            data = r.json()
+            if isinstance(data, list) and len(data) > 0:
+                return True
+        return False
+    except Exception:
+        return False
+
+
 def _probe_api(domain: str) -> tuple[str, str]:
     """HEAD-probe known ATS endpoints. Return (provider, url) or ('', '')."""
     s = _slug(domain)
@@ -83,6 +110,8 @@ def _probe_api(domain: str) -> tuple[str, str]:
         try:
             r = SESSION.head(url, timeout=TIMEOUT, allow_redirects=True)
             if r.status_code == 200:
+                if provider == "smartrecruiters" and not _validate_smartrecruiters(url):
+                    continue
                 logger.info(f"  API hit: {provider} → {url}")
                 return provider, url
         except Exception:
@@ -123,6 +152,40 @@ def _probe_html(career_page_url: str) -> tuple[str, str]:
     return "", ""
 
 
+def _probe_playwright(career_page_url: str) -> tuple[str, str]:
+    """Render JS-heavy career page with headless Chromium, scan for ATS signals."""
+    if not career_page_url:
+        return "", ""
+    try:
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page()
+            page.goto(career_page_url, wait_until="networkidle", timeout=20000)
+            html = page.content()
+            browser.close()
+    except Exception as e:
+        logger.debug(f"  Playwright probe failed: {e}")
+        return "", ""
+
+    for pattern, provider in ATS_HTML_SIGNALS:
+        m = re.search(pattern, html, re.IGNORECASE)
+        if m:
+            slug_captured = m.group(1) if m.lastindex else ""
+            if provider == "lever" and slug_captured:
+                ats_url = f"https://api.lever.co/v0/postings/{slug_captured}?mode=json"
+            elif provider == "greenhouse" and slug_captured:
+                ats_url = f"https://boards.greenhouse.io/embed/job_board/jobs?for={slug_captured}"
+            elif provider == "ashby" and slug_captured:
+                ats_url = f"https://api.ashbyhq.com/posting-api/job-board/{slug_captured}"
+            else:
+                ats_url = ""
+            logger.info(f"  Playwright HTML signal: {provider} (slug={slug_captured or '?'})")
+            return provider, ats_url
+
+    return "", ""
+
+
 def detect_company(company) -> tuple[str, str]:
     """Return (ats_provider, ats_url) for one company. '' if none found."""
     logger.info(f"[{company.name}] probing {company.domain}")
@@ -135,7 +198,17 @@ def detect_company(company) -> tuple[str, str]:
     # Step 2: HTML scan of career page
     provider, url = _probe_html(company.career_page_url)
     if provider:
-        # If we got provider but no ats_url from HTML, fill url from domain probe
+        if not url:
+            s = _slug(company.domain)
+            for p, url_fn in ATS_PROBES:
+                if p == provider:
+                    url = url_fn(s)
+                    break
+        return provider, url
+
+    # Step 3: Playwright render for JS-heavy career pages
+    provider, url = _probe_playwright(company.career_page_url)
+    if provider:
         if not url:
             s = _slug(company.domain)
             for p, url_fn in ATS_PROBES:
