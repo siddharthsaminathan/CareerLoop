@@ -1,0 +1,470 @@
+{
+  "job_id": "nicobar-test",
+  "person_id": "fresher",
+  "job_title": "AI Product Engineer",
+  "company": "Nicobar Design Pvt. Ltd.",
+  "job_url": "https://example.com",
+  "jd_text": "\nJob Title: AI Product Engineer \u2014 CEO's Office\nCompany: Nicobar Design Pvt. Ltd. (nicobar.com)\nLocation: Delhi\nExperience: 3-5 years\n\nTHE OPPORTUNITY\nWe've spent a decade building a brand that looks and feels unmistakably Nicobar. The next chapter is building a company that thinks the same way \u2014 every store, every collection, every customer conversation: sharper, faster, unmistakably ours. AI-native, not in theory, but in every room we walk into.\n\nWHAT YOU'LL OWN\n01 Customer Personalization : Build the intelligence layer beneath all our customer communication that understands who each customer actually is.\n02 Store Clienteling : Build the clienteling tool our store teams reach for every day.\n03 Business Intelligence : Replace Microsoft BI dashboards with a live, conversational intelligence layer.\n04 Smoothen Design Workstreams : Remove friction so the creative team can make more, better, faster.\n\nWHAT WE'RE LOOKING FOR\nEngineering degree from IIT, BITS, NIT or equivalent with 3-5 years of experience.\nYou've built something real with an LLM API - OpenAI, Claude, Gemini, etc.\nFluent in Python/ NodeJS. Comfortable writing and querying SQL.\nAbility to build front-ends that don't embarrass the brand. We're visual people.\n",
+  "master_cv": "# Fresher Profile: Priya Sharma\n\n## Profile\nRecent Computer Science graduate with a passion for Machine Learning and Data Science.\n\n## Education\nB.Tech Computer Science \u2014 IIT Delhi (2020 - 2024)\n- GPA: 9.2/10\n\n## Skills\n- Python, R, SQL\n- TensorFlow, PyTorch\n- Data Visualization (Tableau)\n\n## Projects\n\n### Sentiment Analysis Bot\n- Built a Twitter sentiment analyzer using BERT. [Source Code](https://github.com/priya/bert-bot)\n\n### Portfolio Website\n- Designed a personal portfolio using React and Tailwind. [Live Demo](https://priya.dev)\n\n## Internships\n\n### Data Science Intern \u2014 Fintech Corp (Summer 2023)\n- Analyzed loan default patterns using logistic regression.\n\n## Outreach Preferences (PRIVATE)\n- Prefer email over LinkedIn DMs\n- Internal Note: Very interested in healthcare AI\n",
+  "profile": {
+    "candidate": {
+      "full_name": "Test User fresher"
+    },
+    "search_preferences": {
+      "target_roles": [
+        "Engineer",
+        "Lead"
+      ],
+      "deal_breakers": [
+        "No mass recruiters"
+      ],
+      "salary_floor": 100000
+    }
+  },
+  "today": "May 2026",
+  "canonical_resume": {
+    "person_id": "default",
+    "sections": [
+      {
+        "section_id": "fresher_profile_priya_sharma",
+        "section_title": "Fresher Profile: Priya Sharma",
+        "normalized_type": "profile",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "",
+        "original_order": 0,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "profile",
+        "section_title": "Profile",
+        "normalized_type": "profile",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "Recent Computer Science graduate with a passion for Machine Learning and Data Science.",
+        "original_order": 1,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "education",
+        "section_title": "Education",
+        "normalized_type": "education",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "B.Tech Computer Science \u2014 IIT Delhi (2020 - 2024)\n\n- GPA: 9.2/10",
+        "original_order": 2,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "skills",
+        "section_title": "Skills",
+        "normalized_type": "skill",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "- Python, R, SQL\n- TensorFlow, PyTorch\n- Data Visualization (Tableau)",
+        "original_order": 3,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "projects",
+        "section_title": "Projects",
+        "normalized_type": "project",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "",
+        "original_order": 4,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "sentiment_analysis_bot",
+        "section_title": "Sentiment Analysis Bot",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "- Built a Twitter sentiment analyzer using BERT. [Source Code](https://github.com/priya/bert-bot)",
+        "original_order": 5,
+        "links": [
+          "https://github.com/priya/bert-bot"
+        ],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "portfolio_website",
+        "section_title": "Portfolio Website",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "- Designed a personal portfolio using React and Tailwind. [Live Demo](https://priya.dev)",
+        "original_order": 6,
+        "links": [
+          "https://priya.dev"
+        ],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "internships",
+        "section_title": "Internships",
+        "normalized_type": "internship",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "",
+        "original_order": 7,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "data_science_intern_fintech_corp_summer_2023",
+        "section_title": "Data Science Intern \u2014 Fintech Corp (Summer 2023)",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "- Analyzed loan default patterns using logistic regression.",
+        "original_order": 8,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "outreach_preferences_private",
+        "section_title": "Outreach Preferences (PRIVATE)",
+        "normalized_type": "private_metadata",
+        "visibility_class": "PRIVATE_STRATEGY_METADATA",
+        "raw_text": "- Prefer email over LinkedIn DMs\n- Internal Note: Very interested in healthcare AI",
+        "original_order": 9,
+        "links": [],
+        "confidence": 1.0
+      }
+    ],
+    "parse_warnings": []
+  },
+  "preservation_contract": {
+    "required_public_sections": [
+      "education"
+    ],
+    "sections_to_exclude": [
+      "outreach_preferences_private"
+    ],
+    "unknown_sections_to_preserve": [
+      "sentiment_analysis_bot",
+      "portfolio_website",
+      "data_science_intern_fintech_corp_summer_2023"
+    ],
+    "ordering_rules": [
+      "fresher_profile_priya_sharma",
+      "profile",
+      "education",
+      "skills",
+      "projects",
+      "sentiment_analysis_bot",
+      "portfolio_website",
+      "internships",
+      "data_science_intern_fintech_corp_summer_2023"
+    ],
+    "link_preservation_rules": {
+      "all": "MUST_SURVIVE"
+    },
+    "max_allowed_changes": 3
+  },
+  "company_intelligence": {
+    "company_name": "Nicobar Design Pvt. Ltd.",
+    "industry": "Fashion Retail / Lifestyle Brand",
+    "headquarters": "Delhi, India",
+    "founded": 2014,
+    "parent_company": "Good Earth",
+    "brand_identity": "Contemporary Indian design, minimalistic, nature-inspired aesthetics",
+    "business_model": "Direct-to-consumer (D2C) omnichannel retail with physical stores and e-commerce",
+    "product_categories": "Apparel, home decor, accessories, footwear",
+    "target_audience": "Urban, design-conscious, middle-to-upper-income customers",
+    "online_presence": "nicobar.com, active on Instagram, Facebook, Pinterest",
+    "store_count": "Approximately 15-20 stores across major Indian cities (Delhi, Mumbai, Bengaluru, etc.)",
+    "key_differentiator": "Unique design language blending Indian craftsmanship with modern minimalism",
+    "technology_adoption": "Currently uses Microsoft BI for business intelligence; seeking AI-native transformation",
+    "company_culture": "Design-driven, creative, brand-focused",
+    "recent_developments": "Expanding product lines and store network; investing in AI and personalization",
+    "competitors": "FabIndia, Anokhi, Chumbak, Tata CLiQ Luxury, niche Indian lifestyle brands",
+    "website": "nicobar.com"
+  },
+  "role_decode": {
+    "normalized_title": "AI Product Engineer",
+    "seniority": "Mid-level",
+    "must_haves": [
+      "Engineering degree from IIT, BITS, NIT or equivalent",
+      "3-5 years of experience",
+      "Built something real with an LLM API (OpenAI, Claude, Gemini, etc.)",
+      "Fluent in Python or NodeJS",
+      "Comfortable writing and querying SQL",
+      "Ability to build front-ends that are visually appealing"
+    ],
+    "nice_to_haves": [
+      "Experience with customer personalization systems",
+      "Experience with retail or e-commerce domain",
+      "Knowledge of clienteling or CRM tools",
+      "Experience with business intelligence tools",
+      "Familiarity with design workflows"
+    ],
+    "hidden_expectations": [
+      "Ability to work directly with the CEO's office and influence strategy",
+      "Comfortable in a design-driven, brand-focused culture",
+      "Self-starter who can own projects end-to-end",
+      "Strong aesthetic sense and attention to visual detail",
+      "Ability to communicate with non-technical stakeholders (designers, store teams)"
+    ],
+    "day_one_deliverables": [
+      "Assess current tech stack and data infrastructure",
+      "Identify quick wins for AI integration in customer communication",
+      "Propose a roadmap for replacing Microsoft BI with conversational intelligence",
+      "Start building a prototype for store clienteling tool"
+    ],
+    "screening_keywords": [
+      "LLM API",
+      "Python",
+      "NodeJS",
+      "SQL",
+      "front-end",
+      "personalization",
+      "clienteling",
+      "business intelligence",
+      "AI",
+      "IIT",
+      "BITS",
+      "NIT"
+    ],
+    "disqualifiers": [
+      "No engineering degree from IIT, BITS, NIT or equivalent",
+      "Less than 3 years of experience",
+      "No hands-on experience with LLM APIs",
+      "No proficiency in Python or NodeJS",
+      "Unable to build front-ends"
+    ],
+    "confidence": 0.95
+  },
+  "user_truth": {
+    "person_id": "default",
+    "match_score": 0.35,
+    "seniority": "Entry-level",
+    "summary": "Candidate is a recent graduate (B.Tech 2024) with no full-time work experience. Education from IIT Delhi satisfies the degree requirement. Has Python, SQL, and some ML project experience but lacks professional experience (3-5 years required) and explicit LLM API usage. No front-end building evidence. Does not meet seniority or experience disqualifiers.",
+    "must_have_verdict": {
+      "Engineering degree from IIT, BITS, NIT or equivalent": true,
+      "3-5 years of experience": false,
+      "Built something real with an LLM API (OpenAI, Claude, Gemini, etc.)": false,
+      "Fluent in Python or NodeJS": true,
+      "Comfortable writing and querying SQL": true,
+      "Ability to build front-ends that are visually appealing": false
+    },
+    "nice_to_have_verdict": {
+      "Experience with customer personalization systems": false,
+      "Experience with retail or e-commerce domain": false,
+      "Knowledge of clienteling or CRM tools": false,
+      "Experience with business intelligence tools": false,
+      "Familiarity with design workflows": false
+    },
+    "hidden_expectations_verdict": {
+      "Ability to work directly with the CEO's office and influence strategy": false,
+      "Comfortable in a design-driven, brand-focused culture": false,
+      "Self-starter who can own projects end-to-end": false,
+      "Strong aesthetic sense and attention to visual detail": false,
+      "Ability to communicate with non-technical stakeholders (designers, store teams)": false
+    },
+    "day_one_deliverables_verdict": {
+      "Assess current tech stack and data infrastructure": false,
+      "Identify quick wins for AI integration in customer communication": false,
+      "Propose a roadmap for replacing Microsoft BI with conversational intelligence": false,
+      "Start building a prototype for store clienteling tool": false
+    },
+    "screening_keywords_found": [
+      "Python",
+      "SQL",
+      "IIT"
+    ],
+    "disqualifiers_triggered": [
+      "Less than 3 years of experience",
+      "No hands-on experience with LLM APIs",
+      "Unable to build front-ends"
+    ]
+  },
+  "positioning_strategy": {
+    "stance": "high_risk_high_reward",
+    "angle": "Emphasize raw potential, IIT pedigree, and rapid learning ability to compensate for lack of experience. Position as a fresh perspective that can grow with the company's AI transformation.",
+    "narrative": "The candidate is a recent IIT Delhi graduate with strong Python and SQL skills, and a foundation in ML projects. While lacking the required 3-5 years experience and explicit LLM API usage, the candidate can be positioned as a high-potential hire who can quickly upskill and bring fresh thinking to Nicobar's AI initiatives. The strategy is to appeal to Nicobar's design-driven, innovative culture by highlighting the candidate's ability to learn fast, adapt, and contribute to early-stage prototyping under mentorship. The risk is mitigated by the candidate's top-tier engineering background and the company's need for AI-native talent."
+  },
+  "section_rewrites": {
+    "rewrites": {
+      "fresher_profile_priya_sharma": {
+        "section_id": "fresher_profile_priya_sharma",
+        "original_text": "",
+        "rewritten_text": "",
+        "change_type": "KEEP",
+        "change_reason": "Empty section, no content to rewrite.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "profile": {
+        "section_id": "profile",
+        "original_text": "Recent Computer Science graduate with a passion for Machine Learning and Data Science.",
+        "rewritten_text": "Recent Computer Science graduate from IIT Delhi with a strong foundation in Machine Learning and Data Science, eager to apply academic knowledge to real-world AI challenges.",
+        "change_type": "REWRITE",
+        "change_reason": "Emphasize IIT pedigree and readiness for AI work to compensate for lack of experience.",
+        "claims_added": [
+          "Graduate from IIT Delhi",
+          "Strong foundation in ML and Data Science",
+          "Eager to apply knowledge to real-world AI challenges"
+        ],
+        "claims_removed": [],
+        "evidence_used": [
+          "Education section shows IIT Delhi",
+          "Skills include Python, TensorFlow, PyTorch"
+        ],
+        "risk_level": "low"
+      },
+      "education": {
+        "section_id": "education",
+        "original_text": "B.Tech Computer Science \u2014 IIT Delhi (2020 - 2024)\n\n- GPA: 9.2/10",
+        "rewritten_text": "B.Tech Computer Science \u2014 IIT Delhi (2020 - 2024)\n\n- GPA: 9.2/10",
+        "change_type": "KEEP",
+        "change_reason": "Education is a key strength; keep as is.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "skills": {
+        "section_id": "skills",
+        "original_text": "- Python, R, SQL\n- TensorFlow, PyTorch\n- Data Visualization (Tableau)",
+        "rewritten_text": "- Python, R, SQL\n- TensorFlow, PyTorch\n- Data Visualization (Tableau)",
+        "change_type": "KEEP",
+        "change_reason": "Skills are accurate and relevant; no change needed.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "projects": {
+        "section_id": "projects",
+        "original_text": "",
+        "rewritten_text": "",
+        "change_type": "KEEP",
+        "change_reason": "Empty section, no content to rewrite.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "sentiment_analysis_bot": {
+        "section_id": "sentiment_analysis_bot",
+        "original_text": "- Built a Twitter sentiment analyzer using BERT. [Source Code](https://github.com/priya/bert-bot)",
+        "rewritten_text": "- Built a Twitter sentiment analyzer using BERT, demonstrating ability to work with transformer models. [Source Code](https://github.com/priya/bert-bot)",
+        "change_type": "REWRITE",
+        "change_reason": "Add context to highlight transformer model experience, relevant to LLM APIs.",
+        "claims_added": [
+          "Demonstrates ability to work with transformer models"
+        ],
+        "claims_removed": [],
+        "evidence_used": [
+          "Project uses BERT, a transformer model"
+        ],
+        "risk_level": "low"
+      },
+      "portfolio_website": {
+        "section_id": "portfolio_website",
+        "original_text": "- Designed a personal portfolio using React and Tailwind. [Live Demo](https://priya.dev)",
+        "rewritten_text": "- Designed a personal portfolio using React and Tailwind, showcasing front-end development skills. [Live Demo](https://priya.dev)",
+        "change_type": "REWRITE",
+        "change_reason": "Emphasize front-end skills to address the 'ability to build front-ends' requirement.",
+        "claims_added": [
+          "Showcases front-end development skills"
+        ],
+        "claims_removed": [],
+        "evidence_used": [
+          "Project uses React and Tailwind"
+        ],
+        "risk_level": "low"
+      },
+      "internships": {
+        "section_id": "internships",
+        "original_text": "",
+        "rewritten_text": "",
+        "change_type": "KEEP",
+        "change_reason": "Empty section, no content to rewrite.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "data_science_intern_fintech_corp_summer_2023": {
+        "section_id": "data_science_intern_fintech_corp_summer_2023",
+        "original_text": "- Analyzed loan default patterns using logistic regression.",
+        "rewritten_text": "- Analyzed loan default patterns using logistic regression, gaining experience in data analysis and predictive modeling.",
+        "change_type": "REWRITE",
+        "change_reason": "Add context to highlight analytical and modeling skills.",
+        "claims_added": [
+          "Gained experience in data analysis and predictive modeling"
+        ],
+        "claims_removed": [],
+        "evidence_used": [
+          "Internship involved logistic regression"
+        ],
+        "risk_level": "low"
+      }
+    }
+  },
+  "application_pack": {
+    "resume_markdown": "## Fresher Profile: Priya Sharma ## Profile Recent Computer Science graduate from IIT Delhi with a strong foundation in Machine Learning and. Data Science, eager to apply academic knowledge to real-world AI challenges. ## Education\n\nB.Tech Computer Science \u2014 IIT Delhi (2020 - 2024)\n\n- GPA: 9.2/10\n\n## Skills\n\n- Python, R, SQL\n- TensorFlow, PyTorch\n- Data Visualization (Tableau)\n\n## Projects\n\n\n\n## Sentiment Analysis Bot\n\n- Built a Twitter sentiment analyzer using BERT, demonstrating ability to work with transformer models. [Source Code](https://github.com/priya/bert-bot)\n\n## Portfolio Website\n\n- Designed a personal portfolio using React and Tailwind, showcasing front-end development skills. [Live Demo](https://priya.dev)\n\n## Internships\n\n\n\n## Data Science Intern \u2014 Fintech Corp (Summer 2023)\n\n- Analyzed loan default patterns using logistic regression, gaining experience in data analysis and predictive modeling.",
+    "cover_note": "As an IIT Delhi graduate with strong Python and SQL skills, I have built ML projects from scratch and can quickly master LLM APIs. I offer a fresh perspective and rapid learning to drive Nicobar's AI transformation.",
+    "screening_answers": "",
+    "recruiter_message": "I'm excited about the AI Product Engineer role at Nicobar Design, where I can apply my IIT Delhi engineering background to drive AI innovation in design. While I may lack the 3-5 years experience, my rapid learning ability and strong Python/ML foundation make me a high-potential fit for your AI transformation.",
+    "follow_up_message": "",
+    "quality_report": {
+      "what_changed": [
+        "Section 'Fresher Profile: Priya Sharma' was rewritten (KEEP)",
+        "Section 'Profile' was rewritten (REWRITE)",
+        "Section 'Education' was rewritten (KEEP)",
+        "Section 'Skills' was rewritten (KEEP)",
+        "Section 'Projects' was rewritten (KEEP)",
+        "Section 'Sentiment Analysis Bot' was rewritten (REWRITE)",
+        "Section 'Portfolio Website' was rewritten (REWRITE)",
+        "Section 'Internships' was rewritten (KEEP)",
+        "Section 'Data Science Intern \u2014 Fintech Corp (Summer 2023)' was rewritten (REWRITE)"
+      ],
+      "what_did_not_change": [],
+      "needs_user_review": [
+        "Section 'Profile' was completely rewritten.",
+        "Section 'Sentiment Analysis Bot' was completely rewritten.",
+        "Section 'Portfolio Website' was completely rewritten.",
+        "Section 'Data Science Intern \u2014 Fintech Corp (Summer 2023)' was completely rewritten."
+      ],
+      "risks": [],
+      "confidence": 0.9
+    },
+    "preserved_links": [
+      "https://github.com/priya/bert-bot",
+      "https://priya.dev"
+    ],
+    "link_audit": {
+      "per_section_original": {
+        "fresher_profile_priya_sharma": 0,
+        "profile": 0,
+        "education": 0,
+        "skills": 0,
+        "projects": 0,
+        "sentiment_analysis_bot": 1,
+        "portfolio_website": 1,
+        "internships": 0,
+        "data_science_intern_fintech_corp_summer_2023": 0
+      },
+      "per_section_final": {
+        "fresher_profile_priya_sharma": 0,
+        "profile": 0,
+        "education": 0,
+        "skills": 0,
+        "projects": 0,
+        "sentiment_analysis_bot": 1,
+        "portfolio_website": 1,
+        "internships": 0,
+        "data_science_intern_fintech_corp_summer_2023": 0
+      },
+      "total_original": 2,
+      "total_final": 2,
+      "missing_links": [],
+      "warnings": []
+    },
+    "user_review_summary": "Check your new resume. 8-system architecture ensured zero metadata leakage."
+  },
+  "errors": []
+}

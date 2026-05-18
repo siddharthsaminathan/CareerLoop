@@ -1,0 +1,86 @@
+{
+  "person_id": "default",
+  "sections": [
+    {
+      "section_id": "non_technical_profile_mark_thompson",
+      "section_title": "Non-Technical Profile: Mark Thompson",
+      "normalized_type": "profile",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "",
+      "original_order": 0,
+      "links": [],
+      "confidence": 1.0
+    },
+    {
+      "section_id": "about_me",
+      "section_title": "About Me",
+      "normalized_type": "about",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "Marketing Director with 8 years of experience in brand strategy and digital growth.",
+      "original_order": 1,
+      "links": [],
+      "confidence": 1.0
+    },
+    {
+      "section_id": "professional_experience",
+      "section_title": "Professional Experience",
+      "normalized_type": "experience",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "",
+      "original_order": 2,
+      "links": [],
+      "confidence": 1.0
+    },
+    {
+      "section_id": "marketing_director_brandgrowth_2020_present",
+      "section_title": "Marketing Director \u2014 BrandGrowth (2020 - Present)",
+      "normalized_type": "unknown",
+      "visibility_class": "UNKNOWN",
+      "raw_text": "- Increased organic traffic by 200% in 18 months.\n- Managed a $5M annual advertising budget.",
+      "original_order": 3,
+      "links": [],
+      "confidence": 1.0
+    },
+    {
+      "section_id": "growth_manager_startupx_2016_2020",
+      "section_title": "Growth Manager \u2014 StartupX (2016 - 2020)",
+      "normalized_type": "unknown",
+      "visibility_class": "UNKNOWN",
+      "raw_text": "- Scaled user base from 10k to 500k.",
+      "original_order": 4,
+      "links": [],
+      "confidence": 1.0
+    },
+    {
+      "section_id": "skills",
+      "section_title": "Skills",
+      "normalized_type": "skill",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "- Brand Strategy, Content Marketing, SEO\n- Team Leadership, Budget Management",
+      "original_order": 5,
+      "links": [],
+      "confidence": 1.0
+    },
+    {
+      "section_id": "education",
+      "section_title": "Education",
+      "normalized_type": "education",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "B.A. Communications \u2014 New York University",
+      "original_order": 6,
+      "links": [],
+      "confidence": 1.0
+    },
+    {
+      "section_id": "search_preferences_private",
+      "section_title": "Search Preferences (PRIVATE)",
+      "normalized_type": "private_metadata",
+      "visibility_class": "PRIVATE_STRATEGY_METADATA",
+      "raw_text": "- Prefer Series B startups\n- Constraint: Must be fully remote",
+      "original_order": 7,
+      "links": [],
+      "confidence": 1.0
+    }
+  ],
+  "parse_warnings": []
+}

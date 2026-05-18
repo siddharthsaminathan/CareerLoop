@@ -1,0 +1,1 @@
+I am not applying for this role as my background in distributed systems and cloud infrastructure does not align with the required product management experience in D2C e-commerce. My expertise is in engineering, not product strategy or cross-functional product leadership. I will focus on roles that match my technical skills.

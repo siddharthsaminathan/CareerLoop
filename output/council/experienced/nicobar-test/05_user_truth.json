@@ -1,0 +1,125 @@
+{
+  "seniority_mismatch": true,
+  "seniority_notes": "Candidate's earliest professional date is 2012, giving 14+ years of experience, far exceeding the 3-5 years required for Mid-Level. Candidate is overqualified.",
+  "must_have_evidence": {
+    "Engineering degree from IIT, BITS, NIT or equivalent": {
+      "evidence": "M.S. Computer Science from Stanford University",
+      "meets": true,
+      "notes": "Stanford is equivalent to top-tier Indian institutes."
+    },
+    "3-5 years of experience": {
+      "evidence": "Work experience from 2012 to present (14+ years)",
+      "meets": false,
+      "notes": "Candidate has 14+ years, exceeding the 3-5 year range."
+    },
+    "Built something real with an LLM API (OpenAI, Claude, Gemini, etc.)": {
+      "evidence": "No mention of LLM API usage in resume",
+      "meets": false,
+      "notes": "No evidence of LLM API experience."
+    },
+    "Fluent in Python or NodeJS": {
+      "evidence": "Skills include Python",
+      "meets": true,
+      "notes": "Python listed in skills."
+    },
+    "Comfortable writing and querying SQL": {
+      "evidence": "No explicit mention of SQL in skills or experience",
+      "meets": false,
+      "notes": "SQL not listed; candidate may have used it but not evidenced."
+    },
+    "Ability to build front-ends that meet brand standards": {
+      "evidence": "No front-end experience mentioned",
+      "meets": false,
+      "notes": "No front-end skills or projects listed."
+    }
+  },
+  "nice_to_have_evidence": {
+    "Experience with customer personalization systems": {
+      "evidence": "No mention of personalization systems",
+      "meets": false
+    },
+    "Experience with retail or clienteling tools": {
+      "evidence": "No mention of retail or clienteling",
+      "meets": false
+    },
+    "Experience with business intelligence and conversational interfaces": {
+      "evidence": "No mention of BI or conversational interfaces",
+      "meets": false
+    },
+    "Familiarity with design workflows and creative tools": {
+      "evidence": "No mention of design workflows",
+      "meets": false
+    }
+  },
+  "hidden_expectations_evidence": {
+    "Must be able to work directly with the CEO's office and senior leadership": {
+      "evidence": "Candidate has senior staff engineer role, likely interacts with leadership",
+      "meets": true,
+      "notes": "Senior role suggests ability to work with leadership."
+    },
+    "Must have a strong aesthetic sense and brand alignment": {
+      "evidence": "No evidence of aesthetic sense or brand alignment",
+      "meets": false
+    },
+    "Must be comfortable with ambiguity and building from scratch": {
+      "evidence": "Led migration of 500+ microservices, built analytics engine from scratch",
+      "meets": true,
+      "notes": "Experience building from scratch."
+    },
+    "Must be able to move fast and iterate quickly": {
+      "evidence": "Experience in fast-paced environments (CloudScale, TechNova)",
+      "meets": true,
+      "notes": "Implied by senior roles."
+    },
+    "Must be able to communicate effectively with non-technical stakeholders": {
+      "evidence": "Senior staff engineer likely requires communication skills",
+      "meets": true,
+      "notes": "Assumed from seniority."
+    }
+  },
+  "day_one_deliverables_evidence": {
+    "Assess current tech stack and data infrastructure": {
+      "evidence": "Experience with distributed systems and cloud infrastructure",
+      "meets": true,
+      "notes": "Candidate can assess tech stack."
+    },
+    "Identify quick wins for AI integration in customer communication": {
+      "evidence": "No AI integration experience evidenced",
+      "meets": false
+    },
+    "Propose a roadmap for replacing Microsoft BI with conversational intelligence": {
+      "evidence": "No BI or conversational intelligence experience",
+      "meets": false
+    },
+    "Start building a prototype for store clienteling tool": {
+      "evidence": "No clienteling or retail experience",
+      "meets": false
+    }
+  },
+  "screening_keywords_found": [
+    "Python"
+  ],
+  "screening_keywords_missing": [
+    "LLM",
+    "OpenAI",
+    "Claude",
+    "Gemini",
+    "NodeJS",
+    "SQL",
+    "personalization",
+    "clienteling",
+    "business intelligence",
+    "AI-native",
+    "IIT",
+    "BITS",
+    "NIT"
+  ],
+  "disqualifiers_triggered": [
+    "Less than 3 years of experience (actually too much)",
+    "No hands-on experience with LLM APIs",
+    "Unable to build front-ends",
+    "No SQL proficiency"
+  ],
+  "overall_recommendation": "REJECT",
+  "confidence": 0.95
+}

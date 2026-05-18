@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { margin: 15mm; size: A4; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 10.5pt; line-height: 1.5; color: #1a1a1a; max-width: 800px; margin: 0 auto; padding: 30px 40px; }
+  .header { text-align: center; margin-bottom: 16px; border-bottom: 2px solid #1a1a1a; padding-bottom: 12px; }
+  .name { font-size: 22pt; font-weight: 700; letter-spacing: 1px; }
+  .title { font-size: 11pt; color: #555; margin: 4px 0 8px; }
+  .contact { font-size: 9pt; color: #666; }
+  .contact a { color: #2563eb; text-decoration: none; }
+  .section { margin: 16px 0; }
+  .section-title { font-size: 11pt; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-bottom: 8px; }
+  .job { margin-bottom: 12px; }
+  .job-header { display: flex; justify-content: space-between; font-weight: 600; }
+  .job-company { font-size: 10.5pt; }
+  .job-date { font-size: 9pt; color: #666; }
+  .job-role { font-size: 9.5pt; color: #444; font-style: italic; }
+  ul { margin: 4px 0 0 16px; }
+  li { margin-bottom: 3px; font-size: 10pt; }
+  .skills-table { width: 100%; font-size: 9.5pt; }
+  .skills-table td { vertical-align: top; padding: 2px 8px 2px 0; }
+  .skills-table td:first-child { font-weight: 600; width: 180px; white-space: nowrap; }
+  .achievements li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="name">SIDDHARTH SAMINATHAN</div>
+  <div class="title">AI Product Engineer</div>
+  <div class="contact">
+    Chennai, India | +91 7299707403 | siddharthsaminathan99@gmail.com<br>
+    <a href="https://emotenow.app">emotenow.app</a> | <a href="https://github.com/siddharthsaminathan">github.com/siddharthsaminathan</a>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Profile</div>
+  <p>AI Product Engineer with 4+ years building production AI systems from zero to scale with measurable business impact. Shipped consumer AI (Emote, 490 users), enterprise multi-agent systems (Omnex), automated growth engines (Reddit DM bot, 5,600+ DMs), and open-source AI tooling (CareerLoop). Full-stack AI: FastAPI, Redis, PostgreSQL, LLM orchestration, browser automation. I build AI that drives real business outcomes — not demos.</p>
+</div>
+
+<div class="section">
+  <div class="section-title">Experience</div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Omnex Systems</span>
+      <span class="job-date">Jul 2025 – Present</span>
+    </div>
+    <div class="job-role">AI Engineer — Chennai, India</div>
+    <ul>
+      <li>Built a production multi-agent AI system automating end-to-end enterprise workflows — reducing manual effort and improving consistency across global supply chains.</li>
+      <li>Designed a tool-driven orchestration layer that dynamically selects tools, routes data across enterprise systems, and executes multi-step workflows with full traceability.</li>
+      <li>Enabled context-aware decisioning: maps inputs to relevant hierarchies, retrieves historical cases, and suggests structured actions and updates.</li>
+      <li>Reduced workflow latency ~12.5s→~8s, built validation layers and retry logic, and instrumented full observability (logging, tracing, metrics).</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Emote (emotenow.app)</span>
+      <span class="job-date">Apr 2024 – Present</span>
+    </div>
+    <div class="job-role">Co-Founder / AI Product Engineer — Chennai, India</div>
+    <ul>
+      <li>Built and shipped a full AI product from concept to 490 users — designing an AI that learns from user context, patterns, and behavioral signals across sessions.</li>
+      <li>Architected the entire backend (FastAPI, Redis, PostgreSQL, multi-model LLM routing, real-time SSE streaming), enabling low-latency stateful AI at scale.</li>
+      <li>Drove performance optimization: reduced latency 15s→3s and inference cost $1.20→$0.023 (50x reduction) through pipeline optimization, caching, and model selection.</li>
+      <li>Improved activation 20%→75% and weekly retention 5%→13-15% by iterating on real user behavior and feedback.</li>
+      <li>Built an automated Reddit DM outreach engine — 5,600+ DMs, 25.9% reply rate, ~400 users acquired (80% of Emote's base). Chrome CDP + Playwright browser automation.</li>
+      <li>Open-sourced CareerLoop — a LangGraph Resume Council with 7-stage DeepSeek evaluation pipeline (<a href="https://github.com/siddharthsaminathan/CareerLoop">github.com/siddharthsaminathan/CareerLoop</a>).</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Akkodis AB</span>
+      <span class="job-date">Nov 2022 – Nov 2024</span>
+    </div>
+    <div class="job-role">Data Engineer — Linköping, Sweden</div>
+    <ul>
+      <li>Led Azure to PostgreSQL data platform migration for Ericsson systems — automated ETL using Docker, Argo, and Python.</li>
+      <li>Improved Power BI dashboards and metrics pipelines, resulting in 5% increase in business reporting accuracy.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Key Achievements</div>
+  <ul class="achievements">
+    <li><strong>Built Emote from zero:</strong> Took product from vision to 490 users, 13–15% weekly retention, 75% activation rate.</li>
+    <li><strong>50x cost reduction:</strong> Drove inference latency 15s→3s and cost $1.20→$0.023 at Emote.</li>
+    <li><strong>Reddit growth engine:</strong> Automated outreach — 5,600+ DMs, 25.9% reply rate, ~400 users acquired.</li>
+    <li><strong>Open-source AI:</strong> CareerLoop — LangGraph Resume Council, 7-stage DeepSeek pipeline.</li>
+    <li><strong>Enterprise AI:</strong> Built multi-agent system for manufacturing quality at Omnex (12.5s→8s).</li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="section-title">Skills</div>
+  <table class="skills-table">
+    <tr><td>AI & Agentic Systems</td><td>LLM APIs, RAG pipelines, embeddings, prompt engineering, tool calling, multi-model routing, LangChain/LangGraph</td></tr>
+    <tr><td>Backend & Real-Time</td><td>FastAPI, Redis, PostgreSQL, REST APIs, WebSockets, SSE streaming, async pipelines</td></tr>
+    <tr><td>Browser Automation</td><td>Playwright, Chrome CDP, anti-detection, automated outreach, CRM systems</td></tr>
+    <tr><td>Infra & DevOps</td><td>Docker, AWS, Fly.io, logging, tracing, metrics, performance optimization</td></tr>
+    <tr><td>Data & Analytics</td><td>ETL pipelines, data validation, Power BI, Supabase</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <div class="section-title">Education</div>
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">M.Sc. Statistics and Machine Learning</span>
+      <span class="job-date">2020 – 2022</span>
+    </div>
+    <div class="job-role">Linköping University, Sweden</div>
+    <ul>
+      <li>Thesis: ML pipeline for predicting colorectal cancer metastasis from RNA sequencing data (autoencoders, classifiers, transfer learning).</li>
+    </ul>
+  </div>
+  <div class="job" style="margin-top:6px;">
+    <div class="job-header">
+      <span class="job-company">B.Tech Computer Science and Engineering</span>
+      <span class="job-date">2016 – 2020</span>
+    </div>
+    <div class="job-role">SRM University, Chennai, India</div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "person_id": "default",
+  "match_score": 0.35,
+  "seniority": "Entry-level",
+  "summary": "Candidate is a recent graduate (B.Tech 2024) with no full-time work experience. Education from IIT Delhi satisfies the degree requirement. Has Python, SQL, and some ML project experience but lacks professional experience (3-5 years required) and explicit LLM API usage. No front-end building evidence. Does not meet seniority or experience disqualifiers.",
+  "must_have_verdict": {
+    "Engineering degree from IIT, BITS, NIT or equivalent": true,
+    "3-5 years of experience": false,
+    "Built something real with an LLM API (OpenAI, Claude, Gemini, etc.)": false,
+    "Fluent in Python or NodeJS": true,
+    "Comfortable writing and querying SQL": true,
+    "Ability to build front-ends that are visually appealing": false
+  },
+  "nice_to_have_verdict": {
+    "Experience with customer personalization systems": false,
+    "Experience with retail or e-commerce domain": false,
+    "Knowledge of clienteling or CRM tools": false,
+    "Experience with business intelligence tools": false,
+    "Familiarity with design workflows": false
+  },
+  "hidden_expectations_verdict": {
+    "Ability to work directly with the CEO's office and influence strategy": false,
+    "Comfortable in a design-driven, brand-focused culture": false,
+    "Self-starter who can own projects end-to-end": false,
+    "Strong aesthetic sense and attention to visual detail": false,
+    "Ability to communicate with non-technical stakeholders (designers, store teams)": false
+  },
+  "day_one_deliverables_verdict": {
+    "Assess current tech stack and data infrastructure": false,
+    "Identify quick wins for AI integration in customer communication": false,
+    "Propose a roadmap for replacing Microsoft BI with conversational intelligence": false,
+    "Start building a prototype for store clienteling tool": false
+  },
+  "screening_keywords_found": [
+    "Python",
+    "SQL",
+    "IIT"
+  ],
+  "disqualifiers_triggered": [
+    "Less than 3 years of experience",
+    "No hands-on experience with LLM APIs",
+    "Unable to build front-ends"
+  ]
+}

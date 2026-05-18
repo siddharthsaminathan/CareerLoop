@@ -1,0 +1,496 @@
+{
+  "job_id": "nicobar-test",
+  "person_id": "experienced",
+  "job_title": "AI Product Engineer",
+  "company": "Nicobar Design Pvt. Ltd.",
+  "job_url": "https://example.com",
+  "jd_text": "\nJob Title: AI Product Engineer \u2014 CEO's Office\nCompany: Nicobar Design Pvt. Ltd. (nicobar.com)\nLocation: Delhi\nExperience: 3-5 years\n\nTHE OPPORTUNITY\nWe've spent a decade building a brand that looks and feels unmistakably Nicobar. The next chapter is building a company that thinks the same way \u2014 every store, every collection, every customer conversation: sharper, faster, unmistakably ours. AI-native, not in theory, but in every room we walk into.\n\nWHAT YOU'LL OWN\n01 Customer Personalization : Build the intelligence layer beneath all our customer communication that understands who each customer actually is.\n02 Store Clienteling : Build the clienteling tool our store teams reach for every day.\n03 Business Intelligence : Replace Microsoft BI dashboards with a live, conversational intelligence layer.\n04 Smoothen Design Workstreams : Remove friction so the creative team can make more, better, faster.\n\nWHAT WE'RE LOOKING FOR\nEngineering degree from IIT, BITS, NIT or equivalent with 3-5 years of experience.\nYou've built something real with an LLM API - OpenAI, Claude, Gemini, etc.\nFluent in Python/ NodeJS. Comfortable writing and querying SQL.\nAbility to build front-ends that don't embarrass the brand. We're visual people.\n",
+  "master_cv": "# Experienced Technical Profile: Alex Chen\n\n## Profile\nSenior Staff Engineer with 12 years of experience in distributed systems and cloud infrastructure.\n\n## Contact\nEmail: alex.chen@example.com\nGitHub: [github.com/alexchen](https://github.com/alexchen)\n\n## Skills\n- Golang, Rust, Python\n- Kubernetes, Terraform, AWS\n- System Design, Distributed Databases\n\n## Work Experience\n\n### Staff Engineer \u2014 CloudScale (2018 - Present)\n- Led the migration of 500+ microservices to Kubernetes.\n- Optimized database latency by 40% using custom caching layers.\n\n### Senior Engineer \u2014 TechNova (2012 - 2018)\n- Built a real-time analytics engine handling 1M events/sec.\n\n## Education\nM.S. Computer Science \u2014 Stanford University\n\n## Internal Strategy Metadata (PRIVATE)\n- Target Role: Principal Engineer\n- Salary Floor: $250k\n- Deal-breaker: No blockchain companies\n",
+  "profile": {
+    "candidate": {
+      "full_name": "Test User experienced"
+    },
+    "search_preferences": {
+      "target_roles": [
+        "Engineer",
+        "Lead"
+      ],
+      "deal_breakers": [
+        "No mass recruiters"
+      ],
+      "salary_floor": 100000
+    }
+  },
+  "today": "May 2026",
+  "canonical_resume": {
+    "person_id": "default",
+    "sections": [
+      {
+        "section_id": "experienced_technical_profile_alex_chen",
+        "section_title": "Experienced Technical Profile: Alex Chen",
+        "normalized_type": "experience",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "",
+        "original_order": 0,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "profile",
+        "section_title": "Profile",
+        "normalized_type": "profile",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "Senior Staff Engineer with 12 years of experience in distributed systems and cloud infrastructure.",
+        "original_order": 1,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "contact",
+        "section_title": "Contact",
+        "normalized_type": "contact",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "Email: alex.chen@example.comGitHub: [github.com/alexchen](https://github.com/alexchen)",
+        "original_order": 2,
+        "links": [
+          "https://github.com/alexchen"
+        ],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "skills",
+        "section_title": "Skills",
+        "normalized_type": "skill",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "- Golang, Rust, Python\n- Kubernetes, Terraform, AWS\n- System Design, Distributed Databases",
+        "original_order": 3,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "work_experience",
+        "section_title": "Work Experience",
+        "normalized_type": "experience",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "",
+        "original_order": 4,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "staff_engineer_cloudscale_2018_present",
+        "section_title": "Staff Engineer \u2014 CloudScale (2018 - Present)",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "- Led the migration of 500+ microservices to Kubernetes.\n- Optimized database latency by 40% using custom caching layers.",
+        "original_order": 5,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "senior_engineer_technova_2012_2018",
+        "section_title": "Senior Engineer \u2014 TechNova (2012 - 2018)",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "- Built a real-time analytics engine handling 1M events/sec.",
+        "original_order": 6,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "education",
+        "section_title": "Education",
+        "normalized_type": "education",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "M.S. Computer Science \u2014 Stanford University",
+        "original_order": 7,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "internal_strategy_metadata_private",
+        "section_title": "Internal Strategy Metadata (PRIVATE)",
+        "normalized_type": "private_metadata",
+        "visibility_class": "PRIVATE_STRATEGY_METADATA",
+        "raw_text": "- Target Role: Principal Engineer\n- Salary Floor: $250k\n- Deal-breaker: No blockchain companies",
+        "original_order": 8,
+        "links": [],
+        "confidence": 1.0
+      }
+    ],
+    "parse_warnings": []
+  },
+  "preservation_contract": {
+    "required_public_sections": [
+      "experienced_technical_profile_alex_chen",
+      "contact",
+      "work_experience",
+      "education"
+    ],
+    "sections_to_exclude": [
+      "internal_strategy_metadata_private"
+    ],
+    "unknown_sections_to_preserve": [
+      "staff_engineer_cloudscale_2018_present",
+      "senior_engineer_technova_2012_2018"
+    ],
+    "ordering_rules": [
+      "experienced_technical_profile_alex_chen",
+      "profile",
+      "contact",
+      "skills",
+      "work_experience",
+      "staff_engineer_cloudscale_2018_present",
+      "senior_engineer_technova_2012_2018",
+      "education"
+    ],
+    "link_preservation_rules": {
+      "all": "MUST_SURVIVE"
+    },
+    "max_allowed_changes": 3
+  },
+  "company_intelligence": {
+    "company_name": "Nicobar Design Pvt. Ltd.",
+    "industry": "Fashion / Lifestyle Retail",
+    "headquarters": "Delhi, India",
+    "website": "nicobar.com",
+    "brand_description": "Nicobar is a contemporary Indian lifestyle brand known for its clean, modern aesthetic in clothing, home decor, and accessories. It was founded in 2015 by Simran Lal and her mother, and is part of the Good Earth group.",
+    "size": "UNKNOWN",
+    "revenue": "UNKNOWN",
+    "key_products": "Apparel, home furnishings, accessories, and lifestyle products",
+    "target_customer": "Urban, design-conscious individuals seeking modern Indian aesthetics",
+    "recent_developments": "UNKNOWN",
+    "technology_stack": "UNKNOWN (but JD mentions Microsoft BI, LLM APIs, Python/NodeJS, SQL)",
+    "culture": "Design-driven, brand-focused, aiming to be AI-native in operations"
+  },
+  "role_decode": {
+    "normalized_title": "AI Product Engineer",
+    "seniority": "Mid-Level",
+    "must_haves": [
+      "Engineering degree from IIT, BITS, NIT or equivalent",
+      "3-5 years of experience",
+      "Built something real with an LLM API (OpenAI, Claude, Gemini, etc.)",
+      "Fluent in Python or NodeJS",
+      "Comfortable writing and querying SQL",
+      "Ability to build front-ends that meet brand standards"
+    ],
+    "nice_to_haves": [
+      "Experience with customer personalization systems",
+      "Experience with retail or clienteling tools",
+      "Experience with business intelligence and conversational interfaces",
+      "Familiarity with design workflows and creative tools"
+    ],
+    "hidden_expectations": [
+      "Must be able to work directly with the CEO's office and senior leadership",
+      "Must have a strong aesthetic sense and brand alignment",
+      "Must be comfortable with ambiguity and building from scratch",
+      "Must be able to move fast and iterate quickly",
+      "Must be able to communicate effectively with non-technical stakeholders"
+    ],
+    "day_one_deliverables": [
+      "Assess current tech stack and data infrastructure",
+      "Identify quick wins for AI integration in customer communication",
+      "Propose a roadmap for replacing Microsoft BI with conversational intelligence",
+      "Start building a prototype for store clienteling tool"
+    ],
+    "screening_keywords": [
+      "LLM",
+      "OpenAI",
+      "Claude",
+      "Gemini",
+      "Python",
+      "NodeJS",
+      "SQL",
+      "personalization",
+      "clienteling",
+      "business intelligence",
+      "AI-native",
+      "IIT",
+      "BITS",
+      "NIT"
+    ],
+    "disqualifiers": [
+      "No engineering degree from a top-tier Indian institute",
+      "Less than 3 years of experience",
+      "No hands-on experience with LLM APIs",
+      "Unable to build front-ends",
+      "No SQL proficiency"
+    ],
+    "confidence": 0.9
+  },
+  "user_truth": {
+    "seniority_mismatch": true,
+    "seniority_notes": "Candidate's earliest professional date is 2012, giving 14+ years of experience, far exceeding the 3-5 years required for Mid-Level. Candidate is overqualified.",
+    "must_have_evidence": {
+      "Engineering degree from IIT, BITS, NIT or equivalent": {
+        "evidence": "M.S. Computer Science from Stanford University",
+        "meets": true,
+        "notes": "Stanford is equivalent to top-tier Indian institutes."
+      },
+      "3-5 years of experience": {
+        "evidence": "Work experience from 2012 to present (14+ years)",
+        "meets": false,
+        "notes": "Candidate has 14+ years, exceeding the 3-5 year range."
+      },
+      "Built something real with an LLM API (OpenAI, Claude, Gemini, etc.)": {
+        "evidence": "No mention of LLM API usage in resume",
+        "meets": false,
+        "notes": "No evidence of LLM API experience."
+      },
+      "Fluent in Python or NodeJS": {
+        "evidence": "Skills include Python",
+        "meets": true,
+        "notes": "Python listed in skills."
+      },
+      "Comfortable writing and querying SQL": {
+        "evidence": "No explicit mention of SQL in skills or experience",
+        "meets": false,
+        "notes": "SQL not listed; candidate may have used it but not evidenced."
+      },
+      "Ability to build front-ends that meet brand standards": {
+        "evidence": "No front-end experience mentioned",
+        "meets": false,
+        "notes": "No front-end skills or projects listed."
+      }
+    },
+    "nice_to_have_evidence": {
+      "Experience with customer personalization systems": {
+        "evidence": "No mention of personalization systems",
+        "meets": false
+      },
+      "Experience with retail or clienteling tools": {
+        "evidence": "No mention of retail or clienteling",
+        "meets": false
+      },
+      "Experience with business intelligence and conversational interfaces": {
+        "evidence": "No mention of BI or conversational interfaces",
+        "meets": false
+      },
+      "Familiarity with design workflows and creative tools": {
+        "evidence": "No mention of design workflows",
+        "meets": false
+      }
+    },
+    "hidden_expectations_evidence": {
+      "Must be able to work directly with the CEO's office and senior leadership": {
+        "evidence": "Candidate has senior staff engineer role, likely interacts with leadership",
+        "meets": true,
+        "notes": "Senior role suggests ability to work with leadership."
+      },
+      "Must have a strong aesthetic sense and brand alignment": {
+        "evidence": "No evidence of aesthetic sense or brand alignment",
+        "meets": false
+      },
+      "Must be comfortable with ambiguity and building from scratch": {
+        "evidence": "Led migration of 500+ microservices, built analytics engine from scratch",
+        "meets": true,
+        "notes": "Experience building from scratch."
+      },
+      "Must be able to move fast and iterate quickly": {
+        "evidence": "Experience in fast-paced environments (CloudScale, TechNova)",
+        "meets": true,
+        "notes": "Implied by senior roles."
+      },
+      "Must be able to communicate effectively with non-technical stakeholders": {
+        "evidence": "Senior staff engineer likely requires communication skills",
+        "meets": true,
+        "notes": "Assumed from seniority."
+      }
+    },
+    "day_one_deliverables_evidence": {
+      "Assess current tech stack and data infrastructure": {
+        "evidence": "Experience with distributed systems and cloud infrastructure",
+        "meets": true,
+        "notes": "Candidate can assess tech stack."
+      },
+      "Identify quick wins for AI integration in customer communication": {
+        "evidence": "No AI integration experience evidenced",
+        "meets": false
+      },
+      "Propose a roadmap for replacing Microsoft BI with conversational intelligence": {
+        "evidence": "No BI or conversational intelligence experience",
+        "meets": false
+      },
+      "Start building a prototype for store clienteling tool": {
+        "evidence": "No clienteling or retail experience",
+        "meets": false
+      }
+    },
+    "screening_keywords_found": [
+      "Python"
+    ],
+    "screening_keywords_missing": [
+      "LLM",
+      "OpenAI",
+      "Claude",
+      "Gemini",
+      "NodeJS",
+      "SQL",
+      "personalization",
+      "clienteling",
+      "business intelligence",
+      "AI-native",
+      "IIT",
+      "BITS",
+      "NIT"
+    ],
+    "disqualifiers_triggered": [
+      "Less than 3 years of experience (actually too much)",
+      "No hands-on experience with LLM APIs",
+      "Unable to build front-ends",
+      "No SQL proficiency"
+    ],
+    "overall_recommendation": "REJECT",
+    "confidence": 0.95
+  },
+  "positioning_strategy": {
+    "stance": "REJECT",
+    "angle": "Candidate is overqualified with 14+ years of experience, lacks critical must-haves (LLM API experience, SQL, front-end skills), and has no relevant domain experience in retail, personalization, or BI. Despite strong engineering background and leadership potential, the candidate does not fit the mid-level AI Product Engineer role at a design-driven lifestyle brand."
+  },
+  "section_rewrites": {
+    "rewrites": {
+      "experienced_technical_profile_alex_chen": {
+        "section_id": "experienced_technical_profile_alex_chen",
+        "original_text": "",
+        "rewritten_text": "",
+        "change_type": "KEEP",
+        "change_reason": "Section is empty; no changes needed.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "profile": {
+        "section_id": "profile",
+        "original_text": "Senior Staff Engineer with 12 years of experience in distributed systems and cloud infrastructure.",
+        "rewritten_text": "Senior Staff Engineer with 12 years of experience in distributed systems and cloud infrastructure.",
+        "change_type": "KEEP",
+        "change_reason": "Text is accurate and no changes required.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "contact": {
+        "section_id": "contact",
+        "original_text": "Email: alex.chen@example.comGitHub: [github.com/alexchen](https://github.com/alexchen)",
+        "rewritten_text": "Email: alex.chen@example.com\nGitHub: [github.com/alexchen](https://github.com/alexchen)",
+        "change_type": "KEEP",
+        "change_reason": "Minor formatting improvement for readability; no content change.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "skills": {
+        "section_id": "skills",
+        "original_text": "- Golang, Rust, Python\n- Kubernetes, Terraform, AWS\n- System Design, Distributed Databases",
+        "rewritten_text": "- Golang, Rust, Python\n- Kubernetes, Terraform, AWS\n- System Design, Distributed Databases",
+        "change_type": "KEEP",
+        "change_reason": "Skills are accurate and no changes needed.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "work_experience": {
+        "section_id": "work_experience",
+        "original_text": "",
+        "rewritten_text": "",
+        "change_type": "KEEP",
+        "change_reason": "Section is empty; no changes needed.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "staff_engineer_cloudscale_2018_present": {
+        "section_id": "staff_engineer_cloudscale_2018_present",
+        "original_text": "- Led the migration of 500+ microservices to Kubernetes.\n- Optimized database latency by 40% using custom caching layers.",
+        "rewritten_text": "- Led the migration of 500+ microservices to Kubernetes.\n- Optimized database latency by 40% using custom caching layers.",
+        "change_type": "KEEP",
+        "change_reason": "Content is accurate and no changes needed.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "senior_engineer_technova_2012_2018": {
+        "section_id": "senior_engineer_technova_2012_2018",
+        "original_text": "- Built a real-time analytics engine handling 1M events/sec.",
+        "rewritten_text": "- Built a real-time analytics engine handling 1M events/sec.",
+        "change_type": "KEEP",
+        "change_reason": "Content is accurate and no changes needed.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "education": {
+        "section_id": "education",
+        "original_text": "M.S. Computer Science \u2014 Stanford University",
+        "rewritten_text": "M.S. Computer Science \u2014 Stanford University",
+        "change_type": "KEEP",
+        "change_reason": "Content is accurate and no changes needed.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      }
+    }
+  },
+  "application_pack": {
+    "resume_markdown": "## Experienced Technical Profile: Alex Chen\n\n\n\n## Profile\n\nSenior Staff Engineer with 12 years of experience in distributed systems and cloud infrastructure. ## Contact\n\nEmail: alex.chen@example.com\nGitHub: [github.com/alexchen](https://github.com/alexchen)\n\n## Skills\n\n- Golang, Rust, Python\n- Kubernetes, Terraform, AWS\n- System Design, Distributed Databases\n\n## Work Experience\n\n\n\n## Staff Engineer \u2014 CloudScale (2018 - Present)\n\n- Led the migration of 500+ microservices to Kubernetes.\n- Optimized database latency by 40% using custom caching layers. ## Senior Engineer \u2014 TechNova (2012 - 2018)\n\n- Built a real-time analytics engine handling 1M events/sec. ## Education\n\nM.S. Computer Science \u2014 Stanford University",
+    "cover_note": "With 14+ years of engineering experience, I bring deep technical leadership but lack the required LLM API, SQL, and front-end skills for this mid-level AI Product Engineer role. My background does not include retail, personalization, or BI domain experience. I appreciate the consideration but recognize I am not the right fit for this position.",
+    "screening_answers": "",
+    "recruiter_message": "I'm interested in the AI Product Engineer role at Nicobar Design, but I see you require LLM API experience and SQL, which I lack. With 14+ years in engineering leadership, I'm overqualified for this mid-level position and don't have the retail or personalization domain expertise you need.",
+    "follow_up_message": "",
+    "quality_report": {
+      "what_changed": [
+        "Section 'Experienced Technical Profile: Alex Chen' was rewritten (KEEP)",
+        "Section 'Profile' was rewritten (KEEP)",
+        "Section 'Contact' was rewritten (KEEP)",
+        "Section 'Skills' was rewritten (KEEP)",
+        "Section 'Work Experience' was rewritten (KEEP)",
+        "Section 'Staff Engineer \u2014 CloudScale (2018 - Present)' was rewritten (KEEP)",
+        "Section 'Senior Engineer \u2014 TechNova (2012 - 2018)' was rewritten (KEEP)",
+        "Section 'Education' was rewritten (KEEP)"
+      ],
+      "what_did_not_change": [],
+      "needs_user_review": [],
+      "risks": [],
+      "confidence": 0.89
+    },
+    "preserved_links": [
+      "https://github.com/alexchen"
+    ],
+    "link_audit": {
+      "per_section_original": {
+        "experienced_technical_profile_alex_chen": 0,
+        "profile": 0,
+        "contact": 1,
+        "skills": 0,
+        "work_experience": 0,
+        "staff_engineer_cloudscale_2018_present": 0,
+        "senior_engineer_technova_2012_2018": 0,
+        "education": 0
+      },
+      "per_section_final": {
+        "experienced_technical_profile_alex_chen": 0,
+        "profile": 0,
+        "contact": 1,
+        "skills": 0,
+        "work_experience": 0,
+        "staff_engineer_cloudscale_2018_present": 0,
+        "senior_engineer_technova_2012_2018": 0,
+        "education": 0
+      },
+      "total_original": 1,
+      "total_final": 1,
+      "missing_links": [],
+      "warnings": []
+    },
+    "user_review_summary": "Check your new resume. 8-system architecture ensured zero metadata leakage."
+  },
+  "errors": []
+}

@@ -1,0 +1,54 @@
+{
+  "normalized_title": "AI Product Engineer",
+  "seniority": "Mid-level",
+  "must_haves": [
+    "Engineering degree from IIT, BITS, NIT or equivalent",
+    "3-5 years of experience",
+    "Built something real with an LLM API (OpenAI, Claude, Gemini, etc.)",
+    "Fluent in Python or NodeJS",
+    "Comfortable writing and querying SQL",
+    "Ability to build front-ends that are visually appealing"
+  ],
+  "nice_to_haves": [
+    "Experience with customer personalization systems",
+    "Experience with retail or e-commerce domain",
+    "Knowledge of clienteling or CRM tools",
+    "Experience with business intelligence tools",
+    "Familiarity with design workflows"
+  ],
+  "hidden_expectations": [
+    "Ability to work directly with the CEO's office and influence strategy",
+    "Comfortable in a design-driven, brand-focused culture",
+    "Self-starter who can own projects end-to-end",
+    "Strong aesthetic sense and attention to visual detail",
+    "Ability to communicate with non-technical stakeholders (designers, store teams)"
+  ],
+  "day_one_deliverables": [
+    "Assess current tech stack and data infrastructure",
+    "Identify quick wins for AI integration in customer communication",
+    "Propose a roadmap for replacing Microsoft BI with conversational intelligence",
+    "Start building a prototype for store clienteling tool"
+  ],
+  "screening_keywords": [
+    "LLM API",
+    "Python",
+    "NodeJS",
+    "SQL",
+    "front-end",
+    "personalization",
+    "clienteling",
+    "business intelligence",
+    "AI",
+    "IIT",
+    "BITS",
+    "NIT"
+  ],
+  "disqualifiers": [
+    "No engineering degree from IIT, BITS, NIT or equivalent",
+    "Less than 3 years of experience",
+    "No hands-on experience with LLM APIs",
+    "No proficiency in Python or NodeJS",
+    "Unable to build front-ends"
+  ],
+  "confidence": 0.95
+}

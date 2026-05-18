@@ -1,0 +1,384 @@
+{
+  "job_id": "nicobar-test",
+  "person_id": "business",
+  "job_title": "AI Product Engineer",
+  "company": "Nicobar Design Pvt. Ltd.",
+  "job_url": "https://example.com",
+  "jd_text": "\nJob Title: AI Product Engineer \u2014 CEO's Office\nCompany: Nicobar Design Pvt. Ltd. (nicobar.com)\nLocation: Delhi\nExperience: 3-5 years\n\nTHE OPPORTUNITY\nWe've spent a decade building a brand that looks and feels unmistakably Nicobar. The next chapter is building a company that thinks the same way \u2014 every store, every collection, every customer conversation: sharper, faster, unmistakably ours. AI-native, not in theory, but in every room we walk into.\n\nWHAT YOU'LL OWN\n01 Customer Personalization : Build the intelligence layer beneath all our customer communication that understands who each customer actually is.\n02 Store Clienteling : Build the clienteling tool our store teams reach for every day.\n03 Business Intelligence : Replace Microsoft BI dashboards with a live, conversational intelligence layer.\n04 Smoothen Design Workstreams : Remove friction so the creative team can make more, better, faster.\n\nWHAT WE'RE LOOKING FOR\nEngineering degree from IIT, BITS, NIT or equivalent with 3-5 years of experience.\nYou've built something real with an LLM API - OpenAI, Claude, Gemini, etc.\nFluent in Python/ NodeJS. Comfortable writing and querying SQL.\nAbility to build front-ends that don't embarrass the brand. We're visual people.\n",
+  "master_cv": "# Non-Technical Profile: Mark Thompson\n\n## About Me\nMarketing Director with 8 years of experience in brand strategy and digital growth.\n\n## Professional Experience\n\n### Marketing Director \u2014 BrandGrowth (2020 - Present)\n- Increased organic traffic by 200% in 18 months.\n- Managed a $5M annual advertising budget.\n\n### Growth Manager \u2014 StartupX (2016 - 2020)\n- Scaled user base from 10k to 500k.\n\n## Skills\n- Brand Strategy, Content Marketing, SEO\n- Team Leadership, Budget Management\n\n## Education\nB.A. Communications \u2014 New York University\n\n## Search Preferences (PRIVATE)\n- Prefer Series B startups\n- Constraint: Must be fully remote\n",
+  "profile": {
+    "candidate": {
+      "full_name": "Test User business"
+    },
+    "search_preferences": {
+      "target_roles": [
+        "Engineer",
+        "Lead"
+      ],
+      "deal_breakers": [
+        "No mass recruiters"
+      ],
+      "salary_floor": 100000
+    }
+  },
+  "today": "May 2026",
+  "canonical_resume": {
+    "person_id": "default",
+    "sections": [
+      {
+        "section_id": "non_technical_profile_mark_thompson",
+        "section_title": "Non-Technical Profile: Mark Thompson",
+        "normalized_type": "profile",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "",
+        "original_order": 0,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "about_me",
+        "section_title": "About Me",
+        "normalized_type": "about",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "Marketing Director with 8 years of experience in brand strategy and digital growth.",
+        "original_order": 1,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "professional_experience",
+        "section_title": "Professional Experience",
+        "normalized_type": "experience",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "",
+        "original_order": 2,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "marketing_director_brandgrowth_2020_present",
+        "section_title": "Marketing Director \u2014 BrandGrowth (2020 - Present)",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "- Increased organic traffic by 200% in 18 months.\n- Managed a $5M annual advertising budget.",
+        "original_order": 3,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "growth_manager_startupx_2016_2020",
+        "section_title": "Growth Manager \u2014 StartupX (2016 - 2020)",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "- Scaled user base from 10k to 500k.",
+        "original_order": 4,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "skills",
+        "section_title": "Skills",
+        "normalized_type": "skill",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "- Brand Strategy, Content Marketing, SEO\n- Team Leadership, Budget Management",
+        "original_order": 5,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "education",
+        "section_title": "Education",
+        "normalized_type": "education",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "B.A. Communications \u2014 New York University",
+        "original_order": 6,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "search_preferences_private",
+        "section_title": "Search Preferences (PRIVATE)",
+        "normalized_type": "private_metadata",
+        "visibility_class": "PRIVATE_STRATEGY_METADATA",
+        "raw_text": "- Prefer Series B startups\n- Constraint: Must be fully remote",
+        "original_order": 7,
+        "links": [],
+        "confidence": 1.0
+      }
+    ],
+    "parse_warnings": []
+  },
+  "preservation_contract": {
+    "required_public_sections": [
+      "professional_experience",
+      "education"
+    ],
+    "sections_to_exclude": [
+      "search_preferences_private"
+    ],
+    "unknown_sections_to_preserve": [
+      "marketing_director_brandgrowth_2020_present",
+      "growth_manager_startupx_2016_2020"
+    ],
+    "ordering_rules": [
+      "non_technical_profile_mark_thompson",
+      "about_me",
+      "professional_experience",
+      "marketing_director_brandgrowth_2020_present",
+      "growth_manager_startupx_2016_2020",
+      "skills",
+      "education"
+    ],
+    "link_preservation_rules": {
+      "all": "MUST_SURVIVE"
+    },
+    "max_allowed_changes": 3
+  },
+  "company_intelligence": {
+    "company_name": "Nicobar Design Pvt. Ltd.",
+    "industry": "Fashion Retail / Lifestyle Brand",
+    "headquarters": "Delhi, India",
+    "founded": 2014,
+    "parent_company": "Good Earth",
+    "brand_positioning": "Contemporary Indian lifestyle brand with a focus on design, quality, and sustainability",
+    "product_categories": "Apparel, home decor, accessories, footwear",
+    "retail_channels": "E-commerce (nicobar.com), physical stores across India",
+    "company_size": "UNKNOWN",
+    "revenue": "UNKNOWN",
+    "key_competitors": "FabIndia, Anokhi, Chumbak, Jaypore",
+    "recent_initiatives": "Expanding offline presence, focusing on AI-driven personalization and operations",
+    "tech_stack": "UNKNOWN (but JD mentions Microsoft BI, LLM APIs, Python/NodeJS, SQL)",
+    "culture": "Design-led, brand-conscious, innovative, AI-forward",
+    "ceo": "UNKNOWN",
+    "website": "nicobar.com"
+  },
+  "role_decode": {
+    "normalized_title": "AI Product Engineer",
+    "seniority": "Mid-Level",
+    "must_haves": [
+      "Engineering degree from IIT, BITS, NIT or equivalent",
+      "3-5 years of experience",
+      "Built something real with an LLM API (OpenAI, Claude, Gemini, etc.)",
+      "Fluent in Python or NodeJS",
+      "Comfortable writing and querying SQL",
+      "Ability to build front-ends that are visually appealing"
+    ],
+    "nice_to_haves": [
+      "Experience with customer personalization systems",
+      "Experience with retail or e-commerce domain",
+      "Familiarity with clienteling tools",
+      "Experience with business intelligence and conversational interfaces",
+      "Knowledge of design workflows"
+    ],
+    "hidden_expectations": [
+      "Must be comfortable working directly with the CEO's office and senior leadership",
+      "Should have a strong design sensibility and appreciation for brand aesthetics",
+      "Ability to work in a fast-paced, startup-like environment within an established brand",
+      "Proactive and able to own projects end-to-end with minimal supervision",
+      "Strong communication skills to bridge technical and creative teams"
+    ],
+    "day_one_deliverables": [
+      "Assess current tech stack and data infrastructure",
+      "Identify quick wins for AI integration in customer communication",
+      "Propose a roadmap for replacing Microsoft BI with conversational intelligence",
+      "Start prototyping a clienteling tool for store teams"
+    ],
+    "screening_keywords": [
+      "LLM",
+      "OpenAI",
+      "Claude",
+      "Gemini",
+      "Python",
+      "NodeJS",
+      "SQL",
+      "front-end",
+      "personalization",
+      "clienteling",
+      "business intelligence",
+      "IIT",
+      "BITS",
+      "NIT"
+    ],
+    "disqualifiers": [
+      "Less than 3 years of experience",
+      "No experience with LLM APIs",
+      "Not fluent in Python or NodeJS",
+      "Unable to build front-ends",
+      "No engineering degree from a top-tier institution"
+    ],
+    "confidence": 0.9
+  },
+  "user_truth": {
+    "candidate_id": "default",
+    "role": "AI Product Engineer",
+    "seniority": "Mid-Level",
+    "earliest_professional_date": "2016",
+    "years_of_experience": 10,
+    "seniority_match": false,
+    "must_have_matches": {
+      "Engineering degree from IIT, BITS, NIT or equivalent": false,
+      "3-5 years of experience": false,
+      "Built something real with an LLM API": false,
+      "Fluent in Python or NodeJS": false,
+      "Comfortable writing and querying SQL": false,
+      "Ability to build front-ends that are visually appealing": false
+    },
+    "nice_to_have_matches": {
+      "Experience with customer personalization systems": false,
+      "Experience with retail or e-commerce domain": false,
+      "Familiarity with clienteling tools": false,
+      "Experience with business intelligence and conversational interfaces": false,
+      "Knowledge of design workflows": false
+    },
+    "hidden_expectation_matches": {
+      "Must be comfortable working directly with the CEO's office and senior leadership": false,
+      "Should have a strong design sensibility and appreciation for brand aesthetics": false,
+      "Ability to work in a fast-paced, startup-like environment within an established brand": false,
+      "Proactive and able to own projects end-to-end with minimal supervision": false,
+      "Strong communication skills to bridge technical and creative teams": false
+    },
+    "disqualifiers_triggered": [
+      "No experience with LLM APIs",
+      "Not fluent in Python or NodeJS",
+      "Unable to build front-ends",
+      "No engineering degree from a top-tier institution"
+    ],
+    "overall_match": false,
+    "notes": "Candidate is a Marketing Director with 10 years of experience (exceeds 3-5 years). No engineering degree, no technical skills (Python, NodeJS, SQL, LLM APIs, front-end). No evidence of relevant experience. Disqualified."
+  },
+  "positioning_strategy": {
+    "stance": "do_not_apply",
+    "angle": null,
+    "narrative": null
+  },
+  "section_rewrites": {
+    "rewrites": {
+      "non_technical_profile_mark_thompson": {
+        "section_id": "non_technical_profile_mark_thompson",
+        "original_text": "",
+        "rewritten_text": "",
+        "change_type": "KEEP",
+        "change_reason": "Section is empty, no changes needed.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "about_me": {
+        "section_id": "about_me",
+        "original_text": "Marketing Director with 8 years of experience in brand strategy and digital growth.",
+        "rewritten_text": "Marketing Director with 8 years of experience in brand strategy and digital growth.",
+        "change_type": "KEEP",
+        "change_reason": "Text is accurate and concise; no changes needed.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "professional_experience": {
+        "section_id": "professional_experience",
+        "original_text": "",
+        "rewritten_text": "",
+        "change_type": "KEEP",
+        "change_reason": "Section is empty, no changes needed.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "marketing_director_brandgrowth_2020_present": {
+        "section_id": "marketing_director_brandgrowth_2020_present",
+        "original_text": "- Increased organic traffic by 200% in 18 months.\n- Managed a $5M annual advertising budget.",
+        "rewritten_text": "- Increased organic traffic by 200% in 18 months.\n- Managed a $5M annual advertising budget.",
+        "change_type": "KEEP",
+        "change_reason": "Text is factual and relevant; no changes needed.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "growth_manager_startupx_2016_2020": {
+        "section_id": "growth_manager_startupx_2016_2020",
+        "original_text": "- Scaled user base from 10k to 500k.",
+        "rewritten_text": "- Scaled user base from 10k to 500k.",
+        "change_type": "KEEP",
+        "change_reason": "Text is factual and relevant; no changes needed.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "skills": {
+        "section_id": "skills",
+        "original_text": "- Brand Strategy, Content Marketing, SEO\n- Team Leadership, Budget Management",
+        "rewritten_text": "- Brand Strategy, Content Marketing, SEO\n- Team Leadership, Budget Management",
+        "change_type": "KEEP",
+        "change_reason": "Text is accurate and relevant; no changes needed.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "education": {
+        "section_id": "education",
+        "original_text": "B.A. Communications \u2014 New York University",
+        "rewritten_text": "B.A. Communications \u2014 New York University",
+        "change_type": "KEEP",
+        "change_reason": "Text is accurate and relevant; no changes needed.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      }
+    }
+  },
+  "application_pack": {
+    "resume_markdown": "## Non-Technical Profile: Mark Thompson\n\n\n\n## About Me\n\nMarketing Director with 8 years of experience in brand strategy and digital growth. ## Professional Experience\n\n\n\n## Marketing Director \u2014 BrandGrowth (2020 - Present)\n\n- Increased organic traffic by 200% in 18 months.\n- Managed a $5M annual advertising budget. ## Growth Manager \u2014 StartupX (2016 - 2020)\n\n- Scaled user base from 10k to 500k. ## Skills\n\n- Brand Strategy, Content Marketing, SEO\n- Team Leadership, Budget Management\n\n## Education\n\nB.A. Communications \u2014 New York University",
+    "cover_note": "",
+    "screening_answers": "",
+    "recruiter_message": "I'm not interested in the AI Product Engineer role at Nicobar Design Pvt. Ltd. at this time, but I appreciate you reaching out.",
+    "follow_up_message": "",
+    "quality_report": {
+      "what_changed": [
+        "Section 'Non-Technical Profile: Mark Thompson' was rewritten (KEEP)",
+        "Section 'About Me' was rewritten (KEEP)",
+        "Section 'Professional Experience' was rewritten (KEEP)",
+        "Section 'Marketing Director \u2014 BrandGrowth (2020 - Present)' was rewritten (KEEP)",
+        "Section 'Growth Manager \u2014 StartupX (2016 - 2020)' was rewritten (KEEP)",
+        "Section 'Skills' was rewritten (KEEP)",
+        "Section 'Education' was rewritten (KEEP)"
+      ],
+      "what_did_not_change": [],
+      "needs_user_review": [],
+      "risks": [],
+      "confidence": 0.88
+    },
+    "preserved_links": [],
+    "link_audit": {
+      "per_section_original": {
+        "non_technical_profile_mark_thompson": 0,
+        "about_me": 0,
+        "professional_experience": 0,
+        "marketing_director_brandgrowth_2020_present": 0,
+        "growth_manager_startupx_2016_2020": 0,
+        "skills": 0,
+        "education": 0
+      },
+      "per_section_final": {
+        "non_technical_profile_mark_thompson": 0,
+        "about_me": 0,
+        "professional_experience": 0,
+        "marketing_director_brandgrowth_2020_present": 0,
+        "growth_manager_startupx_2016_2020": 0,
+        "skills": 0,
+        "education": 0
+      },
+      "total_original": 0,
+      "total_final": 0,
+      "missing_links": [],
+      "warnings": []
+    },
+    "user_review_summary": "Check your new resume. 8-system architecture ensured zero metadata leakage."
+  },
+  "errors": []
+}

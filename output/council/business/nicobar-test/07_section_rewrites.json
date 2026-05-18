@@ -1,0 +1,81 @@
+{
+  "rewrites": {
+    "non_technical_profile_mark_thompson": {
+      "section_id": "non_technical_profile_mark_thompson",
+      "original_text": "",
+      "rewritten_text": "",
+      "change_type": "KEEP",
+      "change_reason": "Section is empty, no changes needed.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [],
+      "risk_level": "low"
+    },
+    "about_me": {
+      "section_id": "about_me",
+      "original_text": "Marketing Director with 8 years of experience in brand strategy and digital growth.",
+      "rewritten_text": "Marketing Director with 8 years of experience in brand strategy and digital growth.",
+      "change_type": "KEEP",
+      "change_reason": "Text is accurate and concise; no changes needed.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [],
+      "risk_level": "low"
+    },
+    "professional_experience": {
+      "section_id": "professional_experience",
+      "original_text": "",
+      "rewritten_text": "",
+      "change_type": "KEEP",
+      "change_reason": "Section is empty, no changes needed.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [],
+      "risk_level": "low"
+    },
+    "marketing_director_brandgrowth_2020_present": {
+      "section_id": "marketing_director_brandgrowth_2020_present",
+      "original_text": "- Increased organic traffic by 200% in 18 months.\n- Managed a $5M annual advertising budget.",
+      "rewritten_text": "- Increased organic traffic by 200% in 18 months.\n- Managed a $5M annual advertising budget.",
+      "change_type": "KEEP",
+      "change_reason": "Text is factual and relevant; no changes needed.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [],
+      "risk_level": "low"
+    },
+    "growth_manager_startupx_2016_2020": {
+      "section_id": "growth_manager_startupx_2016_2020",
+      "original_text": "- Scaled user base from 10k to 500k.",
+      "rewritten_text": "- Scaled user base from 10k to 500k.",
+      "change_type": "KEEP",
+      "change_reason": "Text is factual and relevant; no changes needed.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [],
+      "risk_level": "low"
+    },
+    "skills": {
+      "section_id": "skills",
+      "original_text": "- Brand Strategy, Content Marketing, SEO\n- Team Leadership, Budget Management",
+      "rewritten_text": "- Brand Strategy, Content Marketing, SEO\n- Team Leadership, Budget Management",
+      "change_type": "KEEP",
+      "change_reason": "Text is accurate and relevant; no changes needed.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [],
+      "risk_level": "low"
+    },
+    "education": {
+      "section_id": "education",
+      "original_text": "B.A. Communications \u2014 New York University",
+      "rewritten_text": "B.A. Communications \u2014 New York University",
+      "change_type": "KEEP",
+      "change_reason": "Text is accurate and relevant; no changes needed.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [],
+      "risk_level": "low"
+    }
+  }
+}
