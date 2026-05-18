@@ -395,13 +395,18 @@ def generate_html(resume: NormalizedResume, template_path: str) -> str:
 # ── Main ───────────────────────────────────────────────────────────────
 
 if __name__ == '__main__':
-    if len(sys.argv) < 3:
-        print("Usage: python fill-template.py <resume.md> <template.html> [output.html]")
-        sys.exit(1)
+    import argparse
+    parser = argparse.ArgumentParser(description="Render resume MD to HTML using a template")
+    parser.add_argument("resume", help="Path to resume markdown file")
+    parser.add_argument("template", help="Path to HTML template")
+    parser.add_argument("output", nargs="?", help="Output HTML path")
+    parser.add_argument("--theme", choices=["light", "dark"], default="light",
+                        help="Theme: light or dark (default: light)")
+    args = parser.parse_args()
 
-    resume_path = sys.argv[1]
-    template_path = sys.argv[2]
-    output_path = sys.argv[3] if len(sys.argv) > 3 else resume_path.replace('.md', '.html')
+    resume_path = args.resume
+    template_path = args.template
+    output_path = args.output or resume_path.replace('.md', '.html')
 
     # ── Data contract assertion ──────────────────────────────────────
     md_text = Path(resume_path).read_text()
@@ -414,6 +419,30 @@ if __name__ == '__main__':
         "Renderer must consume NormalizedResume — normalizer returned wrong type"
 
     html = generate_html(resume, template_path)
+
+    # ── Theme injection (same pipeline, different CSS tokens only) ──
+    if args.theme == "dark":
+        dark_css = """
+<style>
+  :root {
+    --ink: #f1f5f9 !important;
+    --slate: #94a3b8 !important;
+    --muted: #64748b !important;
+    --rule: #334155 !important;
+    --accent: #60a5fa !important;
+    --bg-sidebar: #1e293b !important;
+  }
+  body { background: #0f172a !important; color: #f1f5f9 !important; }
+  .sidebar { background: #1e293b !important; }
+  .header h1 { color: #f1f5f9 !important; }
+  .section-title { color: #f1f5f9 !important; }
+  .exp-header .role { color: #f1f5f9 !important; }
+  @media print {
+    body { background: #0f172a !important; }
+    .sidebar { background: #1e293b !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+</style>"""
+        html = html.replace('</head>', dark_css + '\n</head>')
 
     Path(output_path).write_text(html, encoding='utf-8')
 
