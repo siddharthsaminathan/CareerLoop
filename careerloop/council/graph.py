@@ -445,19 +445,26 @@ def assembly_node(state: CouncilState) -> CouncilState:
         return {**state, "application_pack": pack_dict}
 
     try:
-        # Reconstruct objects
-        resume = CanonicalResume(**state["canonical_resume"])
+        # Reconstruct objects (safe — handles LLM extra/missing keys)
+        from careerloop.council.safe_model import safe_construct
+
+        resume = safe_construct(CanonicalResume, state["canonical_resume"])
         resume.sections = [
-            ResumeSection(**s)
+            safe_construct(ResumeSection, s)
             for s in state["canonical_resume"]["sections"]
         ]
 
         rewrites_data = state["section_rewrites"].get("rewrites", {})
-        rewrites = SectionRewrites(
-            rewrites={k: SectionRewrite(**v) for k, v in rewrites_data.items()}
-        )
+        from careerloop.council.safe_model import safe_construct
+        safe_rewrites = {}
+        for k, v in rewrites_data.items():
+            try:
+                safe_rewrites[k] = SectionRewrite(**v)
+            except TypeError:
+                safe_rewrites[k] = safe_construct(SectionRewrite, v)
+        rewrites = SectionRewrites(rewrites=safe_rewrites)
 
-        contract = PreservationContract(**state["preservation_contract"])
+        contract = safe_construct(PreservationContract, state["preservation_contract"])
 
         # Deterministic assembly (no LLM)
         final_resume = ResumeCompiler.assemble(resume, rewrites, contract)
