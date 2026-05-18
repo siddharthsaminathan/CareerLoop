@@ -7,7 +7,7 @@ ACTIVE — imported by graph.py for all LLM-calling council nodes.
 import json
 import os
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
 import requests
 
@@ -93,7 +93,7 @@ class CouncilLLMClient:
         return self._extract_partial_json(content)
 
     @staticmethod
-    def _repair_truncated_json(text: str) -> dict | None:
+    def _repair_truncated_json(text: str) -> Optional[dict]:
         """Attempt to repair truncated JSON by closing brackets and strings."""
         import re
 
