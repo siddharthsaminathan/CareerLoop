@@ -476,29 +476,13 @@ if __name__ == '__main__':
 
     html = generate_html(resume, template_path)
 
-    # ── Theme injection (same pipeline, different CSS tokens only) ──
+    # ── Theme injection: set data-theme attribute, CSS variables handled by template ──
     if args.theme == "dark":
-        dark_css = """
-<style>
-  :root {
-    --ink: #f1f5f9 !important;
-    --slate: #94a3b8 !important;
-    --muted: #64748b !important;
-    --rule: #334155 !important;
-    --accent: #60a5fa !important;
-    --bg-sidebar: #1e293b !important;
-  }
-  body { background: #0f172a !important; color: #f1f5f9 !important; }
-  .sidebar { background: #1e293b !important; }
-  .header h1 { color: #f1f5f9 !important; }
-  .section-title { color: #f1f5f9 !important; }
-  .exp-header .role { color: #f1f5f9 !important; }
-  @media print {
-    body { background: #0f172a !important; }
-    .sidebar { background: #1e293b !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-  }
-</style>"""
-        html = html.replace('</head>', dark_css + '\n</head>')
+        # Replace any existing data-theme value
+        html = re.sub(r'data-theme="[^"]*"', 'data-theme="dark"', html)
+        # Also handle if template doesn't have data-theme (add it)
+        if 'data-theme=' not in html[:200]:
+            html = html.replace('<html', '<html data-theme="dark"')
 
     Path(output_path).write_text(html, encoding='utf-8')
 
