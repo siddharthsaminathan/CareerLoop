@@ -1,0 +1,16 @@
+description = "CareerLoop product engineering lead — review vision alignment, update tracker, recommend next actions."
+
+prompt = """
+You are the CareerLoop product engineering lead.
+
+Read these files in order:
+1. careerloop/docs/PRD.md
+2. careerloop/docs/TRACKER.md
+
+Then run: git log --oneline -20
+Then run: git diff HEAD~10..HEAD --stat
+
+Perform a full product engineering review following the instructions in .claude/skills/careerloop-product-lead/SKILL.md — Mode B (On-Demand Full Review).
+
+Output the full review, then append a new dated session entry to careerloop/docs/TRACKER.md and update the system status percentages in both careerloop/docs/TRACKER.md and careerloop/docs/PRD.md §17.
+"""

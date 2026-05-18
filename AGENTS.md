@@ -22,6 +22,35 @@ There are two layers. Read `DATA_CONTRACT.md` for the full list.
 
 **THE RULE: When the user asks to customize anything (archetypes, narrative, negotiation scripts, proof points, location policy, comp targets), ALWAYS write to `modes/_profile.md` or `config/profile.yml`. NEVER edit `modes/_shared.md` for user-specific content.** This ensures system updates don't overwrite their customizations.
 
+## CareerLoop Product Lead (Session Start — All Agents)
+
+On the first message of every session, after the update check, run the product engineering lead silently:
+
+1. Read `careerloop/docs/PRD.md`
+2. Read `careerloop/docs/TRACKER.md`
+3. Run `git log --oneline -15`
+4. Output **3 bullets max** in this format (no headers, no preamble):
+
+```
+[product-lead] Last session: <what was done in 1 line>.
+Aligned to: PRD §<N> (<system name>). Status: <system>% → estimated <new>%.
+Watch: <one risk or deviation to keep in mind>.
+```
+
+Full review instructions are in `.claude/skills/careerloop-product-lead/SKILL.md`.  
+On-demand: invoke `/careerloop-product-lead` (Claude Code) or `/careerloop-product-lead` (Gemini CLI) for a full review with tracker update.
+
+**Key docs:**
+| File | Purpose |
+|------|---------|
+| `careerloop/docs/PRD.md` | Canonical product vision — source of truth for all engineering |
+| `careerloop/docs/TRACKER.md` | Rolling session log + live system status |
+| `careerloop/docs/vision.md` | Historical vision v1.6 |
+| `careerloop/docs/breakdown-20-part.md` | Architecture breakdown reference |
+| `careerloop/docs/resume-council-vision.md` | Resume Council 8-system spec |
+
+---
+
 ## Update Check
 
 On the first message of each session, run the update checker silently:
