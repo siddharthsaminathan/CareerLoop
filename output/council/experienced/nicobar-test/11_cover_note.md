@@ -1,1 +1,0 @@
-With 14+ years of engineering experience, I bring deep technical leadership but lack the required LLM API, SQL, and front-end skills for this mid-level AI Product Engineer role. My background does not include retail, personalization, or BI domain experience. I appreciate the consideration but recognize I am not the right fit for this position.

@@ -1,35 +1,32 @@
 # CareerLoop — Model Configuration
 # ─────────────────────────────────────────────────────────────────
 # All LLM model names and API routing live here.
-# Actual API keys go in .env (never in this file).
+# API keys go in .env (never in this file).
 #
-# To switch providers: change the model names and update your .env.
+# Model reference (DeepSeek):
+#   deepseek-chat      → DeepSeek V3 (fast, cheap, good for simple tasks)
+#   deepseek-v4-pro    → DeepSeek V4 Pro (most capable, for complex reasoning)
+#   deepseek-reasoner  → DeepSeek R1 (reasoning-first, slower)
 # ─────────────────────────────────────────────────────────────────
 
-# ── Scoring Engine (india_fit_llm.py) ─────────────────────────────
-# Used by the LLM India Fit Engine to score job fit across 14 dimensions.
-# Override via env: CAREERLOOP_FIT_MODEL
+# ── Fit Scoring Engine (careerloop/india_fit_llm.py) ─────────────
 fit_engine:
   provider: deepseek
-  model: deepseek-chat            # DeepSeek v3 (fast, cheap, good reasoning)
-  # model: deepseek-reasoner      # DeepSeek R1 (slower, better for complex fits)
-  # model: gpt-4o-mini            # OpenAI alternative (set OPENAI_API_KEY)
+  model: deepseek-chat            # V3 — fast, cheap, good for heuristic scoring
   temperature: 0.3
   max_tokens: 2000
 
-# ── Extraction Engine (scrapegraph_adapter.py) ────────────────────
-# Used by ScrapeGraphAI to extract structured job data from raw URLs.
-# Override via env: CAREERLOOP_SCRAPE_MODEL
+# ── Extraction Engine (careerloop/sources/scrapegraph_adapter.py)
 scrape_engine:
   provider: deepseek
-  model: deepseek/deepseek-chat   # ScrapeGraphAI expects "provider/model" format
-  # model: openai/gpt-4o-mini     # OpenAI alternative
+  model: deepseek/deepseek-chat   # V3 — ScrapeGraphAI expects "provider/model"
+  temperature: 0.1
+  max_tokens: 4000
 
-# ── Resume Council (Phase 2) ─────────────────────────────────────
-# Triggered only after explicit user interest/apply intent.
+# ── Resume Council (careerloop/council/llm.py) ───────────────────
 resume_council:
   provider: deepseek
-  strategy_model: deepseek-chat    # Override via CAREERLOOP_COUNCIL_STRATEGY_MODEL
-  writer_model: deepseek-chat      # Override via CAREERLOOP_COUNCIL_WRITER_MODEL
+  strategy_model: deepseek-v4-pro   # V4 Pro — S3-S6: company intel, role decode, user truth, positioning
+  writer_model: deepseek-chat       # V3 — S7-S8: section rewrites, cover note, DM
   temperature: 0.2
-  max_tokens: 3000
+  max_tokens: 10000                 # Large output needed for full section rewrites

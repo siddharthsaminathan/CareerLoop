@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siddharth Saminathan -- Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ═══════════════════════════════════════════════
+     CareerLoop CV -- Industrial Editorial
+     ATS-safe · single column · selectable text
+     ═══════════════════════════════════════════════ */
+
+  :root {
+    --ink: #1a1a1a;
+    --paper: #fafaf9;
+    --accent: #3b5998;
+    --rule: #d4d4d4;
+    --muted: #64748b;
+    --sans: 'Atkinson Hyperlegible', system-ui, sans-serif;
+    --serif: 'Crimson Pro', Georgia, serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--sans);
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: var(--ink);
+    background: #fff;
+    max-width: 8.5in;
+    margin: 0 auto;
+    padding: 0.55in 0.6in;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ────────────────────────────────── */
+  .header {
+    margin-bottom: 1.8rem;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 1.2rem;
+  }
+  .header h1 {
+    font-family: var(--serif);
+    font-size: 26pt;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+  .header .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 1.2rem;
+    font-size: 9.5pt;
+    color: var(--muted);
+  }
+  .header .contact-row a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent);
+  }
+  .header .contact-row .sep {
+    color: var(--rule);
+  }
+
+  /* ── Section Headings ──────────────────────── */
+  h2 {
+    font-family: var(--serif);
+    font-size: 12.5pt;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    margin: 1.5rem 0 0.4rem 0;
+    padding-bottom: 0.15rem;
+    border-bottom: 0.75px solid var(--rule);
+  }
+
+  /* ── Summary ───────────────────────────────── */
+  .summary { margin-bottom: 0.5rem; font-size: 10.5pt; }
+
+  /* ── Skills Grid ───────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 0.3rem 1rem;
+    font-size: 10pt;
+  }
+  .skills-grid .cat {
+    font-weight: 700;
+    color: var(--ink);
+    padding-right: 0.5rem;
+  }
+  .skills-grid .tags {
+    color: var(--ink);
+  }
+
+  /* ── Experience ────────────────────────────── */
+  .exp-item { margin-bottom: 0.9rem; }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.2rem;
+  }
+  .exp-header .role {
+    font-weight: 700;
+    font-size: 11pt;
+    color: var(--ink);
+    flex: 1;
+  }
+  .exp-header .exp-meta {
+    text-align: right;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .exp-header .company {
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 10pt;
+  }
+  .exp-header .dates {
+    font-size: 9pt;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .exp-desc {
+    font-size: 10pt;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  ul { padding-left: 1.3rem; margin: 0.25rem 0; }
+  li { margin-bottom: 0.15rem; font-size: 10pt; }
+  li::marker { color: var(--muted); }
+
+  /* ── Achievements ──────────────────────────── */
+  .achievements { margin-top: 0.1rem; }
+  .achievements li { margin-bottom: 0.3rem; }
+  .achievements li strong { color: var(--ink); }
+
+  /* ── Education ─────────────────────────────── */
+  .edu-item { margin-bottom: 0.35rem; }
+  .edu-item .degree { font-weight: 700; }
+  .edu-item .school { color: var(--muted); }
+  .thesis { font-size: 9.5pt; color: var(--muted); margin-top: 0.3rem; }
+
+  /* ── Languages ─────────────────────────────── */
+  .lang-list { display: flex; gap: 1.2rem; flex-wrap: wrap; font-size: 10pt; }
+
+  /* ── Print ─────────────────────────────────── */
+  @media print {
+    body { padding: 0; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    @page { margin: 0.55in 0.6in; size: letter; }
+    .exp-item, .job { break-inside: avoid; }
+    h2, .section-title { break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header">
+  <h1>Siddharth Saminathan</h1>
+  <div class="contact-row">
+    <span>+91 7299707403
+-</span><span class="sep">|</span>
+    <span>siddharthsaminathan99@gmail.com</span><span class="sep">|</span>
+    <span>Chennai, India</span><span class="sep">|</span>
+    <a href="https://emotenow.app/">emotenow.app/</a><span class="sep">|</span>
+    <a href="https://github.com/siddharthsaminathan">siddharthsaminathan</a>
+  </div>
+</header>
+
+<!-- ═══ PROFILE / SUMMARY ═══ -->
+<h2>Profile</h2><div class="summary"><p><strong>AI Product Engineer</strong> with 4+ years building and shipping production AI systems that automate mission-critical enterprise workflows, from AI-driven quality management (DFMEA. PFMEA, Control Plans, 8D) to real-time AI products at scale. I take systems from concept to production and optimize them relentlessly: latency, cost, reliability, and user outcomes. Multi-agent orchestration, tool-driven architectures, and memory systems. What I build doesn't just respond, it improves over time.</p></div>
+
+<!-- ═══ SKILLS ═══ -->
+<h2>Skills</h2><div class="skills-grid">
+<span class="cat"><strong>Programming</strong></span>
+<span class="tags">Python, SQL</span>
+<span class="cat">AI Systems</span>
+<span class="tags">LLM APIs, RAG pipelines, embeddings, prompt engineering, tool calling, multi-model routing, agentic workflows, LangChain/LangGraph</span>
+<span class="cat">Backend</span>
+<span class="tags">FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets. SSE streaming</span>
+<span class="cat">Systems Design</span>
+<span class="tags">Stateful systems, workflow orchestration, memory systems, context modeling, distributed pipelines</span>
+<span class="cat">Infra</span>
+<span class="tags">Docker, AWS, Fly.io, logging, tracing, metrics, performance optimization</span>
+<span class="cat">Data</span>
+<span class="tags">ETL pipelines, data validation, Power BI, Tableau · .</span>
+</div>
+
+<!-- ═══ WORK EXPERIENCE ═══ -->
+<h2>Work Experience</h2><div class="exp-item">
+<div class="exp-header">
+<span class="role">AI Engineer, Omnex Systems, Chennai</span>
+<span class="exp-meta">
+<span class="dates">Jul 2025 - Present</span>
+</span>
+</div>
+<ul>
+</ul>
+<p>Omnex is an <strong>Enterprise AI Quality Platform (EQMS)</strong> serving global manufacturing. I built their agentic AI system for end-to-end manufacturing quality digitalization, automating the core quality engineering workflows that automotive, aerospace, and industrial OEMs run on.</p>
+<ul>
+<li>Built a production multi-agent AI system that automates end-to-end manufacturing quality workflows: DFMEA (Design Failure Mode), PFMEA (Process Failure Mode), Control Plans, and 8D corrective action, reducing manual engineering effort and improving consistency across global supply chains.</li>
+<li>Designed a tool-driven orchestration layer that dynamically selects tools, routes data across internal and external enterprise systems, and executes multi-step quality workflows (generate to validate to update to act) with full traceability.</li>
+<li>Enabled context-aware quality decisioning: the system maps inputs to production hierarchies (part/process/plant), retrieves relevant historical quality cases, and suggests structured corrective actions and process updates.</li>
+<li>Improved system performance and reliability, reduced workflow latency (~12.5s to ~8s), built validation layers and retry logic, and instrumented full observability (logging, tracing, metrics) for production manufacturing environments.</li>
+</ul>
+</div>
+<div class="exp-item">
+<div class="exp-header">
+<span class="role">Co-Founder / AI Engineer, Emote (emotenow.app)</span>
+<span class="exp-meta">
+<span class="dates">Apr 2024 - Present</span>
+</span>
+</div>
+<ul>
+<li>Built and iterated a production AI system that learns from user interactions over time, modeling context, relationships, and behavioral patterns across sessions to improve response quality and continuity</li>
+<li>Designed and scaled the end-to-end backend architecture (FastAPI, Redis, PostgreSQL, real-time pipelines, multi-model routing), enabling low-latency, stateful AI interactions in production</li>
+<li>Drove core system performance and efficiency, reducing latency (~15s to ~3s) and. Inference cost (~$1.20 to ~$0.023) through pipeline optimization, caching, and model selection</li>
+<li>Owned the full product loop (0 to 1 to iteration): scaled to 450+ users with 40+ power users, improved activation (20% to 75%) and retention (5% to 13-15%) by continuously shipping improvements based on real user behavior and feedback</li>
+</ul>
+</div>
+<div class="exp-item">
+<div class="exp-header">
+<span class="role">Data Engineer, Akkodis AB, Sweden</span>
+<span class="exp-meta">
+<span class="dates">Nov 2022 - Nov 2024</span>
+</span>
+</div>
+<ul>
+<li>Led migration from Azure to PostgreSQL, automating ETL processes using Docker, Argo, and Python.</li>
+<li>Developed and optimized Cron jobs to enhance workflow efficiency.</li>
+<li>Improved Power BI dashboards and metrics pipelines, resulting in 5% increase in business reporting accuracy.</li>
+<li>Constructed automated validation layers to ensure data quality and integrity across enterprise reporting systems.</li>
+<li>Enhanced ETL workflows through Docker containerization and PostgreSQL optimization.</li>
+</ul>
+</div>
+<div class="exp-item">
+<div class="exp-header">
+<span class="role">Data Analyst, Positive Integers Pvt Ltd, Chennai</span>
+<span class="exp-meta">
+<span class="dates">Sep 2019 - May 2020</span>
+</span>
+</div>
+<ul>
+<li>Analyzed financial datasets related to loan portfolios, credit risk, and customer behavior patterns for an NBFC</li>
+<li>Developed interactive dashboards using Tableau and. Grafana to visualize business KPIs and financial metrics</li>
+<li>Constructed SQL-based ETL workflows</li>
+</ul>
+</div>
+
+<!-- ═══ KEY ACHIEVEMENTS ═══ -->
+<h2>Key Achievements</h2><div class="achievements"><ul>
+<li><strong>Built Emote from zero:</strong> Took product from vision to production, grew to 450+ users, achieved 13-15% weekly retention through continuous iteration.</li>
+<li><strong>Latency reduction:</strong> Drove inference latency from ~15s to ~3s and cost from ~$1.20 to ~$0.023 per session at Emote.</li>
+<li><strong>Enterprise migration:</strong> Led Azure to PostgreSQL data platform migration at Akkodis for Ericsson systems; recognized for improving reporting reliability and delivery.</li>
+<li><strong>Agentic manufacturing quality system:</strong> Built production multi-agent AI for enterprise quality management (EQMS) at Omnex Systems, automates DFMEA, PFMEA, Control Plans, and 8D across global manufacturing supply chains (12.5s to 8s latency).</li>
+</ul></div>
+
+<!-- ═══ EDUCATION ═══ -->
+<h2>Education</h2><ul>
+<li><strong>M.Sc. Statistics and Machine Learning</strong>, Linköping University, Sweden (2020-2022)</li>
+<li><strong>B.Tech Computer Science and Engineering</strong>, SRM University, India (2016-2020)</li>
+</ul>
+<h2>Master's Thesis</h2>
+<p class="thesis"><em>Developed a machine learning pipeline utilizing autoencoders and classifiers to predict colorectal cancer metastasis from RNA sequencing data. Employed transfer learning, PCA, and network analysis for biomarker detection in high-dimensional biological datasets.</em></p>
+
+<!-- ═══ LANGUAGES ═══ -->
+<h2>Languages</h2><div class="lang-list"><span>English (Fluent) · Tamil · Hindi</span></div>
+
+</body>
+</html>

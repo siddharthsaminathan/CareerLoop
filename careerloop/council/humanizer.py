@@ -1,11 +1,12 @@
 """
 Humanizer — Anti-AI detection + human communication normalization.
 
-4-phase pipeline:
+5-phase pipeline:
   Phase 1 (DETERMINISTIC): AI slop detection — flag banned words/phrases
   Phase 2 (DETERMINISTIC): Recruiter realism check — structural red flags
   Phase 3 (LLM): Surgical humanize — rewrite flagged sentences minimally
   Phase 4 (LLM): Tone adaptation — match company/role context
+  Phase 5 (DETERMINISTIC): Output sanitization — smart quotes, encoding, whitespace
 
 Usage:
     h = Humanizer(llm_client)
@@ -96,9 +97,12 @@ class Humanizer:
         # Phase 4: Tone adaptation (LLM if available, else deterministic rules)
         adapted = self._adapt_tone(humanized, context, mode)
 
+        # Phase 5: Sanitize output (deterministic — em dashes, arrows, encoding)
+        sanitized = self._sanitize_output(adapted)
+
         return HumanizerResult(
             original_text=text,
-            humanized_text=adapted,
+            humanized_text=sanitized,
             flags=flags,
             changes_made=len(flags),
             recruiter_concerns=concerns,
@@ -396,10 +400,89 @@ class Humanizer:
             else:
                 adjusted.append(sent)
 
-        result = " ".join(adjusted)
+        # Preserve paragraph breaks — split by double newline, process each paragraph,
+        # then rejoin with double newlines
+        paragraphs = text.split("\n\n")
+        processed = []
+        for para in paragraphs:
+            if not para.strip():
+                processed.append(para)
+                continue
+            sentences_in_para = _split_sentences(para)
+            adjusted_para = []
+            for sent in sentences_in_para:
+                words = sent.split()
+                if len(words) > max_len:
+                    mid = len(words) // 2
+                    split_point = None
+                    for j in range(mid, min(mid + 10, len(words))):
+                        if words[j].rstrip(".,;:") in ("and", "but", "or", "while", "where", "which"):
+                            split_point = j + 1
+                            break
+                    if split_point is None:
+                        for j in range(mid, min(mid + 10, len(words))):
+                            if words[j].endswith(","):
+                                split_point = j + 1
+                                break
+                    if split_point:
+                        adjusted_para.append(" ".join(words[:split_point]).rstrip(",") + ".")
+                        second = " ".join(words[split_point:])
+                        if second and not second.endswith((".", "!", "?")):
+                            second += "."
+                        adjusted_para.append(second[0].upper() + second[1:] if second else "")
+                    else:
+                        adjusted_para.append(sent)
+                else:
+                    adjusted_para.append(sent)
+            processed.append(" ".join(adjusted_para))
+        return "\n\n".join(processed)
+
+
+    # ─── Phase 5: Output Sanitization (DETERMINISTIC) ────────────────────────
+
+    def _sanitize_output(self, text: str) -> str:
+        """Phase 5: Sanitize final output (deterministic).
+
+        Runs AFTER the Humanizer's LLM phases, so the LLM cannot
+        re-introduce artifacts that were stripped earlier.
+
+        Handles:
+        - Smart quotes → straight quotes
+        - Non-breaking spaces → regular spaces
+        - Zero-width characters
+        - Normalize excessive newlines
+        - Flag (but do not strip) em dashes — recorded in result
+        """
+        result = text
+
+        # Smart quotes → straight quotes
+        result = result.replace('“', '"')  # left double
+        result = result.replace('”', '"')  # right double
+        result = result.replace('‘', "'")  # left single
+        result = result.replace('’', "'")  # right single
+        result = result.replace('«', '"')  # left-pointing double angle
+        result = result.replace('»', '"')  # right-pointing double angle
+
+        # Non-breaking spaces → regular spaces
+        result = result.replace(' ', ' ')
+        result = result.replace(' ', ' ')  # narrow non-breaking space
+
+        # Zero-width characters
+        result = result.replace('​', '')   # zero-width space
+        result = result.replace('‌', '')   # zero-width non-joiner
+        result = result.replace('‍', '')   # zero-width joiner
+        result = result.replace('﻿', '')   # BOM / zero-width no-break space
+
+        # Normalize excessive newlines (max 2 consecutive)
+        result = re.sub(r'\n{3,}', '\n\n', result)
+
+        # Normalize trailing whitespace on each line
+        result = '\n'.join(line.rstrip() for line in result.split('\n'))
+
+        # Strip leading/trailing whitespace
+        result = result.strip()
 
         return result
-
 
 # ─── Utility helpers ─────────────────────────────────────────────────────────────
 

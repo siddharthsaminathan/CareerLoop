@@ -1,1 +1,0 @@
-FAILURE: Council stopped with 1 error(s). See failure_report.md in output directory.

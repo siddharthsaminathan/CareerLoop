@@ -377,20 +377,24 @@ class ResumeCompiler:
 
             # Heading (skip for intro — it's a synthetic section)
             if section.section_id != "intro":
-                output_parts.append(f"## {section.section_title}\n")
+                if output_parts:
+                    output_parts.append("")  # blank line before heading
+                output_parts.append(f"## {section.section_title}")
             elif section.section_title and section.section_id == "intro":
                 # Intro section with content but no heading
                 pass
 
-            # Content: rewrite if available in contract order, else original
+            # Content: use rewrite if non-empty, otherwise fall back to original
             if section.section_id in rewrites.rewrites:
-                output_parts.append(rewrites.rewrites[section.section_id].rewritten_text)
-            else:
+                rw = rewrites.rewrites[section.section_id].rewritten_text
+                if rw:
+                    output_parts.append(rw)
+                elif section.raw_text:
+                    output_parts.append(section.raw_text)  # fallback
+            elif section.raw_text:
                 output_parts.append(section.raw_text)
 
-            output_parts.append("")
-
-        return "\n".join(output_parts).strip()
+        return "\n\n".join(output_parts).strip() + "\n"
 
     # ── Link Audit ─────────────────────────────────────────────────────────
 

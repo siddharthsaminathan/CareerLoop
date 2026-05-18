@@ -1,0 +1,23 @@
+{
+  "one_line_positioning": "AI Product Engineer who ships enterprise AI from concept to production",
+  "narrative_angle": "Product-minded AI engineer with enterprise AI automation experience, now targeting consumer-facing D2C applications",
+  "lead_strengths": [
+    "LLM API production experience",
+    "Multi-agent orchestration",
+    "End-to-end AI product development"
+  ],
+  "proof_points_to_emphasize": [
+    "Built production multi-agent AI system for enterprise quality management",
+    "Co-founded Emote, scaled to 450+ users, optimized latency and cost",
+    "Led migration from Azure to PostgreSQL, improving reporting accuracy"
+  ],
+  "things_to_downplay": [
+    "No frontend skills",
+    "No retail/e-commerce experience",
+    "No IIT/BITS/NIT education"
+  ],
+  "tone_guidance": "Confident, outcome-focused, design-thinking aware",
+  "recruiter_first_impression_target": "Engineer who thinks in business outcomes, not just code",
+  "application_stance": "CAREFUL_PUSH",
+  "reasoning": "Strong AI engineering match with LLM and multi-agent experience; D2C retail domain is new but transferable. Must compensate for lack of frontend and retail background with strong product thinking and business impact stories."
+}

@@ -1,1 +1,0 @@
-I build AI products from zero to scale. At Emote, I co-founded and shipped a product that grew to 450+ users, improving activation from 20% to 75% and retention from 5% to 13-15% through data-driven iteration. For Nicobar's AI Product Engineer role, I would bring the same end-to-end ownership and data-first approach to customer personalization and store clienteling.

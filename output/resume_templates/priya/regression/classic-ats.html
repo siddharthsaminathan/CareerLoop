@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fresher Profile: Priya Sharma — CV</title>
+<style>
+  /* ═══════════════════════════════════════════════
+     Classic ATS — max compatibility, black/white
+     ═══════════════════════════════════════════════ */
+  :root {
+    --ink: #1a1a1a;
+    --muted: #64748b;
+    --rule: #d4d4d4;
+    --accent: #2c5282;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--ink);
+    background: #ffffff;
+    max-width: 8.5in;
+    margin: 0 auto;
+    padding: 0.55in 0.6in;
+  }
+
+  /* ── Header ────────────────────────────────── */
+  .header {
+    margin-bottom: 1.2rem;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 0.8rem;
+    text-align: center;
+  }
+  .header h1 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+    line-height: 1.1;
+  }
+  .header-gradient { display: none; }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.8rem;
+    font-size: 10pt;
+    color: var(--muted);
+    justify-content: center;
+  }
+  .contact-row a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .contact-row .separator { color: #ccc; }
+
+  /* ── Section headings ──────────────────────── */
+  .section { margin-bottom: 0.9rem; }
+  .section-title {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 3px;
+    margin: 1.5rem 0 0.4rem 0;
+  }
+  .section:first-of-type .section-title { margin-top: 0.4rem; }
+
+  /* ── Summary ───────────────────────────────── */
+  .summary-text {
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  /* ── Experience (exp-header layout) ────────── */
+  .exp-item { margin-bottom: 0.9rem; }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.2rem;
+  }
+  .exp-header .role {
+    font-weight: 700;
+    font-size: 11pt;
+    color: var(--ink);
+    flex: 1;
+  }
+  .exp-header .exp-meta {
+    text-align: right;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .exp-header .company {
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 10pt;
+  }
+  .exp-header .dates {
+    font-size: 9pt;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Keep old job-* classes as compat fallback */
+  .job { margin-bottom: 0.9rem; }
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.2rem;
+  }
+  .job-company { font-weight: 700; color: var(--ink); }
+  .job-period { font-size: 9pt; color: var(--muted); font-style: italic; }
+  .job-role { font-size: 10pt; color: var(--muted); margin-bottom: 0.15rem; }
+  .job-location { font-size: 9pt; color: var(--muted); }
+
+  .job ul, .exp-item ul { padding-left: 1.3rem; margin-top: 0.25rem; }
+  .job li, .exp-item li {
+    font-size: 10pt;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+  }
+  .job li strong, .exp-item li strong { font-weight: 600; }
+  ul li::marker { color: var(--muted); }
+
+  /* ── Skills grid ───────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 0.3rem 1rem;
+    font-size: 10pt;
+  }
+  .skills-grid .cat {
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .skills-grid .tags {
+    color: var(--ink);
+  }
+
+  /* Old skill-item compat */
+  .skill-item { font-size: 10pt; color: var(--ink); }
+  .skill-category { font-weight: 700; color: var(--ink); }
+
+  /* ── Projects ──────────────────────────────── */
+  .project { margin-bottom: 0.8rem; }
+  .project-title { font-size: 11pt; font-weight: 600; color: var(--ink); }
+  .project-desc { font-size: 10pt; color: var(--ink); margin-top: 0.2rem; line-height: 1.55; }
+
+  /* ── Education ─────────────────────────────── */
+  .edu-item { margin-bottom: 0.4rem; }
+  .edu-header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; }
+  .edu-title { font-weight: 600; font-size: 10.5pt; color: var(--ink); }
+  .edu-org { color: var(--muted); font-weight: 400; }
+  .edu-year { font-size: 9.5pt; color: var(--muted); white-space: nowrap; }
+
+  /* ── Competencies tag cloud ────────────────── */
+  .competencies-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .competency-tag {
+    font-size: 9.5pt;
+    font-weight: 500;
+    color: var(--ink);
+    background: transparent;
+    padding: 3px 8px;
+    border-radius: 0;
+    border: 1px solid #999;
+  }
+
+  /* ── Links ─────────────────────────────────── */
+  a { white-space: nowrap; color: var(--accent); text-decoration: none; }
+
+  /* ── Rendering contract fallbacks ───────────────
+     Standard classes rendered by render_all_templates.py.
+     Keep alongside template-unique styles. */
+  .achievements { margin-top: 0.1rem; }
+  .achievements li { margin-bottom: 0.3rem; }
+  .achievements li strong { color: var(--ink); }
+  .exp-desc { font-size: inherit; color: var(--ink); margin-bottom: 0.3rem; }
+  .edu-item .degree { font-weight: 600; color: var(--ink); }
+  .edu-item .school { color: var(--muted); font-weight: 400; }
+  .edu-details { font-size: 9.5pt; color: var(--muted); margin-top: 2px; }
+  .tag { font-weight: 500; }
+  .thesis { font-size: 9.5pt; color: var(--muted); margin-top: 0.3rem; }
+  .thesis-heading { margin-top: 0.5rem; font-size: 10pt; }
+
+  /* ── Print ─────────────────────────────────── */
+  @media print {
+    body { padding: 0; background: #fff; }
+    @page { margin: 0.55in 0.6in; size: letter; }
+    .exp-item, .job { break-inside: avoid; }
+    h2, .section-title { break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Fresher Profile: Priya Sharma</h1>
+  <div class="header-gradient"></div>
+  <div class="contact-row">
+    <span></span><span class="separator">|</span>
+    <span></span><span class="separator">|</span>
+    <a href="">LinkedIn</a><span class="separator">|</span>
+    <a href="">Portfolio</a><span class="separator">|</span>
+    <span></span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Profile</div>
+  <div class="summary-text"><p>Recent Computer Science graduate with a passion for Machine Learning and Data Science.</p>
+</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Competencies</div>
+  <div class="competencies-grid"></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Experience</div>
+  
+</div>
+
+<div class="section">
+  <div class="section-title">Projects</div>
+  
+</div>
+
+<div class="section">
+  <div class="section-title">Education</div>
+  <div class="edu-item"><span class="degree">B.Tech Computer Science</span>, <span class="school">IIT Delhi</span> <span class="dates">2020 - 2024</span></div><div class="edu-item"><span class="degree">GPA: 9.2/10</span></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Skills</div>
+  <ul>
+<li>Python, R, SQL</li>
+<li>TensorFlow, PyTorch</li>
+<li>Data Visualization (Tableau)</li>
+</ul>
+
+</div>
+
+</body>
+</html>

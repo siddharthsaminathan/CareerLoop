@@ -1,1 +1,0 @@
-As an IIT Delhi graduate with strong Python and SQL skills, I have built ML projects from scratch and can quickly master LLM APIs. I offer a fresh perspective and rapid learning to drive Nicobar's AI transformation.

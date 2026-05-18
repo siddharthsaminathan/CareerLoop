@@ -319,24 +319,28 @@ The user should feel:
 
 | System | Completion | Status | Notes |
 |--------|-----------|--------|-------|
-| India-first discovery | 65% | 🟡 Active | ATS scan solid; 0/5 India portals (Naukri, Instahyre, etc.) |
-| Verification & filtering | 55% | 🟡 Active | Search page rejection works; Block G (legitimacy) not hoisted |
-| Opportunity scoring (14-dim) | 50% | 🟡 Active | Heuristic works for AI roles; needs calibration for non-AI |
-| Decision compression / triage | 20% | 🔴 Gap | modes/ofertas.md reusable but no UX built |
-| Career state system (modes) | 10% | 🔴 Gap | Conceptual only; not wired to pipeline |
-| Company intelligence | 10% | 🔴 Gap | Council node is unreliable LLM recall; spec written, code not started |
-| Positioning engine | 15% | 🟡 Active | Council positioning_node exists; prompt hardening needed |
-| Resume Council (v3) | 45% | 🟡 Active | Pipeline passes; 4/8 output fields missing + Humanizer not integrated |
-| Humanizer layer | 5% | 🔴 Gap | Spec written; code not started. P0 blocker for Council quality |
-| Application execution | 15% | 🔴 Gap | modes/apply.md is working prototype; Chrome extension not started |
+| India-first discovery | 75% | 🟡 Active | ATS adapter, portal scraper, on-demand search, role keywords shipped |
+| Verification & filtering | 60% | 🟡 Active | detect_ats_pass.py; Block G not hoisted |
+| Opportunity scoring (14-dim) | 55% | 🟡 Active | function_probability.py + metrics.py; needs calibration |
+| Decision compression / triage | 20% | 🔴 Gap | modes/ofertas.md reusable; no UX |
+| Career state system (modes) | 10% | 🔴 Gap | Conceptual only |
+| Company intelligence | 20% | 🔴 Gap | Vision doc published; Council JD-grounded; company_intel.py not built |
+| Positioning engine | 20% | 🟡 Active | Council S6 wired; tailoring delta 3.6% (needs prompt work) |
+| Resume Council (v3) | 60% | 🟡 Active | All 8 systems pass; Humanizer; Truth Guard; deterministic compiler |
+| Humanizer layer | 50% | 🟡 Active | 5-phase pipeline; 28 banned words; LLM wired; post-Humanizer verification |
+| Resume rendering (templates) | 70% | 🟡 Active | NormalizedResume contract; 9 templates; 36/36 clean renders |
+| Validator / QA | 60% | 🟡 Active | 10 rules; regression_test.py CI-ready; 94.4% pass rate |
+| Application execution | 15% | 🔴 Gap | modes/apply.md prototype; Chrome extension not started |
 | Chrome extension | 0% | ⚫ Not started | Phase 3 |
-| Follow-up system | 25% | 🔴 Gap | Ledger auto-schedules; cadence logic exists; UI missing |
-| Interview memory | 10% | 🔴 Gap | modes/interview-prep.md is 4★; no DB persistence |
-| Persistent memory graph | 20% | 🟡 Active | Ledger full lifecycle + auto-schedules; SQLite schema drafted |
-| WhatsApp/transport UX | 15% | 🔴 Gap | Concept exists; no implementation |
-| Monetization logic | 30% | 🟡 Active | Strategic understanding solid; pricing not built |
+| Follow-up system | 25% | 🔴 Gap | Ledger auto-schedules; UI missing |
+| Interview memory | 10% | 🔴 Gap | modes/interview-prep.md 4★; no DB persistence |
+| Persistent memory graph | 25% | 🟡 Active | Ledger + company_registry + SQLite schema |
+| WhatsApp/transport UX | 15% | 🔴 Gap | Concept only |
+| Monetization logic | 30% | 🟡 Active | Strategic understanding solid |
 
-**Overall product maturity: ~20–25% of vision.** (Audit-recalibrated 2026-05-18 — net neutral after deep inspection.)
+**Overall product maturity: ~30-35% of vision.** (+10% after 6-agent stabilization pass. Council 45→60%, Humanizer 5→50%, Rendering 60→70%, Validator new at 60%.)
+
+> Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 

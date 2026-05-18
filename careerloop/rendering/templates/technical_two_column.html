@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{NAME}} — CV</title>
+<style>
+  /* ═══════════════════════════════════════════════
+     Technical Two-Column — sidebar for skills/edu/contact
+     ═══════════════════════════════════════════════ */
+  :root {
+    --ink: #1a1a1a;
+    --muted: #64748b;
+    --rule: #e2e8f0;
+    --accent: #2b6cb0;
+    --accent-light: #ebf8ff;
+    --sidebar-width: 2.6in;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 10pt;
+    line-height: 1.5;
+    color: var(--ink);
+    background: #ffffff;
+    max-width: {{PAGE_WIDTH}};
+    margin: 0 auto;
+    padding: 0.55in 0.6in;
+    display: grid;
+    grid-template-columns: calc(var(--sidebar-width) - 0.4in) 1fr;
+    gap: 0 1.2rem;
+  }
+
+  /* ── Header (spans both columns) ───────────── */
+  .header {
+    grid-column: 1 / -1;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.7rem;
+  }
+  .header h1 {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 24pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+    line-height: 1.1;
+  }
+  .header-gradient { display: none; }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.8rem;
+    font-size: 9.5pt;
+    color: var(--muted);
+  }
+  .contact-row a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .contact-row .separator { color: #ccc; }
+
+  /* ── Sidebar ───────────────────────────────── */
+  .sidebar {
+    font-size: 9pt;
+    line-height: 1.4;
+  }
+  .sidebar .section { margin-bottom: 0.7rem; }
+  .sidebar .section-title {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--accent);
+    border-bottom: 1.5px solid var(--rule);
+    padding-bottom: 2px;
+    margin: 0.8rem 0 0.3rem 0;
+  }
+  .sidebar .section:first-of-type .section-title { margin-top: 0; }
+
+  /* Sidebar skills grid — narrower columns */
+  .sidebar .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+    font-size: 8.5pt;
+  }
+  .sidebar .skills-grid .cat {
+    font-weight: 700;
+    color: var(--accent);
+    margin-top: 0.3rem;
+  }
+  .sidebar .skills-grid .cat:first-child { margin-top: 0; }
+  .sidebar .skills-grid .tags {
+    color: var(--ink);
+  }
+
+  /* Sidebar competencies */
+  .sidebar .competencies-grid { display: flex; flex-wrap: wrap; gap: 4px; }
+  .sidebar .competency-tag {
+    font-size: 8pt;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: none;
+  }
+
+  /* ── Main column ───────────────────────────── */
+  .main-column .section { margin-bottom: 0.7rem; }
+  .main-column .section-title {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 11pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--accent);
+    border-bottom: 1.5px solid var(--rule);
+    padding-bottom: 2px;
+    margin: 1.2rem 0 0.35rem 0;
+  }
+  .main-column .section:first-of-type .section-title { margin-top: 0; }
+
+  /* ── Summary (main column) ─────────────────── */
+  .main-column .summary-text {
+    font-size: 10pt;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  /* ── Experience (main column) ──────────────── */
+  .main-column .exp-item { margin-bottom: 0.7rem; }
+  .exp-header, .main-column .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.15rem;
+  }
+  .exp-header .role {
+    font-weight: 700;
+    font-size: 10.5pt;
+    color: var(--ink);
+    flex: 1;
+  }
+  .exp-header .exp-meta {
+    text-align: right;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .exp-header .company {
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 9.5pt;
+  }
+  .exp-header .dates {
+    font-size: 8.5pt;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Old job-* compat */
+  .main-column .job { margin-bottom: 0.7rem; }
+  .main-column .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.15rem;
+  }
+  .main-column .job-company { font-weight: 700; color: var(--ink); }
+  .main-column .job-period { font-size: 8.5pt; color: var(--muted); font-style: italic; }
+  .main-column .job-role { font-size: 9pt; color: var(--muted); margin-bottom: 0.1rem; }
+  .main-column .job-location { font-size: 8.5pt; color: var(--muted); }
+
+  .main-column .job ul, .main-column .exp-item ul { padding-left: 1.2rem; margin-top: 0.2rem; }
+  .main-column .job li, .main-column .exp-item li {
+    font-size: 9.5pt;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 0.12rem;
+  }
+  .main-column .job li strong, .main-column .exp-item li strong { font-weight: 600; }
+  ul li::marker { color: var(--muted); }
+
+  /* ── Projects (main column) ────────────────── */
+  .main-column .project { margin-bottom: 0.6rem; }
+  .main-column .project-title { font-size: 10pt; font-weight: 600; color: var(--accent); }
+  .main-column .project-desc { font-size: 9.5pt; color: var(--ink); margin-top: 0.15rem; line-height: 1.5; }
+
+  /* ── Education ─────────────────────────────── */
+  .edu-item { margin-bottom: 0.3rem; }
+  .edu-header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.4rem; }
+  .edu-title { font-weight: 600; font-size: 9.5pt; color: var(--ink); }
+  .edu-org { color: var(--muted); font-weight: 400; }
+  .edu-year { font-size: 8.5pt; color: var(--muted); white-space: nowrap; }
+
+  /* ── Links ─────────────────────────────────── */
+  a { white-space: nowrap; color: var(--accent); text-decoration: none; }
+
+  /* ── Rendering contract fallbacks ───────────────
+     Standard classes rendered by render_all_templates.py.
+     Keep alongside template-unique styles. Sidebar-aware. */
+  .achievements { margin-top: 0.1rem; }
+  .achievements li { margin-bottom: 0.25rem; }
+  .achievements li strong { color: var(--ink); }
+  .exp-desc { font-size: inherit; color: var(--ink); margin-bottom: 0.2rem; }
+  .edu-item .degree { font-weight: 600; color: var(--ink); font-size: 9.5pt; }
+  .edu-item .school { color: var(--muted); font-weight: 400; }
+  .edu-details { font-size: 8.5pt; color: var(--muted); margin-top: 1px; }
+  .tag { font-weight: 500; }
+  .thesis { font-size: 8.5pt; color: var(--muted); margin-top: 0.2rem; }
+  .thesis-heading { margin-top: 0.4rem; font-size: 9.5pt; }
+
+  /* ── Print ─────────────────────────────────── */
+  @media print {
+    body { padding: 0; background: #fff; }
+    @page { margin: 0.55in 0.6in; size: letter; }
+    .exp-item, .job { break-inside: avoid; }
+    h2, .section-title { break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>{{NAME}}</h1>
+  <div class="header-gradient"></div>
+  <div class="contact-row">
+    <span>{{PHONE}}</span><span class="separator">|</span>
+    <span>{{EMAIL}}</span><span class="separator">|</span>
+    <a href="{{LINKEDIN_URL}}">{{LINKEDIN_DISPLAY}}</a><span class="separator">|</span>
+    <a href="{{PORTFOLIO_URL}}">{{PORTFOLIO_DISPLAY}}</a><span class="separator">|</span>
+    <span>{{LOCATION}}</span>
+  </div>
+</div>
+
+<div class="sidebar">
+  <div class="section">
+    <div class="section-title">{{SECTION_SKILLS}}</div>
+    {{SKILLS}}
+  </div>
+  <div class="section">
+    <div class="section-title">{{SECTION_EDUCATION}}</div>
+    {{EDUCATION}}
+  </div>
+  <div class="section">
+    <div class="section-title">{{SECTION_COMPETENCIES}}</div>
+    <div class="competencies-grid">{{COMPETENCIES}}</div>
+  </div>
+</div>
+
+<div class="main-column">
+  <div class="section">
+    <div class="section-title">{{SECTION_SUMMARY}}</div>
+    <div class="summary-text">{{SUMMARY_TEXT}}</div>
+  </div>
+  <div class="section">
+    <div class="section-title">{{SECTION_EXPERIENCE}}</div>
+    {{EXPERIENCE}}
+  </div>
+  <div class="section">
+    <div class="section-title">{{SECTION_PROJECTS}}</div>
+    {{PROJECTS}}
+  </div>
+</div>
+
+</body>
+</html>

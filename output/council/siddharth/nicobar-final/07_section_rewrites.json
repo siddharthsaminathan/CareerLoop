@@ -1,0 +1,39 @@
+{
+  "rewrites": {
+    "profile": {
+      "section_id": "profile",
+      "original_text": "**AI Product Engineer** specializing in **manufacturing enterprise quality digitalization** and production AI systems. 4+ years building and shipping AI that automates mission-critical enterprise workflows \u2014 from agentic quality management (DFMEA, PFMEA, Control Plans, 8D) to real-time AI products at scale. I take systems from concept to production and optimize them relentlessly: latency, cost, reliability, and user outcomes. Multi-agent orchestration, tool-driven architectures, and memory systems. What I build doesn't just respond \u2014 it improves over time.",
+      "rewritten_text": "**AI Product Engineer** with 4+ years building and shipping production AI systems that automate mission-critical enterprise workflows \u2014 from agentic quality management (DFMEA, PFMEA, Control Plans, 8D) to real-time AI products at scale. I take systems from concept to production and optimize them relentlessly: latency, cost, reliability, and user outcomes. Multi-agent orchestration, tool-driven architectures, and memory systems. What I build doesn't just respond \u2014 it improves over time.",
+      "change_type": "KEEP",
+      "change_reason": "Removed redundant 'specializing in manufacturing enterprise quality digitalization' to broaden appeal for D2C roles.",
+      "claims_added": [],
+      "claims_removed": [
+        "specializing in manufacturing enterprise quality digitalization"
+      ],
+      "evidence_used": [],
+      "risk_level": "low"
+    },
+    "skills": {
+      "section_id": "skills",
+      "original_text": "| Category | Technologies ||----------|-------------|| **Programming** | Python, SQL || **AI Systems & Agentic Architectures** | LLM APIs, RAG pipelines, embeddings, prompt engineering, tool calling, multi-model routing, agentic workflows, LangChain/LangGraph || **Backend & Real-Time Systems** | FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets, SSE streaming || **System Design & Orchestration** | Stateful systems, workflow orchestration, memory systems, context modeling, distributed pipelines || **Infra & Observability** | Docker, AWS, Fly.io, logging, tracing, metrics, performance optimization || **Data & Analytics** | ETL pipelines, data validation, Power BI, Tableau |",
+      "rewritten_text": "| Category | Technologies ||----------|-------------|| **Programming** | Python, SQL || **AI Systems & Agentic Architectures** | LLM APIs, RAG pipelines, embeddings, prompt engineering, tool calling, multi-model routing, agentic workflows, LangChain/LangGraph || **Backend & Real-Time Systems** | FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets, SSE streaming || **System Design & Orchestration** | Stateful systems, workflow orchestration, memory systems, context modeling, distributed pipelines || **Infra & Observability** | Docker, AWS, Fly.io, logging, tracing, metrics, performance optimization || **Data & Analytics** | ETL pipelines, data validation, Power BI, Tableau |",
+      "change_type": "KEEP",
+      "change_reason": "No changes needed; skills are accurate and relevant.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [],
+      "risk_level": "low"
+    },
+    "key_achievements": {
+      "section_id": "key_achievements",
+      "original_text": "- **Built Emote from zero:** Took product from vision to production, grew to 450+ users, achieved 13\u201315% weekly retention through continuous iteration.\n- **Latency reduction:** Drove inference latency from ~15s \u2192 ~3s and cost from ~$1.20 \u2192 ~$0.023 per session at Emote.\n- **Enterprise migration:** Led Azure to PostgreSQL data platform migration at Akkodis for Ericsson systems; recognized for improving reporting reliability and delivery.\n- **Agentic manufacturing quality system:** Built production multi-agent AI for enterprise quality management (EQMS) at Omnex Systems \u2014 automates DFMEA, PFMEA, Control Plans, and 8D across global manufacturing supply chains (12.5s \u2192 8s latency).",
+      "rewritten_text": "- **Built Emote from zero:** Took product from vision to production, grew to 450+ users, achieved 13\u201315% weekly retention through continuous iteration.\n- **Latency reduction:** Drove inference latency from ~15s \u2192 ~3s and cost from ~$1.20 \u2192 ~$0.023 per session at Emote.\n- **Enterprise migration:** Led Azure to PostgreSQL data platform migration at Akkodis for Ericsson systems; recognized for improving reporting reliability and delivery.\n- **Agentic manufacturing quality system:** Built production multi-agent AI for enterprise quality management (EQMS) at Omnex Systems \u2014 automates DFMEA, PFMEA, Control Plans, and 8D across global manufacturing supply chains (12.5s \u2192 8s latency).",
+      "change_type": "KEEP",
+      "change_reason": "No changes needed; achievements are strong and relevant.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [],
+      "risk_level": "low"
+    }
+  }
+}

@@ -115,22 +115,26 @@ def contract_node(state: CouncilState) -> CouncilState:
 
 # ─── System 3: Company Intelligence ───────────────────────────────────────────
 
-_S3_SYSTEM = """You are a senior company researcher. Analyze the target company and output JSON.
-Do NOT invent facts. If unknown, say UNKNOWN.
+_S3_SYSTEM = """You are a company researcher extracting signals from the job description and your knowledge.
+CRITICAL: Distinguish JD-extracted facts from recalled knowledge. Mark source clearly.
+JD text contains rich signals: company mission, team structure, tech stack, culture hints, hiring posture.
+Extract what the JD reveals. For facts NOT in the JD, mark confidence LOW and add to missing_data.
+NEVER invent funding amounts, employee counts, or revenue figures.
 
 EXAMPLE JSON OUTPUT:
 {
-    "summary": "Nicobar is a D2C lifestyle brand based in Delhi...",
-    "business_model": "Direct-to-consumer e-commerce, premium home and apparel",
-    "india_presence": "Headquarters in Delhi, retail stores across Tier-1 cities",
+    "summary": "Nicobar is a D2C lifestyle brand...",
+    "business_model": "D2C e-commerce, premium home and apparel",
+    "india_presence": "Delhi HQ, retail stores across India (from JD context)",
     "maturity": "growth",
     "hiring_urgency": "HIGH",
-    "culture_signals": ["design-driven", "lean team", "founder-led"],
+    "culture_signals": ["design-driven", "founder-led", "CEO-office role signals flat hierarchy"],
     "red_flags": [],
-    "positioning_implications": "Lead with AI automation experience in consumer-facing products",
-    "interview_implications": "Expect design-thinking + technical depth mix",
-    "confidence": 0.7,
-    "missing_data": ["funding_round", "employee_count"]
+    "positioning_implications": "Lead with consumer-facing AI product experience",
+    "interview_implications": "Expect design-thinking + business-outcome focus",
+    "signals_from_jd": ["CEO-office role", "AI-native ambition", "retail/e-commerce domain", "4 product areas"],
+    "confidence": 0.5,
+    "missing_data": ["funding_round", "employee_count", "recent_layoffs", "glassdoor_rating"]
 }"""
 
 
@@ -139,12 +143,26 @@ def company_intelligence_node(state: CouncilState) -> CouncilState:
     if _has_errors(state):
         print("  → SKIPPING (previous errors)")
         return state
-    prompt = f"Company: {state['company']}\nJD: {state['jd_text']}"
+
+    jd = state['jd_text']
+    company = state['company']
+
+    # Build a prompt grounded in the JD — not pure LLM recall
+    jd_snippet = jd[:3000] if len(jd) > 3000 else jd  # keep prompt reasonable
+    prompt = (
+        f"Company: {company}\n\n"
+        f"JD EXCERPT (extract signals from this):\n{jd_snippet}\n\n"
+        f"Extract company intelligence from the JD text above. "
+        f"For facts the JD does NOT reveal, use UNKNOWN and add to missing_data."
+    )
     result = _call(_S3_SYSTEM, prompt)
     if not result.success:
         state.setdefault("errors", []).extend(result.errors)
         return state
-    return {**state, "company_intelligence": result.payload}
+    payload = result.payload
+    confidence = payload.get("confidence", 0.5)
+    print(f"  → {payload.get('summary', '?')[:80]}... | confidence={confidence}")
+    return {**state, "company_intelligence": payload}
 
 
 # ─── System 4: Role Decoder ───────────────────────────────────────────────────
@@ -394,11 +412,10 @@ def truth_guard_node(state: CouncilState) -> CouncilState:
 
 # ─── System 8: Safe Assembler ─────────────────────────────────────────────────
 
-_COVER_NOTE_SYSTEM = """Write a 3-sentence cover note for a job application in JSON.
-Be direct and specific. No AI-slop. Use only confirmed experience from the user truth.
+_COVER_NOTE_SYSTEM = """Write a 3-sentence cover note that compels a recruiter to interview. Lead with a concrete achievement from the candidate's strongest proof points — not "I am writing". Be specific. Use only confirmed experience.
 
 EXAMPLE JSON OUTPUT:
-{"cover_note": "I build AI that ships. At Emote, I took an AI quality management system from concept to production, handling everything from multi-agent orchestration to real-time inference. For Nicobar's AI Product Engineer role, I would bring the same end-to-end ownership to customer personalization and store clienteling."}"""
+{"cover_note": "I built Emote from zero to 450+ users, driving activation from 20% to 75% through continuous product iteration. At Omnex, I built production multi-agent AI that automates manufacturing quality workflows across global supply chains. For Nicobar's AI Product Engineer role, I'd bring the same zero-to-one product ownership to customer personalization and store clienteling."}"""
 
 _RECRUITER_DM_SYSTEM = """Write a 2-sentence LinkedIn DM to a recruiter in JSON.
 One sentence on the role, one sentence on why the candidate fits. Under 250 chars. No fluff, no "I'm excited to apply".
@@ -465,12 +482,17 @@ def assembly_node(state: CouncilState) -> CouncilState:
         # Deterministic assembly (no LLM)
         final_resume = ResumeCompiler.assemble(resume, rewrites, contract)
 
-        # Generate messages
-        user_prompt = (
-            f"Role: {state['job_title']}\n"
-            f"Company: {state['company']}\n"
-            f"Positioning Strategy: {json.dumps(state['positioning_strategy'])}"
-        )
+        # Build rich context for cover note + recruiter DM
+        user_truth = state.get("user_truth", {})
+        top_proofs = user_truth.get("strongest_proof_points", [])[:3]
+        user_prompt_parts = [
+            f"Role: {state['job_title']}",
+            f"Company: {state['company']}",
+            f"Positioning Strategy: {json.dumps(state['positioning_strategy'])}",
+        ]
+        if top_proofs:
+            user_prompt_parts.append(f"Strongest Proof Points: {json.dumps(top_proofs)}")
+        user_prompt = "\n".join(user_prompt_parts)
 
         cover_result = _call(_COVER_NOTE_SYSTEM, user_prompt)
         cover_note = (
@@ -486,7 +508,6 @@ def assembly_node(state: CouncilState) -> CouncilState:
             else ""
         )
 
-        user_truth = state.get("user_truth", {})
         claims_not_allowed = (
             user_truth.get("claims_not_allowed", []) if user_truth else []
         )
@@ -498,7 +519,7 @@ def assembly_node(state: CouncilState) -> CouncilState:
             if company_intel else "default"
         )
 
-        humanizer = Humanizer(llm_client=None)
+        humanizer = Humanizer(llm_client=CouncilLLMClient("writer"))
 
         resume_result = humanizer.humanize(
             final_resume, mode="resume",
@@ -514,9 +535,38 @@ def assembly_node(state: CouncilState) -> CouncilState:
         )
 
         print(
-            f"  → Humanizer: {resume_result.changes_made} slop flags, "
+            f"  → Humanizer (resume): {resume_result.changes_made} slop flags, "
             f"{len(resume_result.recruiter_concerns)} realism concerns"
         )
+        print(
+            f"  → Humanizer (cover): {cover_result.changes_made} slop flags, "
+            f"{len(cover_result.recruiter_concerns)} realism concerns"
+        )
+        print(
+            f"  → Humanizer (DM):   {dm_result_h.changes_made} slop flags, "
+            f"{len(dm_result_h.recruiter_concerns)} realism concerns"
+        )
+
+        # ─── Post-Humanizer verification: check for surviving slop ────────
+        _leftover_slop = 0
+        for word in [
+            "agentic", "multi-agent", "autonomous", "swarm",
+            "AI revolution", "leverage", "spearheaded",
+        ]:
+            for label, text in [
+                ("resume", resume_result.humanized_text),
+                ("cover", cover_result.humanized_text),
+                ("dm", dm_result_h.humanized_text),
+            ]:
+                count = text.lower().count(word.lower())
+                if count > 0:
+                    _leftover_slop += count
+                    if count > 2 or word == "agentic":
+                        print(f"  !! VERIFY: '{word}' survived Humanizer in {label} ({count}x)")
+        if _leftover_slop == 0:
+            print(f"  → Post-Humanizer verify: 0 surviving slop terms")
+        else:
+            print(f"  → Post-Humanizer verify: {_leftover_slop} surviving slop occurrences — review output manually")
 
         # Link preservation audit (on humanized output — the actual deliverable)
         link_audit = ResumeCompiler._verify_links_preserved(

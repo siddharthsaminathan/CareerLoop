@@ -1,0 +1,1014 @@
+"""
+Resume Normalizer — Council Markdown → NormalizedResume.
+
+This is the SINGLE normalization point. Every template renderer consumes
+NormalizedResume, never raw markdown.
+
+Handles two input formats:
+  1. Council flat ## output (all sections at ## level)
+  2. Original cv.md (### sub-headings inside Work Experience)
+
+Has NO dependency on the Council, Humanizer, or any external library.
+Uses only Python standard library.
+"""
+
+import re
+from typing import List, Optional, Tuple
+
+from careerloop.rendering.resume_model import (
+    NormalizedResume,
+    HeaderInfo,
+    SkillRow,
+    ExperienceEntry,
+    EducationEntry,
+)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Constants
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Section heading patterns (lowercase, normalized)
+SECTION_PATTERNS = {
+    "profile":       re.compile(r"^(profile|summary|about\s*me|about)$"),
+    "contact":       re.compile(r"^(contact|contact\s*info|contact\s*information)$"),
+    "education":     re.compile(r"^(education|academic|academics|academic\s*background)$"),
+    "skills":        re.compile(r"^(skills|technical\s*skills|competencies|technologies|core\s*competencies)$"),
+    "languages":     re.compile(r"^(languages?)$"),
+    "work_experience": re.compile(r"^(work\s*experience|professional\s*experience|experience|employment)$"),
+    "achievements":  re.compile(r"^(key\s*achievements?|achievements?|highlights|accomplishments?|key\s*accomplishments?)$"),
+    "thesis":        re.compile(r"^(master'?s?\s*thesis|thesis|dissertation|research|research\s*work)$"),
+    "projects":      re.compile(r"^(projects?|key\s*projects?|portfolio)$"),
+    "certifications": re.compile(r"^(certifications?|certificates?|licenses?)$"),
+}
+
+# Sections that should never appear in the normalized resume
+FORBIDDEN_KEYWORDS = [
+    "deal-breaker", "deal breaker", "deal_breaker",
+    "target role", "target_role",
+    "internal note", "internal_note",
+    "fit score", "fit_score",
+    "council verdict", "council_verdict",
+    "warnings",
+    "prompt note", "prompt_note",
+    "search preference", "search_preference",
+    "outreach preference", "outreach_preference",
+    "salary", "salary expectation", "salary_expectation",
+    "private", "strategy metadata", "strategy_metadata",
+    "preference", "constraint",
+]
+
+# Role heading pattern: detects "Role — Company, Location (Dates)"
+ROLE_HEADING_RE = re.compile(
+    r"^(?P<role>.+?)\s+[—\-–]\s+(?P<rest>.+)$"
+)
+DATES_RE = re.compile(r"\(([^)]+)\)\s*$")
+
+# Collapsed bullet split pattern: "sentence. - Next sentence"
+# Matches period + dash/hyphen + capital letter = inter-bullet boundary
+COLLAPSED_BULLET_RE = re.compile(r"\.\s+[-–—]\s+(?=[A-Z])")
+
+# Fallback: dash + capital letter (no period required, wider pattern)
+COLLAPSED_BULLET_FALLBACK_RE = re.compile(r"\s+[-–—]\s+(?=[A-Z])")
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Public API
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def normalize(md_text: str) -> NormalizedResume:
+    """Parse Council markdown output into a structured NormalizedResume.
+
+    This is the SINGLE normalization point. Every template renderer
+    consumes NormalizedResume, never raw markdown.
+
+    Args:
+        md_text: Raw markdown from Council output or original cv.md.
+
+    Returns:
+        Fully parsed and normalized resume data model.
+    """
+    blocks = _split_into_blocks(md_text)
+    classified = _classify_blocks(blocks)
+
+    header = _parse_header(classified)
+    profile = _parse_profile(classified)
+    skills = _parse_skills(classified)
+    experience = _parse_experience(classified)
+    achievements = _parse_achievements(classified)
+    projects = _parse_projects(classified)
+    education = _parse_education(classified)
+    thesis = _parse_thesis(classified)
+    languages = _parse_languages(classified)
+
+    return NormalizedResume(
+        header=header,
+        profile=profile,
+        skills=skills,
+        experience=experience,
+        achievements=achievements,
+        projects=projects,
+        education=education,
+        thesis=thesis,
+        languages=languages,
+    )
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Block Splitting
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _split_into_blocks(md_text: str) -> List[Tuple[str, str, str]]:
+    """Split markdown into (heading_raw, heading_clean, body) triples at ## level.
+
+    Returns list of (heading_line, normalized_heading, body) where:
+      - heading_line: raw heading text including '## ' prefix
+      - normalized_heading: heading text lowercased, stripped, no '## '
+      - body: all text between this heading and the next
+    """
+    # Normalize line endings
+    text = md_text.replace("\r\n", "\n").replace("\r", "\n")
+
+    # Prepend newline so the first heading matches the split pattern
+    text = "\n" + text
+
+    blocks: List[Tuple[str, str, str]] = []
+
+    # Extract level-1 heading if present (only the first one)
+    l1_match = re.match(r"\n# ([^\n]+)\n?", text)
+    if l1_match:
+        l1_heading = l1_match.group(1).strip()
+        # Remove the L1 heading from text for L2 splitting
+        text = text[l1_match.end():]
+        l1_norm = _normalize_heading(l1_heading)
+        if not _is_forbidden(l1_norm):
+            blocks.append((f"## {l1_heading}", l1_norm, ""))
+
+    # Split on newline followed by ## (but not ###)
+    raw_blocks = re.split(r"\n(?=## )", text)
+    raw_blocks = [b for b in raw_blocks if b.strip()]
+
+    for block in raw_blocks:
+        block = block.strip()
+        if not block or not block.startswith("## "):
+            continue
+
+        # Split into heading line and body
+        newline_idx = block.find("\n")
+        if newline_idx == -1:
+            heading_line = block
+            body = ""
+        else:
+            heading_line = block[:newline_idx].strip()
+            body = block[newline_idx + 1:].strip()
+
+        heading_clean = heading_line[3:].strip()  # remove "## "
+        heading_normalized = _normalize_heading(heading_clean)
+
+        # Skip forbidden sections
+        if _is_forbidden(heading_normalized):
+            continue
+
+        blocks.append((heading_line, heading_normalized, body))
+
+    return blocks
+
+
+def _normalize_heading(heading: str) -> str:
+    """Normalize a heading for comparison: lowercase, collapse whitespace,
+    remove special chars except spaces and hyphens."""
+    h = heading.lower().strip()
+    h = re.sub(r"[^a-z0-9\s\-]", "", h)
+    h = re.sub(r"\s+", " ", h).strip()
+    return h
+
+
+def _is_forbidden(heading_normalized: str) -> bool:
+    """Check if a section heading contains forbidden keywords."""
+    h = heading_normalized.replace(" ", "_")
+    for keyword in FORBIDDEN_KEYWORDS:
+        kw_normalized = keyword.replace(" ", "_")
+        if kw_normalized in h or kw_normalized in heading_normalized:
+            return True
+    return False
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Block Classification
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _classify_blocks(
+    blocks: List[Tuple[str, str, str]]
+) -> dict:
+    """Classify each block into a section type.
+
+    Returns dict with keys: 'name', 'profile', 'contact', 'education',
+    'skills', 'languages', 'work_experience', 'role_blocks', 'achievements',
+    'thesis', 'projects', 'certifications', 'unknown'.
+
+    'work_experience' block is the marker (may be empty in Council output).
+    'role_blocks' are experience entry blocks detected after work_experience.
+    """
+    result: dict = {
+        "name_block": None,
+        "profile": None,
+        "contact": None,
+        "education": None,
+        "skills": None,
+        "languages": None,
+        "work_experience": None,
+        "role_blocks": [],
+        "achievements": None,
+        "thesis": None,
+        "projects": None,
+        "certifications": None,
+        "unknown": [],
+    }
+
+    # Known section names after which roles end
+    role_terminators = {
+        "achievements", "thesis", "education", "skills",
+        "languages", "profile", "contact", "projects", "certifications",
+    }
+
+    in_roles = False
+    first_block = True
+
+    for heading_line, heading_norm, body in blocks:
+        section_type = _identify_section(heading_norm)
+
+        # First block: if it looks like a name heading (has "cv" or no known type), treat as name
+        if first_block:
+            first_block = False
+            if section_type is None or heading_norm in (
+                "name", "header", "cv", "resume"
+            ):
+                # Check if this looks like a name heading
+                raw_heading = heading_line[3:].strip()  # remove "## "
+                if _looks_like_name_heading(raw_heading) or section_type is None:
+                    result["name_block"] = (heading_line, heading_norm, body)
+                    continue
+
+        # Work Experience marker: subsequent blocks may be roles
+        if section_type == "work_experience":
+            result["work_experience"] = (heading_line, heading_norm, body)
+            in_roles = True
+            continue
+
+        # If we're in role mode and we hit a known section terminator, exit roles
+        if in_roles and section_type in role_terminators:
+            in_roles = False
+            # Fall through to handle this section normally
+
+        # If we're in role mode and this looks like a role heading, add it
+        if in_roles:
+            raw_heading = heading_line[3:].strip()
+            if _looks_like_role_heading(raw_heading):
+                result["role_blocks"].append((heading_line, heading_norm, body))
+                continue
+            else:
+                # Doesn't look like a role — exit role mode and handle normally
+                in_roles = False
+
+        # Map to result key
+        if section_type:
+            result[section_type] = (heading_line, heading_norm, body)
+        else:
+            result["unknown"].append((heading_line, heading_norm, body))
+
+    # If no roles found via flat ##, check for ### sub-headings in work_experience body
+    if not result["role_blocks"] and result["work_experience"]:
+        _, _, we_body = result["work_experience"]
+        if we_body and "### " in we_body:
+            result["role_blocks"] = _parse_nested_roles(we_body)
+
+    return result
+
+
+def _identify_section(heading_normalized: str) -> Optional[str]:
+    """Identify the section type from a normalized heading. Returns None if unknown."""
+    # Check against known patterns (order matters: more specific first)
+    priority_order = [
+        "work_experience", "achievements", "education", "skills",
+        "languages", "profile", "contact", "thesis", "projects",
+        "certifications",
+    ]
+
+    for key in priority_order:
+        if SECTION_PATTERNS[key].search(heading_normalized):
+            return key
+
+    return None
+
+
+def _looks_like_name_heading(raw_heading: str) -> bool:
+    """Check if a heading looks like a name/title heading (not a section)."""
+    lower = raw_heading.lower().strip()
+    # Contains "CV" or "Resume"
+    if re.search(r"\bcv\b", lower) or re.search(r"\b(?:r[eé]sum[eé]|curriculum\s*vitae)\b", lower):
+        return True
+    # Very short headings that aren't known sections
+    words = lower.split()
+    if 1 <= len(words) <= 4 and not _identify_section(_normalize_heading(raw_heading)):
+        return True
+    return False
+
+
+def _looks_like_role_heading(raw_heading: str) -> bool:
+    """Check if a heading looks like a role entry (has '—' or '-' separator
+    with dates in parentheses or company-like structure)."""
+    # Must have an em dash or spaced hyphen separator
+    if not re.search(r"\s+[—\-–]\s+", raw_heading):
+        return False
+
+    # Must have date-like parentheses at the end, OR look like "Role — Company"
+    has_dates = bool(DATES_RE.search(raw_heading))
+    has_separator = bool(ROLE_HEADING_RE.search(raw_heading))
+
+    if has_dates or has_separator:
+        return True
+
+    return False
+
+
+def _parse_nested_roles(we_body: str) -> List[Tuple[str, str, str]]:
+    """Parse ### sub-headings inside Work Experience body (cv.md format)."""
+    # Split on ### headings
+    parts = re.split(r"\n(?=### )", "\n" + we_body)
+    role_blocks = []
+    for part in parts:
+        part = part.strip()
+        if not part or not part.startswith("### "):
+            continue
+        newline_idx = part.find("\n")
+        if newline_idx == -1:
+            heading_line = part
+            body = ""
+        else:
+            heading_line = part[:newline_idx].strip()
+            body = part[newline_idx + 1:].strip()
+
+        # Convert ### to ## for consistency
+        heading_line = "## " + heading_line[4:].strip()
+        heading_norm = _normalize_heading(heading_line[3:])
+        role_blocks.append((heading_line, heading_norm, body))
+    return role_blocks
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Parsers: Header
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _parse_header(classified: dict) -> HeaderInfo:
+    """Extract HeaderInfo from name block and contact block."""
+    header = HeaderInfo()
+
+    # Extract name from name block
+    name_block = classified.get("name_block")
+    if name_block:
+        _, _, body = name_block
+        raw_heading = name_block[0][3:].strip()  # remove "## "
+        # Remove trailing "— CV", "- CV", ", CV", etc.
+        name = re.sub(r"\s*[—\-–,]\s*CV\s*$", "", raw_heading, flags=re.IGNORECASE).strip()
+        name = re.sub(r"\s*[—\-–,]\s*(?:R[eé]sum[eé]|Curriculum\s*Vitae)\s*$", "", name, flags=re.IGNORECASE).strip()
+        header.name = name
+
+    # Extract contact details from contact block
+    contact_block = classified.get("contact")
+    if contact_block:
+        _, _, body = contact_block
+        _parse_contact_body(body, header)
+
+    # If no name from block heading, try contact body
+    if not header.name and contact_block:
+        _, _, body = contact_block
+        first_line = body.strip().split("\n")[0].strip()
+        m = re.match(r"^#+\s*(.+)", first_line)
+        if m:
+            name = re.sub(r"\s*[—\-–,]\s*CV\s*$", "", m.group(1).strip(), flags=re.IGNORECASE).strip()
+            header.name = name
+
+    return header
+
+
+def _parse_contact_body(body: str, header: HeaderInfo) -> None:
+    """Parse contact bullet list into HeaderInfo fields."""
+    patterns = {
+        "phone":     re.compile(r"(?:phone|tel|mobile|cell)[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
+        "email":     re.compile(r"(?:email|e-mail|mail)[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
+        "location":  re.compile(r"(?:location|address|city|based)[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
+        "portfolio": re.compile(r"(?:portfolio|website|web|site|url)[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
+        "github":    re.compile(r"(?:github|git)[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
+        "linkedin":  re.compile(r"(?:linkedin|linked\s*in)[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
+    }
+
+    for line in body.strip().split("\n"):
+        line = _strip_markdown_formatting(line.strip())
+
+        for key, pattern in patterns.items():
+            m = pattern.search(line)
+            if m:
+                val = _strip_markdown_formatting(m.group(1).strip())
+                val = val.rstrip(".,;")
+
+                if key == "phone":
+                    header.phone = _sanitize_text(val)
+                elif key == "email":
+                    header.email = _sanitize_text(val)
+                elif key == "location":
+                    header.location = _sanitize_text(val)
+                elif key == "portfolio":
+                    header.portfolio_url = _sanitize_text(val)
+                    header.portfolio_display = _sanitize_text(_url_to_display(val))
+                elif key == "github":
+                    header.github_url = _sanitize_text(val)
+                    header.github_display = _sanitize_text(_url_to_display(val).replace("github.com/", ""))
+                elif key == "linkedin":
+                    header.linkedin_url = _sanitize_text(val)
+                    header.linkedin_display = _sanitize_text(_url_to_display(val).replace("linkedin.com/in/", ""))
+
+
+def _url_to_display(url: str) -> str:
+    """Convert a URL to a display-friendly form."""
+    url = re.sub(r"^https?://", "", url)
+    url = re.sub(r"/$", "", url)
+    return url
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Parsers: Profile
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _parse_profile(classified: dict) -> str:
+    """Extract profile/summary text."""
+    profile_block = classified.get("profile")
+    if not profile_block:
+        return ""
+    _, _, body = profile_block
+    # Return the body text with arrows and em dashes sanitized.
+    # **bold** markers are preserved — the renderer converts those to HTML.
+    return _sanitize_text(body.strip())
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Parsers: Skills
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _parse_skills(classified: dict) -> List[SkillRow]:
+    """Parse skills table into SkillRow list."""
+    skills_block = classified.get("skills")
+    if not skills_block:
+        return []
+
+    _, _, body = skills_block
+    if not body:
+        return []
+
+    # Try table parsing first
+    if "|" in body:
+        rows = _parse_markdown_table(body)
+        if rows:
+            return rows
+
+    # Fallback: bullet list (each bullet = one skill row with label: items)
+    return _parse_skills_from_bullets(body)
+
+
+def _parse_markdown_table(table_text: str) -> List[SkillRow]:
+    """Parse a markdown table into SkillRow list.
+
+    Table format:
+        | Category | Technologies |
+        |----------|-------------|
+        | **AI Systems** | LLM APIs, RAG, ... |
+
+    Also handles Council's collapsed || row separator format
+    where all rows are concatenated on one line.
+    """
+    # Fix Council output: collapsed rows with || separator
+    # "| a | b || c | d |" → "| a | b |\n| c | d |"
+    if "||" in table_text:
+        table_text = re.sub(r"\|\|", "|\n|", table_text)
+
+    lines = table_text.strip().split("\n")
+    rows: List[SkillRow] = []
+
+    for line in lines:
+        line = line.strip()
+        # Fix trailing punctuation after final pipe: "| text |." → "| text |"
+        line = re.sub(r'\|\s*[.,;:]\s*$', '|', line)
+        if not line.startswith("|") or not line.endswith("|"):
+            # Handle malformed ending
+            line = re.sub(r'[.,;:]\s*$', '', line)
+            if not line.startswith("|"):
+                continue
+
+        # Split by pipe and clean cells
+        cells = [c.strip() for c in line.split("|")]
+        cells = [c for c in cells if c]  # remove empty strings from start/end splits
+
+        # Skip separator rows (e.g., |---|----| or |:---|:---|)
+        if all(re.match(r"^[-: ]+$", c) for c in cells if c):
+            continue
+
+        # Skip header rows (contain "Category", "Technologies", etc.)
+        if any(c.lower() in ("category", "categories", "technologies", "skills", "skill")
+               for c in cells if c):
+            continue
+
+        if len(cells) >= 2:
+            label = _sanitize_text(_strip_markdown_formatting(cells[0]))
+            items_str = _strip_markdown_formatting(" | ".join(cells[1:]))
+
+            # Split items string into individual items
+            items = [_sanitize_text(i) for i in _split_skill_items(items_str)]
+            rows.append(SkillRow(label=label, items=items))
+
+    return rows
+
+
+def _split_skill_items(items_str: str) -> List[str]:
+    """Split a comma-separated skill items string into individual items."""
+    if not items_str:
+        return []
+
+    # Split by comma, but be careful with parenthetical groups
+    # "LLM APIs, RAG pipelines, embeddings" → ["LLM APIs", "RAG pipelines", "embeddings"]
+    # "Redis (caching, queues), PostgreSQL" → ["Redis (caching, queues)", "PostgreSQL"]
+    items: List[str] = []
+    current: List[str] = []
+    paren_depth = 0
+
+    for char in items_str:
+        if char == "," and paren_depth == 0:
+            item = "".join(current).strip()
+            if item:
+                items.append(item)
+            current = []
+        else:
+            if char == "(":
+                paren_depth += 1
+            elif char == ")":
+                paren_depth -= 1
+            current.append(char)
+
+    # Last item
+    item = "".join(current).strip()
+    if item:
+        items.append(item)
+
+    return items
+
+
+def _parse_skills_from_bullets(body: str) -> List[SkillRow]:
+    """Parse skills from bullet list format.
+
+    Format:
+        - **Category:** item1, item2, item3
+        - Category: item1, item2
+    """
+    rows: List[SkillRow] = []
+    lines = body.strip().split("\n")
+
+    for line in lines:
+        line = line.strip()
+        # Strip bullet marker
+        line = re.sub(r"^\s*[-*+]\s*", "", line)
+        if not line:
+            continue
+
+        # Try "Category: items" or "**Category:** items"
+        m = re.match(r"^(?:\*\*)?(.+?)(?:\*\*)?\s*:\s*(.+)$", line)
+        if m:
+            label = _sanitize_text(_strip_markdown_formatting(m.group(1).strip()))
+            items_str = _strip_markdown_formatting(m.group(2).strip())
+            items = [_sanitize_text(i) for i in _split_skill_items(items_str)]
+            rows.append(SkillRow(label=label, items=items))
+
+    return rows
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Parsers: Experience
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _parse_experience(classified: dict) -> List[ExperienceEntry]:
+    """Parse work experience blocks into ExperienceEntry list."""
+    role_blocks = classified.get("role_blocks", [])
+    if not role_blocks:
+        return []
+
+    entries: List[ExperienceEntry] = []
+    for heading_line, _, body in role_blocks:
+        raw_heading = heading_line[3:].strip()  # remove "## "
+        entry = _parse_experience_entry(raw_heading, body)
+        entries.append(entry)
+
+    return entries
+
+
+def _parse_experience_entry(heading: str, body: str) -> ExperienceEntry:
+    """Parse a single experience entry from heading and body."""
+    role, company, location, dates = _parse_role_heading(heading)
+
+    # Split body into description (non-bullet paragraphs) and bullets
+    description_parts: List[str] = []
+    bullet_lines: List[str] = []
+    in_bullets = False
+
+    if body:
+        for line in body.strip().split("\n"):
+            stripped = line.strip()
+            if not stripped:
+                if in_bullets:
+                    # Empty line in bullet section: could be separator or end
+                    continue
+                else:
+                    # Empty line before bullets starts the bullet section
+                    continue
+
+            # Check if this is a bullet line
+            if re.match(r"^\s*[-*+]\s", stripped):
+                in_bullets = True
+                bullet_lines.append(stripped)
+            elif in_bullets:
+                # Continuation of previous bullet (indented or paragraph after bullet)
+                # Append to last bullet or treat as new bullet content
+                if bullet_lines:
+                    bullet_lines[-1] += " " + stripped
+                else:
+                    bullet_lines.append(stripped)
+            else:
+                # Non-bullet paragraph before bullets = description
+                description_parts.append(_sanitize_text(stripped))
+
+    # Process bullets (deduplicate, split collapsed, clean)
+    bullets = _process_bullets(bullet_lines)
+
+    return ExperienceEntry(
+        role=_sanitize_text(role, context='heading'),
+        company=_sanitize_text(company),
+        location=_sanitize_text(location),
+        dates=_sanitize_text(dates, context='daterange'),
+        description="\n".join(description_parts).strip(),
+        bullets=bullets,
+    )
+
+
+def _parse_role_heading(heading: str) -> Tuple[str, str, str, str]:
+    """Parse a role heading into (role, company, location, dates).
+
+    Input formats:
+        "AI Engineer — Omnex Systems, Chennai (Jul 2025 – Present)"
+        "Data Analyst - Positive Integers Pvt Ltd, Chennai (Sep 2019 – May 2020)"
+        "Co-Founder / AI Engineer — Emote (emotenow.app) (Apr 2024 – Present)"
+    """
+    role = heading
+    company = ""
+    location = ""
+    dates = ""
+
+    # Extract dates from parentheses at end
+    m = DATES_RE.search(heading)
+    if m:
+        dates = m.group(1).strip()
+        heading = heading[:m.start()].strip()
+
+    # Split on em dash or spaced hyphen
+    m = ROLE_HEADING_RE.search(heading)
+    if m:
+        role = m.group("role").strip()
+        rest = m.group("rest").strip()
+
+        # Split rest into company and location
+        # Company may contain URL in parentheses like "Emote (emotenow.app)"
+        if "(" in rest and ")" in rest and "," not in rest[:rest.find("(")]:
+            # "Emote (emotenow.app)" or similar
+            company = rest.strip()
+            location = ""
+        elif "," in rest:
+            parts = rest.split(",", 1)
+            company = parts[0].strip()
+            location = parts[1].strip() if len(parts) > 1 else ""
+        else:
+            company = rest.strip()
+            location = ""
+
+    return role, company, location, dates
+
+
+def _process_bullets(bullet_lines: List[str]) -> List[str]:
+    """Process bullet lines: strip markers, detect collapsed bullets, clean up."""
+    bullets: List[str] = []
+
+    for line in bullet_lines:
+        # Strip bullet marker
+        cleaned = re.sub(r"^\s*[-*+]\s*", "", line).strip()
+        if not cleaned:
+            continue
+
+        # Detect collapsed bullets: "text1. - text2. - text3"
+        split_bullets = _split_collapsed_bullets(cleaned)
+        bullets.extend(split_bullets)
+
+    # Clean up: fix common artifacts
+    cleaned_bullets: List[str] = []
+    for b in bullets:
+        b = b.strip()
+        if not b:
+            continue
+        # Fix "and. X" → "and X" (period before space typo from Council)
+        b = re.sub(r"\band\.\s+([A-Z])", r"and \1", b)
+        # Sanitize em dashes and arrows (BUG 2 + BUG 3 fix)
+        b = _sanitize_text(b)
+        cleaned_bullets.append(b)
+
+    return cleaned_bullets
+
+
+def _split_collapsed_bullets(text: str) -> List[str]:
+    """Split a single line that contains multiple collapsed bullets.
+
+    Detects patterns like:
+      "Built system X. - Designed system Y. - Drove performance Z."
+      "Analyzed financial data for NBFC. - Developed dashboards using Tableau."
+
+    Returns a list of individual bullet strings.
+    """
+    # Strategy 1: split on ". - " or ". — " followed by capital letter
+    # This indicates sentence boundary + bullet separator
+    if COLLAPSED_BULLET_RE.search(text):
+        parts = COLLAPSED_BULLET_RE.split(text)
+        if len(parts) >= 2:
+            # Verify this isn't a false positive: each part should be substantial
+            if all(len(p.strip()) > 30 for p in parts if p.strip()):
+                return [p.strip() for p in parts if p.strip()]
+
+    # Strategy 2: fallback to wider pattern (space-dash-space + capital)
+    # Only use this if we find multiple such patterns on one long line
+    if len(text) > 200:
+        # Count potential bullet boundaries
+        boundaries = list(COLLAPSED_BULLET_FALLBACK_RE.finditer(text))
+        if len(boundaries) >= 2:
+            # Split and verify parts are substantial
+            parts = COLLAPSED_BULLET_FALLBACK_RE.split(text)
+            if all(len(p.strip()) > 30 for p in parts if p.strip()):
+                return [p.strip() for p in parts if p.strip()]
+
+    # No collapsed bullets detected
+    return [text]
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Parsers: Achievements
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _parse_achievements(classified: dict) -> List[str]:
+    """Parse achievements section into list of achievement strings."""
+    achievements_block = classified.get("achievements")
+    if not achievements_block:
+        return []
+
+    _, _, body = achievements_block
+    if not body:
+        return []
+
+    achievements: List[str] = []
+    for line in body.strip().split("\n"):
+        stripped = line.strip()
+        if not stripped:
+            continue
+        # Strip bullet marker
+        cleaned = re.sub(r"^\s*[-*+]\s*", "", stripped)
+        if cleaned:
+            achievements.append(_sanitize_text(cleaned))
+
+    return achievements
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Parsers: Education
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _parse_education(classified: dict) -> List[EducationEntry]:
+    """Parse education bullet list into EducationEntry list.
+
+    Format:
+        - **Degree** — Institution, Location (Dates)
+        - Degree — Institution (Dates)
+        - **M.Sc. Statistics and Machine Learning** — Linköping University, Sweden (2020–2022)
+    """
+    education_block = classified.get("education")
+    if not education_block:
+        return []
+
+    _, _, body = education_block
+    if not body:
+        return []
+
+    entries: List[EducationEntry] = []
+    for line in body.strip().split("\n"):
+        stripped = line.strip()
+        if not stripped:
+            continue
+
+        # Strip bullet marker
+        cleaned = re.sub(r"^\s*[-*+]\s*", "", stripped)
+        if not cleaned:
+            continue
+
+        degree, institution, dates, details = _parse_education_line(cleaned)
+        entries.append(EducationEntry(
+            degree=degree,
+            institution=institution,
+            dates=dates,
+            details=details,
+        ))
+
+    return entries
+
+
+def _parse_education_line(text: str) -> Tuple[str, str, str, str]:
+    """Parse one education line into (degree, institution, dates, details).
+
+    Pattern: **Degree** — Institution, Location (Dates)
+    """
+    degree = text
+    institution = ""
+    dates = ""
+    details = ""
+
+    # Extract dates from parentheses
+    m_dates = re.search(r"\(([^)]+)\)\s*$", text)
+    if m_dates:
+        dates = m_dates.group(1).strip()
+        text = text[:m_dates.start()].strip()
+
+    # Split on em dash or spaced hyphen
+    m_sep = re.search(r"\s+[—\-–]\s+", text)
+    if m_sep:
+        degree = _strip_markdown_formatting(text[:m_sep.start()].strip())
+        rest = text[m_sep.end():].strip()
+
+        # Rest may be "Institution, Location" or just "Institution"
+        if "," in rest:
+            parts = rest.split(",", 1)
+            institution = _strip_markdown_formatting(parts[0].strip())
+            details = _strip_markdown_formatting(parts[1].strip()) if len(parts) > 1 else ""
+        else:
+            institution = _strip_markdown_formatting(rest)
+    else:
+        degree = _strip_markdown_formatting(text)
+
+    return (
+        _sanitize_text(degree),
+        _sanitize_text(institution),
+        _sanitize_text(dates, context='daterange'),
+        _sanitize_text(details),
+    )
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Parsers: Projects
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _parse_projects(classified: dict) -> List[str]:
+    """Parse projects section into list of project strings."""
+    projects_block = classified.get("projects")
+    if not projects_block:
+        return []
+
+    _, _, body = projects_block
+    if not body:
+        return []
+
+    projects: List[str] = []
+    for line in body.strip().split("\n"):
+        stripped = line.strip()
+        if not stripped:
+            continue
+        # Strip bullet marker
+        cleaned = re.sub(r"^\s*[-*+]\s*", "", stripped)
+        if cleaned:
+            projects.append(_sanitize_text(cleaned))
+
+    return projects
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Parsers: Thesis
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _parse_thesis(classified: dict) -> Optional[str]:
+    """Parse thesis section into a single string."""
+    thesis_block = classified.get("thesis")
+    if not thesis_block:
+        return None
+
+    _, _, body = thesis_block
+    if not body or not body.strip():
+        return None
+
+    return _sanitize_text(body.strip())
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Parsers: Languages
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _parse_languages(classified: dict) -> List[str]:
+    """Parse languages bullet list into list of language strings."""
+    languages_block = classified.get("languages")
+    if not languages_block:
+        return []
+
+    _, _, body = languages_block
+    if not body:
+        return []
+
+    langs: List[str] = []
+    for line in body.strip().split("\n"):
+        stripped = line.strip()
+        if not stripped:
+            continue
+        # Strip bullet marker
+        cleaned = re.sub(r"^\s*[-*+]\s*", "", stripped)
+        # Strip markdown formatting
+        cleaned = _strip_markdown_formatting(cleaned)
+        if cleaned:
+            langs.append(_sanitize_text(cleaned))
+
+    return langs
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Sanitization (BUG 2 + BUG 3 fix: earliest stage em dash + arrow removal)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _sanitize_text(text: str, context: str = 'body') -> str:
+    """Remove arrows, em dashes, en dashes from text.
+
+    This is the EARLIEST possible sanitization stage. Every downstream
+    consumer (HTML, PDF, LaTeX) gets clean text with no raw Unicode
+    arrows or em dashes.
+
+    Args:
+        text: The text to sanitize
+        context: 'heading' (role titles), 'body' (general text), or 'daterange' (date spans)
+    """
+    if not text:
+        return text
+
+    # ── Arrow replacement (BUG 3) ──
+    text = re.sub(r'\s*→\s*', ' to ', text)
+    text = re.sub(r'\s*←\s*', ' from ', text)
+    text = re.sub(r'\s*↔\s*', ' to/from ', text)
+    text = re.sub(r'\s*⇒\s*', ' => ', text)
+    text = re.sub(r'\s*➔\s*', ' to ', text)
+
+    # ── Em dash replacement (BUG 2) ──
+    if context == 'heading':
+        # "AI Engineer — Omnex" → "AI Engineer, Omnex"
+        text = re.sub(r'\s*—\s*', ', ', text)
+    elif context == 'daterange':
+        text = text.replace('—', ' - ')
+    else:  # body
+        # Date ranges first (before fallback comma replacement):
+        # "2020 — 2022" or "2020 — Present"
+        text = re.sub(r'(\d{4})\s*—\s*(\d{4})', r'\1 - \2', text)
+        text = re.sub(r'(\d{4})\s*—\s*(Present|Current)', r'\1 - \2', text)
+        # "Jul 2025 — Present" or "Nov 2022 — Nov 2024"
+        text = re.sub(
+            r'([A-Z][a-z]{2,8}\s+\d{4})\s*—\s*([A-Z][a-z]{2,8}\s+\d{4})',
+            r'\1 - \2', text
+        )
+        text = re.sub(
+            r'([A-Z][a-z]{2,8}\s+\d{4})\s*—\s*(Present|Current)',
+            r'\1 - \2', text
+        )
+        # Remaining em dashes in body: use comma replacement
+        text = re.sub(r'\s*—\s*', ', ', text)
+
+    # ── En dash → hyphen ──
+    text = text.replace('–', '-')
+
+    return text
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Helpers
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _strip_markdown_formatting(text: str) -> str:
+    """Strip common markdown formatting from text: **bold**, *italic*, `code`, links."""
+    # Bold
+    text = re.sub(r"\*\*(.+?)\*\*", r"\1", text)
+    # Italic
+    text = re.sub(r"\*(.+?)\*", r"\1", text)
+    # Inline code
+    text = re.sub(r"`([^`]+)`", r"\1", text)
+    # Links: [text](url) → text
+    text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
+    # Images
+    text = re.sub(r"!\[([^\]]*)\]\([^)]+\)", r"\1", text)
+    return text.strip()

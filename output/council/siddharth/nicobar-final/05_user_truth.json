@@ -1,0 +1,62 @@
+{
+  "total_years_experience": 6.7,
+  "confirmed_skills": [
+    {
+      "skill": "Python",
+      "years": 6.7,
+      "evidence": "Used in all roles: data engineering, AI systems, backend."
+    },
+    {
+      "skill": "LLM API experience",
+      "years": 2.0,
+      "evidence": "Built multi-agent AI systems using LLM APIs at Omnex and Emote."
+    },
+    {
+      "skill": "SQL",
+      "years": 6.7,
+      "evidence": "SQL-based ETL workflows, PostgreSQL optimization, data analysis."
+    }
+  ],
+  "weak_skills": [
+    "frontend skills"
+  ],
+  "evidence_bank": {
+    "Python": [
+      "Built production multi-agent AI system",
+      "Developed ETL pipelines",
+      "Backend architecture with FastAPI"
+    ],
+    "LLM API experience": [
+      "Agentic quality management system",
+      "Multi-agent orchestration with tool calling"
+    ],
+    "SQL": [
+      "Constructed SQL-based ETL workflows",
+      "PostgreSQL migration and optimization"
+    ]
+  },
+  "strongest_proof_points": [
+    "Built production multi-agent AI system for enterprise quality management (DFMEA, PFMEA, Control Plans, 8D) at Omnex Systems.",
+    "Co-founded Emote, scaled to 450+ users, reduced latency from 15s to 3s and cost from $1.20 to $0.023 per session.",
+    "Led migration from Azure to PostgreSQL at Akkodis, improving reporting accuracy by 5%."
+  ],
+  "claims_allowed": [
+    "4+ years Python",
+    "LLM API experience",
+    "Agent architectures",
+    "SQL proficiency",
+    "End-to-end AI product development"
+  ],
+  "claims_not_allowed": [
+    "Frontend skills",
+    "Retail/e-commerce experience",
+    "IIT/BITS/NIT education"
+  ],
+  "private_constraints": [
+    "No pure frontend roles",
+    "No legacy enterprise IT (Java monoliths, SAP, Oracle)",
+    "No body-shop / mass-recruiter companies (TCS, Infosys, Wipro, etc.)",
+    "No roles without AI/ML component",
+    "Prefer remote or Chennai/Bangalore hybrid"
+  ]
+}

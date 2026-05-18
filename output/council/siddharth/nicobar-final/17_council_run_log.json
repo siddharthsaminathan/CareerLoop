@@ -1,0 +1,466 @@
+{
+  "job_id": "nicobar-final",
+  "person_id": "siddharth",
+  "job_title": "AI Product Engineer",
+  "company": "Nicobar Design Pvt. Ltd.",
+  "job_url": "https://example.com",
+  "jd_text": "...",
+  "master_cv": "# Siddharth Saminathan \u2014 CV\n\n## Profile\n\n**AI Product Engineer** specializing in **manufacturing enterprise quality digitalization** and production AI systems. 4+ years building and shipping AI that automates mission-critical enterprise workflows \u2014 from agentic quality management (DFMEA, PFMEA, Control Plans, 8D) to real-time AI products at scale. I take systems from concept to production and optimize them relentlessly: latency, cost, reliability, and user outcomes. Multi-agent orchestration, tool-driven architectures, and memory systems. What I build doesn't just respond \u2014 it improves over time.\n\n## Contact\n\n- **Phone:** +91 7299707403\n- **Email:** siddharthsaminathan99@gmail.com\n- **Location:** Chennai, India\n- **Portfolio:** https://emotenow.app/\n- **GitHub:** https://github.com/siddharthsaminathan\n\n## Education\n\n- **M.Sc. Statistics and Machine Learning** \u2014 Link\u00f6ping University, Sweden (2020\u20132022)\n- **B.Tech Computer Science and Engineering** \u2014 SRM University, India (2016\u20132020)\n\n## Skills\n\n| Category | Technologies |\n|----------|-------------|\n| **Programming** | Python, SQL |\n| **AI Systems & Agentic Architectures** | LLM APIs, RAG pipelines, embeddings, prompt engineering, tool calling, multi-model routing, agentic workflows, LangChain/LangGraph |\n| **Backend & Real-Time Systems** | FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets, SSE streaming |\n| **System Design & Orchestration** | Stateful systems, workflow orchestration, memory systems, context modeling, distributed pipelines |\n| **Infra & Observability** | Docker, AWS, Fly.io, logging, tracing, metrics, performance optimization |\n| **Data & Analytics** | ETL pipelines, data validation, Power BI, Tableau |\n\n## Languages\n\n- English (Fluent)\n- Tamil\n- Hindi\n\n## Work Experience\n\n### AI Engineer \u2014 Omnex Systems, Chennai (Jul 2025 \u2013 Present)\n\nOmnex is an **Enterprise AI Quality Platform (EQMS)** serving global manufacturing. I built their agentic AI system for end-to-end manufacturing quality digitalization \u2014 automating the core quality engineering workflows that automotive, aerospace, and industrial OEMs run on.\n\n- Built a production multi-agent AI system that automates end-to-end manufacturing quality workflows: DFMEA (Design Failure Mode), PFMEA (Process Failure Mode), Control Plans, and 8D corrective action \u2014 reducing manual engineering effort and improving consistency across global supply chains.\n- Designed a tool-driven orchestration layer that dynamically selects tools, routes data across internal and external enterprise systems, and executes multi-step quality workflows (generate \u2192 validate \u2192 update \u2192 act) with full traceability.\n- Enabled context-aware quality decisioning: the system maps inputs to production hierarchies (part/process/plant), retrieves relevant historical quality cases, and suggests structured corrective actions and process updates.\n- Improved system performance and reliability \u2014 reduced workflow latency (~12.5s \u2192 ~8s), built validation layers and retry logic, and instrumented full observability (logging, tracing, metrics) for production manufacturing environments.\n\n### Co-Founder / AI Engineer \u2014 Emote (emotenow.app) (Apr 2024 \u2013 Present)\n\n- Built and iterated a production AI system that learns from user interactions over time, modeling context, relationships, and behavioral patterns across sessions to improve response quality and continuity.\n- Designed and scaled the end-to-end backend architecture (FastAPI, Redis, PostgreSQL, real-time pipelines, multi-model routing), enabling low-latency, stateful AI interactions in production.\n- Drove core system performance and efficiency, reducing latency (~15s \u2192 ~3s) and inference cost (~$1.20 \u2192 ~$0.023) through pipeline optimization, caching, and model selection.\n- Owned the full product loop (0 \u2192 1 \u2192 iteration): scaled to 450+ users with 40+ power users, improved activation (20% \u2192 75%) and retention (5% \u2192 13\u201315%) by continuously shipping improvements based on real user behavior and feedback.\n\n### Data Engineer \u2014 Akkodis AB, Sweden (Nov 2022 \u2013 Nov 2024)\n\n- Led migration from Azure to PostgreSQL, automating ETL processes using Docker, Argo, and Python.\n- Developed and optimized Cron jobs to enhance workflow efficiency.\n- Improved Power BI dashboards and metrics pipelines, resulting in 5% increase in business reporting accuracy.\n- Constructed automated validation layers to ensure data quality and integrity across enterprise reporting systems.\n- Enhanced ETL workflows through Docker containerization and PostgreSQL optimization.\n\n### Data Analyst \u2014 Positive Integers Pvt Ltd, Chennai (Sep 2019 \u2013 May 2020)\n\n- Analyzed financial datasets related to loan portfolios, credit risk, and customer behavior patterns for an NBFC.\n- Developed interactive dashboards using Tableau and Grafana to visualize business KPIs and financial metrics.\n- Constructed SQL-based ETL workflows.\n\n## Key Achievements\n\n- **Built Emote from zero:** Took product from vision to production, grew to 450+ users, achieved 13\u201315% weekly retention through continuous iteration.\n- **Latency reduction:** Drove inference latency from ~15s \u2192 ~3s and cost from ~$1.20 \u2192 ~$0.023 per session at Emote.\n- **Enterprise migration:** Led Azure to PostgreSQL data platform migration at Akkodis for Ericsson systems; recognized for improving reporting reliability and delivery.\n- **Agentic manufacturing quality system:** Built production multi-agent AI for enterprise quality management (EQMS) at Omnex Systems \u2014 automates DFMEA, PFMEA, Control Plans, and 8D across global manufacturing supply chains (12.5s \u2192 8s latency).\n\n## Master's Thesis\n\nDeveloped a machine learning pipeline utilizing autoencoders and classifiers to predict colorectal cancer metastasis from RNA sequencing data. Employed transfer learning, PCA, and network analysis for biomarker detection in high-dimensional biological datasets.\n\n## Target Roles\n\n- AI Product Engineer\n- AI Engineer / Applied AI Engineer\n- Founding Engineer (AI)\n- Senior Backend Engineer (AI/ML systems)\n- Platform Engineer (AI infrastructure)\n\n## Deal-breakers\n\n- No pure frontend roles\n- No legacy enterprise IT (Java monoliths, SAP, Oracle)\n- No body-shop / mass-recruiter companies (TCS, Infosys, Wipro, Cognizant, HCL, Tech Mahindra, Capgemini, Accenture, L&T Infotech)\n- No roles without any AI/ML component\n- Prefer remote or Chennai/Bangalore hybrid\n",
+  "profile": {
+    "candidate": {
+      "full_name": "Siddharth Saminathan"
+    },
+    "search_preferences": {
+      "target_roles": [
+        "AI Product Engineer"
+      ],
+      "preferred_cities": [
+        "Delhi",
+        "Chennai"
+      ],
+      "min_salary_inr": 2500000,
+      "work_mode": "hybrid"
+    }
+  },
+  "today": "May 2026",
+  "canonical_resume": {
+    "person_id": "default",
+    "sections": [
+      {
+        "section_id": "siddharth_saminathan_cv",
+        "section_title": "Siddharth Saminathan \u2014 CV",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "",
+        "original_order": 0,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "profile",
+        "section_title": "Profile",
+        "normalized_type": "profile",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "**AI Product Engineer** specializing in **manufacturing enterprise quality digitalization** and production AI systems. 4+ years building and shipping AI that automates mission-critical enterprise workflows \u2014 from agentic quality management (DFMEA, PFMEA, Control Plans, 8D) to real-time AI products at scale. I take systems from concept to production and optimize them relentlessly: latency, cost, reliability, and user outcomes. Multi-agent orchestration, tool-driven architectures, and memory systems. What I build doesn't just respond \u2014 it improves over time.",
+        "original_order": 1,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "contact",
+        "section_title": "Contact",
+        "normalized_type": "contact",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "- **Phone:** +91 7299707403\n- **Email:** siddharthsaminathan99@gmail.com\n- **Location:** Chennai, India\n- **Portfolio:** https://emotenow.app/\n- **GitHub:** https://github.com/siddharthsaminathan",
+        "original_order": 2,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "education",
+        "section_title": "Education",
+        "normalized_type": "education",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "- **M.Sc. Statistics and Machine Learning** \u2014 Link\u00f6ping University, Sweden (2020\u20132022)\n- **B.Tech Computer Science and Engineering** \u2014 SRM University, India (2016\u20132020)",
+        "original_order": 3,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "skills",
+        "section_title": "Skills",
+        "normalized_type": "skill",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "| Category | Technologies ||----------|-------------|| **Programming** | Python, SQL || **AI Systems & Agentic Architectures** | LLM APIs, RAG pipelines, embeddings, prompt engineering, tool calling, multi-model routing, agentic workflows, LangChain/LangGraph || **Backend & Real-Time Systems** | FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets, SSE streaming || **System Design & Orchestration** | Stateful systems, workflow orchestration, memory systems, context modeling, distributed pipelines || **Infra & Observability** | Docker, AWS, Fly.io, logging, tracing, metrics, performance optimization || **Data & Analytics** | ETL pipelines, data validation, Power BI, Tableau |",
+        "original_order": 4,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "languages",
+        "section_title": "Languages",
+        "normalized_type": "language",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "- English (Fluent)\n- Tamil\n- Hindi",
+        "original_order": 5,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "work_experience",
+        "section_title": "Work Experience",
+        "normalized_type": "experience",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "",
+        "original_order": 6,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "ai_engineer_omnex_systems_chennai_jul_2025_present",
+        "section_title": "AI Engineer \u2014 Omnex Systems, Chennai (Jul 2025 \u2013 Present)",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "Omnex is an **Enterprise AI Quality Platform (EQMS)** serving global manufacturing. I built their agentic AI system for end-to-end manufacturing quality digitalization \u2014 automating the core quality engineering workflows that automotive, aerospace, and industrial OEMs run on.\n\n\n\n- Built a production multi-agent AI system that automates end-to-end manufacturing quality workflows: DFMEA (Design Failure Mode), PFMEA (Process Failure Mode), Control Plans, and 8D corrective action \u2014 reducing manual engineering effort and improving consistency across global supply chains.\n- Designed a tool-driven orchestration layer that dynamically selects tools, routes data across internal and external enterprise systems, and executes multi-step quality workflows (generate \u2192 validate \u2192 update \u2192 act) with full traceability.\n- Enabled context-aware quality decisioning: the system maps inputs to production hierarchies (part/process/plant), retrieves relevant historical quality cases, and suggests structured corrective actions and process updates.\n- Improved system performance and reliability \u2014 reduced workflow latency (~12.5s \u2192 ~8s), built validation layers and retry logic, and instrumented full observability (logging, tracing, metrics) for production manufacturing environments.",
+        "original_order": 7,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "co_founder_ai_engineer_emote_emotenow_app_apr_2024_present",
+        "section_title": "Co-Founder / AI Engineer \u2014 Emote (emotenow.app) (Apr 2024 \u2013 Present)",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "- Built and iterated a production AI system that learns from user interactions over time, modeling context, relationships, and behavioral patterns across sessions to improve response quality and continuity.\n- Designed and scaled the end-to-end backend architecture (FastAPI, Redis, PostgreSQL, real-time pipelines, multi-model routing), enabling low-latency, stateful AI interactions in production.\n- Drove core system performance and efficiency, reducing latency (~15s \u2192 ~3s) and inference cost (~$1.20 \u2192 ~$0.023) through pipeline optimization, caching, and model selection.\n- Owned the full product loop (0 \u2192 1 \u2192 iteration): scaled to 450+ users with 40+ power users, improved activation (20% \u2192 75%) and retention (5% \u2192 13\u201315%) by continuously shipping improvements based on real user behavior and feedback.",
+        "original_order": 8,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "data_engineer_akkodis_ab_sweden_nov_2022_nov_2024",
+        "section_title": "Data Engineer \u2014 Akkodis AB, Sweden (Nov 2022 \u2013 Nov 2024)",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "- Led migration from Azure to PostgreSQL, automating ETL processes using Docker, Argo, and Python.\n- Developed and optimized Cron jobs to enhance workflow efficiency.\n- Improved Power BI dashboards and metrics pipelines, resulting in 5% increase in business reporting accuracy.\n- Constructed automated validation layers to ensure data quality and integrity across enterprise reporting systems.\n- Enhanced ETL workflows through Docker containerization and PostgreSQL optimization.",
+        "original_order": 9,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "data_analyst_positive_integers_pvt_ltd_chennai_sep_2019_may_2020",
+        "section_title": "Data Analyst \u2014 Positive Integers Pvt Ltd, Chennai (Sep 2019 \u2013 May 2020)",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "- Analyzed financial datasets related to loan portfolios, credit risk, and customer behavior patterns for an NBFC.\n- Developed interactive dashboards using Tableau and Grafana to visualize business KPIs and financial metrics.\n- Constructed SQL-based ETL workflows.",
+        "original_order": 10,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "key_achievements",
+        "section_title": "Key Achievements",
+        "normalized_type": "achievement",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "- **Built Emote from zero:** Took product from vision to production, grew to 450+ users, achieved 13\u201315% weekly retention through continuous iteration.\n- **Latency reduction:** Drove inference latency from ~15s \u2192 ~3s and cost from ~$1.20 \u2192 ~$0.023 per session at Emote.\n- **Enterprise migration:** Led Azure to PostgreSQL data platform migration at Akkodis for Ericsson systems; recognized for improving reporting reliability and delivery.\n- **Agentic manufacturing quality system:** Built production multi-agent AI for enterprise quality management (EQMS) at Omnex Systems \u2014 automates DFMEA, PFMEA, Control Plans, and 8D across global manufacturing supply chains (12.5s \u2192 8s latency).",
+        "original_order": 11,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "master_s_thesis",
+        "section_title": "Master's Thesis",
+        "normalized_type": "thesis",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "Developed a machine learning pipeline utilizing autoencoders and classifiers to predict colorectal cancer metastasis from RNA sequencing data. Employed transfer learning, PCA, and network analysis for biomarker detection in high-dimensional biological datasets.",
+        "original_order": 12,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "target_roles",
+        "section_title": "Target Roles",
+        "normalized_type": "private_metadata",
+        "visibility_class": "PRIVATE_STRATEGY_METADATA",
+        "raw_text": "- AI Product Engineer\n- AI Engineer / Applied AI Engineer\n- Founding Engineer (AI)\n- Senior Backend Engineer (AI/ML systems)\n- Platform Engineer (AI infrastructure)",
+        "original_order": 13,
+        "links": [],
+        "confidence": 1.0
+      },
+      {
+        "section_id": "deal_breakers",
+        "section_title": "Deal-breakers",
+        "normalized_type": "private_metadata",
+        "visibility_class": "PRIVATE_STRATEGY_METADATA",
+        "raw_text": "- No pure frontend roles\n- No legacy enterprise IT (Java monoliths, SAP, Oracle)\n- No body-shop / mass-recruiter companies (TCS, Infosys, Wipro, Cognizant, HCL, Tech Mahindra, Capgemini, Accenture, L&T Infotech)\n- No roles without any AI/ML component\n- Prefer remote or Chennai/Bangalore hybrid",
+        "original_order": 14,
+        "links": [],
+        "confidence": 1.0
+      }
+    ],
+    "parse_warnings": []
+  },
+  "preservation_contract": {
+    "required_public_sections": [
+      "contact",
+      "education",
+      "work_experience"
+    ],
+    "sections_to_exclude": [
+      "target_roles",
+      "deal_breakers"
+    ],
+    "unknown_sections_to_preserve": [
+      "siddharth_saminathan_cv",
+      "ai_engineer_omnex_systems_chennai_jul_2025_present",
+      "co_founder_ai_engineer_emote_emotenow_app_apr_2024_present",
+      "data_engineer_akkodis_ab_sweden_nov_2022_nov_2024",
+      "data_analyst_positive_integers_pvt_ltd_chennai_sep_2019_may_2020"
+    ],
+    "ordering_rules": [
+      "siddharth_saminathan_cv",
+      "profile",
+      "contact",
+      "education",
+      "skills",
+      "languages",
+      "work_experience",
+      "ai_engineer_omnex_systems_chennai_jul_2025_present",
+      "co_founder_ai_engineer_emote_emotenow_app_apr_2024_present",
+      "data_engineer_akkodis_ab_sweden_nov_2022_nov_2024",
+      "data_analyst_positive_integers_pvt_ltd_chennai_sep_2019_may_2020",
+      "key_achievements",
+      "master_s_thesis"
+    ],
+    "link_preservation_rules": {
+      "all": "MUST_SURVIVE"
+    },
+    "max_allowed_changes": 3
+  },
+  "company_intelligence": {
+    "summary": "Nicobar is a D2C lifestyle brand based in Delhi, offering contemporary home and apparel products with a focus on modern Indian design.",
+    "business_model": "Direct-to-consumer e-commerce, premium home and apparel",
+    "india_presence": "Headquarters in Delhi, retail stores across Tier-1 cities",
+    "maturity": "growth",
+    "hiring_urgency": "HIGH",
+    "culture_signals": [
+      "design-driven",
+      "lean team",
+      "founder-led"
+    ],
+    "red_flags": [],
+    "positioning_implications": "Lead with AI automation experience in consumer-facing products",
+    "interview_implications": "Expect design-thinking + technical depth mix",
+    "confidence": 0.7,
+    "missing_data": [
+      "funding_round",
+      "employee_count"
+    ]
+  },
+  "role_decode": {
+    "normalized_title": "AI Product Engineer",
+    "seniority": "mid-senior",
+    "must_haves": [
+      "Python",
+      "LLM API experience",
+      "SQL",
+      "frontend skills"
+    ],
+    "nice_to_haves": [
+      "retail/e-commerce experience",
+      "IIT/BITS/NIT"
+    ],
+    "hidden_expectations": [
+      "CEO-facing communication",
+      "business-outcome thinking"
+    ],
+    "day_one_deliverables": [
+      "Customer personalization intelligence layer"
+    ],
+    "screening_keywords": [
+      "AI-native",
+      "clienteling",
+      "business intelligence"
+    ],
+    "disqualifiers": [
+      "no LLM experience",
+      "no coding skills"
+    ],
+    "confidence": 0.85
+  },
+  "user_truth": {
+    "total_years_experience": 6.7,
+    "confirmed_skills": [
+      {
+        "skill": "Python",
+        "years": 6.7,
+        "evidence": "Used in all roles: data engineering, AI systems, backend."
+      },
+      {
+        "skill": "LLM API experience",
+        "years": 2.0,
+        "evidence": "Built multi-agent AI systems using LLM APIs at Omnex and Emote."
+      },
+      {
+        "skill": "SQL",
+        "years": 6.7,
+        "evidence": "SQL-based ETL workflows, PostgreSQL optimization, data analysis."
+      }
+    ],
+    "weak_skills": [
+      "frontend skills"
+    ],
+    "evidence_bank": {
+      "Python": [
+        "Built production multi-agent AI system",
+        "Developed ETL pipelines",
+        "Backend architecture with FastAPI"
+      ],
+      "LLM API experience": [
+        "Agentic quality management system",
+        "Multi-agent orchestration with tool calling"
+      ],
+      "SQL": [
+        "Constructed SQL-based ETL workflows",
+        "PostgreSQL migration and optimization"
+      ]
+    },
+    "strongest_proof_points": [
+      "Built production multi-agent AI system for enterprise quality management (DFMEA, PFMEA, Control Plans, 8D) at Omnex Systems.",
+      "Co-founded Emote, scaled to 450+ users, reduced latency from 15s to 3s and cost from $1.20 to $0.023 per session.",
+      "Led migration from Azure to PostgreSQL at Akkodis, improving reporting accuracy by 5%."
+    ],
+    "claims_allowed": [
+      "4+ years Python",
+      "LLM API experience",
+      "Agent architectures",
+      "SQL proficiency",
+      "End-to-end AI product development"
+    ],
+    "claims_not_allowed": [
+      "Frontend skills",
+      "Retail/e-commerce experience",
+      "IIT/BITS/NIT education"
+    ],
+    "private_constraints": [
+      "No pure frontend roles",
+      "No legacy enterprise IT (Java monoliths, SAP, Oracle)",
+      "No body-shop / mass-recruiter companies (TCS, Infosys, Wipro, etc.)",
+      "No roles without AI/ML component",
+      "Prefer remote or Chennai/Bangalore hybrid"
+    ]
+  },
+  "positioning_strategy": {
+    "one_line_positioning": "AI Product Engineer who ships enterprise AI from concept to production",
+    "narrative_angle": "Product-minded AI engineer with enterprise AI automation experience, now targeting consumer-facing D2C applications",
+    "lead_strengths": [
+      "LLM API production experience",
+      "Multi-agent orchestration",
+      "End-to-end AI product development"
+    ],
+    "proof_points_to_emphasize": [
+      "Built production multi-agent AI system for enterprise quality management",
+      "Co-founded Emote, scaled to 450+ users, optimized latency and cost",
+      "Led migration from Azure to PostgreSQL, improving reporting accuracy"
+    ],
+    "things_to_downplay": [
+      "No frontend skills",
+      "No retail/e-commerce experience",
+      "No IIT/BITS/NIT education"
+    ],
+    "tone_guidance": "Confident, outcome-focused, design-thinking aware",
+    "recruiter_first_impression_target": "Engineer who thinks in business outcomes, not just code",
+    "application_stance": "CAREFUL_PUSH",
+    "reasoning": "Strong AI engineering match with LLM and multi-agent experience; D2C retail domain is new but transferable. Must compensate for lack of frontend and retail background with strong product thinking and business impact stories."
+  },
+  "section_rewrites": {
+    "rewrites": {
+      "profile": {
+        "section_id": "profile",
+        "original_text": "**AI Product Engineer** specializing in **manufacturing enterprise quality digitalization** and production AI systems. 4+ years building and shipping AI that automates mission-critical enterprise workflows \u2014 from agentic quality management (DFMEA, PFMEA, Control Plans, 8D) to real-time AI products at scale. I take systems from concept to production and optimize them relentlessly: latency, cost, reliability, and user outcomes. Multi-agent orchestration, tool-driven architectures, and memory systems. What I build doesn't just respond \u2014 it improves over time.",
+        "rewritten_text": "**AI Product Engineer** with 4+ years building and shipping production AI systems that automate mission-critical enterprise workflows \u2014 from agentic quality management (DFMEA, PFMEA, Control Plans, 8D) to real-time AI products at scale. I take systems from concept to production and optimize them relentlessly: latency, cost, reliability, and user outcomes. Multi-agent orchestration, tool-driven architectures, and memory systems. What I build doesn't just respond \u2014 it improves over time.",
+        "change_type": "KEEP",
+        "change_reason": "Removed redundant 'specializing in manufacturing enterprise quality digitalization' to broaden appeal for D2C roles.",
+        "claims_added": [],
+        "claims_removed": [
+          "specializing in manufacturing enterprise quality digitalization"
+        ],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "skills": {
+        "section_id": "skills",
+        "original_text": "| Category | Technologies ||----------|-------------|| **Programming** | Python, SQL || **AI Systems & Agentic Architectures** | LLM APIs, RAG pipelines, embeddings, prompt engineering, tool calling, multi-model routing, agentic workflows, LangChain/LangGraph || **Backend & Real-Time Systems** | FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets, SSE streaming || **System Design & Orchestration** | Stateful systems, workflow orchestration, memory systems, context modeling, distributed pipelines || **Infra & Observability** | Docker, AWS, Fly.io, logging, tracing, metrics, performance optimization || **Data & Analytics** | ETL pipelines, data validation, Power BI, Tableau |",
+        "rewritten_text": "| Category | Technologies ||----------|-------------|| **Programming** | Python, SQL || **AI Systems & Agentic Architectures** | LLM APIs, RAG pipelines, embeddings, prompt engineering, tool calling, multi-model routing, agentic workflows, LangChain/LangGraph || **Backend & Real-Time Systems** | FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets, SSE streaming || **System Design & Orchestration** | Stateful systems, workflow orchestration, memory systems, context modeling, distributed pipelines || **Infra & Observability** | Docker, AWS, Fly.io, logging, tracing, metrics, performance optimization || **Data & Analytics** | ETL pipelines, data validation, Power BI, Tableau |",
+        "change_type": "KEEP",
+        "change_reason": "No changes needed; skills are accurate and relevant.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      },
+      "key_achievements": {
+        "section_id": "key_achievements",
+        "original_text": "- **Built Emote from zero:** Took product from vision to production, grew to 450+ users, achieved 13\u201315% weekly retention through continuous iteration.\n- **Latency reduction:** Drove inference latency from ~15s \u2192 ~3s and cost from ~$1.20 \u2192 ~$0.023 per session at Emote.\n- **Enterprise migration:** Led Azure to PostgreSQL data platform migration at Akkodis for Ericsson systems; recognized for improving reporting reliability and delivery.\n- **Agentic manufacturing quality system:** Built production multi-agent AI for enterprise quality management (EQMS) at Omnex Systems \u2014 automates DFMEA, PFMEA, Control Plans, and 8D across global manufacturing supply chains (12.5s \u2192 8s latency).",
+        "rewritten_text": "- **Built Emote from zero:** Took product from vision to production, grew to 450+ users, achieved 13\u201315% weekly retention through continuous iteration.\n- **Latency reduction:** Drove inference latency from ~15s \u2192 ~3s and cost from ~$1.20 \u2192 ~$0.023 per session at Emote.\n- **Enterprise migration:** Led Azure to PostgreSQL data platform migration at Akkodis for Ericsson systems; recognized for improving reporting reliability and delivery.\n- **Agentic manufacturing quality system:** Built production multi-agent AI for enterprise quality management (EQMS) at Omnex Systems \u2014 automates DFMEA, PFMEA, Control Plans, and 8D across global manufacturing supply chains (12.5s \u2192 8s latency).",
+        "change_type": "KEEP",
+        "change_reason": "No changes needed; achievements are strong and relevant.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      }
+    }
+  },
+  "application_pack": {
+    "resume_markdown": "## Siddharth Saminathan \u2014 CV\n\n\n\n## Profile\n\n**AI Product Engineer** with 4+ years building and shipping production AI systems that automate mission-critical enterprise workflows \u2014 from agentic quality management (DFMEA. PFMEA, Control Plans, 8D) to real-time AI products at scale. I take systems from concept to production and optimize them relentlessly: latency, cost, reliability, and user outcomes. Multi-agent orchestration, tool-driven architectures, and memory systems. What I build doesn't just respond \u2014 it improves over time.\n\n\n\n## Contact\n\n- **Phone:** +91 7299707403\n- **Email:** siddharthsaminathan99@gmail.com\n- **Location:** Chennai, India\n- **Portfolio:** https://emotenow.app/\n- **GitHub:** https://github.com/siddharthsaminathan\n\n\n\n## Education\n\n- **M.Sc. Statistics and Machine Learning** \u2014 Link\u00f6ping University, Sweden (2020\u20132022)\n- **B.Tech Computer Science and Engineering** \u2014 SRM University, India (2016\u20132020)\n\n\n\n## Skills\n\n| Category | Technologies ||----------|-------------|| **Programming** | Python, SQL || **AI Systems & Agentic Architectures** | LLM APIs, RAG pipelines, embeddings, prompt engineering, tool calling, multi-model routing, agentic workflows, LangChain/LangGraph || **Backend & Real-Time Systems** | FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets. SSE streaming || **System Design & Orchestration** | Stateful systems, workflow orchestration, memory systems, context modeling, distributed pipelines || **Infra & Observability** | Docker, AWS, Fly.io, logging, tracing, metrics, performance optimization || **Data & Analytics** | ETL pipelines, data validation, Power BI, Tableau |.\n\n\n\n## Languages\n\n- English (Fluent)\n- Tamil\n- Hindi\n\n\n\n## Work Experience\n\n\n\n## AI Engineer \u2014 Omnex Systems, Chennai (Jul 2025 \u2013 Present)\n\nOmnex is an **Enterprise AI Quality Platform (EQMS)** serving global manufacturing. I built their agentic AI system for end-to-end manufacturing quality digitalization \u2014 automating the core quality engineering workflows that automotive, aerospace, and industrial OEMs run on.\n\n\n\n- Built a production multi-agent AI system that automates end-to-end manufacturing quality workflows: DFMEA (Design Failure Mode), PFMEA (Process Failure Mode), Control Plans, and 8D corrective action \u2014 reducing manual engineering effort and improving consistency across global supply chains.\n- Designed a tool-driven orchestration layer that dynamically selects tools, routes data across internal and external enterprise systems, and executes multi-step quality workflows (generate \u2192 validate \u2192 update \u2192 act) with full traceability.\n- Enabled context-aware quality decisioning: the system maps inputs to production hierarchies (part/process/plant), retrieves relevant historical quality cases, and suggests structured corrective actions and process updates.\n- Improved system performance and reliability \u2014 reduced workflow latency (~12.5s \u2192 ~8s), built validation layers and retry logic, and instrumented full observability (logging, tracing, metrics) for production manufacturing environments.\n\n\n\n## Co-Founder / AI Engineer \u2014 Emote (emotenow.app) (Apr 2024 \u2013 Present)\n\n- Built and iterated a production AI system that learns from user interactions over time, modeling context, relationships, and behavioral patterns across sessions to improve response quality and continuity. - Designed and scaled the end-to-end backend architecture (FastAPI, Redis, PostgreSQL, real-time pipelines, multi-model routing), enabling low-latency, stateful AI interactions in production. - Drove core system performance and efficiency, reducing latency (~15s \u2192 ~3s) and. Inference cost (~$1.20 \u2192 ~$0.023) through pipeline optimization, caching, and model selection. - Owned the full product loop (0 \u2192 1 \u2192 iteration): scaled to 450+ users with 40+ power users, improved activation (20% \u2192 75%) and retention (5% \u2192 13\u201315%) by continuously shipping improvements based on real user behavior and feedback.\n\n\n\n## Data Engineer \u2014 Akkodis AB, Sweden (Nov 2022 \u2013 Nov 2024)\n\n- Led migration from Azure to PostgreSQL, automating ETL processes using Docker, Argo, and Python.\n- Developed and optimized Cron jobs to enhance workflow efficiency.\n- Improved Power BI dashboards and metrics pipelines, resulting in 5% increase in business reporting accuracy.\n- Constructed automated validation layers to ensure data quality and integrity across enterprise reporting systems.\n- Enhanced ETL workflows through Docker containerization and PostgreSQL optimization.\n\n\n\n## Data Analyst \u2014 Positive Integers Pvt Ltd, Chennai (Sep 2019 \u2013 May 2020)\n\n- Analyzed financial datasets related to loan portfolios, credit risk, and customer behavior patterns for an NBFC. - Developed interactive dashboards using Tableau and. Grafana to visualize business KPIs and financial metrics. - Constructed SQL-based ETL workflows.\n\n\n\n## Key Achievements\n\n- **Built Emote from zero:** Took product from vision to production, grew to 450+ users, achieved 13\u201315% weekly retention through continuous iteration.\n- **Latency reduction:** Drove inference latency from ~15s \u2192 ~3s and cost from ~$1.20 \u2192 ~$0.023 per session at Emote.\n- **Enterprise migration:** Led Azure to PostgreSQL data platform migration at Akkodis for Ericsson systems; recognized for improving reporting reliability and delivery.\n- **Agentic manufacturing quality system:** Built production multi-agent AI for enterprise quality management (EQMS) at Omnex Systems \u2014 automates DFMEA, PFMEA, Control Plans, and 8D across global manufacturing supply chains (12.5s \u2192 8s latency).\n\n\n\n## Master's Thesis\n\nDeveloped a machine learning pipeline utilizing autoencoders and classifiers to predict colorectal cancer metastasis from RNA sequencing data. Employed transfer learning, PCA, and network analysis for biomarker detection in high-dimensional biological datasets.",
+    "cover_note": "I built a production multi-agent AI system for enterprise quality management at Omnex, automating DFMEA, PFMEA, and 8D workflows across global supply chains. As co-founder of Emote, I scaled to 450+ users while reducing latency from 15s to 3s and cost from $1.20 to $0.023 per session. For Nicobar's AI Product Engineer role, I'd apply this end-to-end AI product ownership to personalize customer experiences and drive store clienteling.",
+    "screening_answers": "",
+    "recruiter_message": "Your AI Product Engineer role at Nicobar aligns with my experience shipping enterprise AI from concept to production. I built a multi-agent system for quality management and scaled an AI product to 450+ users, optimizing latency and cost.",
+    "follow_up_message": "",
+    "quality_report": {
+      "what_changed": [
+        "Section 'Profile' was rewritten (KEEP)",
+        "Section 'Skills' was rewritten (KEEP)",
+        "Section 'Key Achievements' was rewritten (KEEP)"
+      ],
+      "what_did_not_change": [
+        "Siddharth Saminathan \u2014 CV",
+        "Contact",
+        "Education",
+        "Languages",
+        "Work Experience",
+        "AI Engineer \u2014 Omnex Systems, Chennai (Jul 2025 \u2013 Present)",
+        "Co-Founder / AI Engineer \u2014 Emote (emotenow.app) (Apr 2024 \u2013 Present)",
+        "Data Engineer \u2014 Akkodis AB, Sweden (Nov 2022 \u2013 Nov 2024)",
+        "Data Analyst \u2014 Positive Integers Pvt Ltd, Chennai (Sep 2019 \u2013 May 2020)",
+        "Master's Thesis"
+      ],
+      "needs_user_review": [
+        "Verify claim was not made: 'Frontend skills'",
+        "Verify claim was not made: 'Retail/e-commerce experience'",
+        "Verify claim was not made: 'IIT/BITS/NIT education'"
+      ],
+      "risks": [],
+      "confidence": 0.2
+    },
+    "preserved_links": [],
+    "link_audit": {
+      "per_section_original": {
+        "siddharth_saminathan_cv": 0,
+        "profile": 0,
+        "contact": 0,
+        "education": 0,
+        "skills": 0,
+        "languages": 0,
+        "work_experience": 0,
+        "ai_engineer_omnex_systems_chennai_jul_2025_present": 0,
+        "co_founder_ai_engineer_emote_emotenow_app_apr_2024_present": 0,
+        "data_engineer_akkodis_ab_sweden_nov_2022_nov_2024": 0,
+        "data_analyst_positive_integers_pvt_ltd_chennai_sep_2019_may_2020": 0,
+        "key_achievements": 0,
+        "master_s_thesis": 0
+      },
+      "per_section_final": {
+        "siddharth_saminathan_cv": 0,
+        "profile": 0,
+        "contact": 0,
+        "education": 0,
+        "skills": 0,
+        "languages": 0,
+        "work_experience": 0,
+        "ai_engineer_omnex_systems_chennai_jul_2025_present": 0,
+        "co_founder_ai_engineer_emote_emotenow_app_apr_2024_present": 0,
+        "data_engineer_akkodis_ab_sweden_nov_2022_nov_2024": 0,
+        "data_analyst_positive_integers_pvt_ltd_chennai_sep_2019_may_2020": 0,
+        "key_achievements": 0,
+        "master_s_thesis": 0
+      },
+      "total_original": 0,
+      "total_final": 0,
+      "missing_links": [],
+      "warnings": []
+    },
+    "user_review_summary": "Check your new resume. 8-system architecture ensured zero metadata leakage."
+  },
+  "errors": []
+}

@@ -7,6 +7,7 @@ BANNED_WORDS = [
     "rockstar", "hustle", "grind", "deep dive", "unlock", "supercharge",
     "empower", "innovative", "dynamic", "results-driven", "visionary",
     "fast-paced environment", "seasoned", "proven track record",
+    "agentic", "autonomous",
 ]
 
 # Mapping of banned words to context-appropriate alternatives.
@@ -43,6 +44,8 @@ BANNED_WORD_REPLACEMENTS = {
     "seasoned": "experienced",
     "proven track record": "track record",
     "fast-paced environment": "fast-moving team",
+    "agentic": "AI-driven",
+    "autonomous": "self-directed",
 }
 
 BANNED_PHRASES = [
@@ -52,6 +55,7 @@ BANNED_PHRASES = [
     "I believe I am the ideal candidate", "I am confident that",
     "thank you for taking the time", "I look forward to hearing",
     "I am excited to apply", "I am thrilled to",
+    "multi-agent", "swarm", "AI revolution",
 ]
 
 TONE_PROFILES = {

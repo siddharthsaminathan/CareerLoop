@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{NAME}} — CV</title>
 <style>
+  /* ═══════════════════════════════════════════════
+     Career-Ops CV — Space Grotesk + DM Sans
+     Single column · ATS-safe · bold header accent
+     ═══════════════════════════════════════════════ */
+  :root {
+    --ink: #1a1a1a;
+    --muted: #64748b;
+    --rule: #e2e2e2;
+    --accent: hsl(187, 74%, 32%);
+    --accent2: hsl(270, 70%, 45%);
+    --accent-light: hsl(187, 40%, 95%);
+    --accent-border: hsl(187, 40%, 88%);
+  }
+
   @font-face {
     font-family: 'Space Grotesk';
     src: url('./fonts/space-grotesk-latin.woff2') format('woff2');
@@ -54,55 +68,48 @@
 
   body {
     font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    line-height: 1.5;
-    color: #1a1a2e;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: var(--ink);
     background: #ffffff;
-    padding: 0;
-    margin: 0;
-  }
-
-  .page {
-    width: 100%;
     max-width: {{PAGE_WIDTH}};
     margin: 0 auto;
-    padding: 2px 0;
+    padding: 0.55in 0.6in;
   }
 
-  /* === HEADER === */
+  /* ── Header ────────────────────────────────── */
   .header {
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 1rem;
   }
 
   .header h1 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 28px;
+    font-size: 26pt;
     font-weight: 700;
-    color: #1a1a2e;
+    color: var(--ink);
     letter-spacing: -0.02em;
-    margin-bottom: 6px;
+    margin-bottom: 0.3rem;
     line-height: 1.1;
   }
 
   .header-gradient {
-    height: 2px;
-    background: linear-gradient(to right, hsl(187, 74%, 32%), hsl(270, 70%, 45%));
-    border-radius: 1px;
-    margin-bottom: 10px;
+    display: none;  /* replaced by clean border-bottom */
   }
 
   .contact-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 14px;
+    gap: 0.3rem 1rem;
     font-family: 'DM Sans', sans-serif;
-    font-size: 10.5px;
+    font-size: 10pt;
     line-height: 1.4;
-    color: #555;
+    color: var(--muted);
   }
 
   .contact-row a {
-    color: #555;
+    color: var(--accent);
     text-decoration: none;
   }
 
@@ -110,250 +117,297 @@
     color: #ccc;
   }
 
-  /* === SECTIONS === */
+  /* ── Section headings ──────────────────────── */
   .section {
-    margin-bottom: 18px;
+    margin-bottom: 1rem;
   }
 
   .section-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 12px;
+    font-size: 11.5pt;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: hsl(187, 74%, 32%);
-    border-bottom: 1.5px solid #e2e2e2;
+    color: var(--accent);
+    border-bottom: 1.5px solid var(--rule);
     padding-bottom: 4px;
-    margin-bottom: 10px;
+    margin: 1.5rem 0 0.4rem 0;
     line-height: 1.2;
   }
+  .section:first-of-type .section-title { margin-top: 0.4rem; }
 
-  /* === PROFESSIONAL SUMMARY === */
+  /* ── Professional Summary ──────────────────── */
   .summary-text {
-    font-size: 11px;
-    line-height: 1.7;
-    color: #2f2f2f;
+    font-size: 10.5pt;
+    line-height: 1.6;
+    color: var(--ink);
   }
 
   /* Links must never break across lines */
   a {
     white-space: nowrap;
+    color: var(--accent);
+    text-decoration: none;
   }
 
-  /* === CORE COMPETENCIES === */
+  /* ── Competencies ──────────────────────────── */
   .competencies-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
   }
 
   .competency-tag {
     font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
+    font-size: 9.5pt;
     font-weight: 500;
-    color: hsl(187, 74%, 28%);
-    background: hsl(187, 40%, 95%);
+    color: var(--accent);
+    background: var(--accent-light);
     padding: 4px 10px;
     border-radius: 3px;
-    border: 1px solid hsl(187, 40%, 88%);
+    border: 1px solid var(--accent-border);
   }
 
-  /* === WORK EXPERIENCE === */
-  .job {
-    margin-bottom: 14px;
+  /* ── Work Experience (exp-header layout) ───── */
+  .exp-item { margin-bottom: 0.9rem; }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.2rem;
+  }
+  .exp-header .role {
+    font-weight: 700;
+    font-size: 11pt;
+    color: var(--ink);
+    flex: 1;
+  }
+  .exp-header .exp-meta {
+    text-align: right;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .exp-header .company {
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 10pt;
+  }
+  .exp-header .dates {
+    font-size: 9pt;
+    color: var(--muted);
+    font-style: italic;
   }
 
+  /* Old job-* compat */
+  .job { margin-bottom: 0.9rem; }
   .job-header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
-    margin-bottom: 4px;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.15rem;
   }
-
   .job-company {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 12.5px;
-    font-weight: 600;
-    color: hsl(270, 70%, 45%);
+    font-weight: 700;
+    color: var(--ink);
   }
-
   .job-period {
-    font-size: 10.5px;
-    color: #777;
+    font-size: 9pt;
+    color: var(--muted);
+    font-style: italic;
     white-space: nowrap;
   }
-
   .job-role {
-    font-size: 11px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 6px;
+    font-size: 10pt;
+    color: var(--muted);
+    margin-bottom: 0.1rem;
   }
-
   .job-location {
-    font-size: 10px;
-    color: #888;
+    font-size: 9pt;
+    color: var(--muted);
   }
 
-  .job ul {
-    padding-left: 18px;
-    margin-top: 6px;
+  .job ul, .exp-item ul {
+    padding-left: 1.3rem;
+    margin-top: 0.25rem;
   }
 
-  .job li {
-    font-size: 10.5px;
-    line-height: 1.6;
-    color: #333;
-    margin-bottom: 4px;
+  .job li, .exp-item li {
+    font-size: 10pt;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
   }
 
-  .job li strong {
+  .job li strong, .exp-item li strong {
     font-weight: 600;
   }
 
-  /* === PROJECTS === */
+  ul li::marker { color: var(--muted); }
+
+  /* ── Projects ──────────────────────────────── */
   .project {
-    margin-bottom: 12px;
+    margin-bottom: 0.7rem;
   }
 
   .project-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 11.5px;
+    font-size: 11pt;
     font-weight: 600;
-    color: hsl(270, 70%, 45%);
+    color: var(--accent2);
   }
 
   .project-badge {
-    font-size: 9px;
+    font-size: 8.5pt;
     font-weight: 500;
-    color: hsl(187, 74%, 32%);
-    background: hsl(187, 40%, 95%);
+    color: var(--accent);
+    background: var(--accent-light);
     padding: 1px 6px;
     border-radius: 2px;
     margin-left: 6px;
   }
 
   .project-desc {
-    font-size: 10.5px;
-    color: #444;
+    font-size: 10pt;
+    color: var(--ink);
     margin-top: 3px;
     line-height: 1.55;
   }
 
   .project-tech {
-    font-size: 9.5px;
-    color: #888;
+    font-size: 9pt;
+    color: var(--muted);
     margin-top: 3px;
   }
 
-  /* === EDUCATION === */
+  /* ── Education ─────────────────────────────── */
   .edu-item {
-    margin-bottom: 8px;
+    margin-bottom: 0.4rem;
   }
 
   .edu-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    gap: 12px;
+    gap: 0.5rem;
   }
 
   .edu-title {
     font-weight: 600;
-    font-size: 11px;
-    color: #333;
+    font-size: 10.5pt;
+    color: var(--ink);
   }
 
   .edu-org {
-    color: hsl(270, 70%, 45%);
-    font-weight: 500;
+    color: var(--muted);
+    font-weight: 400;
   }
 
   .edu-year {
-    font-size: 10px;
-    color: #777;
+    font-size: 9.5pt;
+    color: var(--muted);
     white-space: nowrap;
   }
 
   .edu-desc {
-    font-size: 10px;
-    color: #666;
+    font-size: 9.5pt;
+    color: var(--muted);
     margin-top: 2px;
     line-height: 1.5;
   }
 
-  /* === CERTIFICATIONS === */
+  /* ── Certifications ────────────────────────── */
   .cert-item {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(90px, max-content) 44px;
     align-items: baseline;
     gap: 12px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   .cert-title {
-    font-size: 10.5px;
+    font-size: 10pt;
     font-weight: 500;
-    color: #333;
+    color: var(--ink);
     min-width: 0;
   }
 
   .cert-org {
-    color: hsl(270, 70%, 45%);
+    color: var(--accent2);
     white-space: nowrap;
   }
 
   .cert-year {
-    font-size: 10px;
-    color: #777;
+    font-size: 9.5pt;
+    color: var(--muted);
     white-space: nowrap;
     text-align: right;
   }
 
-  /* === SKILLS === */
+  /* ── Skills grid ───────────────────────────── */
   .skills-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 14px;
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 0.3rem 1rem;
   }
 
+  .skills-grid .cat {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .skills-grid .tags {
+    color: var(--ink);
+    font-size: 10pt;
+  }
+
+  /* Old skill-item compat */
   .skill-item {
-    font-size: 10.5px;
-    color: #444;
+    font-size: 10pt;
+    color: var(--ink);
   }
 
   .skill-category {
-    font-weight: 600;
-    color: #333;
-    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 10pt;
   }
 
-  /* === PRINT === */
+  /* ── Print ─────────────────────────────────── */
   @media print {
     body {
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
+      padding: 0;
+      background: #fff;
     }
+
+    @page { margin: 0.55in 0.6in; size: letter; }
 
     .page {
       padding: 0;
     }
+
+    .exp-item, .job, .project, .edu-item, .cert-item {
+      break-inside: avoid;
+    }
+
+    .section-title {
+      break-after: avoid;
+    }
   }
 
-  /* === PAGE BREAK CONTROL === */
-  .avoid-break,
-  .job,
-  .project,
-  .edu-item,
-  .cert-item {
+  /* ── Page break helpers ────────────────────── */
+  .avoid-break {
     break-inside: avoid;
     page-break-inside: avoid;
   }
 </style>
 </head>
 <body>
-<div class="page">
 
   <!-- HEADER -->
   <div class="header avoid-break">
@@ -416,6 +470,5 @@
     {{SKILLS}}
   </div>
 
-</div>
 </body>
 </html>
