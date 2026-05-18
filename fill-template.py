@@ -242,19 +242,105 @@ def generate_html(resume: NormalizedResume, template_path: str) -> str:
 
     # Replace placeholders
     html = template
+    is_sidebar = '{{SIDEBAR_CONTACT}}' in html
+
     html = html.replace('{{NAME}}', name)
-    html = html.replace('{{SECTION_SUMMARY}}',
-        f'<h2>Profile</h2>{profile_html}' if profile_html else '')
-    html = html.replace('{{SECTION_SKILLS}}',
-        f'<h2>Skills</h2>{skills_html}' if skills_html else '')
-    html = html.replace('{{SECTION_EXPERIENCE}}',
-        f'<h2>Work Experience</h2>{exp_html}')
-    html = html.replace('{{SECTION_ACHIEVEMENTS}}',
-        f'<h2>Key Achievements</h2>{achievements_html}' if achievements_html else '')
+    if is_sidebar:
+        html = html.replace('{{SECTION_SUMMARY}}',
+            f'<div class="section"><div class="section-title">Profile</div><div class="profile-text">{_inline(sanitize(resume.profile))}</div></div>' if resume.profile else '')
+        html = html.replace('{{SECTION_EXPERIENCE}}',
+            f'<div class="section"><div class="section-title">Experience</div>{exp_html}</div>')
+        html = html.replace('{{SECTION_ACHIEVEMENTS}}',
+            f'<div class="section"><div class="section-title">Key Achievements</div><div class="achievements"><ul>{"".join(f"<li>{_inline(sanitize(a))}</li>" for a in resume.achievements)}</ul></div></div>' if resume.achievements else '')
+    else:
+        html = html.replace('{{SECTION_SUMMARY}}',
+            f'<h2>Profile</h2>{profile_html}' if profile_html else '')
+        html = html.replace('{{SECTION_SKILLS}}',
+            f'<h2>Skills</h2>{skills_html}' if skills_html else '')
+        html = html.replace('{{SECTION_EXPERIENCE}}',
+            f'<h2>Work Experience</h2>{exp_html}')
+        html = html.replace('{{SECTION_ACHIEVEMENTS}}',
+            f'<h2>Key Achievements</h2>{achievements_html}' if achievements_html else '')
     html = html.replace('{{SECTION_EDUCATION}}',
         f'<h2>Education</h2>{edu_html}' if edu_html else '')
     html = html.replace('{{SECTION_LANGUAGES}}',
         f'<h2>Languages</h2>{lang_html}' if lang_html else '')
+
+    # ── Sidebar template support ──────────────────────────────────────
+    if '{{SIDEBAR_CONTACT}}' in html:
+        # Role subtitle from profile first sentence
+        role_subtitle = "AI Product Engineer"  # default
+        if resume.profile:
+            first_sentence = resume.profile.split('.')[0].strip()
+            # Remove ** markers for the subtitle
+            role_subtitle = re.sub(r'\*\*(.+?)\*\*', r'\1', first_sentence)[:120]
+
+        html = html.replace('{{ROLE_SUBTITLE}}', role_subtitle)
+
+        # Sidebar contact
+        h = resume.header
+        contact_lines = []
+        if h.email: contact_lines.append(f'<div>{h.email}</div>')
+        if h.phone: contact_lines.append(f'<div>{h.phone}</div>')
+        if h.location: contact_lines.append(f'<div>{h.location}</div>')
+        if h.portfolio_url:
+            contact_lines.append(f'<div><a href="{h.portfolio_url}">{h.portfolio_display or "Portfolio"}</a></div>')
+        if h.github_url:
+            contact_lines.append(f'<div><a href="{h.github_url}">GitHub</a></div>')
+        html = html.replace('{{SIDEBAR_CONTACT}}',
+            f'<div class="sblock"><div class="stitle">Contact</div>{"".join(contact_lines)}</div>' if contact_lines else '')
+
+        # Sidebar education (compact)
+        if resume.education:
+            edu_items = []
+            for e in resume.education:
+                item = f'<div class="edu-item"><div class="degree">{e.degree}</div>'
+                if e.institution:
+                    item += f'<div class="school">{e.institution}'
+                    if e.dates: item += f', {e.dates}'
+                    item += '</div>'
+                item += '</div>'
+                edu_items.append(item)
+            html = html.replace('{{SIDEBAR_EDUCATION}}',
+                f'<div class="sblock"><div class="stitle">Education</div>{"".join(edu_items)}</div>')
+        else:
+            html = html.replace('{{SIDEBAR_EDUCATION}}', '')
+
+        # Sidebar skills (compact tag style)
+        if resume.skills:
+            skill_parts = []
+            for sk in resume.skills:
+                label = sk.label
+                label_map = {
+                    'AI Systems & Agentic Architectures': 'AI Systems',
+                    'Backend & Real-Time Systems': 'Backend',
+                    'System Design & Orchestration': 'Systems Design',
+                    'Infra & Observability': 'Infra',
+                    'Data & Analytics': 'Data',
+                }
+                label = label_map.get(label, label)
+                # Take first 4-5 items max for compact display
+                items = sk.items[:5]
+                skill_parts.append(f'<div class="skill-cat">{label}</div>')
+                skill_parts.append(f'<div class="skill-tags">{", ".join(items)}</div>')
+            html = html.replace('{{SIDEBAR_SKILLS}}',
+                f'<div class="sblock"><div class="stitle">Skills</div>{"".join(skill_parts)}</div>')
+        else:
+            html = html.replace('{{SIDEBAR_SKILLS}}', '')
+
+        # Sidebar languages
+        if resume.languages:
+            html = html.replace('{{SIDEBAR_LANGUAGES}}',
+                f'<div class="sblock"><div class="stitle">Languages</div><ul>{"".join(f"<li>{l}</li>" for l in resume.languages)}</ul></div>')
+        else:
+            html = html.replace('{{SIDEBAR_LANGUAGES}}', '')
+
+        # Sidebar thesis
+        if resume.thesis:
+            html = html.replace('{{SIDEBAR_THESIS}}',
+                f'<div class="sblock"><div class="stitle">Thesis</div><div style="font-size:8.5px;color:var(--slate)">{resume.thesis[:200]}...</div></div>')
+        else:
+            html = html.replace('{{SIDEBAR_THESIS}}', '')
 
     # Contact fields from HeaderInfo
     contact_replacements = {
@@ -265,6 +351,8 @@ def generate_html(resume: NormalizedResume, template_path: str) -> str:
         '{{PORTFOLIO_DISPLAY}}': resume.header.portfolio_display,
         '{{GITHUB_URL}}': resume.header.github_url,
         '{{GITHUB_DISPLAY}}': resume.header.github_display,
+        '{{LINKEDIN_URL}}': resume.header.linkedin_url,
+        '{{LINKEDIN_DISPLAY}}': resume.header.linkedin_display,
     }
     for placeholder, value in contact_replacements.items():
         html = html.replace(placeholder, str(value))
@@ -278,6 +366,7 @@ def generate_html(resume: NormalizedResume, template_path: str) -> str:
         'PORTFOLIO_URL': resume.header.portfolio_url,
         'GITHUB_URL': resume.header.github_url,
         'LOCATION': resume.header.location,
+        'LINKEDIN_URL': resume.header.linkedin_url,
     }
     for field, value in contact_field_map.items():
         has_val = bool(value)
