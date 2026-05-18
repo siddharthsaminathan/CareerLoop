@@ -1,0 +1,47 @@
+{
+  "normalized_title": "Senior Product Manager",
+  "seniority": "Senior",
+  "must_haves": [
+    "5+ years of product management experience",
+    "Experience in retail, fashion, or lifestyle industry",
+    "Proven track record of launching and scaling products",
+    "Strong analytical and data-driven decision-making skills",
+    "Excellent cross-functional collaboration skills"
+  ],
+  "nice_to_haves": [
+    "Experience with e-commerce platforms",
+    "Knowledge of sustainable and ethical sourcing practices",
+    "Familiarity with Indian consumer market",
+    "Background in design or creative fields"
+  ],
+  "hidden_expectations": [
+    "Ability to balance creative vision with commercial viability",
+    "Deep understanding of Nicobar's minimalist aesthetic and brand values",
+    "Comfortable working in a fast-paced, design-led environment",
+    "Passion for craftsmanship and sustainable practices"
+  ],
+  "day_one_deliverables": [
+    "Review current product portfolio and identify gaps",
+    "Meet with design, sourcing, and marketing teams",
+    "Analyze sales data and customer feedback",
+    "Draft 90-day product roadmap"
+  ],
+  "screening_keywords": [
+    "product management",
+    "retail",
+    "fashion",
+    "lifestyle",
+    "e-commerce",
+    "analytics",
+    "cross-functional",
+    "sustainability",
+    "Indian market"
+  ],
+  "disqualifiers": [
+    "No product management experience",
+    "No experience in retail or fashion industry",
+    "Lack of data-driven approach",
+    "Inability to work in Gurugram"
+  ],
+  "confidence": 0.85
+}
