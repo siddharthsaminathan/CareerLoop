@@ -211,7 +211,7 @@ def main():
         "COMPETENCIES": competencies_html,
         "SECTION_EXPERIENCE": "Experience",
         "EXPERIENCE": experience_html,
-        "SECTION_PROJECTS": "Projects",
+        "SECTION_PROJECTS": "Key Achievements",
         "PROJECTS": projects_html,
         "SECTION_EDUCATION": "Education",
         "EDUCATION": education_html,
