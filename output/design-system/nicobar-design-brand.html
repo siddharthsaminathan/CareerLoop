@@ -80,25 +80,66 @@
   /* ── Sidebar ─────────────────────────── */
   .sidebar {
     background: var(--sidebar-bg);
-    padding: 14px 15px;
+    padding: 16px 15px 14px 15px;
     font-size: 8.5px;
     line-height: 1.4;
     border-radius: 2px;
+    border-left: 2px solid var(--accent);
   }
-  .sidebar .sblock { margin-bottom: 13px; }
-  .sidebar .sblock:last-child { margin-bottom: 0; }
-  .sidebar .stitle {
-    font-size: 9px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink);
-    margin-bottom: 5px;
-    padding-bottom: 3px;
+
+  /* Identity block */
+  .sidebar .identity {
+    margin-bottom: 12px;
+    padding-bottom: 10px;
     border-bottom: 0.5px solid var(--rule);
   }
+  .sidebar .identity .role-tag {
+    font-family: var(--display);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .sidebar .identity .tagline {
+    font-size: 8px;
+    color: var(--accent);
+    font-style: italic;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .sidebar .identity .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+  }
+  .sidebar .identity .chip {
+    display: inline-block;
+    background: #fff;
+    border: 0.5px solid var(--rule);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 7.5px;
+    font-weight: 500;
+    color: var(--slate);
+    letter-spacing: 0.02em;
+  }
+
+  /* Section blocks */
+  .sidebar .sblock { margin-bottom: 10px; }
+  .sidebar .sblock:last-child { margin-bottom: 0; }
+  .sidebar .stitle {
+    font-size: 8.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
   .sidebar a { color: var(--accent); text-decoration: none; }
-  .sidebar .edu-item { margin-bottom: 5px; }
+  .sidebar a:hover { color: var(--ink); }
+
+  .sidebar .edu-item { margin-bottom: 4px; }
   .sidebar .edu-item:last-child { margin-bottom: 0; }
   .sidebar .edu-item .degree {
     font-weight: 600; color: var(--ink); font-size: 8.5px; line-height: 1.3;
@@ -106,15 +147,36 @@
   .sidebar .edu-item .school {
     color: var(--slate); font-size: 8px; line-height: 1.3;
   }
+
   .sidebar .skill-cat {
-    font-weight: 600; color: var(--ink); font-size: 8.5px; margin-top: 4px;
+    font-weight: 600; color: var(--ink); font-size: 8.5px; margin-top: 3px;
   }
   .sidebar .skill-cat:first-child { margin-top: 0; }
   .sidebar .skill-tags {
-    color: var(--slate); font-size: 8px; line-height: 1.3; margin-bottom: 3px;
+    color: var(--slate); font-size: 8px; line-height: 1.3; margin-bottom: 2px;
   }
   .sidebar ul { list-style: none; padding: 0; }
   .sidebar li { margin-bottom: 1px; font-size: 8.5px; color: var(--slate); }
+
+  /* Focus areas */
+  .sidebar .focus-list li {
+    position: relative;
+    padding-left: 8px;
+    margin-bottom: 2px;
+    font-size: 8.5px;
+    color: var(--slate);
+  }
+  .sidebar .focus-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.6;
+  }
 
   /* ── Main ────────────────────────────── */
   .main { min-width: 0; }
@@ -226,6 +288,12 @@
 
 <div class="layout">
   <aside class="sidebar">
+    <div class="identity">
+            <div class="role-tag">AI Product Engineer</div>
+            <div class="tagline">Programming · AI Systems & Agentic Architectures · Backend & Real-Time Systems</div>
+            <div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">LLM APIs</span><span class="chip">RAG pipelines</span><span class="chip">FastAPI</span></div>
+            </div>
+    <div class="sblock"><div class="stitle">Focus Areas</div><ul class="focus-list"><li>Python</li><li>SQL</li><li>AI Product Systems</li><li>Production AI</li><li>Real-time Infrastructure</li><li>API Design</li></ul></div>
     <div class="sblock"><div class="stitle">Contact</div><div>siddharthsaminathan99@gmail.com</div><div>+91 7299707403</div><div>Chennai, India</div><div><a href="https://emotenow.app/">emotenow.app</a></div><div><a href="https://github.com/siddharthsaminathan">GitHub</a></div></div>
     <div class="sblock"><div class="stitle">Education</div><div class="edu-item"><div class="degree">M.Sc. Statistics and Machine Learning</div><div class="school">Linköping University, 2020-2022</div></div><div class="edu-item"><div class="degree">B.Tech Computer Science and Engineering</div><div class="school">SRM University, 2016-2020</div></div></div>
     <div class="sblock"><div class="stitle">Skills</div><div class="skill-cat">Programming</div><div class="skill-tags">Python, SQL</div><div class="skill-cat">AI Systems</div><div class="skill-tags">LLM APIs, RAG pipelines, embeddings, prompt engineering, tool calling</div><div class="skill-cat">Backend</div><div class="skill-tags">FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines</div><div class="skill-cat">Systems Design</div><div class="skill-tags">Stateful systems, workflow orchestration, memory systems, context modeling, distributed pipelines</div><div class="skill-cat">Infra</div><div class="skill-tags">Docker, AWS, Fly.io, logging, tracing</div><div class="skill-cat">Data</div><div class="skill-tags">ETL pipelines, data validation, Power BI, Tableau</div></div>

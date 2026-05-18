@@ -277,6 +277,62 @@ def generate_html(resume: NormalizedResume, template_path: str) -> str:
 
         html = html.replace('{{ROLE_SUBTITLE}}', role_subtitle)
 
+        # ── Sidebar Identity Block ──────────────────────────────────
+        identity_html = ''
+        if '{{SIDEBAR_IDENTITY}}' in html:
+            # Extract role from profile first sentence
+            role_tag = "AI Product Engineer"
+            if resume.profile:
+                m = re.search(r'\*\*(.+?)\*\*', resume.profile)
+                if m: role_tag = m.group(1)
+            # Build tagline from top skill categories
+            top_skills = [sk.label for sk in resume.skills[:3]]
+            tagline = ' · '.join(top_skills[:3]) if top_skills else ''
+            # Build chips from top skill items
+            chips = []
+            for sk in resume.skills[:3]:
+                for item in sk.items[:2]:
+                    chips.append(item)
+            chips = chips[:5]  # max 5 chips
+            chip_html = ''.join(f'<span class="chip">{c}</span>' for c in chips)
+            identity_html = f'''<div class="identity">
+            <div class="role-tag">{role_tag}</div>
+            <div class="tagline">{tagline}</div>
+            <div class="chips">{chip_html}</div>
+            </div>'''
+        html = html.replace('{{SIDEBAR_IDENTITY}}', identity_html)
+
+        # ── Sidebar Focus Areas ────────────────────────────────────
+        focus_html = ''
+        if '{{SIDEBAR_FOCUS}}' in html and resume.skills:
+            # Derive focus areas from top 2 skill categories
+            focus_items = []
+            focus_map = {
+                'AI Systems': ['AI Product Systems', 'Production AI', 'LLM Orchestration'],
+                'Backend': ['Real-time Infrastructure', 'API Design', 'System Reliability'],
+                'Systems Design': ['Stateful Architectures', 'Memory Systems', 'Workflow Automation'],
+                'Infra': ['Cloud Deployment', 'Observability', 'Performance Optimization'],
+                'Data': ['ETL Pipelines', 'Analytics', 'Data Quality'],
+                'Programming': ['Python', 'SQL', 'System Design'],
+            }
+            for sk in resume.skills[:3]:
+                label = sk.label
+                label_map = {
+                    'AI Systems & Agentic Architectures': 'AI Systems',
+                    'Backend & Real-Time Systems': 'Backend',
+                    'System Design & Orchestration': 'Systems Design',
+                    'Infra & Observability': 'Infra',
+                    'Data & Analytics': 'Data',
+                }
+                short = label_map.get(label, label)
+                if short in focus_map:
+                    focus_items.extend(focus_map[short][:2])
+            if focus_items:
+                focus_html = '<div class="sblock"><div class="stitle">Focus Areas</div><ul class="focus-list">'
+                focus_html += ''.join(f'<li>{f}</li>' for f in focus_items[:6])
+                focus_html += '</ul></div>'
+        html = html.replace('{{SIDEBAR_FOCUS}}', focus_html)
+
         # Sidebar contact
         h = resume.header
         contact_lines = []
