@@ -87,6 +87,13 @@ Phase 1 can discover, classify, verify, score, and shortlist jobs. Recent live r
 - **Status:** Phase 2 target.
 - **Recommended fix:** Implement `careerloop/council/` one-job orchestration.
 
+### GAP-011 — Google Docs / External JD link scraping
+
+- **Observed:** Discovery engine fails to follow 'full JD' links that point to external docs (Google Docs, Notion, PDF) found in LinkedIn posts or social feeds.
+- **Impact:** High-fidelity JDs are missed, resulting in poor fit scores or manual intervention.
+- **Status:** Open.
+- **Recommended fix:** Add a 'Follow External Lead' stage to the discovery adapter to fetch and scrape linked document content.
+
 ## Tracker conventions
 
 - `Open`: Known gap, not solved.
