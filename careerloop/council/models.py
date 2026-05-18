@@ -178,6 +178,19 @@ class QualityReport:
 
 
 @dataclass
+class LinkAudit:
+    per_section_original: Dict[str, int] = field(default_factory=dict)
+    per_section_final: Dict[str, int] = field(default_factory=dict)
+    total_original: int = 0
+    total_final: int = 0
+    missing_links: List[str] = field(default_factory=list)
+    warnings: List[str] = field(default_factory=list)
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+@dataclass
 class ApplicationPack:
     resume_markdown: str = ""
     cover_note: str = ""
@@ -185,6 +198,8 @@ class ApplicationPack:
     recruiter_message: str = ""
     follow_up_message: str = ""
     quality_report: Optional[QualityReport] = None
+    preserved_links: List[str] = field(default_factory=list)
+    link_audit: Optional[LinkAudit] = None
     user_review_summary: str = ""
 
     def to_dict(self) -> dict:
@@ -195,6 +210,8 @@ class ApplicationPack:
             "recruiter_message": self.recruiter_message,
             "follow_up_message": self.follow_up_message,
             "quality_report": self.quality_report.to_dict() if self.quality_report else None,
+            "preserved_links": self.preserved_links,
+            "link_audit": self.link_audit.to_dict() if self.link_audit else None,
             "user_review_summary": self.user_review_summary
         }
 

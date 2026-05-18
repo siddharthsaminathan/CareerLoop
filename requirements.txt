@@ -9,6 +9,9 @@ lxml>=6.0
 # Search
 duckduckgo-search>=8.1
 
+# Markdown parsing (AST-based, used by Resume Council compiler)
+mistune>=3.0
+
 # Config & env
 python-dotenv>=1.0
 PyYAML>=6.0

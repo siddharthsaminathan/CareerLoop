@@ -21,6 +21,7 @@ from careerloop.council.models import (
     LinkAudit,
 )
 from careerloop.council.compiler import ResumeCompiler
+from careerloop.council.humanizer import Humanizer
 from careerloop.council.node_result import NodeResult
 from careerloop.council.runtime_context import get_runtime_context
 
@@ -385,18 +386,8 @@ def assembly_node(state: CouncilState) -> CouncilState:
 
         contract = PreservationContract(**state["preservation_contract"])
 
-        # Deterministic assembly
+        # Deterministic assembly (no LLM)
         final_resume = ResumeCompiler.assemble(resume, rewrites, contract)
-
-        # Link preservation audit
-        link_audit = ResumeCompiler._verify_links_preserved(
-            resume, final_resume, contract
-        )
-        preserved_links = ResumeCompiler.extract_links_from_text(final_resume)
-
-        # Log warnings from link audit
-        for warning in link_audit.warnings:
-            print(f"  !! {warning}")
 
         # Generate messages
         user_prompt = (
@@ -424,10 +415,49 @@ def assembly_node(state: CouncilState) -> CouncilState:
             user_truth.get("claims_not_allowed", []) if user_truth else []
         )
 
+        # ─── Humanizer: Anti-AI detection + human normalization ──────────
+        company_intel = state.get("company_intelligence", {})
+        company_type = (
+            company_intel.get("maturity", "default")
+            if company_intel else "default"
+        )
+
+        humanizer = Humanizer(llm_client=None)
+
+        resume_result = humanizer.humanize(
+            final_resume, mode="resume",
+            context={"company_type": company_type},
+        )
+        cover_result = humanizer.humanize(
+            cover_note, mode="cover_note",
+            context={"company_type": company_type},
+        )
+        dm_result_h = humanizer.humanize(
+            recruiter_message, mode="recruiter_message",
+            context={"company_type": company_type},
+        )
+
+        print(
+            f"  → Humanizer: {resume_result.changes_made} slop flags, "
+            f"{len(resume_result.recruiter_concerns)} realism concerns"
+        )
+
+        # Link preservation audit (on humanized output — the actual deliverable)
+        link_audit = ResumeCompiler._verify_links_preserved(
+            resume, resume_result.humanized_text, contract
+        )
+        preserved_links = ResumeCompiler.extract_links_from_text(
+            resume_result.humanized_text
+        )
+
+        # Log warnings from link audit
+        for warning in link_audit.warnings:
+            print(f"  !! {warning}")
+
         pack = ApplicationPack(
-            resume_markdown=final_resume,
-            cover_note=cover_note,
-            recruiter_message=recruiter_message,
+            resume_markdown=resume_result.humanized_text,
+            cover_note=cover_result.humanized_text,
+            recruiter_message=dm_result_h.humanized_text,
             quality_report=ResumeCompiler.generate_quality_report(
                 resume, rewrites, contract, claims_not_allowed
             ),
