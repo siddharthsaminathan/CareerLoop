@@ -324,7 +324,7 @@ def truth_guard_node(state: CouncilState) -> CouncilState:
                     f"{len(flagged)} claims flagged"
                 )
 
-            # Log issues at EXAGGERATED and FABRICATED level
+            # Log issues at EXAGGERATED and FABRICATED level — warn, don't block pipeline
             for claim in claims:
                 if claim.risk_level in ("EXAGGERATED", "FABRICATED"):
                     msg = (
@@ -332,9 +332,10 @@ def truth_guard_node(state: CouncilState) -> CouncilState:
                         f"'{claim.text[:60]}...' → "
                         f"{claim.repair_suggestion or 'minimized'}"
                     )
-                    errors.append(msg)
+                    state.setdefault("warnings", []).append(msg)
                     print(f"  ⚠️ {msg}")
 
+    state.setdefault("truth_guard_flags", []).extend(all_claims)
     report = guard.generate_report(all_claims)
     verified_pct = (
         (report.verified / max(1, report.total_claims)) * 100
