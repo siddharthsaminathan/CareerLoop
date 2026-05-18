@@ -1,0 +1,83 @@
+{
+  "total_years_experience": 6.7,
+  "confirmed_skills": [
+    {
+      "skill": "product management experience",
+      "years": 0,
+      "evidence": "No product management title or explicit PM responsibilities; co-founder role involves product ownership but not formal PM"
+    },
+    {
+      "skill": "e-commerce experience",
+      "years": 0,
+      "evidence": "No e-commerce platform experience; Emote is an AI app, not e-commerce"
+    },
+    {
+      "skill": "design thinking",
+      "years": 0,
+      "evidence": "No mention of design thinking methodologies"
+    },
+    {
+      "skill": "cross-functional collaboration",
+      "years": 2,
+      "evidence": "Co-founder role implies cross-functional work; built full product loop with engineering and user feedback"
+    },
+    {
+      "skill": "data-driven decision making",
+      "years": 4,
+      "evidence": "Data analyst and data engineer roles; improved metrics and dashboards; used user behavior data to improve retention"
+    }
+  ],
+  "weak_skills": [
+    "product management experience",
+    "e-commerce experience",
+    "design thinking",
+    "brand sensitivity",
+    "D2C brand experience",
+    "home or apparel domain knowledge"
+  ],
+  "evidence_bank": {
+    "product management experience": [],
+    "e-commerce experience": [],
+    "design thinking": [],
+    "cross-functional collaboration": [
+      "Co-founded Emote, owned full product loop from 0\u21921\u2192iteration, scaled to 450+ users"
+    ],
+    "data-driven decision making": [
+      "Analyzed financial datasets, built dashboards, improved reporting accuracy by 5%",
+      "Used user behavior data to improve activation from 20% to 75% and retention from 5% to 13-15%"
+    ],
+    "startup experience": [
+      "Co-founder of Emote (Apr 2024\u2013present)",
+      "Built product from zero to production"
+    ],
+    "creative problem-solving": [
+      "Reduced inference latency from 15s to 3s and cost from $1.20 to $0.023 through pipeline optimization"
+    ]
+  },
+  "strongest_proof_points": [
+    "Co-founded and built an AI product from zero to 450+ users, improving activation from 20% to 75% and retention from 5% to 13-15%",
+    "Reduced inference latency from 15s to 3s and cost from $1.20 to $0.023 through pipeline optimization",
+    "Built production multi-agent AI system for enterprise quality management at Omnex Systems"
+  ],
+  "claims_allowed": [
+    "4+ years building and shipping AI products",
+    "Experience with data-driven decision making",
+    "Startup experience as co-founder",
+    "Cross-functional collaboration experience"
+  ],
+  "claims_not_allowed": [
+    "Product management experience",
+    "E-commerce experience",
+    "Design thinking expertise",
+    "Brand sensitivity",
+    "D2C brand experience",
+    "Home or apparel domain knowledge"
+  ],
+  "private_constraints": [
+    "No pure frontend roles",
+    "No legacy enterprise IT (Java monoliths, SAP, Oracle)",
+    "No body-shop / mass-recruiter companies (TCS, Infosys, Wipro, Cognizant, HCL, Tech Mahindra, Capgemini, Accenture, L&T Infotech)",
+    "No roles without any AI/ML component",
+    "Prefer remote or Chennai/Bangalore hybrid"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "required_public_sections": [
+    "contact",
+    "education",
+    "work_experience"
+  ],
+  "sections_to_exclude": [
+    "target_roles",
+    "deal_breakers"
+  ],
+  "unknown_sections_to_preserve": [
+    "siddharth_saminathan_cv",
+    "ai_engineer_omnex_systems_chennai_jul_2025_present",
+    "co_founder_ai_engineer_emote_emotenow_app_apr_2024_present",
+    "data_engineer_akkodis_ab_sweden_nov_2022_nov_2024",
+    "data_analyst_positive_integers_pvt_ltd_chennai_sep_2019_may_2020"
+  ],
+  "ordering_rules": [
+    "siddharth_saminathan_cv",
+    "profile",
+    "contact",
+    "education",
+    "skills",
+    "languages",
+    "work_experience",
+    "ai_engineer_omnex_systems_chennai_jul_2025_present",
+    "co_founder_ai_engineer_emote_emotenow_app_apr_2024_present",
+    "data_engineer_akkodis_ab_sweden_nov_2022_nov_2024",
+    "data_analyst_positive_integers_pvt_ltd_chennai_sep_2019_may_2020",
+    "key_achievements",
+    "master_s_thesis"
+  ],
+  "link_preservation_rules": {
+    "all": "MUST_SURVIVE"
+  },
+  "max_allowed_changes": 3
+}

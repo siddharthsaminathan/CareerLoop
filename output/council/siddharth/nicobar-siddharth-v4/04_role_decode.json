@@ -1,0 +1,36 @@
+{
+  "normalized_title": "Senior Product Manager",
+  "seniority": "senior",
+  "must_haves": [
+    "product management experience",
+    "e-commerce experience",
+    "design thinking",
+    "cross-functional collaboration",
+    "data-driven decision making"
+  ],
+  "nice_to_haves": [
+    "D2C brand experience",
+    "home or apparel domain knowledge",
+    "startup experience"
+  ],
+  "hidden_expectations": [
+    "brand sensitivity",
+    "ability to work in founder-led environment",
+    "creative problem-solving"
+  ],
+  "day_one_deliverables": [
+    "Define product roadmap for e-commerce platform"
+  ],
+  "screening_keywords": [
+    "product management",
+    "e-commerce",
+    "design thinking",
+    "brand",
+    "cross-functional"
+  ],
+  "disqualifiers": [
+    "no product management experience",
+    "no e-commerce experience"
+  ],
+  "confidence": 0.7
+}

@@ -1,0 +1,21 @@
+{
+  "summary": "Nicobar is a D2C lifestyle brand based in Delhi, offering modern Indian home and apparel products. It was founded by the team behind Good Earth and focuses on contemporary design with Indian roots.",
+  "business_model": "Direct-to-consumer e-commerce, premium home and apparel, with retail stores in Tier-1 cities",
+  "india_presence": "Headquarters in Delhi, retail stores in major cities like Mumbai, Bengaluru, and online pan-India",
+  "maturity": "growth",
+  "hiring_urgency": "MEDIUM",
+  "culture_signals": [
+    "design-driven",
+    "founder-led",
+    "creative"
+  ],
+  "red_flags": [],
+  "positioning_implications": "Lead with experience in e-commerce, design, and brand building",
+  "interview_implications": "Expect questions on design thinking, brand strategy, and cross-functional collaboration",
+  "confidence": 0.6,
+  "missing_data": [
+    "funding_round",
+    "employee_count",
+    "revenue"
+  ]
+}
