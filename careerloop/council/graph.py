@@ -159,14 +159,35 @@ CRITICAL:
 2. No 'cope' language or AI-slop.
 3. No unsupported claims.
 4. Do NOT touch private strategy metadata sections.
-Output ONLY valid JSON."""
+Only rewrite sections whose section_id appears in preservation_contract.ordering_rules and are NOT in preservation_contract.sections_to_exclude.
+Output ONLY valid JSON.
+
+Required JSON schema:
+{
+  "rewrites": {
+    "section_id": {
+      "section_id": "...",
+      "original_text": "...",
+      "rewritten_text": "...",
+      "change_type": "KEEP",
+      "change_reason": "...",
+      "claims_added": ["..."],
+      "claims_removed": ["..."],
+      "evidence_used": ["..."],
+      "risk_level": "low"
+    }
+  }
+}"""
 
 def section_rewrites_node(state: CouncilState) -> CouncilState:
     print("\n--- System 7: Section Rewrites ---")
     prompt = f"Resume: {json.dumps(state['canonical_resume'])}\nContract: {json.dumps(state['preservation_contract'])}\nStrategy: {json.dumps(state['positioning_strategy'])}\nUser Truth: {json.dumps(state['user_truth'])}"
     result = _call(_S7_SYSTEM, prompt)
-    rewrites = result.get('rewrites', {})
-    print(f"  → Rewrote {len(rewrites)} sections: {', '.join(list(rewrites.keys()))}")
+    if "error" in result:
+        print(f"  → ERROR: {result['error']}")
+    else:
+        rewrites = result.get('rewrites', {})
+        print(f"  → Rewrote {len(rewrites)} sections: {', '.join(list(rewrites.keys()))}")
     return {**state, "section_rewrites": result}
 
 
