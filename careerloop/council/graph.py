@@ -456,13 +456,9 @@ def assembly_node(state: CouncilState) -> CouncilState:
 
         rewrites_data = state["section_rewrites"].get("rewrites", {})
         from careerloop.council.safe_model import safe_construct
-        safe_rewrites = {}
-        for k, v in rewrites_data.items():
-            try:
-                safe_rewrites[k] = SectionRewrite(**v)
-            except TypeError:
-                safe_rewrites[k] = safe_construct(SectionRewrite, v)
-        rewrites = SectionRewrites(rewrites=safe_rewrites)
+        rewrites = SectionRewrites(
+            rewrites={k: safe_construct(SectionRewrite, v) for k, v in rewrites_data.items()}
+        )
 
         contract = safe_construct(PreservationContract, state["preservation_contract"])
 
