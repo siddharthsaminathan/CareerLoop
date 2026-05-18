@@ -1,7 +1,6 @@
 import json
-import os
-from datetime import datetime
-from typing import Any, Optional, Dict, List
+from typing import Optional, Dict
+
 from typing_extensions import TypedDict
 
 from langgraph.graph import END, StateGraph
@@ -18,9 +17,13 @@ from careerloop.council.models import (
     SectionRewrites,
     SectionRewrite,
     ApplicationPack,
-    QualityReport
+    QualityReport,
+    LinkAudit,
 )
 from careerloop.council.compiler import ResumeCompiler
+from careerloop.council.node_result import NodeResult
+from careerloop.council.runtime_context import get_runtime_context
+
 
 # ─── State ────────────────────────────────────────────────────────────────────
 
@@ -51,33 +54,62 @@ class CouncilState(TypedDict):
 
 # ─── LLM client ───────────────────────────────────────────────────────────────
 
-def _call(system: str, user: str, temperature: float = 0.2) -> dict:
+def _call(system: str, user: str, temperature: float = 0.2) -> NodeResult:
+    """Call the LLM and return a structured NodeResult.
+
+    NEVER raises — failures are captured in NodeResult.success=False.
+    """
     client = CouncilLLMClient("strategy")
     client.temperature = temperature
     try:
-        return client.complete_json(system, user)
+        payload = client.complete_json(system, user)
+        return NodeResult(success=True, confidence=0.8, payload=payload)
     except Exception as e:
         print(f"  !! LLM Call error: {e}")
-        return {"error": str(e)}
+        return NodeResult(success=False, confidence=0.0, errors=[str(e)])
+
+
+def _has_errors(state: CouncilState) -> bool:
+    """Return True if any prior node accumulated errors."""
+    return bool(state.get("errors"))
 
 
 # ─── System 1: Document Parser ───────────────────────────────────────────────
 
 def parse_node(state: CouncilState) -> CouncilState:
     print("\n--- System 1: Document Parser ---")
-    resume = ResumeCompiler.parse_markdown(state["master_cv"])
-    return {**state, "canonical_resume": resume.to_dict()}
+    if _has_errors(state):
+        print("  → SKIPPING (previous errors)")
+        return state
+    try:
+        resume = ResumeCompiler.parse_markdown(state["master_cv"])
+        return {**state, "canonical_resume": resume.to_dict()}
+    except Exception as e:
+        msg = f"Document Parser failed: {e}"
+        print(f"  !! {msg}")
+        state.setdefault("errors", []).append(msg)
+        return state
 
 
 # ─── System 2: Preservation Contract ──────────────────────────────────────────
 
 def contract_node(state: CouncilState) -> CouncilState:
     print("\n--- System 2: Preservation Contract ---")
-    resume = CanonicalResume(**state["canonical_resume"])
-    # Convert list of dicts to ResumeSection objects
-    resume.sections = [ResumeSection(**s) for s in state["canonical_resume"]["sections"]]
-    contract = ResumeCompiler.build_contract(resume, state["profile"])
-    return {**state, "preservation_contract": contract.to_dict()}
+    if _has_errors(state):
+        print("  → SKIPPING (previous errors)")
+        return state
+    try:
+        resume = CanonicalResume(**state["canonical_resume"])
+        resume.sections = [
+            ResumeSection(**s) for s in state["canonical_resume"]["sections"]
+        ]
+        contract = ResumeCompiler.build_contract(resume, state["profile"])
+        return {**state, "preservation_contract": contract.to_dict()}
+    except Exception as e:
+        msg = f"Preservation Contract failed: {e}"
+        print(f"  !! {msg}")
+        state.setdefault("errors", []).append(msg)
+        return state
 
 
 # ─── System 3: Company Intelligence ───────────────────────────────────────────
@@ -86,11 +118,18 @@ _S3_SYSTEM = """You are a senior company researcher. Analyze the target company.
 Do NOT invent facts. If unknown, say UNKNOWN.
 Output ONLY valid JSON."""
 
+
 def company_intelligence_node(state: CouncilState) -> CouncilState:
     print("\n--- System 3: Company Intelligence ---")
+    if _has_errors(state):
+        print("  → SKIPPING (previous errors)")
+        return state
     prompt = f"Company: {state['company']}\nJD: {state['jd_text']}"
     result = _call(_S3_SYSTEM, prompt)
-    return {**state, "company_intelligence": result}
+    if not result.success:
+        state.setdefault("errors", []).extend(result.errors)
+        return state
+    return {**state, "company_intelligence": result.payload}
 
 
 # ─── System 4: Role Decoder ───────────────────────────────────────────────────
@@ -112,15 +151,26 @@ Required JSON schema:
   "confidence": 0.9
 }"""
 
+
 def role_decode_node(state: CouncilState) -> CouncilState:
     print("\n--- System 4: Role Decoder ---")
-    prompt = f"JD: {state['jd_text']}\nCompany Context: {json.dumps(state['company_intelligence'])}"
+    if _has_errors(state):
+        print("  → SKIPPING (previous errors)")
+        return state
+    prompt = (
+        f"JD: {state['jd_text']}\n"
+        f"Company Context: {json.dumps(state['company_intelligence'])}"
+    )
     result = _call(_S4_SYSTEM, prompt)
-    if "error" in result:
-        print(f"  → ERROR: {result['error']}")
-    else:
-        print(f"  → {result.get('normalized_title', '')} | {result.get('seniority', '')[:80]}")
-    return {**state, "role_decode": result}
+    if not result.success:
+        state.setdefault("errors", []).extend(result.errors)
+        return state
+    payload = result.payload
+    print(
+        f"  → {payload.get('normalized_title', '')} | "
+        f"{payload.get('seniority', '')[:80]}"
+    )
+    return {**state, "role_decode": payload}
 
 
 # ─── System 5: User Truth ─────────────────────────────────────────────────────
@@ -131,11 +181,25 @@ Seniority is locked based on the earliest professional date in the resume.
 Today is {today}.
 Output ONLY valid JSON."""
 
+
 def user_truth_node(state: CouncilState) -> CouncilState:
     print("\n--- System 5: User Truth ---")
-    prompt = f"Resume: {json.dumps(state['canonical_resume'])}\nRole: {json.dumps(state['role_decode'])}"
-    result = _call(_S5_SYSTEM.format(today=state["today"]), prompt)
-    return {**state, "user_truth": result}
+    if _has_errors(state):
+        print("  → SKIPPING (previous errors)")
+        return state
+    prompt = (
+        f"Resume: {json.dumps(state['canonical_resume'])}\n"
+        f"Role: {json.dumps(state['role_decode'])}"
+    )
+    # Inject runtime context — never hardcode dates
+    ctx = get_runtime_context()
+    today = state.get("today") or ctx["current_month"]
+    system = _S5_SYSTEM.format(today=today)
+    result = _call(system, prompt)
+    if not result.success:
+        state.setdefault("errors", []).extend(result.errors)
+        return state
+    return {**state, "user_truth": result.payload}
 
 
 # ─── System 6: Positioning Strategy ───────────────────────────────────────────
@@ -144,11 +208,22 @@ _S6_SYSTEM = """You are a senior career strategist. Create the strategic narrati
 Do NOT rewrite the resume. Decide on the application stance and angle.
 Output ONLY valid JSON."""
 
+
 def positioning_node(state: CouncilState) -> CouncilState:
     print("\n--- System 6: Positioning Strategy ---")
-    prompt = f"Company: {json.dumps(state['company_intelligence'])}\nRole: {json.dumps(state['role_decode'])}\nUser: {json.dumps(state['user_truth'])}"
+    if _has_errors(state):
+        print("  → SKIPPING (previous errors)")
+        return state
+    prompt = (
+        f"Company: {json.dumps(state['company_intelligence'])}\n"
+        f"Role: {json.dumps(state['role_decode'])}\n"
+        f"User: {json.dumps(state['user_truth'])}"
+    )
     result = _call(_S6_SYSTEM, prompt)
-    return {**state, "positioning_strategy": result}
+    if not result.success:
+        state.setdefault("errors", []).extend(result.errors)
+        return state
+    return {**state, "positioning_strategy": result.payload}
 
 
 # ─── System 7: Section Rewrites ───────────────────────────────────────────────
@@ -159,7 +234,8 @@ CRITICAL:
 2. No 'cope' language or AI-slop.
 3. No unsupported claims.
 4. Do NOT touch private strategy metadata sections.
-Only rewrite sections whose section_id appears in preservation_contract.ordering_rules and are NOT in preservation_contract.sections_to_exclude.
+Only rewrite sections whose section_id appears in preservation_contract.ordering_rules
+and are NOT in preservation_contract.sections_to_exclude.
 Output ONLY valid JSON.
 
 Required JSON schema:
@@ -179,26 +255,45 @@ Required JSON schema:
   }
 }"""
 
+
 def section_rewrites_node(state: CouncilState) -> CouncilState:
     print("\n--- System 7: Section Rewrites ---")
-    prompt = f"Resume: {json.dumps(state['canonical_resume'])}\nContract: {json.dumps(state['preservation_contract'])}\nStrategy: {json.dumps(state['positioning_strategy'])}\nUser Truth: {json.dumps(state['user_truth'])}"
+    if _has_errors(state):
+        print("  → SKIPPING (previous errors)")
+        return state
+    prompt = (
+        f"Resume: {json.dumps(state['canonical_resume'])}\n"
+        f"Contract: {json.dumps(state['preservation_contract'])}\n"
+        f"Strategy: {json.dumps(state['positioning_strategy'])}\n"
+        f"User Truth: {json.dumps(state['user_truth'])}"
+    )
     result = _call(_S7_SYSTEM, prompt)
-    if "error" in result:
-        print(f"  → ERROR: {result['error']}")
-    else:
-        rewrites = result.get('rewrites', {})
-        print(f"  → Rewrote {len(rewrites)} sections: {', '.join(list(rewrites.keys()))}")
-    return {**state, "section_rewrites": result}
+    if not result.success:
+        state.setdefault("errors", []).extend(result.errors)
+        return state
+    payload = result.payload
+    rewrites = payload.get("rewrites", {})
+    print(
+        f"  → Rewrote {len(rewrites)} sections: "
+        f"{', '.join(list(rewrites.keys()))}"
+    )
+    return {**state, "section_rewrites": payload}
 
 
 # ─── System 7.5: Truth Guard ──────────────────────────────────────────────────
 
 def truth_guard_node(state: CouncilState) -> CouncilState:
     print("\n--- System 7.5: Truth Guard ---")
+    if _has_errors(state):
+        print("  → SKIPPING (previous errors)")
+        return state
     import re
+
     rewrites = state.get("section_rewrites", {})
     user_truth = state.get("user_truth", {})
-    not_allowed = user_truth.get("claims_not_allowed", []) if user_truth else []
+    not_allowed = (
+        user_truth.get("claims_not_allowed", []) if user_truth else []
+    )
     errors = state.get("errors", [])
 
     if not_allowed and rewrites and "rewrites" in rewrites:
@@ -206,64 +301,171 @@ def truth_guard_node(state: CouncilState) -> CouncilState:
             text = rewrite.get("rewritten_text", "")
             for claim in not_allowed:
                 if claim and claim.lower() in text.lower():
-                    print(f"  !! Truth Guard caught violation: '{claim}' in {section_id}")
-                    errors.append(f"Truth Guard removed disallowed claim: {claim}")
-                    text = re.sub(re.escape(claim), "", text, flags=re.IGNORECASE)
-                    rewrites["rewrites"][section_id]["rewritten_text"] = text
-                    
+                    print(
+                        f"  !! Truth Guard caught violation: "
+                        f"'{claim}' in {section_id}"
+                    )
+                    errors.append(
+                        f"Truth Guard removed disallowed claim: {claim}"
+                    )
+                    text = re.sub(
+                        re.escape(claim), "", text, flags=re.IGNORECASE
+                    )
+                    rewrites["rewrites"][section_id][
+                        "rewritten_text"
+                    ] = text
+
     return {**state, "section_rewrites": rewrites, "errors": errors}
 
 
 # ─── System 8: Safe Assembler ─────────────────────────────────────────────────
 
-_COVER_NOTE_SYSTEM = """Write a 3-sentence cover note for a job application. Be direct and specific. No AI-slop. Use only confirmed experience.
+_COVER_NOTE_SYSTEM = """Write a 3-sentence cover note for a job application.
+Be direct and specific. No AI-slop. Use only confirmed experience.
 Output ONLY valid JSON.
 Required JSON schema:
 {"cover_note": "..."}"""
 
-_RECRUITER_DM_SYSTEM = """Write a 2-sentence LinkedIn DM to a recruiter. One sentence on the role, one sentence on why the candidate fits. No fluff.
+_RECRUITER_DM_SYSTEM = """Write a 2-sentence LinkedIn DM to a recruiter.
+One sentence on the role, one sentence on why the candidate fits. No fluff.
 Output ONLY valid JSON.
 Required JSON schema:
 {"recruiter_message": "..."}"""
 
+
 def assembly_node(state: CouncilState) -> CouncilState:
     print("\n--- System 8: Safe Assembler ---")
-    # Reconstruct objects
-    resume = CanonicalResume(**state["canonical_resume"])
-    resume.sections = [ResumeSection(**s) for s in state["canonical_resume"]["sections"]]
-    
-    rewrites_data = state["section_rewrites"].get("rewrites", {})
-    rewrites = SectionRewrites(rewrites={k: SectionRewrite(**v) for k, v in rewrites_data.items()})
-    
-    contract = PreservationContract(**state["preservation_contract"])
-    
-    # Deterministic assembly
-    final_resume = ResumeCompiler.assemble(resume, rewrites, contract)
-    
-    # Generate messages
-    user_prompt = f"Role: {state['job_title']}\nCompany: {state['company']}\nPositioning Strategy: {json.dumps(state['positioning_strategy'])}"
-    
-    cover_note_result = _call(_COVER_NOTE_SYSTEM, user_prompt)
-    cover_note = cover_note_result.get("cover_note", "")
 
-    dm_result = _call(_RECRUITER_DM_SYSTEM, user_prompt)
-    recruiter_message = dm_result.get("recruiter_message", "")
-    
-    user_truth = state.get("user_truth", {})
-    claims_not_allowed = user_truth.get("claims_not_allowed", []) if user_truth else []
+    # If errors accumulated from upstream nodes, refuse assembly
+    if _has_errors(state):
+        print(
+            f"  !! REFUSING assembly — {len(state['errors'])} error(s) from "
+            f"upstream nodes. Writing failure report."
+        )
+        ctx = get_runtime_context()
+        failure_report = (
+            f"# Resume Council Failure Report\n\n"
+            f"**Generated:** {ctx['current_datetime']}\n"
+            f"**Job:** {state['job_title']} at {state['company']}\n\n"
+            f"## Errors ({len(state['errors'])})\n\n"
+        )
+        for i, err in enumerate(state["errors"], 1):
+            failure_report += f"{i}. {err}\n"
+        failure_report += (
+            "\n## Next Steps\n\n"
+            "1. Fix the underlying issue (API key, model config, input data).\n"
+            "2. Re-run the council for this job.\n"
+        )
+        pack = ApplicationPack(
+            resume_markdown="",
+            cover_note="",
+            recruiter_message="",
+            quality_report=None,
+            user_review_summary=(
+                f"FAILURE: Council stopped with {len(state['errors'])} error(s). "
+                f"See failure_report.md in output directory."
+            ),
+        )
+        pack_dict = pack.to_dict()
+        pack_dict["failure_report"] = failure_report
+        return {**state, "application_pack": pack_dict}
 
-    pack = ApplicationPack(
-        resume_markdown=final_resume,
-        cover_note=cover_note,
-        recruiter_message=recruiter_message,
-        quality_report=ResumeCompiler.generate_quality_report(resume, rewrites, contract, claims_not_allowed),
-        user_review_summary="Check your new resume. 8-system architecture ensured zero metadata leakage."
-    )
-    
-    return {**state, "application_pack": pack.to_dict()}
+    try:
+        # Reconstruct objects
+        resume = CanonicalResume(**state["canonical_resume"])
+        resume.sections = [
+            ResumeSection(**s)
+            for s in state["canonical_resume"]["sections"]
+        ]
+
+        rewrites_data = state["section_rewrites"].get("rewrites", {})
+        rewrites = SectionRewrites(
+            rewrites={k: SectionRewrite(**v) for k, v in rewrites_data.items()}
+        )
+
+        contract = PreservationContract(**state["preservation_contract"])
+
+        # Deterministic assembly
+        final_resume = ResumeCompiler.assemble(resume, rewrites, contract)
+
+        # Link preservation audit
+        link_audit = ResumeCompiler._verify_links_preserved(
+            resume, final_resume, contract
+        )
+        preserved_links = ResumeCompiler.extract_links_from_text(final_resume)
+
+        # Log warnings from link audit
+        for warning in link_audit.warnings:
+            print(f"  !! {warning}")
+
+        # Generate messages
+        user_prompt = (
+            f"Role: {state['job_title']}\n"
+            f"Company: {state['company']}\n"
+            f"Positioning Strategy: {json.dumps(state['positioning_strategy'])}"
+        )
+
+        cover_result = _call(_COVER_NOTE_SYSTEM, user_prompt)
+        cover_note = (
+            cover_result.payload.get("cover_note", "")
+            if cover_result.success
+            else ""
+        )
+
+        dm_result = _call(_RECRUITER_DM_SYSTEM, user_prompt)
+        recruiter_message = (
+            dm_result.payload.get("recruiter_message", "")
+            if dm_result.success
+            else ""
+        )
+
+        user_truth = state.get("user_truth", {})
+        claims_not_allowed = (
+            user_truth.get("claims_not_allowed", []) if user_truth else []
+        )
+
+        pack = ApplicationPack(
+            resume_markdown=final_resume,
+            cover_note=cover_note,
+            recruiter_message=recruiter_message,
+            quality_report=ResumeCompiler.generate_quality_report(
+                resume, rewrites, contract, claims_not_allowed
+            ),
+            preserved_links=preserved_links,
+            link_audit=link_audit,
+            user_review_summary=(
+                "Check your new resume. "
+                "8-system architecture ensured zero metadata leakage."
+            ),
+        )
+
+        return {**state, "application_pack": pack.to_dict()}
+
+    except Exception as e:
+        msg = f"Safe Assembler failed: {e}"
+        print(f"  !! {msg}")
+        state.setdefault("errors", []).append(msg)
+        ctx = get_runtime_context()
+        failure_report = (
+            f"# Resume Council Failure Report\n\n"
+            f"**Generated:** {ctx['current_datetime']}\n"
+            f"**Job:** {state['job_title']} at {state['company']}\n\n"
+            f"## Fatal Error\n\n{msg}\n"
+        )
+        pack = ApplicationPack(
+            resume_markdown="",
+            cover_note="",
+            recruiter_message="",
+            quality_report=None,
+            user_review_summary=f"FAILURE: Assembly error — {msg}",
+        )
+        pack_dict = pack.to_dict()
+        pack_dict["failure_report"] = failure_report
+        return {**state, "application_pack": pack_dict}
 
 
 # ─── Build & Compile Graph ─────────────────────────────────────────────────────
+
 
 def build_council_graph():
     g = StateGraph(CouncilState)
@@ -293,6 +495,7 @@ def build_council_graph():
 
 
 _GRAPH = None
+
 
 def get_council_graph():
     global _GRAPH

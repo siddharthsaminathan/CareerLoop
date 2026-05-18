@@ -1,5 +1,7 @@
 """
 DeepSeek model routing for Resume Council stages.
+
+ACTIVE — imported by graph.py for all LLM-calling council nodes.
 """
 
 import json

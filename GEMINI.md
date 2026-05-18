@@ -8,6 +8,20 @@
 
 AI-powered job search automation: pipeline tracking, offer evaluation, CV generation, portal scanning, batch processing. Originally built on Claude Code, now fully supported on Gemini CLI and OpenCode.
 
+## ARCHITECTURAL MANDATE (READ THIS OR FAIL)
+
+**CRITICAL DIRECTIVE: TAKE THIS SHIT SERIOUSLY.**
+The user has explicitly stated that future agents must not produce "generative AI slop" or they will be considered utterly useless. To ensure you understand the severity: **DO NOT FUCK THIS UP.** 
+
+1. **No Generative Assembly:** You are forbidden from passing a master CV and a few JSON strings to an LLM and asking it to "rewrite the resume." You MUST use the 8-System Compiler architecture (see `docs/ARCHITECTURE_V3_COUNCIL.md`).
+2. **No Brittle Hardcoding:** Never hardcode dates (like "May 2026") into prompts. Inject dynamic context (`datetime.now()`).
+3. **Zero Metadata Leakage:** Private preferences (Deal-breakers, Target Roles, Salary) must NEVER leak into the final compiled Markdown.
+4. **Preserve Links:** If you use an LLM to rewrite a section, you MUST explicitly instruct it to preserve all `[Text](URL)` links.
+5. **No Silent Failures:** If a JSON parse fails or a dataclass instantiation fails because of unexpected LLM keys, DO NOT swallow the error. Use safe initializers (`_safe_init`) and log the error prominently.
+6. **No "Cope" Language:** Strip out defensive, corporate fluff ("passionate", "leveraged", "results-driven"). Be direct.
+
+If you are asked to modify the Resume Council, you MUST strictly adhere to the Deterministic Compiler approach. Do not revert to prompt-driven LLM black boxes.
+
 ## Data Contract (CRITICAL)
 
 **User Layer (NEVER auto-updated — your personalizations live here):**
