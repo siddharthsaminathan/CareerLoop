@@ -319,23 +319,23 @@ The user should feel:
 
 | System | Completion | Status | Notes |
 |--------|-----------|--------|-------|
-| India-first discovery | 70% | 🟡 Active | Multi-source works; verification/lifecycle maturing |
-| Verification & filtering | 60% | 🟡 Active | Search page rejection added; needs confidence layering |
-| Opportunity scoring (14-dim) | 55% | 🟡 Active | Heuristic works; needs calibration + LLM hybrid |
-| Decision compression / triage | 25% | 🔴 Gap | Triage UX not finalized |
+| India-first discovery | 65% | 🟡 Active | ATS scan solid; 0/5 India portals (Naukri, Instahyre, etc.) |
+| Verification & filtering | 55% | 🟡 Active | Search page rejection works; Block G (legitimacy) not hoisted |
+| Opportunity scoring (14-dim) | 50% | 🟡 Active | Heuristic works for AI roles; needs calibration for non-AI |
+| Decision compression / triage | 20% | 🔴 Gap | modes/ofertas.md reusable but no UX built |
 | Career state system (modes) | 10% | 🔴 Gap | Conceptual only; not wired to pipeline |
-| Company intelligence | 15% | 🔴 Gap | Research direction exists; not automated |
-| Positioning engine | 5% | 🔴 Gap | Not properly implemented |
-| Resume Council (v3) | 40% | 🟡 Active | Pipeline fixed; Truth Guard + Humanizer missing |
-| Humanizer layer | 10% | 🔴 Gap | Distributed across stages; no dedicated pass |
-| Application execution | 5% | 🔴 Gap | Concept only |
-| Chrome extension | 0% | ⚫ Not started | — |
-| Follow-up system | 10% | 🔴 Gap | Basic concepts only |
-| Interview memory | 0% | ⚫ Not started | — |
-| Persistent memory graph | 10% | 🔴 Gap | SQLite schema exists; retrieval thin |
-| WhatsApp/transport UX | 20% | 🔴 Gap | Transport concept exists; UX not mature |
+| Company intelligence | 10% | 🔴 Gap | Council node is unreliable LLM recall; spec written, code not started |
+| Positioning engine | 15% | 🟡 Active | Council positioning_node exists; prompt hardening needed |
+| Resume Council (v3) | 45% | 🟡 Active | Pipeline passes; 4/8 output fields missing + Humanizer not integrated |
+| Humanizer layer | 5% | 🔴 Gap | Spec written; code not started. P0 blocker for Council quality |
+| Application execution | 15% | 🔴 Gap | modes/apply.md is working prototype; Chrome extension not started |
+| Chrome extension | 0% | ⚫ Not started | Phase 3 |
+| Follow-up system | 25% | 🔴 Gap | Ledger auto-schedules; cadence logic exists; UI missing |
+| Interview memory | 10% | 🔴 Gap | modes/interview-prep.md is 4★; no DB persistence |
+| Persistent memory graph | 20% | 🟡 Active | Ledger full lifecycle + auto-schedules; SQLite schema drafted |
+| WhatsApp/transport UX | 15% | 🔴 Gap | Concept exists; no implementation |
 | Monetization logic | 30% | 🟡 Active | Strategic understanding solid; pricing not built |
 
-**Overall product maturity: ~20–25% of vision.**
+**Overall product maturity: ~20–25% of vision.** (Audit-recalibrated 2026-05-18 — net neutral after deep inspection.)
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started

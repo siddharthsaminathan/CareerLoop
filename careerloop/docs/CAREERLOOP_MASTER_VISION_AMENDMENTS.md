@@ -2,8 +2,8 @@
 
 **Source:** Audit pass on 2026-05-18 (see `CAREERLOOP_REUSE_AUDIT.md`).
 **Target document:** `careerloop/docs/PRD.md` v1.0 (Canonical Vision).
-**Status:** Proposed. Author approval required before applying.
-**Author of amendments:** Product audit pass.
+**Status:** ALL 8 AMENDMENTS APPLIED — 2026-05-18 architecture consolidation.
+**Final architecture:** `careerloop/docs/CANONICAL_ARCHITECTURE.md` (locked).
 
 > Each amendment names the PRD section, states the change, cites the audit finding that supports it, names the Career-Ops capability that supports the change, and notes whether the roadmap / phase ordering shifts.
 
@@ -283,7 +283,9 @@ Eight amendments proposed. All are **clarifying integrations**, not direction ch
 
 The vision holds as-is on direction. The amendments shorten the path between vision and execution by naming the assets we already have.
 
-**Recommendation:** Apply Amendments 1, 3, 5, 6 immediately (lowest risk, highest clarity). Apply Amendments 2, 4, 7, 8 after author review.
+**Status as of 2026-05-18 architecture consolidation:** All 8 amendments are APPLIED and locked in `CANONICAL_ARCHITECTURE.md`. The two-layer evaluation model, single source of truth (ledger), lazy-loaded company intelligence, canonical renderer, and recalibrated tracker percentages are now the governing architecture. Amendments 2 and 7 (Company Intelligence and tracker recalibration) have corresponding design specs in `specs/company-intel-design.md`.
+
+*End of amendments. All applied. No further changes to this document.*
 
 ---
 
