@@ -1,0 +1,34 @@
+{
+  "job_id": "nicobar-siddharth-final",
+  "person_id": "siddharth",
+  "job_title": "AI Product Engineer",
+  "company": "Nicobar Design Pvt. Ltd.",
+  "job_url": "https://example.com",
+  "jd_text": "...",
+  "profile": {
+    "candidate": {
+      "full_name": "Siddharth Saminathan"
+    },
+    "search_preferences": {
+      "target_roles": [
+        "AI Product Engineer"
+      ],
+      "preferred_cities": [
+        "Delhi",
+        "Chennai"
+      ],
+      "min_salary_inr": 2500000,
+      "work_mode": "hybrid"
+    }
+  },
+  "today": "May 2026",
+  "errors": [],
+  "canonical_resume": null,
+  "preservation_contract": null,
+  "company_intelligence": null,
+  "role_decode": null,
+  "user_truth": null,
+  "positioning_strategy": null,
+  "section_rewrites": null,
+  "application_pack": null
+}

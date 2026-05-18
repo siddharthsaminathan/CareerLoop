@@ -1,0 +1,1 @@
+I build AI that ships. At Omnex, I built a production multi-agent AI system for enterprise quality management, handling LLM API integration and agent orchestration end-to-end. For Nicobar's AI Product Engineer role, I would bring the same product-minded ownership to customer personalization and store clienteling.
