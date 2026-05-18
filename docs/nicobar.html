@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siddharth Saminathan — AI Product Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:opsz,wght@14..32,400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf8f4;
+    --surface: #f3f0ea;
+    --ink: #1f2933;
+    --slate: #5e6b78;
+    --muted: #9b8e84;
+    --rule: #e5ded4;
+    --accent: #b07d62;
+    --accent-soft: #f0e6dd;
+    --display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --body: 'Inter', system-ui, -apple-system, sans-serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* --- Grain texture overlay --- */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1000;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .page {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 100px 48px 80px 48px;
+  }
+
+  /* --- Scroll reveal --- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* --- Hero --- */
+  .hero {
+    padding: 40px 0 100px 0;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 100px;
+  }
+  .hero .overline {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-family: var(--display);
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 24px;
+    max-width: 700px;
+  }
+  .hero .subhead {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--slate);
+    max-width: 580px;
+    margin-bottom: 48px;
+  }
+  .hero .identity {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .hero .identity a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--muted); transition: border-color 0.2s; }
+  .hero .identity a:hover { border-bottom-color: var(--accent); }
+
+  /* --- Sections --- */
+  .section { margin-bottom: 100px; }
+  .section-label {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--display);
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+    max-width: 600px;
+  }
+  .section-narrative {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--slate);
+    max-width: 640px;
+    margin-bottom: 32px;
+  }
+  .section-note {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* --- Metric grid (asymmetric, 4-col) --- */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    margin: 36px 0 16px 0;
+  }
+  .metric-card {
+    background: var(--paper);
+    padding: 32px 24px 24px 24px;
+    text-align: center;
+    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    cursor: default;
+  }
+  .metric-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 28px rgba(0,0,0,0.05);
+    position: relative;
+    z-index: 1;
+  }
+  .metric-card .number {
+    font-family: var(--display);
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .metric-card .label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .metric-card .meaning {
+    font-size: 12px;
+    color: var(--slate);
+    line-height: 1.45;
+  }
+  .metric-card .period {
+    font-size: 10px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 8px;
+    display: block;
+  }
+
+  /* --- Lesson cards --- */
+  .lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    margin: 36px 0;
+  }
+  .lesson-card {
+    background: var(--paper);
+    padding: 32px 24px;
+    transition: background 0.3s ease;
+  }
+  .lesson-card:hover { background: var(--surface); }
+  .lesson-card .lesson-num {
+    font-family: var(--display);
+    font-size: 18px;
+    color: var(--accent);
+    margin-bottom: 10px;
+    opacity: 0.7;
+  }
+  .lesson-card .lesson-text {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--slate);
+  }
+
+  /* --- Pipeline --- */
+  .pipeline-wrap {
+    margin: 44px 0;
+    padding: 40px 16px;
+    background: var(--surface);
+    border-radius: 2px;
+  }
+  .pipeline {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .pipe-step {
+    text-align: center;
+    flex: 1;
+    position: relative;
+  }
+  .pipe-step::after {
+    content: '';
+    position: absolute;
+    right: -50%;
+    top: 18px;
+    width: 100%;
+    height: 1px;
+    background: var(--rule);
+    z-index: 0;
+    transform: translateX(-12px);
+  }
+  .pipe-step:last-child::after { display: none; }
+  .pipe-step .pipe-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    position: relative;
+    z-index: 1;
+    transition: background 0.3s, transform 0.3s;
+    font-size: 13px;
+    color: var(--accent);
+  }
+  .pipe-step:hover .pipe-dot {
+    background: var(--accent);
+    color: #fff;
+    transform: scale(1.15);
+  }
+  .pipe-step .pipe-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* --- Nicobar mapping cards --- */
+  .mapping-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    margin: 36px 0;
+  }
+  .map-card {
+    background: var(--paper);
+    padding: 36px 28px;
+    transition: background 0.3s ease;
+  }
+  .map-card:hover { background: var(--surface); }
+  .map-card .map-domain {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .map-card .map-title {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .map-card .map-body {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--slate);
+  }
+
+  /* --- Principles --- */
+  .principles-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    margin: 36px 0;
+  }
+  .principle-card {
+    background: var(--paper);
+    padding: 36px 20px;
+    text-align: center;
+  }
+  .principle-card .principle-num {
+    font-family: var(--display);
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--accent);
+    opacity: 0.25;
+    line-height: 1;
+    margin-bottom: 8px;
+    transition: opacity 0.3s;
+  }
+  .principle-card:hover .principle-num { opacity: 0.45; }
+  .principle-card .principle-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--slate);
+  }
+
+  /* --- Closing --- */
+  .closing {
+    border-top: 1px solid var(--rule);
+    padding-top: 80px;
+    text-align: center;
+  }
+  .closing .closing-quote {
+    font-family: var(--display);
+    font-size: 26px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--ink);
+    max-width: 640px;
+    margin: 0 auto 48px;
+  }
+  .closing .closing-id {
+    font-size: 13px;
+    color: var(--slate);
+    line-height: 2;
+  }
+  .closing .closing-id a { color: var(--accent); text-decoration: none; }
+
+  /* --- Print --- */
+  @media print {
+    body::before { display: none; }
+    .page { padding: 40px 40px 20px 40px; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .metric-card:hover, .map-card:hover, .lesson-card:hover, .principle-card:hover { transform: none; background: var(--paper); }
+    .pipe-step:hover .pipe-dot { background: var(--accent-soft); color: var(--accent); transform: none; }
+    .hero { padding: 20px 0 50px 0; margin-bottom: 50px; }
+    .section { margin-bottom: 50px; }
+    @page { margin: 0; size: A4; }
+  }
+
+  /* --- Reduced motion --- */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .metric-card, .map-card, .lesson-card { transition: none; }
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 760px) {
+    .page { padding: 48px 20px; }
+    .hero h1 { font-size: 36px; }
+    .section-title { font-size: 26px; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .lessons-grid { grid-template-columns: 1fr; }
+    .mapping-grid { grid-template-columns: 1fr; }
+    .principles-row { grid-template-columns: repeat(2, 1fr); }
+    .pipeline { flex-direction: column; gap: 20px; }
+    .pipe-step::after { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<header class="hero reveal">
+  <div class="overline">Nicobar · AI Product Engineer · CEO's Office</div>
+  <h1>AI systems that get better with every interaction</h1>
+  <p class="subhead">I build production AI products where context, behavior, and workflow history compound over time — across users, teams, and business operations.</p>
+  <div class="identity">
+    Siddharth Saminathan<br>
+    AI Product Engineer · Builder · Chennai<br>
+    <a href="https://emotenow.app">emotenow.app</a> · <a href="https://github.com/siddharthsaminathan">GitHub</a>
+  </div>
+</header>
+
+<!-- ═══════════════ EMOTE ═══════════════ -->
+<section class="section reveal">
+  <div class="section-label">01 — Evidence</div>
+  <h2 class="section-title">Continuity drives return behavior</h2>
+  <p class="section-narrative">Emote is a live AI product I built from zero. The core bet was simple: people return when the system understands their context better over time. That bet held.</p>
+
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="number">28.3%</div>
+      <div class="label">WoW Retention Avg</div>
+      <div class="meaning">Users returned week after week</div>
+      <span class="period">April 2026</span>
+    </div>
+    <div class="metric-card">
+      <div class="number">64.9%</div>
+      <div class="label">Activation Rate</div>
+      <div class="meaning">Nearly two-thirds reached meaningful usage</div>
+      <span class="period">April 2026</span>
+    </div>
+    <div class="metric-card">
+      <div class="number">492</div>
+      <div class="label">Total Users</div>
+      <div class="meaning">Built from zero, no paid acquisition</div>
+      <span class="period">All-time</span>
+    </div>
+    <div class="metric-card">
+      <div class="number">61</div>
+      <div class="label">Monthly Active</div>
+      <div class="meaning">Active, returning, engaged users</div>
+      <span class="period">April 2026</span>
+    </div>
+    <div class="metric-card">
+      <div class="number">27.4%</div>
+      <div class="label">Effective Churn</div>
+      <div class="meaning">Measured and managed weekly</div>
+      <span class="period">April 2026</span>
+    </div>
+    <div class="metric-card">
+      <div class="number">74</div>
+      <div class="label">New Signups</div>
+      <div class="meaning">Organic, referral-driven growth</div>
+      <span class="period">April 2026</span>
+    </div>
+    <div class="metric-card">
+      <div class="number">Wednesday</div>
+      <div class="label">Peak Day</div>
+      <div class="meaning">Consistent midweek engagement rhythm</div>
+    </div>
+    <div class="metric-card">
+      <div class="number">50×</div>
+      <div class="label">Cost Reduction</div>
+      <div class="meaning">Infrastructure optimized from prototype to production</div>
+      <span class="period">All-time</span>
+    </div>
+  </div>
+
+  <p class="section-note">Production metrics · May 2026</p>
+</section>
+
+<!-- ═══════════════ LESSONS ═══════════════ -->
+<section class="section reveal">
+  <div class="section-label">02 — Learning</div>
+  <h2 class="section-title">What Emote taught me</h2>
+
+  <div class="lessons-grid">
+    <div class="lesson-card">
+      <div class="lesson-num">01</div>
+      <div class="lesson-text">Retention came from continuity, not novelty. Users returned when they felt the system understood prior context.</div>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">02</div>
+      <div class="lesson-text">The product improved by studying behavior, not by adding random AI features. Every change earned its place in the workflow.</div>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">03</div>
+      <div class="lesson-text">Latency and cost mattered because emotional products fail when they feel slow. Users notice sub-second delays in conversation.</div>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">04</div>
+      <div class="lesson-text">The same principle applies to retail: every customer interaction should carry forward context across touchpoints.</div>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">05</div>
+      <div class="lesson-text">People notice when a system remembers context correctly. That applies to a returning customer, a store associate, or a merchandising decision.</div>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">06</div>
+      <div class="lesson-text">Shipping fast and measuring behavior beats shipping perfect and measuring opinions. Users showed us what mattered.</div>
+    </div>
+  </div>
+
+  <p class="section-narrative" style="margin-top:20px;">The important insight was not that people like AI. It was that people notice when a system remembers context correctly. That same principle applies to a returning customer, a store associate, a WhatsApp campaign, or a merchandising decision.</p>
+</section>
+
+<!-- ═══════════════ ACQUISITION ═══════════════ -->
+<section class="section reveal">
+  <div class="section-label">03 — Growth</div>
+  <h2 class="section-title">Community-led acquisition without ad spend</h2>
+  <p class="section-narrative">I built a system that identified relevant community conversations, classified user intent, generated personalized outreach, tracked responses, and managed follow-ups — bringing in approximately 80% of Emote's user base without paid acquisition.</p>
+
+  <div class="metrics-grid" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="metric-card">
+      <div class="number">5,619</div>
+      <div class="label">DMs Sent</div>
+      <div class="meaning">Personalized, intent-matched outreach</div>
+    </div>
+    <div class="metric-card">
+      <div class="number">25.9%</div>
+      <div class="label">Reply Rate</div>
+      <div class="meaning">One in four responded — strong signal</div>
+    </div>
+    <div class="metric-card">
+      <div class="number">~400</div>
+      <div class="label">Users Acquired</div>
+      <div class="meaning">From community outreach</div>
+    </div>
+    <div class="metric-card">
+      <div class="number">80%</div>
+      <div class="label">Of User Base</div>
+      <div class="meaning">Community was the primary acquisition channel</div>
+    </div>
+  </div>
+
+  <div class="pipeline-wrap">
+    <div class="pipeline">
+      <div class="pipe-step"><div class="pipe-dot">1</div><div class="pipe-label">Discover</div></div>
+      <div class="pipe-step"><div class="pipe-dot">2</div><div class="pipe-label">Classify</div></div>
+      <div class="pipe-step"><div class="pipe-dot">3</div><div class="pipe-label">Personalize</div></div>
+      <div class="pipe-step"><div class="pipe-dot">4</div><div class="pipe-label">Send</div></div>
+      <div class="pipe-step"><div class="pipe-dot">5</div><div class="pipe-label">Track</div></div>
+      <div class="pipe-step"><div class="pipe-dot">6</div><div class="pipe-label">Follow Up</div></div>
+      <div class="pipe-step"><div class="pipe-dot">7</div><div class="pipe-label">Learn</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ NICOBAR MAPPING ═══════════════ -->
+<section class="section reveal">
+  <div class="section-label">04 — Translation</div>
+  <h2 class="section-title">Why this maps to Nicobar</h2>
+  <p class="section-narrative">The underlying systems are similar. Here is how my experience translates to what you are building.</p>
+
+  <div class="mapping-grid">
+    <div class="map-card">
+      <div class="map-domain">Customer Personalization</div>
+      <div class="map-title">Context compounds across sessions</div>
+      <div class="map-body">Emote proved that users stay when a system remembers who they are and what they care about. For Nicobar, the same principle becomes customer memory across email, WhatsApp, web, and store — every touchpoint carrying forward identity, preferences, and history.</div>
+    </div>
+    <div class="map-card">
+      <div class="map-domain">Store Clienteling</div>
+      <div class="map-title">Interaction history guides better actions</div>
+      <div class="map-body">The outreach CRM system classified intent and matched it to personalized communication. For Nicobar, this becomes associate-facing customer context: who is in front of them, what they love, what is in stock, what can ship from another store.</div>
+    </div>
+    <div class="map-card">
+      <div class="map-domain">Conversational BI</div>
+      <div class="map-title">Live questioning over static dashboards</div>
+      <div class="map-body">My data engineering and dashboard work maps directly to Nicobar's vision of replacing static BI with a live conversational intelligence layer — merchandising, inventory, and campaign performance queried in plain language.</div>
+    </div>
+    <div class="map-card">
+      <div class="map-domain">Design Workflows</div>
+      <div class="map-title">Remove friction so creative teams make more</div>
+      <div class="map-body">My workflow automation experience translates to reducing creative friction: briefs, research, copy, asset variants, and content organization. The goal is the same — help a visual team move faster without losing what makes them Nicobar.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ WORKING STYLE ═══════════════ -->
+<section class="section reveal">
+  <div class="section-label">05 — Method</div>
+  <h2 class="section-title">How I build</h2>
+
+  <div class="principles-row">
+    <div class="principle-card">
+      <div class="principle-num">1</div>
+      <div class="principle-text">Start with the business question — define the right question before the first line of code</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-num">2</div>
+      <div class="principle-text">Ship a narrow prototype fast — get something in front of real users within days</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-num">3</div>
+      <div class="principle-text">Measure behavior, not opinions — let usage data guide what to build next</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-num">4</div>
+      <div class="principle-text">Improve until the system becomes part of the workflow — invisible infrastructure</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CLOSING ═══════════════ -->
+<section class="closing reveal">
+  <p class="closing-quote">I'm interested in Nicobar because the AI opportunity here is not to make the brand louder. It is to make every customer, store, and team interaction more contextual, more responsive, and more unmistakably Nicobar.</p>
+  <div class="closing-id">
+    Siddharth Saminathan<br>
+    AI Product Engineer<br>
+    <a href="https://emotenow.app">emotenow.app</a> · <a href="https://github.com/siddharthsaminathan">GitHub</a> · siddharthsaminathan99@gmail.com · +91 7299707403
+  </div>
+</section>
+
+</div>
+
+<!-- ═══════════════ ANIMATIONS ═══════════════ -->
+<script>
+(function() {
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Metric count-up
+  const countUp = (el, target, decimals, suffix) => {
+    const dur = 1400;
+    const start = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const val = target * eased;
+      if (decimals) el.textContent = val.toFixed(1) + suffix;
+      else if (target >= 1000) el.textContent = Math.round(val).toLocaleString() + suffix;
+      else el.textContent = Math.round(val) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const metricObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting || e.target.dataset.counted) return;
+      e.target.dataset.counted = '1';
+      const nel = e.target.querySelector('.number');
+      if (!nel) return;
+      const raw = nel.textContent.trim();
+      const num = parseFloat(raw.replace(/[^0-9.]/g, ''));
+      if (isNaN(num)) return;
+      const suffix = raw.replace(/[0-9.,~\s]/g, '');
+      countUp(nel, num, raw.includes('.') || raw.includes('%'), suffix);
+    });
+  }, { threshold: 0.25 });
+  document.querySelectorAll('.metric-card').forEach(c => metricObs.observe(c));
+})();
+</script>
+
+</body>
+</html>
