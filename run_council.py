@@ -79,7 +79,37 @@ JD_BY_ID = {
         "company": "Deloitte",
         "url": "https://www.linkedin.com/jobs/view/4399934799",
         "jd": DELOITTE_JD,
-    }
+    },
+    "nicobar-ai-pm": {
+        "title": "AI Product Engineer — CEO's Office",
+        "company": "Nicobar Design Pvt. Ltd.",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7329475396732014592",
+        "jd": """Job Title: AI Product Engineer — CEO's Office
+Company: Nicobar Design Pvt. Ltd. (nicobar.com)
+Location: India
+Employment Type: Full-Time
+
+About Nicobar:
+Nicobar is a design-first Indian lifestyle brand that has spent a decade building a brand that looks and feels unmistakably Nicobar. Now they want to build a company that thinks and operates the same way — evolving from a human-centered digital brand into a human-centered AI brand that retains Soul and Authenticity.
+
+Role Context:
+This is a greenfield mandate in the CEO's Office — no legacy systems, no committees. Just real problems and full room to build. You'll work directly with the Co-Founder (Raul Rai) and CEO.
+
+What You'll Own:
+1. Personalisation at scale — so every customer feels known and remembered, not marketed to
+2. Store clienteling — so every store associate starts interactions already knowing the customer
+3. Conversational BI — so any team can address any question with real answers in seconds
+4. Design Team Workstreams — remove friction so the creative team can make more, better, faster
+
+What They're Looking For:
+- Engineers who think about business outcomes first and can explain what they're building and why (with conviction) to cross-functional teams
+- NOT someone who chases AI trends
+- Someone who can find and prioritize other areas where AI can bring transformation — areas they haven't thought of yet
+
+Requirements:
+- Must share something relevant built in past experience: a GitHub repo, a deployed tool, or a short Loom walkthrough
+- Must add a brief description explaining what was done and its business impact""",
+    },
 }
 
 

@@ -45,7 +45,14 @@ class IndiaFitEngine:
         Score a single job. Returns (total_score, breakdown).
         job dict must have: title, company, location, source
         Optional: salary_text, description, work_mode, posted_date
+        
+        Returns (0, {"rejected": reason}) if the URL is not a real job listing.
         """
+        # ── Pre-filter: reject non-jobs ──────────────────────────────
+        rejection = self._reject_if_not_job(job)
+        if rejection:
+            return 0.0, {"rejected": rejection}
+        
         breakdown = {}
         total = 0.0
 
@@ -83,6 +90,54 @@ class IndiaFitEngine:
             scored.append({"job": job, "score": score, "breakdown": breakdown})
         scored.sort(key=lambda x: x["score"], reverse=True)
         return scored
+
+    def _reject_if_not_job(self, job: dict) -> Optional[str]:
+        """
+        Reject URLs that are search result pages, blog posts, or category listings.
+        Returns rejection reason string, or None if it looks like a real job.
+        """
+        url = (job.get("source_url") or job.get("url") or "").lower()
+        title = (job.get("title") or "").lower()
+        full = url + " " + title
+
+        # Search result / category pages (no specific job)
+        search_patterns = [
+            (r'naukri\.com/[a-z\-]+-jobs-in-', "Naukri search results page"),
+            (r'/jobs/[a-z\-]+-jobs-', "LinkedIn search results page"),
+            (r'/jobs/[a-z\-]+-jobs$', "LinkedIn category page"),
+            (r'/jobs/\d+-[a-z]', None),  # LinkedIn job VIEW — allow (has number prefix)
+            (r'cutshort\.io/jobs/', "Cutshort category page"),
+            (r'foundit\.in/search/', "Foundit search page"),
+            (r'foundit\.in/job/[a-z\-]+-\d{5,}', None),  # Foundit job — allow
+            (r'instahyre\.com/[a-z\-]+-jobs-in-', "Instahyre category page"),
+            (r'hirist\.tech/[ck]/', "Hirist category page"),
+            (r'/blog/', "Blog post, not a job"),
+            (r'/career-advice/', "Career advice article"),
+            (r'/code360/library/', "Naukri learning article"),
+            (r'how-to-become', "Career guide, not a job"),
+            (r'highest-paying', "Salary article, not a job"),
+            (r'best-career-options', "Career advice article"),
+            (r'career-prospects', "Career advice article"),
+            (r'interview-questions', "Interview prep article"),
+        ]
+        
+        import re
+        for pattern, reason in search_patterns:
+            if re.search(pattern, full):
+                if reason is None:
+                    return None  # Allow (this is a real job)
+                return reason
+        
+        # Title-based checks
+        title_signals = [
+            (r'^\d+\+?\s*[a-z\s]+jobs?\s*(in|vacanc)', "Job count listing page"),
+            (r'^\d+\s*[a-z\s]+job\s*(vacanc|open)', "Job count listing page"),
+        ]
+        for pattern, reason in title_signals:
+            if re.search(pattern, title):
+                return reason
+        
+        return None
 
     # ── Dimension Scorers (each returns 0-10) ─────────────────────────
 

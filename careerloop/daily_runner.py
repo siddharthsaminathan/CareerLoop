@@ -112,15 +112,21 @@ class DailyRunner:
             ]
 
         scored_count = 0
+        rejected_count = 0
         for entry in unscored:
             try:
                 score, breakdown = self.engine.score_job(entry)
+                if breakdown.get("rejected"):
+                    self.ledger.set_fit_score(entry["job_id"], 0, breakdown)
+                    self.ledger.transition(entry["job_id"], "SKIPPED", breakdown["rejected"])
+                    rejected_count += 1
+                    continue
                 self.ledger.set_fit_score(entry["job_id"], score, breakdown)
                 scored_count += 1
             except Exception as e:
                 print(f"   ⚠️ Failed to score {entry.get('title')}: {e}")
 
-        print(f"   {scored_count} jobs scored")
+        print(f"   {scored_count} jobs scored, {rejected_count} rejected (search pages/articles)")
 
         # ── Step 5: Shortlist ────────────────────────────────────────
         print("📋 Step 5: Generating shortlist...")

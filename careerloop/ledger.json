@@ -19,8 +19,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -35,10 +33,10 @@
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -70,8 +68,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -86,10 +82,10 @@
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -121,8 +117,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -137,10 +131,10 @@
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -172,8 +166,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -188,10 +180,10 @@
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -223,8 +215,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -239,10 +229,10 @@
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -274,8 +264,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -290,10 +278,10 @@
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -325,8 +313,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -341,10 +327,10 @@
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -376,8 +362,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -392,10 +376,10 @@
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -427,8 +411,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -443,10 +425,10 @@
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -478,8 +460,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -494,10 +474,10 @@
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -516,16 +496,19 @@
     "location": "Chennai",
     "source": "naukri",
     "source_url": "https://www.naukri.com/ai-engineer-jobs-in-chennai",
-    "status": "DISCOVERED",
+    "status": "SHORTLISTED",
     "status_history": [
       {
         "status": "DISCOVERED",
         "date": "2026-05-14T07:01:16.710113+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SHORTLISTED",
+        "date": "2026-05-17T18:05:35.859552+00:00",
+        "reason": "Auto-shortlisted by daily runner"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -534,16 +517,16 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:01:16.710113+00:00",
-    "updated_at": "2026-05-14T07:01:16.710113+00:00",
+    "updated_at": "2026-05-17T18:05:35.859564+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -562,16 +545,19 @@
     "location": "Chennai",
     "source": "naukri",
     "source_url": "https://www.naukri.com/ai-engineer-ml-llm-jobs-in-chennai",
-    "status": "DISCOVERED",
+    "status": "SHORTLISTED",
     "status_history": [
       {
         "status": "DISCOVERED",
         "date": "2026-05-14T07:01:16.711321+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SHORTLISTED",
+        "date": "2026-05-17T18:05:35.869755+00:00",
+        "reason": "Auto-shortlisted by daily runner"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -580,16 +566,16 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:01:16.711321+00:00",
-    "updated_at": "2026-05-14T07:01:16.711321+00:00",
+    "updated_at": "2026-05-17T18:05:35.869758+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -608,16 +594,19 @@
     "location": "Chennai",
     "source": "naukri",
     "source_url": "https://www.naukri.com/job-listings-ai-engineer-machine-learning-jero-technologies-chennai-bengaluru-6-to-11-years-110526931467",
-    "status": "DISCOVERED",
+    "status": "SHORTLISTED",
     "status_history": [
       {
         "status": "DISCOVERED",
         "date": "2026-05-14T07:01:16.712524+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SHORTLISTED",
+        "date": "2026-05-17T18:05:35.880141+00:00",
+        "reason": "Auto-shortlisted by daily runner"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -626,16 +615,16 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:01:16.712524+00:00",
-    "updated_at": "2026-05-14T07:01:16.712524+00:00",
+    "updated_at": "2026-05-17T18:05:35.880146+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -654,16 +643,19 @@
     "location": "Chennai",
     "source": "naukri",
     "source_url": "https://www.naukri.com/job-listings-ai-engineer-zest-inc-chennai-bengaluru-4-to-5-years-110526906104",
-    "status": "DISCOVERED",
+    "status": "SHORTLISTED",
     "status_history": [
       {
         "status": "DISCOVERED",
         "date": "2026-05-14T07:01:16.713781+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SHORTLISTED",
+        "date": "2026-05-17T18:05:35.890470+00:00",
+        "reason": "Auto-shortlisted by daily runner"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -672,16 +664,16 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:01:16.713781+00:00",
-    "updated_at": "2026-05-14T07:01:16.713781+00:00",
+    "updated_at": "2026-05-17T18:05:35.890475+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -706,10 +698,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:01:16.716403+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.188460+00:00",
+        "reason": "Naukri search results page"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -718,16 +713,16 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:01:16.716403+00:00",
-    "updated_at": "2026-05-14T07:01:16.716403+00:00",
+    "updated_at": "2026-05-17T18:24:57.188467+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -752,10 +747,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:01:16.719006+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.209009+00:00",
+        "reason": "Naukri search results page"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -764,16 +762,16 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:01:16.719006+00:00",
-    "updated_at": "2026-05-14T07:01:16.719006+00:00",
+    "updated_at": "2026-05-17T18:24:57.209018+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -800,8 +798,6 @@
         "reason": "Discovered via naukri"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -810,16 +806,16 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:01:16.721878+00:00",
-    "updated_at": "2026-05-14T07:01:16.721878+00:00",
+    "updated_at": "2026-05-17T18:24:57.220579+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -846,8 +842,6 @@
         "reason": "Discovered via naukri"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -856,16 +850,16 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:01:16.724379+00:00",
-    "updated_at": "2026-05-14T07:01:16.724379+00:00",
+    "updated_at": "2026-05-17T18:24:57.230824+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -892,8 +886,6 @@
         "reason": "Discovered via naukri"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -902,16 +894,16 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:01:16.726495+00:00",
-    "updated_at": "2026-05-14T07:01:16.726495+00:00",
+    "updated_at": "2026-05-17T18:24:57.241029+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -936,10 +928,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:01:16.728631+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.261289+00:00",
+        "reason": "Naukri search results page"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -948,16 +943,16 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:01:16.728631+00:00",
-    "updated_at": "2026-05-14T07:01:16.728631+00:00",
+    "updated_at": "2026-05-17T18:24:57.261297+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
       "reason": "LLM scoring unavailable (API error: 401). Manual review needed.",
       "risks": [
-        "Automated scoring failed \u2014 review manually"
+        "Automated scoring failed — review manually"
       ],
-      "why_user_might_like_it": "Unable to determine \u2014 LLM unavailable",
-      "why_user_might_hate_it": "Unable to determine \u2014 LLM unavailable",
+      "why_user_might_like_it": "Unable to determine — LLM unavailable",
+      "why_user_might_hate_it": "Unable to determine — LLM unavailable",
       "missing_info": [
         "Full JD text",
         "Salary details",
@@ -982,10 +977,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.102553+00:00",
         "reason": "Discovered via linkedin"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.280987+00:00",
+        "reason": "LinkedIn search results page"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -994,14 +992,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.102553+00:00",
-    "updated_at": "2026-05-14T07:25:41.102553+00:00",
+    "updated_at": "2026-05-17T18:24:57.280989+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The job title matches target roles but lacks any details on skills, company type, salary, or work mode, making it impossible to assess fit and posing high risk of mismatch with user's preferences.",
       "risks": [
         "No company type specified, may be a consulting or body-shop which user rejects",
-        "No salary information, likely below user's floor of \u20b925L",
+        "No salary information, likely below user's floor of ₹25L",
         "No work mode, could be on-site only which user may dislike",
         "No description or skills, high uncertainty about actual role",
         "Company unknown, cannot assess stability or brand value"
@@ -1046,10 +1044,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.108928+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.306992+00:00",
+        "reason": "Blog post, not a job"
       }
     ],
-    "fit_score": 0,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -1058,7 +1059,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.108928+00:00",
-    "updated_at": "2026-05-14T07:25:41.108928+00:00",
+    "updated_at": "2026-05-17T18:24:57.307006+00:00",
     "fit_result": {
       "overall_score": 0,
       "recommendation": "SKIP",
@@ -1108,10 +1109,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.115159+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.351490+00:00",
+        "reason": "Blog post, not a job"
       }
     ],
-    "fit_score": 30,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -1120,7 +1124,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.115159+00:00",
-    "updated_at": "2026-05-14T07:25:41.115159+00:00",
+    "updated_at": "2026-05-17T18:24:57.351522+00:00",
     "fit_result": {
       "overall_score": 30,
       "recommendation": "SKIP",
@@ -1169,10 +1173,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.121558+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.411086+00:00",
+        "reason": "Blog post, not a job"
       }
     ],
-    "fit_score": 0,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -1181,7 +1188,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.121558+00:00",
-    "updated_at": "2026-05-14T07:25:41.121558+00:00",
+    "updated_at": "2026-05-17T18:24:57.411104+00:00",
     "fit_result": {
       "overall_score": 0,
       "recommendation": "SKIP",
@@ -1231,10 +1238,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.128988+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.473163+00:00",
+        "reason": "Naukri search results page"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -1243,14 +1253,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.128988+00:00",
-    "updated_at": "2026-05-14T07:25:41.128988+00:00",
+    "updated_at": "2026-05-17T18:24:57.473180+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details such as company type, skills required, and salary, making it impossible to assess fit, and the generic title suggests it may be a body-shop or consulting role which the user rejects.",
       "risks": [
         "No company information increases risk of it being a body-shop or consulting firm",
-        "No salary details may indicate below the user's \u20b925L floor",
+        "No salary details may indicate below the user's ₹25L floor",
         "Generic job title suggests low-quality or mass recruitment"
       ],
       "why_user_might_like_it": "The role is in Chennai and aligns with AI/ML target roles, which could be attractive if the company turns out to be a product-based firm.",
@@ -1294,10 +1304,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.139403+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.494299+00:00",
+        "reason": "Naukri search results page"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -1306,7 +1319,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.139403+00:00",
-    "updated_at": "2026-05-14T07:25:41.139403+00:00",
+    "updated_at": "2026-05-17T18:24:57.494310+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
@@ -1314,7 +1327,7 @@
       "risks": [
         "No company type specified, but the generic listing on Naukri with no description often indicates a body-shop or consulting firm, which the user explicitly rejects.",
         "No skills or responsibilities listed, so the role could be unrelated to AI/ML or require rejected skills like frontend or support.",
-        "Salary not specified, so it may fall below the user's \u20b925L floor.",
+        "Salary not specified, so it may fall below the user's ₹25L floor.",
         "Work mode unknown, which could be on-site only, conflicting with potential remote preference."
       ],
       "why_user_might_like_it": "The role title mentions 'Artificial Intelligence' and is in Chennai, a major tech hub, which aligns with the user's target AI roles.",
@@ -1357,10 +1370,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.150968+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.515795+00:00",
+        "reason": "Naukri search results page"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -1369,14 +1385,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.150968+00:00",
-    "updated_at": "2026-05-14T07:25:41.150968+00:00",
+    "updated_at": "2026-05-17T18:24:57.515815+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The job is in Chennai, which is not the user's preferred location, and lacks details on skills, salary, and company type, making it a poor fit for the user's high expectations.",
       "risks": [
         "No company name or type provided, could be a consulting or body-shop which the user rejects",
-        "Salary not specified, likely below user's \u20b925L floor given typical Chennai ranges",
+        "Salary not specified, likely below user's ₹25L floor given typical Chennai ranges",
         "Work mode unknown, user may prefer remote or hybrid",
         "No description or skills listed, job may not match AI/ML focus"
       ],
@@ -1420,10 +1436,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.159622+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.541988+00:00",
+        "reason": "Naukri search results page"
       }
     ],
-    "fit_score": 38,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -1432,14 +1451,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.159622+00:00",
-    "updated_at": "2026-05-14T07:25:41.159622+00:00",
+    "updated_at": "2026-05-17T18:24:57.542015+00:00",
     "fit_result": {
       "overall_score": 38,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details on company type, skills, salary, and work mode, making it impossible to assess fit, and the user has rejected body-shop/consulting which this could be.",
       "risks": [
         "No company name or type disclosed, could be a body-shop or consulting firm which user rejects",
-        "No salary information, likely below user's \u20b925L floor",
+        "No salary information, likely below user's ₹25L floor",
         "No skills required listed, cannot verify alignment with user's ML/AI expertise",
         "Unknown work mode may conflict with user's unstated preference"
       ],
@@ -1483,10 +1502,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.166522+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.586839+00:00",
+        "reason": "Naukri search results page"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -1495,7 +1517,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.166522+00:00",
-    "updated_at": "2026-05-14T07:25:41.166522+00:00",
+    "updated_at": "2026-05-17T18:24:57.586878+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
@@ -1503,7 +1525,7 @@
       "risks": [
         "No company or skills specified, indicating a potentially unreliable or spam listing",
         "Company type unknown but likely not a preferred product/SaaS company given the generic posting",
-        "Salary not mentioned, but likely below the user's \u20b925L floor given the high volume of vacancies"
+        "Salary not mentioned, but likely below the user's ₹25L floor given the high volume of vacancies"
       ],
       "why_user_might_like_it": "The location Chennai and the role 'AI Engineer' align with the user's target roles.",
       "why_user_might_hate_it": "The lack of any meaningful information, the high volume of vacancies suggests a body-shop or consulting firm, and no salary or work mode details.",
@@ -1546,8 +1568,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -1556,13 +1576,13 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.172906+00:00",
-    "updated_at": "2026-05-14T07:25:41.172906+00:00",
+    "updated_at": "2026-05-17T18:24:57.630641+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
       "reason": "The role title matches the target role, but lack of details on skills, salary, company type, and work mode makes it risky.",
       "risks": [
-        "No salary information provided, may not meet \u20b925L floor",
+        "No salary information provided, may not meet ₹25L floor",
         "Company type unknown, could be a rejected type like consulting or services",
         "No description or skills listed, unclear if role matches user's strengths"
       ],
@@ -1607,8 +1627,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 30,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -1617,14 +1635,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.181809+00:00",
-    "updated_at": "2026-05-14T07:25:41.181809+00:00",
+    "updated_at": "2026-05-17T18:24:57.653380+00:00",
     "fit_result": {
       "overall_score": 30,
       "recommendation": "SKIP",
       "reason": "The company type is unknown but likely a consulting/services firm given the vague posting, which matches the user's rejected company types.",
       "risks": [
         "Company type may be consulting or body-shop, which the user explicitly rejects",
-        "No salary information provided, making it impossible to assess fit against the user's \u20b925L floor",
+        "No salary information provided, making it impossible to assess fit against the user's ₹25L floor",
         "No job description or skills listed, indicating a low-effort or generic posting"
       ],
       "why_user_might_like_it": "The role title 'AI Engineer' aligns with the user's target roles.",
@@ -1668,8 +1686,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -1678,7 +1694,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.189836+00:00",
-    "updated_at": "2026-05-14T07:25:41.189836+00:00",
+    "updated_at": "2026-05-17T18:24:57.663949+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -1686,7 +1702,7 @@
       "risks": [
         "Job title includes 'Fullstack' which may require frontend skills the user has rejected",
         "No company details available to verify if it's a product company or a body-shop",
-        "Salary not specified, may not meet the user's floor of \u20b925L"
+        "Salary not specified, may not meet the user's floor of ₹25L"
       ],
       "why_user_might_like_it": "The role involves AI engineering, which aligns with the user's target roles and skills.",
       "why_user_might_hate_it": "The 'Fullstack' aspect may involve frontend work, and the lack of company info raises concerns about company type and stability.",
@@ -1729,8 +1745,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -1739,14 +1753,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.197047+00:00",
-    "updated_at": "2026-05-14T07:25:41.197047+00:00",
+    "updated_at": "2026-05-17T18:24:57.674259+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details like skills, company type, and salary, making it impossible to confirm fit, and the user has rejected body-shop/consulting companies which this could be.",
       "risks": [
         "No company name or type provided, could be a consulting or body-shop firm which the user rejects",
-        "No salary information, likely below user's floor of \u20b925L",
+        "No salary information, likely below user's floor of ₹25L",
         "No skills listed, cannot verify alignment with user's strong AI/ML profile",
         "Job posted on Cutshort with minimal details suggests low-quality or generic listing"
       ],
@@ -1792,8 +1806,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -1802,14 +1814,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.203668+00:00",
-    "updated_at": "2026-05-14T07:25:41.203668+00:00",
+    "updated_at": "2026-05-17T18:24:57.684531+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details such as skills, salary, work mode, and company type, making it impossible to assess fit, and the company name suggests a services/body-shop model which the user rejects.",
       "risks": [
         "Company name 'ZakApps software pvt ltd' implies a services/consulting model, which the user explicitly rejects",
-        "No salary information provided, likely below user's \u20b925L floor",
+        "No salary information provided, likely below user's ₹25L floor",
         "No description or skills listed, indicating a low-quality or generic posting"
       ],
       "why_user_might_like_it": "The role title 'AI engineer- Python developer' aligns with the user's target roles and Python is a core skill.",
@@ -1854,8 +1866,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -1864,7 +1874,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.212985+00:00",
-    "updated_at": "2026-05-14T07:25:41.212985+00:00",
+    "updated_at": "2026-05-17T18:24:57.694748+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -1872,7 +1882,7 @@
       "risks": [
         "No job description or skills listed, so the role may not match the user's target roles or skill set",
         "Unknown company type could be a consulting or body-shop, which the user rejects",
-        "No salary information, so it may fall below the user's \u20b925L floor",
+        "No salary information, so it may fall below the user's ₹25L floor",
         "Location is Chennai, but user's location is not specified, potentially reducing location fit"
       ],
       "why_user_might_like_it": "The title mentions NLP Engineer, which is adjacent to the user's target roles in AI/ML, and the user has strong skills in LLMs and embeddings that are relevant to NLP.",
@@ -1915,10 +1925,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.227123+00:00",
         "reason": "Discovered via cutshort"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.715251+00:00",
+        "reason": "LinkedIn search results page"
       }
     ],
-    "fit_score": 30,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -1927,7 +1940,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.227123+00:00",
-    "updated_at": "2026-05-14T07:25:41.227123+00:00",
+    "updated_at": "2026-05-17T18:24:57.715255+00:00",
     "fit_result": {
       "overall_score": 30,
       "recommendation": "SKIP",
@@ -1980,8 +1993,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 25,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -1990,7 +2001,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.237598+00:00",
-    "updated_at": "2026-05-14T07:25:41.237598+00:00",
+    "updated_at": "2026-05-17T18:24:57.725713+00:00",
     "fit_result": {
       "overall_score": 25,
       "recommendation": "SKIP",
@@ -1998,7 +2009,7 @@
       "risks": [
         "Role is QA/automation testing, directly rejected by user",
         "No skills, description, or company type provided to assess fit",
-        "Salary and work mode unknown, cannot meet user's \u20b925L floor"
+        "Salary and work mode unknown, cannot meet user's ₹25L floor"
       ],
       "why_user_might_like_it": "The Chennai location might be convenient if the user is based there, but no other attractive factors.",
       "why_user_might_hate_it": "The role is the opposite of the user's target AI/ML engineering roles and falls into a rejected category.",
@@ -2042,8 +2053,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 25,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -2052,7 +2061,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.248272+00:00",
-    "updated_at": "2026-05-14T07:25:41.248272+00:00",
+    "updated_at": "2026-05-17T18:24:57.736018+00:00",
     "fit_result": {
       "overall_score": 25,
       "recommendation": "SKIP",
@@ -2061,7 +2070,7 @@
         "Role is Python Developer, not AI/ML Engineer",
         "Company type unknown, but likely not a product company",
         "Location Chennai may not be preferred",
-        "Salary not specified, likely below \u20b925L floor"
+        "Salary not specified, likely below ₹25L floor"
       ],
       "why_user_might_like_it": "It involves Python, which is a core skill, and is in Chennai.",
       "why_user_might_hate_it": "It is not an AI/ML role, company type is unknown and possibly a service/consulting firm, and salary may be below expectations.",
@@ -2101,10 +2110,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.261511+00:00",
         "reason": "Discovered via linkedin"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.758559+00:00",
+        "reason": "LinkedIn search results page"
       }
     ],
-    "fit_score": 40,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -2113,7 +2125,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.261511+00:00",
-    "updated_at": "2026-05-14T07:25:41.261511+00:00",
+    "updated_at": "2026-05-17T18:24:57.758576+00:00",
     "fit_result": {
       "overall_score": 40,
       "recommendation": "SKIP",
@@ -2121,7 +2133,7 @@
       "risks": [
         "No description or skills listed, so the role may not align with AI engineering",
         "Company type unknown, could be a consulting or body-shop which user rejects",
-        "Salary not specified, may fall below user's \u20b925L floor"
+        "Salary not specified, may fall below user's ₹25L floor"
       ],
       "why_user_might_like_it": "The title mentions Snorkel Ai, which is an AI-native company, aligning with user's preferred company types.",
       "why_user_might_hate_it": "Lack of information and potential mismatch with user's specific AI/ML focus and salary expectations.",
@@ -2164,8 +2176,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -2174,7 +2184,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.269514+00:00",
-    "updated_at": "2026-05-14T07:25:41.269514+00:00",
+    "updated_at": "2026-05-17T18:24:57.769224+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
@@ -2182,7 +2192,7 @@
       "risks": [
         "No job description or required skills provided, indicating potential spam or misrepresentation",
         "Company type unknown, but user rejects consulting/body-shop/services which are common for vague postings",
-        "Salary not specified, cannot confirm if it meets user's \u20b925L floor"
+        "Salary not specified, cannot confirm if it meets user's ₹25L floor"
       ],
       "why_user_might_like_it": "The title mentions 'Voice.ai' which aligns with user's interest in AI-native companies and LLM/agentic workflows.",
       "why_user_might_hate_it": "Complete lack of information suggests a poorly managed or fake job posting, wasting user's time.",
@@ -2223,10 +2233,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.280035+00:00",
         "reason": "Discovered via linkedin"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.790574+00:00",
+        "reason": "Job count listing page"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -2235,14 +2248,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.280035+00:00",
-    "updated_at": "2026-05-14T07:25:41.280035+00:00",
+    "updated_at": "2026-05-17T18:24:57.790588+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The job title mentions 'Ai Prompt Engineer' which aligns with user's prompt engineering skills, but the location is Chennai (user's location is unknown but likely not Chennai) and the role is in United States, creating a major location mismatch.",
       "risks": [
         "Job location is United States but listed as Chennai, likely a remote or relocation role with unclear terms",
-        "No salary information provided, making it impossible to verify if it meets user's \u20b925L floor",
+        "No salary information provided, making it impossible to verify if it meets user's ₹25L floor",
         "Company type and work mode are unknown, increasing uncertainty about fit with user's preferences"
       ],
       "why_user_might_like_it": "The role focuses on prompt engineering, which is a core skill the user has, and could leverage their experience with LLM APIs and agentic workflows.",
@@ -2284,10 +2297,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.295251+00:00",
         "reason": "Discovered via linkedin"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.811426+00:00",
+        "reason": "Job count listing page"
       }
     ],
-    "fit_score": 25,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -2296,7 +2312,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.295251+00:00",
-    "updated_at": "2026-05-14T07:25:41.295251+00:00",
+    "updated_at": "2026-05-17T18:24:57.811435+00:00",
     "fit_result": {
       "overall_score": 25,
       "recommendation": "SKIP",
@@ -2333,7 +2349,7 @@
   },
   {
     "job_id": "loop-0043",
-    "title": "586 Artificial Intelligence Engineer \u05de\u05e9\u05e8\u05d5\u05ea \u05d1 Israel",
+    "title": "586 Artificial Intelligence Engineer משרות ב Israel",
     "company": "",
     "location": "Chennai",
     "source": "linkedin",
@@ -2346,8 +2362,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 30,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -2356,7 +2370,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.304910+00:00",
-    "updated_at": "2026-05-14T07:25:41.304910+00:00",
+    "updated_at": "2026-05-17T18:24:57.821371+00:00",
     "fit_result": {
       "overall_score": 30,
       "recommendation": "SKIP",
@@ -2408,8 +2422,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -2418,14 +2430,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.312689+00:00",
-    "updated_at": "2026-05-14T07:25:41.312689+00:00",
+    "updated_at": "2026-05-17T18:24:57.831286+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
       "reason": "The role title matches the user's target roles, but lack of job details and company info makes it a moderate fit.",
       "risks": [
         "No company name or type provided, so it could be a rejected company type like consulting or body-shop.",
-        "Salary not specified, so it may not meet the user's \u20b925L floor.",
+        "Salary not specified, so it may not meet the user's ₹25L floor.",
         "Work mode unknown, which could conflict with user's unstated preference."
       ],
       "why_user_might_like_it": "The role is an Applied AI Engineer in Chennai, aligning with the user's target roles and location.",
@@ -2470,8 +2482,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -2480,14 +2490,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.322622+00:00",
-    "updated_at": "2026-05-14T07:25:41.322622+00:00",
+    "updated_at": "2026-05-17T18:24:57.841969+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The job title matches the target role, but the lack of company type, skills, and description combined with the user's rejection of consulting/body-shop companies and the unknown work mode and salary make this a poor fit.",
       "risks": [
         "Company type is unknown but could be a consulting or body-shop, which the user rejects.",
-        "No salary information, making it unlikely to meet the \u20b925L floor.",
+        "No salary information, making it unlikely to meet the ₹25L floor.",
         "No description or skills, so the role may not align with the user's strong AI/ML skills.",
         "Work mode is unknown, which could conflict with user's preference.",
         "Location is Chennai, but user's location is not specified, potentially causing a mismatch."
@@ -2532,10 +2542,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.336386+00:00",
         "reason": "Discovered via linkedin"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.862916+00:00",
+        "reason": "LinkedIn search results page"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -2544,14 +2557,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.336386+00:00",
-    "updated_at": "2026-05-14T07:25:41.336386+00:00",
+    "updated_at": "2026-05-17T18:24:57.862930+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
       "reason": "The job posting is too vague with no company, skills, or description, making it impossible to assess fit against your specific AI/ML role and product company preferences.",
       "risks": [
         "No company name or type disclosed, could be a consulting or body-shop which you reject",
-        "No salary information, likely below your \u20b925L floor",
+        "No salary information, likely below your ₹25L floor",
         "No skills required, may not match your AI/ML stack"
       ],
       "why_user_might_like_it": "The title mentions AI jobs in Chennai, which aligns with your target roles and could be a local opportunity.",
@@ -2594,10 +2607,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.352228+00:00",
         "reason": "Discovered via linkedin"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.883073+00:00",
+        "reason": "LinkedIn search results page"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -2606,14 +2622,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.352228+00:00",
-    "updated_at": "2026-05-14T07:25:41.352228+00:00",
+    "updated_at": "2026-05-17T18:24:57.883078+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details such as company type, skills required, salary, and work mode, making it impossible to assess fit, and the user has rejected consulting/body-shop companies which this could be.",
       "risks": [
         "No company name or type provided, could be a consulting or body-shop firm which the user rejects",
-        "No salary information, likely below user's \u20b925L floor",
+        "No salary information, likely below user's ₹25L floor",
         "No description or skills required, cannot confirm alignment with user's expertise"
       ],
       "why_user_might_like_it": "The role title 'Generative AI Engineer' matches the user's target roles and skill set in LLMs, RAG, and agentic workflows.",
@@ -2663,8 +2679,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -2680,7 +2694,7 @@
       "reason": "The role title matches the user's target roles, but the lack of company type, skills, and salary details makes it risky.",
       "risks": [
         "Company type unknown - could be a consulting or body-shop which the user rejects",
-        "No salary information - may not meet the user's \u20b925L floor",
+        "No salary information - may not meet the user's ₹25L floor",
         "No skills listed - cannot verify alignment with user's expertise"
       ],
       "why_user_might_like_it": "The job title 'Applied AI Engineer' directly matches the user's target roles and likely involves AI/ML work that aligns with their skills.",
@@ -2729,8 +2743,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -2746,7 +2758,7 @@
       "reason": "The role title matches your target roles and Chennai is a viable location, but the complete lack of company, salary, and work mode details makes it impossible to assess fit on critical dimensions.",
       "risks": [
         "Company type is unknown, could be a consulting or body-shop which you reject",
-        "Salary is not specified, may be below your \u20b925L floor",
+        "Salary is not specified, may be below your ₹25L floor",
         "Work mode is unknown, could be on-site only which may not suit you"
       ],
       "why_user_might_like_it": "The role title 'Applied AI Engineer' directly aligns with your target roles and likely involves building AI solutions using cloud platforms like GCP or AWS, which matches your skills.",
@@ -2795,8 +2807,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -2813,7 +2823,7 @@
       "risks": [
         "No description or skills required provided, making it impossible to assess actual fit",
         "Company type unknown - could be a rejected type like consulting or body-shop",
-        "Salary not specified - may not meet user's \u20b925L floor",
+        "Salary not specified - may not meet user's ₹25L floor",
         "Location unknown - user's location preference not specified, but Chennai may not be ideal",
         "Work mode unknown - user's preference not specified, but remote/hybrid may be expected"
       ],
@@ -2860,8 +2870,6 @@
         "reason": "Discovered via naukri"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -2870,14 +2878,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.411849+00:00",
-    "updated_at": "2026-05-14T07:25:41.411849+00:00",
+    "updated_at": "2026-05-17T18:24:57.893584+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "Company type likely consulting/services which user rejects, and missing key details reduce confidence.",
       "risks": [
         "Company type unknown but likely consulting/body-shop given Encora's profile",
-        "No salary info, may be below user's floor of \u20b925L",
+        "No salary info, may be below user's floor of ₹25L",
         "No work mode specified, could be on-site only"
       ],
       "why_user_might_like_it": "Role title matches target roles and location is in India.",
@@ -2921,8 +2929,6 @@
         "reason": "Discovered via naukri"
       }
     ],
-    "fit_score": 25,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -2931,7 +2937,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.429326+00:00",
-    "updated_at": "2026-05-14T07:25:41.429326+00:00",
+    "updated_at": "2026-05-17T18:24:57.905131+00:00",
     "fit_result": {
       "overall_score": 25,
       "recommendation": "SKIP",
@@ -2939,7 +2945,7 @@
       "risks": [
         "No company information increases risk of it being a consulting or body-shop, which the user rejects",
         "Missing job description could hide a role that is not AI-focused",
-        "Unknown salary may not meet the user's \u20b925L floor"
+        "Unknown salary may not meet the user's ₹25L floor"
       ],
       "why_user_might_like_it": "The job is on Naukri, a familiar platform, and the location Chennai might be acceptable if the user is open to it.",
       "why_user_might_hate_it": "Lack of transparency about the role, company, and compensation would frustrate a senior candidate with clear preferences.",
@@ -2987,8 +2993,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 65,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3004,7 +3008,7 @@
       "reason": "The role title matches your target roles and Chennai is a viable location, but lack of company details and salary info creates uncertainty.",
       "risks": [
         "Company type unknown - could be a consulting or body-shop which you reject",
-        "Salary not specified - may not meet your \u20b925L floor",
+        "Salary not specified - may not meet your ₹25L floor",
         "No job description - cannot verify skill requirements or role specifics"
       ],
       "why_user_might_like_it": "The title 'Applied AI Engineer' aligns perfectly with your target roles and skills in LLMs, RAG, and agentic workflows.",
@@ -3046,10 +3050,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.465361+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.926900+00:00",
+        "reason": "Naukri search results page"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3058,7 +3065,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.465361+00:00",
-    "updated_at": "2026-05-14T07:25:41.465361+00:00",
+    "updated_at": "2026-05-17T18:24:57.926918+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
@@ -3066,7 +3073,7 @@
       "risks": [
         "No role title or description to verify alignment with AI Engineer/ML Engineer target roles",
         "No company type disclosed, risking a match with rejected consulting or body-shop firms",
-        "No salary information, so cannot confirm it meets the \u20b925L floor",
+        "No salary information, so cannot confirm it meets the ₹25L floor",
         "Unknown work mode may conflict with unstated preferences"
       ],
       "why_user_might_like_it": "The location is Chennai, which could be convenient if the user is based there, and the posting is from Naukri, a legitimate job platform.",
@@ -3109,10 +3116,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.482585+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.953751+00:00",
+        "reason": "Naukri search results page"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3121,14 +3131,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.482585+00:00",
-    "updated_at": "2026-05-14T07:25:41.482585+00:00",
+    "updated_at": "2026-05-17T18:24:57.953769+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details such as company type, skills required, and salary, making it impossible to confirm alignment with the user's target roles and preferences.",
       "risks": [
         "No company type specified, which could be a consulting or body-shop that the user rejects",
-        "No salary information, so it may fall below the user's \u20b925L floor",
+        "No salary information, so it may fall below the user's ₹25L floor",
         "No skills listed, so the role may not match AI/ML focus"
       ],
       "why_user_might_like_it": "The job title mentions AI and is located in Chennai, which could be relevant if the user is open to that location.",
@@ -3171,10 +3181,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.500577+00:00",
         "reason": "Discovered via cutshort"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:57.982780+00:00",
+        "reason": "Cutshort category page"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3183,14 +3196,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.500577+00:00",
-    "updated_at": "2026-05-14T07:25:41.500577+00:00",
+    "updated_at": "2026-05-17T18:24:57.982789+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details such as company type, skills required, and salary, making it impossible to confirm fit with the user's strict preferences against consulting/body-shop roles and salary floor.",
       "risks": [
         "No company type specified - could be a consulting or body-shop firm which the user rejects",
-        "No salary information - cannot verify if it meets the \u20b925L floor",
+        "No salary information - cannot verify if it meets the ₹25L floor",
         "No skills or description - unclear if role aligns with AI/ML engineering"
       ],
       "why_user_might_like_it": "The role title suggests AI work in Chennai, which matches the user's target roles and could be in a product company.",
@@ -3233,10 +3246,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.517526+00:00",
         "reason": "Discovered via cutshort"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.003615+00:00",
+        "reason": "LinkedIn search results page"
       }
     ],
-    "fit_score": 42,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3245,7 +3261,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.517526+00:00",
-    "updated_at": "2026-05-14T07:25:41.517526+00:00",
+    "updated_at": "2026-05-17T18:24:58.003626+00:00",
     "fit_result": {
       "overall_score": 42,
       "recommendation": "SKIP",
@@ -3253,7 +3269,7 @@
       "risks": [
         "No company or role details to evaluate stability or brand value",
         "Location mismatch: user's location is not specified but likely not Chennai",
-        "Unknown salary may fall below the user's \u20b925L floor"
+        "Unknown salary may fall below the user's ₹25L floor"
       ],
       "why_user_might_like_it": "The title mentions AI jobs, which aligns with the user's target roles (AI Engineer, ML Engineer).",
       "why_user_might_hate_it": "Complete lack of information about the company, role, and compensation makes it a blind application with high uncertainty.",
@@ -3297,8 +3313,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3307,14 +3321,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.535017+00:00",
-    "updated_at": "2026-05-14T07:25:41.535017+00:00",
+    "updated_at": "2026-05-17T18:24:58.013443+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The job is in Chennai and lacks critical details like skills, company type, and salary, making it a poor fit for the user's high salary expectations and product-company preference.",
       "risks": [
         "No company type specified; could be a consulting or body-shop which the user rejects",
-        "No salary information; likely below user's \u20b925L floor",
+        "No salary information; likely below user's ₹25L floor",
         "No skills listed; may not align with user's AI/ML expertise"
       ],
       "why_user_might_like_it": "The title 'Applied AI Engineer' matches the user's target roles and could leverage their AI skills.",
@@ -3358,8 +3372,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3368,7 +3380,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.551557+00:00",
-    "updated_at": "2026-05-14T07:25:41.551557+00:00",
+    "updated_at": "2026-05-17T18:24:58.023628+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
@@ -3379,7 +3391,7 @@
         "Company type unknown, but could be consulting or services which user rejects"
       ],
       "why_user_might_like_it": "The location Chennai might be convenient if the user is based there, and the title includes 'Applied AI Engineer' which matches target roles.",
-      "why_user_might_hate_it": "The MERN Stack focus suggests web development work, not AI/ML, and the lack of salary or company details makes it risky for a senior engineer expecting \u20b925L+.",
+      "why_user_might_hate_it": "The MERN Stack focus suggests web development work, not AI/ML, and the lack of salary or company details makes it risky for a senior engineer expecting ₹25L+.",
       "missing_info": [
         "Company name and type",
         "Salary range",
@@ -3417,10 +3429,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.566802+00:00",
         "reason": "Discovered via cutshort"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.056451+00:00",
+        "reason": "LinkedIn search results page"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3429,14 +3444,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.566802+00:00",
-    "updated_at": "2026-05-14T07:25:41.566802+00:00",
+    "updated_at": "2026-05-17T18:24:58.056467+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details (company, skills, description) and the title suggests a generic AI role in Chennai, which may not align with the user's product-focused preferences and salary expectations.",
       "risks": [
         "No company information makes it impossible to verify if it's a product/SaaS company or a consulting/body-shop (rejected types).",
-        "Salary not specified, but likely below user's floor of \u20b925L given generic posting and Chennai location.",
+        "Salary not specified, but likely below user's floor of ₹25L given generic posting and Chennai location.",
         "No description or skills required, so role fit is uncertain and may involve rejected role types."
       ],
       "why_user_might_like_it": "The role title mentions AI, which matches the user's target roles, and Chennai is a major tech hub.",
@@ -3480,8 +3495,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3490,14 +3503,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.587254+00:00",
-    "updated_at": "2026-05-14T07:25:41.587254+00:00",
+    "updated_at": "2026-05-17T18:24:58.073061+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The job title matches the target role, but the complete lack of details on skills, company type, salary, and work mode makes it impossible to assess fit, and the unknown company type risks a body-shop or consulting firm which the user rejects.",
       "risks": [
         "No company type specified, could be a consulting or body-shop firm which the user rejects",
-        "No salary information, likely below the user's \u20b925L floor",
+        "No salary information, likely below the user's ₹25L floor",
         "No work mode specified, may not align with user's preference",
         "No description or skills required, job may be misrepresented or low quality"
       ],
@@ -3541,10 +3554,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.609294+00:00",
         "reason": "Discovered via cutshort"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.108081+00:00",
+        "reason": "LinkedIn search results page"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3553,7 +3569,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.609294+00:00",
-    "updated_at": "2026-05-14T07:25:41.609294+00:00",
+    "updated_at": "2026-05-17T18:24:58.108108+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -3602,10 +3618,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.630820+00:00",
         "reason": "Discovered via cutshort"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.142058+00:00",
+        "reason": "LinkedIn search results page"
       }
     ],
-    "fit_score": 30,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3614,7 +3633,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.630820+00:00",
-    "updated_at": "2026-05-14T07:25:41.630820+00:00",
+    "updated_at": "2026-05-17T18:24:58.142079+00:00",
     "fit_result": {
       "overall_score": 30,
       "recommendation": "SKIP",
@@ -3622,7 +3641,7 @@
       "risks": [
         "No company information increases risk of it being a consulting or body-shop firm",
         "No skills or description means the role may not align with user's AI/ML focus",
-        "Unknown salary could be below user's floor of \u20b925L"
+        "Unknown salary could be below user's floor of ₹25L"
       ],
       "why_user_might_like_it": "The role is in NLP which aligns with user's LLM and RAG expertise, and Chennai is a potential location.",
       "why_user_might_hate_it": "Lack of transparency about company and role details suggests a poor match for a senior AI engineer seeking product companies.",
@@ -3666,8 +3685,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3676,18 +3693,18 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.653426+00:00",
-    "updated_at": "2026-05-14T07:25:41.653426+00:00",
+    "updated_at": "2026-05-17T18:24:58.152360+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The internship role is below the user's seniority and salary expectations, and lacks critical details on skills, company type, and work mode.",
       "risks": [
-        "Internship likely pays far below \u20b925L salary floor",
+        "Internship likely pays far below ₹25L salary floor",
         "No company type info, could be a rejected consulting or services firm",
         "No skills listed, may not align with AI/ML focus"
       ],
       "why_user_might_like_it": "The AI/ML Intern title matches the user's target roles and Chennai is a tech hub.",
-      "why_user_might_hate_it": "Internship is too junior for someone expecting \u20b925L+ CTC and likely offers low pay and limited responsibility.",
+      "why_user_might_hate_it": "Internship is too junior for someone expecting ₹25L+ CTC and likely offers low pay and limited responsibility.",
       "missing_info": [
         "Company name and type",
         "Salary range",
@@ -3727,8 +3744,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3737,7 +3752,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.672884+00:00",
-    "updated_at": "2026-05-14T07:25:41.672884+00:00",
+    "updated_at": "2026-05-17T18:24:58.162675+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -3745,7 +3760,7 @@
       "risks": [
         "No description or skills listed, so the role may not align with the user's expertise in AI/ML and LLMs.",
         "Unknown company type could be a consulting or body-shop, which the user rejects.",
-        "No salary information, making it impossible to verify if it meets the user's \u20b925L floor."
+        "No salary information, making it impossible to verify if it meets the user's ₹25L floor."
       ],
       "why_user_might_like_it": "The title 'ML Engineer, RL & Autonomous' is intriguing and aligns with the user's interest in AI/ML roles, and Chennai is a major tech hub in India.",
       "why_user_might_hate_it": "The complete lack of job details, company info, and salary suggests a poorly defined or low-quality opportunity, which would frustrate a discerning candidate like the user.",
@@ -3789,8 +3804,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3799,14 +3812,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.695491+00:00",
-    "updated_at": "2026-05-14T07:25:41.695491+00:00",
+    "updated_at": "2026-05-17T18:24:58.173137+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details (skills, company type, work mode, salary) and the company is a large healthcare services firm, which may not align with the user's preference for product/SaaS companies and rejection of services/body-shop firms.",
       "risks": [
         "Company type unknown but likely services/consulting given Optum's nature, conflicting with user's rejected company types",
-        "No salary information, making it impossible to assess fit against user's \u20b925L floor and \u20b960L expected CTC",
+        "No salary information, making it impossible to assess fit against user's ₹25L floor and ₹60L expected CTC",
         "Work mode unknown, but user has no stated preference, so this is a neutral risk"
       ],
       "why_user_might_like_it": "Optum is a large, stable organization with potential for AI/ML work at scale, and the remote option could offer flexibility.",
@@ -3856,8 +3869,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3872,7 +3883,7 @@
       "recommendation": "MAYBE",
       "reason": "The role aligns with the user's target role of ML Engineer and is in Chennai, but missing critical details like skills, salary, and company type reduce confidence.",
       "risks": [
-        "No salary information provided, may not meet \u20b925L floor",
+        "No salary information provided, may not meet ₹25L floor",
         "Company type unknown, could be a rejected type like consulting or body-shop",
         "No description or skills listed, making skill fit uncertain"
       ],
@@ -3918,8 +3929,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3928,7 +3937,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.737452+00:00",
-    "updated_at": "2026-05-14T07:25:41.737452+00:00",
+    "updated_at": "2026-05-17T18:24:58.182757+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
@@ -3981,8 +3990,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -3991,14 +3998,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.754008+00:00",
-    "updated_at": "2026-05-14T07:25:41.754008+00:00",
+    "updated_at": "2026-05-17T18:24:58.192264+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
       "reason": "The role title aligns with target roles and location is Chennai, but missing details on skills, company type, salary, and work mode make it a risky fit.",
       "risks": [
         "No company name or type provided, could be a consulting or services company which user rejects",
-        "Salary not specified, may be below user's \u20b925L floor",
+        "Salary not specified, may be below user's ₹25L floor",
         "No skills listed, unclear if role requires computer vision which user may not have",
         "Work mode unknown, could be on-site which may not suit user"
       ],
@@ -4041,10 +4048,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.772057+00:00",
         "reason": "Discovered via linkedin"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.211601+00:00",
+        "reason": "LinkedIn search results page"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -4053,14 +4063,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.772057+00:00",
-    "updated_at": "2026-05-14T07:25:41.772057+00:00",
+    "updated_at": "2026-05-17T18:24:58.211606+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The posting is too vague with no details on skills, company type, or salary, making it impossible to assess fit for your specific AI/ML engineer role preferences.",
       "risks": [
         "No company or role details increase risk of mismatch with your rejected company types (consulting, body-shop, services).",
-        "Unknown salary may fall below your \u20b925L floor.",
+        "Unknown salary may fall below your ₹25L floor.",
         "Unknown work mode may conflict with your unstated preference."
       ],
       "why_user_might_like_it": "The title mentions AI/ML in Chennai, which aligns with your target roles and could be a local opportunity.",
@@ -4103,10 +4113,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.789406+00:00",
         "reason": "Discovered via linkedin"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.231021+00:00",
+        "reason": "LinkedIn search results page"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -4115,14 +4128,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.789406+00:00",
-    "updated_at": "2026-05-14T07:25:41.789406+00:00",
+    "updated_at": "2026-05-17T18:24:58.231025+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
       "reason": "The role title matches the user's target roles and Chennai is a major Indian tech hub, but the lack of company, salary, and work mode details makes it impossible to assess fit on key dimensions.",
       "risks": [
         "Company type unknown - could be a consulting or body-shop which the user rejects",
-        "Salary not specified - may fall below user's \u20b925L floor",
+        "Salary not specified - may fall below user's ₹25L floor",
         "Work mode unknown - user may prefer remote or hybrid",
         "No job description to verify required skills or responsibilities"
       ],
@@ -4167,8 +4180,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -4177,14 +4188,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.811836+00:00",
-    "updated_at": "2026-05-14T07:25:41.811836+00:00",
+    "updated_at": "2026-05-17T18:24:58.240771+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details such as company type, skills required, and salary, making it impossible to confirm alignment with your target roles and preferences.",
       "risks": [
         "No company name or type provided, which could be a consulting or body-shop (rejected types).",
-        "Salary not specified, so it may fall below your \u20b925L floor.",
+        "Salary not specified, so it may fall below your ₹25L floor.",
         "No description or skills listed, increasing uncertainty about role fit."
       ],
       "why_user_might_like_it": "The title mentions AI/ML Engineer roles in Chennai, which aligns with your target roles and location preference.",
@@ -4226,10 +4237,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.833578+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.266018+00:00",
+        "reason": "Naukri search results page"
       }
     ],
-    "fit_score": 40,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -4238,14 +4252,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.833578+00:00",
-    "updated_at": "2026-05-14T07:25:41.833578+00:00",
+    "updated_at": "2026-05-17T18:24:58.266029+00:00",
     "fit_result": {
       "overall_score": 40,
       "recommendation": "SKIP",
       "reason": "The job title matches target roles but the company type is unknown and likely a body-shop or services firm given the generic posting on Naukri, which the user rejects.",
       "risks": [
         "Company type unknown but likely a consulting or services firm, which user rejects",
-        "No salary information provided, may fall below user's floor of \u20b925L",
+        "No salary information provided, may fall below user's floor of ₹25L",
         "No description or skills listed, making it impossible to assess role quality"
       ],
       "why_user_might_like_it": "The role title aligns with user's target roles (AI Engineer, ML Engineer) and Chennai is a major tech hub in India.",
@@ -4287,10 +4301,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.854542+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.287133+00:00",
+        "reason": "Naukri search results page"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -4299,14 +4316,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.854542+00:00",
-    "updated_at": "2026-05-14T07:25:41.854542+00:00",
+    "updated_at": "2026-05-17T18:24:58.287149+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details (company, skills, description) and the user has high standards for role clarity and company type.",
       "risks": [
         "No company name or type, could be a consulting/body-shop which the user rejects",
-        "No salary information, likely below user's floor of \u20b925L",
+        "No salary information, likely below user's floor of ₹25L",
         "No description or skills, making it impossible to assess role fit"
       ],
       "why_user_might_like_it": "The title mentions AI/ML Engineer, which aligns with the user's target roles.",
@@ -4351,8 +4368,6 @@
         "reason": "Discovered via naukri"
       }
     ],
-    "fit_score": 30,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -4361,14 +4376,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.879325+00:00",
-    "updated_at": "2026-05-14T07:25:41.879325+00:00",
+    "updated_at": "2026-05-17T18:24:58.296631+00:00",
     "fit_result": {
       "overall_score": 30,
       "recommendation": "SKIP",
       "reason": "EY is a consulting/services firm, which the user explicitly rejects, and the job lacks key details like salary, skills, and work mode.",
       "risks": [
         "Company type is consulting/services, which user has rejected",
-        "No salary information provided, may not meet user's floor of \u20b925L",
+        "No salary information provided, may not meet user's floor of ₹25L",
         "No skills or description to confirm role fit"
       ],
       "why_user_might_like_it": "The role title matches user's target roles and Chennai is a potential location.",
@@ -4410,10 +4425,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.905028+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.317405+00:00",
+        "reason": "Naukri search results page"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -4422,7 +4440,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.905028+00:00",
-    "updated_at": "2026-05-14T07:25:41.905028+00:00",
+    "updated_at": "2026-05-17T18:24:58.317411+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
@@ -4430,7 +4448,7 @@
       "risks": [
         "No company or role details to assess fit",
         "Title implies a broad search result, possibly a body-shop or consulting firm",
-        "Unknown salary may fall below user's \u20b925L floor"
+        "Unknown salary may fall below user's ₹25L floor"
       ],
       "why_user_might_like_it": "The role title aligns with user's target roles (AI/ML Engineer) and Chennai is a major tech hub.",
       "why_user_might_hate_it": "Complete lack of transparency and likely a low-quality listing from a rejected company type.",
@@ -4471,10 +4489,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.933871+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.338619+00:00",
+        "reason": "Naukri learning article"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -4483,7 +4504,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.933871+00:00",
-    "updated_at": "2026-05-14T07:25:41.933871+00:00",
+    "updated_at": "2026-05-17T18:24:58.338626+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
@@ -4491,7 +4512,7 @@
       "risks": [
         "No actual job role or responsibilities defined",
         "No company or industry context to assess fit",
-        "No salary information, making it impossible to meet the user's \u20b925L floor"
+        "No salary information, making it impossible to meet the user's ₹25L floor"
       ],
       "why_user_might_like_it": "The mention of machine learning aligns with the user's interest in AI/ML roles.",
       "why_user_might_hate_it": "It is a course ad, not a job, and provides no actionable career opportunity or compensation.",
@@ -4532,10 +4553,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.954279+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.358249+00:00",
+        "reason": "Salary article, not a job"
       }
     ],
-    "fit_score": 25,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -4544,7 +4568,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.954279+00:00",
-    "updated_at": "2026-05-14T07:25:41.954279+00:00",
+    "updated_at": "2026-05-17T18:24:58.358256+00:00",
     "fit_result": {
       "overall_score": 25,
       "recommendation": "SKIP",
@@ -4552,7 +4576,7 @@
       "risks": [
         "No role or skill requirements specified, likely not an AI/ML position",
         "Company type unknown, may be a consulting or body-shop which user rejects",
-        "Salary not specified, cannot meet user's \u20b925L floor"
+        "Salary not specified, cannot meet user's ₹25L floor"
       ],
       "why_user_might_like_it": "The title mentions high-paying jobs for freshers, which could align with user's salary expectations if details were provided.",
       "why_user_might_hate_it": "Complete lack of relevant information suggests this is not a targeted AI Engineer role and may waste time.",
@@ -4594,10 +4618,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.975634+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.378018+00:00",
+        "reason": "Blog post, not a job"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -4606,7 +4633,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.975634+00:00",
-    "updated_at": "2026-05-14T07:25:41.975634+00:00",
+    "updated_at": "2026-05-17T18:24:58.378023+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
@@ -4649,16 +4676,19 @@
     "location": "Chennai",
     "source": "cutshort",
     "source_url": "https://cutshort.io/job/Senior-AI-ML-Engineer-Chennai-Moative-ULgrbZXC",
-    "status": "DISCOVERED",
+    "status": "SHORTLISTED",
     "status_history": [
       {
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:41.998180+00:00",
         "reason": "Discovered via cutshort"
+      },
+      {
+        "status": "SHORTLISTED",
+        "date": "2026-05-17T18:05:35.849221+00:00",
+        "reason": "Auto-shortlisted by daily runner"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -4667,14 +4697,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.998180+00:00",
-    "updated_at": "2026-05-14T07:25:41.998180+00:00",
+    "updated_at": "2026-05-17T18:05:35.849228+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details about skills, company type, and salary, making it impossible to confirm fit with the user's specific requirements and preferences.",
       "risks": [
         "No information on company type, which could be a consulting or body-shop that the user rejects",
-        "Salary not specified, may fall below the user's floor of \u20b925L",
+        "Salary not specified, may fall below the user's floor of ₹25L",
         "Work mode unknown, could be on-site or not aligned with user's preference"
       ],
       "why_user_might_like_it": "The role title 'Senior AI/ML Engineer' matches the user's target roles and is located in Chennai, a major tech hub.",
@@ -4719,8 +4749,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -4729,14 +4757,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.020539+00:00",
-    "updated_at": "2026-05-14T07:25:42.020539+00:00",
+    "updated_at": "2026-05-17T18:24:58.387511+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
       "reason": "The role aligns with the user's target roles and skills, but the lack of company, salary, and work mode details makes it a risky bet.",
       "risks": [
         "No company name or type disclosed, could be a consulting/body-shop which the user rejects",
-        "Salary not specified, may fall below the user's \u20b925L floor",
+        "Salary not specified, may fall below the user's ₹25L floor",
         "Work mode unknown, could require full office presence which may not suit the user"
       ],
       "why_user_might_like_it": "The job title matches the user's target roles (AI/ML Engineer) and Chennai is a major tech hub in India.",
@@ -4781,8 +4809,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -4791,14 +4817,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.048372+00:00",
-    "updated_at": "2026-05-14T07:25:42.048372+00:00",
+    "updated_at": "2026-05-17T18:24:58.396858+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
       "reason": "The role title matches the user's target roles and Chennai is a viable location, but the complete lack of company, salary, work mode, and skill details makes it impossible to confirm fit.",
       "risks": [
         "No company name or type provided, so it could be a rejected company type like consulting or body-shop.",
-        "Salary is not specified, which may fall below the user's floor of \u20b925L.",
+        "Salary is not specified, which may fall below the user's floor of ₹25L.",
         "Work mode is unknown; if it requires full office presence, it may conflict with user's unstated preference.",
         "No skills required listed, so the role may demand weak skills like Kubernetes or system design.",
         "No description means the actual responsibilities could be misaligned with user's expertise."
@@ -4844,8 +4870,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 42,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -4854,14 +4878,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.074880+00:00",
-    "updated_at": "2026-05-14T07:25:42.074880+00:00",
+    "updated_at": "2026-05-17T18:24:58.406494+00:00",
     "fit_result": {
       "overall_score": 42,
       "recommendation": "SKIP",
       "reason": "The company type is unknown but likely a services/consulting firm given the vague posting, which matches the user's rejected company types.",
       "risks": [
         "Company type unknown but likely services/consulting, which user explicitly rejects",
-        "No salary info, may not meet \u20b925L floor",
+        "No salary info, may not meet ₹25L floor",
         "No skills or description to assess role fit"
       ],
       "why_user_might_like_it": "The title 'ML Engineer' matches a target role and Chennai is a tech hub.",
@@ -4905,8 +4929,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 15,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -4915,7 +4937,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.099108+00:00",
-    "updated_at": "2026-05-14T07:25:42.099108+00:00",
+    "updated_at": "2026-05-17T18:24:58.416712+00:00",
     "fit_result": {
       "overall_score": 15,
       "recommendation": "SKIP",
@@ -4923,7 +4945,7 @@
       "risks": [
         "Company type is likely services/body-shop, which the user rejects",
         "No role title or description to confirm it matches target AI/ML roles",
-        "No salary information, making it impossible to meet the user's \u20b925L floor"
+        "No salary information, making it impossible to meet the user's ₹25L floor"
       ],
       "why_user_might_like_it": "The job is in Chennai (a major tech hub) and the company name suggests AI/ML focus, which aligns with the user's target roles.",
       "why_user_might_hate_it": "The company type is likely services/body-shop, which the user explicitly rejects, and the lack of details raises red flags about role quality and compensation.",
@@ -4966,8 +4988,6 @@
         "reason": "Discovered via instahyre"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -4976,14 +4996,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.122439+00:00",
-    "updated_at": "2026-05-14T07:25:42.122439+00:00",
+    "updated_at": "2026-05-17T18:24:58.427060+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details such as company type, skills required, and work mode, making it impossible to confirm alignment with the user's product-focused preferences and salary expectations.",
       "risks": [
         "No company type specified, which could be a consulting or body-shop that the user rejects",
-        "No salary information provided, making it uncertain if it meets the \u20b925L floor",
+        "No salary information provided, making it uncertain if it meets the ₹25L floor",
         "No work mode specified, which may conflict with user's unstated preference"
       ],
       "why_user_might_like_it": "The title 'AI Engineer' matches the user's target role, and the India location is convenient.",
@@ -5028,8 +5048,6 @@
         "reason": "Discovered via instahyre"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -5038,13 +5056,13 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.139333+00:00",
-    "updated_at": "2026-05-14T07:25:42.139333+00:00",
+    "updated_at": "2026-05-17T18:24:58.439155+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
-      "reason": "The role aligns with the user's target AI Engineer role, but the internship status and lack of salary details make it a risky fit for a senior professional expecting \u20b925L+.",
+      "reason": "The role aligns with the user's target AI Engineer role, but the internship status and lack of salary details make it a risky fit for a senior professional expecting ₹25L+.",
       "risks": [
-        "Internship likely offers low or no salary, far below the user's \u20b925L floor",
+        "Internship likely offers low or no salary, far below the user's ₹25L floor",
         "No company details to assess product vs services fit or stability",
         "Missing job description makes it hard to evaluate skill alignment"
       ],
@@ -5094,8 +5112,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 60,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -5111,7 +5127,7 @@
       "reason": "The role title matches the user's target roles, but lack of details on skills, company type, salary, and work mode makes it risky.",
       "risks": [
         "No company name or type specified, could be a rejected company type like consulting or services",
-        "Salary not disclosed, may not meet the user's floor of \u20b925L",
+        "Salary not disclosed, may not meet the user's floor of ₹25L",
         "Work mode unknown, user may prefer remote or hybrid",
         "No description or skills listed, hard to confirm role fit"
       ],
@@ -5156,8 +5172,6 @@
         "reason": "Discovered via instahyre"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -5166,14 +5180,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.180679+00:00",
-    "updated_at": "2026-05-14T07:25:42.180679+00:00",
+    "updated_at": "2026-05-17T18:24:58.450410+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
       "reason": "The job title 'Lead Engineer - AI' aligns with the user's target roles, but the lack of company details, salary, and work mode makes it impossible to confirm fit beyond the role itself.",
       "risks": [
         "Company type unknown - could be a consulting or services firm which the user rejects",
-        "No salary information - may fall below the user's \u20b925L floor",
+        "No salary information - may fall below the user's ₹25L floor",
         "No work mode specified - could be in-office which may not suit the user"
       ],
       "why_user_might_like_it": "The role is AI-focused and matches the user's target roles, potentially offering work with LLMs and agentic workflows.",
@@ -5218,8 +5232,6 @@
         "reason": "Discovered via instahyre"
       }
     ],
-    "fit_score": 30,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -5228,14 +5240,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.209134+00:00",
-    "updated_at": "2026-05-14T07:25:42.209134+00:00",
+    "updated_at": "2026-05-17T18:24:58.460450+00:00",
     "fit_result": {
       "overall_score": 30,
       "recommendation": "SKIP",
       "reason": "The company type is likely consulting or services, which the user has explicitly rejected, and the job lacks any details on skills, salary, or work mode.",
       "risks": [
         "Company type likely consulting or body-shop, which user rejects",
-        "No salary information, may fall below user's floor of \u20b925L",
+        "No salary information, may fall below user's floor of ₹25L",
         "No description or skills listed, making fit assessment impossible"
       ],
       "why_user_might_like_it": "The role title 'Gen AI Engineer' aligns with user's target roles and AI skills.",
@@ -5279,8 +5291,6 @@
         "reason": "Discovered via instahyre"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -5289,7 +5299,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.233357+00:00",
-    "updated_at": "2026-05-14T07:25:42.233357+00:00",
+    "updated_at": "2026-05-17T18:24:58.470082+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
@@ -5297,7 +5307,7 @@
       "risks": [
         "Company type is consulting/services, which user has rejected",
         "No job description or skills provided to assess role fit",
-        "Salary not specified, may not meet user's floor of \u20b925L"
+        "Salary not specified, may not meet user's floor of ₹25L"
       ],
       "why_user_might_like_it": "The role title 'Generative AI Engineer' aligns with user's target roles and skills in LLMs, RAG, and agentic workflows.",
       "why_user_might_hate_it": "KPMG is a consulting firm, which the user has explicitly rejected, and the lack of details suggests a possible body-shop model.",
@@ -5340,8 +5350,6 @@
         "reason": "Discovered via instahyre"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -5350,14 +5358,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.249592+00:00",
-    "updated_at": "2026-05-14T07:25:42.249592+00:00",
+    "updated_at": "2026-05-17T18:24:58.479582+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
       "reason": "The job title aligns with the user's target roles and skills, but the lack of company, salary, and work mode details makes it a risky bet.",
       "risks": [
         "No company name or type provided, so it could be a consulting or body-shop which the user rejects.",
-        "No salary information, so it may not meet the user's \u20b925L floor.",
+        "No salary information, so it may not meet the user's ₹25L floor.",
         "Unknown work mode could conflict with user's preference.",
         "No description or skills required, making it hard to assess fit."
       ],
@@ -5402,8 +5410,6 @@
         "reason": "Discovered via instahyre"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -5412,7 +5418,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.269702+00:00",
-    "updated_at": "2026-05-14T07:25:42.269702+00:00",
+    "updated_at": "2026-05-17T18:24:58.489231+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
@@ -5420,7 +5426,7 @@
       "risks": [
         "Company type may be consulting or body-shop which user explicitly rejects",
         "No job description or skills required to assess fit",
-        "Salary not specified, but user's floor is \u20b925L and unknown company may not meet it"
+        "Salary not specified, but user's floor is ₹25L and unknown company may not meet it"
       ],
       "why_user_might_like_it": "The role title matches the user's target roles and is in India.",
       "why_user_might_hate_it": "The company type is unknown and likely a services firm, which the user rejects; lack of details suggests poor job quality.",
@@ -5462,10 +5468,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:42.289240+00:00",
         "reason": "Discovered via search"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.508203+00:00",
+        "reason": "Hirist category page"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -5474,14 +5483,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.289240+00:00",
-    "updated_at": "2026-05-14T07:25:42.289240+00:00",
+    "updated_at": "2026-05-17T18:24:58.508212+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
       "reason": "The job title matches target roles and location is India, but lack of company, salary, and skill details makes it a risky unknown.",
       "risks": [
         "No company name or type, could be a consulting or body-shop which user rejects",
-        "Salary not specified, may fall below user's \u20b925L floor",
+        "Salary not specified, may fall below user's ₹25L floor",
         "No skills listed, may require weak skills like Kubernetes or system design"
       ],
       "why_user_might_like_it": "It's an AI/ML role in India, aligning with the user's target roles and location preference.",
@@ -5524,10 +5533,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:42.310540+00:00",
         "reason": "Discovered via search"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.529102+00:00",
+        "reason": "Hirist category page"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -5536,14 +5548,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.310540+00:00",
-    "updated_at": "2026-05-14T07:25:42.310540+00:00",
+    "updated_at": "2026-05-17T18:24:58.529111+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
       "reason": "The job title aligns with AI/ML roles, but the lack of company, skills, salary, and work mode details makes it a risky opportunity for a senior candidate with high expectations.",
       "risks": [
         "No company name or type provided, so it could be a consulting or body-shop which the user rejects.",
-        "Salary not specified, making it uncertain if it meets the \u20b925L floor or \u20b960L target.",
+        "Salary not specified, making it uncertain if it meets the ₹25L floor or ₹60L target.",
         "No skills or description, so role fit and skill alignment are unknown.",
         "Work mode unknown, which could conflict with user's unstated preference."
       ],
@@ -5589,8 +5601,6 @@
         "reason": "Discovered via search"
       }
     ],
-    "fit_score": 30,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -5599,14 +5609,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.337640+00:00",
-    "updated_at": "2026-05-14T07:25:42.337640+00:00",
+    "updated_at": "2026-05-17T18:24:58.538814+00:00",
     "fit_result": {
       "overall_score": 30,
       "recommendation": "SKIP",
       "reason": "The job posting is generic and lacks any specific details about role, skills, company, or salary, making it impossible to assess fit against the user's targeted AI/ML roles and preferences.",
       "risks": [
         "No information about the role or company type, which could be a consulting or body-shop that the user rejects.",
-        "Unknown salary may fall below the user's \u20b925L floor.",
+        "Unknown salary may fall below the user's ₹25L floor.",
         "The posting appears to be a generic search result, not a specific job, so it may not lead to a real opportunity."
       ],
       "why_user_might_like_it": "The job is in India and could potentially be in a product or AI-native company, aligning with the user's preferences.",
@@ -5651,8 +5661,6 @@
         "reason": "Discovered via search"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -5661,14 +5669,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.371556+00:00",
-    "updated_at": "2026-05-14T07:25:42.371556+00:00",
+    "updated_at": "2026-05-17T18:24:58.556158+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
       "reason": "The job title aligns with the user's target roles and skills, but the lack of company details, salary, and work mode makes it a risky opportunity.",
       "risks": [
         "Company type is unknown, could be a rejected type like consulting or body-shop",
-        "Salary not specified, may not meet the \u20b925L floor",
+        "Salary not specified, may not meet the ₹25L floor",
         "No description or skills listed, making it hard to assess role fit"
       ],
       "why_user_might_like_it": "The role is a Generative AI Engineer, which directly matches the user's expertise in LLMs, RAG, and agentic workflows.",
@@ -5712,8 +5720,6 @@
         "reason": "Discovered via search"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -5722,14 +5728,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.395002+00:00",
-    "updated_at": "2026-05-14T07:25:42.395002+00:00",
+    "updated_at": "2026-05-17T18:24:58.566546+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details about skills, company type, salary, and work mode, making it impossible to assess fit against your specific requirements and preferences.",
       "risks": [
         "No company name or type provided, so it could be a consulting or services firm which you reject.",
-        "Salary not specified, but your floor is \u20b925L and expected CTC is \u20b960L, creating uncertainty.",
+        "Salary not specified, but your floor is ₹25L and expected CTC is ₹60L, creating uncertainty.",
         "Work mode unknown, which could conflict with your unstated but likely preference for remote or hybrid.",
         "No skills listed, so the role may not align with your confirmed AI/ML stack."
       ],
@@ -5775,8 +5781,6 @@
         "reason": "Discovered via search"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -5785,14 +5789,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.425609+00:00",
-    "updated_at": "2026-05-14T07:25:42.425609+00:00",
+    "updated_at": "2026-05-17T18:24:58.576677+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
       "reason": "The role title matches the user's target roles, but the lack of company, skill, and salary details makes it impossible to confirm fit.",
       "risks": [
         "No company name or type provided, so it could be a consulting or body-shop firm which the user rejects",
-        "No salary information, so it may fall below the user's \u20b925L floor",
+        "No salary information, so it may fall below the user's ₹25L floor",
         "No work mode specified, which could conflict with user's unstated preference"
       ],
       "why_user_might_like_it": "The job title 'AI Engineer' directly aligns with the user's target roles and likely involves relevant AI/ML work.",
@@ -5835,10 +5839,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:42.457748+00:00",
         "reason": "Discovered via search"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.595908+00:00",
+        "reason": "Career advice article"
       }
     ],
-    "fit_score": 40,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -5847,14 +5854,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.457748+00:00",
-    "updated_at": "2026-05-14T07:25:42.457748+00:00",
+    "updated_at": "2026-05-17T18:24:58.595916+00:00",
     "fit_result": {
       "overall_score": 40,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details such as company type, skills, and salary, making it impossible to confirm alignment with your target role and preferences.",
       "risks": [
         "No company type specified, which could be a consulting or body-shop you reject",
-        "No salary information, so it may fall below your \u20b925L floor",
+        "No salary information, so it may fall below your ₹25L floor",
         "No work mode or location details, increasing uncertainty"
       ],
       "why_user_might_like_it": "The title 'AI Engineer' matches your target role, and the India location is convenient.",
@@ -5899,8 +5906,6 @@
         "reason": "Discovered via search"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -5909,14 +5914,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.487239+00:00",
-    "updated_at": "2026-05-14T07:25:42.487239+00:00",
+    "updated_at": "2026-05-17T18:24:58.605143+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
       "reason": "The role title matches the user's target roles, but the lack of company type, salary, and work mode information makes it a risky proposition.",
       "risks": [
         "Company type is unknown; could be a consulting or body-shop which the user rejects.",
-        "Salary is not specified; may fall below the user's floor of \u20b925L.",
+        "Salary is not specified; may fall below the user's floor of ₹25L.",
         "Work mode is unknown; user may prefer remote or hybrid.",
         "No description or skills required; cannot verify alignment with user's strong skills."
       ],
@@ -5961,8 +5966,6 @@
         "reason": "Discovered via search"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -5971,14 +5974,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.515683+00:00",
-    "updated_at": "2026-05-14T07:25:42.515683+00:00",
+    "updated_at": "2026-05-17T18:24:58.615660+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
       "reason": "The role title matches the user's target roles, but the lack of company, salary, and work mode details makes it a risky fit.",
       "risks": [
         "Company type is unknown, could be a consulting or services firm which the user rejects",
-        "Salary is not specified, may be below the user's floor of \u20b925L",
+        "Salary is not specified, may be below the user's floor of ₹25L",
         "Work mode is unknown, could be in-office only which may not suit the user"
       ],
       "why_user_might_like_it": "The AI Engineer title aligns perfectly with the user's target roles and skill set in AI/ML.",
@@ -6023,8 +6026,6 @@
         "reason": "Discovered via search"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -6033,18 +6034,18 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.535961+00:00",
-    "updated_at": "2026-05-14T07:25:42.535961+00:00",
+    "updated_at": "2026-05-17T18:24:58.630807+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
       "reason": "The role title matches the user's target roles and the company is AI-native, but the lack of details on skills, work mode, and salary reduces confidence.",
       "risks": [
-        "No salary information provided, which may not meet the user's \u20b925L floor.",
+        "No salary information provided, which may not meet the user's ₹25L floor.",
         "Company type is unknown, but 'sutra.ai' suggests a product/AI-native company, which is preferred.",
         "No work mode specified, which could be a dealbreaker if remote is required."
       ],
       "why_user_might_like_it": "The role is an AI Engineer at an AI-native company in Delhi, aligning with the user's target roles and preferred company type.",
-      "why_user_might_hate_it": "The lack of salary transparency and unknown work mode could lead to rejection, especially if the salary is below \u20b925L or the work mode is not remote.",
+      "why_user_might_hate_it": "The lack of salary transparency and unknown work mode could lead to rejection, especially if the salary is below ₹25L or the work mode is not remote.",
       "missing_info": [
         "Salary range",
         "Work mode (remote/hybrid/onsite)",
@@ -6089,8 +6090,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 65,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -6106,7 +6105,7 @@
       "reason": "The job title aligns with the user's target roles and is located in India, but the lack of company details, skills, and salary information makes it impossible to confirm fit.",
       "risks": [
         "Company type unknown - could be a consulting or body-shop which the user rejects",
-        "No salary information - may fall below the user's \u20b925L floor",
+        "No salary information - may fall below the user's ₹25L floor",
         "No skills required listed - cannot verify alignment with user's strengths"
       ],
       "why_user_might_like_it": "The role is an AI/ML Engineer in India, matching the user's core target roles and location.",
@@ -6151,8 +6150,6 @@
         "reason": "Discovered via search"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -6161,14 +6158,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.570792+00:00",
-    "updated_at": "2026-05-14T07:25:42.570792+00:00",
+    "updated_at": "2026-05-17T18:24:58.640554+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
       "reason": "The role title matches the user's target role, but the lack of company details, salary, and work mode makes it a risky fit.",
       "risks": [
         "Company type unknown - could be a consulting or services firm which the user rejects",
-        "Salary not specified - may not meet the user's \u20b925L floor",
+        "Salary not specified - may not meet the user's ₹25L floor",
         "Work mode unknown - user's preference is not stated but remote/hybrid may be expected"
       ],
       "why_user_might_like_it": "The AI Engineer title aligns with the user's target roles and could leverage their strong LLM and AI skills.",
@@ -6212,8 +6209,6 @@
         "reason": "Discovered via search"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -6222,14 +6217,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.586648+00:00",
-    "updated_at": "2026-05-14T07:25:42.586648+00:00",
+    "updated_at": "2026-05-17T18:24:58.649853+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details such as skills, company type, and salary, making it impossible to assess fit, and the user has rejected consulting/services companies which this might be.",
       "risks": [
         "No company or role details provided, could be a consulting or services firm which the user rejects",
-        "Salary not specified, likely below user's \u20b925L floor",
+        "Salary not specified, likely below user's ₹25L floor",
         "Unknown work mode and location specifics may conflict with user preferences"
       ],
       "why_user_might_like_it": "The title mentions AI and Cloud, aligning with the user's target roles and skills.",
@@ -6273,8 +6268,6 @@
         "reason": "Discovered via search"
       }
     ],
-    "fit_score": 42,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -6283,13 +6276,13 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.604310+00:00",
-    "updated_at": "2026-05-14T07:25:42.604310+00:00",
+    "updated_at": "2026-05-17T18:24:58.659025+00:00",
     "fit_result": {
       "overall_score": 42,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details on skills, salary, work mode, and company type, making it impossible to assess fit for this experienced AI engineer targeting senior roles.",
       "risks": [
-        "No salary information provided, likely below the user's \u20b925L floor",
+        "No salary information provided, likely below the user's ₹25L floor",
         "Company type unknown, could be a rejected type like consulting or body-shop",
         "Work mode unknown, may not align with user's preference",
         "Job is for 0-1 years experience, user likely has more experience"
@@ -6341,8 +6334,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 70,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -6358,7 +6349,7 @@
       "reason": "The job title 'Applied AI Engineer' matches the user's target roles and the location is India, aligning with the user's profile.",
       "risks": [
         "No company name or type is provided, so it's unclear if it matches preferred company types like SaaS or AI-native.",
-        "Salary is not specified, so it may not meet the user's \u20b925L floor.",
+        "Salary is not specified, so it may not meet the user's ₹25L floor.",
         "Work mode is unknown, which could be a dealbreaker if it requires in-office presence and the user prefers remote."
       ],
       "why_user_might_like_it": "The role is exactly an Applied AI Engineer, which aligns with the user's target roles and skills in LLMs, RAG, and agentic workflows.",
@@ -6407,8 +6398,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 65,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -6424,7 +6413,7 @@
       "reason": "The role title matches the user's target roles and the location is India, but the lack of company details, salary, and work mode makes it a risky bet for a user with high salary expectations and specific company preferences.",
       "risks": [
         "Company type is unknown - could be a rejected type like consulting or body-shop",
-        "Salary not specified - user's floor is \u20b925L, unknown if this role meets that",
+        "Salary not specified - user's floor is ₹25L, unknown if this role meets that",
         "Work mode unknown - user has no preference stated, but remote/hybrid might be expected",
         "No description or skills required - hard to assess skill fit or role specifics"
       ],
@@ -6467,10 +6456,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:42.677841+00:00",
         "reason": "Discovered via instahyre"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.677417+00:00",
+        "reason": "Instahyre category page"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -6479,7 +6471,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.677841+00:00",
-    "updated_at": "2026-05-14T07:25:42.677841+00:00",
+    "updated_at": "2026-05-17T18:24:58.677429+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -6487,7 +6479,7 @@
       "risks": [
         "No description or skills listed, so the role may not align with AI/ML engineering",
         "Company type unknown, could be a consulting or body-shop which the user rejects",
-        "Salary not specified, likely below user's floor of \u20b925L"
+        "Salary not specified, likely below user's floor of ₹25L"
       ],
       "why_user_might_like_it": "The job is in India and the title mentions NLTK, which relates to NLP, a field the user works in.",
       "why_user_might_hate_it": "Complete lack of information suggests a low-effort posting, possibly from a rejected company type or a role that doesn't match the user's target roles.",
@@ -6531,8 +6523,6 @@
         "reason": "Discovered via instahyre"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -6541,7 +6531,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.701049+00:00",
-    "updated_at": "2026-05-14T07:25:42.701049+00:00",
+    "updated_at": "2026-05-17T18:24:58.686384+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -6596,8 +6586,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 65,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -6613,7 +6601,7 @@
       "reason": "The role aligns with your prompt engineering skills and AI focus, but missing details on company type, salary, and work mode create uncertainty.",
       "risks": [
         "Company type unknown - could be a consulting or services firm you reject",
-        "Salary not specified - may not meet your \u20b925L floor",
+        "Salary not specified - may not meet your ₹25L floor",
         "No company name or description - hard to assess stability or brand value"
       ],
       "why_user_might_like_it": "The title directly matches your prompt engineering expertise and interest in generative AI, a core part of your target roles.",
@@ -6655,10 +6643,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:42.762872+00:00",
         "reason": "Discovered via search"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.704487+00:00",
+        "reason": "Foundit search page"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -6667,14 +6658,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.762872+00:00",
-    "updated_at": "2026-05-14T07:25:42.762872+00:00",
+    "updated_at": "2026-05-17T18:24:58.704497+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
       "reason": "The job title aligns with the user's target roles and India location, but the lack of company, salary, and skill details makes it a risky match.",
       "risks": [
         "Unknown company type could be a rejected type like consulting or body-shop",
-        "No salary info may mean it's below the user's \u20b925L floor",
+        "No salary info may mean it's below the user's ₹25L floor",
         "Missing work mode might conflict with user's unstated preference"
       ],
       "why_user_might_like_it": "The role is in India and matches the user's target roles in AI engineering, leveraging their strong skills in LLMs, RAG, and agentic workflows.",
@@ -6717,10 +6708,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:42.796740+00:00",
         "reason": "Discovered via search"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.722989+00:00",
+        "reason": "Foundit search page"
       }
     ],
-    "fit_score": 40,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -6729,14 +6723,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.796740+00:00",
-    "updated_at": "2026-05-14T07:25:42.796740+00:00",
+    "updated_at": "2026-05-17T18:24:58.722998+00:00",
     "fit_result": {
       "overall_score": 40,
       "recommendation": "SKIP",
       "reason": "The job posting is too vague with no company, skills, or description, making it impossible to assess fit against your specific requirements.",
       "risks": [
         "No company name or type means it could be a consulting or body-shop, which you reject.",
-        "No salary information makes it impossible to know if it meets your \u20b925L floor.",
+        "No salary information makes it impossible to know if it meets your ₹25L floor.",
         "No work mode or location details may conflict with your preferences."
       ],
       "why_user_might_like_it": "The title matches your target role of Applied AI Engineer, and it's in India.",
@@ -6779,10 +6773,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:42.831396+00:00",
         "reason": "Discovered via search"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.741230+00:00",
+        "reason": "Foundit search page"
       }
     ],
-    "fit_score": 42,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -6791,7 +6788,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.831396+00:00",
-    "updated_at": "2026-05-14T07:25:42.831396+00:00",
+    "updated_at": "2026-05-17T18:24:58.741235+00:00",
     "fit_result": {
       "overall_score": 42,
       "recommendation": "SKIP",
@@ -6799,7 +6796,7 @@
       "risks": [
         "No company information to verify if it's a product/SaaS company (user rejects consulting/body-shop/services)",
         "No skills or description to confirm alignment with user's AI/ML expertise",
-        "Unknown work mode and salary, making it impossible to assess fit against user's \u20b925L floor and preferences"
+        "Unknown work mode and salary, making it impossible to assess fit against user's ₹25L floor and preferences"
       ],
       "why_user_might_like_it": "The title mentions 'Applied Ai Jobs' which aligns with user's target roles of AI Engineer and Applied AI Engineer.",
       "why_user_might_hate_it": "The lack of any specific details (company, skills, salary, description) makes it feel like a generic or low-effort posting, which could be a waste of time.",
@@ -6841,10 +6838,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:25:42.867656+00:00",
         "reason": "Discovered via search"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.762750+00:00",
+        "reason": "Foundit search page"
       }
     ],
-    "fit_score": 40,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -6853,7 +6853,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.867656+00:00",
-    "updated_at": "2026-05-14T07:25:42.867656+00:00",
+    "updated_at": "2026-05-17T18:24:58.762759+00:00",
     "fit_result": {
       "overall_score": 40,
       "recommendation": "SKIP",
@@ -6861,7 +6861,7 @@
       "risks": [
         "No company type specified, could be a consulting or body-shop which user rejects",
         "No skills or description to verify alignment with user's expertise",
-        "No salary information, cannot confirm it meets user's \u20b925L floor",
+        "No salary information, cannot confirm it meets user's ₹25L floor",
         "No work mode or location details beyond India"
       ],
       "why_user_might_like_it": "The title mentions Applied AI, which matches user's target roles, and the location is India.",
@@ -6904,10 +6904,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:33:50.837346+00:00",
         "reason": "Discovered via linkedin"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.780910+00:00",
+        "reason": "LinkedIn search results page"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -6916,14 +6919,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:33:50.837346+00:00",
-    "updated_at": "2026-05-14T07:33:50.837346+00:00",
+    "updated_at": "2026-05-17T18:24:58.780916+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
       "reason": "The role title matches user's target roles and Chennai is in India, but lack of skill, salary, and company details makes it a risky unknown.",
       "risks": [
         "No skills listed, so role may require skills user lacks or avoid",
-        "No salary info, may be below user's \u20b925L floor",
+        "No salary info, may be below user's ₹25L floor",
         "Company type unknown, could be a rejected type like consulting or services"
       ],
       "why_user_might_like_it": "It's an AI Engineer role in a product company (Meril is a medtech product company) located in India, aligning with user's target roles.",
@@ -6965,10 +6968,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:33:50.851860+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.800637+00:00",
+        "reason": "Naukri search results page"
       }
     ],
-    "fit_score": 50,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -6977,7 +6983,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:33:50.851860+00:00",
-    "updated_at": "2026-05-14T07:33:50.851860+00:00",
+    "updated_at": "2026-05-17T18:24:58.800647+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
@@ -6985,7 +6991,7 @@
       "risks": [
         "No job title or description provided, so role may not match AI Engineer/ML Engineer",
         "Company type unknown, could be a rejected type like consulting or body-shop",
-        "Salary not specified, may fall below user's \u20b925L floor",
+        "Salary not specified, may fall below user's ₹25L floor",
         "Location and work mode unknown, could be non-India or require office presence"
       ],
       "why_user_might_like_it": "The user is actively looking for AI/ML roles and this posting could be a hidden gem from a product company.",
@@ -7027,10 +7033,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:33:50.865065+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.819000+00:00",
+        "reason": "Blog post, not a job"
       }
     ],
-    "fit_score": 20,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -7039,7 +7048,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:33:50.865065+00:00",
-    "updated_at": "2026-05-14T07:33:50.865065+00:00",
+    "updated_at": "2026-05-17T18:24:58.819008+00:00",
     "fit_result": {
       "overall_score": 20,
       "recommendation": "SKIP",
@@ -7087,10 +7096,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:33:50.879013+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.837173+00:00",
+        "reason": "Blog post, not a job"
       }
     ],
-    "fit_score": 30,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -7099,7 +7111,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:33:50.879013+00:00",
-    "updated_at": "2026-05-14T07:33:50.879013+00:00",
+    "updated_at": "2026-05-17T18:24:58.837178+00:00",
     "fit_result": {
       "overall_score": 30,
       "recommendation": "SKIP",
@@ -7148,10 +7160,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:33:50.894270+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.855071+00:00",
+        "reason": "Salary article, not a job"
       }
     ],
-    "fit_score": 25,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -7160,7 +7175,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:33:50.894270+00:00",
-    "updated_at": "2026-05-14T07:33:50.894270+00:00",
+    "updated_at": "2026-05-17T18:24:58.855086+00:00",
     "fit_result": {
       "overall_score": 25,
       "recommendation": "SKIP",
@@ -7168,7 +7183,7 @@
       "risks": [
         "No job title or description means it could be any role, including rejected ones like frontend or support.",
         "No company name or type raises risk of consulting or body-shop, which the user rejects.",
-        "No salary specified makes it unlikely to meet the user's \u20b925L floor.",
+        "No salary specified makes it unlikely to meet the user's ₹25L floor.",
         "No work mode or location details could conflict with user preferences."
       ],
       "why_user_might_like_it": "The title mentions 'highest paying jobs' which aligns with the user's high salary expectations.",
@@ -7212,10 +7227,13 @@
         "status": "DISCOVERED",
         "date": "2026-05-14T07:33:50.909544+00:00",
         "reason": "Discovered via naukri"
+      },
+      {
+        "status": "SKIPPED",
+        "date": "2026-05-17T18:24:58.873328+00:00",
+        "reason": "Blog post, not a job"
       }
     ],
-    "fit_score": 25,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -7224,14 +7242,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:33:50.909544+00:00",
-    "updated_at": "2026-05-14T07:33:50.909544+00:00",
+    "updated_at": "2026-05-17T18:24:58.873340+00:00",
     "fit_result": {
       "overall_score": 25,
       "recommendation": "SKIP",
       "reason": "The job posting is generic and lacks any specific details about role, skills, company, or salary, making it impossible to match with the user's targeted AI/ML engineering profile.",
       "risks": [
         "No role or company details could indicate a consulting or body-shop, which the user rejects.",
-        "Unknown salary may fall below the user's \u20b925L floor.",
+        "Unknown salary may fall below the user's ₹25L floor.",
         "Generic title suggests the posting may not be for a specialized AI/ML role."
       ],
       "why_user_might_like_it": "The location Chennai could be acceptable if the user is open to it.",
@@ -7276,8 +7294,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 32,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -7286,14 +7302,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:33:50.924174+00:00",
-    "updated_at": "2026-05-14T07:33:50.924174+00:00",
+    "updated_at": "2026-05-17T18:24:58.882553+00:00",
     "fit_result": {
       "overall_score": 32,
       "recommendation": "SKIP",
       "reason": "The job is likely a consulting/body-shop role (BigRio is a consulting firm) which the user explicitly rejects, and lacks critical details like skills, salary, and work mode.",
       "risks": [
         "Company type (BigRio is a consulting firm) matches user's rejected company types",
-        "No salary information provided, making it impossible to assess fit against user's \u20b925L floor",
+        "No salary information provided, making it impossible to assess fit against user's ₹25L floor",
         "No skills or description available, so role fit is uncertain"
       ],
       "why_user_might_like_it": "The title 'AI Engineer' aligns with user's target roles, and Chennai is a major tech hub in India.",
@@ -7338,8 +7354,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -7348,14 +7362,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:33:50.941899+00:00",
-    "updated_at": "2026-05-14T07:33:50.941899+00:00",
+    "updated_at": "2026-05-17T18:24:58.891403+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details like company type, work mode, and salary, and the unknown company type risks being a consulting or body-shop which the user rejects.",
       "risks": [
         "Company type is unknown, could be consulting or body-shop which user rejects",
-        "No salary information, may not meet \u20b925L floor",
+        "No salary information, may not meet ₹25L floor",
         "No work mode specified, could be on-site only",
         "No description or skills listed, making role fit uncertain"
       ],
@@ -7401,8 +7415,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -7411,14 +7423,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:33:50.959908+00:00",
-    "updated_at": "2026-05-14T07:33:50.959908+00:00",
+    "updated_at": "2026-05-17T18:24:58.900207+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The job title matches the user's target role, but the lack of any details on company type, skills, salary, and work mode makes it impossible to confirm fit, and the user has rejected consulting/body-shop companies which this could be.",
       "risks": [
         "No company type disclosed; could be a consulting or body-shop which the user rejects",
-        "No salary information; user has a floor of \u20b925L and expects up to \u20b960L",
+        "No salary information; user has a floor of ₹25L and expects up to ₹60L",
         "No work mode specified; user may prefer remote or hybrid",
         "No skills listed; cannot verify match with user's strong AI/ML stack"
       ],
@@ -7464,8 +7476,6 @@
         "reason": "Discovered via cutshort"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -7474,14 +7484,14 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:33:50.978521+00:00",
-    "updated_at": "2026-05-14T07:33:50.978521+00:00",
+    "updated_at": "2026-05-17T18:24:58.910234+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
       "reason": "The job posting lacks critical details like skills, company type, and salary, making it impossible to assess fit, and the user has rejected consulting/body-shop companies which this might be.",
       "risks": [
         "No company name or type provided, could be a consulting or body-shop firm which user rejects",
-        "No salary information, may fall below user's floor of \u20b925L",
+        "No salary information, may fall below user's floor of ₹25L",
         "No work mode specified, could be on-site only which may not suit user"
       ],
       "why_user_might_like_it": "The role title suggests AI/ML engineering which aligns with user's target roles and skills.",
@@ -7532,8 +7542,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 45,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -7542,7 +7550,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:26.722279+00:00",
-    "updated_at": "2026-05-14T09:04:26.722279+00:00",
+    "updated_at": "2026-05-17T18:24:58.919725+00:00",
     "heuristic_score": 59.2,
     "heuristic_breakdown": {
       "role_fit": {
@@ -7623,7 +7631,7 @@
       "risks": [
         "Company type is unknown but may be a consulting or services firm, which user rejects.",
         "No skills or description provided, making it impossible to assess role fit.",
-        "Salary not specified, but user has a high salary floor of \u20b925L.",
+        "Salary not specified, but user has a high salary floor of ₹25L.",
         "Work mode unknown, which could be a dealbreaker if not remote/hybrid."
       ],
       "why_user_might_like_it": "The title 'Data Scientist' could involve AI/ML work, and the location Chennai is in India.",
@@ -7673,8 +7681,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 42,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -7683,7 +7689,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:26.751682+00:00",
-    "updated_at": "2026-05-14T09:04:26.751682+00:00",
+    "updated_at": "2026-05-17T18:24:58.928739+00:00",
     "heuristic_score": 67.0,
     "heuristic_breakdown": {
       "role_fit": {
@@ -7764,7 +7770,7 @@
       "risks": [
         "Company type (Infosys Finacle) is likely a services/consulting arm of Infosys, which the user explicitly rejects",
         "Role title 'Data Scientist' may not align with user's target roles (AI Engineer, ML Engineer)",
-        "Salary not specified, but Infosys may not meet user's \u20b925L floor",
+        "Salary not specified, but Infosys may not meet user's ₹25L floor",
         "No skills listed, making it hard to confirm fit with user's strong AI/ML stack"
       ],
       "why_user_might_like_it": "The role is in AI/ML at a large company in Chennai, which could offer stability and exposure to enterprise fintech applications.",
@@ -7814,8 +7820,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -7824,7 +7828,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:26.777185+00:00",
-    "updated_at": "2026-05-14T09:04:26.777185+00:00",
+    "updated_at": "2026-05-17T18:24:58.937766+00:00",
     "heuristic_score": 53.2,
     "heuristic_breakdown": {
       "role_fit": {
@@ -7903,14 +7907,14 @@
       "recommendation": "MAYBE",
       "reason": "The role title matches target roles but lacks critical details on skills, salary, work mode, and company type, making it a risky fit for a high-salary, product-focused candidate.",
       "risks": [
-        "No salary information provided, likely below \u20b925L floor",
+        "No salary information provided, likely below ₹25L floor",
         "Company type unknown, may be consulting or services (rejected)",
         "No skills listed, cannot confirm alignment with user's expertise",
         "Work mode unknown, could be on-site only",
         "Company Meril is a medical device manufacturer, not a product/SaaS company"
       ],
       "why_user_might_like_it": "The AI Engineer title aligns with target roles and Chennai is a major tech hub in India.",
-      "why_user_might_hate_it": "Meril is a medical devices company (likely not product/SaaS), salary unknown but probably below \u20b925L, and lack of details suggests poor job posting quality.",
+      "why_user_might_hate_it": "Meril is a medical devices company (likely not product/SaaS), salary unknown but probably below ₹25L, and lack of details suggests poor job posting quality.",
       "missing_info": [
         "Salary range",
         "Work mode",
@@ -7957,8 +7961,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 35,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -7967,7 +7969,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:26.808077+00:00",
-    "updated_at": "2026-05-14T09:04:26.808077+00:00",
+    "updated_at": "2026-05-17T18:24:58.946846+00:00",
     "heuristic_score": 63.2,
     "heuristic_breakdown": {
       "role_fit": {
@@ -8097,8 +8099,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 30,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -8107,7 +8107,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:26.837449+00:00",
-    "updated_at": "2026-05-14T09:04:26.837449+00:00",
+    "updated_at": "2026-05-17T18:24:58.955940+00:00",
     "heuristic_score": 67.0,
     "heuristic_breakdown": {
       "role_fit": {
@@ -8236,8 +8236,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -8246,7 +8244,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:26.867449+00:00",
-    "updated_at": "2026-05-14T09:04:26.867449+00:00",
+    "updated_at": "2026-05-17T18:24:58.964838+00:00",
     "heuristic_score": 63.2,
     "heuristic_breakdown": {
       "role_fit": {
@@ -8326,7 +8324,7 @@
       "reason": "Role title suggests AI/ML work at a major financial institution, but lack of skill and company type details makes fit uncertain.",
       "risks": [
         "Citi may be a large bank with services/consulting-like internal teams, which you rejected.",
-        "No salary info; may be below your \u20b925L floor.",
+        "No salary info; may be below your ₹25L floor.",
         "No work mode specified; could be office-only in Chennai."
       ],
       "why_user_might_like_it": "It's a Gen AI role at a prestigious global bank, potentially offering stability and exposure to large-scale AI systems.",
@@ -8376,8 +8374,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 25,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -8386,7 +8382,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:26.897171+00:00",
-    "updated_at": "2026-05-14T09:04:26.897171+00:00",
+    "updated_at": "2026-05-17T18:24:58.974144+00:00",
     "heuristic_score": 67.0,
     "heuristic_breakdown": {
       "role_fit": {
@@ -8466,7 +8462,7 @@
       "reason": "Deloitte is a consulting/services company, which the user has explicitly rejected, and the role is generic ML without clear product focus.",
       "risks": [
         "Company type is consulting/services, directly matching user's rejected list",
-        "No salary information provided, likely below user's floor of \u20b925L",
+        "No salary information provided, likely below user's floor of ₹25L",
         "Generic ML role may not leverage user's specific LLM/agentic workflow expertise"
       ],
       "why_user_might_like_it": "The role is in ML and located in Chennai, which could be convenient if the user is based there.",
@@ -8516,8 +8512,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 20,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -8526,7 +8520,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:26.928318+00:00",
-    "updated_at": "2026-05-14T09:04:26.928318+00:00",
+    "updated_at": "2026-05-17T18:24:58.983009+00:00",
     "heuristic_score": 59.2,
     "heuristic_breakdown": {
       "role_fit": {
@@ -8606,7 +8600,7 @@
       "reason": "Infosys Finacle is a services/consulting arm of Infosys, which matches the user's rejected company type, and the role lacks details on skills, salary, and work mode.",
       "risks": [
         "Company type is likely consulting/body-shop, which user explicitly rejects",
-        "No salary information provided, making it hard to assess fit against \u20b925L floor",
+        "No salary information provided, making it hard to assess fit against ₹25L floor",
         "Role title 'Data Scientist' may not align with user's target AI/ML Engineer roles"
       ],
       "why_user_might_like_it": "The role is in Chennai, a major tech hub, and could involve AI/ML work at a large company.",
@@ -8661,8 +8655,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 65,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -8751,7 +8743,7 @@
       "reason": "The role aligns with your AI/ML target roles and skills, but the lack of company type, salary, and work mode info creates uncertainty.",
       "risks": [
         "Company type unknown - could be a consulting/body-shop which you reject",
-        "Salary not specified - may be below your \u20b925L floor",
+        "Salary not specified - may be below your ₹25L floor",
         "Work mode unknown - may not match your preference"
       ],
       "why_user_might_like_it": "It's an AI/ML engineering role in Bengaluru at HARMAN, a known brand, and matches your Python and AI skills.",
@@ -8806,8 +8798,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 65,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -8895,12 +8885,12 @@
       "recommendation": "MAYBE",
       "reason": "The role aligns with the user's target AI/ML roles and skills, but missing details on salary, work mode, and company type reduce confidence.",
       "risks": [
-        "Salary not specified, may not meet \u20b925L floor",
+        "Salary not specified, may not meet ₹25L floor",
         "Work mode unknown, could be in-office which may not suit user",
         "Company type unknown, but Google is a product company, likely acceptable"
       ],
       "why_user_might_like_it": "Google is a top-tier product company with strong brand value, and the AI/ML role matches the user's expertise in LLMs, RAG, and agentic workflows.",
-      "why_user_might_hate_it": "Potential lower salary than expected CTC of \u20b960L, and possible strict work-from-office policy.",
+      "why_user_might_hate_it": "Potential lower salary than expected CTC of ₹60L, and possible strict work-from-office policy.",
       "missing_info": [
         "Salary range",
         "Work mode (remote/hybrid/onsite)",
@@ -8951,8 +8941,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 60,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -9040,7 +9028,7 @@
       "recommendation": "MAYBE",
       "reason": "The role title matches the user's target roles and location is in India, but lack of details on skills, salary, work mode, and company type reduces confidence.",
       "risks": [
-        "No salary information provided, may not meet \u20b925L floor",
+        "No salary information provided, may not meet ₹25L floor",
         "Company type unknown, could be a rejected type like consulting or body-shop",
         "Work mode unknown, may not align with user's preference",
         "Skills required not specified, may mismatch user's strengths"
@@ -9097,8 +9085,6 @@
         "reason": "Auto-shortlisted"
       }
     ],
-    "fit_score": 62,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -9187,7 +9173,7 @@
       "reason": "The role title matches your target roles and SAP is a large product company, but the lack of skill and salary details makes it uncertain.",
       "risks": [
         "SAP may not be as AI-native as your preferred company types (saas, ai-native, fintech, devtools, product).",
-        "Unknown salary could be below your \u20b925L floor.",
+        "Unknown salary could be below your ₹25L floor.",
         "Unknown work mode may not match your preference."
       ],
       "why_user_might_like_it": "The Machine Learning Engineer role aligns with your target roles and SAP is a stable, well-known product company in Bengaluru.",
@@ -9237,8 +9223,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": null,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -9247,7 +9231,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:27.079955+00:00",
-    "updated_at": "2026-05-14T09:04:27.079955+00:00",
+    "updated_at": "2026-05-17T18:24:58.992147+00:00",
     "heuristic_score": 47.2,
     "heuristic_breakdown": {
       "role_fit": {
@@ -9343,8 +9327,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 15,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -9353,7 +9335,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:27.110883+00:00",
-    "updated_at": "2026-05-14T09:04:27.110883+00:00",
+    "updated_at": "2026-05-17T18:24:59.001200+00:00",
     "heuristic_score": 53.2,
     "heuristic_breakdown": {
       "role_fit": {
@@ -9482,8 +9464,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 25,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -9492,7 +9472,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:27.139280+00:00",
-    "updated_at": "2026-05-14T09:04:27.139280+00:00",
+    "updated_at": "2026-05-17T18:24:59.010046+00:00",
     "heuristic_score": 53.2,
     "heuristic_breakdown": {
       "role_fit": {
@@ -9622,8 +9602,6 @@
         "reason": "Discovered via linkedin"
       }
     ],
-    "fit_score": 55,
-    "fit_breakdown": null,
     "user_decision": null,
     "decision_reason": null,
     "follow_up_dates": [],
@@ -9632,7 +9610,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:27.171001+00:00",
-    "updated_at": "2026-05-14T09:04:27.171001+00:00",
+    "updated_at": "2026-05-17T18:24:59.019039+00:00",
     "heuristic_score": 73.0,
     "heuristic_breakdown": {
       "role_fit": {
@@ -9711,7 +9689,7 @@
       "recommendation": "MAYBE",
       "reason": "The role aligns with your target ML Engineer profile and is in Chennai, but the lack of salary, work mode, and company details reduces confidence.",
       "risks": [
-        "No salary information provided, may not meet your \u20b925L floor",
+        "No salary information provided, may not meet your ₹25L floor",
         "UPS is a large logistics company, not a product/SaaS company you prefer",
         "Unknown work mode could be on-site only"
       ],
