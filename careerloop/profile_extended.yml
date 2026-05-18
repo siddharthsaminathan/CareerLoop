@@ -1,59 +1,74 @@
-adjacent_roles: []
+adjacent_roles:
+- growth product manager
+- platform product manager
+- ai solutions architect
 assignment_burden_tolerance: 6
+benefits_must_have:
+- health insurance
 confirmed_skills:
 - python
-- fastapi
-- postgresql
-- redis
-- docker
-- aws
-- llm apis
-- rag pipelines
-- embeddings
-- prompt engineering
-- tool calling
-- multi-model routing
-- agentic workflows
-- langchain
-- langgraph
-- sse streaming
-- websockets
-- etl pipelines
-- power bi
 - sql
+- product management
+- ai product development
+- llm
+- prompt engineering
+- behavioral analytics
+- observability
+- brd writing
+- system design
+- stakeholder management
+- data analysis
+- machine learning
+- pytorch
+- tensorflow
+- mlops
+- prd writing
+- user research
+- a/b testing
+- cohort analysis
 ctc_currency: INR
 current_ctc_lakhs: null
-expected_ctc_lakhs: 60
+equity_required: false
+esops_min_percent: null
+expected_ctc_lakhs: 20
 interview_weaknesses: []
 max_commute_minutes: 60
 max_company_size: null
 min_company_size: null
 notice_period_days: 30
 preferred_company_types:
+- startup
 - saas
-- ai-native
 - fintech
-- devtools
-- product
+- ai-first
 preferred_sources: []
-rejected_company_types:
-- consulting
-- body-shop
-- services
+rejected_company_types: []
 rejected_roles:
-- frontend
-- mobile
-- devops only
-- qa
-- support
+- data entry
+- support engineer
 rejection_learnings: []
-relocation_cities: []
+relocation_cities:
+- Bangalore
 resume_tone: confident
-salary_floor_lakhs: 25
-startup_tolerance: 8
+salary_ceiling_lakhs: 40
+salary_floor_lakhs: 12
+sector_preferences:
+- Technology & Software
+- Finance & Fintech
+- Healthcare & Biotech
+- EdTech & Learning
+sector_rejections:
+- Manufacturing & Industrial
+- Government & Public Sector
+startup_tolerance: 7
+target_functions:
+- ai product manager
+- ai product engineer
+- technical product manager
+- product manager
+- ml product manager
 weak_skills:
-- go
-- rust
-- kubernetes
-- system design interviews
-willing_to_relocate: false
+- c++
+- java
+- mobile development
+willing_to_relocate: true

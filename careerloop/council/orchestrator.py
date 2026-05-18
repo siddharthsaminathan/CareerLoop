@@ -7,6 +7,7 @@ from typing import Optional
 
 from careerloop.council.context import CouncilContextLoader
 from careerloop.council.graph import get_council_graph
+from careerloop.verification import JDValidator
 from careerloop.council.models import (
     CouncilResult,
     CanonicalResume,
@@ -70,6 +71,18 @@ class ResumeCouncilOrchestrator:
                     "description": "...",
                     "source_url": "https://example.com",
                 }
+
+        # Gate: validate JD before running Council — never hallucinate a job description
+        jd_text = job_data.get("description", "")
+        jd_result = JDValidator().validate(jd_text, job_data.get("source_url", ""))
+        if not jd_result:
+            print(f"[Council blocked] JD validation failed ({jd_result.reason}): {jd_result.message}")
+            return CouncilResult(
+                job_id=job_id,
+                person_id=person_id,
+                status="jd_unavailable",
+                error=f"JD validation failed: {jd_result.reason}. {jd_result.message}",
+            )
 
         # Output directory setup
         output_dir = os.path.join(

@@ -20,21 +20,28 @@ DEFAULT_INDIA_PROFILE = {
     "expected_ctc_lakhs": None,
     "ctc_currency": "INR",
     "salary_floor_lakhs": None,
-    "startup_tolerance": 7,          # 0-10, 10 = very startup-friendly
-    "min_company_size": None,        # None = no preference
+    "salary_ceiling_lakhs": None,     # upper anchor for "this is too low" vs "perfect"
+    "equity_required": False,         # ESOPs hard requirement?
+    "esops_min_percent": None,        # minimum equity % expected (float)
+    "benefits_must_have": [],         # ["health insurance", "wfh stipend", "learning budget", ...]
+    "target_functions": [],           # ["product engineering", "fashion buying", "data analysis", ...] — horizontal
+    "sector_preferences": [],         # ALLOW list — e.g., ["Technology & Software", "Retail & Commerce"]
+    "sector_rejections": [],          # DENY list — e.g., ["Government & Public Sector"]
+    "startup_tolerance": 7,           # 0-10, 10 = very startup-friendly
+    "min_company_size": None,
     "max_company_size": None,
-    "preferred_company_types": [],   # ["mnc", "startup", "saas", "fintech", etc.]
-    "rejected_company_types": [],    # ["consulting", "body-shop"]
+    "preferred_company_types": [],    # ["mnc", "startup", "saas", "fintech", etc.]
+    "rejected_company_types": [],
     "max_commute_minutes": 60,
     "willing_to_relocate": False,
     "relocation_cities": [],
-    "assignment_burden_tolerance": 5, # 0-10, 10 = willing to do heavy assignments
+    "assignment_burden_tolerance": 5,
     "confirmed_skills": [],
     "weak_skills": [],
     "rejected_roles": [],
     "adjacent_roles": [],
-    "preferred_sources": [],          # ["linkedin", "naukri", "referral", etc.]
-    "resume_tone": "confident",       # confident | humble | technical | balanced
+    "preferred_sources": [],
+    "resume_tone": "confident",
     "interview_weaknesses": [],
     "rejection_learnings": [],
 }
@@ -127,6 +134,34 @@ class ProfileManager:
     @property
     def rejected_roles(self):
         return self.extended.get("rejected_roles", [])
+
+    @property
+    def salary_ceiling_lakhs(self):
+        return self.extended.get("salary_ceiling_lakhs")
+
+    @property
+    def equity_required(self) -> bool:
+        return bool(self.extended.get("equity_required", False))
+
+    @property
+    def esops_min_percent(self):
+        return self.extended.get("esops_min_percent")
+
+    @property
+    def benefits_must_have(self) -> list:
+        return self.extended.get("benefits_must_have", []) or []
+
+    @property
+    def target_functions(self) -> list:
+        return self.extended.get("target_functions", []) or []
+
+    @property
+    def sector_preferences(self) -> list:
+        return self.extended.get("sector_preferences", []) or []
+
+    @property
+    def sector_rejections(self) -> list:
+        return self.extended.get("sector_rejections", []) or []
 
     # ── Mutators ─────────────────────────────────────────────────────
 

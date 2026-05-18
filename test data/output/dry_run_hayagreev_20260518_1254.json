@@ -1,0 +1,2426 @@
+[
+  {
+    "role": "AI product engineer",
+    "city": "Chennai",
+    "keywords_used": [
+      "ai product engineer",
+      "ai",
+      "product",
+      "engineer",
+      "roadmap",
+      "pm",
+      "user research",
+      "strategy",
+      "engineering",
+      "software"
+    ],
+    "candidate_count": 33,
+    "after_dedup_count": 4,
+    "elapsed_seconds": 66.28,
+    "notes": [
+      "role filter: 12 \u2192 5 relevant"
+    ],
+    "ranked_jobs": [
+      {
+        "job": {
+          "title": "Quality Assurance Automation Engineer",
+          "company": "Impetus",
+          "location": "Chennai, Tamil Nadu, India",
+          "url": "https://www.linkedin.com/jobs/view/4413272760",
+          "apply_url": "https://www.linkedin.com/jobs/view/4413272760",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains chennai",
+          "_canonical_fp": "8411917ba99b5670",
+          "canonical": true,
+          "canonical_id": "8411917ba99b5670",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4413272760",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 50.5,
+        "breakdown": {
+          "role_fit": {
+            "raw": 0.0,
+            "weight": 14,
+            "weighted": 0.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 10.0,
+            "weight": 10,
+            "weighted": 10.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 7.0,
+            "weight": 4,
+            "weighted": 2.8
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Supplier Quality Engineer",
+          "company": "Weekday AI (YC W21)",
+          "location": "Chennai, Tamil Nadu, India",
+          "url": "https://www.linkedin.com/jobs/view/4410982075",
+          "apply_url": "https://www.linkedin.com/jobs/view/4410982075",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains chennai",
+          "_canonical_fp": "4da205849b3eaa94",
+          "canonical": true,
+          "canonical_id": "4da205849b3eaa94",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4410982075",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 50.5,
+        "breakdown": {
+          "role_fit": {
+            "raw": 0.0,
+            "weight": 14,
+            "weighted": 0.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 10.0,
+            "weight": 10,
+            "weighted": 10.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 7.0,
+            "weight": 4,
+            "weighted": 2.8
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Manufacturing Continuous Improvement Engineer",
+          "company": "Nokia",
+          "location": "Thiruporur, Tamil Nadu, India",
+          "url": "https://www.linkedin.com/jobs/view/4410133903",
+          "apply_url": "https://www.linkedin.com/jobs/view/4410133903",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains India",
+          "_canonical_fp": "a0ff37bc09797216",
+          "canonical": true,
+          "canonical_id": "a0ff37bc09797216",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4410133903",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 45.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 0.0,
+            "weight": 14,
+            "weighted": 0.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 6.0,
+            "weight": 10,
+            "weighted": 6.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Software Engineer",
+          "company": "NielsenIQ",
+          "location": "TN, IN",
+          "url": "https://in.indeed.com/viewjob?jk=6fc406361f9acfaf",
+          "apply_url": "https://in.indeed.com/viewjob?jk=6fc406361f9acfaf",
+          "url_type": "UNKNOWN",
+          "description": "**Job Description** **Responsibilities**\n\n* Responsible for implementing micro\\-services from design to production.\n* Take ownership of development, maintenance, testing strategy, design discussions, and operations of the team, with containerized API services\n* Participate in all aspects of agile software development including design, implementation, and deployment.\n* Responsible for the end\\-to\\-end lifecycle of new product features / components\n* Ensuring application performance, uptime, and s",
+          "_source_type": "jobspy",
+          "_india_filter": "location ends with India country code",
+          "_canonical_fp": "f7a4886c13fcdbff",
+          "canonical": true,
+          "canonical_id": "f7a4886c13fcdbff",
+          "alternate_sources": [
+            "https://in.indeed.com/viewjob?jk=6f7ba67f61034bad"
+          ],
+          "apply_route": {
+            "best_apply_route": "indeed",
+            "apply_url": "https://in.indeed.com/viewjob?jk=6fc406361f9acfaf",
+            "backup_urls": [
+              "https://in.indeed.com/viewjob?jk=6f7ba67f61034bad"
+            ],
+            "reason": "best route: indeed (priority 6)",
+            "risk": "medium"
+          }
+        },
+        "score": 45.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 0.0,
+            "weight": 14,
+            "weighted": 0.0
+          },
+          "skill_fit": {
+            "raw": 2.4,
+            "weight": 14,
+            "weighted": 3.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "AI product engineer",
+    "city": "Bangalore",
+    "keywords_used": [
+      "ai product engineer",
+      "ai",
+      "product",
+      "engineer",
+      "roadmap",
+      "pm",
+      "user research",
+      "strategy",
+      "engineering",
+      "software"
+    ],
+    "candidate_count": 15,
+    "after_dedup_count": 6,
+    "elapsed_seconds": 66.25,
+    "notes": [
+      "role filter: 10 \u2192 6 relevant"
+    ],
+    "ranked_jobs": [
+      {
+        "job": {
+          "title": "Quality Engineer | NPI(New Product Introduction) exp",
+          "company": "Cisco",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4404056912",
+          "apply_url": "https://www.linkedin.com/jobs/view/4404056912",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "4a99c0245a005cb7",
+          "canonical": true,
+          "canonical_id": "4a99c0245a005cb7",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4404056912",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 53.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 5.0,
+            "weight": 14,
+            "weighted": 7.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Design Automation Engineer",
+          "company": "Flipkart",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4406993224",
+          "apply_url": "https://www.linkedin.com/jobs/view/4406993224",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "69e7f1331a5a4615",
+          "canonical": true,
+          "canonical_id": "69e7f1331a5a4615",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4406993224",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 51.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 0.0,
+            "weight": 14,
+            "weighted": 0.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "company_stability": {
+            "raw": 8.0,
+            "weight": 7,
+            "weighted": 5.6
+          },
+          "startup_risk": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "brand_value": {
+            "raw": 8.0,
+            "weight": 6,
+            "weighted": 4.8
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 6.5,
+            "weight": 4,
+            "weighted": 2.6
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "IP and Subsystem Verification Engineer (Pre-Silicon)",
+          "company": "Intel Corporation",
+          "location": "KA, IN",
+          "url": "https://in.indeed.com/viewjob?jk=a1442ea472716e18",
+          "apply_url": "https://in.indeed.com/viewjob?jk=a1442ea472716e18",
+          "url_type": "UNKNOWN",
+          "description": "**Job Details:**\n================\n\n**Job Description:**\n--------------------\n\nPerforms functional verification of IP / Subsystem logic to ensure design will meet specification requirements. Develops IP / Subsystem verification plans, test benches, and the verification environment to ensure coverage to confirm to microarchitecture specifications. Executes verification plans and defines and runs system simulation models to verify the design, analyze power and timing, and uncover bugs. Replicates, ",
+          "_source_type": "jobspy",
+          "_india_filter": "location ends with India country code",
+          "_canonical_fp": "2a145ced4ad16d9c",
+          "canonical": true,
+          "canonical_id": "2a145ced4ad16d9c",
+          "apply_route": {
+            "best_apply_route": "indeed",
+            "apply_url": "https://in.indeed.com/viewjob?jk=a1442ea472716e18",
+            "backup_urls": [],
+            "reason": "best route: indeed (priority 6)",
+            "risk": "medium"
+          }
+        },
+        "score": 45.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 0.0,
+            "weight": 14,
+            "weighted": 0.0
+          },
+          "skill_fit": {
+            "raw": 2.4,
+            "weight": 14,
+            "weighted": 3.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Front end Engineer - Sols-2",
+          "company": "NTT DATA",
+          "location": "KA, IN",
+          "url": "https://in.indeed.com/viewjob?jk=2071791c43fb661a",
+          "apply_url": "https://in.indeed.com/viewjob?jk=2071791c43fb661a",
+          "url_type": "UNKNOWN",
+          "description": "**Req ID:** 366475\n  \n  \n\nNTT DATA strives to hire exceptional, innovative and passionate individuals who want to grow with us. If you want to be part of an inclusive, adaptable, and forward\\-thinking organization, apply now.\n  \n  \n\nWe are currently seeking a Front end Engineer \\- Sols\\-2 to join our team in Bangalore, Karn\u0101taka (IN\\-KA), India (IN).\n  \n  \n\nAEM Frontend Modern Web Senior Developer\n  \n  \n\n**Who we are:**  \n\nNTT DATA America strives to hire exceptional, innovative and passionate i",
+          "_source_type": "jobspy",
+          "_india_filter": "location ends with India country code",
+          "_canonical_fp": "fcb745814ca73603",
+          "canonical": true,
+          "canonical_id": "fcb745814ca73603",
+          "apply_route": {
+            "best_apply_route": "indeed",
+            "apply_url": "https://in.indeed.com/viewjob?jk=2071791c43fb661a",
+            "backup_urls": [],
+            "reason": "best route: indeed (priority 6)",
+            "risk": "medium"
+          }
+        },
+        "score": 44.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 0.0,
+            "weight": 14,
+            "weighted": 0.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "IP and Subsystem Validation Engineer",
+          "company": "Intel Corporation",
+          "location": "KA, IN",
+          "url": "https://in.indeed.com/viewjob?jk=56a251ec667cf303",
+          "apply_url": "https://in.indeed.com/viewjob?jk=56a251ec667cf303",
+          "url_type": "UNKNOWN",
+          "description": "**Job Details:**\n================\n\n**Job Description:**\n--------------------\n\nThe Role and Impact\n  \n\nJoin Intel's world\\-class IP development team as an IP Design Verification Engineer. In this role, you will perform pre\\-silicon functional verification for cutting\\-edge IP logic designs, ensuring they meet specification requirements and deliver robust functionality. You will collaborate with architects, RTL developers, and physical design teams to verify complex architectural and microarchitec",
+          "_source_type": "jobspy",
+          "_india_filter": "location ends with India country code",
+          "_canonical_fp": "e0f4f2e91dc8daaa",
+          "canonical": true,
+          "canonical_id": "e0f4f2e91dc8daaa",
+          "apply_route": {
+            "best_apply_route": "indeed",
+            "apply_url": "https://in.indeed.com/viewjob?jk=56a251ec667cf303",
+            "backup_urls": [],
+            "reason": "best route: indeed (priority 6)",
+            "risk": "medium"
+          }
+        },
+        "score": 44.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 0.0,
+            "weight": 14,
+            "weighted": 0.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Technical Architect \u2013 Web Application Development",
+          "company": "Mercedes-Benz Group",
+          "location": "KA, IN",
+          "url": "https://in.indeed.com/viewjob?jk=daa55a2272b25c50",
+          "apply_url": "https://in.indeed.com/viewjob?jk=daa55a2272b25c50",
+          "url_type": "UNKNOWN",
+          "description": "T\u00e4tigkeitsbereich:IT/Telekommunikation\nFachabteilung:Energy Management Tools\nGesellschaft:Mercedes\\-Benz Research and Development India Private Limited\nStandort:Mercedes\\-Benz Research and Development India Private Limited, Bangalore\nStartdatum:sofort\nVer\u00f6ffentlichungsdatum:09\\.03\\.2026\nStellennummer:MER000402V\nArbeitszeit:Vollzeit\nAufgaben\n Technical Architect \u2013 Web Application Development (.NET)\n\n\nJob Overview\n\n\nWe are seeking an experienced Technical Architect with strong expertise in .NET te",
+          "_source_type": "jobspy",
+          "_india_filter": "location ends with India country code",
+          "_canonical_fp": "cbea32abb15abdb7",
+          "canonical": true,
+          "canonical_id": "cbea32abb15abdb7",
+          "apply_route": {
+            "best_apply_route": "indeed",
+            "apply_url": "https://in.indeed.com/viewjob?jk=daa55a2272b25c50",
+            "backup_urls": [],
+            "reason": "best route: indeed (priority 6)",
+            "risk": "medium"
+          }
+        },
+        "score": 44.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 0.0,
+            "weight": 14,
+            "weighted": 0.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "AI product manager",
+    "city": "Chennai",
+    "keywords_used": [
+      "ai product manager",
+      "ai",
+      "product",
+      "manager",
+      "roadmap",
+      "pm",
+      "user research",
+      "strategy",
+      "management",
+      "leadership"
+    ],
+    "candidate_count": 33,
+    "after_dedup_count": 6,
+    "elapsed_seconds": 46.8,
+    "notes": [
+      "role filter: 10 \u2192 6 relevant"
+    ],
+    "ranked_jobs": [
+      {
+        "job": {
+          "title": "Operations Manager (Product)",
+          "company": "Revolut",
+          "location": "Chennai, Tamil Nadu, India",
+          "url": "https://www.linkedin.com/jobs/view/4307685564",
+          "apply_url": "https://www.linkedin.com/jobs/view/4307685564",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains chennai",
+          "_canonical_fp": "8df42bae49be2e69",
+          "canonical": true,
+          "canonical_id": "8df42bae49be2e69",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4307685564",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 61.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 10.0,
+            "weight": 10,
+            "weighted": 10.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 7.0,
+            "weight": 4,
+            "weighted": 2.8
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Product Manager",
+          "company": "Intellect Design Arena Ltd",
+          "location": "Chennai, Tamil Nadu, India",
+          "url": "https://www.linkedin.com/jobs/view/4408228847",
+          "apply_url": "https://www.linkedin.com/jobs/view/4408228847",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains chennai",
+          "_canonical_fp": "dc4182ab8c4a778f",
+          "canonical": true,
+          "canonical_id": "dc4182ab8c4a778f",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4408228847",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 61.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 10.0,
+            "weight": 10,
+            "weighted": 10.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 7.0,
+            "weight": 4,
+            "weighted": 2.8
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Product Manager",
+          "company": "enGen Global",
+          "location": "Chennai, Tamil Nadu, India",
+          "url": "https://www.linkedin.com/jobs/view/4406206024",
+          "apply_url": "https://www.linkedin.com/jobs/view/4406206024",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains chennai",
+          "_canonical_fp": "697e08c7276917bd",
+          "canonical": true,
+          "canonical_id": "697e08c7276917bd",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4406206024",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 61.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 10.0,
+            "weight": 10,
+            "weighted": 10.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 7.0,
+            "weight": 4,
+            "weighted": 2.8
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Senior Product Manager, Retail Business Services",
+          "company": "Amazon.com",
+          "location": "TN, IN",
+          "url": "https://in.indeed.com/viewjob?jk=60fd30771ae23506",
+          "apply_url": "https://in.indeed.com/viewjob?jk=60fd30771ae23506",
+          "url_type": "UNKNOWN",
+          "description": "**DESCRIPTION**\n---------------\n\n\nUpstream Defect Elimination (UDE) is a Senior Leadership Team mission to remove unnecessary costs and invent growth opportunities in Amazon's retail business. UDE requires a myriad of software and AI mechanisms. We're in search of a Sr. Product Manager to lead our human in the loop defect elimination artificial intelligence platform.\n  \n\n  \n\nRetail Business Services (RBS) is the force multiplier team for Amazon\u2019s Retail business growth worldwide through three co",
+          "_source_type": "jobspy",
+          "_india_filter": "location ends with India country code",
+          "_canonical_fp": "085c06e86d0e0f5a",
+          "canonical": true,
+          "canonical_id": "085c06e86d0e0f5a",
+          "apply_route": {
+            "best_apply_route": "indeed",
+            "apply_url": "https://in.indeed.com/viewjob?jk=60fd30771ae23506",
+            "backup_urls": [],
+            "reason": "best route: indeed (priority 6)",
+            "risk": "medium"
+          }
+        },
+        "score": 56.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.4,
+            "weight": 14,
+            "weighted": 3.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.7,
+            "weight": 4,
+            "weighted": 2.3
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Sr. Product Manager \u2013 Tech, Alexa Daily Essentials",
+          "company": "Amazon.com",
+          "location": "TN, IN",
+          "url": "https://in.indeed.com/viewjob?jk=db5a91cea628256f",
+          "apply_url": "https://in.indeed.com/viewjob?jk=db5a91cea628256f",
+          "url_type": "UNKNOWN",
+          "description": "**DESCRIPTION**\n---------------\n\n\nWant to transform the way people interact with Alexa leveraging generative AI? Come join the team that is building the next\\-generation AI\\-assistant that gets things done across Timers, Alarms, Reminders, Calendars, Recipes, and News on Alexa devices. In this role, you'll drive product strategy and initiatives for a dedicated area within our Alexa Productivity Essentials team focused on driving engaging, high\\-traffic productivity scenarios for millions of cust",
+          "_source_type": "jobspy",
+          "_india_filter": "location ends with India country code",
+          "_canonical_fp": "63dbc4849050deda",
+          "canonical": true,
+          "canonical_id": "63dbc4849050deda",
+          "apply_route": {
+            "best_apply_route": "indeed",
+            "apply_url": "https://in.indeed.com/viewjob?jk=db5a91cea628256f",
+            "backup_urls": [],
+            "reason": "best route: indeed (priority 6)",
+            "risk": "medium"
+          }
+        },
+        "score": 56.5,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.4,
+            "weight": 14,
+            "weighted": 3.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Big Data Engineer",
+          "company": "Amazon.com",
+          "location": "TN, IN",
+          "url": "https://in.indeed.com/viewjob?jk=06531e4ed96092a2",
+          "apply_url": "https://in.indeed.com/viewjob?jk=06531e4ed96092a2",
+          "url_type": "UNKNOWN",
+          "description": "**DESCRIPTION**\n---------------\n\n\nImpact  \n\nEver wondered how Amazon offers the Earth's biggest selection and still manages to offer lower prices every day to our customers? Our retail business teams work with a massive array of vendors and business financial performance metrics to expand selection and drive costs lower. Given the rapid growth of our business, this requires our category leaders, financial analysts, site merchandisers and vendor managers to quickly analyze vendors, categories and",
+          "_source_type": "jobspy",
+          "_india_filter": "location ends with India country code",
+          "_canonical_fp": "b24b912beedcba02",
+          "canonical": true,
+          "canonical_id": "b24b912beedcba02",
+          "apply_route": {
+            "best_apply_route": "indeed",
+            "apply_url": "https://in.indeed.com/viewjob?jk=06531e4ed96092a2",
+            "backup_urls": [],
+            "reason": "best route: indeed (priority 6)",
+            "risk": "medium"
+          }
+        },
+        "score": 44.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 0.0,
+            "weight": 14,
+            "weighted": 0.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "AI product manager",
+    "city": "Bangalore",
+    "keywords_used": [
+      "ai product manager",
+      "ai",
+      "product",
+      "manager",
+      "roadmap",
+      "pm",
+      "user research",
+      "strategy",
+      "management",
+      "leadership"
+    ],
+    "candidate_count": 11,
+    "after_dedup_count": 7,
+    "elapsed_seconds": 66.69,
+    "notes": [
+      "role filter: 10 \u2192 7 relevant"
+    ],
+    "ranked_jobs": [
+      {
+        "job": {
+          "title": "Product Manager II - Personalisation",
+          "company": "Nykaa",
+          "location": "Bangalore Urban, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4413860690",
+          "apply_url": "https://www.linkedin.com/jobs/view/4413860690",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bangalore",
+          "_canonical_fp": "fa4f22f241f63e52",
+          "canonical": true,
+          "canonical_id": "fa4f22f241f63e52",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4413860690",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 59.1,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 4,
+            "weighted": 3.2
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Associate Product Manager",
+          "company": "ShareChat",
+          "location": "Bangalore Urban, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4413929060",
+          "apply_url": "https://www.linkedin.com/jobs/view/4413929060",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bangalore",
+          "_canonical_fp": "5d27876260c29575",
+          "canonical": true,
+          "canonical_id": "5d27876260c29575",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4413929060",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 59.1,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 4,
+            "weighted": 3.2
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Product Manager",
+          "company": "DigiCert",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4358530073",
+          "apply_url": "https://www.linkedin.com/jobs/view/4358530073",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "85fd53f5552726ed",
+          "canonical": true,
+          "canonical_id": "85fd53f5552726ed",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4358530073",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 57.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Product Manager, Payment Platform",
+          "company": "Google",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4404428691",
+          "apply_url": "https://www.linkedin.com/jobs/view/4404428691",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "7283aec72b426ece",
+          "canonical": true,
+          "canonical_id": "7283aec72b426ece",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4404428691",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 57.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Product Manager",
+          "company": "Wisemonk",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4413526329",
+          "apply_url": "https://www.linkedin.com/jobs/view/4413526329",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "bd2ff75f56db3d8e",
+          "canonical": true,
+          "canonical_id": "bd2ff75f56db3d8e",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4413526329",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 57.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Manager-Digital Product Management",
+          "company": "American Express",
+          "location": "KA, IN",
+          "url": "https://in.indeed.com/viewjob?jk=e1b712ca051a169e",
+          "apply_url": "https://in.indeed.com/viewjob?jk=e1b712ca051a169e",
+          "url_type": "UNKNOWN",
+          "description": "**About Global Merchant and Network Product Team**  \n\n  \n\nThe Global Merchant and Network Product team is at the heart of American Express. Each year, we power billions of transactions through our global payments network, serving our Issuing \\& Acquiring partners in more than 170 markets worldwide. We grow revenue by driving strategic, multi\\-year initiatives to deliver differentiated value to our merchants, partners, and customers.\n  \n\n  \n\nThe Global Merchant and Network Product team works to d",
+          "_source_type": "jobspy",
+          "_india_filter": "location ends with India country code",
+          "_canonical_fp": "6d0fab1bb59a2c1c",
+          "canonical": true,
+          "canonical_id": "6d0fab1bb59a2c1c",
+          "apply_route": {
+            "best_apply_route": "indeed",
+            "apply_url": "https://in.indeed.com/viewjob?jk=e1b712ca051a169e",
+            "backup_urls": [],
+            "reason": "best route: indeed (priority 6)",
+            "risk": "medium"
+          }
+        },
+        "score": 55.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Member of Technical Staff - 4",
+          "company": "Nutanix",
+          "location": "KA, IN",
+          "url": "https://in.indeed.com/viewjob?jk=15f966bf650c9a9a",
+          "apply_url": "https://in.indeed.com/viewjob?jk=15f966bf650c9a9a",
+          "url_type": "UNKNOWN",
+          "description": "**Hungry, Humble, Honest, with Heart.**\n\n **The Opportunity**\n\n\nWe are seeking a skilled Linux developer to join our team. As an IC4 Linux Developer, you will be responsible for:\n\n* Developing, installing, and monitoring infrastructure on Linux systems.\n* Collaborating with team members to build automation methods and deployment procedures.\n* Treating every platform challenge as your own and resolving it effectively.\n\n **About the Team**\n\n\nSecurity Engineering group is responsible for the Contro",
+          "_source_type": "jobspy",
+          "_india_filter": "location ends with India country code",
+          "_canonical_fp": "43031e4a48a69696",
+          "canonical": true,
+          "canonical_id": "43031e4a48a69696",
+          "apply_route": {
+            "best_apply_route": "indeed",
+            "apply_url": "https://in.indeed.com/viewjob?jk=15f966bf650c9a9a",
+            "backup_urls": [],
+            "reason": "best route: indeed (priority 6)",
+            "risk": "medium"
+          }
+        },
+        "score": 45.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 0.0,
+            "weight": 14,
+            "weighted": 0.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 6.4,
+            "weight": 4,
+            "weighted": 2.6
+          }
+        }
+      }
+    ]
+  }
+]

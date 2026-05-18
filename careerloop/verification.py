@@ -157,3 +157,61 @@ class JobVerifier:
     def get_verified_active(self, jobs: list[dict]) -> list[dict]:
         """Filter to only VERIFIED_ACTIVE jobs."""
         return [j for j in jobs if j.get("verification_status") == "VERIFIED_ACTIVE"]
+
+
+class JDValidator:
+    """
+    Validates that a job description is real scraped content — never fabricated.
+
+    Rule: if JD is absent, too short, or matches LLM-generation signals, it is
+    marked invalid. Council MUST NOT run on an invalid JD.
+    """
+
+    MIN_JD_LENGTH = 200  # characters — real JDs are always longer than this
+
+    # Phrases that appear in LLM-generated "helpful" JD fallbacks but not real postings
+    LLM_FABRICATION_SIGNALS = [
+        r"^(about the role|role overview|job overview|position overview)\s*\n",
+        r"^we are (looking for|seeking) a (talented|skilled|passionate|driven)",
+        r"^(the ideal candidate|our ideal candidate) will",
+        r"^(join our|join the) (team|growing team|dynamic team)",
+        r"responsibilities (include|will include|are as follows)\s*:",
+        r"^(qualifications|requirements)\s*:\s*\n.*bachelor",
+    ]
+
+    def validate(self, jd_text: str, source_url: str = "") -> "JDValidationResult":
+        if not jd_text or not jd_text.strip():
+            return JDValidationResult(
+                valid=False,
+                reason="jd_empty",
+                message="No job description found. Visit the URL directly to read the full posting.",
+            )
+
+        cleaned = jd_text.strip()
+        if len(cleaned) < self.MIN_JD_LENGTH:
+            return JDValidationResult(
+                valid=False,
+                reason="jd_too_short",
+                message=f"Job description is too short ({len(cleaned)} chars). May be a scraping failure.",
+            )
+
+        cleaned_lower = cleaned.lower()
+        for pattern in self.LLM_FABRICATION_SIGNALS:
+            if re.search(pattern, cleaned_lower, re.MULTILINE):
+                return JDValidationResult(
+                    valid=False,
+                    reason="jd_fabrication_signal",
+                    message="Job description appears to be AI-generated rather than scraped from the source. Skipping to prevent hallucination.",
+                )
+
+        return JDValidationResult(valid=True, reason="ok", message="")
+
+
+class JDValidationResult:
+    def __init__(self, valid: bool, reason: str, message: str = ""):
+        self.valid = valid
+        self.reason = reason
+        self.message = message
+
+    def __bool__(self):
+        return self.valid

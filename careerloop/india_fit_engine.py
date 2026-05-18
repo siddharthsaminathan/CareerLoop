@@ -1,81 +1,209 @@
 """
-India Fit Engine — 14-dimension job scoring for Indian professionals.
+India Fit Engine — dynamic, intent-based job scoring.
 
-Scores jobs on fit dimensions WITHOUT LLM calls.
-Uses keyword matching, heuristics, and lookup tables from config.py.
+Refactored 2026-05-18. Removed hardcoded AI/ML keyword bias, company lookup
+tables, and role-specific tech stack maps. All scoring is now driven by:
 
-Total: 100 points weighted across 14 dimensions.
+1. JD structured fields (role_summary, responsibilities, requirements, benefits)
+   — extracted verbatim by sources/ats_adapter.py and sources/company_portal_scraper.py.
+2. User profile (target_functions, confirmed_skills, salary band, ESOPs,
+   benefits_must_have, sector preferences, location, work mode).
+3. Company memory table — for stability and brand value when known.
+
+No LLM calls per job. Pure heuristic pre-filter. The LLM rescore is
+LLMIndiaFitEngine.
+
+15 weighted dimensions, total 100 points. See config.FIT_WEIGHTS.
 """
 
 import re
-import sys
-import os
-from typing import Optional
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from typing import Optional, TYPE_CHECKING
 
 from careerloop.config import (
     FIT_WEIGHTS,
-    COMPANY_STABILITY_SIGNALS,
-    BRAND_VALUE_SIGNALS,
+    COMPANY_STABILITY_DEFAULT,
+    BRAND_VALUE_DEFAULT,
     INDIAN_TECH_CITIES,
-    WORK_MODES,
 )
-from careerloop.profile_manager import ProfileManager
 
+if TYPE_CHECKING:
+    from careerloop.profile_manager import ProfileManager
+
+
+# ── Token & text helpers ─────────────────────────────────────────────────
+
+_TOKEN_RE = re.compile(r"[a-z0-9]+")
+
+
+def _tokens(text: str) -> set[str]:
+    if not text:
+        return set()
+    return set(_TOKEN_RE.findall(text.lower()))
+
+
+def _overlap_ratio(needles: list[str], haystack_tokens: set[str]) -> float:
+    """Fraction of multi-word needles whose tokens are mostly present in haystack."""
+    if not needles:
+        return 0.0
+    hits = 0
+    for needle in needles:
+        needle_tokens = _tokens(needle)
+        if not needle_tokens:
+            continue
+        present = sum(1 for t in needle_tokens if t in haystack_tokens)
+        if present / len(needle_tokens) >= 0.6:
+            hits += 1
+    return hits / len(needles)
+
+
+def _jd_text(job: dict) -> str:
+    """Combine all available JD fields into one searchable text blob."""
+    parts = [
+        job.get("title", ""),
+        job.get("role_summary", ""),
+        job.get("responsibilities", ""),
+        job.get("requirements", ""),
+        job.get("benefits", ""),
+        job.get("description", ""),
+        job.get("raw_jd_text", ""),
+    ]
+    return " ".join(str(p) for p in parts if p)
+
+
+# ── Company memory accessor ──────────────────────────────────────────────
+
+def _company_memory_lookup(company_name: str) -> dict:
+    """Pull stability + brand_value + sector signals from company_memory table.
+    Returns {} on miss — caller falls back to defaults."""
+    if not company_name:
+        return {}
+    try:
+        from careerloop.memory.connection import get_db_manager
+    except Exception:
+        return {}
+    try:
+        db = get_db_manager()
+        normalized = re.sub(r"[^a-z0-9]+", "", company_name.lower())
+        with db.get_connection() as conn:
+            row = conn.execute(
+                "SELECT startup_risk, company_maturity, company_intelligence "
+                "FROM company_memory WHERE company_normalized = ?",
+                [normalized],
+            ).fetchone()
+        return dict(row) if row else {}
+    except Exception:
+        return {}
+
+
+def _company_registry_lookup(company_name: str) -> dict:
+    """Pull employee_estimate + sector + ats_provider from companies registry."""
+    if not company_name:
+        return {}
+    try:
+        from careerloop.memory.connection import get_db_manager
+    except Exception:
+        return {}
+    try:
+        db = get_db_manager()
+        normalized = re.sub(r"[^a-z0-9]+", "-", company_name.lower()).strip("-")
+        with db.get_connection() as conn:
+            row = conn.execute(
+                "SELECT employee_estimate, sector, ats_provider, last_job_count "
+                "FROM companies WHERE id = ? OR LOWER(name) = LOWER(?)",
+                [normalized, company_name],
+            ).fetchone()
+        return dict(row) if row else {}
+    except Exception:
+        return {}
+
+
+# ── Salary parsing ───────────────────────────────────────────────────────
+
+_SALARY_PATTERNS = [
+    # ₹35L - ₹60L  /  35-60 LPA  /  35L to 60L
+    re.compile(r"(?:₹|rs\.?|inr)?\s*([\d.]+)\s*(?:l|lpa|lakhs?|lac)\s*(?:-|to|–)\s*(?:₹|rs\.?|inr)?\s*([\d.]+)\s*(?:l|lpa|lakhs?|lac)", re.IGNORECASE),
+    re.compile(r"([\d.]+)\s*(?:l|lpa|lakhs?|lac)", re.IGNORECASE),
+    re.compile(r"(?:₹|rs\.?|inr)\s*([\d,]+)", re.IGNORECASE),
+]
+
+
+def _parse_salary_lakhs(text: str) -> tuple[Optional[float], Optional[float]]:
+    """Extract (min_lakhs, max_lakhs) from arbitrary salary text. Either may be None."""
+    if not text:
+        return None, None
+    t = text.lower().replace(",", "")
+    # Range pattern first
+    m = _SALARY_PATTERNS[0].search(t)
+    if m:
+        return float(m.group(1)), float(m.group(2))
+    # Single-number lakhs
+    m = _SALARY_PATTERNS[1].search(t)
+    if m:
+        v = float(m.group(1))
+        return v, v
+    # Raw INR
+    m = _SALARY_PATTERNS[2].search(t)
+    if m:
+        v = float(m.group(1)) / 100000
+        return v, v
+    return None, None
+
+
+# ── Engine ───────────────────────────────────────────────────────────────
 
 class IndiaFitEngine:
-    """
-    Scores a job against a user profile across 14 India-specific dimensions.
+    """Dynamic, intent-based job scoring. 15 dims, total 100. No AI bias."""
 
-    Usage:
-        engine = IndiaFitEngine(profile_manager)
-        score, breakdown = engine.score_job(job_dict)
-        # score: 0-100
-        # breakdown: dict with per-dimension scores
-    """
-
-    def __init__(self, profile: ProfileManager):
+    def __init__(self, profile: "ProfileManager"):
         self.p = profile
 
     # ── Public API ────────────────────────────────────────────────────
 
     def score_job(self, job: dict) -> tuple[float, dict]:
-        """
-        Score a single job. Returns (total_score, breakdown).
-        job dict must have: title, company, location, source
-        Optional: salary_text, description, work_mode, posted_date
-        
-        Returns (0, {"rejected": reason}) if the URL is not a real job listing.
-        """
-        # ── Pre-filter: reject non-jobs ──────────────────────────────
+        """Score a single job. Returns (total_score, breakdown).
+        job dict must have: title, company, location.
+        Optional: role_summary, responsibilities, requirements, benefits,
+                  salary_text, work_mode, posted_date."""
         rejection = self._reject_if_not_job(job)
         if rejection:
             return 0.0, {"rejected": rejection}
-        
-        breakdown = {}
-        total = 0.0
+
+        # Precompute shared signals
+        jd_text = _jd_text(job)
+        jd_tokens = _tokens(jd_text)
+        memory = _company_memory_lookup(job.get("company", ""))
+        registry = _company_registry_lookup(job.get("company", ""))
+
+        ctx = {
+            "jd_text": jd_text,
+            "jd_tokens": jd_tokens,
+            "company_memory": memory,
+            "company_registry": registry,
+        }
 
         dims = [
             ("role_fit", self._score_role_fit),
             ("skill_fit", self._score_skill_fit),
             ("salary_fit", self._score_salary_fit),
+            ("equity_fit", self._score_equity_fit),
+            ("benefits_fit", self._score_benefits_fit),
             ("location_fit", self._score_location_fit),
             ("work_mode_fit", self._score_work_mode_fit),
             ("notice_period_fit", self._score_notice_period_fit),
+            ("sector_fit", self._score_sector_fit),
             ("company_stability", self._score_company_stability),
             ("startup_risk", self._score_startup_risk),
             ("brand_value", self._score_brand_value),
             ("commute_risk", self._score_commute_risk),
-            ("assignment_burden", self._score_assignment_burden),
-            ("interview_difficulty", self._score_interview_difficulty),
             ("response_likelihood", self._score_response_likelihood),
             ("career_trajectory", self._score_career_trajectory),
         ]
 
+        breakdown = {}
+        total = 0.0
         for name, scorer in dims:
-            raw = scorer(job)
-            weight = FIT_WEIGHTS[name]
+            raw = scorer(job, ctx)
+            weight = FIT_WEIGHTS.get(name, 0)
             weighted = (raw / 10.0) * weight
             breakdown[name] = {"raw": raw, "weight": weight, "weighted": round(weighted, 1)}
             total += weighted
@@ -83,7 +211,6 @@ class IndiaFitEngine:
         return round(total, 1), breakdown
 
     def score_jobs_batch(self, jobs: list) -> list:
-        """Score multiple jobs, return sorted by score descending."""
         scored = []
         for job in jobs:
             score, breakdown = self.score_job(job)
@@ -91,24 +218,22 @@ class IndiaFitEngine:
         scored.sort(key=lambda x: x["score"], reverse=True)
         return scored
 
+    # ── Pre-filter ────────────────────────────────────────────────────
+
     def _reject_if_not_job(self, job: dict) -> Optional[str]:
-        """
-        Reject URLs that are search result pages, blog posts, or category listings.
-        Returns rejection reason string, or None if it looks like a real job.
-        """
+        """Reject category/search/blog URLs upfront."""
         url = (job.get("source_url") or job.get("url") or "").lower()
         title = (job.get("title") or "").lower()
         full = url + " " + title
 
-        # Search result / category pages (no specific job)
         search_patterns = [
             (r'naukri\.com/[a-z\-]+-jobs-in-', "Naukri search results page"),
             (r'/jobs/[a-z\-]+-jobs-', "LinkedIn search results page"),
             (r'/jobs/[a-z\-]+-jobs$', "LinkedIn category page"),
-            (r'/jobs/\d+-[a-z]', None),  # LinkedIn job VIEW — allow (has number prefix)
+            (r'/jobs/\d+-[a-z]', None),
             (r'cutshort\.io/jobs/', "Cutshort category page"),
             (r'foundit\.in/search/', "Foundit search page"),
-            (r'foundit\.in/job/[a-z\-]+-\d{5,}', None),  # Foundit job — allow
+            (r'foundit\.in/job/[a-z\-]+-\d{5,}', None),
             (r'instahyre\.com/[a-z\-]+-jobs-in-', "Instahyre category page"),
             (r'hirist\.tech/[ck]/', "Hirist category page"),
             (r'/blog/', "Blog post, not a job"),
@@ -120,463 +245,354 @@ class IndiaFitEngine:
             (r'career-prospects', "Career advice article"),
             (r'interview-questions', "Interview prep article"),
         ]
-        
-        import re
         for pattern, reason in search_patterns:
             if re.search(pattern, full):
                 if reason is None:
-                    return None  # Allow (this is a real job)
+                    return None
                 return reason
-        
-        # Title-based checks
-        title_signals = [
+
+        for pattern, reason in [
             (r'^\d+\+?\s*[a-z\s]+jobs?\s*(in|vacanc)', "Job count listing page"),
             (r'^\d+\s*[a-z\s]+job\s*(vacanc|open)', "Job count listing page"),
-        ]
-        for pattern, reason in title_signals:
+        ]:
             if re.search(pattern, title):
                 return reason
-        
         return None
 
-    # ── Dimension Scorers (each returns 0-10) ─────────────────────────
+    # ── Dimension scorers (each returns 0-10) ─────────────────────────
 
-    def _score_role_fit(self, job: dict) -> float:
-        """Match job title against user's target roles and archetypes."""
+    def _score_role_fit(self, job: dict, ctx: dict) -> float:
+        """Token-overlap of user's target functions/roles vs job title + role_summary.
+        Uses BOTH target_functions (horizontal) and target_roles (vertical) — whichever overlaps more."""
         title = (job.get("title") or "").lower()
-        score = 0.0
+        role_summary = (job.get("role_summary") or "").lower()
+        haystack = _tokens(title + " " + role_summary)
 
-        # Primary target roles → strongest signal
-        for role in self.p.target_roles:
-            role_lower = role.lower()
-            if role_lower in title or self._partial_match(role_lower, title):
-                score = 9.0
-                break
+        needles_fn = self.p.target_functions or []
+        needles_roles = self.p.target_roles or []
+        archetypes = [a.get("name", "") for a in self.p.archetypes if a.get("name")]
 
-        # Archetype matching
-        if score < 7:
-            for arch in self.p.archetypes:
-                arch_name = arch.get("name", "").lower()
-                if arch_name and arch_name in title:
-                    fit = arch.get("fit", "secondary")
-                    score = max(score, 8.0 if fit == "primary" else 6.0 if fit == "secondary" else 4.0)
+        scores = []
+        if needles_fn:
+            scores.append(_overlap_ratio(needles_fn, haystack) * 10.0)
+        if needles_roles:
+            scores.append(_overlap_ratio(needles_roles, haystack) * 10.0)
+        if archetypes:
+            scores.append(_overlap_ratio(archetypes, haystack) * 9.0)
 
-        # Keyword signals
-        ai_signals = ["ai", "llm", "ml", "agent", "machine learning", "applied ai", "genai"]
-        senior_signals = ["senior", "staff", "principal", "lead", "head", "founding"]
-        product_signals = ["product engineer", "platform", "backend", "full stack"]
+        if not scores:
+            return 5.0  # no intent set → neutral
+        score = max(scores)
 
-        if score == 0:
-            # Fallback: count keyword overlap
-            hits = sum(1 for kw in ai_signals + product_signals if kw in title)
-            score = min(hits * 2.5, 7.0)
+        # Seniority alignment: if user title contains a seniority signal that matches JD's, boost
+        seniority_signals = ["junior", "senior", "staff", "principal", "lead", "head", "director", "founding"]
+        user_seniority = [s for s in seniority_signals if any(s in r.lower() for r in needles_roles)]
+        if user_seniority and any(s in title for s in user_seniority):
+            score = min(score + 1.0, 10.0)
 
-        # Seniority boost
-        if any(s in title for s in senior_signals):
-            score = min(score + 1, 10)
-
-        # Rejected roles → instant penalty
+        # Rejected roles → penalty
         for rejected in self.p.rejected_roles:
             if rejected.lower() in title:
-                score = max(score - 5, 0)
+                score = max(score - 5.0, 0.0)
 
         return round(score, 1)
 
-    def _score_skill_fit(self, job: dict) -> float:
-        """Match job description skills against user's confirmed skills.
-        Falls back to title + company signals when no description available."""
-        desc = (job.get("description") or "").lower()
-        title = (job.get("title") or "").lower()
-        company = (job.get("company") or "").lower()
-        confirmed = [s.lower() for s in self.p.confirmed_skills]
-        weak = [s.lower() for s in self.p.weak_skills]
+    def _score_skill_fit(self, job: dict, ctx: dict) -> float:
+        """Confirmed-skill token overlap against requirements + responsibilities text."""
+        confirmed = self.p.confirmed_skills or []
+        weak = self.p.weak_skills or []
 
         if not confirmed:
             return 5.0
 
-        # If we have description, match against it
-        if desc and len(desc) > 50:
-            confirmed_hits = sum(1 for s in confirmed if s in desc)
-            weak_hits = sum(1 for s in weak if s in desc)
-            hit_ratio = confirmed_hits / max(len(confirmed), 1)
-            score = hit_ratio * 8 + 2
-            score -= weak_hits * 0.5
-            return round(max(0, min(10, score)), 1)
+        # Prefer structured fields when available
+        haystack_text = (
+            (job.get("requirements") or "") + " " +
+            (job.get("responsibilities") or "") + " " +
+            (job.get("role_summary") or "")
+        )
+        # Fall back to raw description if structured sections are empty
+        if len(haystack_text.strip()) < 100:
+            haystack_text = job.get("description") or job.get("raw_jd_text") or ""
 
-        # No description → infer skills from title + company
-        # Known tech stacks by company type
-        score = 5.0  # Start neutral
+        if not haystack_text.strip():
+            return 5.0  # no JD content to match
 
-        # Title-based skill signals
-        title_skill_map = {
-            "ai": ["llm apis", "rag pipelines", "embeddings", "prompt engineering"],
-            "ml": ["llm apis", "rag pipelines", "embeddings"],
-            "llm": ["llm apis", "prompt engineering", "tool calling"],
-            "agent": ["agentic workflows", "tool calling", "multi-model routing"],
-            "backend": ["fastapi", "postgresql", "redis", "docker", "aws"],
-            "platform": ["docker", "aws", "redis", "postgresql"],
-            "full stack": ["fastapi", "sql", "docker"],
-            "data": ["sql", "etl pipelines", "power bi", "postgresql"],
-            "product engineer": ["fastapi", "postgresql", "redis", "agentic workflows"],
-            "solutions": ["prompt engineering", "llm apis", "multi-model routing"],
-            "forward deployed": ["llm apis", "tool calling", "fastapi"],
-            "founding": ["agentic workflows", "multi-model routing", "tool calling"],
-        }
+        haystack = _tokens(haystack_text)
+        confirmed_hit = _overlap_ratio(confirmed, haystack)
+        weak_hit = _overlap_ratio(weak, haystack) if weak else 0.0
 
-        inferred_skills = set()
-        for keyword, skills in title_skill_map.items():
-            if keyword in title:
-                inferred_skills.update(skills)
+        # Base: confirmed skills should appear; weak skills appearing reduces fit
+        score = confirmed_hit * 8.0 + 2.0
+        score -= weak_hit * 1.5
+        return round(max(0.0, min(10.0, score)), 1)
 
-        # Company-specific signals
-        company_skill_map = {
-            "anthropic": ["llm apis", "prompt engineering", "agentic workflows"],
-            "stripe": ["fastapi", "postgresql", "redis", "docker", "aws"],
-            "gitlab": ["docker", "aws", "postgresql", "redis"],
-            "vercel": ["fastapi", "docker", "aws"],
-            "mongodb": ["postgresql", "redis", "aws", "docker"],
-            "datadog": ["aws", "docker", "postgresql", "redis"],
-            "cloudflare": ["aws", "docker", "fastapi"],
-            "twilio": ["fastapi", "postgresql", "redis"],
-        }
-        if company in company_skill_map:
-            inferred_skills.update(company_skill_map[company])
+    def _score_salary_fit(self, job: dict, ctx: dict) -> float:
+        """Compare extracted salary band to user's [floor, ceiling]. Both ends matter."""
+        floor = self.p.salary_floor_lakhs
+        ceiling = self.p.salary_ceiling_lakhs
 
-        if not inferred_skills:
-            # Generic AI/engineering role → assume reasonable overlap
-            if any(k in title for k in ["ai", "ml", "engineer", "backend", "platform"]):
-                return 6.0
+        if floor is None and ceiling is None:
             return 5.0
 
-        # Score based on inferred skill overlap with confirmed skills
-        hits = sum(1 for s in inferred_skills if s in confirmed)
-        ratio = hits / max(len(inferred_skills), 1)
-        score = ratio * 7 + 3  # 3-10 range
+        salary_text = (
+            (job.get("salary_text") or "") + " " +
+            (job.get("salary") or "") + " " +
+            (job.get("benefits") or "")
+        )
+        job_min, job_max = _parse_salary_lakhs(salary_text)
+        if job_min is None:
+            return 5.0  # unknown → neutral
 
-        # Weak skills penalty
-        weak_hits = sum(1 for s in weak if s in title)
-        score -= weak_hits * 0.5
-
-        # Seniority adjust: senior+ roles expect broader skill match
-        if any(s in title for s in ["senior", "staff", "principal", "lead"]):
-            score = min(score + 0.5, 10)
-
-        return round(max(1, min(10, score)), 1)
-
-    def _score_salary_fit(self, job: dict) -> float:
-        """Check if job salary aligns with user expectations."""
-        floor = self.p.salary_floor_lakhs
         if floor is None:
-            return 5.0  # No preference set → neutral
+            floor = max(0.0, (ceiling or job_min) * 0.6)
+        if ceiling is None:
+            ceiling = floor * 2.0
 
-        salary_text = (job.get("salary_text") or "").lower()
+        # Score based on how the job's max overlaps the user's [floor, ceiling]
+        if job_max < floor:
+            return round(max(0.0, (job_max / floor) * 4.0), 1)
+        if job_min >= ceiling:
+            # Above ceiling = still good (8-10 depending on how far above)
+            return round(min(10.0, 8.0 + (job_min / ceiling - 1.0) * 2.0), 1)
+        # Job band overlaps user band → great
+        return 10.0
 
-        # Try to extract numeric salary from text
-        import re
-        numbers = re.findall(r'[\d.]+', salary_text.replace(",", ""))
-        if not numbers:
-            return 5.0  # Can't determine → neutral
+    def _score_equity_fit(self, job: dict, ctx: dict) -> float:
+        """ESOPs match. If user doesn't care → neutral 10. If user requires equity, check JD."""
+        if not self.p.equity_required:
+            return 10.0
+        text = ctx["jd_text"].lower()
+        equity_signals = ["esop", "equity", "stock option", "rsu", "share grant", "ownership"]
+        has_signal = any(s in text for s in equity_signals)
+        if not has_signal:
+            return 2.0  # user wants equity, JD doesn't mention → likely no
+        # Check percentage mention if user has a minimum
+        min_pct = self.p.esops_min_percent
+        if min_pct is not None:
+            # Match "X% equity" OR "equity ... X%" within a small window
+            m = re.search(r"([\d.]+)\s*%\s*(?:esops?|equity|stock)", text) \
+                or re.search(r"(?:esops?|equity|stock)[^.\n]{0,40}?([\d.]+)\s*%", text)
+            if m:
+                pct = float(m.group(1))
+                if pct >= min_pct:
+                    return 10.0
+                return round(max(2.0, (pct / min_pct) * 10.0), 1)
+        return 8.0  # equity mentioned but no specific %
 
-        # Heuristic: largest number in salary range is likely upper bound
-        amounts = [float(n) for n in numbers]
-        max_salary = max(amounts)
+    def _score_benefits_fit(self, job: dict, ctx: dict) -> float:
+        """Check that user's must-have benefits appear in JD benefits/description."""
+        must = self.p.benefits_must_have
+        if not must:
+            return 10.0
+        text = ((job.get("benefits") or "") + " " + ctx["jd_text"]).lower()
+        hits = sum(1 for b in must if b.lower() in text)
+        return round(min(10.0, (hits / len(must)) * 10.0), 1)
 
-        # Normalize: if number looks like lakhs (common in India)
-        if max_salary < 10:  # likely in lakhs already
-            salary_lakhs = max_salary
-        elif max_salary < 1000:  # could be thousands
-            salary_lakhs = max_salary / 100
-        else:  # likely raw number (e.g., 3500000 = 35L)
-            salary_lakhs = max_salary / 100000
-
-        if salary_lakhs >= floor:
-            # Above floor: scale up to 10 based on how much above
-            ratio = min(salary_lakhs / floor, 2.0)
-            return round(5 + (ratio - 1) * 5, 1)
-        else:
-            # Below floor: penalize proportionally
-            ratio = salary_lakhs / floor
-            return round(ratio * 5, 1)
-
-    def _score_location_fit(self, job: dict) -> float:
-        """Match job location against user's city preferences."""
+    def _score_location_fit(self, job: dict, ctx: dict) -> float:
+        """Same logic as before — city aliases + tier matching + relocation."""
         job_loc = (job.get("location") or "").lower()
         user_city = self.p.location_city.lower()
 
         if not job_loc:
             return 5.0
-
-        # Direct match with user's city
-        if user_city in job_loc:
+        if user_city and user_city in job_loc:
             return 10.0
 
-        # Check aliases
         for city, info in INDIAN_TECH_CITIES.items():
-            if city == user_city:
+            if city == user_city or user_city in info["aliases"]:
                 if any(alias in job_loc for alias in [city] + info["aliases"]):
                     return 10.0
 
-        # Remote
         if "remote" in job_loc:
             return 9.0
 
-        # Same tier city
         user_tier = None
         for city, info in INDIAN_TECH_CITIES.items():
             if city == user_city or user_city in info["aliases"]:
-                user_tier = info["tier"]
-                break
-            # Also check if user_city matches an alias
-            if user_city in info["aliases"]:
                 user_tier = info["tier"]
                 break
 
         if user_tier:
             for city, info in INDIAN_TECH_CITIES.items():
                 if city in job_loc or any(a in job_loc for a in info["aliases"]):
-                    if info["tier"] == user_tier:
-                        return 7.0  # Same tier, different city
-                    else:
-                        return 4.0  # Different tier
+                    return 7.0 if info["tier"] == user_tier else 4.0
 
-        # India but unknown city match
         if "india" in job_loc:
             return 6.0
-
-        # International — would need relocation
         if self.p.extended.get("willing_to_relocate"):
             return 5.0
-        else:
-            return 2.0
+        return 2.0
 
-    def _score_work_mode_fit(self, job: dict) -> float:
-        """Match remote/hybrid/onsite against user preference."""
+    def _score_work_mode_fit(self, job: dict, ctx: dict) -> float:
         mode = (job.get("work_mode") or job.get("location") or "").lower()
-
-        # User preference from profile (default: remote-friendly)
         loc_flex = self.p.base.get("compensation", {}).get("location_flexibility", "").lower()
         prefers_remote = "remote" in loc_flex
 
         if "remote" in mode or "work from home" in mode or "wfh" in mode:
             return 10.0 if prefers_remote else 8.0
-        elif "hybrid" in mode:
+        if "hybrid" in mode:
             return 8.0 if prefers_remote else 10.0
-        elif "onsite" in mode or "on-site" in mode or "in-office" in mode:
+        if "onsite" in mode or "on-site" in mode or "in-office" in mode:
             return 4.0 if prefers_remote else 7.0
-        else:
-            return 5.0  # Unknown
+        return 5.0
 
-    def _score_notice_period_fit(self, job: dict) -> float:
-        """Check if job's notice period requirement matches user's."""
-        desc = (job.get("description") or "").lower()
+    def _score_notice_period_fit(self, job: dict, ctx: dict) -> float:
+        text = ctx["jd_text"].lower()
         user_notice = self.p.notice_period_days
 
-        # Look for notice period mentions in JD
         notice_patterns = [
             (r"notice period[:\s]*(\d+)\s*(?:days|d)", 1),
             (r"immediate(?:ly)?\s*(?:joining|joiner)", 0),
             (r"(\d+)\s*(?:days|d)\s*notice", 1),
             (r"can join(?: in)?\s*(\d+)\s*(?:days|d)", 1),
         ]
-
         for pattern, group in notice_patterns:
-            match = re.search(pattern, desc)
+            match = re.search(pattern, text)
             if match:
-                if group == 0:
-                    required_days = 0
-                else:
-                    required_days = int(match.group(group))
-
+                required_days = 0 if group == 0 else int(match.group(group))
                 if user_notice <= required_days:
                     return 10.0
-                elif user_notice <= required_days * 1.5:
+                if user_notice <= required_days * 1.5:
                     return 7.0
-                elif user_notice <= required_days * 2:
+                if user_notice <= required_days * 2:
                     return 4.0
-                else:
-                    return 2.0
-
-        # No notice period mentioned → neutral
+                return 2.0
         return 7.0
 
-    def _score_company_stability(self, job: dict) -> float:
-        """Score company stability from signals lookup."""
-        company = (job.get("company") or "").lower()
-        raw = COMPANY_STABILITY_SIGNALS.get(company, COMPANY_STABILITY_SIGNALS["__default__"])
-        return float(raw)
+    def _score_sector_fit(self, job: dict, ctx: dict) -> float:
+        """User's sector allow/deny preference vs company's known sector."""
+        prefs = self.p.sector_preferences
+        rejections = self.p.sector_rejections
+        if not prefs and not rejections:
+            return 10.0  # no preference set
 
-    def _score_startup_risk(self, job: dict) -> float:
-        """Inverse of stability + user's startup tolerance. Lower = riskier."""
-        stability = self._score_company_stability(job)
-        # Invert: stable company = low startup risk (good = high score)
-        # 10 (most stable) → startup risk score 10 (good)
-        # 5 (default/unknown) → startup risk score scales with user tolerance
-        company = (job.get("company") or "").lower()
+        company_sector = (ctx["company_registry"].get("sector") or "").strip()
+        if not company_sector:
+            return 6.0  # unknown sector — neither penalize hard nor reward
 
-        # Known startups: risk inversely proportional to stability
-        if stability <= 5:
-            # High-risk startup: score depends on user tolerance
-            return float(self.p.startup_tolerance)
-        elif stability <= 7:
+        sector_lower = company_sector.lower()
+        if any(r.lower() in sector_lower for r in rejections):
+            return 1.0
+        if prefs and not any(p.lower() in sector_lower for p in prefs):
+            return 4.0  # not in allowlist
+        return 10.0
+
+    def _score_company_stability(self, job: dict, ctx: dict) -> float:
+        """Pull from company_memory.startup_risk (lower risk = higher stability)."""
+        mem = ctx["company_memory"]
+        if not mem:
+            # Fall back to registry employee estimate
+            emp = ctx["company_registry"].get("employee_estimate") or 0
+            if emp >= 1000:
+                return 8.0
+            if emp >= 200:
+                return 6.5
+            if emp >= 50:
+                return 5.5
+            if emp > 0:
+                return 4.5
+            return COMPANY_STABILITY_DEFAULT
+        # startup_risk in company_memory: 0-10 where higher = riskier
+        risk = mem.get("startup_risk", 5.0) or 5.0
+        return round(max(0.0, min(10.0, 10.0 - risk)), 1)
+
+    def _score_startup_risk(self, job: dict, ctx: dict) -> float:
+        """Inverse of stability, weighted by user's startup tolerance."""
+        stability = self._score_company_stability(job, ctx)
+        if stability >= 7.0:
+            return 10.0  # established, low risk
+        # Less stable → user's tolerance determines the score
+        tolerance = self.p.startup_tolerance
+        return round(min(10.0, stability + tolerance * 0.4), 1)
+
+    def _score_brand_value(self, job: dict, ctx: dict) -> float:
+        """Pull from company_memory.company_maturity or default."""
+        mem = ctx["company_memory"]
+        maturity = (mem.get("company_maturity") or "").lower() if mem else ""
+        if "public" in maturity or "ipo" in maturity:
+            return 9.0
+        if "unicorn" in maturity or "late stage" in maturity:
+            return 7.5
+        if "growth" in maturity or "series c" in maturity or "series d" in maturity:
+            return 6.5
+        if "series a" in maturity or "series b" in maturity:
+            return 5.5
+        if "seed" in maturity or "early" in maturity:
+            return 4.0
+        # No memory → infer from employee estimate
+        emp = ctx["company_registry"].get("employee_estimate") or 0
+        if emp >= 5000:
             return 8.0
-        else:
-            return 10.0  # Established company = low startup risk
+        if emp >= 1000:
+            return 6.5
+        if emp >= 200:
+            return 5.0
+        return BRAND_VALUE_DEFAULT
 
-    def _score_brand_value(self, job: dict) -> float:
-        """Career resume value of having this company on your CV."""
-        company = (job.get("company") or "").lower()
-        return float(BRAND_VALUE_SIGNALS.get(company, BRAND_VALUE_SIGNALS["__default__"]))
-
-    def _score_commute_risk(self, job: dict) -> float:
-        """Lower score = worse commute. Higher = better."""
+    def _score_commute_risk(self, job: dict, ctx: dict) -> float:
         job_loc = (job.get("location") or "").lower()
         user_city = self.p.location_city.lower()
 
         if not job_loc or "remote" in job_loc:
-            return 10.0  # No commute
-
-        if user_city in job_loc:
-            # Same city — depends on size and traffic
-            for city, info in INDIAN_TECH_CITIES.items():
-                if city in job_loc or any(a in job_loc for a in info["aliases"]):
-                    if city in ["bangalore", "mumbai", "delhi"]:
-                        return 6.0  # Terrible traffic
-                    elif city in ["chennai", "hyderabad", "pune"]:
-                        return 7.0  # Bad but manageable
-                    else:
-                        return 8.0  # Better
-            return 7.0  # Same city, unknown
-
-        # Different city — relocation needed
+            return 10.0
+        if user_city and user_city in job_loc:
+            if user_city in ["bangalore", "bengaluru", "mumbai", "delhi"]:
+                return 6.0
+            if user_city in ["chennai", "hyderabad", "pune"]:
+                return 7.0
+            return 8.0
         if self.p.extended.get("willing_to_relocate"):
-            relo_cities = self.p.extended.get("relocation_cities", [])
-            if any(c.lower() in job_loc for c in relo_cities):
-                return 8.0  # Willing to relocate here
-            return 5.0  # Relocation needed, not preferred city
-        return 2.0  # Can't/won't relocate
+            relo = self.p.extended.get("relocation_cities", [])
+            if any(c.lower() in job_loc for c in relo):
+                return 8.0
+            return 5.0
+        return 2.0
 
-    def _score_assignment_burden(self, job: dict) -> float:
-        """Penalize jobs that likely have heavy take-home assignments."""
-        desc = (job.get("description") or "").lower()
-        title = (job.get("title") or "").lower()
-
-        # Signals of assignment-heavy hiring
-        assignment_signals = [
-            "take home", "assignment", "case study", "coding challenge",
-            "project round", "hackathon", "presentation",
-        ]
-        signal_count = sum(1 for s in assignment_signals if s in desc)
-
-        # Some roles are known for heavy assignments
-        heavy_assignment_roles = ["frontend", "full stack", "mobile", "ios", "android"]
-        is_heavy_role = any(r in title for r in heavy_assignment_roles)
-
-        base = 10.0  # Start perfect (no burden)
-        base -= signal_count * 1.5
-        if is_heavy_role:
-            base -= 2.0
-
-        # User's tolerance adjusts the impact
-        tolerance = self.p.assignment_burden_tolerance
-        if tolerance >= 8:
-            base = min(base + 2, 10)  # Doesn't mind assignments
-
-        return round(max(0, min(10, base)), 1)
-
-    def _score_interview_difficulty(self, job: dict) -> float:
-        """Estimate interview difficulty. Higher = easier (better)."""
-        title = (job.get("title") or "").lower()
-        company = (job.get("company") or "").lower()
-
-        # Known hard interviewers
-        hard_companies = {"anthropic", "openai", "stripe", "atlassian", "uber", "google", "meta", "apple"}
-        if company in hard_companies:
-            base = 2.0
-        else:
-            base = 5.0
-
-        # Senior roles are harder
-        if any(s in title for s in ["staff", "principal", "lead", "head", "director"]):
-            base -= 2.0
-        elif any(s in title for s in ["senior"]):
-            base -= 1.0
-
-        # AI/research roles often have harder loops
-        if any(k in title for k in ["ai", "ml", "research", "llm"]):
-            base -= 1.0
-
-        return round(max(1, min(10, base)), 1)
-
-    def _score_response_likelihood(self, job: dict) -> float:
-        """Estimate probability of getting a response."""
-        company = (job.get("company") or "").lower()
-        posted = job.get("posted_date") or job.get("source_date") or ""
-
+    def _score_response_likelihood(self, job: dict, ctx: dict) -> float:
+        """Estimate hiring velocity from ATS provider + posting recency."""
         base = 5.0
+        source = (job.get("source") or "").lower()
+        if any(s in source for s in ["greenhouse", "lever", "ashby", "company_portal"]):
+            base += 2.0  # structured ATS = real, monitored
 
-        # Known fast-hiring companies
-        fast_companies = {"stripe", "atlassian", "gitlab", "cloudflare", "mongodb", "datadog"}
-        if company in fast_companies:
-            base += 2.0
-
-        # Direct ATS postings (Greenhouse/Lever) = more likely real
-        source = job.get("source") or ""
-        if "greenhouse" in source or "lever" in source or "ashby" in source:
-            base += 1.0
-
-        # Recent postings (within 2 weeks) = more likely active
+        posted = job.get("posted_date") or job.get("posted_at") or job.get("source_date") or ""
         if posted:
-            from datetime import datetime, timedelta
+            from datetime import datetime
             try:
-                if isinstance(posted, str):
-                    posted_date = datetime.fromisoformat(posted[:10])
-                    age_days = (datetime.now() - posted_date).days
-                    if age_days <= 7:
-                        base += 3.0
-                    elif age_days <= 14:
-                        base += 1.0
-                    elif age_days > 30:
-                        base -= 2.0
+                posted_date = datetime.fromisoformat(posted[:10])
+                age_days = (datetime.now() - posted_date).days
+                if age_days <= 7:
+                    base += 3.0
+                elif age_days <= 14:
+                    base += 1.0
+                elif age_days > 30:
+                    base -= 2.0
             except (ValueError, TypeError):
                 pass
 
-        return round(max(1, min(10, base)), 1)
+        # Active companies in registry — recent hiring signal
+        registry = ctx["company_registry"]
+        if registry.get("last_job_count", 0) >= 5:
+            base += 1.0
 
-    def _score_career_trajectory(self, job: dict) -> float:
-        """How much does this role advance the user's career?"""
+        return round(max(1.0, min(10.0, base)), 1)
+
+    def _score_career_trajectory(self, job: dict, ctx: dict) -> float:
+        """Seniority match + brand bump. No AI bias."""
         title = (job.get("title") or "").lower()
-        company = (job.get("company") or "").lower()
-
         base = 5.0
 
-        # Seniority signals = trajectory positive
-        seniority = ["senior", "staff", "principal", "lead", "head", "founding"]
+        seniority = ["senior", "staff", "principal", "lead", "head", "founding", "director"]
         for i, s in enumerate(seniority):
             if s in title:
-                base += (i + 1) * 0.8
+                base += (i + 1) * 0.7
                 break
 
-        # AI/ML roles = high growth
-        if any(k in title for k in ["ai", "ml", "llm", "agent", "machine learning"]):
-            base += 1.5
-
-        # Strong brand = resume value
-        brand = BRAND_VALUE_SIGNALS.get(company, BRAND_VALUE_SIGNALS["__default__"])
+        # Brand bump from memory
+        brand = self._score_brand_value(job, ctx)
         if brand >= 8:
             base += 1.5
         elif brand >= 6:
             base += 0.5
-
-        return round(max(1, min(10, base)), 1)
-
-    # ── Helpers ───────────────────────────────────────────────────────
-
-    @staticmethod
-    def _partial_match(role: str, title: str) -> bool:
-        """Check if most words of role appear in title."""
-        role_words = set(role.lower().split())
-        title_words = set(title.lower().split())
-        if not role_words:
-            return False
-        overlap = role_words & title_words
-        return len(overlap) / len(role_words) >= 0.6
+        return round(max(1.0, min(10.0, base)), 1)

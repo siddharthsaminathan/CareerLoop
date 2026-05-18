@@ -30,65 +30,43 @@ ACTIVE_STATUSES = {"DISCOVERED", "SHORTLISTED", "SENT_TO_USER", "MAYBE", "APPROV
 ACTION_REQUIRED_STATUSES = {"SENT_TO_USER", "APPROVED", "FOLLOW_UP_DUE"}
 
 # ── India Fit Engine Weights (total = 100) ─────────────────────────────
+# Refactored 2026-05-18 — dynamic intent-based scoring, no AI bias.
+# Dropped: interview_difficulty (hardcoded company list), assignment_burden (role bias).
+# Added:   equity_fit, benefits_fit, sector_fit.
 
 FIT_WEIGHTS = {
-    "role_fit": 15,
-    "skill_fit": 15,
-    "salary_fit": 10,
+    "role_fit": 14,            # token overlap target_functions/roles vs title+role_summary
+    "skill_fit": 14,           # token overlap confirmed_skills vs requirements+responsibilities
+    "salary_fit": 10,          # floor+ceiling band check on extracted comp
+    "equity_fit": 5,           # NEW: ESOPs match
+    "benefits_fit": 5,         # NEW: must-have benefits match
     "location_fit": 10,
     "work_mode_fit": 8,
     "notice_period_fit": 5,
-    "company_stability": 7,
-    "startup_risk": 5,          # lower is better (inverted)
-    "brand_value": 6,
-    "commute_risk": 4,          # lower is better (inverted)
-    "assignment_burden": 3,     # lower is better (inverted)
-    "interview_difficulty": 3,  # lower is better (inverted)
-    "response_likelihood": 5,
-    "career_trajectory": 4,
+    "sector_fit": 6,           # NEW: sector allow/deny preference
+    "company_stability": 7,    # sourced from company_memory, not hardcoded
+    "startup_risk": 5,
+    "brand_value": 6,          # sourced from company_memory, not hardcoded
+    "commute_risk": 4,
+    "response_likelihood": 4,
+    "career_trajectory": 4,    # seniority match (not AI-biased)
 }
 
 # ── Follow-up Schedule (days after application) ─────────────────────────
 
 FOLLOW_UP_SCHEDULE = [5, 10, 17, 25]  # Days after APPLIED to trigger follow-up
 
-# ── Company Stability Signals ──────────────────────────────────────────
+# ── Company Signals — DEPRECATED ──────────────────────────────────────
+# Old hardcoded tables removed 2026-05-18. Company stability and brand value
+# now come from `company_memory` SQLite table (per-company, learned over time).
+# These constants kept as neutral defaults only — never reference by company name.
 
-# Companies with known stability signals (funding, layoffs, growth)
-# Score: 0-10 where 10 = most stable
-COMPANY_STABILITY_SIGNALS = {
-    # MNC / public companies = highly stable
-    "stripe": 9, "atlassian": 9, "gitlab": 8, "cloudflare": 8,
-    "datadog": 8, "mongodb": 8, "twilio": 7, "snowflake": 8,
-    "uber": 8, "shopify": 8, "coinbase": 6, "spotify": 8,
-    "redhat": 9, "elastic": 8, "salesforce": 10, "microsoft": 10,
-    "google": 10, "amazon": 8, "apple": 10, "meta": 8,
-    # Indian MNC / public
-    "flipkart": 8, "zomato": 7, "swiggy": 7, "nykaa": 7,
-    "policybazaar": 7, "delhivery": 7, "paytm": 5,
-    # Indian unicorns
-    "razorpay": 8, "cred": 7, "phonepe": 8, "groww": 7,
-    "meesho": 7, "zepto": 6, "freshworks": 8, "postman": 8,
-    "browserstack": 8, "chargebee": 7, "hasura": 6,
-    "ola": 5, "unacademy": 5, "vedantu": 5,
-    # AI labs
-    "anthropic": 8, "openai": 8, "cohere": 7, "mistral": 6,
-    # Default for unknown companies
-    "__default__": 5,
-}
+COMPANY_STABILITY_DEFAULT = 5.0   # 0-10 neutral when no memory record exists
+BRAND_VALUE_DEFAULT = 4.0         # 0-10 neutral when no memory record exists
 
-# ── Brand Value Signals (career resume value) ─────────────────────────
-
-BRAND_VALUE_SIGNALS = {
-    "anthropic": 10, "openai": 10, "google": 10, "apple": 10,
-    "stripe": 9, "atlassian": 9, "gitlab": 8, "cloudflare": 8,
-    "datadog": 8, "mongodb": 8, "uber": 8, "shopify": 8,
-    "vercel": 8, "supabase": 7, "langchain": 7,
-    "razorpay": 7, "cred": 6, "phonepe": 7, "flipkart": 8,
-    "zomato": 6, "swiggy": 6, "meesho": 6, "freshworks": 7,
-    "postman": 7, "browserstack": 7, "zoho": 7,
-    "__default__": 4,
-}
+# Back-compat shims — any old import that names these gets the default only.
+COMPANY_STABILITY_SIGNALS = {"__default__": COMPANY_STABILITY_DEFAULT}
+BRAND_VALUE_SIGNALS = {"__default__": BRAND_VALUE_DEFAULT}
 
 # ── Indian Cities (for location matching) ──────────────────────────────
 

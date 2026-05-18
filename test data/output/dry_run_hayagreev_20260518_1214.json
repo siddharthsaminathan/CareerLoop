@@ -1,0 +1,989 @@
+[
+  {
+    "role": "AI product engineer",
+    "city": "Chennai",
+    "keywords_used": [
+      "ai product engineer",
+      "ai",
+      "product",
+      "engineer",
+      "roadmap",
+      "pm",
+      "user research",
+      "strategy",
+      "engineering",
+      "software"
+    ],
+    "candidate_count": 14,
+    "after_dedup_count": 4,
+    "elapsed_seconds": 45.07,
+    "notes": [],
+    "ranked_jobs": [
+      {
+        "job": {
+          "title": "GenAI Product Manager - Chennai - Ventures Hrd Centre",
+          "company": "",
+          "location": "",
+          "url": "https://www.naukri.com/job-listings-genai-product-manager-ventures-hrd-centre-chennai-5-to-10-years-110526031892",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "1 week ago - We cannot provide a description for this page right now",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "78881eb1c5690f5a",
+          "canonical": true,
+          "canonical_id": "78881eb1c5690f5a",
+          "apply_route": {
+            "best_apply_route": "naukri",
+            "apply_url": "https://www.naukri.com/job-listings-genai-product-manager-ventures-hrd-centre-chennai-5-to-10-years-110526031892",
+            "backup_urls": [],
+            "reason": "best route: naukri (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 57.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Software Engineer - Chennai - Detect Technologies",
+          "company": "",
+          "location": "",
+          "url": "https://www.naukri.com/job-listings-ai-software-engineer-detect-technologies-chennai-0-to-2-years-220825007704",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "August 22, 2025 - We cannot provide a description for this page right now",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "af5fa08a7769fbd7",
+          "canonical": true,
+          "canonical_id": "af5fa08a7769fbd7",
+          "apply_route": {
+            "best_apply_route": "naukri",
+            "apply_url": "https://www.naukri.com/job-listings-ai-software-engineer-detect-technologies-chennai-0-to-2-years-220825007704",
+            "backup_urls": [],
+            "reason": "best route: naukri (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 53.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 5.0,
+            "weight": 14,
+            "weighted": 7.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI / ML Engineer - Chennai - Accenture - 2 to 5 years of ...",
+          "company": "",
+          "location": "",
+          "url": "https://www.naukri.com/job-listings-ai-ml-engineer-accenture-solutions-pvt-ltd-chennai-2-to-5-years-140126921096",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "January 14, 2026 - We cannot provide a description for this page right now",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "9ac59ba7c3b47c90",
+          "canonical": true,
+          "canonical_id": "9ac59ba7c3b47c90",
+          "apply_route": {
+            "best_apply_route": "naukri",
+            "apply_url": "https://www.naukri.com/job-listings-ai-ml-engineer-accenture-solutions-pvt-ltd-chennai-2-to-5-years-140126921096",
+            "backup_urls": [],
+            "reason": "best route: naukri (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 53.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 5.0,
+            "weight": 14,
+            "weighted": 7.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Naukri",
+          "company": "",
+          "location": "",
+          "url": "https://www.naukri.com/job-listings-gen-ai-engineer-hcltech-hyderabad-chennai-bengaluru-6-to-10-years-230226003843",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "We cannot provide a description for this page right now",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "b86a4c6d74b1efc2",
+          "canonical": true,
+          "canonical_id": "b86a4c6d74b1efc2",
+          "apply_route": {
+            "best_apply_route": "naukri",
+            "apply_url": "https://www.naukri.com/job-listings-gen-ai-engineer-hcltech-hyderabad-chennai-bengaluru-6-to-10-years-230226003843",
+            "backup_urls": [],
+            "reason": "best route: naukri (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 46.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 0.0,
+            "weight": 14,
+            "weighted": 0.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "AI product engineer",
+    "city": "Bangalore",
+    "keywords_used": [
+      "ai product engineer",
+      "ai",
+      "product",
+      "engineer",
+      "roadmap",
+      "pm",
+      "user research",
+      "strategy",
+      "engineering",
+      "software"
+    ],
+    "candidate_count": 13,
+    "after_dedup_count": 2,
+    "elapsed_seconds": 47.98,
+    "notes": [],
+    "ranked_jobs": [
+      {
+        "job": {
+          "title": "Contlo is hiring AI Product Engineer job (Remote only) | Cutshort",
+          "company": "",
+          "location": "",
+          "url": "https://cutshort.io/job/AI-Product-Engineer-Contlo-5LPgdjsM",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Apply to AI Product Engineer job at Contlo in Remote only from 0 - 2 years of experience.Collaborate with cross-functional teams, including product managers, designers, and other engineers, to develop and enhance Contlo's AI-native marketing platform.",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "8164cfcc4ff183f0",
+          "canonical": true,
+          "canonical_id": "8164cfcc4ff183f0",
+          "apply_route": {
+            "best_apply_route": "cutshort",
+            "apply_url": "https://cutshort.io/job/AI-Product-Engineer-Contlo-5LPgdjsM",
+            "backup_urls": [],
+            "reason": "best route: cutshort (priority 4)",
+            "risk": "medium"
+          }
+        },
+        "score": 61.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 10.0,
+            "weight": 14,
+            "weighted": 14.0
+          },
+          "skill_fit": {
+            "raw": 2.4,
+            "weight": 14,
+            "weighted": 3.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Engineer - Bengaluru - Recrosoft - 3 to 5 years of experience",
+          "company": "",
+          "location": "",
+          "url": "https://www.naukri.com/job-listings-ai-engineer-recrosoft-bengaluru-3-to-5-years-280426016885?px=1",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Job Description for AI Engineer in Recrosoft in Bengaluru for 3 to 5 years of experience. Apply Now!",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "b60876e532826981",
+          "canonical": true,
+          "canonical_id": "b60876e532826981",
+          "apply_route": {
+            "best_apply_route": "naukri",
+            "apply_url": "https://www.naukri.com/job-listings-ai-engineer-recrosoft-bengaluru-3-to-5-years-280426016885?px=1",
+            "backup_urls": [],
+            "reason": "best route: naukri (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 53.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 5.0,
+            "weight": 14,
+            "weighted": 7.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "AI product manager",
+    "city": "Chennai",
+    "keywords_used": [
+      "ai product manager",
+      "ai",
+      "product",
+      "manager",
+      "roadmap",
+      "pm",
+      "user research",
+      "strategy",
+      "management",
+      "leadership"
+    ],
+    "candidate_count": 10,
+    "after_dedup_count": 3,
+    "elapsed_seconds": 48.13,
+    "notes": [],
+    "ranked_jobs": [
+      {
+        "job": {
+          "title": "AI Product Manager - Chennai - Maintwiz Technologies - 3 to 5 ...",
+          "company": "",
+          "location": "",
+          "url": "https://www.naukri.com/job-listings-ai-product-manager-maintwiz-technologies-private-limited-chennai-3-to-5-years-130825918944",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Job Description for AI Product Manager in Maintwiz Technologies in Chennai for 3 to 5 years of experience. Apply Now!",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "56eae79ac4c5dfa8",
+          "canonical": true,
+          "canonical_id": "56eae79ac4c5dfa8",
+          "apply_route": {
+            "best_apply_route": "naukri",
+            "apply_url": "https://www.naukri.com/job-listings-ai-product-manager-maintwiz-technologies-private-limited-chennai-3-to-5-years-130825918944",
+            "backup_urls": [],
+            "reason": "best route: naukri (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 61.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 10.0,
+            "weight": 14,
+            "weighted": 14.0
+          },
+          "skill_fit": {
+            "raw": 2.4,
+            "weight": 14,
+            "weighted": 3.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Product Manager - GenAI - Chennai - Ventures Hrd Centre - 5 ...",
+          "company": "",
+          "location": "",
+          "url": "https://www.naukri.com/job-listings-product-manager-genai-ventures-hrd-centre-chennai-5-to-8-years-110526029564",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Job Description for Product Manager - GenAI in Ventures Hrd Centre in Chennai for 5 to 8 years of experience. Apply Now!",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "86c4b50dbe2fedbf",
+          "canonical": true,
+          "canonical_id": "86c4b50dbe2fedbf",
+          "apply_route": {
+            "best_apply_route": "naukri",
+            "apply_url": "https://www.naukri.com/job-listings-product-manager-genai-ventures-hrd-centre-chennai-5-to-8-years-110526029564",
+            "backup_urls": [],
+            "reason": "best route: naukri (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 57.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Naukri.com",
+          "company": "",
+          "location": "",
+          "url": "https://www.naukri.com/job-listings-associate-product-manager-disprz-chennai-1-to-2-years-110526501022",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Product Manager Leading Indian MNC in Fintech 1-4 Yrs 13-16 Lacs P.A. Hyderabad/Secunderabad, Chennai, Gurgaon/Gurugram, Coimbatore, Bangalore/Bengaluru Hiring for one of these companies 7h ago",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "d71257b807f5bd2b",
+          "canonical": true,
+          "canonical_id": "d71257b807f5bd2b",
+          "apply_route": {
+            "best_apply_route": "naukri",
+            "apply_url": "https://www.naukri.com/job-listings-associate-product-manager-disprz-chennai-1-to-2-years-110526501022",
+            "backup_urls": [],
+            "reason": "best route: naukri (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 46.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 0.0,
+            "weight": 14,
+            "weighted": 0.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "AI product manager",
+    "city": "Bangalore",
+    "keywords_used": [
+      "ai product manager",
+      "ai",
+      "product",
+      "manager",
+      "roadmap",
+      "pm",
+      "user research",
+      "strategy",
+      "management",
+      "leadership"
+    ],
+    "candidate_count": 10,
+    "after_dedup_count": 0,
+    "elapsed_seconds": 47.25,
+    "notes": [],
+    "ranked_jobs": []
+  }
+]

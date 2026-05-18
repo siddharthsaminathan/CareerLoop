@@ -221,6 +221,8 @@ class CouncilResult:
     job_id: str
     allowed: bool = True
     reason: str = ""
+    status: str = "ok"   # ok | jd_unavailable | error
+    error: str = ""
     context: Optional[CouncilContext] = None
     person_id: str = "default"
     canonical_resume: Optional[CanonicalResume] = None

@@ -18,12 +18,12 @@ logger = logging.getLogger(__name__)
 # India-native job board URL patterns — ONLY these pass through.
 # All non-India ATS boards (greenhouse, lever, etc.) are explicitly rejected.
 INDIA_JOB_URL_PATTERNS = [
-    r"linkedin\.com/jobs/view/",
-    r"linkedin\.com/jobs/collections/",
+    r"linkedin\.com/jobs/view/\d+",          # individual job posting only (numeric ID required)
+    r"linkedin\.com/jobs/collections/\d+",   # curated collection (numeric ID required)
     r"naukri\.com/job-listings-",
     r"naukri\.com/job/",
-    r"naukri\.com/[^/]+-jobs-",
-    r"cutshort\.io/",
+    r"cutshort\.io/[^/]+/jobs/",             # company-specific job: cutshort.io/{company}/jobs/{slug}
+    r"cutshort\.io/jobs/[a-z0-9-]+-[a-z0-9]+$",  # individual job slug (ends with ID, not /jobs/)
     r"instahyre\.com/",
     r"wellfound\.com/jobs",
     r"wellfound\.com/l/",
@@ -33,6 +33,31 @@ INDIA_JOB_URL_PATTERNS = [
     r"workindia\.in/",
     r"apna\.co/",
     r"shine\.com/",
+]
+
+# URL patterns that look like job URLs but are actually search/category pages — reject these.
+SEARCH_PAGE_PATTERNS = [
+    # LinkedIn search result pages (not individual job posts)
+    r"linkedin\.com/jobs/[a-z][a-z0-9-]+-jobs",      # /jobs/ai-engineer-jobs-in-bangalore
+    r"linkedin\.com/jobs/search",                      # /jobs/search?keywords=...
+    r"linkedin\.com/jobs/[a-z][a-z0-9-]+-openings",   # /jobs/data-science-openings
+    # Naukri search/listing pages (not individual job posts)
+    r"naukri\.com/[a-z][a-z0-9-]+-jobs(?:-in-[a-z-]+)?/?$",  # /ml-engineer-jobs or /ml-jobs-in-bangalore
+    r"naukri\.com/[a-z][a-z0-9-]+-jobs/[0-9]",        # paginated: /ml-jobs/2
+    # Cutshort category pages
+    r"cutshort\.io/jobs/?$",                           # /jobs/ root = category listing
+    r"cutshort\.io/jobs/[a-z][a-z0-9-]+/?$",          # /jobs/machine-learning = category
+    # Foundit/Instahyre/Hirist category listings
+    r"foundit\.in/srp/",                               # search results page
+    r"instahyre\.com/search",
+    r"hirist\.tech/c/",                                # category page
+    # Blog / article / advice patterns
+    r"/(blog|article|news|guide|tips|career-advice|how-to|interview-prep)/",
+    r"highest[- ]paying[- ]jobs",
+    r"how[- ]to[- ]become",
+    r"top[- ]\d+[- ]jobs",
+    r"best[- ]jobs[- ]for",
+    r"salary[- ](?:guide|range|report)",
 ]
 
 # India-native job board domains (fallback domain check)
@@ -221,40 +246,54 @@ class SearchAdapter:
 
     def _search_ddg(self, query: str) -> list[dict]:
         """Search using DuckDuckGo (free) via the ddgs library."""
-        from ddgs import DDGS
+        try:
+            from ddgs import DDGS
+        except ImportError:
+            from duckduckgo_search import DDGS
         with DDGS() as ddgs:
             results = list(ddgs.text(query, max_results=self.max_results, region="in-en"))
         return [{"url": r.get("href",""), "title": r.get("title",""), "snippet": r.get("body",""), "engine": "duckduckgo"} for r in results]
 
+    def _is_search_page(self, url: str) -> bool:
+        """Return True if URL is a search/category page, not an individual job posting."""
+        url_lower = url.lower()
+        for p in SEARCH_PAGE_PATTERNS:
+            if re.search(p, url_lower):
+                return True
+        return False
+
     def _is_job_url(self, url: str) -> bool:
-        """Only allow URLs from India-native job boards."""
+        """Only allow individual job posting URLs from India-native job boards."""
         url_lower = url.lower()
         from urllib.parse import urlparse
         parsed = urlparse(url_lower)
         netloc = parsed.netloc
 
+        # Reject search/category pages first — must come before pattern matching
+        if self._is_search_page(url_lower):
+            return False
+
         url_type = classify_url_type(url)
-        if url_type in (
-            URLType.INDIVIDUAL_JOB,
-            URLType.SEARCH_PAGE,
-            URLType.COMPANY_CAREERS_PAGE,
-            URLType.CATEGORY_PAGE,
-        ):
+        if url_type == URLType.INDIVIDUAL_JOB:
+            return True
+        # Allow discovery leads but not pure search pages
+        if url_type in (URLType.COMPANY_CAREERS_PAGE,):
             return True
 
         if "linkedin.com" in netloc:
-            return "/jobs/" in url_lower
+            # Only numeric-ID job view pages, not search pages
+            return bool(re.search(r"/jobs/view/\d+", url_lower))
 
         # Wellfound: only job listings, not company profile pages
         if "wellfound.com" in netloc:
             return "/jobs" in url_lower or "/l/" in url_lower
 
-        # India-specific board URL patterns
+        # India-specific board URL patterns (already tightened above)
         for p in INDIA_JOB_URL_PATTERNS:
             if re.search(p, url_lower):
                 return True
 
-        # India-specific board domains
+        # India-specific board domains (fallback)
         for d in INDIA_JOB_DOMAINS:
             if d in netloc:
                 return True

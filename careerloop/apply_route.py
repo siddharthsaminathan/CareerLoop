@@ -10,6 +10,7 @@ Priority:
 Also handles cross-source merge when same job appears on multiple sites.
 """
 
+import hashlib
 import re
 import logging
 from urllib.parse import urlparse
@@ -134,6 +135,87 @@ def resolve_apply_route(job: dict) -> dict:
         "reason": f"best route: {best['source']} (priority {best['priority']})",
         "risk": ROUTE_RISK.get(best["source"], "medium"),
     }
+
+
+# Source priority for canonical dedup (lower = higher trust)
+SOURCE_CANONICAL_PRIORITY = {
+    "company_portal": 1,
+    "greenhouse": 2,
+    "lever": 2,
+    "ashby": 2,
+    "workday": 3,
+    "naukri": 4,
+    "instahyre": 4,
+    "cutshort": 4,
+    "foundit": 4,
+    "linkedin": 5,
+    "jobspy": 5,
+    "wellfound": 5,
+    "indeed": 6,
+    "glassdoor": 7,
+    "scrapegraph": 7,
+    "search": 8,
+    "csv": 9,
+    "unknown": 10,
+}
+
+
+def _canonical_fingerprint(job: dict) -> str:
+    """sha256(normalize(company)|normalize(title)|normalize(city[:30]))[:16]"""
+    from careerloop.models import normalize_company, normalize_role, normalize_location
+    company = normalize_company(job.get("company", ""))
+    title = normalize_role(job.get("title", job.get("role_title", "")))
+    city = normalize_location(job.get("location", ""))[:30]
+    return hashlib.sha256(f"{company}|{title}|{city}".encode()).hexdigest()[:16]
+
+
+def deduplicate_canonical(jobs: list[dict]) -> list[dict]:
+    """
+    Cross-source canonical dedup via sha256 fingerprint.
+
+    Winner = highest-priority source (company_portal > greenhouse/lever/ashby > linkedin > naukri).
+    Winner gets canonical=True, canonical_id=fingerprint.
+    Losers are dropped; their URLs merged into winner's alternate_sources.
+    """
+    groups: dict[str, list[dict]] = {}
+    for job in jobs:
+        fp = _canonical_fingerprint(job)
+        job["_canonical_fp"] = fp
+        groups.setdefault(fp, []).append(job)
+
+    result = []
+    for fp, group in groups.items():
+        if len(group) == 1:
+            group[0]["canonical"] = True
+            group[0]["canonical_id"] = fp
+            result.append(group[0])
+            continue
+
+        group.sort(key=lambda j: SOURCE_CANONICAL_PRIORITY.get(
+            j.get("_source_type", j.get("source", "unknown")), 10
+        ))
+        winner = group[0]
+        winner["canonical"] = True
+        winner["canonical_id"] = fp
+
+        for loser in group[1:]:
+            url = loser.get("url", loser.get("source_url", ""))
+            if url:
+                winner.setdefault("alternate_sources", []).append(url)
+            # Keep richer description
+            new_desc = loser.get("description", loser.get("raw_description", ""))
+            old_desc = winner.get("description", winner.get("raw_description", ""))
+            if len(str(new_desc)) > len(str(old_desc)):
+                winner["description"] = new_desc
+            # Backfill JD sections if winner lacks them
+            for field in ("role_summary", "responsibilities", "requirements", "benefits"):
+                if not winner.get(field) and loser.get(field):
+                    winner[field] = loser[field]
+
+        result.append(winner)
+
+    logger.info(f"Canonical dedup: {len(jobs)} → {len(result)} unique jobs")
+    return result
 
 
 def merge_cross_source(jobs: list[dict]) -> list[dict]:

@@ -1,0 +1,989 @@
+[
+  {
+    "role": "AI product engineer",
+    "city": "Chennai",
+    "keywords_used": [
+      "ai product engineer",
+      "ai",
+      "product",
+      "engineer",
+      "roadmap",
+      "pm",
+      "user research",
+      "strategy",
+      "engineering",
+      "software"
+    ],
+    "candidate_count": 13,
+    "after_dedup_count": 5,
+    "elapsed_seconds": 40.62,
+    "notes": [],
+    "ranked_jobs": [
+      {
+        "job": {
+          "title": "Sr. AI Product Engineer - Cognologix - 6 to 11 years of experience",
+          "company": "",
+          "location": "",
+          "url": "https://www.naukri.com/job-listings-sr-ai-product-engineer-cognologix-technologies-pune-6-to-11-years-200426501308",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "20 Apr 2026 \u00b7 We are seeking an experienced Sr. AI Product Engineer with 6+ years of experience to design and implement advanced AI/ML solutions. The role ...",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "c83bd4bf716519e5",
+          "canonical": true,
+          "canonical_id": "c83bd4bf716519e5",
+          "apply_route": {
+            "best_apply_route": "naukri",
+            "apply_url": "https://www.naukri.com/job-listings-sr-ai-product-engineer-cognologix-technologies-pune-6-to-11-years-200426501308",
+            "backup_urls": [],
+            "reason": "best route: naukri (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 61.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 10.0,
+            "weight": 14,
+            "weighted": 14.0
+          },
+          "skill_fit": {
+            "raw": 2.4,
+            "weight": 14,
+            "weighted": 3.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Lead Product Engineer - UCIe & Functional Verification - Naukri.com",
+          "company": "",
+          "location": "",
+          "url": "https://www.naukri.com/job-listings-lead-product-engineer-ucie-functional-verification-cadence-noida-ahmedabad-bengaluru-5-to-8-years-180324502347",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "company-location Chennai(Mandaveli). company-experience 2-5 Yrs. company-ctc 3-5 ... AI Product Engineer - Founder's Office(Strategic Execution). Clarity ...",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "eba8f362017e546d",
+          "canonical": true,
+          "canonical_id": "eba8f362017e546d",
+          "apply_route": {
+            "best_apply_route": "naukri",
+            "apply_url": "https://www.naukri.com/job-listings-lead-product-engineer-ucie-functional-verification-cadence-noida-ahmedabad-bengaluru-5-to-8-years-180324502347",
+            "backup_urls": [],
+            "reason": "best route: naukri (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 55.4,
+        "breakdown": {
+          "role_fit": {
+            "raw": 5.0,
+            "weight": 14,
+            "weighted": 7.0
+          },
+          "skill_fit": {
+            "raw": 2.4,
+            "weight": 14,
+            "weighted": 3.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 7.8,
+            "weight": 4,
+            "weighted": 3.1
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Fullstack Engineer - Chennai - RedBlackTree - 3 to 6 years of ...",
+          "company": "",
+          "location": "",
+          "url": "https://www.naukri.com/job-listings-ai-fullstack-engineer-redblacktree-chennai-3-to-6-years-270426006382",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "We are looking for an AI Product Engineer who can transform business requirements into intuitive, scalable, and production-ready AI-powered applications.",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "d5e8028dcb5a16f4",
+          "canonical": true,
+          "canonical_id": "d5e8028dcb5a16f4",
+          "apply_route": {
+            "best_apply_route": "naukri",
+            "apply_url": "https://www.naukri.com/job-listings-ai-fullstack-engineer-redblacktree-chennai-3-to-6-years-270426006382",
+            "backup_urls": [],
+            "reason": "best route: naukri (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 54.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 5.0,
+            "weight": 14,
+            "weighted": 7.0
+          },
+          "skill_fit": {
+            "raw": 2.4,
+            "weight": 14,
+            "weighted": 3.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Sr. Data Scientist - Naukri.com",
+          "company": "",
+          "location": "",
+          "url": "https://www.naukri.com/job-listings-sr-data-scientist-chennai-6-to-11-years-030326901443",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Chennai. Must have key skills. Gen,; Nlp,; Artificial Intelligence,; Python ... Senior Applied AI Product Engineer. Kearney 3.1. location Bengaluru. experience ...",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "f29b4f0224e32a77",
+          "canonical": true,
+          "canonical_id": "f29b4f0224e32a77",
+          "apply_route": {
+            "best_apply_route": "naukri",
+            "apply_url": "https://www.naukri.com/job-listings-sr-data-scientist-chennai-6-to-11-years-030326901443",
+            "backup_urls": [],
+            "reason": "best route: naukri (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 47.8,
+        "breakdown": {
+          "role_fit": {
+            "raw": 0.0,
+            "weight": 14,
+            "weighted": 0.0
+          },
+          "skill_fit": {
+            "raw": 2.8,
+            "weight": 14,
+            "weighted": 3.9
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Senior Data / ML Engineer (LLM & Agentic Systems) - Naukri.com",
+          "company": "",
+          "location": "",
+          "url": "https://www.naukri.com/job-listings-senior-data-ml-engineer-llm-agentic-systems-broadridge-bengaluru-6-to-10-years-180226038805",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "18 Feb 2026 \u00b7 Senior Applied AI Product Engineer. Kearney 3.1. location Bengaluru. experience 5-10 Yrs. AI solutions \u00b7 TypeScript \u00b7 PLM \u00b7 AI\u2011native ...",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "7b01b9de2a982e5f",
+          "canonical": true,
+          "canonical_id": "7b01b9de2a982e5f",
+          "apply_route": {
+            "best_apply_route": "naukri",
+            "apply_url": "https://www.naukri.com/job-listings-senior-data-ml-engineer-llm-agentic-systems-broadridge-bengaluru-6-to-10-years-180226038805",
+            "backup_urls": [],
+            "reason": "best route: naukri (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 47.5,
+        "breakdown": {
+          "role_fit": {
+            "raw": 0.0,
+            "weight": 14,
+            "weighted": 0.0
+          },
+          "skill_fit": {
+            "raw": 2.4,
+            "weight": 14,
+            "weighted": 3.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.7,
+            "weight": 4,
+            "weighted": 2.3
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "AI product engineer",
+    "city": "Bangalore",
+    "keywords_used": [
+      "ai product engineer",
+      "ai",
+      "product",
+      "engineer",
+      "roadmap",
+      "pm",
+      "user research",
+      "strategy",
+      "engineering",
+      "software"
+    ],
+    "candidate_count": 10,
+    "after_dedup_count": 0,
+    "elapsed_seconds": 46.2,
+    "notes": [],
+    "ranked_jobs": []
+  },
+  {
+    "role": "AI product manager",
+    "city": "Chennai",
+    "keywords_used": [
+      "ai product manager",
+      "ai",
+      "product",
+      "manager",
+      "roadmap",
+      "pm",
+      "user research",
+      "strategy",
+      "management",
+      "leadership"
+    ],
+    "candidate_count": 10,
+    "after_dedup_count": 1,
+    "elapsed_seconds": 67.59,
+    "notes": [],
+    "ranked_jobs": [
+      {
+        "job": {
+          "title": "AI Product Manager - Growth with 4 - 8 Years of Experience at Zocket...",
+          "company": "",
+          "location": "",
+          "url": "https://www.foundit.in/job/ai-product-manager-growth-zocket-chennai-41709442",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "As an AI Product Manager, you'll work at the intersection of advertising platforms, enterprise user workflows, and autonomous AI capabilities.jobs in Chennai. AI Product Manager - Growth.",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "32c91dc41b142f19",
+          "canonical": true,
+          "canonical_id": "32c91dc41b142f19",
+          "apply_route": {
+            "best_apply_route": "foundit",
+            "apply_url": "https://www.foundit.in/job/ai-product-manager-growth-zocket-chennai-41709442",
+            "backup_urls": [],
+            "reason": "best route: foundit (priority 4)",
+            "risk": "medium"
+          }
+        },
+        "score": 61.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 10.0,
+            "weight": 14,
+            "weighted": 14.0
+          },
+          "skill_fit": {
+            "raw": 2.4,
+            "weight": 14,
+            "weighted": 3.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "AI product manager",
+    "city": "Bangalore",
+    "keywords_used": [
+      "ai product manager",
+      "ai",
+      "product",
+      "manager",
+      "roadmap",
+      "pm",
+      "user research",
+      "strategy",
+      "management",
+      "leadership"
+    ],
+    "candidate_count": 11,
+    "after_dedup_count": 3,
+    "elapsed_seconds": 57.78,
+    "notes": [],
+    "ranked_jobs": [
+      {
+        "job": {
+          "title": "AI Product Manager - Chennai - Maintwiz Technologies - 3 to 5 ...",
+          "company": "",
+          "location": "",
+          "url": "https://www.naukri.com/job-listings-ai-product-manager-maintwiz-technologies-private-limited-chennai-3-to-5-years-130825918944",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Job Description for AI Product Manager in Maintwiz Technologies in Chennai for 3 to 5 years of experience. Apply Now!",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "56eae79ac4c5dfa8",
+          "canonical": true,
+          "canonical_id": "56eae79ac4c5dfa8",
+          "apply_route": {
+            "best_apply_route": "naukri",
+            "apply_url": "https://www.naukri.com/job-listings-ai-product-manager-maintwiz-technologies-private-limited-chennai-3-to-5-years-130825918944",
+            "backup_urls": [],
+            "reason": "best route: naukri (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 61.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 10.0,
+            "weight": 14,
+            "weighted": 14.0
+          },
+          "skill_fit": {
+            "raw": 2.4,
+            "weight": 14,
+            "weighted": 3.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Product Manager - GenAI - Chennai - Ventures Hrd Centre - 5 ...",
+          "company": "",
+          "location": "",
+          "url": "https://www.naukri.com/job-listings-product-manager-genai-ventures-hrd-centre-chennai-5-to-8-years-110526029564",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Job Description for Product Manager - GenAI in Ventures Hrd Centre in Chennai for 5 to 8 years of experience. Apply Now!",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "86c4b50dbe2fedbf",
+          "canonical": true,
+          "canonical_id": "86c4b50dbe2fedbf",
+          "apply_route": {
+            "best_apply_route": "naukri",
+            "apply_url": "https://www.naukri.com/job-listings-product-manager-genai-ventures-hrd-centre-chennai-5-to-8-years-110526029564",
+            "backup_urls": [],
+            "reason": "best route: naukri (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 57.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Naukri.com",
+          "company": "",
+          "location": "",
+          "url": "https://www.naukri.com/job-listings-associate-product-manager-disprz-chennai-1-to-2-years-110526501022",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Product Manager Leading Indian MNC in Fintech 1-4 Yrs 13-16 Lacs P.A. Hyderabad/Secunderabad, Chennai, Gurgaon/Gurugram, Coimbatore, Bangalore/Bengaluru Hiring for one of these companies 7h ago",
+          "_source_type": "search",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "d71257b807f5bd2b",
+          "canonical": true,
+          "canonical_id": "d71257b807f5bd2b",
+          "apply_route": {
+            "best_apply_route": "naukri",
+            "apply_url": "https://www.naukri.com/job-listings-associate-product-manager-disprz-chennai-1-to-2-years-110526501022",
+            "backup_urls": [],
+            "reason": "best route: naukri (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 46.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 0.0,
+            "weight": 14,
+            "weighted": 0.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 0.0,
+            "weight": 5,
+            "weighted": 0.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 7.8,
+            "weight": 5,
+            "weighted": 3.9
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      }
+    ]
+  }
+]

@@ -24,7 +24,7 @@ from careerloop.sources.scrapegraph_adapter import ScrapeGraphAdapter
 from careerloop.sources.jobspy_adapter import JobSpyAdapter
 from careerloop.india_filter import filter_india_jobs
 from careerloop.verification import JobVerifier
-from careerloop.apply_route import merge_cross_source, resolve_apply_route
+from careerloop.apply_route import merge_cross_source, resolve_apply_route, deduplicate_canonical
 
 logger = logging.getLogger(__name__)
 
@@ -51,6 +51,8 @@ class DiscoveryEngine:
         self.scraper = ScrapeGraphAdapter()
         self.jobspy = JobSpyAdapter()
         self.verifier = JobVerifier()
+        self._ats_adapter = None      # lazy — avoid import cost when portal discovery off
+        self._portal_scraper = None
 
     # ── Main Discovery Pipeline ────────────────────────────────────
 
@@ -236,6 +238,22 @@ class DiscoveryEngine:
                 job["verification_outcome"] = VerificationOutcome.NEEDS_MORE_DATA.value
                 report["discovery_leads"].append(job)
 
+        # Step 2d: Company portal / ATS direct discovery
+        # Gated by CAREERLOOP_PORTAL_DISCOVERY=1 to avoid unwanted HTTP calls.
+        if os.getenv("CAREERLOOP_PORTAL_DISCOVERY", "0") == "1":
+            portal_jobs = self._discover_company_portal(profile)
+            report["source_stats"]["portal_jobs"] = len(portal_jobs)
+            logger.info(f"Company portal layer found {len(portal_jobs)} jobs")
+            for job in portal_jobs:
+                if self._is_scorable_job_dict(job):
+                    job["verification_outcome"] = VerificationOutcome.VERIFIED_MAYBE.value
+                    all_candidate_jobs.append(job)
+                else:
+                    job["verification_outcome"] = VerificationOutcome.NEEDS_MORE_DATA.value
+                    report["discovery_leads"].append(job)
+        else:
+            report["source_stats"]["portal_jobs"] = 0
+
         logger.info(f"Total India-verified candidate jobs: {len(all_candidate_jobs)}")
 
         # Step 4: Final pass to collect filter stats (all jobs already filtered above)
@@ -248,8 +266,8 @@ class DiscoveryEngine:
         report["source_stats"]["india_passed"] = len(india_jobs)
         report["source_stats"]["india_rejected"] = max(0, rejected_count)
 
-        # Step 5: Cross-source merge
-        merged = merge_cross_source(india_jobs)
+        # Step 5: Cross-source canonical dedup (sha256 fingerprint, source priority)
+        merged = deduplicate_canonical(india_jobs)
         report["source_stats"]["after_merge"] = len(merged)
 
         # Step 6: Verify active
@@ -280,6 +298,144 @@ class DiscoveryEngine:
         report["source_stats"]["final_user_visible_opportunities"] = 0
 
         return report
+
+    # ── Company Portal / ATS Layer ────────────────────────────────
+
+    def _get_ats_adapter(self):
+        if self._ats_adapter is None:
+            from careerloop.sources.ats_adapter import ATSAdapter
+            self._ats_adapter = ATSAdapter()
+        return self._ats_adapter
+
+    def _get_portal_scraper(self):
+        if self._portal_scraper is None:
+            from careerloop.sources.company_portal_scraper import CareerPageCrawler, JDSectionExtractor
+            self._portal_scraper = (CareerPageCrawler(), JDSectionExtractor())
+        return self._portal_scraper
+
+    def _discover_company_portal(self, profile: dict, max_companies: int = 30) -> list[dict]:
+        """
+        Discover jobs from company career pages and ATS APIs.
+
+        Flow:
+        1. Pull companies from registry for the profile city/sector.
+        2. If registry < 10, trigger CompanyDiscoveryEngine to populate it.
+        3. For each company: ATS API first, then career page crawl + JD extraction.
+        4. Return list of job dicts in the standard pipeline format.
+        """
+        try:
+            from careerloop.company_registry import CompanyRegistry
+            registry = CompanyRegistry(str(self.root))
+        except Exception as e:
+            logger.warning(f"[PortalLayer] Registry unavailable: {e}")
+            return []
+
+        city = profile.get("location", profile.get("city", ""))
+        sector = profile.get("target_sector", "")
+        function_hint = profile.get("target_role", profile.get("target_roles", [""])[0] if isinstance(profile.get("target_roles"), list) else "")
+
+        companies = registry.list_by_city_sector(
+            city=city, sector=sector,
+            crawl_status=["pending", "active", "warm"],
+            limit=max_companies,
+        )
+
+        # Seed registry if thin
+        if len(companies) < 10 and city:
+            try:
+                from careerloop.sources.company_discovery import CompanyDiscoveryEngine
+                engine = CompanyDiscoveryEngine(str(self.root))
+                discovered = engine.discover(
+                    city=city, sector=sector,
+                    function_hint=str(function_hint),
+                    max_companies=50,
+                )
+                logger.info(f"[PortalLayer] Discovery seeded {len(discovered)} companies for {city}")
+                companies = registry.list_by_city_sector(
+                    city=city, sector=sector,
+                    crawl_status=["pending", "active", "warm"],
+                    limit=max_companies,
+                )
+            except Exception as e:
+                logger.warning(f"[PortalLayer] Discovery seed failed: {e}")
+
+        ats = self._get_ats_adapter()
+        crawler, extractor = self._get_portal_scraper()
+        jobs: list[dict] = []
+
+        for company in companies[:max_companies]:
+            try:
+                if company.ats_provider not in ("unknown", "none", ""):
+                    # Structured ATS fetch — highest fidelity
+                    ats_jobs = ats.fetch_jobs(
+                        company.id, company.name,
+                        company.ats_provider, company.ats_url,
+                    )
+                    for aj in ats_jobs:
+                        jobs.append(self._ats_job_to_dict(aj))
+                    registry.mark_crawled(company.id, len(ats_jobs))
+
+                elif company.career_page_url:
+                    # Career page crawl → per-URL JD extraction
+                    job_urls = crawler.crawl(company.career_page_url)
+                    for url in job_urls[:20]:  # cap per-company to 20
+                        try:
+                            jd = extractor.extract(url)
+                            if jd.extraction_confidence >= 0.6:
+                                jobs.append(self._portal_job_to_dict(jd, company.name, url))
+                        except Exception:
+                            pass
+                    registry.mark_crawled(company.id, len(job_urls))
+
+            except Exception as e:
+                logger.debug(f"[PortalLayer] {company.name}: {e}")
+
+        logger.info(f"[PortalLayer] {len(companies)} companies → {len(jobs)} jobs")
+        return jobs
+
+    def _ats_job_to_dict(self, ats_job) -> dict:
+        return {
+            "title": ats_job.title,
+            "company": ats_job.company,
+            "location": ats_job.location,
+            "url": ats_job.apply_url,
+            "apply_url": ats_job.apply_url,
+            "url_type": URLType.INDIVIDUAL_JOB.value,
+            "description": ats_job.raw_description,
+            "jd_text": ats_job.raw_description,
+            "role_summary": ats_job.role_summary,
+            "responsibilities": ats_job.responsibilities,
+            "requirements": ats_job.requirements,
+            "benefits": ats_job.benefits,
+            "skills": [],
+            "salary": "",
+            "work_mode": "",
+            "posted_at": ats_job.posted_at or "",
+            "_source_type": ats_job.source,
+            "extraction_confidence": ats_job.jd_confidence,
+        }
+
+    def _portal_job_to_dict(self, jd_sections, company_name: str, source_url: str) -> dict:
+        return {
+            "title": jd_sections.job_title,
+            "company": company_name,
+            "location": jd_sections.location,
+            "url": source_url,
+            "apply_url": source_url,
+            "url_type": URLType.INDIVIDUAL_JOB.value,
+            "description": jd_sections.raw_text,
+            "jd_text": jd_sections.raw_text,
+            "role_summary": jd_sections.role_summary,
+            "responsibilities": jd_sections.responsibilities,
+            "requirements": jd_sections.requirements,
+            "benefits": jd_sections.benefits,
+            "skills": [],
+            "salary": "",
+            "work_mode": "",
+            "posted_at": "",
+            "_source_type": "company_portal",
+            "extraction_confidence": jd_sections.extraction_confidence,
+        }
 
     # ── CSV Import (fallback) ──────────────────────────────────────
 
