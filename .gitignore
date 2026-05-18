@@ -54,4 +54,5 @@ reports/*/
 docs/phase1_results_*.json
 fix_emoji.py
 parse_ledger.py
-show_queries.py.DS_Store
+show_queries.py
+.DS_Store
