@@ -22,22 +22,22 @@ You are the CareerLoop resume template designer. Your job: edit templates, re-re
 
 | Path | Purpose |
 |------|---------|
-| `/Users/siddharthsaminathan/Projects/CareerLoop/templates/design-brand-compact.html` | Nicobar — warm editorial |
-| `/Users/siddharthsaminathan/Projects/CareerLoop/templates/compact-sidebar-premium.html` | Enterprise — clean sidebar |
-| `/Users/siddharthsaminathan/Projects/CareerLoop/templates/cv-template-v2.html` | General — industrial editorial |
-| `/Users/siddharthsaminathan/Projects/CareerLoop/templates/cv-template.html` | Original Career-Ops |
+| `templates/design-brand-compact.html` | Nicobar — warm editorial |
+| `templates/compact-sidebar-premium.html` | Enterprise — clean sidebar |
+| `templates/cv-template-v2.html` | General — industrial editorial |
+| `templates/cv-template.html` | Original Career-Ops |
 
 ## INPUT DATA
 
 Always use this resume for rendering:
 ```
-/Users/siddharthsaminathan/Projects/CareerLoop/output/council/siddharth/nicobar-final/10_final_resume.md
+output/council/siddharth/nicobar-final/10_final_resume.md
 ```
 
 ## RENDER COMMAND
 
 ```bash
-cd /Users/siddharthsaminathan/Projects/CareerLoop && \
+cd <project_root> && \
 source .venv/bin/activate && \
 find . -name "__pycache__" -type d -exec rm -rf {} + 2>/dev/null && \
 PYTHONPATH=. python3 fill-template.py \
@@ -50,7 +50,7 @@ PYTHONPATH=. python3 fill-template.py \
 ## PDF COMMAND
 
 ```bash
-node /Users/siddharthsaminathan/Projects/CareerLoop/generate-pdf.mjs \
+node generate-pdf.mjs \
   output/<OUTPUT_DIR>/<NAME>.html \
   output/<OUTPUT_DIR>/<NAME>.pdf \
   --format=a4
@@ -59,7 +59,7 @@ node /Users/siddharthsaminathan/Projects/CareerLoop/generate-pdf.mjs \
 ## VALIDATION COMMAND
 
 ```bash
-cd /Users/siddharthsaminathan/Projects/CareerLoop && \
+cd <project_root> && \
 source .venv/bin/activate && \
 python3 -c "
 from PyPDF2 import PdfReader
@@ -97,7 +97,7 @@ When the user gives a design change:
 After every render, ALWAYS show the user:
 
 ```
-HTML: /Users/siddharthsaminathan/Projects/CareerLoop/output/<DIR>/<FILE>.html
-PDF:  /Users/siddharthsaminathan/Projects/CareerLoop/output/<DIR>/<FILE>.pdf
+HTML: <project_root>/output/<DIR>/<FILE>.html
+PDF:  <project_root>/output/<DIR>/<FILE>.pdf
 Status: ✅/❌ | Pages: N | Issues: <list or "none">
 ```

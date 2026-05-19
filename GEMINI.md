@@ -13,7 +13,7 @@ AI-powered job search automation: pipeline tracking, offer evaluation, CV genera
 **CRITICAL DIRECTIVE: TAKE THIS SHIT SERIOUSLY.**
 The user has explicitly stated that future agents must not produce "generative AI slop" or they will be considered utterly useless. To ensure you understand the severity: **DO NOT FUCK THIS UP.** 
 
-1. **No Generative Assembly:** You are forbidden from passing a master CV and a few JSON strings to an LLM and asking it to "rewrite the resume." You MUST use the 8-System Compiler architecture (see `docs/ARCHITECTURE_V3_COUNCIL.md`).
+1. **No Generative Assembly:** You are forbidden from passing a master CV and a few JSON strings to an LLM and asking it to "rewrite the resume." You MUST use the 8-System Compiler architecture (see `docs/engineering/CANONICAL_ARCHITECTURE.md`).
 2. **No Brittle Hardcoding:** Never hardcode dates (like "May 2026") into prompts. Inject dynamic context (`datetime.now()`).
 3. **Zero Metadata Leakage:** Private preferences (Deal-breakers, Target Roles, Salary) must NEVER leak into the final compiled Markdown.
 4. **Preserve Links:** If you use an LLM to rewrite a section, you MUST explicitly instruct it to preserve all `[Text](URL)` links.

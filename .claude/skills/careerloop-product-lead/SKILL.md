@@ -33,8 +33,8 @@ Run this automatically at the start of every session. Keep it to **3 bullets max
 
 ### Steps
 
-1. Read `careerloop/docs/PRD.md` — the canonical vision
-2. Read `careerloop/docs/TRACKER.md` — current system status and open blockers
+1. Read `docs/product/PRD.md` — the canonical vision
+2. Read `docs/tech-backlog/TRACKER.md` — current system status and open blockers
 3. Run: `git log --oneline -15`
 4. Identify which systems the recent commits touched
 5. Output exactly this format (3 bullets, no more):
@@ -65,8 +65,8 @@ Run when the user invokes `/careerloop-product-lead` or asks for a product revie
 
 ### Steps
 
-1. Read `careerloop/docs/PRD.md`
-2. Read `careerloop/docs/TRACKER.md`
+1. Read `docs/product/PRD.md`
+2. Read `docs/tech-backlog/TRACKER.md`
 3. Run: `git log --oneline -20`
 4. Run: `git diff HEAD~10..HEAD --stat` (to see which files changed)
 5. Run: `ls careerloop/` (to see current module structure)
@@ -117,10 +117,10 @@ For each system touched by recent commits:
 
 ### After Analysis — Update the Tracker
 
-Append a new session entry to `careerloop/docs/TRACKER.md` under the Session Log section.
+Append a new session entry to `docs/tech-backlog/TRACKER.md` under the Session Log section.
 Also update the System Status table percentages in both:
-- `careerloop/docs/TRACKER.md`
-- `careerloop/docs/PRD.md` (§17 table)
+- `docs/tech-backlog/TRACKER.md`
+- `docs/product/PRD.md` (§17 table)
 
 Entry format:
 ```markdown
@@ -157,8 +157,8 @@ Entry format:
 
 | File | Purpose |
 |------|---------|
-| `careerloop/docs/PRD.md` | Master vision PRD — source of truth |
-| `careerloop/docs/TRACKER.md` | Rolling session log + system status |
-| `careerloop/docs/vision.md` | Original v1.6 vision (historical reference) |
-| `careerloop/docs/breakdown-20-part.md` | 20-part architecture breakdown |
-| `careerloop/docs/resume-council-vision.md` | Resume Council 8-system spec |
+| `docs/product/PRD.md` | Master vision PRD — source of truth |
+| `docs/tech-backlog/TRACKER.md` | Rolling session log + system status |
+| `docs/product/vision_v1.6_historical.md` | Original v1.6 vision (historical reference) |
+| `docs/engineering/breakdown-20-part.md` | 20-part architecture breakdown |
+| `docs/engineering/resume-council-vision.md` | Resume Council 8-system spec |

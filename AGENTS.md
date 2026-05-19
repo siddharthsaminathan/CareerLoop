@@ -26,8 +26,8 @@ There are two layers. Read `DATA_CONTRACT.md` for the full list.
 
 On the first message of every session, after the update check, run the product engineering lead silently:
 
-1. Read `careerloop/docs/PRD.md`
-2. Read `careerloop/docs/TRACKER.md`
+1. Read `docs/product/PRD.md`
+2. Read `docs/tech-backlog/TRACKER.md`
 3. Run `git log --oneline -15`
 4. Output **3 bullets max** in this format (no headers, no preamble):
 
@@ -43,11 +43,11 @@ On-demand: invoke `/careerloop-product-lead` (Claude Code) or `/careerloop-produ
 **Key docs:**
 | File | Purpose |
 |------|---------|
-| `careerloop/docs/PRD.md` | Canonical product vision — source of truth for all engineering |
-| `careerloop/docs/TRACKER.md` | Rolling session log + live system status |
-| `careerloop/docs/vision.md` | Historical vision v1.6 |
-| `careerloop/docs/breakdown-20-part.md` | Architecture breakdown reference |
-| `careerloop/docs/resume-council-vision.md` | Resume Council 8-system spec |
+| `docs/product/PRD.md` | Canonical product vision — source of truth for all engineering |
+| `docs/tech-backlog/TRACKER.md` | Rolling session log + live system status |
+| `docs/product/vision_v1.6_historical.md` | Historical vision v1.6 |
+| `docs/engineering/breakdown-20-part.md` | Architecture breakdown reference |
+| `docs/engineering/resume-council-vision.md` | Resume Council 8-system spec |
 
 ---
 
