@@ -18,25 +18,20 @@ class SchemaValidationResult:
 NODE_SCHEMAS: dict[str, dict[str, Any]] = {
     "company_intelligence": {
         "required": {
-            "summary": str,
-            "business_model": str,
-            "india_presence": str,
-            "maturity": str,
-            "hiring_urgency": str,
-            "culture_signals": list,
-            "red_flags": list,
-            "positioning_implications": str,
-            "interview_implications": str,
-            "confidence": (int, float),
-            "missing_data": list,
-            "facts": list,
-            "inferences": list,
-            "sources": list,
-            "gaps": list,
-            "role_implications": list,
+            "company_name": str,
+            "company_summary": str,
             "grounding_status": str,
-            "fetched_at": str,
+            "confidence": (int, float),
+            "unknowns": list,
         },
+        "strongly_recommended": [
+            "business_model", "india_presence", "hiring_urgency",
+            "culture_signals", "red_flags", "positioning_implications",
+            "s7_rewrite_context", "s6_positioning_context",
+            "language_to_use", "language_to_avoid",
+            "generated_at", "ttl_days",
+        ],
+        "enums": {"grounding_status": {"READY", "PARTIAL", "JD_ONLY", "UNGROUNDED"}},
         "confidence_fields": ["confidence"],
     },
     "role_decode": {
@@ -139,6 +134,10 @@ def validate_payload(node_name: str, payload: Any) -> SchemaValidationResult:
             errors.append(
                 f"{node_name}: key '{key}' expected {expected_type}, got {type(normalized[key]).__name__}"
             )
+
+    for key in schema.get("strongly_recommended", []):
+        if key not in normalized:
+            errors.append(f"{node_name}: strongly recommended key '{key}' is missing")
 
     for key, allowed in schema.get("enums", {}).items():
         if key in normalized and normalized[key] not in allowed:

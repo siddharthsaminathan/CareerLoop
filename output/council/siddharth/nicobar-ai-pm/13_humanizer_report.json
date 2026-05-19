@@ -1,0 +1,15 @@
+{
+  "resume": {
+    "slop_flags": 1,
+    "realism_concerns": 0,
+    "recruiter_concerns": []
+  },
+  "cover_note": {
+    "slop_flags": 0,
+    "realism_concerns": 0
+  },
+  "recruiter_message": {
+    "slop_flags": 0,
+    "realism_concerns": 0
+  }
+}

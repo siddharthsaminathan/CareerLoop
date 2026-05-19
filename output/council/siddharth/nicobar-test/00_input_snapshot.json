@@ -1,0 +1,30 @@
+{
+  "job_id": "nicobar-test",
+  "person_id": "siddharth",
+  "job_title": "AI Product Engineer",
+  "company": "Nicobar Design Pvt. Ltd.",
+  "job_url": "https://example.com",
+  "jd_text": "\nJob Title: AI Product Engineer \u2014 CEO's Office\nCompany: Nicobar Design Pvt. Ltd. (nicobar.com)\nLocation: Delhi\nExperience: 3-5 years\n\nTHE OPPORTUNITY\nWe've spent a decade building a brand that looks and feels unmistakably Nicobar. The next chapter is building a company that thinks the same way \u2014 every store, every collection, every customer conversation: sharper, faster, unmistakably ours. AI-native, not in theory, but in every room we walk into.\n\nWHAT YOU'LL OWN\n01 Customer Personalization : Build the intelligence layer beneath all our customer communication that understands who each customer actually is.\n02 Store Clienteling : Build the clienteling tool our store teams reach for every day.\n03 Business Intelligence : Replace Microsoft BI dashboards with a live, conversational intelligence layer.\n04 Smoothen Design Workstreams : Remove friction so the creative team can make more, better, faster.\n\nWHAT WE'RE LOOKING FOR\nEngineering degree from IIT, BITS, NIT or equivalent with 3-5 years of experience.\nYou've built something real with an LLM API - OpenAI, Claude, Gemini, etc.\nFluent in Python/ NodeJS. Comfortable writing and querying SQL.\nAbility to build front-ends that don't embarrass the brand. We're visual people.\n",
+  "profile": {
+    "full_name": "Siddharth Saminathan",
+    "email": "siddharthsaminathan99@gmail.com",
+    "location": "Chennai, India",
+    "target_roles": [
+      "AI Product Engineer",
+      "AI Engineer",
+      "Product Engineer"
+    ],
+    "deal_breakers": [],
+    "narrative": "AI Product Engineer who ships production AI systems from concept to real users."
+  },
+  "today": "May 2026",
+  "errors": [],
+  "canonical_resume": null,
+  "preservation_contract": null,
+  "company_intelligence": null,
+  "role_decode": null,
+  "user_truth": null,
+  "positioning_strategy": null,
+  "section_rewrites": null,
+  "application_pack": null
+}

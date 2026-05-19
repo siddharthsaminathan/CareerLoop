@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VARSHA SATHYANARAYANAN — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Inter:opsz,wght@14..32,400..600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf8f5;
+    --ink: #1f2933;
+    --slate: #5b6472;
+    --muted: #9ca3af;
+    --rule: #e8e2d8;
+    --accent: #9a5b45;
+    --sidebar-bg: #f5f1eb;
+    --chip-bg: #ffffff;
+    --chip-border: #e8e2d8;
+    --display: 'Cormorant Garamond', Georgia, serif;
+    --body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  [data-theme="dark"] {
+    --paper: #1c1613;
+    --ink: #efe8e0;
+    --slate: #b8a99a;
+    --muted: #7a6e62;
+    --rule: #3d3228;
+    --accent: #c4845c;
+    --sidebar-bg: #221b16;
+    --chip-bg: #2a211a;
+    --chip-border: #3d3228;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--body);
+    font-size: 10px;
+    line-height: 1.45;
+    color: var(--ink);
+    background: var(--paper);
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 26px 30px 22px 30px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .header {
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .header h1 {
+    font-family: var(--display);
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.05;
+    margin-bottom: 2px;
+  }
+  .header .subtitle {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--accent);
+    font-style: italic;
+    margin-bottom: 7px;
+  }
+  .header .contact-row {
+    display: flex; flex-wrap: wrap; gap: 3px 12px;
+    font-size: 8.5px; color: var(--slate); letter-spacing: 0.01em;
+  }
+  .header .contact-row a { color: var(--accent); text-decoration: none; border-bottom: 0.5px dotted var(--muted); }
+  .header .contact-row .sep { color: var(--muted); }
+
+  .layout { display: grid; grid-template-columns: 29% 71%; gap: 0 20px; }
+
+  .sidebar {
+    background: var(--sidebar-bg);
+    padding: 16px 15px 14px 15px;
+    font-size: 8.5px;
+    line-height: 1.4;
+    border-radius: 2px;
+    border-left: 2px solid var(--accent);
+  }
+
+  .sidebar .identity { margin-bottom: 12px; padding-bottom: 10px; border-bottom: 0.5px solid var(--rule); }
+  .sidebar .identity .role-tag {
+    font-family: var(--display); font-size: 13px; font-weight: 600;
+    color: var(--ink); line-height: 1.2; margin-bottom: 4px;
+  }
+  .sidebar .identity .tagline { font-size: 8px; color: var(--accent); font-style: italic; margin-bottom: 8px; }
+  .sidebar .identity .chips { display: flex; flex-wrap: wrap; gap: 3px; }
+  .sidebar .identity .chip {
+    background: var(--chip-bg); border: 0.5px solid var(--chip-border);
+    padding: 2px 6px; border-radius: 3px; font-size: 7.5px;
+    font-weight: 500; color: var(--slate); letter-spacing: 0.02em;
+  }
+
+  .sidebar .sblock { margin-bottom: 10px; }
+  .sidebar .sblock:last-child { margin-bottom: 0; }
+  .sidebar .stitle {
+    font-size: 8.5px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.09em; color: var(--ink); margin-bottom: 4px;
+  }
+  .sidebar a { color: var(--accent); text-decoration: none; }
+
+  .sidebar .edu-item { margin-bottom: 4px; }
+  .sidebar .edu-item .degree { font-weight: 600; color: var(--ink); font-size: 8.5px; line-height: 1.3; }
+  .sidebar .edu-item .school { color: var(--slate); font-size: 8px; line-height: 1.3; }
+
+  .sidebar .skill-cat { font-weight: 600; color: var(--ink); font-size: 8.5px; margin-top: 3px; }
+  .sidebar .skill-cat:first-child { margin-top: 0; }
+  .sidebar .skill-tags { color: var(--slate); font-size: 8px; line-height: 1.3; margin-bottom: 2px; }
+  .sidebar ul { list-style: none; padding: 0; }
+  .sidebar li { margin-bottom: 1px; font-size: 8.5px; color: var(--slate); }
+
+  .sidebar .focus-list li {
+    position: relative; padding-left: 8px; margin-bottom: 2px;
+    font-size: 8.5px; color: var(--slate);
+  }
+  .sidebar .focus-list li::before {
+    content: ''; position: absolute; left: 0; top: 5px;
+    width: 4px; height: 4px; border-radius: 50%; background: var(--accent); opacity: 0.6;
+  }
+
+  .main { min-width: 0; }
+  .section { margin-bottom: 13px; }
+  .section:last-child { margin-bottom: 0; }
+
+  .section-title {
+    font-size: 10.5px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.09em; color: var(--ink);
+    margin-bottom: 6px; padding-bottom: 3px;
+    border-bottom: 0.5px solid var(--rule);
+  }
+  .profile-text { font-size: 9.5px; line-height: 1.5; color: var(--slate); }
+
+  .exp-item { margin-bottom: 10px; }
+  .exp-item:last-child { margin-bottom: 0; }
+  .exp-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px; }
+  .exp-header .role { font-weight: 600; font-size: 10px; color: var(--ink); }
+  .exp-header .meta,
+  .exp-header .exp-meta {
+    text-align: right; font-size: 8.5px; color: var(--slate);
+    flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 1px;
+  }
+  .exp-header .company { color: var(--slate); }
+  .exp-header .dates { color: var(--muted); font-style: italic; }
+  .exp-desc { font-size: 9px; color: var(--slate); margin-bottom: 3px; line-height: 1.4; }
+
+  ul.bullets, .exp-item ul { list-style: none; padding: 0; margin: 0; }
+  ul.bullets li, .exp-item ul li {
+    position: relative; padding-left: 9px; margin-bottom: 1px;
+    font-size: 9px; line-height: 1.42; color: var(--slate);
+  }
+  ul.bullets li::before, .exp-item ul li::before { content: '—'; position: absolute; left: 0; color: var(--muted); font-size: 7px; }
+
+  .achievements ul { list-style: none; padding: 0; }
+  .achievements li {
+    font-size: 9px; line-height: 1.42; color: var(--slate);
+    margin-bottom: 2px; padding-left: 9px; position: relative;
+  }
+  .achievements li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: 7px; }
+
+  @media print {
+    body { padding: 26px 30px 22px 30px; background: var(--paper); }
+    @page { margin: 0; size: A4; }
+    .exp-item { break-inside: avoid; }
+    .section-title { break-after: avoid; }
+    .sidebar { background: var(--sidebar-bg); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <h1>VARSHA SATHYANARAYANAN</h1>
+  <div class="subtitle">Category Manager</div>
+  <div class="contact-row">
+    <span>+91 8939432182</span><span class="sep">|</span><span>thisisvarshasathya@gmail.com</span><span class="sep">|</span><a href="https://www.linkedin.com/in/varshasathya">LinkedIn</a>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sblock"><div class="stitle">Contact</div><ul><li>+91 8939432182</li><li>thisisvarshasathya@gmail.com</li><li><a href="https://www.linkedin.com/in/varshasathya">LinkedIn</a></li></ul></div>
+    <div class="sblock"><div class="stitle">Education</div><div class="edu-item"><span class="degree">Humber College</span>, <span class="school">Longo School of Business</span></div><div class="edu-item"><span class="degree">Graduate Certificate in Fashion Management</span></div><div class="edu-item"><span class="degree">Toronto, Canada | Sept 2023</span>, <span class="school">Aug 2024</span></div><div class="edu-item"><span class="degree">National Institute of Fashion Technology (NIFT)</span></div><div class="edu-item"><span class="degree">Bachelor of Design</span>, <span class="school">Fashion Design</span></div><div class="edu-item"><span class="degree">Chennai, India | July 2016</span>, <span class="school">July 2020</span></div></div>
+    <div class="sblock"><div class="stitle">Skills</div><div class="skills-grid"><span class="cat">Core Competencies</span><span class="tags">Assortment Planning · Fashion Buying · PO/PI Coordination · Vendor Management · Inventory · Forecasting · TNA Calendar Tracking · Product Lifecycle Management (PLM) · Order Tracking</span><span class="cat">Tools</span><span class="tags">Advanced MS Excel (VLOOKUP, Pivot Tables, Dashboards) · MS Word · Google Sheets · Canva · Meta Ads · SAP (PO/Inventory Tracking - Basic)</span><span class="cat">Functional Strengths</span><span class="tags">Cross-Functional Collaboration · Trend Analysis · Sales Performance Reporting · Catalog & Content · E-commerce Marketing · Vendor Negotiation</span></div></div>
+    
+    
+  </aside>
+  <main class="main">
+    <div class="section"><div class="section-title">Profile</div><div class="profile-text"><p>Data-driven merchandiser with relevant experience in buying, category management, and P&amp;L ownership across omnichannel retail. Proven track record of scaling categories from near zero to 25+ subcategories, improving margins from 22% to 35%, and driving sell-through through assortment optimization and vendor negotiation. Skilled in OTB planning, advanced Excel, and cross-functional collaboration to deliver profitable growth in fast-paced value retail environments.</p>
+</div></div>
+    <div class="section"><div class="section-title">Experience</div>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="role">Category Manager - Fashion</span>
+                    <span class="exp-meta">
+                        <span class="company">SuperK, Bangalore, India</span>
+                        <span class="dates">Nov 2025 - Present</span>
+                    </span>
+                </div>
+                <div class="exp-desc">Built the fashion category from near zero across online channels and a tech-enabled retail network of 3+ coco stores, launching assortments across apparel, footwear, and accessories while driving vendor expansion, category P&L management, and data-led merchandising decisions.</div>
+                <ul class="bullets"><li>Built fashion category from 5 to 25+ subcategories across menswear, womenswear, kidswear, footwear, and accessories by onboarding 12+ regional vendors, identifying assortment gaps, and benchmarking against value retailers like DMart and Vishal Mega Mart.</li><li>Drove ₹3.5 lakh in category revenue within two months by analyzing weekly sales, pricing benchmarks, and customer demand signals to optimize sell-through.</li><li>Improved product margins from 22% to 35% through vendor negotiation on pricing, MOQs, and sourcing terms while maintaining competitive retail pricing.</li><li>Partnered with marketing to launch fashion-led campaigns during New Year, Pongal, and Republic Day, increasing category visibility by ~22% and driving ~15% uplift in campaign period sales.</li><li>Reduced stock-outs by ~20% across priority products by collaborating with operations and supply chain to improve stock availability and coordinate warehouse invoicing and inventory flow.</li><li>Tracked sell-through, AOV, and margin performance using Excel and Metabase dashboards; identified underperforming SKUs and implemented assortment rationalization that improved category gross margin by ~6%.</li></ul>
+            </div>
+            
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="role">Founder</span>
+                    <span class="exp-meta">
+                        <span class="company">The Style Gram, Remote - Chennai, India</span>
+                        <span class="dates">Nov 2024 - Jun 2025</span>
+                    </span>
+                </div>
+                <div class="exp-desc">Built and operated a lean fashion reselling brand focused on affordable women's western-wear, managing end-to-end sourcing, merchandising, content creation, and customer engagement across Instagram and Swiggy Minis.</div>
+                <ul class="bullets"><li>Generated ₹50,000 in revenue during the launch phase with an average order value of ₹600, fulfilling 80+ customer orders across Tier 1 and Tier 2 cities with zero product returns.</li><li>Sourced and merchandised 60+ SKUs across tops, skirts, and dresses through direct supplier negotiations, maintaining 45% gross margins and reducing sourcing turnaround time by 25%.</li><li>Evaluated and engaged 5 supplier partners before finalizing a primary vendor to optimize pricing, quality consistency, and procurement turnaround time.</li><li>Executed pricing, merchandising, and inventory tracking through Excel-based systems, ensuring 100% order fulfillment and streamlined stock management.</li><li>Managed 60+ SKUs on Swiggy Minis and built a custom Excel-based WIP tracker to manage catalog listings, order tracking, and inventory visibility, reducing catalog errors by 90% and improving stock flow for fast-selling styles.</li><li>Produced 25+ branded content assets and launched 3+ Instagram ad campaigns, improving click-through rates by 22% through A/B testing and targeted messaging.</li></ul>
+            </div>
+            
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="role">Assistant Fashion Manager</span>
+                    <span class="exp-meta">
+                        <span class="company">Go Colors (Go Fashion India Ltd.), Chennai, India</span>
+                        <span class="dates">Sept 2020 - June 2023</span>
+                    </span>
+                </div>
+                <div class="exp-desc">Supported buying and merchandising for women's and girls' bottom-wear categories including leggings, track pants, formal pants, ethnic bottoms, and shorts, with responsibility for vendor coordination, product lifecycle execution, and data-led assortment decisions.</div>
+                <ul class="bullets"><li>Managed PO/PI coordination and vendor communication across 20+ suppliers and 10+ factories across India and Asia, ensuring 95% on-time delivery for seasonal production orders.</li><li>Improved category sell-through by 15% by analyzing weekly sales performance for 200+ SKUs and recommending replenishment and assortment adjustments.</li><li>Drove a 10% lift in customer purchase rate across key bottom-wear categories by aligning assortment planning with trend insights and performance data.</li><li>Launched 3+ new sub-categories including kids-wear, leading a 2-member team to introduce new styles and revamp existing collections, boosting category sales by 15% in the first quarter.</li><li>Negotiated supplier pricing and MOQs during fabric sourcing and production planning, maintaining product quality while ensuring competitive margins.</li><li>Led sampling, fit approvals, and production coordination for 30+ styles per season, reducing post-launch return rates to under 10% while gaining exposure to PLM-driven product development workflows.</li><li>Built WIP trackers to monitor production timelines and collaborated with logistics, VM, and marketing teams to ensure timely product launches.</li></ul>
+            </div>
+            </div>
+    
+  </main>
+</div>
+
+</body>
+</html>

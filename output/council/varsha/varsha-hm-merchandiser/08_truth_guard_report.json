@@ -1,20 +1,120 @@
 {
-  "total_claims": 1,
-  "verified": 0,
-  "weak": 0,
-  "unsupported": 0,
+  "total_claims": 11,
+  "verified": 1,
+  "weak": 2,
+  "unsupported": 7,
   "exaggerated": 0,
   "fabricated": 1,
   "claims": [
     {
-      "text": "3+ years of experience in buying",
+      "text": "5+ years of experience in buying",
       "risk_level": "FABRICATED",
       "claim_type": "year_experience",
-      "start_pos": 42,
-      "end_pos": 74,
+      "start_pos": 30,
+      "end_pos": 62,
       "evidence_match": "Matches disallowed claim: '10+ years of experience'",
       "repair_suggestion": null,
       "confidence": 0.42857142857142855
+    },
+    {
+      "text": "Skilled in OTB planning",
+      "risk_level": "VERIFIED",
+      "claim_type": "skill_assertion",
+      "start_pos": 325,
+      "end_pos": 348,
+      "evidence_match": "Confirmed skill: assortment planning",
+      "repair_suggestion": null,
+      "confidence": 0.5
+    },
+    {
+      "text": "Built the fashion category",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 70,
+      "end_pos": 96,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built fashion category",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 350,
+      "end_pos": 372,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built and operated a lean fashion reselling brand focused",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 1571,
+      "end_pos": 1628,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Managed 60+ SKUs",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 2461,
+      "end_pos": 2477,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "built a custom Excel-based WIP tracker",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 2498,
+      "end_pos": 2536,
+      "evidence_match": "Partial evidence match in 'Advanced Excel (Pivot Tables, VLOOKUP)'",
+      "repair_suggestion": null,
+      "confidence": 0.2333333333333333
+    },
+    {
+      "text": "Managed PO/PI coordination",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 3212,
+      "end_pos": 3238,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "10% lift",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "percentage",
+      "start_pos": 3549,
+      "end_pos": 3557,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Led sampling",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 4033,
+      "end_pos": 4045,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built WIP trackers",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 4234,
+      "end_pos": 4252,
+      "evidence_match": "Partial evidence match in 'Advanced Excel (Pivot Tables, VLOOKUP)'",
+      "repair_suggestion": null,
+      "confidence": 0.21
     }
   ]
 }

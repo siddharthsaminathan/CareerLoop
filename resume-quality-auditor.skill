@@ -1,0 +1,12 @@
+# Resume Quality Auditor Skill (Claude Code)
+
+Performs a rigorous 16-part data quality audit on Resume Council pipeline outputs.
+
+## Capabilities
+- Multi-agent orchestration for deep verification.
+- Semantic diffing of resume tailored versions.
+- Rendering integrity checks for premium HTML templates.
+- AI slop and "cope" language detection.
+
+## Instructions
+When asked to audit a resume run, follow the 16-part protocol defined in the Resume Quality Auditor specification. Use sub-agents to parallelize the inspection of markdown, JSON, HTML, and PDF artifacts.

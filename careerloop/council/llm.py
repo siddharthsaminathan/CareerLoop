@@ -92,9 +92,9 @@ class CouncilLLMClient:
             print(f"  !! JSON repair succeeded — payload may be incomplete, check output carefully")
             return repaired
 
-        # Last resort: strip to last valid JSON object
-        print(f"  !! JSON repair failed — falling back to partial extraction")
-        return self._extract_partial_json(content)
+        # Last resort: fail hard to trigger retries upstream
+        print(f"  !! JSON repair failed — raising exception")
+        raise RuntimeError(f"Unrecoverable JSON from LLM: {content[:100]}...")
 
     @staticmethod
     def _repair_truncated_json(text: str) -> Optional[dict]:

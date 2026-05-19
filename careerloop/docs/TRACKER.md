@@ -169,3 +169,25 @@ PRD §11 (Council 45→60%), §12 (Humanizer 5→50%), §9 (Company Intel 10→2
 ---
 
 <!-- product-lead appends new entries above this line -->
+
+
+### 2026-05-20 — Session: Deep Delta, Humanizer Assertiveness, and Rendering Fixes
+
+**What was done:**
+- **Resume Quality Auditor Skill:** Created a 16-part data quality audit skill (`resume-quality-auditor`) to calculate Tailoring Delta and Humanization Delta, checking identity integrity, rendering bugs, and cope language.
+- **Humanizer Assertiveness (B2):** Rewrote `SURGICAL_HUMANIZE_SYSTEM` to be highly aggressive, eliminating "minimal rewrite" instructions. Lead bullets with strong outcomes, removing all corporate fluff.
+- **S7 Negative Constraint Overload (B8):** Re-engineered the S7 prompt to be affirmatively prescriptive (DO lead with outcomes, DO weave in hidden expectations) instead of 10 DO NOT rules.
+- **Identity Integrity (Name Mangle):** Implemented `_is_identity_or_contact_section` to bypass the LLM entirely for contact info, ensuring zero spelling errors on names.
+- **Duplicate Header Stripping:** Updated `_strip_generated_heading_prefix` to recursively strip Markdown headers (`##`) and bold tags (`**`) hallucinated by the LLM.
+- **Role Subtitle Rendering:** Fixed `render_all_templates.py` to extract a concise job title from the experience block instead of injecting a 120-character sentence fragment.
+- **JSON Repair Safety:** `llm.py` now fails loudly (RuntimeError) instead of returning a partial dictionary when encountering unrecoverable JSON truncation.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED
+Directly resolves functional and presentation layer bugs blocking the Resume Council v3. P0 Stabilization is fully complete. Humanizer and Render paths are hardened. PRD §11 (Council 72→76%), §12 (Humanizer 55→65%), Rendering (75→80%).
+
+**Deviations detected:** None.
+
+**Recommended next 3 actions:**
+1. Execute P1 Redesign: Build the canonical candidate graph extractor directly from CV (PRD §11).
+2. Build standalone `company_intel.py` engine using CompanyResearchAdapter as foundation (B6, PRD §9).
+3. Field-level structured rewriting for S7 (parse bullet arrays rather than markdown strings).

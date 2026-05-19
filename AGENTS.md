@@ -365,3 +365,81 @@ Write one TSV file per evaluation to `batch/tracker-additions/{num}-{company-slu
 - No markdown bold (`**`) in status field
 - No dates in status field (use the date column)
 - No extra text (use the notes column)
+
+
+<claude-mem-context>
+# Memory Context
+
+# [CareerLoop] recent context, 2026-05-20 1:22am GMT+5:30
+
+Legend: 🎯session 🔴bugfix 🟣feature 🔄refactor ✅change 🔵discovery ⚖️decision 🚨security_alert 🔐security_note
+Format: ID TIME TYPE TITLE
+Fetch details: get_observations([IDs]) | Search: mem-search skill
+
+Stats: 50 obs (19,289t read) | 497,050t work | 96% savings
+
+### May 18, 2026
+948 3:30p 🔵 AGENTS.md Is 339-Line Shared Config Using Open Agent Skill Standard — Session-Start Hook Location Identified
+949 " ✅ AGENTS.md Updated — careerloop-product-lead Session-Start Hook Added for All Agent Platforms
+950 3:31p 🔵 Git Status Reveals Council v3 Refactor — stages.py Deleted, compiler.py Added, orchestrator.py Modified
+951 " 🔵 Git History Confirms career-ops Auto-Updated to v1.8.0 in Previous Commit
+952 " 🔵 Git Correctly Detected File Renames — docs/ → careerloop/docs/ and docs/ → assets/ Tracked as Renames Not Add/Delete
+953 3:32p 🟣 Commit f563368 — Master PRD, Product-Lead Skill, and Docs Consolidation Shipped to main
+954 3:36p 🔵 CareerLoop Remote Is Personal Fork at siddharthsaminathan/CareerLoop — Not Upstream santifer/Career-Ops
+955 3:37p ✅ Commit f563368 Pushed to GitHub — CareerLoop main Branch Now Live on Remote
+S399 Investigated two claimed bugs in CareerLoop: Humanizer LLM not wired (llm_client=None) and Company Intelligence using LLM recall instead of web research. Both confirmed true. Humanizer bug fixed. Also created NormalizedResume data model and updated experience HTML builder in render_all_templates.py. (May 18 at 3:37 PM)
+956 3:39p 🔵 Post-Push Verification — careerloop/ Module Contains whatsapp_ux.py and careerloop/docs/ Has All 5 Expected Files
+957 " ⚖️ CareerLoop Reuse Audit Commissioned — 14-Task Architecture Review
+S400 fill-template.py 4-bug overhaul + new HTML validator + template upgrades for CareerLoop rendering pipeline (May 18 at 3:39 PM)
+958 3:46p 🟣 CAREERLOOP_REUSE_AUDIT.md Created — Full 15-Capability Architecture Decision Document
+S401 fill-template.py 4-bug overhaul + validator + template source rewrite (simultaneous batch of changes in new session context) (May 18 at 7:51 PM)
+S402 Nicobar AI Product Showcase — Premium Editorial HTML/PDF rebuilt with frontend-design skill aesthetic direction (May 18 at 7:53 PM)
+S403 Deploy Nicobar AI Product Engineer showcase HTML to GitHub Pages so animated version is shareable (not raw HTML via Google Drive) (May 18 at 7:53 PM)
+### May 19, 2026
+959 12:55a 🔵 GitHub Pages UI lacks /public folder option
+S404 Deploy Nicobar showcase HTML to GitHub Pages — hit UI issue where /public folder option doesn't appear (May 19 at 12:55 AM)
+S405 Fix GitHub Pages deployment — move showcase from /public to /docs folder so branch source selector works (May 19 at 1:00 AM)
+960 1:00a ✅ Nicobar showcase moved to /docs for GitHub Pages compatibility
+S406 Deploy Nicobar showcase to GitHub Pages — session wrap-up with all outputs committed (May 19 at 1:01 AM)
+961 1:03a ✅ All CareerLoop outputs committed and pushed to main
+S407 Session wrap-up: codify Nicobar showcase design system into reusable showcase-builder skill (May 19 at 1:04 AM)
+962 1:04a 🔵 CareerLoop has three skills defined in .claude/skills/
+963 1:05a 🟣 New showcase-builder skill created for CareerLoop
+964 1:06a 🟣 showcase-builder skill committed and pushed to CareerLoop repo
+965 1:59a ⚖️ showcase-builder skill to be updated with final Nicobar template + 5-6 color themes
+966 " 🔵 Final Nicobar HTML uses Playfair Display + DM Sans — different from earlier Cormorant Garamond version
+967 " 🔵 Final Nicobar template has ambient orbs, floating CTA, stagger animations, and richer component patterns
+968 2:00a 🔵 Final Nicobar template — complete component CSS spec extracted
+970 " 🟣 showcase-builder skill overhauled with 5 named color variants and updated design system
+971 " 🔵 Git push blocked by unstaged changes after parallel writes
+972 " 🟣 showcase-builder v2 committed — canonical template + 5 color variants shipped
+969 " ✅ Final Nicobar HTML saved as canonical showcase template
+S408 Update showcase-builder skill with final Nicobar HTML as canonical template + 5 named color variants (May 19 at 2:02 AM)
+973 2:05a ⚖️ Hayagreev Sivakumar showcase page requested — CEO's resume to be built using showcase-builder skill
+974 10:13p 🔴 S4/S5/S6 Model Routing Fixed to Use Strategy Model
+975 " 🔴 S7 Parallel Workers Capped at 3
+976 " 🔵 S7 Structural Validator is the Real Root Cause — 8/10 Sections Blocked
+977 " 🔵 API Key Exposure via CLI Override Instead of .env
+978 10:14p 🔵 Exact S7 Section Failure Breakdown Traced from 07_section_rewrites.json
+980 " ⚖️ LLM Council Decision: Fix All 3 Validator Checks in _rewrite_preserves_section_structure
+981 " ⚖️ Council Synthesis: Use [^\S\n]+ Instead of Removing collapsed_bullet_marker Check Entirely
+979 " 🔵 _preprocess_plaintext_cv Creates the collapsed_bullet_marker Pattern That the Validator Rejects
+982 10:15p ⚖️ Council Member C (Opus) Proposed Per-Line Iteration for collapsed_bullet_marker and Strictest possible_truncation
+983 " ⚖️ Council Reviewer Ranked Response B (Sonnet) as Best Fix for _rewrite_preserves_section_structure
+984 10:17p ⚖️ Reviewer Split: Reviewer 1 Ranked B First, Reviewer 2 Ranked C First — Tied Council Vote
+985 " ⚖️ Final Council Vote: Response B Wins 2-1 — [^\S\n]+ Regex Swap is the Chosen Implementation
+986 " 🔴 _rewrite_preserves_section_structure Fixed — All 3 Validator Bugs Patched
+987 10:18p 🔵 pytest Not Installed in .venv — Tests Partially Run via unittest Only
+988 10:19p 🔵 Pre-existing Test Failure in test_company_intel: _extract_jd_signals Misses "retail" Business Term
+989 " 🔵 All 26 Stabilization Tests Pass After Validator Fix
+990 " 🔵 CouncilLLMClient Reads DEEPSEEK_API_KEY via os.getenv — No .env Loading in llm.py
+991 10:26p 🔵 Git History Confirms S7 Bug Was Introduced in Commit 93cda15 — "Wrong Model, Wrong max_tokens, Rate Limit, Garbage MD Output"
+992 10:27p 🔵 Pipeline Entry Points: test_council_v3.py Uses Fixture Files, orchestrator.py Has Special nicobar-test Case
+993 " 🔵 Correct Pipeline Invocation: orchestrator.py CLI with --job-id and --person-id Args
+994 " 🔵 Orchestrator Context Loading: CouncilContextLoader Reads from Job Ledger, Fixture Mode Is Separate Path
+995 " 🔵 ledger.json Does Not Exist — ApplicationLedger Cannot Find "nicobar-test" Job
+996 10:28p 🔴 CareerLoop S7 validator fix confirmed working — 9/10 sections rewritten
+997 " 🔵 skills section still fails possible_truncation after validator fix
+
+Access 497k tokens of past work via get_observations([IDs]) or mem-search skill.
+</claude-mem-context>

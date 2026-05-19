@@ -1,0 +1,81 @@
+{
+  "total_years_experience": 4.25,
+  "confirmed_skills": [
+    {
+      "skill": "Python",
+      "years": 4.25,
+      "evidence": "Used Python to build backend from scratch with FastAPI in Emote; built AI quality system with tool-calling orchestration at Omnex; used Python for ETL in earlier roles."
+    },
+    {
+      "skill": "SQL",
+      "years": 4.25,
+      "evidence": "Built SQL-based ETL workflows as Data Analyst; designed data pipelines and performed data quality audits as Data Engineer."
+    },
+    {
+      "skill": "LLM API experience",
+      "years": 2.0,
+      "evidence": "Designed multi-model routing, memory systems, and tool-calling in production AI companion and quality workflows; listed LLM APIs and RAG pipelines in skills."
+    }
+  ],
+  "weak_skills": [
+    "frontend development",
+    "engineering degree from IIT/BITS/NIT (or equiv.)"
+  ],
+  "evidence_bank": {
+    "Python": [
+      "Built backend from scratch using FastAPI and Python",
+      "Built AI-assisted quality management system with tool-calling orchestration"
+    ],
+    "SQL": [
+      "Designed and built end-to-end ETL lifecycle for dashboards",
+      "Built SQL-based ETL workflows for data extraction and reporting"
+    ],
+    "LLM API experience": [
+      "Built production AI companion with multi-model routing and memory system",
+      "Designed orchestration layer with tool-calling and multi-step workflows"
+    ],
+    "Cost Optimization": [
+      "Reduced inference cost from $1.20 to $0.023 per conversation",
+      "Reduced response latency from 12.5s to 8s"
+    ],
+    "Production AI": [
+      "Shipped AI companion system to 450+ users with 13-15% weekly retention",
+      "Built enterprise AI system improving quality workflow consistency"
+    ],
+    "Latency Reduction": [
+      "Improved latency from ~15s to ~3s through pipeline optimization and streaming"
+    ],
+    "User Acquisition Automation": [
+      "Built Reddit bot automating personalized outreach, increasing activation from 20% to 75%"
+    ]
+  },
+  "strongest_proof_points": [
+    "Built consumer AI companion from 0 to 450+ users with 13-15% weekly retention and 98% cost reduction",
+    "Shipped enterprise AI system that automates quality workflows and reduced response latency by ~36%",
+    "Automated user acquisition via personalized bot, improving activation from 20% to 75%"
+  ],
+  "claims_allowed": [
+    "4+ years Python",
+    "SQL expertise",
+    "LLM API experience (2 years)",
+    "Production AI system development and shipping",
+    "Multi-agent orchestration and tool-calling",
+    "Real-time pipelines and streaming",
+    "Memory-driven AI systems",
+    "Cost and latency optimization",
+    "Self-starter with ownership (co-founder, built product from zero)",
+    "Data engineering and ETL pipeline design",
+    "Observability and monitoring implementation"
+  ],
+  "claims_not_allowed": [
+    "Frontend development skills",
+    "Meets top-tier engineering degree requirement (SRM not IIT/BITS/NIT/equiv.)",
+    "10 years AI experience",
+    "Deep learning expert",
+    "Retail or e-commerce experience",
+    "Experience building conversational BI or clienteling tools",
+    "Experience working in CEO's office",
+    "Has NodeJS experience (no evidence)",
+    "High aesthetic sensibility or frontend design experience"
+  ]
+}

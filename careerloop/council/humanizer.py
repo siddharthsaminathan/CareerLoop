@@ -92,7 +92,7 @@ class Humanizer:
         concerns = self._check_realism(text, flags)
 
         # Phase 3: Surgical humanize (LLM if available, else deterministic)
-        humanized = self._surgical_humanize(text, flags, mode)
+        humanized = self._surgical_humanize(text, flags, mode, concerns)
 
         # Phase 4: Tone adaptation (LLM if available, else deterministic rules)
         adapted = self._adapt_tone(humanized, context, mode)
@@ -108,7 +108,7 @@ class Humanizer:
             original_text=text,
             humanized_text=sanitized,
             flags=flags,
-            changes_made=len(flags),
+            changes_made=_count_line_differences(text, sanitized),
             recruiter_concerns=concerns,
         )
 
@@ -260,22 +260,90 @@ class Humanizer:
 
     # ─── Phase 3: Surgical Humanize ──────────────────────────────────────────
 
-    def _surgical_humanize(self, text: str, flags: list, mode: str) -> str:
+    def _surgical_humanize(self, text: str, flags: list, mode: str, concerns: Optional[list] = None) -> str:
         """Phase 3: Surgical rewrite of flagged portions.
 
         If LLM is available, sends flags + text for minimal LLM rewrite.
         Otherwise, falls back to deterministic banned-word removal.
         """
+        if mode == "resume":
+            # Resume mode is field-level: we let the LLM rewrite selected lines
+            # (profile + weak bullets) while preserving Markdown structure.
+            if self.llm is not None:
+                return self._llm_resume_field_humanize(text, flags, concerns or [])
+            return self._deterministic_clean(text, flags)
+
         if not flags:
             return text
-
-        if mode == "resume":
-            return self._deterministic_clean(text, flags)
 
         if self.llm is not None:
             return self._llm_surgical_humanize(text, flags)
         else:
             return self._deterministic_clean(text, flags)
+
+    def _llm_resume_field_humanize(self, text: str, flags: list, concerns: list) -> str:
+        lines = text.splitlines()
+        target_indices = _collect_resume_target_lines(text, flags, concerns)
+        if not target_indices:
+            return self._deterministic_clean(text, flags)
+
+        rewritten_any = False
+        for idx in target_indices:
+            if idx < 0 or idx >= len(lines):
+                continue
+            new_line = self._rewrite_resume_line(lines[idx])
+            if new_line and new_line != lines[idx]:
+                lines[idx] = new_line
+                rewritten_any = True
+
+        candidate = "\n".join(lines)
+        if not rewritten_any:
+            return self._deterministic_clean(text, flags)
+        return candidate
+
+    def _rewrite_resume_line(self, line: str) -> str:
+        if self.llm is None:
+            return line
+
+        raw = line.rstrip("\n")
+        if not raw.strip():
+            return line
+
+        stripped = raw.strip()
+        if stripped.startswith("## ") or stripped in {"---", "***"}:
+            return line
+
+        leading_ws = raw[:len(raw) - len(raw.lstrip())]
+        bullet_prefix = ""
+        content = stripped
+        if stripped.startswith("- "):
+            bullet_prefix = "- "
+            content = stripped[2:].strip()
+
+        if not content:
+            return line
+
+        prompt = (
+            "Task: Rewrite ONE resume line to sound human, specific, and interview-defensible.\n"
+            "Constraints: keep all numbers, entities, claims, and chronology exactly.\n"
+            "Do not add claims. Do not use corporate buzzwords. Keep line-level meaning.\n"
+            "Calibrate ownership language to what is defensible (e.g., built/co-built/supported as appropriate).\n"
+            "Quality bar: concrete subject, concrete action, concrete outcome; avoid generic filler.\n"
+            f"Input line: {content}\n"
+            'Return JSON: {"humanized_text":"..."}'
+        )
+        try:
+            response = self.llm.complete_json(SURGICAL_HUMANIZE_SYSTEM, prompt)
+            out = (response or {}).get("humanized_text", "").strip()
+            if not out:
+                return line
+            if len(out) < max(12, int(len(content) * 0.45)):
+                return line
+            if bullet_prefix and out.startswith("- "):
+                out = out[2:].strip()
+            return f"{leading_ws}{bullet_prefix}{out}"
+        except Exception:
+            return line
 
     def _llm_surgical_humanize(self, text: str, flags: list) -> str:
         """LLM-based surgical rewrite — minimal, targeted changes only."""
@@ -495,6 +563,96 @@ class Humanizer:
         return result
 
 # ─── Utility helpers ─────────────────────────────────────────────────────────────
+
+def _count_line_differences(original: str, updated: str) -> int:
+    orig_lines = original.splitlines()
+    new_lines = updated.splitlines()
+    max_len = max(len(orig_lines), len(new_lines))
+    changed = 0
+    for idx in range(max_len):
+        a = orig_lines[idx] if idx < len(orig_lines) else ""
+        b = new_lines[idx] if idx < len(new_lines) else ""
+        if a != b:
+            changed += 1
+    return changed
+
+
+def _collect_resume_target_lines(text: str, flags: list[HumanizerFlag], concerns: list | None = None) -> list[int]:
+    lines = text.splitlines()
+    if not lines:
+        return []
+
+    starts: list[int] = []
+    total = 0
+    for line in lines:
+        starts.append(total)
+        total += len(line) + 1
+
+    flagged_lines: set[int] = set()
+    for flag in flags:
+        pos = max(0, min(flag.position, max(total - 1, 0)))
+        idx = 0
+        for i, start in enumerate(starts):
+            if start <= pos:
+                idx = i
+            else:
+                break
+        flagged_lines.add(idx)
+
+    weak_verbs = (
+        "analyzed", "supported", "assisted", "utilized",
+        "responsible for", "worked on", "helped", "collaborated",
+    )
+    generic_phrases = (
+        "proven track record", "results-driven", "passionate",
+        "highly motivated", "dynamic", "fast-paced",
+    )
+
+    targets: set[int] = set(flagged_lines)
+    in_profile = False
+    for idx, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.startswith("## "):
+            heading = stripped[3:].strip().lower()
+            in_profile = heading in {"profile", "summary"}
+            continue
+        if not stripped:
+            continue
+        if stripped in {"---", "***"}:
+            continue
+
+        low = stripped.lower()
+        if in_profile and not stripped.startswith("- "):
+            targets.add(idx)
+            continue
+        if stripped.startswith("- "):
+            if any(v in low for v in weak_verbs):
+                targets.add(idx)
+            continue
+        if any(p in low for p in generic_phrases):
+            targets.add(idx)
+
+    # Pull in lines implicated by recruiter realism concerns ("cope detector" path).
+    for concern in concerns or []:
+        claim = str((concern or {}).get("claim", "")).strip().lower()
+        if not claim:
+            continue
+        for idx, line in enumerate(lines):
+            low = line.strip().lower()
+            if not low:
+                continue
+            if claim in low:
+                targets.add(idx)
+                continue
+            # Fallback: token overlap for concern snippets that are not exact line matches.
+            claim_tokens = {t for t in re.split(r"[^a-z0-9]+", claim) if len(t) >= 4}
+            if not claim_tokens:
+                continue
+            line_tokens = {t for t in re.split(r"[^a-z0-9]+", low) if len(t) >= 4}
+            if len(claim_tokens.intersection(line_tokens)) >= 2:
+                targets.add(idx)
+
+    return sorted(targets)[:12]
 
 def _build_word_pattern(word: str) -> re.Pattern:
     """Build a regex that matches a word and its common English conjugations.

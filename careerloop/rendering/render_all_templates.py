@@ -27,6 +27,61 @@ def _inline_md(text: str) -> str:
     return text
 
 
+def _safe_href(url: str) -> str:
+    if not url:
+        return "#"
+    candidate = str(url).strip()
+    if not candidate:
+        return "#"
+    if re.match(r"^[a-z][a-z0-9+.-]*://", candidate, re.IGNORECASE):
+        return candidate
+    if candidate.startswith("www."):
+        return f"https://{candidate}"
+    if "." in candidate and " " not in candidate:
+        return f"https://{candidate}"
+    return "#"
+
+
+def _derive_role_subtitle(resume: NormalizedResume) -> str:
+    # 1. Use the most recent job title if available
+    if resume.experience:
+        role = (resume.experience[0].role or "").strip()
+        if role:
+            # Clean up things like "Senior Merchandiser — Women's Wear" -> "Senior Merchandiser"
+            return role.split("—")[0].split("-")[0].strip()[:60]
+            
+    # 2. Look for the first bolded term in the profile (usually the target role)
+    if resume.profile:
+        m = re.search(r"\*\*(.+?)\*\*", resume.profile)
+        if m:
+            return m.group(1).strip()[:60]
+        
+    # 3. Fallback to first sentence of profile (shortened)
+    if resume.profile:
+        first = resume.profile.strip().split(".")[0]
+        return first[:60]
+        
+    return "Professional Resume"
+
+
+def _build_header_contact_row(header, portfolio_href: str, github_href: str, linkedin_href: str) -> str:
+    parts = []
+    if header.phone:
+        parts.append(f"<span>{_inline_md(header.phone)}</span>")
+    if header.email:
+        parts.append(f"<span>{_inline_md(header.email)}</span>")
+    if header.location:
+        parts.append(f"<span>{_inline_md(header.location)}</span>")
+    if portfolio_href and portfolio_href != "#":
+        label = _inline_md(header.portfolio_display or "Portfolio")
+        parts.append(f'<a href="{portfolio_href}">{label}</a>')
+    if github_href and github_href != "#":
+        parts.append(f'<a href="{github_href}">GitHub</a>')
+    if linkedin_href and linkedin_href != "#":
+        parts.append(f'<a href="{linkedin_href}">LinkedIn</a>')
+    return '<span class="sep">|</span>'.join(parts)
+
+
 # ── Post-render validation: forbidden characters in final HTML body ──
 _FORBIDDEN_IN_BODY = {
     '**': 'raw bold markers (markdown not converted to HTML)',
@@ -58,6 +113,29 @@ def _validate_html(output_path, html):
             end = min(len(body_html), idx + 40)
             context = body_html[start:end].replace('\n', '\\n')
             errors.append(f'{desc}: {count} occurrences. First at: ...{context}...')
+
+    unresolved = re.findall(r"(\{\{[^}]+\}\}|\{%[^%]+%\}|<%[^%]+%>)", body_html)
+    if unresolved:
+        errors.append(f"Unresolved template placeholders: {len(unresolved)} (first: {unresolved[0]})")
+
+    # Links to known profiles must be valid absolute URLs when present.
+    for m in re.finditer(r'<a[^>]+href="([^"]*)"[^>]*>([^<]*)</a>', body_html, re.IGNORECASE):
+        href = (m.group(1) or "").strip()
+        label = (m.group(2) or "").strip().lower()
+        if not href:
+            errors.append(f"Empty href in anchor label='{label or 'unknown'}'")
+            continue
+        if href == "#":
+            continue
+        if label == "linkedin" and "linkedin.com" not in href.lower():
+            errors.append(f"Broken LinkedIn href: '{href}'")
+        if label == "github" and "github.com" not in href.lower():
+            errors.append(f"Broken GitHub href: '{href}'")
+        if href.startswith("www."):
+            errors.append(f"Missing URL scheme in href: '{href}'")
+
+    if re.search(r"<span>\s*</span>\s*<span class=\"sep\">", body_html):
+        errors.append("Empty contact span before separator in header contact row")
 
     if errors:
         print(f"\n{'='*60}")
@@ -140,8 +218,8 @@ def render_resume(input_path, candidate: str, run_id: str = "latest", out_dir=No
         skills_html = '<div class="skills-grid">'
         for skill in resume.skills:
             label = label_map.get(skill.label, skill.label)
-            skills_html += f'<span class="cat">{label}</span>'
-            skills_html += f'<span class="tags">{" · ".join(skill.items)}</span>'
+            skills_html += f'<span class="cat">{_inline_md(label)}</span>'
+            skills_html += f'<span class="tags">{_inline_md(" · ".join(skill.items))}</span>'
         skills_html += '</div>'
 
     # ── Experience HTML ──────────────────────────────────────────────────
@@ -167,12 +245,13 @@ def render_resume(input_path, candidate: str, run_id: str = "latest", out_dir=No
                     </span>
                 </div>
                 {desc_html}
-                <ul>{bullets_html}</ul>
+                <ul class="bullets">{bullets_html}</ul>
             </div>
             '''
 
     # ── Education HTML ───────────────────────────────────────────────────
     education_html = ""
+    education_html_sidebar = ""
     if resume.education:
         edu_items = ""
         for edu in resume.education:
@@ -184,6 +263,7 @@ def render_resume(input_path, candidate: str, run_id: str = "latest", out_dir=No
             if edu.details:
                 edu_items += f'<p class="edu-details">{_inline_md(edu.details)}</p>'
             edu_items += '</div>'
+        education_html_sidebar = edu_items
         education_html = edu_items
 
     # Thesis
@@ -197,10 +277,10 @@ def render_resume(input_path, candidate: str, run_id: str = "latest", out_dir=No
     projects_html = ""
     project_items = resume.projects if resume.projects else resume.achievements
     if project_items:
-        projects_html = '<ul class="achievements">'
+        projects_html = '<div class="achievements"><ul>'
         for item in project_items:
             projects_html += f'<li>{_inline_md(item)}</li>'
-        projects_html += '</ul>'
+        projects_html += '</ul></div>'
 
     # ── Competencies HTML (derived from skill labels) ────────────────────
     competencies_html = ""
@@ -210,6 +290,24 @@ def render_resume(input_path, candidate: str, run_id: str = "latest", out_dir=No
             competencies_html += f'<span class="competency-tag">{skill.label}</span>'
         competencies_html += '</div>'
 
+    role_subtitle = _derive_role_subtitle(resume)
+    portfolio_href = _safe_href(header.portfolio_url)
+    linkedin_href = _safe_href(header.linkedin_url)
+    github_href = _safe_href(getattr(header, "github_url", ""))
+    header_contact_row = _build_header_contact_row(header, portfolio_href, github_href, linkedin_href)
+    contact_items = [x for x in [header.phone, header.email, header.location] if x]
+    sidebar_contact_html = ""
+    if contact_items or portfolio_href or github_href or linkedin_href:
+        rows = [f"<li>{_inline_md(str(item))}</li>" for item in contact_items]
+        if portfolio_href and portfolio_href != "#":
+            rows.append(f'<li><a href="{portfolio_href}">{header.portfolio_display or "Portfolio"}</a></li>')
+        if github_href and github_href != "#":
+            rows.append(f'<li><a href="{github_href}">GitHub</a></li>')
+        if linkedin_href and linkedin_href != "#":
+            rows.append(f'<li><a href="{linkedin_href}">LinkedIn</a></li>')
+        if rows:
+            sidebar_contact_html = f'<div class="sblock"><div class="stitle">Contact</div><ul>{"".join(rows)}</ul></div>'
+
     # ── Build placeholder dict ───────────────────────────────────────────
     placeholders = {
         "LANG": "en",
@@ -217,9 +315,9 @@ def render_resume(input_path, candidate: str, run_id: str = "latest", out_dir=No
         "NAME": header.name or candidate.title(),
         "PHONE": header.phone,
         "EMAIL": header.email,
-        "LINKEDIN_URL": header.linkedin_url or "#",
+        "LINKEDIN_URL": linkedin_href,
         "LINKEDIN_DISPLAY": header.linkedin_display or "LinkedIn",
-        "PORTFOLIO_URL": header.portfolio_url or "#",
+        "PORTFOLIO_URL": portfolio_href,
         "PORTFOLIO_DISPLAY": header.portfolio_display or "Portfolio",
         "LOCATION": header.location,
         "SECTION_SUMMARY": "Profile",
@@ -234,6 +332,21 @@ def render_resume(input_path, candidate: str, run_id: str = "latest", out_dir=No
         "EDUCATION": education_html,
         "SECTION_SKILLS": "Skills",
         "SKILLS": skills_html,
+        "PREMIUM_SUMMARY_BLOCK": f'<div class="section"><div class="section-title">Profile</div><div class="profile-text">{summary_html}</div></div>' if summary_html else "",
+        "PREMIUM_EXPERIENCE_BLOCK": f'<div class="section"><div class="section-title">Experience</div>{experience_html}</div>' if experience_html else "",
+        "PREMIUM_ACHIEVEMENTS_BLOCK": f'<div class="section"><div class="section-title">Key Achievements</div>{projects_html}</div>' if projects_html else "",
+        "SIDEBAR_CONTACT": sidebar_contact_html,
+        "SIDEBAR_EDUCATION": f'<div class="sblock"><div class="stitle">Education</div>{education_html_sidebar}</div>' if education_html_sidebar else "",
+        "SIDEBAR_SKILLS": f'<div class="sblock"><div class="stitle">Skills</div>{skills_html}</div>' if skills_html else "",
+        "SIDEBAR_LANGUAGES": (
+            '<div class="sblock"><div class="stitle">Languages</div><ul>'
+            + "".join(f"<li>{_inline_md(lang)}</li>" for lang in (resume.languages or []))
+            + "</ul></div>"
+        ) if resume.languages else "",
+        "SIDEBAR_THESIS": f'<div class="sblock"><div class="stitle">Thesis</div><p>{_inline_md(resume.thesis)}</p></div>' if resume.thesis else "",
+        "ROLE_SUBTITLE": role_subtitle,
+        "GITHUB_URL": github_href,
+        "HEADER_CONTACT_ROW": header_contact_row,
     }
 
     # ── Generate templates ───────────────────────────────────────────────

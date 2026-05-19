@@ -1,0 +1,130 @@
+{
+  "total_claims": 12,
+  "verified": 0,
+  "weak": 4,
+  "unsupported": 8,
+  "exaggerated": 0,
+  "fabricated": 0,
+  "claims": [
+    {
+      "text": "4+ years of experience building",
+      "risk_level": "WEAK",
+      "claim_type": "year_experience",
+      "start_pos": 37,
+      "end_pos": 68,
+      "evidence_match": "Partially supported: actual total = 6.67, claimed 4+",
+      "repair_suggestion": null,
+      "confidence": 0.6
+    },
+    {
+      "text": "Built a production AI system enabling AI-assisted quality",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 39,
+      "end_pos": 96,
+      "evidence_match": "Partial evidence match in 'Python'",
+      "repair_suggestion": null,
+      "confidence": 0.2545454545454545
+    },
+    {
+      "text": "Led migration of enterprise data platform",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 36,
+      "end_pos": 77,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Owned redesign of data pipelines powering reporting systems",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 132,
+      "end_pos": 191,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built and designed end-to-end ETL lifecycle",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 231,
+      "end_pos": 274,
+      "evidence_match": "Partial evidence match in 'data pipelines'",
+      "repair_suggestion": null,
+      "confidence": 0.3181818181818182
+    },
+    {
+      "text": "Built the backend",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 315,
+      "end_pos": 332,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built an internal AI product manager that monitors system behaviour",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 793,
+      "end_pos": 860,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built a Reddit bot",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 942,
+      "end_pos": 960,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built real-time Grafana dashboards",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 179,
+      "end_pos": 213,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built Emote",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 2,
+      "end_pos": 13,
+      "evidence_match": "Partial evidence match in 'API integrations'",
+      "repair_suggestion": null,
+      "confidence": 0.2333333333333333
+    },
+    {
+      "text": "Led enterprise data platform migration (Azure",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 148,
+      "end_pos": 193,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built an ML pipeline",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 88,
+      "end_pos": 108,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    }
+  ]
+}

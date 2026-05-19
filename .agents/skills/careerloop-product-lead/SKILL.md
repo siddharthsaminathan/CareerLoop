@@ -159,6 +159,9 @@ Entry format:
 |------|---------|
 | `careerloop/docs/PRD.md` | Master vision PRD — source of truth |
 | `careerloop/docs/TRACKER.md` | Rolling session log + system status |
+| `docs/20_PART_ARCHITECTURAL_AUDIT.md` | Exhaustive breakdown of V3 vs Reality |
+| `Pipeline Audit may 20/PROMPT_AUDIT.md` | Comprehensive prompt analysis |
+| `docs/CAREERLOOP_REDESIGN_IMPLEMENTATION_PLAN.md` | V3 Redesign and Data Contracts |
 | `careerloop/docs/vision.md` | Original v1.6 vision (historical reference) |
 | `careerloop/docs/breakdown-20-part.md` | 20-part architecture breakdown |
 | `careerloop/docs/resume-council-vision.md` | Resume Council 8-system spec |

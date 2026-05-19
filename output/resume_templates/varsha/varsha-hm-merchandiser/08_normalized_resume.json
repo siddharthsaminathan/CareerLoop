@@ -1,0 +1,149 @@
+{
+  "header": {
+    "name": "VARSHA SATHYANARANAN",
+    "phone": "+91 8939432182",
+    "email": "thisisvarshasathya@gmail.com",
+    "location": "",
+    "portfolio_url": "",
+    "portfolio_display": "",
+    "github_url": "",
+    "github_display": "",
+    "linkedin_url": "www.linkedin.com/in/varshasathya",
+    "linkedin_display": "varshasathya"
+  },
+  "profile": "Fashion merchandiser with relevant experience owning assortment planning, vendor negotiation, and P&L management across value retail and e-commerce. Proven track record of building categories from zero, launching 200+ SKUs, improving sell-through by 15%, and expanding margins from 22% to 35%. Skilled in OTB management, advanced Excel dashboards, and omnichannel merchandising (online + offline). NIFT graduate with a merchant's mindset, ready to own OTB and assortment for high-SKU womenswear jersey.",
+  "skills": [
+    {
+      "label": "Core Competencies",
+      "items": [
+        "Assortment Planning",
+        "Fashion Buying",
+        "PO/PI Coordination",
+        "Vendor Management",
+        "Inventory",
+        "Forecasting",
+        "TNA Calendar Tracking",
+        "Product Lifecycle Management (PLM)",
+        "Order Tracking"
+      ]
+    },
+    {
+      "label": "Tools",
+      "items": [
+        "Advanced MS Excel (VLOOKUP, Pivot Tables, Dashboards)",
+        "MS Word",
+        "Google Sheets",
+        "Canva",
+        "Meta Ads",
+        "SAP (PO/Inventory Tracking - Basic)"
+      ]
+    },
+    {
+      "label": "Functional Strengths",
+      "items": [
+        "Cross-Functional Collaboration",
+        "Trend Analysis",
+        "Sales Performance Reporting",
+        "Catalog & Content",
+        "E-commerce Marketing",
+        "Vendor Negotiation"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Category Manager - Fashion",
+      "company": "SuperK",
+      "location": "Bangalore, India",
+      "dates": "Nov 2025 - Present",
+      "description": "Built the fashion category from near zero across online channels and a tech-enabled retail network of 3+ coco stores, launching assortments across apparel, footwear, and accessories while driving vendor expansion, category P&L management, and data-led merchandising decisions.",
+      "bullets": [
+        "Built the fashion assortment from 5 to 25+ subcategories across menswear, womenswear, kidswear, footwear, and accessories by onboarding 12+ regional vendors, identifying assortment gaps, and benchmarking category offerings against value retail players like DMart and Vishal Mega Mart.",
+        "Drove ₹3.5 lakh in category revenue within two months by owning weekly sales performance, pricing benchmarks, and customer demand analysis.",
+        "Negotiated vendor pricing, MOQs, and sourcing terms, improving product margins from 22% to 35% while maintaining competitive retail pricing.",
+        "Partnered with marketing teams to launch fashion-led campaigns during New Year, Pongal and Republic Day, increasing category visibility by ~22% and driving ~15% uplift in campaign period sales.",
+        "Collaborated with operations and supply chain teams to improve stock availability for fast-moving SKUs, coordinating warehouse invoicing and inventory flow to reduce stock-outs by ~20% across priority products.",
+        "Tracked sell-through, AOV, and margin performance using Excel and Metabase dashboards; identified underperforming SKUs and implemented assortment rationalization that improved category gross margin by ~6%."
+      ]
+    },
+    {
+      "role": "Founder",
+      "company": "The Style Gram",
+      "location": "Remote - Chennai, India",
+      "dates": "Nov 2024 - Jun 2025",
+      "description": "Built and operated a lean fashion reselling brand focused on affordable women's western-wear, managing end-to-end sourcing, merchandising, content creation, and customer engagement across Instagram and Swiggy Minis.",
+      "bullets": [
+        "Generated ₹50,000 in revenue during the launch phase with an average order value of ₹600, fulfilling 80+ customer orders across Tier 1 and Tier 2 cities with zero product returns.",
+        "Sourced and merchandised 60+ SKUs across tops, skirts, and dresses through direct supplier negotiations, maintaining 45% gross margins and reducing sourcing turnaround time by 25%.",
+        "Evaluated and engaged 5 supplier partners before finalizing a primary vendor to optimize pricing, quality consistency, and procurement turnaround time.",
+        "Executed pricing, merchandising, and inventory tracking through Excel-based systems, ensuring 100% order fulfillment and streamlined stock management.",
+        "Managed 60+ SKUs on Swiggy Minis and built a custom Excel-based WIP tracker to manage catalog listings, order tracking, and inventory visibility, reducing catalog errors by 90% and improving stock flow for fast-selling styles.",
+        "Produced 25+ branded content assets and launched 3+ Instagram ad campaigns, improving click-through rates by 22% through A/B testing and targeted messaging."
+      ]
+    },
+    {
+      "role": "Assistant Fashion Manager",
+      "company": "Go Colors (Go Fashion India Ltd.)",
+      "location": "Chennai, India",
+      "dates": "Sept 2020 - June 2023",
+      "description": "Supported buying and merchandising for women's and girls' bottom-wear categories including leggings, track pants, formal pants, ethnic bottoms, and shorts, with responsibility for vendor coordination, product lifecycle execution, and data-led assortment decisions.",
+      "bullets": [
+        "Managed PO/PI coordination and vendor communication across 20+ suppliers and 10+ factories across India and Asia, ensuring 95% on-time delivery for seasonal production orders.",
+        "Analyzed weekly sales performance for 200+ SKUs, recommending replenishment and assortment adjustments that improved category sell-through by 15%.",
+        "Aligned assortment planning with trend insights and performance data, driving a 10% lift in customer purchase rate across key bottom-wear categories.",
+        "Launched 3+ new sub-categories including kids-wear, leading a 2-member team to introduce new styles and revamp existing collections, boosting category sales by 15% in the first quarter.",
+        "Negotiated supplier pricing and MOQs during fabric sourcing and production planning, maintaining product quality while ensuring competitive margins.",
+        "Led sampling, fit approvals, and production coordination for 30+ styles per season, reducing post-launch return rates to under 10% while gaining exposure to PLM-driven product development workflows.",
+        "Built WIP trackers to monitor production timelines and collaborated with logistics, VM, and marketing teams to ensure timely product launches."
+      ]
+    }
+  ],
+  "achievements": [],
+  "projects": [],
+  "education": [
+    {
+      "degree": "",
+      "institution": "",
+      "dates": "",
+      "details": ""
+    },
+    {
+      "degree": "Humber College",
+      "institution": "Longo School of Business",
+      "dates": "",
+      "details": ""
+    },
+    {
+      "degree": "Graduate Certificate in Fashion Management",
+      "institution": "",
+      "dates": "",
+      "details": ""
+    },
+    {
+      "degree": "Toronto, Canada | Sept 2023",
+      "institution": "Aug 2024",
+      "dates": "",
+      "details": ""
+    },
+    {
+      "degree": "National Institute of Fashion Technology (NIFT)",
+      "institution": "",
+      "dates": "",
+      "details": ""
+    },
+    {
+      "degree": "Bachelor of Design",
+      "institution": "Fashion Design",
+      "dates": "",
+      "details": ""
+    },
+    {
+      "degree": "Chennai, India | July 2016",
+      "institution": "July 2020",
+      "dates": "",
+      "details": ""
+    }
+  ],
+  "thesis": null,
+  "languages": []
+}

@@ -2324,7 +2324,7 @@ Implementation:
 
 ## Section 14 - Migration Plan
 
-### P0 - Stabilize Current System
+### P0 - Stabilize Current System (DONE - 2026-05-20)
 
 Goals:
 
@@ -2333,6 +2333,8 @@ Goals:
 - Ensure validators are visible and enforceable.
 - Establish company intelligence grounding basics.
 - Prevent raw `cv.md` final render bypass in Council path.
+- Fix Identity Slop and Duplicate Headers in MD.
+- Implement aggressive, outcome-focused Humanizer.
 
 Files likely affected:
 

@@ -1,0 +1,74 @@
+{
+  "input_resume_path": "output/council/siddharth/nicobar-ai-pm/10_final_resume.md",
+  "final_resume_markdown_path": "output/council/siddharth/nicobar-ai-pm/10_final_resume.md",
+  "normalized_resume_json_path": "output/council/siddharth/nicobar-ai-pm/rendered/08_normalized_resume.json",
+  "candidate": "siddharth",
+  "run_id": "nicobar-ai-pm",
+  "renderer": "careerloop.rendering.render_all_templates.render_resume",
+  "output_dir": "output/council/siddharth/nicobar-ai-pm/rendered",
+  "templates": [
+    {
+      "template": "classic-ats",
+      "pages": "skipped",
+      "html": "output/council/siddharth/nicobar-ai-pm/rendered/classic-ats.html",
+      "pdf": "output/council/siddharth/nicobar-ai-pm/rendered/classic-ats.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "modern-accent",
+      "pages": "skipped",
+      "html": "output/council/siddharth/nicobar-ai-pm/rendered/modern-accent.html",
+      "pdf": "output/council/siddharth/nicobar-ai-pm/rendered/modern-accent.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "executive-clean",
+      "pages": "skipped",
+      "html": "output/council/siddharth/nicobar-ai-pm/rendered/executive-clean.html",
+      "pdf": "output/council/siddharth/nicobar-ai-pm/rendered/executive-clean.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "compact-one-page",
+      "pages": "skipped",
+      "html": "output/council/siddharth/nicobar-ai-pm/rendered/compact-one-page.html",
+      "pdf": "output/council/siddharth/nicobar-ai-pm/rendered/compact-one-page.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "technical-two-column",
+      "pages": "skipped",
+      "html": "output/council/siddharth/nicobar-ai-pm/rendered/technical-two-column.html",
+      "pdf": "output/council/siddharth/nicobar-ai-pm/rendered/technical-two-column.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "product-engineer",
+      "pages": "skipped",
+      "html": "output/council/siddharth/nicobar-ai-pm/rendered/product-engineer.html",
+      "pdf": "output/council/siddharth/nicobar-ai-pm/rendered/product-engineer.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "founder-operator",
+      "pages": "skipped",
+      "html": "output/council/siddharth/nicobar-ai-pm/rendered/founder-operator.html",
+      "pdf": "output/council/siddharth/nicobar-ai-pm/rendered/founder-operator.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "compact-sidebar-premium",
+      "pages": "skipped",
+      "html": "output/council/siddharth/nicobar-ai-pm/rendered/compact-sidebar-premium.html",
+      "pdf": "output/council/siddharth/nicobar-ai-pm/rendered/compact-sidebar-premium.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "design-brand-compact",
+      "pages": "skipped",
+      "html": "output/council/siddharth/nicobar-ai-pm/rendered/design-brand-compact.html",
+      "pdf": "output/council/siddharth/nicobar-ai-pm/rendered/design-brand-compact.pdf",
+      "pdf_status": "skipped"
+    }
+  ]
+}

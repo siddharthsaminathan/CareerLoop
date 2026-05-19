@@ -1,0 +1,81 @@
+{
+  "input_resume_path": "output/council/varsha/varsha-hm-merchandiser/10_final_resume.md",
+  "final_resume_markdown_path": "output/council/varsha/varsha-hm-merchandiser/10_final_resume.md",
+  "normalized_resume_json_path": "output/resume_templates/varsha/varsha-hm-merchandiser/08_normalized_resume.json",
+  "candidate": "varsha",
+  "run_id": "varsha-hm-merchandiser",
+  "renderer": "careerloop.rendering.render_all_templates.render_resume",
+  "output_dir": "output/resume_templates/varsha/varsha-hm-merchandiser",
+  "templates": [
+    {
+      "template": "classic-ats",
+      "pages": "skipped",
+      "html": "output/resume_templates/varsha/varsha-hm-merchandiser/classic-ats.html",
+      "pdf": "output/resume_templates/varsha/varsha-hm-merchandiser/classic-ats.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "modern-accent",
+      "pages": "skipped",
+      "html": "output/resume_templates/varsha/varsha-hm-merchandiser/modern-accent.html",
+      "pdf": "output/resume_templates/varsha/varsha-hm-merchandiser/modern-accent.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "executive-clean",
+      "pages": "skipped",
+      "html": "output/resume_templates/varsha/varsha-hm-merchandiser/executive-clean.html",
+      "pdf": "output/resume_templates/varsha/varsha-hm-merchandiser/executive-clean.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "compact-one-page",
+      "pages": "skipped",
+      "html": "output/resume_templates/varsha/varsha-hm-merchandiser/compact-one-page.html",
+      "pdf": "output/resume_templates/varsha/varsha-hm-merchandiser/compact-one-page.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "technical-two-column",
+      "pages": "skipped",
+      "html": "output/resume_templates/varsha/varsha-hm-merchandiser/technical-two-column.html",
+      "pdf": "output/resume_templates/varsha/varsha-hm-merchandiser/technical-two-column.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "product-engineer",
+      "pages": "skipped",
+      "html": "output/resume_templates/varsha/varsha-hm-merchandiser/product-engineer.html",
+      "pdf": "output/resume_templates/varsha/varsha-hm-merchandiser/product-engineer.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "founder-operator",
+      "pages": "skipped",
+      "html": "output/resume_templates/varsha/varsha-hm-merchandiser/founder-operator.html",
+      "pdf": "output/resume_templates/varsha/varsha-hm-merchandiser/founder-operator.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "compact-sidebar-premium",
+      "pages": "skipped",
+      "html": "output/resume_templates/varsha/varsha-hm-merchandiser/compact-sidebar-premium.html",
+      "pdf": "output/resume_templates/varsha/varsha-hm-merchandiser/compact-sidebar-premium.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "design-brand-compact",
+      "pages": "skipped",
+      "html": "output/resume_templates/varsha/varsha-hm-merchandiser/design-brand-compact.html",
+      "pdf": "output/resume_templates/varsha/varsha-hm-merchandiser/design-brand-compact.pdf",
+      "pdf_status": "skipped"
+    },
+    {
+      "template": "design-brand-compact-dark",
+      "pages": "skipped",
+      "html": "output/resume_templates/varsha/varsha-hm-merchandiser/design-brand-compact-dark.html",
+      "pdf": "output/resume_templates/varsha/varsha-hm-merchandiser/design-brand-compact-dark.pdf",
+      "pdf_status": "skipped"
+    }
+  ]
+}

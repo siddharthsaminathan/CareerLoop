@@ -233,6 +233,30 @@ class ResumeCouncilOrchestrator:
                 )
             with open(os.path.join(output_dir, "16_user_review_summary.md"), "w", encoding="utf-8") as f:
                 f.write(pack.get("user_review_summary", ""))
+            # Humanizer pre/post artifacts
+            pre_humanizer = state.get("pre_humanizer_resume", "")
+            if pre_humanizer:
+                with open(os.path.join(output_dir, "12_pre_humanizer_resume.md"), "w", encoding="utf-8") as f:
+                    f.write(pre_humanizer)
+            humanizer_rpt = state.get("humanizer_report")
+            if humanizer_rpt:
+                with open(os.path.join(output_dir, "13_humanizer_report.json"), "w", encoding="utf-8") as f:
+                    json.dump(humanizer_rpt, f, indent=2)
+            final_resume = pack.get("resume_markdown", "")
+            if pre_humanizer and final_resume:
+                import difflib
+                diff_lines = list(
+                    difflib.unified_diff(
+                        pre_humanizer.splitlines(),
+                        final_resume.splitlines(),
+                        fromfile="pre_humanizer",
+                        tofile="final_resume",
+                        lineterm="",
+                    )
+                )
+                with open(os.path.join(output_dir, "14_humanizer_diff.patch"), "w", encoding="utf-8") as f:
+                    f.write("\n".join(diff_lines))
+
             with open(os.path.join(output_dir, "17_council_run_log.json"), "w", encoding="utf-8") as f:
                 json.dump(state, f, indent=2, default=str)
 

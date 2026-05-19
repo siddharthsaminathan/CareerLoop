@@ -68,7 +68,15 @@ When using [Gemini CLI](https://github.com/google-gemini/gemini-cli), the follow
 | `/career-ops-batch` | `/career-ops batch` | Batch processing |
 | `/career-ops-patterns` | `/career-ops patterns` | Analyze rejection patterns |
 | `/career-ops-followup` | `/career-ops followup` | Follow-up cadence tracker |
-| `/careerloop-product-lead` | `/careerloop-product-lead` | Full product review — vision alignment, tracker update, next actions |
+| /careerloop-product-lead | /careerloop-product-lead | Full product review — vision alignment, tracker update, next actions |
+
+## Available Skills
+
+- `resume-quality-auditor`: Performs a 16-part data quality audit on Resume Council pipeline outputs using multi-agent orchestration.
+- `careerloop-product-lead`: Product engineering lead for CareerLoop.
+- `resume-design`: Design, edit, and render CareerLoop resume templates.
+- `showcase-builder`: Build premium editorial portfolio/showcase HTML pages.
+
 
 **All commands share the same evaluation logic** in `modes/*.md`. The `modes/` files are shared between Claude Code, OpenCode, and Gemini CLI.
 

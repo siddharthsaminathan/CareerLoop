@@ -430,6 +430,10 @@ def _parse_header(classified: dict) -> HeaderInfo:
         name = re.sub(r"\s*[—\-–,]\s*CV\s*$", "", raw_heading, flags=re.IGNORECASE).strip()
         name = re.sub(r"\s*[—\-–,]\s*(?:R[eé]sum[eé]|Curriculum\s*Vitae)\s*$", "", name, flags=re.IGNORECASE).strip()
         header.name = name
+        # Some resumes embed contact directly under the name heading.
+        if body and not classified.get("contact"):
+            preview = "\n".join(body.strip().splitlines()[:6])
+            _parse_contact_body(preview, header)
 
     # Extract contact details from contact block
     contact_block = classified.get("contact")
@@ -454,57 +458,120 @@ def _parse_header(classified: dict) -> HeaderInfo:
 def _parse_contact_body(body: str, header: HeaderInfo) -> None:
     """Parse contact bullet list into HeaderInfo fields."""
     patterns = {
-        "phone":     re.compile(r"(?:phone|tel|mobile|cell)[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
-        "email":     re.compile(r"(?:email|e-mail|mail)[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
-        "location":  re.compile(r"(?:location|address|city|based)[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
-        "portfolio": re.compile(r"(?:portfolio|website|web|site|url)[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
-        "github":    re.compile(r"(?:github|git)[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
-        "linkedin":  re.compile(r"(?:linkedin|linked\s*in)[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
+        "phone":     re.compile(r"^(?:phone|tel|mobile|cell)\b[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
+        "email":     re.compile(r"^(?:email|e-mail|mail)\b[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
+        "location":  re.compile(r"^(?:location|address|city|based)\b[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
+        "portfolio": re.compile(r"^(?:portfolio|website|web|site|url)\b[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
+        "github":    re.compile(r"^(?:github|git)\b[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
+        "linkedin":  re.compile(r"^(?:linkedin|linked\s*in)\b[\s:]*\*?\*?\s*(.+)", re.IGNORECASE),
     }
 
-    for line in body.strip().split("\n"):
-        line = _strip_markdown_formatting(line.strip())
-        if not header.email:
-            email_match = re.search(r"[\w.+-]+@[\w.-]+\.\w+", line)
-            if email_match:
-                header.email = _sanitize_text(email_match.group(0))
-        if not header.phone:
-            phone_match = re.search(r"(?:\+?\d[\d\s().-]{7,}\d)", line)
-            if phone_match:
-                header.phone = _sanitize_text(phone_match.group(0).strip())
-        if not header.linkedin_url:
-            linkedin_match = re.search(r"(?:https?://)?(?:www\.)?linkedin\.com/in/[^\s|,;]+", line, re.IGNORECASE)
-            if linkedin_match:
-                header.linkedin_url = _sanitize_text(linkedin_match.group(0).rstrip("/"))
-                header.linkedin_display = _sanitize_text(re.sub(r"^(?:www\.)?linkedin\.com/in/", "", _url_to_display(header.linkedin_url)))
+    for raw_line in body.strip().split("\n"):
+        raw_line = _strip_markdown_formatting(raw_line.strip())
+        if not raw_line:
+            continue
+        tokens = _split_contact_tokens(raw_line)
+        for line in tokens:
+            if not line:
+                continue
+            if not header.email:
+                email_match = re.search(r"[\w.+-]+@[\w.-]+\.\w+", line)
+                if email_match:
+                    header.email = _sanitize_text(email_match.group(0))
+            if not header.phone:
+                phone_match = re.search(r"(?:\+?\d[\d\s().-]{7,}\d)", line)
+                if phone_match:
+                    header.phone = _sanitize_text(phone_match.group(0).strip())
+            if not header.linkedin_url:
+                linkedin_match = re.search(r"(?:https?://)?(?:www\.)?linkedin\.com/in/[^\s|,;]+", line, re.IGNORECASE)
+                if linkedin_match:
+                    header.linkedin_url = _sanitize_text(linkedin_match.group(0).rstrip("/"))
+                    header.linkedin_display = _sanitize_text(re.sub(r"^(?:www\.)?linkedin\.com/in/", "", _url_to_display(header.linkedin_url)))
+            if not header.github_url:
+                github_match = re.search(r"(?:https?://)?(?:www\.)?github\.com/[^\s|,;]+", line, re.IGNORECASE)
+                if github_match:
+                    header.github_url = _sanitize_text(github_match.group(0).rstrip("/"))
+                    header.github_display = _sanitize_text(_url_to_display(header.github_url).replace("github.com/", ""))
+            if not header.portfolio_url and "@" not in line and re.search(r"(?:https?://)?(?:www\.)?[a-z0-9.-]+\.[a-z]{2,}(?:/[^\s|,;]*)?", line, re.IGNORECASE):
+                low = line.lower()
+                if "linkedin.com" not in low and "github.com" not in low:
+                    url_match = re.search(r"(?:https?://)?(?:www\.)?[a-z0-9.-]+\.[a-z]{2,}(?:/[^\s|,;]*)?", line, re.IGNORECASE)
+                    if url_match:
+                        header.portfolio_url = _sanitize_text(url_match.group(0).rstrip("/"))
+                        header.portfolio_display = _sanitize_text(_url_to_display(header.portfolio_url))
+            if not header.location:
+                if (
+                    "@" not in line
+                    and not re.search(r"(?:https?://|www\.)", line, re.IGNORECASE)
+                    and re.search(r"[A-Za-z]", line)
+                    and ("," in line or len(line.split()) <= 4)
+                ):
+                    location_candidate = line.strip(" -|·")
+                    # Avoid tagging role subtitles as location in contact preambles.
+                    roleish = re.search(
+                        r"\b(engineer|manager|founder|architect|developer|analyst|designer|scientist|consultant|product)\b",
+                        location_candidate,
+                        re.IGNORECASE,
+                    )
+                    looks_like_name = bool(
+                        header.name
+                        and location_candidate.strip().lower() == header.name.strip().lower()
+                    )
+                    upper_nameish = bool(
+                        re.match(r"^[A-Z][A-Z\s'.-]+$", location_candidate)
+                        and len(location_candidate.split()) >= 2
+                    )
+                    if (
+                        location_candidate
+                        and len(location_candidate) <= 60
+                        and not roleish
+                        and not looks_like_name
+                        and not upper_nameish
+                    ):
+                        header.location = _sanitize_text(location_candidate)
 
-        for key, pattern in patterns.items():
-            if key == "phone" and header.phone:
-                continue
-            if key == "email" and header.email:
-                continue
-            if key == "linkedin" and header.linkedin_url:
-                continue
-            m = pattern.search(line)
-            if m:
-                val = _strip_markdown_formatting(m.group(1).strip())
-                val = val.rstrip(".,;")
+            for key, pattern in patterns.items():
+                if key == "phone" and header.phone:
+                    continue
+                if key == "email" and header.email:
+                    continue
+                if key == "linkedin" and header.linkedin_url:
+                    continue
+                if key == "github" and header.github_url:
+                    continue
+                if key == "portfolio" and header.portfolio_url:
+                    continue
+                if key == "location" and header.location:
+                    continue
+                m = pattern.search(line)
+                if m:
+                    val = _strip_markdown_formatting(m.group(1).strip())
+                    val = val.rstrip(".,;")
 
-                if key == "phone":
-                    header.phone = _sanitize_text(val)
-                elif key == "email":
-                    header.email = _sanitize_text(val)
-                elif key == "location":
-                    header.location = _sanitize_text(val)
-                elif key == "portfolio":
-                    header.portfolio_url = _sanitize_text(val)
-                    header.portfolio_display = _sanitize_text(_url_to_display(val))
-                elif key == "github":
-                    header.github_url = _sanitize_text(val)
-                    header.github_display = _sanitize_text(_url_to_display(val).replace("github.com/", ""))
-                elif key == "linkedin":
-                    header.linkedin_url = _sanitize_text(val)
-                    header.linkedin_display = _sanitize_text(re.sub(r"^(?:www\.)?linkedin\.com/in/", "", _url_to_display(val)))
+                    if key == "phone":
+                        header.phone = _sanitize_text(val)
+                    elif key == "email":
+                        header.email = _sanitize_text(val)
+                    elif key == "location":
+                        header.location = _sanitize_text(val)
+                    elif key == "portfolio":
+                        header.portfolio_url = _sanitize_text(val)
+                        header.portfolio_display = _sanitize_text(_url_to_display(val))
+                    elif key == "github":
+                        header.github_url = _sanitize_text(val)
+                        header.github_display = _sanitize_text(_url_to_display(val).replace("github.com/", ""))
+                    elif key == "linkedin":
+                        header.linkedin_url = _sanitize_text(val)
+                        header.linkedin_display = _sanitize_text(re.sub(r"^(?:www\.)?linkedin\.com/in/", "", _url_to_display(val)))
+                    break
+
+
+def _split_contact_tokens(line: str) -> List[str]:
+    # Normalize explicit labels before tokenization to reduce greedy capture.
+    prepared = line.replace("•", "·").replace(" | ", "|")
+    parts = re.split(r"\s*[|·]\s*", prepared)
+    clean = [p.strip() for p in parts if p.strip()]
+    return clean if clean else [line.strip()]
 
 
 def _url_to_display(url: str) -> str:
@@ -524,9 +591,16 @@ def _parse_profile(classified: dict) -> str:
     if not profile_block:
         return ""
     _, _, body = profile_block
+    # Remove standalone horizontal rules that sometimes leak from section joins.
+    cleaned_lines = []
+    for line in body.splitlines():
+        if re.match(r"^\s*[-*_]{3,}\s*$", line.strip()):
+            continue
+        cleaned_lines.append(line)
+    cleaned = "\n".join(cleaned_lines).strip()
     # Return the body text with arrows and em dashes sanitized.
     # **bold** markers are preserved — the renderer converts those to HTML.
-    return _sanitize_text(body.strip())
+    return _sanitize_text(cleaned)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -1287,4 +1361,6 @@ def _strip_markdown_formatting(text: str) -> str:
     text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
     # Images
     text = re.sub(r"!\[([^\]]*)\]\([^)]+\)", r"\1", text)
+    # Stray/unpaired markers (regex split artifacts)
+    text = text.replace("**", "").replace("*", "")
     return text.strip()

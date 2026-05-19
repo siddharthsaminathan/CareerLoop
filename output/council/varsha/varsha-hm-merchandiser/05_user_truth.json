@@ -1,131 +1,103 @@
 {
-  "total_years_experience": 4.1,
+  "total_years_experience": 5.7,
   "confirmed_skills": [
     {
       "skill": "Assortment Planning",
-      "years": 4.1,
-      "evidence": "Expanded assortment from 5 to 25+ subcategories; implemented assortment rationalization improving margin by 6%"
+      "years": 5.7,
+      "evidence": "Expanded fashion assortment from 5 to 25+ subcategories; aligned assortment planning with trend insights and performance data; implemented assortment rationalization improving category gross margin by ~6%."
     },
     {
-      "skill": "Vendor Management",
-      "years": 4.1,
-      "evidence": "Onboarded 12+ vendors; coordinated with 20+ suppliers and 10+ factories; negotiated pricing and MOQs"
+      "skill": "Vendor Management (PO/PI Coordination)",
+      "years": 5.7,
+      "evidence": "Managed PO/PI coordination across 20+ suppliers; onboarded 12+ regional vendors; negotiated pricing, MOQs, and sourcing terms to improve margins from 22% to 35%."
     },
     {
-      "skill": "Advanced Excel",
-      "years": 4.1,
-      "evidence": "Used VLOOKUP, Pivot Tables, Dashboards for sales tracking, WIP trackers, and inventory management"
+      "skill": "Advanced Excel (Pivot Tables, VLOOKUP)",
+      "years": 5.7,
+      "evidence": "Explicitly listed as 'Advanced MS Excel (VLOOKUP, Pivot Tables, Dashboards)'; used Excel-based WIP trackers, sales dashboards, and inventory management across roles."
+    },
+    {
+      "skill": "Cross-Functional Collaboration",
+      "years": 5.7,
+      "evidence": "Partnered with marketing, operations, supply chain, and VM teams; collaborated on campaigns, stock availability, and product launches."
+    },
+    {
+      "skill": "Negotiation Skills",
+      "years": 5.7,
+      "evidence": "Negotiated vendor pricing, MOQs, and sourcing terms; secured competitive margins while maintaining quality; reduced sourcing turnaround time by 25%."
+    },
+    {
+      "skill": "Omnichannel Retail Experience",
+      "years": 1.5,
+      "evidence": "Managed fashion category across online channels and a tech-enabled offline retail network (coco stores) at SuperK."
     },
     {
       "skill": "P&L Management",
-      "years": 1.3,
-      "evidence": "Managed category P&L at SuperK, improved margins; as founder, maintained 45% gross margins"
-    },
-    {
-      "skill": "Negotiation",
-      "years": 4.1,
-      "evidence": "Negotiated vendor pricing, MOQs, and sourcing terms to improve margins from 22% to 35%"
-    },
-    {
-      "skill": "Omnichannel Merchandising",
-      "years": 1.3,
-      "evidence": "Built fashion category across online channels and tech-enabled coco stores; sold on Swiggy Minis and Instagram"
-    },
-    {
-      "skill": "BI Tools (Metabase)",
-      "years": 0.6,
-      "evidence": "Utilized Metabase dashboards for tracking sell-through, AOV, and margin performance"
-    },
-    {
-      "skill": "Category Launch",
-      "years": 4.1,
-      "evidence": "Launched fashion category from near zero; introduced 3+ new sub-categories boosting sales by 15%"
-    },
-    {
-      "skill": "WIP Tracker / Production Calendar",
-      "years": 4.1,
-      "evidence": "Built custom Excel WIP trackers reducing catalog errors by 90%; used TNA calendar tracking"
-    },
-    {
-      "skill": "Womenswear Trend Knowledge",
-      "years": 4.1,
-      "evidence": "Managed women's bottom-wear at Go Colors; launched women's western-wear brand; aligned assortment with trends"
+      "years": 1.5,
+      "evidence": "Owned category P&L at SuperK; improved product margins from 22% to 35%; implemented data-led decisions to improve category gross margin by ~6%."
     }
   ],
   "weak_skills": [
     "OTB Management",
-    "SAP Proficiency"
+    "Womenswear Jersey Category Knowledge",
+    "SAP/ERP Proficiency (only basic)",
+    "Global-Local Assortment Adaptation"
   ],
   "evidence_bank": {
     "Assortment Planning": [
-      "Expanded fashion assortment from 5 to 25+ subcategories at SuperK",
-      "Implemented assortment rationalization improving category gross margin by ~6%",
-      "Aligned assortment planning with trend insights at Go Colors driving 10% lift in purchase rate"
+      "Expanded fashion assortment from 5 to 25+ subcategories across menswear, womenswear, kidswear, footwear, and accessories",
+      "Aligned assortment planning with trend insights and performance data, boosting sales by 15% in key categories",
+      "Identified assortment gaps and benchmarked against value retail competitors",
+      "Implemented assortment rationalization improving category gross margin by ~6%"
     ],
-    "Vendor Management": [
-      "Onboarded 12+ regional vendors at SuperK",
-      "Managed PO/PI coordination across 20+ suppliers and 10+ factories at Go Colors",
-      "Negotiated vendor pricing, MOQs, and sourcing terms"
+    "Vendor Management (PO/PI Coordination)": [
+      "Managed PO/PI coordination and vendor communication across 20+ suppliers and 10+ factories across India and Asia with 95% on-time delivery",
+      "Onboarded 12+ regional vendors and expanded vendor base",
+      "Negotiated pricing, MOQs, and sourcing terms, improving margins from 22% to 35%"
     ],
-    "Advanced Excel": [
-      "Used Excel for sales performance tracking with VLOOKUP and Pivot Tables",
-      "Built WIP trackers to monitor production timelines",
-      "Created dashboards for catalog listings and order tracking"
+    "Advanced Excel (Pivot Tables, VLOOKUP)": [
+      "Used dashboards for tracking sell-through, AOV, and margin performance",
+      "Built custom Excel-based WIP trackers reducing catalog errors by 90%",
+      "Explicitly lists 'Advanced MS Excel (VLOOKUP, Pivot Tables, Dashboards)' in skills"
+    ],
+    "Cross-Functional Collaboration": [
+      "Collaborated with operations and supply chain to improve stock availability and reduce stock-outs by ~20%",
+      "Partnered with marketing teams to launch fashion-led campaigns, increasing category visibility by ~22% and sales uplift by ~15%",
+      "Worked with logistics, VM, and marketing to ensure timely product launches"
+    ],
+    "Negotiation Skills": [
+      "Negotiated vendor pricing, MOQs, and sourcing terms at Go Colors and SuperK",
+      "Reduced sourcing turnaround time by 25% through supplier partnerships",
+      "Maintained 45% gross margins while ensuring competitive pricing"
+    ],
+    "Omnichannel Retail Experience": [
+      "Built fashion category across both online channels and 3+ physical coco stores at SuperK"
     ],
     "P&L Management": [
-      "Owned category P&L at SuperK, generating ₹3.5 lakh revenue in two months",
-      "Maintained 45% gross margins as founder of The Style Gram",
-      "Improved product margins from 22% to 35% through negotiations"
-    ],
-    "Negotiation": [
-      "Negotiated vendor pricing and MOQs, achieving 22% to 35% margin improvement",
-      "Negotiated supplier pricing and MOQs during fabric sourcing at Go Colors"
-    ],
-    "Omnichannel Merchandising": [
-      "Built fashion category across online channels and 3+ coco stores at SuperK",
-      "Sold 60+ SKUs on Swiggy Minis and Instagram at The Style Gram"
-    ],
-    "BI Tools (Metabase)": [
-      "Utilized Metabase dashboards to track sell-through, AOV, and margin performance at SuperK"
-    ],
-    "Category Launch": [
-      "Built fashion category from near zero at SuperK, expanding to 25+ subcategories",
-      "Launched 3+ new sub-categories at Go Colors, boosting category sales by 15%"
-    ],
-    "WIP Tracker / Production Calendar": [
-      "Built custom Excel WIP tracker reducing catalog errors by 90% at The Style Gram",
-      "Used WIP trackers to monitor production timelines at Go Colors"
-    ],
-    "Womenswear Trend Knowledge": [
-      "Managed women's bottom-wear assortment at Go Colors",
-      "Aligned assortment with trend insights, driving purchase rate lift",
-      "Launched women's western-wear brand at The Style Gram"
+      "Owned category P&L as Category Manager at SuperK, improving margins from 22% to 35%",
+      "Drove ₹3.5 lakh in category revenue within two months through data-led merchandising"
     ]
   },
   "strongest_proof_points": [
-    "Built fashion category from near zero, generating ₹3.5 lakh revenue in two months at SuperK",
-    "Improved product margins from 22% to 35% while maintaining competitive pricing through vendor negotiations",
-    "Launched 3+ new sub-categories at Go Colors, boosting category sales by 15% in the first quarter",
-    "Achieved zero product returns on 80+ orders while generating ₹50,000 revenue for own brand",
-    "Reduced stock-outs by ~20% across priority products at SuperK through inventory flow coordination"
+    "Built fashion category from near zero across online and offline channels, generating ₹3.5 lakh in revenue within two months",
+    "Improved product margins from 22% to 35% through vendor negotiation and assortment optimization",
+    "Expanded assortment from 5 to 25+ subcategories across multiple genders and categories",
+    "Achieved 15% uplift in campaign sales and 22% increase in category visibility through cross-functional collaboration"
   ],
   "claims_allowed": [
-    "4+ years of fashion merchandising experience",
-    "Proven ability in assortment planning and vendor negotiation",
-    "Launched fashion category achieving quick revenue generation",
-    "Reduced stock-outs by 20% through inventory planning",
-    "Proficient in Advanced Excel and BI tools for sales analysis",
-    "Holds NIFT degree in Fashion Design",
-    "Experience with omnichannel retail (online and offline)",
-    "Managed P&L for a category",
-    "Strong track record of margin improvement and cost negotiation"
+    "5+ years of experience in fashion buying, merchandising, and category management",
+    "Expert in assortment planning, vendor management, and data-driven merchandising",
+    "Proven ability to launch new categories and expand assortments in value retail environments",
+    "Experience managing P&L and improving category margins",
+    "Proficiency in advanced Excel, Metabase dashboards, and basic SAP",
+    "NIFT graduate with experience at value fashion brands like Go Colors"
   ],
   "claims_not_allowed": [
-    "Expert in OTB management",
-    "Proficient in SAP ERP",
-    "Deep knowledge of jersey fabrics",
+    "Extensive OTB management experience",
+    "Deep expertise in womenswear jersey category",
+    "Advanced SAP proficiency",
+    "Global market or international assortment adaptation experience",
     "10+ years of experience",
-    "Senior merchandiser with 6+ years experience",
-    "Has managed OTB and open-to-buy processes"
+    "Direct experience in fast-fashion giants like Zara or Mango"
   ]
 }

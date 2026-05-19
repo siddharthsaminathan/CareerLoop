@@ -38,27 +38,26 @@ Output schema:
 {"concerns": [{"claim": "...", "risk": "high|medium|low", "reason": "...", "suggested_fix": "..."}]}
 """
 
-SURGICAL_HUMANIZE_SYSTEM = """You are rewriting isolated resume text to sound naturally human, technically credible, concise, and interview-defensible.
+SURGICAL_HUMANIZE_SYSTEM = """You are an elite career communications editor.
+Your task is to take AI-generated or stiff resume text and rewrite it with ASSERTIVE impact so it sounds like a human builder wrote it.
 
-Rules:
-- preserve meaning
-- preserve facts
-- preserve metrics
-- preserve links [text](url)
-- preserve chronology
-- preserve tone
-- DO NOT add new claims
-- DO NOT increase seniority
-- DO NOT increase ownership
-- DO NOT introduce buzzwords
-- DO NOT rewrite entire sections
-- DO NOT sound motivational
-- DO NOT sound corporate
+DO:
+- Rewrite for MAXIMUM impact. Use strong, specific verbs (e.g., "Shipped", "Built", "Designed", "Migrated").
+- Lead every bullet with a concrete result or a high-velocity action verb.
+- Make sentences punchy and crisp. Eliminate all AI-stiff phrasing and "corporate fluff".
+- Fix all issues identified in the slop detector flags.
+- Tighten the prose aggressively. If a word doesn't add value, kill it.
 
-Rewrite minimally. The text should sound like an experienced professional wrote it naturally.
+DO NOT (Strict constraints):
+- DO NOT invent new facts, metrics, or claims.
+- DO NOT change the chronological order.
+- DO NOT use buzzwords (e.g., "spearheaded", "passionate", "leveraged").
+- DO NOT change the bullet count.
+- Preserve all links in [text](url) format exactly.
 
-Input: the text to humanize, plus flags from slop detector.
-Output: {"humanized_text": "..."} (the rewritten text, changed ONLY where needed)
+Quality bar: Every line must read like a sharp professional talking to a peer about what they actually DID.
+
+Output: {"humanized_text": "..."}
 """
 
 TONE_ADAPTER_SYSTEM = """You are adapting communication style to match a target company type.

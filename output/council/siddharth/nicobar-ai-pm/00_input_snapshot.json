@@ -1,0 +1,113 @@
+{
+  "job_id": "nicobar-ai-pm",
+  "person_id": "siddharth",
+  "job_title": "AI Product Engineer -- CEO's Office",
+  "company": "Nicobar Design Pvt. Ltd.",
+  "job_url": "https://www.linkedin.com/feed/update/urn:li:activity:7329475396732014592",
+  "jd_text": "Job Title: AI Product Engineer -- CEO's Office\nCompany: Nicobar Design Pvt. Ltd. (nicobar.com)\nLocation: Delhi\nExperience: 3-5 years\n\nTHE OPPORTUNITY\nWe've spent a decade building a brand that looks and feels unmistakably Nicobar. The next chapter is\nbuilding a company that thinks the same way -- AI-native, not in theory, but in every room we walk into.\n\nWHAT YOU'LL OWN\n01 Customer Personalization: Build the intelligence layer beneath all our customer communication\n02 Store Clienteling: Build the clienteling tool our store teams reach for every day\n03 Business Intelligence: Replace Microsoft BI dashboards with a live, conversational intelligence layer\n04 Smoothen Design Workstreams: Remove friction so the creative team can make more, better, faster\n05 Open Mandate: Demand forecasting, AI stylist, gifting concierge, supplier communication\n\nWHAT WE'RE LOOKING FOR\nEngineering degree from IIT, BITS, NIT or equivalent with 3-5 years of experience.\nYou've built something real with an LLM API - OpenAI, Claude, Gemini, etc.\nFluent in Python/NodeJS. Comfortable writing and querying SQL.\nComfortable connecting systems that weren't designed to talk to each other: APIs, webhooks, data pipelines.\nFamiliarity with Shopify's API ecosystem, or e-commerce data generally.\nExperience with MoEngage or any CRM / marketing automation platform.\nExposure to ERP - Microsoft Dynamics 365.\nAbility to build front-ends that don't embarrass the brand.",
+  "profile": {
+    "candidate": {
+      "full_name": "Siddharth Saminathan",
+      "email": "siddharthsaminathan99@gmail.com",
+      "phone": "+91 7299707403",
+      "location": "Chennai, India",
+      "linkedin": "linkedin.com/in/siddharthsaminathan",
+      "portfolio_url": "https://emotenow.app/",
+      "github": "github.com/siddharthsaminathan"
+    },
+    "target_roles": {
+      "primary": [
+        "AI Product Engineer",
+        "Applied AI Engineer",
+        "Founding Engineer (AI)",
+        "Senior AI Engineer"
+      ],
+      "archetypes": [
+        {
+          "name": "AI Product Engineer",
+          "level": "Senior/Staff",
+          "fit": "primary"
+        },
+        {
+          "name": "Applied AI Engineer",
+          "level": "Senior",
+          "fit": "primary"
+        },
+        {
+          "name": "Founding Engineer",
+          "level": "Senior/Lead",
+          "fit": "primary"
+        },
+        {
+          "name": "Platform Engineer (AI/ML)",
+          "level": "Senior",
+          "fit": "secondary"
+        },
+        {
+          "name": "Backend Engineer (AI systems)",
+          "level": "Senior",
+          "fit": "secondary"
+        },
+        {
+          "name": "Solutions Engineer (AI)",
+          "level": "Mid-Senior",
+          "fit": "adjacent"
+        }
+      ]
+    },
+    "narrative": {
+      "headline": "Manufacturing Enterprise Quality Digitalization — agentic AI for mission-critical production systems",
+      "exit_story": "Built Emote from zero to 450+ users (15x latency reduction, 50x cost reduction). Now building agentic AI for enterprise quality management at Omnex Systems — automating DFMEA, PFMEA, Control Plans, and 8D across global manufacturing supply chains.",
+      "superpowers": [
+        "Manufacturing enterprise quality digitalization (EQMS, APQP, DFMEA/PFMEA)",
+        "Agentic AI orchestration — multi-step quality workflows with full traceability",
+        "Taking AI from concept to production (0→1→iteration)",
+        "Performance optimization (latency 15s→3s, cost $1.20→$0.023)",
+        "Full-stack AI: architecture, backend, observability, iteration"
+      ],
+      "proof_points": [
+        {
+          "name": "Emote — Full AI Product",
+          "url": "https://emotenow.app/",
+          "hero_metric": "450+ users, 13-15% weekly retention, 15x latency reduction"
+        },
+        {
+          "name": "Omnex Agentic AI",
+          "url": "",
+          "hero_metric": "Production multi-agent system for quality workflows, 12.5s→8s"
+        },
+        {
+          "name": "Akkodis Data Migration",
+          "url": "",
+          "hero_metric": "Azure→PostgreSQL migration for Ericsson, 5% reporting accuracy improvement"
+        }
+      ]
+    },
+    "compensation": {
+      "target_range": "₹35L-60L",
+      "currency": "INR",
+      "minimum": "₹25L",
+      "location_flexibility": "Remote preferred. Chennai or Bangalore hybrid possible."
+    },
+    "location": {
+      "country": "India",
+      "city": "Chennai",
+      "timezone": "IST (UTC+5:30)",
+      "visa_status": "Indian citizen",
+      "onsite_availability": "Remote-first. Can do Chennai or Bangalore hybrid."
+    }
+  },
+  "today": "May 2026",
+  "canonical_resume": null,
+  "preservation_contract": null,
+  "company_intelligence": null,
+  "role_decode": null,
+  "user_truth": null,
+  "positioning_strategy": null,
+  "section_rewrites": null,
+  "application_pack": null,
+  "truth_guard_report": null,
+  "errors": [
+    "HTTPSConnectionPool(host='api.deepseek.com', port=443): Max retries exceeded with url: /v1/chat/completions (Caused by NameResolutionError(\"HTTPSConnection(host='api.deepseek.com', port=443): Failed to resolve 'api.deepseek.com' ([Errno 8] nodename nor servname provided, or not known)\"))"
+  ]
+}

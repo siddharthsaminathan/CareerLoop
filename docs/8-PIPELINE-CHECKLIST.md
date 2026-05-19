@@ -200,13 +200,16 @@ With chunking, experience section = 3 chunks = 3 extra calls = ~75s more.
 | Check | Status |
 |-------|--------|
 | Per-section loop (not one giant blob call) | ✅ Working |
-| Large sections chunked instead of skipped | ✅ Fixed (just added) |
+| Large sections chunked instead of skipped | ✅ Fixed |
 | `hidden_expectations` in prompt | ✅ Fixed |
 | `claims_not_allowed` in prompt | ✅ Fixed |
 | `narrative_angle` in prompt | ✅ Fixed |
 | Fallback reasons logged | ✅ Fixed |
 | Truncation detection before preprocessing | ✅ Fixed |
-| **S7 calls run in PARALLEL** | ✅ Fixed (ThreadPoolExecutor, all sections concurrent) |
+| **S7 calls run in PARALLEL** | ✅ Fixed |
+| **Duplicate Header Generation** | ✅ Fixed (Stripped automatically) |
+| **Identity Slop (Name Mangle)** | ✅ Fixed (Bypasses LLM for contact info) |
+| **Negative Constraint Overload** | ✅ Fixed (Prompt is now affirmative) |
 
 **KNOWN BUGS — see `docs/S3_S7_ROOT_CAUSE_AUDIT.md` for full audit:**
 
@@ -265,7 +268,9 @@ With chunking, experience section = 3 chunks = 3 extra calls = ~75s more.
 | Cover note prompt de-anchored from Nicobar/Emote | ✅ Fixed |
 | DM prompt de-anchored from Nicobar/Emote | ✅ Fixed |
 | Post-humanizer bullet count check | ⚠️ Not yet added |
-| Two divergent resume versions (application_pack vs 10_final_resume.md) | ⚠️ Still a risk — humanizer output goes to application_pack, pre-humanizer goes to 10_final_resume.md |
+| **Humanizer Prompt Assertiveness** | ✅ Fixed (No longer minimal; heavily rewrites slop) |
+| **Template Placeholder Matching** | ✅ Fixed (`PREMIUM_` and `SIDEBAR_` tags supported) |
+| **Role Subtitle Derivation** | ✅ Fixed (Concise job title, not a full sentence) |
 
 ---
 

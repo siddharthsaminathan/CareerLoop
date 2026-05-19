@@ -1,0 +1,74 @@
+{
+  "input_resume_path": "output/council/varsha/varsha-hm-merchandiser/10_final_resume.md",
+  "final_resume_markdown_path": "output/council/varsha/varsha-hm-merchandiser/10_final_resume.md",
+  "normalized_resume_json_path": "output/resume_templates/varsha/latest/08_normalized_resume.json",
+  "candidate": "varsha",
+  "run_id": "latest",
+  "renderer": "careerloop.rendering.render_all_templates.render_resume",
+  "output_dir": "output/resume_templates/varsha/latest",
+  "templates": [
+    {
+      "template": "classic-ats",
+      "pages": "3",
+      "html": "output/resume_templates/varsha/latest/classic-ats.html",
+      "pdf": "output/resume_templates/varsha/latest/classic-ats.pdf",
+      "pdf_status": "ok"
+    },
+    {
+      "template": "modern-accent",
+      "pages": "3",
+      "html": "output/resume_templates/varsha/latest/modern-accent.html",
+      "pdf": "output/resume_templates/varsha/latest/modern-accent.pdf",
+      "pdf_status": "ok"
+    },
+    {
+      "template": "executive-clean",
+      "pages": "3",
+      "html": "output/resume_templates/varsha/latest/executive-clean.html",
+      "pdf": "output/resume_templates/varsha/latest/executive-clean.pdf",
+      "pdf_status": "ok"
+    },
+    {
+      "template": "compact-one-page",
+      "pages": "2",
+      "html": "output/resume_templates/varsha/latest/compact-one-page.html",
+      "pdf": "output/resume_templates/varsha/latest/compact-one-page.pdf",
+      "pdf_status": "ok"
+    },
+    {
+      "template": "technical-two-column",
+      "pages": "3",
+      "html": "output/resume_templates/varsha/latest/technical-two-column.html",
+      "pdf": "output/resume_templates/varsha/latest/technical-two-column.pdf",
+      "pdf_status": "ok"
+    },
+    {
+      "template": "product-engineer",
+      "pages": "3",
+      "html": "output/resume_templates/varsha/latest/product-engineer.html",
+      "pdf": "output/resume_templates/varsha/latest/product-engineer.pdf",
+      "pdf_status": "ok"
+    },
+    {
+      "template": "founder-operator",
+      "pages": "3",
+      "html": "output/resume_templates/varsha/latest/founder-operator.html",
+      "pdf": "output/resume_templates/varsha/latest/founder-operator.pdf",
+      "pdf_status": "ok"
+    },
+    {
+      "template": "compact-sidebar-premium",
+      "pages": "1",
+      "html": "output/resume_templates/varsha/latest/compact-sidebar-premium.html",
+      "pdf": "output/resume_templates/varsha/latest/compact-sidebar-premium.pdf",
+      "pdf_status": "ok"
+    },
+    {
+      "template": "design-brand-compact",
+      "pages": "1",
+      "html": "output/resume_templates/varsha/latest/design-brand-compact.html",
+      "pdf": "output/resume_templates/varsha/latest/design-brand-compact.pdf",
+      "pdf_status": "ok"
+    }
+  ]
+}

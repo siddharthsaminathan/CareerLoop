@@ -1023,6 +1023,7 @@ It influences resume via S6 (tone_guidance), and it influences humanizer via `co
 ### 2. Generic resume language
 
 **Root cause (primary):** `_S7_SYSTEM` assigns "senior technical writer" role with 8 negative constraints and no affirmative voice instructions. Model defaults to formal resume prose.  
+*(FIXED 2026-05-20: S7 Prompt overhauled to be affirmatively prescriptive. "Senior technical writer" replaced with "precise editor". Humanizer prompt rewritten to be highly aggressive and outcome-focused.)*
 **Root cause (secondary):** Pipeline A's `10_final_resume.md` is not used by Pipeline B's PDF generator — the PDF re-reads `cv.md`, so the Council's tailoring is lost.  
 **Root cause (tertiary):** Writing style from `modes/_shared.md` is calibrated for Pipeline B only — Pipeline A never reads `_profile.md`.
 

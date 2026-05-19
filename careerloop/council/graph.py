@@ -11,7 +11,6 @@ from langgraph.graph import END, StateGraph
 
 from careerloop.council.llm import CouncilLLMClient
 from careerloop.council.schemas import validate_payload, schema_instruction
-from careerloop.council.company_research import CompanyResearchAdapter, quality_score
 from careerloop.council.models import (
     CanonicalResume,
     ResumeSection,
@@ -56,6 +55,8 @@ class CouncilState(TypedDict):
     section_rewrites: Optional[Dict]
     application_pack: Optional[Dict]
     truth_guard_report: Optional[Dict]
+    pre_humanizer_resume: Optional[str]
+    humanizer_report: Optional[Dict]
 
     errors: list
 
@@ -63,23 +64,39 @@ class CouncilState(TypedDict):
 # ─── LLM client ───────────────────────────────────────────────────────────────
 
 def _call(system: str, user: str, temperature: float = 0.2,
-          max_tokens: int = None, label: str = "") -> NodeResult:
+          max_tokens: int = None, label: str = "", model_kind: str = "writer",
+          retries: int = 0) -> NodeResult:
     """Call the LLM and return a structured NodeResult.
 
     NEVER raises — failures are captured in NodeResult.success=False.
+    model_kind: "strategy" (deepseek-v4-pro) for S3-S6, "writer" (deepseek-chat) for S7-S8.
     """
-    client = CouncilLLMClient("strategy")
-    client.temperature = temperature
     tag = f" [{label}]" if label else ""
-    print(f"  ⟳ LLM call{tag}...", end=" ", flush=True)
-    try:
-        payload = client.complete_json(system, user, max_tokens=max_tokens)
-        print("done")
-        return NodeResult(success=True, confidence=0.8, payload=payload)
-    except Exception as e:
-        print(f"FAILED")
-        print(f"  !! LLM Call error: {e}")
-        return NodeResult(success=False, confidence=0.0, errors=[str(e)])
+    for attempt in range(retries + 1):
+        client = CouncilLLMClient(model_kind)
+        client.temperature = temperature
+        retry_tag = " (retry)" if attempt > 0 else ""
+        print(f"  ⟳ LLM call{tag}{retry_tag}...", end=" ", flush=True)
+        try:
+            payload = client.complete_json(system, user, max_tokens=max_tokens)
+            if payload.get("_parse_error") and attempt < retries:
+                import time; time.sleep(2)
+                continue
+            if isinstance(payload, dict) and not any(v for v in payload.values() if v):
+                if attempt < retries:
+                    import time; time.sleep(2)
+                    continue
+            print("done")
+            return NodeResult(success=True, confidence=0.8, payload=payload)
+        except Exception as e:
+            if attempt < retries:
+                import time; time.sleep(2)
+                continue
+            print(f"FAILED")
+            print(f"  !! LLM Call error: {e}")
+            return NodeResult(success=False, confidence=0.0, errors=[str(e)])
+    print("FAILED (all retries exhausted)")
+    return NodeResult(success=False, confidence=0.0, errors=["all retries exhausted"])
 
 
 def _has_errors(state: CouncilState) -> bool:
@@ -130,20 +147,95 @@ def _rewrite_preserves_section_structure(original: str, rewritten: str) -> tuple
 
     original_bullets = _count_markdown_bullets(original)
     rewritten_bullets = _count_markdown_bullets(rewritten)
-    if original_bullets and rewritten_bullets < original_bullets:
+    if original_bullets > 3 and rewritten_bullets < (original_bullets * 0.5):
         issues.append(f"bullet_count_dropped:{original_bullets}->{rewritten_bullets}")
 
-    if re.search(r"\.\s+[-*]\s+[A-Z0-9]", rewritten or ""):
+    # [^\S\n]+ = whitespace EXCLUDING newline — prevents matching across lines.
+    # "Built X.\n- Designed Y" is valid markdown, not a collapsed bullet.
+    if re.search(r"\.[^\S\n]+[-*]\s+[A-Z0-9]", rewritten or ""):
         issues.append("collapsed_bullet_marker")
 
-    stripped = (rewritten or "").strip()
-    if stripped and not stripped.endswith((".", ")", "]", ":", "%")) and "\n- " not in stripped[-80:]:
-        issues.append("possible_truncation")
+    if re.search(r"(?m)^\s*\*\*\s*$", rewritten or ""):
+        issues.append("orphan_emphasis_marker")
 
-    if len(stripped) < max(80, len((original or "").strip()) * 0.35):
-        issues.append(f"rewrite_too_short:{len(stripped)}<{len((original or '').strip())}")
+    original_has_heading = bool(re.search(r"(?m)^\s{0,3}#{1,6}\s+\S", original or ""))
+    rewritten_has_heading = bool(re.search(r"(?m)^\s{0,3}#{1,6}\s+\S", rewritten or ""))
+    if rewritten_has_heading and not original_has_heading:
+        issues.append("injected_heading_marker")
+
+    stripped = (rewritten or "").strip()
+    # Only check truncation on sections that use bullet markers in the original.
+    # Skills, languages, contact — these legitimately end without punctuation.
+    if stripped and original_bullets > 0:
+        last_line = stripped.rsplit("\n", 1)[-1].strip()
+        ends_cleanly = last_line.endswith((".", ")", "]", ":", "%", "|", "/"))
+        has_bullet_near_end = "\n- " in stripped[-120:]
+        if (not ends_cleanly
+                and not has_bullet_near_end
+                and len(last_line) > 60
+                and last_line[-1:].isalpha() and last_line[-1:].islower()):
+            issues.append("possible_truncation")
+
+    orig_len = len((original or "").strip())
+    if orig_len >= 60 and len(stripped) < orig_len * 0.35:
+        issues.append(f"rewrite_too_short:{len(stripped)}<{orig_len}")
 
     return not issues, issues
+
+
+def _strip_generated_heading_prefix(text: str, section_title: str) -> str:
+    """Remove accidental heading wrappers that S7 sometimes returns."""
+    out = (text or "").strip()
+    if not out:
+        return out
+
+    # Strip any leading/trailing loose ** markers
+    out = re.sub(r"^\s*\*\*\s*\n+", "", out)
+    
+    # Check if the first line is a heading
+    lines = out.splitlines()
+    while lines:
+        first = lines[0].strip()
+        first_clean = first.strip("*").strip()
+        if first_clean.startswith("#"):
+            heading = first_clean.lstrip("#").strip().lower()
+            target = (section_title or "").strip().lower()
+            if heading == target or heading in {"education", "skills", "summary", "profile", "work experience", "professional experience"}:
+                lines = lines[1:]
+                # if there is a loose ** right after the heading, strip it too
+                while lines and not lines[0].strip():
+                    lines = lines[1:]
+                if lines and lines[0].strip() == "**":
+                    lines = lines[1:]
+                continue
+        # Also remove any stray ** lines at the top
+        if first == "**" or first == "*":
+            lines = lines[1:]
+            continue
+        break
+        
+    while lines and not lines[0].strip():
+        lines = lines[1:]
+        
+    out = "\n".join(lines).strip()
+    out = re.sub(r"\n+\s*\*\*\s*$", "", out)
+    return out
+
+
+def _is_identity_or_contact_section(section: dict) -> bool:
+    section_id = (section.get("section_id") or "").strip().lower()
+    normalized_type = (section.get("normalized_type") or "").strip().lower()
+    raw = section.get("raw_text") or ""
+
+    if section_id == "intro" or normalized_type == "contact":
+        return True
+
+    has_email = bool(re.search(r"[\w.+-]+@[\w.-]+\.\w+", raw))
+    has_phone = bool(re.search(r"(?:\+?\d[\d\s().-]{7,}\d)", raw))
+    if (has_email or has_phone) and len(raw) < 420:
+        return True
+
+    return False
 
 
 def _rewrite_one_section(
@@ -158,6 +250,7 @@ def _rewrite_one_section(
     proof_points: list,
     claims_allowed: list,
     claims_not_allowed: list,
+    s7_rewrite_context: dict | None = None,
 ) -> tuple:
     """Worker for parallel S7 execution.
 
@@ -182,7 +275,7 @@ def _rewrite_one_section(
         chunk_ok = True
 
         for ci, chunk in enumerate(chunks):
-            chunk_prompt = json.dumps({
+            chunk_prompt_dict = {
                 "section_id": f"{sid}_chunk{ci + 1}",
                 "section_title": stitle,
                 "section_text": chunk,
@@ -196,12 +289,15 @@ def _rewrite_one_section(
                 "proof_points": proof_points,
                 "claims_allowed": claims_allowed,
                 "claims_not_allowed": claims_not_allowed,
-            }, ensure_ascii=False)
+            }
+            if s7_rewrite_context:
+                chunk_prompt_dict["company_context"] = s7_rewrite_context
+            chunk_prompt = json.dumps(chunk_prompt_dict, ensure_ascii=False)
 
             cresult = _call(
                 _S7_PER_SECTION_SYSTEM, chunk_prompt,
-                max_tokens=2500,
                 label=f"S7 {sid} {ci + 1}/{len(chunks)}",
+                model_kind="writer", retries=1,
             )
             if not cresult.success:
                 print(f"  !! S7 chunk {ci + 1} failed — aborting chunked rewrite for '{sid}'")
@@ -217,7 +313,7 @@ def _rewrite_one_section(
                 chunk_ok = False
                 break
 
-            rewritten_chunks.append(ctext)
+            rewritten_chunks.append(_strip_generated_heading_prefix(ctext, stitle))
 
         if not chunk_ok or not rewritten_chunks:
             reason = "chunked_rewrite_failed"
@@ -225,7 +321,13 @@ def _rewrite_one_section(
             return sid, None, reason
 
         rewritten = '\n\n'.join(rewritten_chunks)
+        rewritten = _strip_generated_heading_prefix(rewritten, stitle)
         rewritten = ResumeCompiler._preprocess_plaintext_cv(rewritten)
+        safe, issues = _rewrite_preserves_section_structure(raw, rewritten)
+        if not safe:
+            reason = f"chunk_structure_check_failed:{','.join(issues)}"
+            print(f"  !! S7 fallback '{sid}' → {reason} — keeping original")
+            return sid, None, reason
         rewrite_dict = {
             "section_id": sid,
             "original_text": raw,
@@ -241,7 +343,7 @@ def _rewrite_one_section(
         return sid, rewrite_dict, None
 
     # ── Standard single-call rewrite ──────────────────────────────────────
-    prompt = json.dumps({
+    prompt_dict = {
         "section_id": sid,
         "section_title": stitle,
         "section_text": raw,
@@ -255,9 +357,12 @@ def _rewrite_one_section(
         "proof_points": proof_points,
         "claims_allowed": claims_allowed,
         "claims_not_allowed": claims_not_allowed,
-    }, ensure_ascii=False)
+    }
+    if s7_rewrite_context:
+        prompt_dict["company_context"] = s7_rewrite_context
+    prompt = json.dumps(prompt_dict, ensure_ascii=False)
 
-    result = _call(_S7_PER_SECTION_SYSTEM, prompt, max_tokens=4000, label=f"S7 {sid}")
+    result = _call(_S7_PER_SECTION_SYSTEM, prompt, label=f"S7 {sid}", model_kind="writer", retries=1)
     if not result.success:
         reason = f"llm_error:{result.errors}"
         print(f"  !! S7 fallback '{sid}' → {reason}")
@@ -275,6 +380,7 @@ def _rewrite_one_section(
         print(f"  !! S7 fallback '{sid}' → {reason} — keeping original")
         return sid, None, reason
 
+    rewritten = _strip_generated_heading_prefix(rewritten, stitle)
     rewritten = ResumeCompiler._preprocess_plaintext_cv(rewritten)
     safe, issues = _rewrite_preserves_section_structure(raw, rewritten)
     if not safe:
@@ -339,19 +445,6 @@ def contract_node(state: CouncilState) -> CouncilState:
 
 # ─── System 3: Company Intelligence ───────────────────────────────────────────
 
-_S3_SCHEMA = schema_instruction("company_intelligence")
-
-_S3_SYSTEM = f"""You are a company researcher extracting signals from the job description and your knowledge.
-CRITICAL: Distinguish JD-extracted facts from recalled knowledge.
-NEVER invent funding amounts, employee counts, or revenue figures.
-For facts the JD does NOT reveal, use UNKNOWN and add them to missing_data and gaps.
-
-You will receive pre-gathered research snippets in the user prompt. Use them as grounding.
-Set grounding_status to READY if web/search sources are present, PARTIAL if only JD/manual, UNGROUNDED if no external sources.
-Always populate facts, inferences, sources, gaps, and role_implications lists.
-
-{_S3_SCHEMA}"""
-
 
 def company_intelligence_node(state: CouncilState) -> CouncilState:
     print("\n--- System 3: Company Intelligence ---")
@@ -359,78 +452,58 @@ def company_intelligence_node(state: CouncilState) -> CouncilState:
         print("  → SKIPPING (previous errors)")
         return state
 
-    # Hard skip: set CAREERLOOP_SKIP_S3=1 to bypass the LLM call entirely.
-    # S4 Role Decoder extracts everything needed from the JD directly.
-    # Use this when DeepSeek is slow/rate-limited or S3 is blocking the run.
-    if os.getenv("CAREERLOOP_SKIP_S3", "").lower() in {"1", "true", "yes"}:
-        print("  → S3 SKIPPED (CAREERLOOP_SKIP_S3=1) — using JD-only stub")
-        stub = {
-            "company": state.get("company", ""),
-            "summary": "Skipped — JD-only mode. S4 Role Decoder will extract role signals directly from JD.",
-            "grounding_status": "SKIPPED",
-            "facts": [],
-            "inferences": [],
-            "gaps": ["S3 skipped by CAREERLOOP_SKIP_S3=1"],
-            "sources": [],
-            "role_implications": [],
-            "fetched_at": datetime.now(timezone.utc).isoformat(),
-            "confidence": 0.0,
-        }
-        return {**state, "company_intelligence": stub}
-
     jd = state['jd_text']
     company = state['company']
     job_url = state.get('job_url', '')
-    fetched_at = datetime.now(timezone.utc).isoformat()
 
-    # P0.8: gather grounded research before sending to LLM
-    researcher = CompanyResearchAdapter()
-    bundle = researcher.gather(company=company, website=job_url, jd_text=jd)
-    q = quality_score(bundle)
-    print(f"  → Company research: {q['status']} | sources={q['source_count']} | score={q['score']}")
+    # Hard skip: set CAREERLOOP_SKIP_S3=1 to bypass entirely.
+    if os.getenv("CAREERLOOP_SKIP_S3", "").lower() in {"1", "true", "yes"}:
+        print("  → S3 SKIPPED (CAREERLOOP_SKIP_S3=1) — using JD-only stub")
+        from careerloop.company_intel import _build_jd_only_result, _extract_jd_signals
+        jd_signals = _extract_jd_signals(jd) if jd else {}
+        ci = _build_jd_only_result(
+            company=company, role_title=state.get("job_title", ""),
+            jd_text=jd, jd_signals=jd_signals, web_sources=[],
+            job_url=job_url, grounding_status="JD_ONLY", max_conf=0.45,
+        )
+        print(f"  → JD-only stub | conf={ci.confidence}")
+        return {**state, "company_intelligence": ci.to_dict()}
 
-    jd_snippet = jd[:2500] if len(jd) > 2500 else jd
-    sources_block = "\n".join(
-        f"[{s.source_type.upper()}] {s.title}: {s.snippet[:200]}"
-        for s in bundle.sources
-    ) or "No external sources available."
+    # Use the real Company Intelligence engine
+    from careerloop.company_intel import get_or_build_company_intelligence
 
-    prompt = (
-        f"Company: {company}\n"
-        f"Job URL: {job_url or 'unknown'}\n"
-        f"Grounding status: {bundle.grounding_status}\n"
-        f"Fetched at: {fetched_at}\n\n"
-        f"RESEARCH SOURCES:\n{sources_block}\n\n"
-        f"JD EXCERPT:\n{jd_snippet}\n\n"
-        f"Extract company intelligence. Facts not present in sources or JD must go in gaps[] and missing_data[]."
+    # Build candidate context from profile if available
+    candidate_context = None
+    profile = state.get("profile") or {}
+    if profile:
+        candidate_context = {
+            "target_roles": profile.get("target_roles", []),
+            "deal_breakers": profile.get("deal_breakers", []),
+            "narrative": profile.get("narrative", ""),
+        }
+
+    # Create LLM client for synthesis (writer model — faster, cheaper, sufficient for structured extraction)
+    llm = CouncilLLMClient("writer")
+
+    ci = get_or_build_company_intelligence(
+        company=company,
+        role_title=state.get("job_title", ""),
+        jd_text=jd,
+        job_url=job_url or None,
+        candidate_context=candidate_context,
+        llm_client=llm,
     )
-    result = _call(_S3_SYSTEM, prompt, label="S3 company intelligence")
-    if not result.success:
-        state.setdefault("errors", []).extend(result.errors)
-        return state
-    payload = result.payload
 
-    # Schema validation (P0.5) - fill in grounding fields from research bundle
-    payload.setdefault("grounding_status", bundle.grounding_status)
-    payload.setdefault("fetched_at", fetched_at)
-    payload.setdefault("facts", [])
-    payload.setdefault("inferences", [])
-    payload.setdefault("sources", [s.to_dict() for s in bundle.sources])
-    payload.setdefault("gaps", bundle.gaps)
-    payload.setdefault("role_implications", [])
+    print(
+        f"  → {ci.company_summary[:80]}... | "
+        f"grounding={ci.grounding_status} | "
+        f"conf={ci.confidence} | "
+        f"ttl={ci.ttl_days}d"
+    )
+    if ci.unknowns:
+        print(f"  → Unknowns: {', '.join(ci.unknowns[:3])}")
 
-    vresult = validate_payload("company_intelligence", payload)
-    if not vresult.ok:
-        for err in vresult.errors:
-            print(f"  !! Schema warning: {err}")
-    payload = vresult.payload
-
-    if payload.get("grounding_status") == "UNGROUNDED":
-        print(f"  !! Company intelligence is UNGROUNDED — model used training data only for {company}")
-
-    confidence = payload.get("confidence", 0.2 if payload.get("grounding_status") == "UNGROUNDED" else 0.5)
-    print(f"  → {payload.get('summary', '?')[:80]}... | confidence={confidence} | {payload.get('grounding_status', 'UNKNOWN')}")
-    return {**state, "company_intelligence": payload}
+    return {**state, "company_intelligence": ci.to_dict()}
 
 
 # ─── System 4: Role Decoder ───────────────────────────────────────────────────
@@ -462,7 +535,7 @@ def role_decode_node(state: CouncilState) -> CouncilState:
         f"JD: {state['jd_text']}\n"
         f"Company Context: {json.dumps(state['company_intelligence'])}"
     )
-    result = _call(_S4_SYSTEM, prompt, label="S4 role decode")
+    result = _call(_S4_SYSTEM, prompt, label="S4 role decode", model_kind="strategy")
     if not result.success:
         state.setdefault("errors", []).extend(result.errors)
         return state
@@ -494,8 +567,7 @@ EXAMPLE JSON OUTPUT:
   "evidence_bank": {{"Python": ["Built AI quality management system", "Multi-agent orchestration"]}},
   "strongest_proof_points": ["Shipped AI that automates enterprise workflows"],
   "claims_allowed": ["4+ years Python", "LLM API experience", "Agent architectures"],
-  "claims_not_allowed": ["10 years AI experience", "Deep learning expert"],
-  "private_constraints": ["min salary 25L", "Chennai location preferred"]
+  "claims_not_allowed": ["10 years AI experience", "Deep learning expert"]
 }}"""
 
 
@@ -514,7 +586,7 @@ def user_truth_node(state: CouncilState) -> CouncilState:
     ctx = get_runtime_context()
     today = state.get("today") or ctx["current_month"]
     system = _S5_SYSTEM.format(today=today) + f"\n\n{_S5_SCHEMA}"
-    result = _call(system, prompt, label="S5 user truth")
+    result = _call(system, prompt, label="S5 user truth", model_kind="strategy")
     if not result.success:
         state.setdefault("errors", []).extend(result.errors)
         return state
@@ -561,13 +633,19 @@ def positioning_node(state: CouncilState) -> CouncilState:
     # Only send public user_truth fields to LLM (never private_constraints)
     user_truth_safe = {k: v for k, v in (state.get('user_truth') or {}).items()
                        if k != 'private_constraints'}
+
+    # Extract s6_positioning_context from company intelligence if available
+    company_intel = state.get('company_intelligence') or {}
+    s6_ctx = company_intel.get('s6_positioning_context', {}) if isinstance(company_intel, dict) else {}
+
     prompt = (
-        f"Company: {json.dumps(state['company_intelligence'])}\n"
+        f"Company Intelligence (structured): {json.dumps(s6_ctx)}\n"
+        f"Company (full): {json.dumps(company_intel)}\n"
         f"Role: {json.dumps(state['role_decode'])}\n"
         f"User: {json.dumps(user_truth_safe)}"
     )
     system = _S6_SYSTEM + f"\n\n{_S6_SCHEMA}"
-    result = _call(system, prompt, label="S6 positioning")
+    result = _call(system, prompt, label="S6 positioning", model_kind="strategy")
     if not result.success:
         state.setdefault("errors", []).extend(result.errors)
         return state
@@ -581,21 +659,25 @@ def positioning_node(state: CouncilState) -> CouncilState:
 
 # ─── System 7: Section Rewrites ───────────────────────────────────────────────
 
-_S7_PER_SECTION_SYSTEM = """You are a senior resume writer rewriting ONE section of a candidate's resume for a specific role.
+_S7_PER_SECTION_SYSTEM = """You are a precise editor who sharpens specificity for recruiting impact.
+Your task is to rewrite ONE section of a candidate's resume so it aligns perfectly with the target role, while remaining rigorously honest.
 
-CRITICAL RULES — follow every one:
-1. Rewrite ONLY the text in "section_text". Preserve all [Text](URL) links exactly as-is.
-2. Every metric, number, and date must come verbatim from the original section_text. NEVER invent figures.
-3. Do NOT add claims from claims_not_allowed — these are explicitly forbidden by the evidence audit.
-4. Keep the exact same bullet count. Do NOT merge or drop bullets.
-5. Replace weak generic verbs (Analyzed, Supported, Assisted, Utilized, Collaborated) with stronger action verbs that match the role. Keep all metrics intact.
-6. Weave in role_keywords and address hidden_expectations naturally — one keyword per bullet maximum. No keyword-stuffing.
-7. The narrative_angle tells you HOW to position the candidate. Use it to choose which aspects of each bullet to lead with.
-8. things_to_downplay should be de-emphasized — move them to the end of bullets or omit if redundant.
-9. day_one_deliverables tell you what the hiring manager actually needs on day one — if a bullet is evidence of that capability, make it the lead bullet for the role.
-10. NO AI-slop: no 'spearheaded', 'leveraged', 'synergy', 'passionate', 'results-driven'.
+DO:
+1. Lead bullets with specific outcomes and concrete nouns, not abstract processes.
+2. Weave in `role_keywords` and address `hidden_expectations` naturally—make the candidate look like a native to this domain.
+3. If a bullet proves they can deliver the `day_one_deliverables`, move it to the top.
+4. Replace weak generic verbs (Analyzed, Supported, Assisted, Utilized, Collaborated) with strong, outcome-oriented action verbs.
+5. Emphasize exactly what the `narrative_angle` dictates.
 
-Return ONLY a JSON object with this exact shape (no markdown, no explanation):
+DO NOT:
+1. NEVER invent metrics, numbers, dates, or claims. Use ONLY what is in `section_text`.
+2. Do NOT add claims from `claims_not_allowed`.
+3. Do NOT use AI-slop or "cope" language (e.g., spearheaded, leveraged, synergy, passionate, results-driven).
+4. Preserve all `[Text](URL)` links exactly as-is.
+5. Keep the exact same bullet count. Do NOT merge or drop bullets.
+6. De-emphasize or omit `things_to_downplay`.
+
+Return ONLY a JSON object with this exact shape:
 {
   "section_id": "<same as input>",
   "rewritten_text": "<full rewritten markdown for this section>",
@@ -635,6 +717,15 @@ def section_rewrites_node(state: CouncilState) -> CouncilState:
     claims_allowed = user_truth_safe.get('claims_allowed', [])
     claims_not_allowed = user_truth_safe.get('claims_not_allowed', [])
 
+    # Extract s7_rewrite_context from company intelligence
+    company_intel = state.get('company_intelligence') or {}
+    s7_ctx = company_intel.get('s7_rewrite_context', {}) if isinstance(company_intel, dict) else {}
+
+    if s7_ctx:
+        print(f"  → S7 rewrite context: {s7_ctx.get('company_archetype', '?')[:60]}")
+        print(f"  → S7 language to use: {s7_ctx.get('language_to_use', [])}")
+        print(f"  → S7 language to avoid: {s7_ctx.get('language_to_avoid', [])}")
+
     rewrites: dict = {}
     # skipped maps section_id → reason string for diagnostics
     skipped: dict = {}
@@ -643,6 +734,7 @@ def section_rewrites_node(state: CouncilState) -> CouncilState:
         s for s in canonical.get('sections', [])
         if s.get('section_id') not in exclude
            and s.get('raw_text', '').strip()
+           and not _is_identity_or_contact_section(s)
     ]
 
     # ── Parallel execution: all sections run concurrently ─────────────────
@@ -660,10 +752,11 @@ def section_rewrites_node(state: CouncilState) -> CouncilState:
         proof_points=proof_points,
         claims_allowed=claims_allowed,
         claims_not_allowed=claims_not_allowed,
+        s7_rewrite_context=s7_ctx,
     )
 
-    n_workers = max(1, len(allowed_sections))
-    print(f"  → Launching {n_workers} parallel S7 workers...")
+    n_workers = min(3, max(1, len(allowed_sections)))
+    print(f"  → Launching {n_workers} parallel S7 workers ({len(allowed_sections)} sections)...")
 
     # Map future → original section order so we can print results in order
     future_to_sid: dict = {}
@@ -726,7 +819,7 @@ def truth_guard_node(state: CouncilState) -> CouncilState:
             # Only repair if there are issues beyond VERIFIED/WEAK
             flagged = [
                 c for c in claims
-                if c.risk_level in ("UNSUPPORTED", "EXAGGERATED", "FABRICATED")
+                if c.risk_level in ("EXAGGERATED", "FABRICATED")
             ]
             if flagged:
                 repaired = guard.repair(text, claims)
@@ -858,14 +951,14 @@ def assembly_node(state: CouncilState) -> CouncilState:
             user_prompt_parts.append(f"Strongest Proof Points: {json.dumps(top_proofs)}")
         user_prompt = "\n".join(user_prompt_parts)
 
-        cover_result = _call(_COVER_NOTE_SYSTEM, user_prompt)
+        cover_result = _call(_COVER_NOTE_SYSTEM, user_prompt, label="S8 cover note", model_kind="writer")
         cover_note = (
             cover_result.payload.get("cover_note", "")
             if cover_result.success
             else ""
         )
 
-        dm_result = _call(_RECRUITER_DM_SYSTEM, user_prompt)
+        dm_result = _call(_RECRUITER_DM_SYSTEM, user_prompt, label="S8 recruiter DM", model_kind="writer")
         recruiter_message = (
             dm_result.payload.get("recruiter_message", "")
             if dm_result.success
@@ -879,9 +972,10 @@ def assembly_node(state: CouncilState) -> CouncilState:
         # ─── Humanizer: Anti-AI detection + human normalization ──────────
         company_intel = state.get("company_intelligence", {})
         company_type = (
-            company_intel.get("maturity", "default")
-            if company_intel else "default"
-        )
+            company_intel.get("company_maturity")
+            or company_intel.get("maturity")
+            or "default"
+        ) if company_intel else "default"
 
         humanizer = Humanizer(llm_client=CouncilLLMClient("writer"))
 
@@ -959,7 +1053,32 @@ def assembly_node(state: CouncilState) -> CouncilState:
             ),
         )
 
-        return {**state, "application_pack": pack.to_dict()}
+        # Save pre-humanizer text + humanizer report for visibility
+        humanizer_report = {
+            "resume": {
+                "slop_flags": len(resume_result.flags),
+                "changed_lines": resume_result.changes_made,
+                "realism_concerns": len(resume_result.recruiter_concerns),
+                "recruiter_concerns": resume_result.recruiter_concerns,
+            },
+            "cover_note": {
+                "slop_flags": len(cover_result.flags),
+                "changed_lines": cover_result.changes_made,
+                "realism_concerns": len(cover_result.recruiter_concerns),
+            },
+            "recruiter_message": {
+                "slop_flags": len(dm_result_h.flags),
+                "changed_lines": dm_result_h.changes_made,
+                "realism_concerns": len(dm_result_h.recruiter_concerns),
+            },
+        }
+
+        return {
+            **state,
+            "application_pack": pack.to_dict(),
+            "pre_humanizer_resume": final_resume,
+            "humanizer_report": humanizer_report,
+        }
 
     except Exception as e:
         msg = f"Safe Assembler failed: {e}"

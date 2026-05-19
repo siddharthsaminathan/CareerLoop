@@ -1,0 +1,54 @@
+{
+  "rewrites": {
+    "profile": {
+      "section_id": "profile",
+      "original_text": "AI Product and Systems Engineer with 4+ years of experience building and shipping production AI systems across data infrastructure, enterprise workflows, and consumer applications. Focus on taking systems from concept to real users, improving them through measurable outcomes such as latency, cost, and user retention. Experience spans multi-agent orchestration, real-time pipelines, and memory-driven AI systems, with a strong emphasis on reliability and iteration in production environments.\n\n\n\n---",
+      "rewritten_text": "Backend AI engineer with 4+ years of experience building and shipping production AI systems across data infrastructure, enterprise workflows, and consumer applications. 2 years of production LLM expertise (OpenAI, Claude, Gemini) focused on building the intelligence layer for customer personalization and clienteling tools. Proven track record of taking systems from concept to real users, improving them through measurable outcomes such as latency, cost, and user retention. Experience spans multi-agent orchestration, real-time pipelines, and memory-driven AI systems, with a strong emphasis on reliability and iteration in production environments.",
+      "change_type": "REWRITE",
+      "change_reason": "Positioned candidate as backend AI engineer with production LLM expertise, aligning with role's need for intelligence layer and clienteling tools, while downplaying frontend and retail gaps.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [],
+      "risk_level": "low"
+    },
+    "achievements": {
+      "section_id": "achievements",
+      "original_text": "- Built Emote from zero: grew to 450+ users with 40+ power users, 13–15% weekly retention with zero paid acquisition. (https://emotenow.app/)\n- Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson; recognised for improving reporting reliability and delivery.\n\n---",
+      "rewritten_text": "- Built Emote from zero: grew to 450+ users with 40+ power users, 13–15% weekly retention with zero paid acquisition. (https://emotenow.app/)\n- Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson; recognised for improving reporting reliability and delivery.",
+      "change_type": "KEEP",
+      "change_reason": "Bullets already use strong verbs and contain defensible metrics; no weak verbs to replace and no forbidden claims present.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [
+        "450+ users",
+        "40+ power users",
+        "13–15% weekly retention",
+        "zero paid acquisition",
+        "Azure to PostgreSQL migration",
+        "improving reporting reliability and delivery"
+      ],
+      "risk_level": "low"
+    }
+  },
+  "forbidden_edits": [],
+  "skipped": [
+    "siddharth_saminathan",
+    "ai_engineer_omnex_systems_aquapro_ai",
+    "data_engineer_akkodis_ab_ericsson_client",
+    "co_founder_ai_product_engineer_emote_emotenow_app",
+    "data_analyst_positive_integers_pvt_ltd",
+    "skills",
+    "education",
+    "languages"
+  ],
+  "skipped_reasons": {
+    "siddharth_saminathan": "structure_check_failed:possible_truncation",
+    "ai_engineer_omnex_systems_aquapro_ai": "structure_check_failed:collapsed_bullet_marker",
+    "data_engineer_akkodis_ab_ericsson_client": "structure_check_failed:collapsed_bullet_marker",
+    "co_founder_ai_product_engineer_emote_emotenow_app": "structure_check_failed:collapsed_bullet_marker",
+    "data_analyst_positive_integers_pvt_ltd": "structure_check_failed:collapsed_bullet_marker,possible_truncation",
+    "skills": "structure_check_failed:possible_truncation",
+    "education": "structure_check_failed:collapsed_bullet_marker,possible_truncation",
+    "languages": "structure_check_failed:possible_truncation,rewrite_too_short:41<41"
+  }
+}

@@ -452,6 +452,22 @@ class ResumeCompiler:
     # ── Assemble ───────────────────────────────────────────────────────────
 
     @staticmethod
+    def _strip_leading_duplicate_heading(section_title: str, text: str) -> str:
+        lines = (text or "").splitlines()
+        if not lines:
+            return text
+        first = lines[0].strip()
+        if first.startswith("## "):
+            incoming = first[3:].strip().lower()
+            target = (section_title or "").strip().lower()
+            if incoming == target:
+                lines = lines[1:]
+                while lines and not lines[0].strip():
+                    lines = lines[1:]
+                return "\n".join(lines)
+        return text
+
+    @staticmethod
     def assemble(
         resume: CanonicalResume,
         rewrites: SectionRewrites,
@@ -487,6 +503,7 @@ class ResumeCompiler:
             if section.section_id in rewrites.rewrites:
                 rw = rewrites.rewrites[section.section_id].rewritten_text
                 if rw:
+                    rw = ResumeCompiler._strip_leading_duplicate_heading(section.section_title, rw)
                     output_parts.append(rw)
                 elif section.raw_text:
                     output_parts.append(section.raw_text)  # fallback

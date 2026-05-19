@@ -1,0 +1,25 @@
+{
+  "one_line_positioning": "AI Product Engineer who builds intelligence layers from concept to production",
+  "narrative_angle": "Backend AI engineer with 2 years of production LLM expertise, focused on building the intelligence core for customer personalization and clienteling tools; eager to adapt to design-led retail environments.",
+  "lead_strengths": [
+    "LLM API production experience (multi-model routing, tool-calling)",
+    "End-to-end AI system shipping (0 to 450+ users)",
+    "Cost and latency optimization (98% cost reduction)",
+    "Self-starter ownership (co-founder, built product from scratch)"
+  ],
+  "proof_points_to_emphasize": [
+    "Built consumer AI companion with 13–15% weekly retention and 98% cost reduction",
+    "Shipped enterprise AI system improving quality workflow consistency and reducing latency 36%",
+    "Automated user acquisition via personalized bot, increasing activation from 20% to 75%"
+  ],
+  "things_to_downplay": [
+    "Limited front-end development experience",
+    "Non-IIT/BITS/NIT engineering degree",
+    "Lack of retail domain experience",
+    "No direct CEO-facing or design team collaboration"
+  ],
+  "tone_guidance": "Confident in technical AI execution, honest about learning edges in frontend and retail, business-outcome focused.",
+  "recruiter_first_impression_target": "A product-minded AI engineer who thinks in business outcomes and can own the intelligence layer end-to-end, despite needing ramp-up on frontend and retail domain.",
+  "application_stance": "STRETCH",
+  "reasoning": "Strong AI engineering match with production LLM, Python, SQL, and ownership experience. However, missing must-have frontend development skills and top-tier engineering degree, plus no retail/design domain exposure. The role requires building brand-consistent frontends and working with CEO/design teams, which are unproven areas. Could be a stretch if the company is flexible on frontend for the right AI profile."
+}

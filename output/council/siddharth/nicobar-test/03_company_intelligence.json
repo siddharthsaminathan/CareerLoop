@@ -1,0 +1,139 @@
+{
+  "company_name": "Nicobar Design Pvt. Ltd.",
+  "role_title": "AI Product Engineer",
+  "source_urls": [
+    "https://example.com"
+  ],
+  "grounding_status": "PARTIAL",
+  "confidence": 0.5,
+  "generated_at": "2026-05-19T16:31:15.071686+00:00",
+  "cache_key": "c13d632e5c559a4c",
+  "ttl_days": 30,
+  "company_summary": "Nicobar Design Pvt. Ltd.. with a focus on ai_ml, ai_ml, retail_tech.",
+  "business_model": "",
+  "revenue_model": "",
+  "customer_segment": "",
+  "product_category": "",
+  "india_presence": "UNKNOWN",
+  "company_maturity": "UNKNOWN",
+  "growth_signals": [],
+  "stability_signals": [],
+  "hiring_urgency": "UNKNOWN",
+  "role_reason": "",
+  "likely_success_criteria": [],
+  "likely_failure_modes": [],
+  "culture_signals": [],
+  "communication_style": "",
+  "founder_or_leadership_signals": "",
+  "org_maturity": "UNKNOWN",
+  "technical_maturity": "UNKNOWN",
+  "ai_maturity": "UNKNOWN",
+  "likely_stack": "",
+  "interview_implications": "",
+  "compensation_signals": "",
+  "red_flags": [],
+  "positioning_implications": "",
+  "language_to_use": [
+    "AI-native",
+    "intelligence layer",
+    "brand consistency",
+    "clienteling",
+    "conversational BI"
+  ],
+  "language_to_avoid": [
+    "generic",
+    "off-the-shelf",
+    "enterprise-y",
+    "dashboard-heavy",
+    "batch processing"
+  ],
+  "candidate_angles": [],
+  "transferability_angles": [],
+  "risks_to_soften": [
+    "lack of retail domain experience",
+    "limited front-end skills",
+    "no experience with CEO/executive stakeholders",
+    "no exposure to design workflows"
+  ],
+  "claims_to_avoid": [],
+  "resume_strategy_hint": "",
+  "outreach_strategy_hint": "",
+  "interview_strategy_hint": "",
+  "s6_positioning_context": {
+    "company_archetype": "Nicobar Design Pvt. Ltd.. with a focus on ai_ml, ai_ml, retail_tech.",
+    "business_model": "",
+    "company_maturity": "UNKNOWN",
+    "india_presence": "UNKNOWN",
+    "culture_signals": [],
+    "hiring_urgency": "UNKNOWN",
+    "positioning_implications": "",
+    "language_to_use": [
+      "AI-native",
+      "intelligence layer",
+      "brand consistency",
+      "clienteling",
+      "conversational BI"
+    ],
+    "language_to_avoid": [
+      "generic",
+      "off-the-shelf",
+      "enterprise-y",
+      "dashboard-heavy",
+      "batch processing"
+    ],
+    "risks_to_soften": [
+      "lack of retail domain experience",
+      "limited front-end skills",
+      "no experience with CEO/executive stakeholders",
+      "no exposure to design workflows"
+    ],
+    "claims_to_avoid": [],
+    "candidate_angles": [],
+    "red_flags": [],
+    "grounding_status": "PARTIAL",
+    "confidence": 0.0
+  },
+  "s7_rewrite_context": {
+    "company_archetype": "Nicobar Design Pvt. Ltd.. with a focus on ai_ml, ai_ml, retail_tech.",
+    "company_tone": "professional and direct",
+    "product_context": "",
+    "business_problem": "",
+    "role_success_criteria": [],
+    "language_to_use": [
+      "AI-native",
+      "intelligence layer",
+      "brand consistency",
+      "clienteling",
+      "conversational BI"
+    ],
+    "language_to_avoid": [
+      "generic",
+      "off-the-shelf",
+      "enterprise-y",
+      "dashboard-heavy",
+      "batch processing"
+    ],
+    "proof_points_to_prefer": [
+      "measurable outcomes with numbers",
+      "specific, defensible achievements",
+      "evidence of ownership and initiative"
+    ],
+    "risks_to_soften": [
+      "lack of retail domain experience",
+      "limited front-end skills",
+      "no experience with CEO/executive stakeholders",
+      "no exposure to design workflows"
+    ],
+    "avoid_overclaiming_about": [],
+    "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact."
+  },
+  "unknowns": [
+    "Company revenue or funding details",
+    "Team size and structure",
+    "Current tech stack details",
+    "Specific AI tools already in use",
+    "Company culture specifics beyond JD tone",
+    "Number of stores or customers",
+    "Exact timeline for AI transformation"
+  ]
+}

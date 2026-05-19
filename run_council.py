@@ -412,9 +412,46 @@ def run_council(job_id: str, person: str = "siddharth", intent: str = "INTERESTE
             lines += ["\n## Warnings\n"] + [f"- {x}\n" for x in qr["warnings"]]
         (output_dir / "15_quality_report.md").write_text("".join(lines), encoding="utf-8")
 
+    # Humanizer pre/post artifacts
+    pre_humanizer = final_state.get("pre_humanizer_resume", "")
+    if pre_humanizer:
+        (output_dir / "12_pre_humanizer_resume.md").write_text(pre_humanizer, encoding="utf-8")
+    humanizer_rpt = final_state.get("humanizer_report")
+    if humanizer_rpt:
+        with open(output_dir / "13_humanizer_report.json", "w", encoding="utf-8") as f:
+            json.dump(humanizer_rpt, f, indent=2)
+    if pre_humanizer and pack.get("resume_markdown"):
+        import difflib
+        diff_lines = list(
+            difflib.unified_diff(
+                pre_humanizer.splitlines(),
+                pack.get("resume_markdown", "").splitlines(),
+                fromfile="pre_humanizer",
+                tofile="final_resume",
+                lineterm="",
+            )
+        )
+        (output_dir / "14_humanizer_diff.patch").write_text("\n".join(diff_lines), encoding="utf-8")
+
     # Full run log
     with open(output_dir / "17_council_run_log.json", "w", encoding="utf-8") as f:
         json.dump(final_state, f, indent=2, ensure_ascii=False, default=str)
+
+    # Render HTML and PDFs
+    if pack.get("resume_markdown"):
+        try:
+            from careerloop.rendering.render_all_templates import render_resume
+            print(f"\n{'-' * 72}")
+            print("  Rendering 9 Templates...")
+            render_resume(
+                input_path=output_dir / "10_final_resume.md",
+                candidate=person_label,
+                run_id=job_id,
+                out_dir=output_dir / "rendered",
+                generate_pdf=True
+            )
+        except Exception as e:
+            print(f"  !! Rendering failed: {e}")
 
     print(f"\n{'-' * 72}")
     print(f"  Artifacts saved -> {output_dir}")

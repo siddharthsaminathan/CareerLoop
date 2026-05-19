@@ -1,0 +1,86 @@
+{
+  "total_years_experience": 6.67,
+  "confirmed_skills": [
+    {
+      "skill": "Python",
+      "years": 6.67,
+      "evidence": "Used Python across all roles, including building AI systems, data pipelines, and backend services."
+    },
+    {
+      "skill": "SQL",
+      "years": 6.67,
+      "evidence": "Designed ETL workflows, worked with PostgreSQL, and built reporting dashboards."
+    },
+    {
+      "skill": "LLM API experience",
+      "years": 2.5,
+      "evidence": "Built production AI systems using LLM APIs, multi-model routing, and tool-calling orchestration."
+    },
+    {
+      "skill": "API integrations",
+      "years": 2.5,
+      "evidence": "Built REST APIs with FastAPI, WebSocket real-time pipelines, and integrated internal services."
+    },
+    {
+      "skill": "data pipelines",
+      "years": 4,
+      "evidence": "Led migration of enterprise data platform, redesigned data pipelines, and built end-to-end ETL lifecycles."
+    }
+  ],
+  "weak_skills": [
+    "Front-end development with design sensibility",
+    "E-commerce or retail data experience",
+    "CRM or marketing automation platforms",
+    "Degree from top engineering institute (IIT/BITS/NIT equivalent)"
+  ],
+  "evidence_bank": {
+    "Python": [
+      "Built AI quality management system at Omnex",
+      "Developed Emote backend from scratch",
+      "Built data pipelines at Akkodis/Ericsson",
+      "Used Python in all professional roles since 2019"
+    ],
+    "SQL": [
+      "PostgreSQL migration and optimization at Akkodis",
+      "Built SQL-based ETL workflows for dashboards",
+      "Used PostgreSQL for Emote backend"
+    ],
+    "LLM API experience": [
+      "Multi-agent orchestration at Omnex using tool-calling",
+      "Multi-model routing and prompt optimization at Emote",
+      "Reduced inference cost via model selection and caching"
+    ],
+    "API integrations": [
+      "Built FastAPI REST APIs for Emote",
+      "Implemented SSE streaming and WebSocket pipelines",
+      "Orchestration layer with tool-calling and service routing at Omnex"
+    ],
+    "data pipelines": [
+      "Led Azure to on-prem PostgreSQL migration for Ericsson",
+      "Redesigned reporting data pipelines across data owners",
+      "Built end-to-end ETL lifecycle for Power BI and Tableau dashboards"
+    ]
+  },
+  "strongest_proof_points": [
+    "Built Emote from 0 to 450+ users with 13–15% weekly retention and zero paid acquisition",
+    "Reduced inference cost per conversation from $1.20 to $0.023 through optimization",
+    "Improved latency from ~15s to ~3s in production AI companion system",
+    "Built AI product manager that monitors system behavior and detects anomalies",
+    "Led enterprise data platform migration for Ericsson, improving reporting reliability"
+  ],
+  "claims_allowed": [
+    "4+ years Python experience",
+    "LLM API experience",
+    "Agent architectures and multi-agent orchestration",
+    "Production AI systems and data infrastructure",
+    "SQL proficiency",
+    "API integrations and data pipelines"
+  ],
+  "claims_not_allowed": [
+    "10 years AI experience",
+    "Deep learning expert",
+    "E-commerce data experience",
+    "Front-end development skills",
+    "IIT/BITS/NIT degree"
+  ]
+}
