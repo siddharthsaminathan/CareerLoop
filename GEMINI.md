@@ -68,6 +68,7 @@ When using [Gemini CLI](https://github.com/google-gemini/gemini-cli), the follow
 | `/career-ops-batch` | `/career-ops batch` | Batch processing |
 | `/career-ops-patterns` | `/career-ops patterns` | Analyze rejection patterns |
 | `/career-ops-followup` | `/career-ops followup` | Follow-up cadence tracker |
+| `/career-ops-audit` | `/career-ops-audit` | Perform a 16-part data quality audit on the latest Resume Council output pipeline |
 | /careerloop-product-lead | /careerloop-product-lead | Full product review — vision alignment, tracker update, next actions |
 
 ## Available Skills

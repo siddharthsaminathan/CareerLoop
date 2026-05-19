@@ -1,0 +1,21 @@
+description = "Perform a rigorous 16-part data quality audit on the latest Resume Council output pipeline."
+
+prompt = """
+You are career-ops in audit mode, invoking the resume-quality-auditor skill.
+
+Arguments passed:
+$ARGUMENTS
+
+Load the audit context and execute:
+1. Target Directory: Identify the latest candidate and run in output/council/{candidate}/{job_id}/
+2. Perform the 16-part data quality audit comparing:
+   - V_ORIGINAL: Master/canonical CV (test data/{candidate}_resume_*.md or cv.md)
+   - V_TAILORED: output/council/{candidate}/{job_id}/12_pre_humanizer_resume.md
+   - V_FINAL: output/council/{candidate}/{job_id}/10_final_resume.md
+3. Calculate and report the Tailoring Delta % (changed bullets, repositioned sections).
+4. Calculate the Humanization Delta % and list AI-slop words detected/purged.
+5. Audit rendering placeholders (`{{`), premium template blocks, sidebar integrity, CSS stability, and years of experience preservation.
+6. Verify PDF health and working hyperlinks.
+
+Run `python3 careerloop/rendering/test_validator.py` or print a comprehensive PASS/FAIL report for each of the 16 parts as specified in the resume-quality-auditor skill.
+"""

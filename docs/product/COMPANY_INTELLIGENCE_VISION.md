@@ -4,7 +4,7 @@
 
 **Date:** 2026-05-18  
 **Status:** Product Vision — guiding architecture, not implementation spec  
-**Implementation spec:** [company-intel-design.md](file:///Users/siddharthsaminathan/Projects/CareerLoop/docs/engineering/specs/company-intel-design.md)
+**Implementation spec:** [company-intel-design.md](../engineering/specs/company-intel-design.md)
 
 ---
 
