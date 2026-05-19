@@ -1,0 +1,108 @@
+{
+  "total_years_experience": 4.1,
+  "confirmed_skills": [
+    {
+      "skill": "Fashion Merchandising",
+      "years": 4,
+      "evidence": "Managed buying and merchandising for women's bottom-wear categories at Go Colors; built fashion category from scratch at SuperK."
+    },
+    {
+      "skill": "Assortment Planning",
+      "years": 4,
+      "evidence": "Expanded assortment from 5 to 25+ subcategories; analyzed sales for 200+ SKUs and recommended adjustments that improved sell-through by 15%."
+    },
+    {
+      "skill": "Vendor and PO Management",
+      "years": 4,
+      "evidence": "Managed PO/PI coordination across 20+ suppliers and 10+ factories, ensuring 95% on-time delivery."
+    },
+    {
+      "skill": "Advanced Excel and Data Analysis",
+      "years": 4,
+      "evidence": "Used advanced Excel (VLOOKUP, pivot tables, dashboards) for tracking sell-through, AOV, margin; built WIP trackers."
+    },
+    {
+      "skill": "Womenswear Trend Expertise",
+      "years": 4,
+      "evidence": "Experience in women’s and girls’ bottom-wear categories including leggings, track pants, ethnic bottoms; launched casualwear and accessories lines."
+    },
+    {
+      "skill": "Omnichannel Retail",
+      "years": 1,
+      "evidence": "At SuperK, managed fashion category across online channels and tech-enabled retail network of 3+ COCO stores; previously sold via Instagram and Swiggy Minis."
+    },
+    {
+      "skill": "SAP/ERP Proficiency",
+      "years": 2,
+      "evidence": "Basic SAP for PO/inventory tracking at Go Colors; utilized Metabase dashboards for performance analysis."
+    },
+    {
+      "skill": "Cross-Functional Collaboration",
+      "years": 4,
+      "evidence": "Partnered with marketing, operations, supply chain, and VM teams to launch campaigns and improve stock availability."
+    },
+    {
+      "skill": "Negotiation Skills",
+      "years": 4,
+      "evidence": "Negotiated vendor pricing, MOQs, and sourcing terms, improving product margins from 22% to 35%."
+    }
+  ],
+  "weak_skills": [
+    "SAP/ERP Proficiency",
+    "OTB Management"
+  ],
+  "evidence_bank": {
+    "Fashion Merchandising": [
+      "Assisted buying and merchandising for women’s and girls’ bottom-wear at Go Colors",
+      "Built fashion category from near zero at SuperK"
+    ],
+    "Assortment Planning": [
+      "Expanded fashion assortment from 5 to 25+ subcategories",
+      "Analyzed weekly sales for 200+ SKUs, improving sell-through by 15%"
+    ],
+    "Vendor and PO Management": [
+      "Managed PO/PI coordination across 20+ suppliers, 95% on-time delivery"
+    ],
+    "Advanced Excel": [
+      "Built WIP trackers, dashboards using VLOOKUP and pivot tables"
+    ],
+    "Womenswear Trend Expertise": [
+      "Worked on leggings, track pants, ethnic bottoms; launched kids-wear sub-category"
+    ],
+    "Omnichannel Retail": [
+      "Managed online channels and COCO stores at SuperK; sold via Instagram and Swiggy Minis"
+    ],
+    "SAP/ERP Proficiency": [
+      "Basic SAP for PO/Inventory tracking"
+    ],
+    "Cross-Functional Collaboration": [
+      "Collaborated with marketing, operations, supply chain to launch campaigns and reduce stock-outs"
+    ],
+    "Negotiation": [
+      "Negotiated vendor pricing, MOQs, improved margins from 22% to 35%"
+    ]
+  },
+  "strongest_proof_points": [
+    "Built fashion category from near zero, generating ₹ 3.5 lakh in revenue within two months and improving margins from 22% to 35%",
+    "Expanded assortment from 5 to 25+ subcategories by onboarding 12+ vendors and benchmarking against value retailers",
+    "Launched 3+ new sub-categories including kids-wear, boosting category sales by 15% in the first quarter",
+    "Negotiated supplier terms and pricing, consistently improving product margins while maintaining competitive retail pricing"
+  ],
+  "claims_allowed": [
+    "4+ years of fashion merchandising and buying experience",
+    "Expertise in assortment planning and category management",
+    "Proven vendor negotiation and PO management skills",
+    "Advanced Excel proficiency with data-driven merchandising",
+    "Womenswear and multi-category trend expertise",
+    "Omnichannel retail experience",
+    "P&L ownership and margin improvement",
+    "Cross-functional collaboration and stakeholder management"
+  ],
+  "claims_not_allowed": [
+    "Extensive SAP/ERP proficiency (only basic knowledge)",
+    "Deep OTB management expertise (not explicitly evidenced)",
+    "10+ years of fashion industry experience",
+    "Fast-fashion supply chain specialization",
+    "Experience with luxury or high-end designer brands"
+  ]
+}

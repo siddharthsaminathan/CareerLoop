@@ -1,0 +1,52 @@
+{
+  "normalized_title": "Senior Merchandiser",
+  "seniority": "senior",
+  "must_haves": [
+    "fashion merchandising experience",
+    "OTB and assortment planning",
+    "vendor and PO management",
+    "Advanced Excel and data analysis",
+    "womenswear trend expertise",
+    "omnichannel retail experience",
+    "SAP/ERP proficiency",
+    "cross-functional collaboration",
+    "negotiation skills"
+  ],
+  "nice_to_haves": [
+    "BI tools (Power BI, Metabase)",
+    "NIFT or equivalent fashion degree",
+    "fast-fashion/value retail experience",
+    "category launch or new market entry",
+    "WIP tracker and production calendar management"
+  ],
+  "hidden_expectations": [
+    "P&L ownership mindset",
+    "localization of global assortments",
+    "data-driven storytelling",
+    "proactive supply chain problem-solving",
+    "stakeholder influence without authority"
+  ],
+  "day_one_deliverables": [
+    "assume ownership of jersey OTB and inventory levels",
+    "set up weekly sales and sell-through reporting",
+    "audit vendor production timelines and delivery schedules"
+  ],
+  "screening_keywords": [
+    "OTB",
+    "assortment planning",
+    "fashion merchandising",
+    "vendor management",
+    "P&L",
+    "omnichannel",
+    "SAP",
+    "womenswear",
+    "negotiation"
+  ],
+  "disqualifiers": [
+    "no fashion/apparel merchandising background",
+    "no OTB or assortment planning experience",
+    "no vendor negotiation experience",
+    "no Advanced Excel skills"
+  ],
+  "confidence": 0.9
+}

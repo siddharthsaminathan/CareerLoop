@@ -1,13 +1,19 @@
 import argparse
+import json
 import os
 import subprocess
 import mistune
 import re
+from dataclasses import asdict
 from pathlib import Path
 
 from careerloop.rendering.normalizer import normalize
 from careerloop.rendering.resume_model import NormalizedResume
 from careerloop.rendering.template_registry import TEMPLATE_REGISTRY, TEMPLATES_DIR
+
+
+class NormalizedResumeValidationError(ValueError):
+    pass
 
 
 def _inline_md(text: str) -> str:
@@ -66,6 +72,23 @@ def _validate_html(output_path, html):
         )
 
 
+def _validate_normalized_resume(resume: NormalizedResume, source_path: Path) -> None:
+    errors = []
+    if not (resume.header.name or resume.header.email or resume.header.phone):
+        errors.append("missing header identity/contact")
+    if not resume.profile:
+        errors.append("missing profile/summary")
+    if not resume.experience:
+        errors.append("missing parsed experience entries")
+    if resume.experience and not any(exp.bullets for exp in resume.experience):
+        errors.append("experience entries have no bullets")
+
+    if errors:
+        raise NormalizedResumeValidationError(
+            f"Normalizer produced invalid resume from {source_path}: " + "; ".join(errors)
+        )
+
+
 def generate_comparison_report(out_dir, results):
     report_path = out_dir / "template_comparison.md"
     content = "# Resume Template Comparison\n\n"
@@ -78,23 +101,15 @@ def generate_comparison_report(out_dir, results):
         f.write(content)
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Render 7 visual templates from final resume")
-    parser.add_argument("--input", required=True, help="Path to final_resume.md or .html")
-    parser.add_argument("--candidate", required=True, help="Candidate name/id")
-    parser.add_argument("--run-id", default="latest", help="Run ID")
-
-    args = parser.parse_args()
-
-    input_path = Path(args.input)
+def render_resume(input_path, candidate: str, run_id: str = "latest", out_dir=None, generate_pdf: bool = True) -> dict:
+    input_path = Path(input_path)
     if not input_path.exists():
-        print(f"Error: {input_path} not found.")
-        return
+        raise FileNotFoundError(f"{input_path} not found.")
 
-    out_dir = Path(f"output/resume_templates/{args.candidate}/{args.run_id}")
+    out_dir = Path(out_dir) if out_dir else Path(f"output/resume_templates/{candidate}/{run_id}")
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    text = input_path.read_text()
+    text = input_path.read_text(encoding="utf-8")
 
     # ── Data contract assertion ──────────────────────────────────────────
     # ONE normalizer, ONE data model, consumed by ALL renderers.
@@ -102,6 +117,8 @@ def main():
     resume = normalize(text)
     assert isinstance(resume, NormalizedResume), \
         "Renderer must consume NormalizedResume — normalizer returned wrong type"
+
+    _validate_normalized_resume(resume, input_path)
 
     header = resume.header
 
@@ -197,7 +214,7 @@ def main():
     placeholders = {
         "LANG": "en",
         "PAGE_WIDTH": "8.5in",
-        "NAME": header.name or args.candidate.title(),
+        "NAME": header.name or candidate.title(),
         "PHONE": header.phone,
         "EMAIL": header.email,
         "LINKEDIN_URL": header.linkedin_url or "#",
@@ -226,32 +243,60 @@ def main():
         if not tmpl_file.exists():
             continue
 
-        tmpl_html = tmpl_file.read_text()
+        tmpl_html = tmpl_file.read_text(encoding="utf-8")
 
         # Replace placeholders
         for k, v in placeholders.items():
             tmpl_html = tmpl_html.replace(f"{{{{{k}}}}}", str(v))
 
         out_html = out_dir / f"{tmpl_id}.html"
-        out_html.write_text(tmpl_html)
+        out_html.write_text(tmpl_html, encoding="utf-8")
 
         # Post-render validation: FAIL HARD on raw **, em dashes, arrows
         _validate_html(out_html, tmpl_html)
 
+        # Deep validator (rules 1-9): log failures as errors but non-fatal on missing template content
+        try:
+            from careerloop.rendering.validator import ResumeValidator
+            v = ResumeValidator(tmpl_html, strict=False)
+            v.validate()
+            v_dict = v.to_dict()
+            if not v_dict["passed"]:
+                print(f"  [VALIDATOR] {tmpl_id}: {v_dict['error_count']} error(s), "
+                      f"{v_dict['warning_count']} warning(s)")
+                for rule_id, rule in v_dict["rules"].items():
+                    if not rule["passed"] and rule["severity"] == "ERROR":
+                        print(f"    FAIL {rule_id}: {rule['details']}")
+            val_path = out_dir / f"{tmpl_id}_validation.json"
+            val_path.write_text(
+                __import__("json").dumps(v_dict, indent=2), encoding="utf-8"
+            )
+        except Exception as ve:
+            print(f"  [VALIDATOR] {tmpl_id}: validation error (non-fatal): {ve}")
+
         out_pdf = out_dir / f"{tmpl_id}.pdf"
 
-        # Run generate-pdf.mjs
-        cmd = ["node", "generate-pdf.mjs", str(out_html), str(out_pdf)]
-        try:
-            res = subprocess.run(cmd, capture_output=True, text=True, check=True)
-            pages = 1
-            for line in res.stdout.split("\n"):
-                if "Pages:" in line:
-                    pages = line.split(":")[-1].strip()
-            results.append({"template": tmpl_id, "pages": pages, "pdf": str(out_pdf)})
-        except subprocess.CalledProcessError as e:
-            print(f"Error generating PDF for {tmpl_id}: {e.stderr}")
-            results.append({"template": tmpl_id, "pages": "?", "pdf": str(out_pdf)})
+        pages = "skipped"
+        pdf_status = "skipped"
+        if generate_pdf:
+            cmd = ["node", "generate-pdf.mjs", str(out_html), str(out_pdf)]
+            try:
+                res = subprocess.run(cmd, capture_output=True, text=True, check=True)
+                pages = 1
+                pdf_status = "ok"
+                for line in res.stdout.split("\n"):
+                    if "Pages:" in line:
+                        pages = line.split(":")[-1].strip()
+            except (subprocess.CalledProcessError, FileNotFoundError) as e:
+                pdf_status = f"failed: {e}"
+                print(f"Error generating PDF for {tmpl_id}: {e}")
+        results.append({
+            "template": tmpl_id,
+            "pages": pages,
+            "html": str(out_html),
+            "pdf": str(out_pdf),
+            "pdf_status": pdf_status,
+        })
 
     generate_comparison_report(out_dir, results)
 
@@ -260,8 +305,35 @@ def main():
     for res in results:
         idx_content += f'<li><a href="{res["template"]}.pdf">{res["template"]}</a></li>'
     idx_content += "</ul></body></html>"
-    (out_dir / "template_preview_index.html").write_text(idx_content)
-    print(f"✅ Generated {len(results)} templates in {out_dir}")
+    (out_dir / "template_preview_index.html").write_text(idx_content, encoding="utf-8")
+
+    normalized_json = out_dir / "08_normalized_resume.json"
+    normalized_json.write_text(json.dumps(asdict(resume), indent=2, ensure_ascii=False), encoding="utf-8")
+
+    metadata = {
+        "input_resume_path": str(input_path),
+        "final_resume_markdown_path": str(input_path),
+        "normalized_resume_json_path": str(normalized_json),
+        "candidate": candidate,
+        "run_id": run_id,
+        "renderer": "careerloop.rendering.render_all_templates.render_resume",
+        "output_dir": str(out_dir),
+        "templates": results,
+    }
+    (out_dir / "render_metadata.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
+    print(f"Generated {len(results)} templates in {out_dir}")
+    return metadata
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Render 7 visual templates from final resume")
+    parser.add_argument("--input", required=True, help="Path to final_resume.md or .html")
+    parser.add_argument("--candidate", required=True, help="Candidate name/id")
+    parser.add_argument("--run-id", default="latest", help="Run ID")
+    parser.add_argument("--no-pdf", action="store_true", help="Render HTML only")
+
+    args = parser.parse_args()
+    render_resume(args.input, args.candidate, args.run_id, generate_pdf=not args.no_pdf)
 
 
 if __name__ == "__main__":

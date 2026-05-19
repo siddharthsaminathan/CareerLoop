@@ -1,4 +1,7 @@
 import json
+import os
+import re
+from datetime import datetime, timezone
 from typing import Optional, Dict
 
 from typing_extensions import TypedDict
@@ -6,6 +9,8 @@ from typing_extensions import TypedDict
 from langgraph.graph import END, StateGraph
 
 from careerloop.council.llm import CouncilLLMClient
+from careerloop.council.schemas import validate_payload, schema_instruction
+from careerloop.council.company_research import CompanyResearchAdapter, quality_score
 from careerloop.council.models import (
     CanonicalResume,
     ResumeSection,
@@ -49,23 +54,29 @@ class CouncilState(TypedDict):
     positioning_strategy: Optional[Dict]
     section_rewrites: Optional[Dict]
     application_pack: Optional[Dict]
+    truth_guard_report: Optional[Dict]
 
     errors: list
 
 
 # ─── LLM client ───────────────────────────────────────────────────────────────
 
-def _call(system: str, user: str, temperature: float = 0.2) -> NodeResult:
+def _call(system: str, user: str, temperature: float = 0.2,
+          max_tokens: int = None, label: str = "") -> NodeResult:
     """Call the LLM and return a structured NodeResult.
 
     NEVER raises — failures are captured in NodeResult.success=False.
     """
     client = CouncilLLMClient("strategy")
     client.temperature = temperature
+    tag = f" [{label}]" if label else ""
+    print(f"  ⟳ LLM call{tag}...", end=" ", flush=True)
     try:
-        payload = client.complete_json(system, user)
+        payload = client.complete_json(system, user, max_tokens=max_tokens)
+        print("done")
         return NodeResult(success=True, confidence=0.8, payload=payload)
     except Exception as e:
+        print(f"FAILED")
         print(f"  !! LLM Call error: {e}")
         return NodeResult(success=False, confidence=0.0, errors=[str(e)])
 
@@ -73,6 +84,31 @@ def _call(system: str, user: str, temperature: float = 0.2) -> NodeResult:
 def _has_errors(state: CouncilState) -> bool:
     """Return True if any prior node accumulated errors."""
     return bool(state.get("errors"))
+
+
+def _count_markdown_bullets(text: str) -> int:
+    return len(re.findall(r"(?m)^\s*[-*]\s+\S", text or ""))
+
+
+def _rewrite_preserves_section_structure(original: str, rewritten: str) -> tuple[bool, list[str]]:
+    issues: list[str] = []
+
+    original_bullets = _count_markdown_bullets(original)
+    rewritten_bullets = _count_markdown_bullets(rewritten)
+    if original_bullets and rewritten_bullets < original_bullets:
+        issues.append(f"bullet_count_dropped:{original_bullets}->{rewritten_bullets}")
+
+    if re.search(r"\.\s+[-*]\s+[A-Z0-9]", rewritten or ""):
+        issues.append("collapsed_bullet_marker")
+
+    stripped = (rewritten or "").strip()
+    if stripped and not stripped.endswith((".", ")", "]", ":", "%")) and "\n- " not in stripped[-80:]:
+        issues.append("possible_truncation")
+
+    if len(stripped) < max(80, len((original or "").strip()) * 0.35):
+        issues.append(f"rewrite_too_short:{len(stripped)}<{len((original or '').strip())}")
+
+    return not issues, issues
 
 
 # ─── System 1: Document Parser ───────────────────────────────────────────────
@@ -115,27 +151,18 @@ def contract_node(state: CouncilState) -> CouncilState:
 
 # ─── System 3: Company Intelligence ───────────────────────────────────────────
 
-_S3_SYSTEM = """You are a company researcher extracting signals from the job description and your knowledge.
-CRITICAL: Distinguish JD-extracted facts from recalled knowledge. Mark source clearly.
-JD text contains rich signals: company mission, team structure, tech stack, culture hints, hiring posture.
-Extract what the JD reveals. For facts NOT in the JD, mark confidence LOW and add to missing_data.
-NEVER invent funding amounts, employee counts, or revenue figures.
+_S3_SCHEMA = schema_instruction("company_intelligence")
 
-EXAMPLE JSON OUTPUT:
-{
-    "summary": "Nicobar is a D2C lifestyle brand...",
-    "business_model": "D2C e-commerce, premium home and apparel",
-    "india_presence": "Delhi HQ, retail stores across India (from JD context)",
-    "maturity": "growth",
-    "hiring_urgency": "HIGH",
-    "culture_signals": ["design-driven", "founder-led", "CEO-office role signals flat hierarchy"],
-    "red_flags": [],
-    "positioning_implications": "Lead with consumer-facing AI product experience",
-    "interview_implications": "Expect design-thinking + business-outcome focus",
-    "signals_from_jd": ["CEO-office role", "AI-native ambition", "retail/e-commerce domain", "4 product areas"],
-    "confidence": 0.5,
-    "missing_data": ["funding_round", "employee_count", "recent_layoffs", "glassdoor_rating"]
-}"""
+_S3_SYSTEM = f"""You are a company researcher extracting signals from the job description and your knowledge.
+CRITICAL: Distinguish JD-extracted facts from recalled knowledge.
+NEVER invent funding amounts, employee counts, or revenue figures.
+For facts the JD does NOT reveal, use UNKNOWN and add them to missing_data and gaps.
+
+You will receive pre-gathered research snippets in the user prompt. Use them as grounding.
+Set grounding_status to READY if web/search sources are present, PARTIAL if only JD/manual, UNGROUNDED if no external sources.
+Always populate facts, inferences, sources, gaps, and role_implications lists.
+
+{_S3_SCHEMA}"""
 
 
 def company_intelligence_node(state: CouncilState) -> CouncilState:
@@ -146,22 +173,56 @@ def company_intelligence_node(state: CouncilState) -> CouncilState:
 
     jd = state['jd_text']
     company = state['company']
+    job_url = state.get('job_url', '')
+    fetched_at = datetime.now(timezone.utc).isoformat()
 
-    # Build a prompt grounded in the JD — not pure LLM recall
-    jd_snippet = jd[:3000] if len(jd) > 3000 else jd  # keep prompt reasonable
+    # P0.8: gather grounded research before sending to LLM
+    researcher = CompanyResearchAdapter()
+    bundle = researcher.gather(company=company, website=job_url, jd_text=jd)
+    q = quality_score(bundle)
+    print(f"  → Company research: {q['status']} | sources={q['source_count']} | score={q['score']}")
+
+    jd_snippet = jd[:2500] if len(jd) > 2500 else jd
+    sources_block = "\n".join(
+        f"[{s.source_type.upper()}] {s.title}: {s.snippet[:200]}"
+        for s in bundle.sources
+    ) or "No external sources available."
+
     prompt = (
-        f"Company: {company}\n\n"
-        f"JD EXCERPT (extract signals from this):\n{jd_snippet}\n\n"
-        f"Extract company intelligence from the JD text above. "
-        f"For facts the JD does NOT reveal, use UNKNOWN and add to missing_data."
+        f"Company: {company}\n"
+        f"Job URL: {job_url or 'unknown'}\n"
+        f"Grounding status: {bundle.grounding_status}\n"
+        f"Fetched at: {fetched_at}\n\n"
+        f"RESEARCH SOURCES:\n{sources_block}\n\n"
+        f"JD EXCERPT:\n{jd_snippet}\n\n"
+        f"Extract company intelligence. Facts not present in sources or JD must go in gaps[] and missing_data[]."
     )
-    result = _call(_S3_SYSTEM, prompt)
+    result = _call(_S3_SYSTEM, prompt, label="S3 company intelligence")
     if not result.success:
         state.setdefault("errors", []).extend(result.errors)
         return state
     payload = result.payload
-    confidence = payload.get("confidence", 0.5)
-    print(f"  → {payload.get('summary', '?')[:80]}... | confidence={confidence}")
+
+    # Schema validation (P0.5) - fill in grounding fields from research bundle
+    payload.setdefault("grounding_status", bundle.grounding_status)
+    payload.setdefault("fetched_at", fetched_at)
+    payload.setdefault("facts", [])
+    payload.setdefault("inferences", [])
+    payload.setdefault("sources", [s.to_dict() for s in bundle.sources])
+    payload.setdefault("gaps", bundle.gaps)
+    payload.setdefault("role_implications", [])
+
+    vresult = validate_payload("company_intelligence", payload)
+    if not vresult.ok:
+        for err in vresult.errors:
+            print(f"  !! Schema warning: {err}")
+    payload = vresult.payload
+
+    if payload.get("grounding_status") == "UNGROUNDED":
+        print(f"  !! Company intelligence is UNGROUNDED — model used training data only for {company}")
+
+    confidence = payload.get("confidence", 0.2 if payload.get("grounding_status") == "UNGROUNDED" else 0.5)
+    print(f"  → {payload.get('summary', '?')[:80]}... | confidence={confidence} | {payload.get('grounding_status', 'UNKNOWN')}")
     return {**state, "company_intelligence": payload}
 
 
@@ -194,7 +255,7 @@ def role_decode_node(state: CouncilState) -> CouncilState:
         f"JD: {state['jd_text']}\n"
         f"Company Context: {json.dumps(state['company_intelligence'])}"
     )
-    result = _call(_S4_SYSTEM, prompt)
+    result = _call(_S4_SYSTEM, prompt, label="S4 role decode")
     if not result.success:
         state.setdefault("errors", []).extend(result.errors)
         return state
@@ -226,6 +287,9 @@ EXAMPLE JSON OUTPUT:
 }}"""
 
 
+_S5_SCHEMA = schema_instruction("user_truth")
+
+
 def user_truth_node(state: CouncilState) -> CouncilState:
     print("\n--- System 5: User Truth ---")
     if _has_errors(state):
@@ -235,15 +299,22 @@ def user_truth_node(state: CouncilState) -> CouncilState:
         f"Resume: {json.dumps(state['canonical_resume'])}\n"
         f"Role: {json.dumps(state['role_decode'])}"
     )
-    # Inject runtime context — never hardcode dates
     ctx = get_runtime_context()
     today = state.get("today") or ctx["current_month"]
-    system = _S5_SYSTEM.format(today=today)
-    result = _call(system, prompt)
+    system = _S5_SYSTEM.format(today=today) + f"\n\n{_S5_SCHEMA}"
+    result = _call(system, prompt, label="S5 user truth")
     if not result.success:
         state.setdefault("errors", []).extend(result.errors)
         return state
-    return {**state, "user_truth": result.payload}
+
+    # P0.3 + P0.5: validate schema and strip private_constraints before it propagates
+    payload = result.payload
+    payload.pop("private_constraints", None)
+    vresult = validate_payload("user_truth", payload)
+    if not vresult.ok:
+        for err in vresult.errors:
+            print(f"  !! Schema warning (user_truth): {err}")
+    return {**state, "user_truth": vresult.payload}
 
 
 # ─── System 6: Positioning Strategy ───────────────────────────────────────────
@@ -266,74 +337,153 @@ EXAMPLE JSON OUTPUT:
 }"""
 
 
+_S6_SCHEMA = schema_instruction("positioning_strategy")
+
+
 def positioning_node(state: CouncilState) -> CouncilState:
     print("\n--- System 6: Positioning Strategy ---")
     if _has_errors(state):
         print("  → SKIPPING (previous errors)")
         return state
+
+    # Only send public user_truth fields to LLM (never private_constraints)
+    user_truth_safe = {k: v for k, v in (state.get('user_truth') or {}).items()
+                       if k != 'private_constraints'}
     prompt = (
         f"Company: {json.dumps(state['company_intelligence'])}\n"
         f"Role: {json.dumps(state['role_decode'])}\n"
-        f"User: {json.dumps(state['user_truth'])}"
+        f"User: {json.dumps(user_truth_safe)}"
     )
-    result = _call(_S6_SYSTEM, prompt)
-    if not result.success:
-        state.setdefault("errors", []).extend(result.errors)
-        return state
-    return {**state, "positioning_strategy": result.payload}
-
-
-# ─── System 7: Section Rewrites ───────────────────────────────────────────────
-
-_S7_SYSTEM = """You are a senior technical writer. Rewrite only the allowed sections in JSON.
-CRITICAL:
-1. Preserve all links [Text](URL).
-2. No 'cope' language or AI-slop.
-3. No unsupported claims.
-4. Do NOT touch private strategy metadata sections.
-Only rewrite sections whose section_id appears in preservation_contract.ordering_rules
-and are NOT in preservation_contract.sections_to_exclude.
-
-EXAMPLE JSON OUTPUT:
-{
-  "rewrites": {
-    "experience": {
-      "section_id": "experience",
-      "original_text": "Built AI at XYZ Corp.",
-      "rewritten_text": "Built production AI systems at XYZ Corp.",
-      "change_type": "KEEP",
-      "change_reason": "Added specificity",
-      "claims_added": [],
-      "claims_removed": [],
-      "evidence_used": ["Python ML pipeline (cv line 15)"],
-      "risk_level": "low"
-    }
-  }
-}"""
-
-
-def section_rewrites_node(state: CouncilState) -> CouncilState:
-    print("\n--- System 7: Section Rewrites ---")
-    if _has_errors(state):
-        print("  → SKIPPING (previous errors)")
-        return state
-    prompt = (
-        f"Resume: {json.dumps(state['canonical_resume'])}\n"
-        f"Contract: {json.dumps(state['preservation_contract'])}\n"
-        f"Strategy: {json.dumps(state['positioning_strategy'])}\n"
-        f"User Truth: {json.dumps(state['user_truth'])}"
-    )
-    result = _call(_S7_SYSTEM, prompt)
+    system = _S6_SYSTEM + f"\n\n{_S6_SCHEMA}"
+    result = _call(system, prompt, label="S6 positioning")
     if not result.success:
         state.setdefault("errors", []).extend(result.errors)
         return state
     payload = result.payload
-    rewrites = payload.get("rewrites", {})
-    print(
-        f"  → Rewrote {len(rewrites)} sections: "
-        f"{', '.join(list(rewrites.keys()))}"
-    )
-    return {**state, "section_rewrites": payload}
+    vresult = validate_payload("positioning_strategy", payload)
+    if not vresult.ok:
+        for err in vresult.errors:
+            print(f"  !! Schema warning (positioning): {err}")
+    return {**state, "positioning_strategy": vresult.payload}
+
+
+# ─── System 7: Section Rewrites ───────────────────────────────────────────────
+
+_S7_PER_SECTION_SYSTEM = """You are a senior technical writer rewriting ONE resume section.
+CRITICAL RULES:
+1. Only rewrite the text in "section_text". Preserve all [Text](URL) links exactly.
+2. Use only claims listed in claims_allowed. Never invent new achievements or numbers.
+3. Do NOT add AI-slop: no 'spearheaded', 'leveraged', 'synergy', 'passionate'.
+4. Keep the same bullet count as the original. Do NOT collapse multiple bullets into one.
+5. Match the tone in tone_guidance exactly.
+6. Weave in role_keywords naturally — do not keyword-stuff.
+
+Return ONLY a JSON object with this exact shape (no markdown, no explanation):
+{
+  "section_id": "<same as input>",
+  "rewritten_text": "<full rewritten markdown for this section>",
+  "change_type": "KEEP|EXPAND|REWRITE|TRIM",
+  "change_reason": "<one sentence>",
+  "claims_added": [],
+  "claims_removed": [],
+  "evidence_used": [],
+  "risk_level": "low|medium|high"
+}"""
+
+_S7_SYSTEM = _S7_PER_SECTION_SYSTEM
+
+
+def section_rewrites_node(state: CouncilState) -> CouncilState:
+    print("\n--- System 7: Section Rewrites (per-section loop) ---")
+    if _has_errors(state):
+        print("  → SKIPPING (previous errors)")
+        return state
+
+    user_truth_safe = {k: v for k, v in (state.get('user_truth') or {}).items()
+                       if k != 'private_constraints'}
+    strategy = state.get('positioning_strategy') or {}
+    role_decode = state.get('role_decode') or {}
+    contract = state.get('preservation_contract') or {}
+    exclude = set(contract.get('sections_to_exclude', []))
+    canonical = state.get('canonical_resume') or {}
+
+    tone = strategy.get('tone_guidance', '')
+    role_keywords = role_decode.get('screening_keywords', [])[:10]
+    proof_points = user_truth_safe.get('strongest_proof_points', [])[:5]
+    claims_allowed = user_truth_safe.get('claims_allowed', [])
+
+    rewrites: dict = {}
+    skipped: list = []
+
+    allowed_sections = [
+        s for s in canonical.get('sections', [])
+        if s.get('section_id') not in exclude
+           and s.get('raw_text', '').strip()
+    ]
+
+    for section in allowed_sections:
+        sid = section.get('section_id', '')
+        stitle = section.get('section_title', sid)
+        raw = section.get('raw_text', '')
+        normalized_type = section.get('normalized_type', '')
+
+        if normalized_type in {"experience", "work_experience", "professional_experience"} and len(raw) > 3500:
+            print(f"  !! S7 skipped long structured section '{sid}' ({len(raw)} chars) - keeping original")
+            skipped.append(sid)
+            continue
+
+        prompt = json.dumps({
+            "section_id": sid,
+            "section_title": stitle,
+            "section_text": raw,
+            "tone_guidance": tone,
+            "role_keywords": role_keywords,
+            "proof_points": proof_points,
+            "claims_allowed": claims_allowed,
+        }, ensure_ascii=False)
+
+        result = _call(_S7_PER_SECTION_SYSTEM, prompt, max_tokens=4000, label=f"S7 {sid}")
+        if not result.success:
+            print(f"  !! S7 failed for section '{sid}': {result.errors}")
+            skipped.append(sid)
+            continue
+
+        payload = result.payload
+        rewritten = payload.get('rewritten_text', '').strip()
+        if not rewritten:
+            print(f"  !! S7 returned empty rewrite for '{sid}' — keeping original")
+            skipped.append(sid)
+            continue
+
+        rewritten = ResumeCompiler._preprocess_plaintext_cv(rewritten)
+        safe, issues = _rewrite_preserves_section_structure(raw, rewritten)
+        if not safe:
+            print(f"  !! S7 rejected rewrite for '{sid}' ({', '.join(issues)}) - keeping original")
+            skipped.append(sid)
+            continue
+
+        rewrites[sid] = {
+            "section_id": sid,
+            "original_text": raw,
+            "rewritten_text": rewritten,
+            "change_type": payload.get('change_type', 'REWRITE'),
+            "change_reason": payload.get('change_reason', ''),
+            "claims_added": payload.get('claims_added', []),
+            "claims_removed": payload.get('claims_removed', []),
+            "evidence_used": payload.get('evidence_used', []),
+            "risk_level": payload.get('risk_level', 'low'),
+        }
+        print(f"  → [{payload.get('change_type','?')}] {stitle} ({len(rewritten)} chars)")
+
+    if skipped:
+        print(f"  !! Skipped {len(skipped)} sections (kept originals): {skipped}")
+    print(f"  → Rewrote {len(rewrites)}/{len(allowed_sections)} sections")
+
+    return {**state, "section_rewrites": {
+        "rewrites": rewrites,
+        "forbidden_edits": list(exclude),
+        "skipped": skipped,
+    }}
 
 
 # ─── System 7.5: Truth Guard ──────────────────────────────────────────────────
@@ -402,11 +552,14 @@ def truth_guard_node(state: CouncilState) -> CouncilState:
         f"{report.exaggerated} exaggerated, {report.fabricated} fabricated"
     )
 
+    import dataclasses
+    report_dict = dataclasses.asdict(report)
+
     return {
         **state,
         "section_rewrites": rewrites,
         "errors": errors,
-        "truth_guard_report": report,
+        "truth_guard_report": report_dict,
     }
 
 

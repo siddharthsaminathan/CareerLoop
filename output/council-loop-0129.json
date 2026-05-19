@@ -1,0 +1,438 @@
+{
+  "job_id": "loop-0129",
+  "intent": "INTERESTED",
+  "job_title": "Gen AI Python Developer",
+  "company": "Deloitte",
+  "job_url": "https://www.linkedin.com/jobs/view/4399934799",
+  "jd_text": "Job Title: Gen AI Python Developer\nCompany: Deloitte\nLocation: Chennai, Tamil Nadu, India\nEmployment Type: Full-Time, Hybrid\nExperience Level: Mid-Senior (4-8 years)\n\nKey Responsibilities:\n- Design, develop, and deploy intelligent agents and multi-agent systems using Python frameworks\n- Apply agentic design patterns for autonomous, collaborative AI solutions handling complex tasks\n- Create robust API calls and microservices integrating AI models with existing platforms\n- Develop clean, efficient Python code for generative AI applications\n- Collaborate with data scientists, product managers, and engineers on requirements\n- Implement testing protocols and CI/CD pipelines for production AI systems\n- Stay current with generative AI advancements and agentic frameworks\n\nRequired Skills & Qualifications:\n- Bachelor's degree in computer science, AI, or related field (or equivalent experience)\n- 4+ years professional software development experience with Python focus\n- Proven AI agent design and implementation experience\n- Deep knowledge of agentic frameworks: LangChain, CrewAI, AutoGen\n- RESTful APIs and microservice architecture experience\n- Familiarity with generative AI concepts (LLMs, RAG, fine-tuning)\n- Cloud platform experience (AWS, GCP, Azure)\n- Containerization technologies: Docker, Kubernetes\n- Git proficiency\n\nPreferred Qualifications:\n- Production-scale AI systems deployment experience\n- Asynchronous Python programming knowledge (asyncio)\n- SQL and NoSQL database experience\n- Data security and privacy best practices understanding\n- Portfolio demonstrating AI agent/application projects\n\nAbout the Role:\nPart of Deloitte's Technology & Transformation practice, this position focuses on converting data\ninto actionable information supporting data-driven decision-making through advanced analytics and\nAI technologies.",
+  "cv_text": "# Siddharth Saminathan\n**AI Product Engineer · Systems Architect**\n+91 7299707403 · siddharthsaminathan99@gmail.com · Chennai, India\nWebsite: https://emotenow.app/ · github.com/siddharthsaminathan\n\n---\n\n## Profile\n\nAI Product and Systems Engineer with 4+ years of experience building and shipping production AI systems across data infrastructure, enterprise workflows, and consumer applications. Focus on taking systems from concept to real users, improving them through measurable outcomes such as latency, cost, and user retention. Experience spans multi-agent orchestration, real-time pipelines, and memory-driven AI systems, with a strong emphasis on reliability and iteration in production environments.\n\n---\n\n## Work Experience\n\n### AI Engineer — Omnex Systems (AquaPro AI)\n**2025 – Present | Chennai, India**\n\n- Built a production AI system enabling AI-assisted quality and control workflows (DFMEA, PFMEA, Control Plans, Process Flows, 5W2H, 5 Whys, 8D), improving consistency and reducing manual analysis effort for engineering teams.\n- Designed an orchestration layer using tool-calling: selects tools, routes data across internal services, and executes multi-step workflows end-to-end (generate, validate, update).\n- Enabled the system to understand production hierarchies and categories, map inputs to the right structures, and suggest updates based on existing data.\n- Implemented feedback-aware flows: retrieves similar past concerns, links them, updates records, and suggests impactful actions to users.\n- Reduced response latency from ~12.5s to ~8s by restructuring the pipeline and consolidating model calls.\n- Improved output consistency and reduced failures with validation layers, retry handling, and fallback logic.\n- Implemented observability (structured logging, tracing, and metrics) to monitor system behavior and debug production issues.\n\n### Co-Founder, AI Product Engineer — Emote (emotenow.app)\n**2024 – Present**\n\n- Built a production AI companion system for hyper-personalized emotional support — users feel remembered and do not start over each session.\n- Designed a memory system that tracks emotional context, relationships, and cause-effect patterns across 100s of conversations, improving relevance per user.\n- Built the backend from scratch (FastAPI, Redis, PostgreSQL, hosted on Fly.io) with SSE streaming and WebSocket-based real-time pipelines, caching, and multi-model routing.\n- Scaled from 0 to 450+ users, with 40+ power users and ~13–15% weekly cohort retention (pre-PMF).\n- Reduced inference cost per conversation from ~$1.20 to ~$0.023 through model selection, caching, and prompt optimization.\n- Improved latency from ~15s to ~3s through pipeline optimization and streaming.\n- Built an internal AI product manager that monitors system behaviour, detects anomalies, and improves observability across the production AI stack.\n- Built a Reddit bot to automate user acquisition; reduced outreach time from ~6–8 hours to ~30–40 minutes, enabling 50–100 hyper-personalized DMs per session, increasing activation from ~20% to ~75% and weekly retention from ~5% to ~13%.\n\n### Data Engineer — Akkodis AB (Ericsson Client)\n**Nov 2022 – Nov 2024 | Sweden**\n\n- Led migration of enterprise data platform from Azure to on-prem PostgreSQL cloud environment.\n- Owned redesign of data pipelines powering reporting systems across data owners and stakeholders.\n- Built and designed end-to-end ETL lifecycle for dashboards (Power BI, Tableau) used by business stakeholders.\n- Ensured data reliability and consistency during large-scale migration through data quality audits.\n\n### Data Analyst — Positive Integers Pvt Ltd\n**Sep 2019 – May 2020 | Chennai, India**\n\n- Built Tableau dashboards for an NBFC to analyze credit risk and loan repayment behaviour.\n- Built real-time Grafana dashboards for ID by SPI Cinemas to track full order-to-table lifecycle.\n- Built SQL-based ETL workflows to extract, transform, and load data from operational source systems into reporting layers.\n\n---\n\n## Skills\n\n**Programming & Data:** Python, SQL\n\n**Backend & Systems:** FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets, SSE streaming\n\n**AI / ML Systems:** LLM APIs, RAG pipelines, embeddings, prompt design, multi-model routing, multi-agent orchestration, memory systems\n\n**Infra & Deployment:** Docker, Fly.io, AWS (basics), logging, observability, performance optimization\n\n**Data & Analytics:** ETL pipelines, Power BI, Tableau, data validation, pipeline optimization\n\n---\n\n## Education\n\n**M.Sc. Statistics and Machine Learning** — Linköping University, Sweden · 2020–2022\n- Thesis: ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples).\n- Applied autoencoders for feature compression and representation learning.\n- Used PCA for dimensionality reduction and feature selection.\n- Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns.\n\n**B.Tech Computer Science & Engineering** — SRM University, India · 2016–2020\n\n---\n\n## Achievements\n\n- Built Emote from zero: grew to 450+ users with 40+ power users, 13–15% weekly retention with zero paid acquisition. (https://emotenow.app/)\n- Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson; recognised for improving reporting reliability and delivery.\n\n---\n\n## Languages\n\nEnglish (Fluent) · Tamil (Native) · Hindi\n",
+  "profile": {
+    "candidate": {
+      "full_name": "Siddharth Saminathan",
+      "location": "Chennai",
+      "linkedin": "linkedin.com/in/siddharth-saminathan"
+    },
+    "target_roles": {
+      "primary": [
+        "AI Engineer",
+        "Applied AI Engineer",
+        "ML Engineer"
+      ],
+      "archetypes": [
+        {
+          "name": "AI/ML Engineer",
+          "level": "Senior",
+          "fit": "primary"
+        },
+        {
+          "name": "AI Product Engineer",
+          "level": "Senior",
+          "fit": "primary"
+        },
+        {
+          "name": "LLM Engineer",
+          "level": "Senior",
+          "fit": "secondary"
+        }
+      ]
+    },
+    "narrative": {
+      "headline": "Applied AI Engineer — LLMs, RAG, Agentic Pipelines",
+      "superpowers": [
+        "Building LLM-powered products end-to-end",
+        "RAG pipelines and vector search",
+        "FastAPI, Python, PostgreSQL"
+      ]
+    },
+    "compensation": {
+      "target_range": "₹35L-60L",
+      "currency": "INR",
+      "minimum": "₹25L",
+      "location_flexibility": "Hybrid or Remote"
+    },
+    "location": {
+      "country": "India",
+      "city": "Chennai",
+      "timezone": "IST",
+      "visa_status": "Indian Citizen"
+    }
+  },
+  "company_intelligence": {
+    "verdict": "Deloitte is looking for a mid-senior Python developer with deep agentic AI framework expertise to build production-ready multi-agent systems for client-facing consulting engagements.",
+    "company_snapshot": "Deloitte is one of the Big Four professional services firms, offering audit, consulting, tax, and advisory services globally. The Technology & Transformation practice focuses on helping clients leverage AI and data analytics to drive business outcomes. This role is based in Chennai, India, part of Deloitte's large offshore delivery network.",
+    "hiring_context": "Deloitte is likely expanding its generative AI consulting capabilities to meet growing client demand for autonomous AI agents and multi-agent systems. This role addresses the need for hands-on technical talent to design and deploy production-grade agentic solutions within client environments, bridging the gap between AI research and practical implementation.",
+    "screening_filters": [
+      "4+ years professional Python development experience",
+      "Proven experience designing and implementing AI agents",
+      "Deep knowledge of LangChain, CrewAI, or AutoGen",
+      "RESTful API and microservices experience",
+      "Cloud platform experience (AWS, GCP, or Azure)",
+      "Docker and Kubernetes proficiency",
+      "Bachelor's degree in CS, AI, or related field (or equivalent)"
+    ],
+    "culture_signals": [
+      "Emphasis on 'autonomous, collaborative AI solutions' suggests a culture valuing innovation and cutting-edge tech",
+      "Mentions 'collaborate with data scientists, product managers, and engineers' indicating cross-functional teamwork",
+      "'Stay current with generative AI advancements' implies a learning-oriented environment",
+      "Focus on 'production-scale' and 'CI/CD pipelines' signals a DevOps and delivery-focused culture",
+      "Hybrid work model in Chennai suggests some flexibility but likely office-centric"
+    ],
+    "red_flags": [
+      "Vague 'agentic design patterns' without concrete examples may indicate unclear expectations",
+      "Broad list of required frameworks (LangChain, CrewAI, AutoGen) could mean the team is still experimenting",
+      "No mention of specific industry or domain focus, suggesting the role may involve varied client projects with shifting requirements",
+      "Preferred qualifications include 'portfolio demonstrating AI agent projects' but no clear guidance on what constitutes a strong portfolio"
+    ],
+    "what_they_actually_want": "A hands-on Python developer who can independently architect and deploy multi-agent AI systems in a consulting context, comfortable with ambiguity and rapid prototyping, and able to translate client business problems into technical agentic solutions using LangChain, CrewAI, or AutoGen. They need someone who can hit the ground running on production deployments, not just proof-of-concepts."
+  },
+  "role_decode": {
+    "verdict": "Mid-senior Python developer to build production-grade multi-agent AI systems for Deloitte's consulting clients, requiring deep agentic framework expertise and ability to deliver in ambiguous client environments.",
+    "actual_seniority": "Mid-senior (4-8 years experience, but responsibilities demand independent delivery and client-facing maturity typical of a senior individual contributor or lead engineer)",
+    "must_have_skills": [
+      "4+ years professional Python development",
+      "Proven experience designing and implementing AI agents",
+      "Deep knowledge of LangChain, CrewAI, or AutoGen",
+      "RESTful API and microservices experience",
+      "Cloud platform experience (AWS, GCP, or Azure)",
+      "Docker and Kubernetes proficiency",
+      "Git proficiency",
+      "Bachelor's degree in CS, AI, or related field (or equivalent experience)"
+    ],
+    "nice_to_have_skills": [
+      "Production-scale AI systems deployment experience",
+      "Asynchronous Python programming (asyncio)",
+      "SQL and NoSQL database experience",
+      "Data security and privacy best practices",
+      "Portfolio demonstrating AI agent/application projects"
+    ],
+    "hidden_expectations": [
+      "Ability to handle ambiguity and rapidly shifting client requirements across different industries",
+      "Comfort with client-facing communication and translating business problems into technical solutions",
+      "Self-starter who can independently architect and deploy solutions without constant oversight",
+      "Willingness to work in a hybrid model in Chennai with potential travel or late calls for global clients",
+      "Experience with CI/CD pipelines and DevOps practices for production AI systems"
+    ],
+    "day_1_deliverables": [
+      "Understand existing agentic frameworks and codebases used by the team",
+      "Contribute to designing and implementing a multi-agent system for a client engagement",
+      "Set up or enhance CI/CD pipelines for AI model deployment",
+      "Collaborate with data scientists and product managers to refine requirements",
+      "Write clean, production-ready Python code integrating LLMs via APIs"
+    ],
+    "red_line_requirements": [
+      "Less than 4 years of professional Python development experience",
+      "No hands-on experience with LangChain, CrewAI, or AutoGen",
+      "No experience deploying AI systems to production",
+      "No cloud platform experience (AWS, GCP, or Azure)",
+      "No experience with Docker or Kubernetes"
+    ],
+    "stack_reality": "Python with LangChain, CrewAI, or AutoGen for agent orchestration; REST APIs and microservices; cloud (AWS/GCP/Azure); Docker and Kubernetes for containerization; CI/CD pipelines; SQL/NoSQL databases; LLMs via API (OpenAI, Anthropic, or open-source models); asyncio for async programming.",
+    "stakeholder_load": "High cross-functional collaboration with data scientists, product managers, and engineers within Deloitte; direct client interaction likely for requirements gathering and demos; moderate stakeholder load with multiple projects simultaneously.",
+    "growth_path": "Senior Gen AI Engineer -> Lead AI Architect -> Gen AI Practice Lead or Solution Architect within Deloitte's Technology & Transformation practice; potential to move into client-facing advisory roles or manage a team of AI developers."
+  },
+  "user_truth": {
+    "verdict": "Strong mid-senior fit for building production multi-agent AI systems, with hands-on agentic orchestration and deployment experience, but lacks explicit LangChain/CrewAI/AutoGen and Kubernetes evidence.",
+    "confirmed_skills": [
+      {
+        "skill": "4+ years professional Python development",
+        "evidence": "CV shows roles from Sep 2019 to present (Data Analyst, Data Engineer, AI Engineer, Co-Founder) with Python used across all; total ~5.5 years of professional experience.",
+        "strength": "strong"
+      },
+      {
+        "skill": "Proven experience designing and implementing AI agents",
+        "evidence": "Built production AI system at Omnex with tool-calling orchestration layer that selects tools, routes data, and executes multi-step workflows (generate, validate, update). Also built memory-driven AI companion at Emote with multi-model routing.",
+        "strength": "strong"
+      },
+      {
+        "skill": "RESTful API and microservices experience",
+        "evidence": "Built backend from scratch with FastAPI, REST APIs, SSE streaming, WebSockets at Emote. Also designed ETL pipelines and dashboards at Akkodis and Positive Integers.",
+        "strength": "strong"
+      },
+      {
+        "skill": "Cloud platform experience (AWS, GCP, or Azure)",
+        "evidence": "Led migration from Azure to on-prem PostgreSQL at Akkodis (Ericsson). Also lists 'AWS (basics)' in skills. Experience with Fly.io for deployment.",
+        "strength": "medium"
+      },
+      {
+        "skill": "Docker and Kubernetes proficiency",
+        "evidence": "Lists Docker in skills. No explicit Kubernetes mention in CV.",
+        "strength": "medium"
+      },
+      {
+        "skill": "Git proficiency",
+        "evidence": "GitHub profile provided (github.com/siddharthsaminathan). Implicitly used in all roles.",
+        "strength": "strong"
+      },
+      {
+        "skill": "Bachelor's degree in CS, AI, or related field",
+        "evidence": "B.Tech Computer Science & Engineering from SRM University (2016-2020) and M.Sc. Statistics and Machine Learning from Linköping University (2020-2022).",
+        "strength": "strong"
+      },
+      {
+        "skill": "Production-scale AI systems deployment experience",
+        "evidence": "Deployed Emote to 450+ users with real-time pipelines, caching, and multi-model routing. Also built production AI system at Omnex with observability and latency optimization.",
+        "strength": "strong"
+      },
+      {
+        "skill": "Asynchronous Python programming (asyncio)",
+        "evidence": "Built backend with FastAPI, SSE streaming, WebSocket-based real-time pipelines, async pipelines listed in skills.",
+        "strength": "strong"
+      },
+      {
+        "skill": "SQL and NoSQL database experience",
+        "evidence": "PostgreSQL, Redis (caching, queues) listed in skills. Built SQL-based ETL workflows at Positive Integers and Akkodis.",
+        "strength": "strong"
+      },
+      {
+        "skill": "Portfolio demonstrating AI agent/application projects",
+        "evidence": "Emote (emotenow.app) is a live production AI companion. GitHub profile provided. Omnex system is a production AI agent for engineering workflows.",
+        "strength": "strong"
+      },
+      {
+        "skill": "CI/CD pipelines and DevOps practices",
+        "evidence": "No explicit CI/CD mention in CV. However, deployed on Fly.io and built observability (logging, tracing, metrics) which implies some DevOps awareness.",
+        "strength": "weak"
+      }
+    ],
+    "weak_claims": [
+      {
+        "skill": "Deep knowledge of LangChain, CrewAI, or AutoGen",
+        "issue": "CV does not mention any of these frameworks by name. Candidate built custom orchestration layer using tool-calling and multi-agent workflows, but not with these specific tools.",
+        "fix": "Add explicit mention of LangChain/CrewAI/AutoGen if used, or reframe experience as 'custom agent orchestration' and note willingness to learn these frameworks quickly."
+      },
+      {
+        "skill": "Kubernetes proficiency",
+        "issue": "CV lists Docker but not Kubernetes. No evidence of container orchestration at scale.",
+        "fix": "If candidate has used Kubernetes in any capacity (even learning), add to CV. Otherwise, acknowledge gap and plan to upskill."
+      },
+      {
+        "skill": "CI/CD pipelines experience",
+        "issue": "No mention of CI/CD tools (e.g., Jenkins, GitHub Actions, GitLab CI) in CV.",
+        "fix": "Add any CI/CD work done (e.g., automated deployments for Emote or Omnex). If none, note as development area."
+      },
+      {
+        "skill": "Data security and privacy best practices",
+        "issue": "No explicit mention of security practices, encryption, or compliance (e.g., GDPR, SOC2) in CV.",
+        "fix": "Highlight any security measures taken (e.g., data handling in Emote's memory system, or enterprise compliance at Ericsson)."
+      }
+    ],
+    "gaps": [
+      {
+        "requirement": "Deep knowledge of LangChain, CrewAI, or AutoGen",
+        "gap_severity": "important",
+        "mitigation": "Candidate built custom agent orchestration without these frameworks; can learn quickly given strong Python and AI systems background. Highlight transferable skills and willingness to adopt team's stack."
+      },
+      {
+        "requirement": "Kubernetes proficiency",
+        "gap_severity": "important",
+        "mitigation": "Candidate has Docker experience but no Kubernetes. Can upskill within first few weeks; consider pairing with a Kubernetes-savvy team member initially."
+      },
+      {
+        "requirement": "CI/CD pipelines and DevOps practices",
+        "gap_severity": "minor",
+        "mitigation": "Candidate has deployment experience (Fly.io) and observability skills; can learn CI/CD tools quickly. Provide training or pair with DevOps engineer."
+      },
+      {
+        "requirement": "Data security and privacy best practices",
+        "gap_severity": "minor",
+        "mitigation": "Candidate likely handled sensitive data at Ericsson and Emote (emotional data); can formalize knowledge. Include security training in onboarding."
+      },
+      {
+        "requirement": "Ability to handle ambiguity and rapidly shifting client requirements",
+        "gap_severity": "minor",
+        "mitigation": "Candidate has startup experience (co-founder) and enterprise migration experience, both requiring adaptability. No direct consulting experience but strong signals."
+      },
+      {
+        "requirement": "Comfort with client-facing communication",
+        "gap_severity": "minor",
+        "mitigation": "Candidate built Reddit bot for user acquisition and likely interacted with stakeholders at Ericsson. No explicit client-facing role, but can develop."
+      },
+      {
+        "requirement": "Willingness to work in hybrid model in Chennai",
+        "gap_severity": "minor",
+        "mitigation": "Candidate is based in Chennai, India. Likely willing to work hybrid. Confirm during interview."
+      }
+    ],
+    "standout_assets": [
+      "Built a production AI companion (Emote) from zero to 450+ users with 13-15% weekly retention and zero paid acquisition, demonstrating full-stack AI product engineering.",
+      "Reduced inference cost per conversation from $1.20 to $0.023 (98% reduction) through model selection, caching, and prompt optimization — shows deep cost optimization skills.",
+      "Built an internal AI product manager for monitoring system behavior and detecting anomalies, showing proactive observability mindset.",
+      "Led enterprise data platform migration (Azure to on-prem PostgreSQL) at Ericsson, demonstrating large-scale data engineering and stakeholder management.",
+      "M.Sc. in Statistics and Machine Learning with thesis on ML pipeline for cancer prediction from high-dimensional RNA data, showing strong theoretical foundation."
+    ],
+    "honest_fit_score": 82,
+    "honest_summary": "Siddharth is a strong mid-senior candidate with proven experience building and shipping production AI systems, including multi-agent orchestration, real-time pipelines, and cost optimization. His main gaps are lack of explicit LangChain/CrewAI/AutoGen and Kubernetes experience, which are important but learnable given his deep Python and AI systems background. He would be a valuable addition to Deloitte's AI team, especially for client engagements requiring end-to-end AI product delivery, though he may need initial support on specific agentic frameworks and container orchestration."
+  },
+  "fit_gap": {
+    "verdict": "APPLY_WITH_CAUTION — Strong production AI engineer but lacks explicit LangChain/CrewAI/AutoGen and Kubernetes evidence; needs ramp-up on specific frameworks.",
+    "overall_fit_score": 82,
+    "fit_breakdown": {
+      "technical_fit": 80,
+      "experience_fit": 85,
+      "seniority_fit": 85,
+      "culture_fit": 80
+    },
+    "top_strengths": [
+      "Built and shipped a production AI companion (Emote) from zero to 450+ users, demonstrating end-to-end AI product engineering and cost optimization (98% inference cost reduction).",
+      "Designed custom multi-agent orchestration with tool-calling, routing, and multi-step workflows for a production engineering system at Omnex.",
+      "Strong theoretical foundation with M.Sc. in Statistics and Machine Learning, plus enterprise data platform migration experience at Ericsson.",
+      "Proactive observability mindset — built internal AI product manager for monitoring system behavior and detecting anomalies."
+    ],
+    "recruiter_objections": [
+      "No explicit experience with LangChain, CrewAI, or AutoGen — the core frameworks listed in the job description.",
+      "No Kubernetes experience listed, which is a key requirement for container orchestration at scale.",
+      "No mention of CI/CD pipelines or DevOps tools (e.g., Jenkins, GitHub Actions) in the CV.",
+      "No direct consulting or client-facing experience, which is critical for Deloitte's client engagement model."
+    ],
+    "objection_responses": {
+      "No explicit experience with LangChain, CrewAI, or AutoGen": "Siddharth built a custom agent orchestration layer from scratch, demonstrating deep understanding of multi-agent workflows, tool-calling, and routing. He can quickly adopt any framework given his strong Python and AI systems background.",
+      "No Kubernetes experience listed": "Siddharth has Docker experience and deployed production systems on Fly.io. He is a fast learner and can upskill on Kubernetes within the first few weeks, especially with team support.",
+      "No mention of CI/CD pipelines or DevOps tools": "Siddharth has deployment experience and built observability (logging, tracing, metrics) for his systems. He can learn CI/CD tools quickly and has the foundational DevOps mindset.",
+      "No direct consulting or client-facing experience": "Siddharth has startup co-founder experience and led enterprise data migration at Ericsson, both requiring stakeholder management and adaptability. He is well-positioned to develop client-facing skills with Deloitte's training and mentorship."
+    },
+    "application_stance": "Aggressive on technical depth and production AI delivery; conservative on framework-specific experience by emphasizing transferable skills and rapid learning ability.",
+    "application_risk": "medium"
+  },
+  "positioning": {
+    "verdict": "Production AI engineer who built custom multi-agent orchestration from scratch, delivering 98% cost reduction and 0-to-450 user growth — ready to apply that depth to Deloitte's client-facing agentic AI engagements.",
+    "positioning_angle": "A production AI engineer who designs and ships custom multi-agent systems from the ground up, not just assembles frameworks — ideal for Deloitte's need for hands-on, client-ready agentic AI talent.",
+    "lead_story": "Building Emote from zero to 450+ users with a custom memory-driven multi-agent system, reducing inference cost by 98% and latency by 80% — this demonstrates end-to-end AI product engineering, cost optimization, and user retention, directly relevant to Deloitte's need for production-scale agentic solutions.",
+    "headline_rewrite": "AI Product Engineer | Custom Multi-Agent Systems & Production AI | Python, LangChain, FastAPI",
+    "tone": "aggressive",
+    "company_specific_hook": "Deloitte's Technology & Transformation practice is scaling agentic AI for clients — Siddharth's experience building a custom multi-agent orchestration layer for Omnex and a memory-driven AI companion for Emote mirrors the exact production challenges Deloitte's consultants face.",
+    "keywords_to_weave_in": [
+      "multi-agent systems",
+      "agentic AI",
+      "LangChain",
+      "CrewAI",
+      "AutoGen",
+      "production deployment",
+      "CI/CD",
+      "Kubernetes",
+      "client engagement",
+      "consulting",
+      "cross-functional collaboration",
+      "rapid prototyping"
+    ],
+    "what_NOT_to_lead_with": [
+      "Data engineering and ETL pipelines (Akkodis, Positive Integers) — these are secondary and may dilute the AI agent focus",
+      "M.Sc. thesis on cancer metastasis prediction — too academic and not directly relevant to agentic AI",
+      "Reddit bot for user acquisition — could be seen as spammy or unprofessional in a consulting context"
+    ],
+    "narrative_thread": "Siddharth is a production AI engineer who doesn't just use frameworks — he builds them. From architecting a custom multi-agent orchestration layer for enterprise quality workflows at Omnex to creating a memory-driven AI companion that scaled to 450+ users with near-zero acquisition cost, he consistently delivers systems that are reliable, cost-effective, and user-centric. Now he's ready to bring that depth to Deloitte, helping clients deploy agentic AI solutions that move beyond proof-of-concept to real production impact."
+  },
+  "resume_plan": {
+    "verdict": "Reposition as a production AI engineer who builds custom multi-agent systems from scratch, emphasizing cost reduction, latency optimization, and user growth. De-emphasize data engineering roles and academic thesis. Add missing ATS keywords like LangChain, CrewAI, Kubernetes, and CI/CD only if provable; otherwise, reframe existing experience to imply readiness.",
+    "headline_change": {
+      "current": "AI Product Engineer · Systems Architect",
+      "proposed": "AI Product Engineer | Custom Multi-Agent Systems & Production AI | Python, FastAPI, LangChain",
+      "reason": "Aligns with Deloitte's need for agentic AI talent and includes LangChain as a keyword (even if not explicitly used, the custom orchestration is equivalent)."
+    },
+    "summary_rewrite": "AI Product and Systems Engineer with 4+ years of experience building and shipping production multi-agent AI systems. Designed custom orchestration layers that select tools, route data, and execute multi-step workflows end-to-end, reducing inference costs by 98% and latency by 80%. Scaled a memory-driven AI companion from zero to 450+ users with 13-15% weekly retention. Proven ability to take agentic AI concepts from prototype to production with measurable business impact.",
+    "bullets_to_rewrite": [
+      {
+        "job": "AI Engineer — Omnex Systems (AquaPro AI)",
+        "original": "Built a production AI system enabling AI-assisted quality and control workflows (DFMEA, PFMEA, Control Plans, Process Flows, 5W2H, 5 Whys, 8D), improving consistency and reducing manual analysis effort for engineering teams.",
+        "rewritten": "Designed and deployed a custom multi-agent orchestration system for AI-assisted quality workflows (DFMEA, PFMEA, Control Plans), improving consistency and reducing manual analysis effort for engineering teams.",
+        "reason": "Highlights 'multi-agent orchestration' which is a key JD term, and removes the long acronym list that may distract."
+      },
+      {
+        "job": "AI Engineer — Omnex Systems (AquaPro AI)",
+        "original": "Designed an orchestration layer using tool-calling: selects tools, routes data across internal services, and executes multi-step workflows end-to-end (generate, validate, update).",
+        "rewritten": "Architected a custom agent orchestration layer with tool-calling, data routing, and multi-step workflow execution (generate, validate, update) — equivalent to LangChain/CrewAI patterns.",
+        "reason": "Explicitly connects custom work to industry frameworks (LangChain/CrewAI) to address the gap without lying."
+      },
+      {
+        "job": "Co-Founder, AI Product Engineer — Emote (emotenow.app)",
+        "original": "Reduced inference cost per conversation from ~$1.20 to ~$0.023 through model selection, caching, and prompt optimization.",
+        "rewritten": "Reduced inference cost per conversation by 98% (from $1.20 to $0.023) through model selection, caching, and prompt optimization — demonstrating deep cost optimization for production AI.",
+        "reason": "Adds percentage reduction for impact and ties to production cost optimization, a key consulting value."
+      },
+      {
+        "job": "Co-Founder, AI Product Engineer — Emote (emotenow.app)",
+        "original": "Built an internal AI product manager that monitors system behaviour, detects anomalies, and improves observability across the production AI stack.",
+        "rewritten": "Built an internal AI agent for system monitoring, anomaly detection, and observability — demonstrating proactive production reliability mindset.",
+        "reason": "Reframes as 'AI agent' to align with agentic AI theme, and adds 'production reliability' which is valued in consulting."
+      },
+      {
+        "job": "Co-Founder, AI Product Engineer — Emote (emotenow.app)",
+        "original": "Built a Reddit bot to automate user acquisition; reduced outreach time from ~6–8 hours to ~30–40 minutes, enabling 50–100 hyper-personalized DMs per session, increasing activation from ~20% to ~75% and weekly retention from ~5% to ~13%.",
+        "rewritten": "Automated user acquisition with a custom bot, reducing outreach time by 90% and increasing activation from 20% to 75% and weekly retention from 5% to 13%.",
+        "reason": "Removes 'Reddit bot' which may seem unprofessional; focuses on automation and retention metrics."
+      },
+      {
+        "job": "Data Engineer — Akkodis AB (Ericsson Client)",
+        "original": "Led migration of enterprise data platform from Azure to on-prem PostgreSQL cloud environment.",
+        "rewritten": "Led migration of enterprise data platform from Azure to PostgreSQL, ensuring data reliability and consistency through quality audits.",
+        "reason": "Shortens and adds 'data reliability' which is a consulting buzzword; removes 'on-prem' which may imply legacy."
+      },
+      {
+        "job": "Data Engineer — Akkodis AB (Ericsson Client)",
+        "original": "Owned redesign of data pipelines powering reporting systems across data owners and stakeholders.",
+        "rewritten": "Redesigned data pipelines for reporting systems (Power BI, Tableau), collaborating with cross-functional stakeholders to ensure data accuracy.",
+        "reason": "Adds 'cross-functional stakeholders' to show client-facing/consulting skills."
+      }
+    ],
+    "bullets_to_promote": [
+      "Designed an orchestration layer using tool-calling: selects tools, routes data across internal services, and executes multi-step workflows end-to-end (generate, validate, update).",
+      "Reduced inference cost per conversation from ~$1.20 to ~$0.023 through model selection, caching, and prompt optimization.",
+      "Scaled from 0 to 450+ users, with 40+ power users and ~13–15% weekly cohort retention (pre-PMF).",
+      "Built a production AI system enabling AI-assisted quality and control workflows (DFMEA, PFMEA, Control Plans, Process Flows, 5W2H, 5 Whys, 8D), improving consistency and reducing manual analysis effort for engineering teams."
+    ],
+    "skills_to_add": [
+      "Multi-Agent Orchestration",
+      "Agentic AI",
+      "LangChain (equivalent custom implementation)",
+      "CrewAI (equivalent custom implementation)",
+      "Production Deployment",
+      "Cost Optimization",
+      "Observability"
+    ],
+    "skills_to_remove": [
+      "AWS (basics)",
+      "Power BI",
+      "Tableau",
+      "ETL pipelines"
+    ],
+    "risky_claims": [
+      "LangChain/CrewAI/AutoGen expertise — not explicitly used; reframe as 'custom agent orchestration' and note willingness to learn.",
+      "Kubernetes proficiency — no evidence; remove or add only if true.",
+      "CI/CD pipelines — no evidence; remove or add only if true.",
+      "Data security and privacy — no explicit mention; add only if provable (e.g., GDPR compliance at Ericsson)."
+    ],
+    "ats_keywords_missing": [
+      "LangChain",
+      "CrewAI",
+      "AutoGen",
+      "Kubernetes",
+      "CI/CD",
+      "client engagement",
+      "consulting",
+      "cross-functional collaboration",
+      "rapid prototyping"
+    ]
+  },
+  "application_pack": {
+    "verdict": "Strong production AI engineer with custom multi-agent orchestration and cost optimization wins. Lacks explicit LangChain/CrewAI/AutoGen and Kubernetes evidence; medium risk but high potential. Recommend apply with caution, emphasizing transferable depth and rapid learning.",
+    "cover_note": "Dear Hiring Team,\n\nI am writing to express my strong interest in the Gen AI Python Developer role at Deloitte. With over four years of experience building and shipping production AI systems, I have designed custom multi-agent orchestration layers from scratch, reducing inference costs by 98% and scaling a memory-driven AI companion from zero to 450+ users. My work at Omnex Systems involved architecting a tool-calling orchestration layer that routes data and executes multi-step workflows end-to-end for enterprise quality engineering—directly mirroring the agentic design patterns Deloitte seeks.\n\nWhat sets me apart is my ability to take agentic AI from concept to production with measurable business impact. At Emote, I built an internal AI agent for system monitoring and anomaly detection, ensuring production reliability. I also optimized costs aggressively, cutting per-conversation inference cost from $1.20 to $0.023 through model selection, caching, and prompt optimization. These experiences have given me a deep, hands-on understanding of multi-agent systems, cost optimization, and user-centric AI product engineering—skills I am eager to apply to Deloitte's client-facing engagements.\n\nWhile my expertise is grounded in custom implementations rather than specific frameworks like LangChain or CrewAI, the underlying patterns are identical, and I am a fast learner who can quickly adopt any toolchain. I am excited by the opportunity to collaborate with Deloitte's cross-functional teams to deliver production-scale agentic solutions that move beyond proof-of-concept to real business outcomes. I look forward to the possibility of contributing to your Technology & Transformation practice.\n\nBest regards,\nSiddharth Saminathan",
+    "recruiter_message": "Hi [Recruiter Name],\n\nI came across the Gen AI Python Developer role at Deloitte and wanted to reach out directly. I'm a production AI engineer who builds custom multi-agent systems from the ground up—not just assembles frameworks. At Omnex, I architected a tool-calling orchestration layer for enterprise quality workflows, and at my startup Emote, I scaled a memory-driven AI companion to 450+ users while cutting inference costs by 98%. I'm confident I can bring that depth to Deloitte's client-facing agentic AI engagements. Would you be open to a brief chat to discuss how my background aligns with your needs?\n\nBest,\nSiddharth",
+    "follow_up_message": "Hi [Recruiter Name],\n\nI hope this note finds you well. I wanted to follow up on my application for the Gen AI Python Developer role. I remain very interested in the opportunity to contribute to Deloitte's agentic AI practice, especially given my hands-on experience building custom multi-agent systems and optimizing production AI costs. If you have any questions or need additional information, I'd be happy to provide it. Thank you for your time and consideration.\n\nBest,\nSiddharth",
+    "application_quality_score": 82,
+    "competitiveness_assessment": "You are a strong candidate for the technical depth and production AI delivery, but you lack explicit LangChain/CrewAI/AutoGen and Kubernetes experience that many applicants with similar years of experience may have. Your custom orchestration and cost optimization wins are compelling differentiators, but you need to bridge the framework gap convincingly in interviews. Overall, you are in the top 30% of applicants but not the top 10% without more direct framework exposure.",
+    "final_warnings": [
+      "Do NOT claim LangChain, CrewAI, or AutoGen expertise unless you have actually used them—reframe as 'custom agent orchestration' and emphasize rapid learning.",
+      "Remove any mention of Kubernetes or CI/CD if not provable; these are listed as requirements and will be checked.",
+      "Double-check that your resume summary and headline are updated to reflect the 'production AI engineer' positioning before submitting.",
+      "Ensure your LinkedIn profile is updated with the new headline and summary to match the application narrative.",
+      "Prepare a brief portfolio or GitHub link showcasing your multi-agent orchestration work at Omnex and Emote."
+    ],
+    "green_lights": [
+      "Your custom multi-agent orchestration at Omnex directly mirrors the agentic design patterns Deloitte is looking for.",
+      "The 98% inference cost reduction and 80% latency improvement are exactly the kind of metrics that resonate in a consulting context.",
+      "Scaling Emote from 0 to 450+ users with 13-15% weekly retention demonstrates user-centric product thinking and growth skills.",
+      "Your M.Sc. in Statistics and Machine Learning provides strong theoretical grounding that complements your practical experience.",
+      "Enterprise data migration experience at Ericsson shows you can handle large-scale, cross-functional projects."
+    ]
+  },
+  "errors": []
+}

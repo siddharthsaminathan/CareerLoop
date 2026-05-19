@@ -1,0 +1,40 @@
+{
+  "total_claims": 3,
+  "verified": 0,
+  "weak": 1,
+  "unsupported": 2,
+  "exaggerated": 0,
+  "fabricated": 0,
+  "claims": [
+    {
+      "text": "3+ years of experience owning P&L",
+      "risk_level": "WEAK",
+      "claim_type": "year_experience",
+      "start_pos": 66,
+      "end_pos": 99,
+      "evidence_match": "Partially supported: actual total = 4.1, claimed 3+",
+      "repair_suggestion": null,
+      "confidence": 0.6
+    },
+    {
+      "text": "managed end-to-end sourcing",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 1440,
+      "end_pos": 1467,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built a custom Excel WIP tracker",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 2074,
+      "end_pos": 2106,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    }
+  ]
+}

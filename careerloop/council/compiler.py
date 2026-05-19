@@ -104,6 +104,9 @@ class _MarkdownRenderer:
         elif ntype == "line_break":
             return "\n"
 
+        elif ntype == "softbreak":
+            return "\n"
+
         elif ntype == "html":
             return node.get("raw", "")
 
@@ -183,6 +186,87 @@ class ResumeCompiler:
 
     # ── Parse ──────────────────────────────────────────────────────────────
 
+    # Known ALL-CAPS CV section headers (longest first — prevents partial matches)
+    _PLAINTEXT_HEADERS = [
+        "PROFESSIONAL EXPERIENCE",
+        "WORK EXPERIENCE",
+        "CERTIFICATIONS",
+        "ACHIEVEMENTS",
+        "EXPERIENCE",
+        "EDUCATION",
+        "SUMMARY",
+        "SKILLS",
+        "PROJECTS",
+        "AWARDS",
+    ]
+
+    # Common city/country names that appear in PDF-extracted CV location strings.
+    # Used to detect run-on boundaries like "IndiaCategoryManager".
+    _LOCATION_TOKENS = [
+        "India", "Canada", "USA", "UK", "Remote", "Chennai", "Bangalore",
+        "Mumbai", "Delhi", "Hyderabad", "Pune", "Kolkata", "Noida",
+        "Toronto", "London", "Singapore", "Sweden", "Germany", "Australia",
+        "France", "Dubai", "UAE", "Netherlands", "Ireland", "Poland",
+    ]
+
+    @staticmethod
+    def _preprocess_plaintext_cv(text: str) -> str:
+        """Normalise plain-text / PDF-extracted CVs before AST parsing.
+
+        Two independent passes — both run regardless of heading presence:
+
+        Pass A (heading injection) — only when no ## headings exist:
+          Injects ## section markers for ALL-CAPS headers that are run together
+          with surrounding text.
+
+        Pass B (intra-section cleanup) — always runs:
+          PDF extraction destroys intra-section line-breaks.  This pass:
+          1. Converts bullet characters (•●▸) to markdown list items.
+          2. Splits run-on date/location boundaries:
+             - "Present" or "Currently" followed immediately by uppercase.
+             - A bare 4-digit year followed immediately by uppercase.
+             - Known location tokens (India, Canada …) followed immediately
+               by an uppercase letter.
+        """
+        # ── Pass A: inject ## headings ────────────────────────────────────
+        if not re.search(r'^#{1,6}\s+\S', text, re.MULTILINE):
+            combined = '|'.join(
+                re.escape(h) for h in ResumeCompiler._PLAINTEXT_HEADERS
+            )
+            text = re.sub(r'(' + combined + r')', r'\n\n## \1\n\n', text)
+
+        # ── Pass B: intra-section cleanup ─────────────────────────────────
+
+        # 1. Bullet character normalisation: •, ●, ▸, ▶, ◆ → markdown "- "
+        #    Insert a newline before each bullet so it starts on its own line.
+        text = re.sub(r'[\u2022\u25CF\u25B8\u25B6\u25C6\u25E6\u2219]',
+                      r'\n- ', text)
+
+        # 2. "Present" or "Currently" immediately followed by uppercase
+        #    → paragraph break before the new content.
+        #    Example: "Nov 2025 – PresentBuilt the ..." → "Present\n\nBuilt"
+        #    Note: no trailing \b — word boundary doesn't fire between two \w chars.
+        text = re.sub(r'\b(Present|Currently)([A-Z])', r'\1\n\n\2', text)
+
+        # 3. A 4-digit year immediately followed by an uppercase letter (no
+        #    space).  E.g. "Aug 2024Chennai" → "Aug 2024\n\nChennai"
+        #    Negative lookahead: don't split inside year-ranges like "2020–2022".
+        text = re.sub(r'(\b\d{4})(?![–\-\d])([A-Z])', r'\1\n\n\2', text)
+
+        # 4. Known location tokens immediately followed by uppercase letter.
+        #    E.g. "IndiaCategory" → "India\nCategory"
+        #    Note: no trailing \b — "India" + "C" are both \w, so \b doesn't fire.
+        for loc in ResumeCompiler._LOCATION_TOKENS:
+            text = re.sub(
+                r'\b(' + re.escape(loc) + r')([A-Z])',
+                r'\1\n\2',
+                text,
+            )
+
+        # ── Tidy up ───────────────────────────────────────────────────────
+        text = re.sub(r'\n{3,}', '\n\n', text)
+        return text.strip()
+
     @staticmethod
     def parse_markdown(text: str, person_id: str = "default") -> CanonicalResume:
         """
@@ -193,6 +277,7 @@ class ResumeCompiler:
         nested structures, and inline formatting correctly — no regex
         section-splitting.
         """
+        text = ResumeCompiler._preprocess_plaintext_cv(text)
         md = mistune.create_markdown(renderer="ast")
         ast = md(text)
 

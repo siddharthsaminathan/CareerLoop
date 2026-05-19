@@ -92,7 +92,7 @@ class TruthGuard:
     )
 
     OWNERSHIP_PATTERN = re.compile(
-        r"""\b(led|managed|owned|directed|headed|architected|
+        r"""(?<![-\w])(led|managed|owned|directed|headed|architected|
                spearheaded|orchestrated|built|created)
             \s+([^\n]+?)                               # what was led/built/etc. (no newlines)
             (?=\s*[,.;]|$|\s+(?:and|or|but|for|at|across|to|from|with|on|by|as|over|under|through|via|using))""",
@@ -401,6 +401,13 @@ class TruthGuard:
                 return
 
         # Check evidence bank
+        all_evidence_text = " ".join(
+            ev for evlist in evidence_bank.values()
+            if isinstance(evlist, list)
+            for ev in evlist
+            if ev and isinstance(ev, str)
+        ).lower()
+
         for evidence_key, evidence_values in evidence_bank.items():
             if not isinstance(evidence_values, list):
                 continue
@@ -415,6 +422,25 @@ class TruthGuard:
                         f"Partial evidence match in '{evidence_key}'"
                     )
                     return
+
+        # Number-presence check: if every specific number/percentage in the
+        # claim appears somewhere in the evidence bank, treat as WEAK rather
+        # than UNSUPPORTED. Short claims like "10% lift" have low Jaccard
+        # against long evidence strings but the metric is still grounded.
+        numbers_in_claim = re.findall(r'\d+[.,]?\d*\s*%?', claim.text)
+        if numbers_in_claim:
+            matched = all(
+                num.replace(' ', '').lower() in all_evidence_text
+                for num in numbers_in_claim
+                if num.strip()
+            )
+            if matched:
+                claim.risk_level = "WEAK"
+                claim.confidence = 0.4
+                claim.evidence_match = (
+                    "Numbers present in evidence bank — claim likely grounded"
+                )
+                return
 
         # No evidence found
         claim.risk_level = "UNSUPPORTED"
@@ -718,17 +744,43 @@ class TruthGuard:
         return original
 
     def _repair_evidence_claim(self, original: str, claim: Claim) -> str:
-        """Repair an unsupported evidence-based claim."""
+        """Repair an unsupported evidence-based claim.
+
+        Ownership UNSUPPORTED → return original unchanged.
+          The evidence bank is LLM-paraphrased so Jaccard misses legitimate
+          claims like "Managed PO/PI coordination" vs "Managed PO/PI for 20+
+          suppliers at Go Colors".  We log these for user review but NEVER
+          mangle CV text that is likely truthful.
+
+        Ownership FABRICATED or EXAGGERATED → minimize (deliberate overreach).
+
+        Quantified / percentage UNSUPPORTED or EXAGGERATED → strip the metric.
+        """
         if claim.risk_level == "FABRICATED":
             return self._minimize_claim(original)
 
-        if claim.risk_level in ("UNSUPPORTED", "EXAGGERATED"):
-            # Strip specific numbers but keep the structure
+        if claim.risk_level == "EXAGGERATED":
+            if claim.claim_type == "ownership":
+                return self._minimize_claim(original)
+            # quantified_achievement / percentage: strip the specific number
             repaired = re.sub(r'\$?\d+[KMB]?\s*', '', original, count=1)
             repaired = re.sub(r'\d+[.]?\d*\s*%\s*', '', repaired, count=1)
             repaired = re.sub(r'\s{2,}', ' ', repaired).strip()
             if not repaired or len(repaired) < 5:
                 return self._minimize_claim(original)
+            return repaired
+
+        if claim.risk_level == "UNSUPPORTED":
+            if claim.claim_type == "ownership":
+                # Leave ownership text intact — evidence bank paraphrase mismatch
+                # is a false positive.  Caller logs this for user review.
+                return original
+            # quantified_achievement / percentage: strip unverified metric
+            repaired = re.sub(r'\$?\d+[KMB]?\s*', '', original, count=1)
+            repaired = re.sub(r'\d+[.]?\d*\s*%\s*', '', repaired, count=1)
+            repaired = re.sub(r'\s{2,}', ' ', repaired).strip()
+            if not repaired or len(repaired) < 5:
+                return original
             return repaired
 
         return original

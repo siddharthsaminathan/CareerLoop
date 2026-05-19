@@ -2,7 +2,15 @@
 
 ## Pipeline completo
 
-1. Lee `cv.md` como fuentes de verdad
+0. **Council output check (Pipeline A → B handoff):**
+   Before reading `cv.md`, check if a tailored resume already exists:
+   - If the user provides a job ID or company name, check `output/council/{person_id}/{job_id}/10_final_resume.md`
+   - If that file exists, use it as the CV input instead of `cv.md`
+   - Tell the user: "Using tailored resume from Resume Council run for {company}. To use raw cv.md instead, say 'use cv.md'."
+   - If no council output exists, fall back to `cv.md` silently
+   - `person_id` = kebab-case of `name` from `config/profile.yml`; `job_id` = slug from the job URL or last evaluation report filename
+
+1. Lee el CV seleccionado en el paso 0 como fuente de verdad
 2. Pide al usuario el JD si no está en contexto (texto o URL)
 3. Extrae 15-20 keywords del JD
 4. Detecta idioma del JD → idioma del CV (EN default)

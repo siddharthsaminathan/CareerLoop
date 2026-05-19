@@ -99,6 +99,10 @@ class Humanizer:
 
         # Phase 5: Sanitize output (deterministic — em dashes, arrows, encoding)
         sanitized = self._sanitize_output(adapted)
+        if mode == "resume":
+            safe, _issues = _markdown_structure_safe(text, sanitized)
+            if not safe:
+                sanitized = self._sanitize_output(text)
 
         return HumanizerResult(
             original_text=text,
@@ -265,6 +269,9 @@ class Humanizer:
         if not flags:
             return text
 
+        if mode == "resume":
+            return self._deterministic_clean(text, flags)
+
         if self.llm is not None:
             return self._llm_surgical_humanize(text, flags)
         else:
@@ -332,6 +339,9 @@ class Humanizer:
         """
         company_type = context.get("company_type", "default")
         tone = context.get("tone", "")
+
+        if mode == "resume":
+            return text
 
         # Normalize company_type
         if company_type not in TONE_PROFILES:
@@ -525,3 +535,31 @@ def _split_sentences(text: str) -> list:
 def _clean_double_spaces(text: str) -> str:
     """Remove double spaces without touching intentional markdown formatting."""
     return re.sub(r'  +', ' ', text)
+
+
+def _markdown_structure_safe(original: str, candidate: str) -> tuple[bool, list[str]]:
+    """Check that resume humanization did not mutate Markdown structure."""
+    issues: list[str] = []
+
+    original_bullets = _count_markdown_bullets(original)
+    candidate_bullets = _count_markdown_bullets(candidate)
+    if candidate_bullets < original_bullets:
+        issues.append(f"bullet_count_dropped:{original_bullets}->{candidate_bullets}")
+
+    original_headings = _count_markdown_headings(original)
+    candidate_headings = _count_markdown_headings(candidate)
+    if candidate_headings < original_headings:
+        issues.append(f"heading_count_dropped:{original_headings}->{candidate_headings}")
+
+    if re.search(r"\.\s+[-*]\s+[A-Z0-9]", candidate or ""):
+        issues.append("collapsed_bullet_marker")
+
+    return not issues, issues
+
+
+def _count_markdown_bullets(text: str) -> int:
+    return len(re.findall(r"(?m)^\s*[-*]\s+\S", text or ""))
+
+
+def _count_markdown_headings(text: str) -> int:
+    return len(re.findall(r"(?m)^\s{0,3}#{1,6}\s+\S", text or ""))

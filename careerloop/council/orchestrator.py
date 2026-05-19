@@ -7,6 +7,8 @@ from typing import Optional
 
 from careerloop.council.context import CouncilContextLoader
 from careerloop.council.graph import get_council_graph
+from careerloop.council.company_research import CompanyResearchAdapter, quality_score
+from careerloop.council.schemas import validate_payload
 from careerloop.verification import JDValidator
 from careerloop.council.models import (
     CouncilResult,
@@ -147,7 +149,7 @@ class ResumeCouncilOrchestrator:
             print(f"  → Failure report written to {failure_path}")
 
         # Save artifacts
-        self._save_artifacts(output_dir, final_state)
+        self._save_artifacts(output_dir, final_state, person_id=person_id, job_id=job_id)
 
         # Map state back to CouncilResult using safe_construct
         return CouncilResult(
@@ -196,7 +198,7 @@ class ResumeCouncilOrchestrator:
             output_dir=output_dir,
         )
 
-    def _save_artifacts(self, output_dir: str, state: dict):
+    def _save_artifacts(self, output_dir: str, state: dict, person_id: str = "default", job_id: str = ""):
         mapping = {
             "01_canonical_resume.json": "canonical_resume",
             "02_preservation_contract.json": "preservation_contract",
@@ -208,42 +210,56 @@ class ResumeCouncilOrchestrator:
         }
         for filename, key in mapping.items():
             if state.get(key):
-                with open(os.path.join(output_dir, filename), "w") as f:
-                    json.dump(state[key], f, indent=2)
+                with open(os.path.join(output_dir, filename), "w", encoding="utf-8") as f:
+                    json.dump(state[key], f, indent=2, ensure_ascii=False)
 
         pack = state.get("application_pack")
         if pack:
-            with open(os.path.join(output_dir, "10_final_resume.md"), "w") as f:
+            final_resume_path = os.path.join(output_dir, "10_final_resume.md")
+            with open(final_resume_path, "w", encoding="utf-8") as f:
                 f.write(pack.get("resume_markdown", ""))
-            with open(os.path.join(output_dir, "11_cover_note.md"), "w") as f:
+            with open(os.path.join(output_dir, "11_cover_note.md"), "w", encoding="utf-8") as f:
                 f.write(pack.get("cover_note", ""))
-            with open(os.path.join(output_dir, "15_quality_report.md"), "w") as f:
+            with open(os.path.join(output_dir, "15_quality_report.md"), "w", encoding="utf-8") as f:
                 report = pack.get("quality_report", {}) or {}
+                truth_guard = state.get("truth_guard_report", {}) or {}
+                blocked = truth_guard.get("blocked_claims", []) or []
                 f.write(
-                    f"# Quality Report\n\n## Changed\n"
-                    + "\n".join(
-                        [
-                            f"- {x}"
-                            for x in report.get("what_changed", [])
-                        ]
-                    )
+                    "# Quality Report\n\n## Changed\n"
+                    + "\n".join(f"- {x}" for x in report.get("what_changed", []))
+                    + "\n\n## Needs Review\n"
+                    + "\n".join(f"- {x}" for x in report.get("needs_user_review", []))
+                    + ("\n\n## TruthGuard Blocked Claims\n" + "\n".join(f"- {c}" for c in blocked) if blocked else "")
                 )
-            with open(
-                os.path.join(output_dir, "16_user_review_summary.md"), "w"
-            ) as f:
+            with open(os.path.join(output_dir, "16_user_review_summary.md"), "w", encoding="utf-8") as f:
                 f.write(pack.get("user_review_summary", ""))
-            with open(
-                os.path.join(output_dir, "17_council_run_log.json"), "w"
-            ) as f:
+            with open(os.path.join(output_dir, "17_council_run_log.json"), "w", encoding="utf-8") as f:
                 json.dump(state, f, indent=2, default=str)
 
-            # Write failure report if present in pack
+            # failure report
             failure = pack.get("failure_report", "")
             if failure:
-                with open(
-                    os.path.join(output_dir, "failure_report.md"), "w"
-                ) as f:
+                with open(os.path.join(output_dir, "failure_report.md"), "w", encoding="utf-8") as f:
                     f.write(failure)
+
+            # P0.2: render 10_final_resume.md → HTML artifacts (no-pdf; node not required)
+            resume_md = pack.get("resume_markdown", "")
+            if resume_md.strip():
+                try:
+                    from careerloop.rendering.render_all_templates import render_resume
+                    html_out_dir = os.path.join(output_dir, "rendered_html")
+                    render_meta = render_resume(
+                        final_resume_path,
+                        candidate=person_id,
+                        run_id=job_id or "council",
+                        out_dir=html_out_dir,
+                        generate_pdf=False,
+                    )
+                    print(f"  → Rendered HTML artifacts in {html_out_dir}")
+                    with open(os.path.join(output_dir, "11_render_metadata.json"), "w", encoding="utf-8") as f:
+                        json.dump(render_meta, f, indent=2)
+                except Exception as render_err:
+                    print(f"  !! HTML rendering failed (non-fatal): {render_err}")
 
 
 def _build_failure_report(

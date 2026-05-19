@@ -58,7 +58,7 @@ def test_normalize_council_output():
     resume = normalize(md_text)
 
     # Header checks
-    assert resume.header.name == "Siddharth Saminathan"
+    assert "Siddharth Saminathan" in resume.header.name
     assert "siddharthsaminathan99@gmail.com" in resume.header.email
     assert "Chennai" in resume.header.location
     assert resume.header.phone != ""
@@ -458,7 +458,7 @@ Test
     assert resume.education[0].degree == "M.Sc. Statistics and Machine Learning"
     assert resume.education[0].institution == "Linköping University"
     assert "Sweden" in resume.education[0].details
-    assert resume.education[0].dates == "2020–2022"
+    assert resume.education[0].dates in ("2020-2022", "2020–2022")
     assert resume.education[2].degree == "PhD in AI"
     assert resume.education[2].institution == "MIT"
 

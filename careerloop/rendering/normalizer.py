@@ -88,6 +88,8 @@ def normalize(md_text: str) -> NormalizedResume:
     Returns:
         Fully parsed and normalized resume data model.
     """
+    md_text = _fix_encoding_artifacts(md_text)
+    md_text = _prepare_plaintext_resume(md_text)
     blocks = _split_into_blocks(md_text)
     classified = _classify_blocks(blocks)
 
@@ -112,6 +114,56 @@ def normalize(md_text: str) -> NormalizedResume:
         thesis=thesis,
         languages=languages,
     )
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Encoding Artifact Fixes
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _make_encoding_fixes():
+    return [
+        ("\u00e2\u20ac\u201c", "\u2014"),  # â€" → em dash
+        ("\u00e2\u20ac\u201d", "\u2013"),  # â€" → en dash variant
+        ("\u00e2\u20ac\u2122", "\u2019"),  # â€™ → right single quote
+        ("\u00e2\u20ac\u02dc", "\u2018"),  # â€˜ → left single quote
+        ("\u00e2\u20ac\u0153", "\u201c"),  # â€œ → left double quote
+        ("\u00e2\u20ac\u009d", "\u201d"),  # â€ → right double quote
+        ("\u00e2\u2020\u2019", "\u2192"),  # â†' → right arrow
+        ("\u00e2\u2020\u201c", "\u2190"),  # â†" → left arrow
+        ("\u00c3\u00a9", "\u00e9"),        # Ã© → é
+        ("\u00c3\u00a0", "\u00e0"),        # Ã  → à
+        ("\u00c3\u00b6", "\u00f6"),        # Ã¶ → ö
+        ("\u00c3\u00bc", "\u00fc"),        # Ã¼ → ü
+        ("\u00c3\u00a4", "\u00e4"),        # Ã¤ → ä
+        ("\u00c3\u00b8", "\u00f8"),        # Ã¸ → ø
+        ("\u00c3\u00a5", "\u00e5"),        # Ã¥ → å
+    ]
+
+_ENCODING_FIXES = _make_encoding_fixes()
+
+
+def _fix_encoding_artifacts(text: str) -> str:
+    """Fix common Windows-1252 / Latin-1 mis-encoding artifacts in markdown text."""
+    for bad, good in _ENCODING_FIXES:
+        text = text.replace(bad, good)
+    return text
+
+
+def _prepare_plaintext_resume(text: str) -> str:
+    """Repair common PDF/plaintext resume extraction before block splitting."""
+    if not text or re.search(r"^#{1,6}\s+\S", text, re.MULTILINE):
+        return text
+
+    headers = [
+        "PROFESSIONAL EXPERIENCE", "WORK EXPERIENCE", "EXPERIENCE",
+        "SUMMARY", "PROFILE", "EDUCATION", "SKILLS", "PROJECTS",
+        "ACHIEVEMENTS", "CERTIFICATIONS", "LANGUAGES",
+    ]
+    combined = "|".join(re.escape(h) for h in headers)
+    text = re.sub(r"(?m)^(" + combined + r")\s*$", r"\n\n## \1\n\n", text)
+    text = re.sub(r"[\u2022\u25CF\u25B8\u25B6\u25C6\u25E6\u2219]", "\n- ", text)
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text.strip()
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -150,7 +202,13 @@ def _split_into_blocks(md_text: str) -> List[Tuple[str, str, str]]:
 
     for block in raw_blocks:
         block = block.strip()
-        if not block or not block.startswith("## "):
+        if not block:
+            continue
+
+        if not block.startswith("## "):
+            preamble = block.strip()
+            if preamble:
+                blocks.append(("## Contact", "contact", preamble))
             continue
 
         # Split into heading line and body
@@ -387,6 +445,8 @@ def _parse_header(classified: dict) -> HeaderInfo:
         if m:
             name = re.sub(r"\s*[—\-–,]\s*CV\s*$", "", m.group(1).strip(), flags=re.IGNORECASE).strip()
             header.name = name
+        elif first_line and "@" not in first_line and not re.search(r"\d{3,}", first_line):
+            header.name = _sanitize_text(_strip_markdown_formatting(first_line))
 
     return header
 
@@ -404,8 +464,27 @@ def _parse_contact_body(body: str, header: HeaderInfo) -> None:
 
     for line in body.strip().split("\n"):
         line = _strip_markdown_formatting(line.strip())
+        if not header.email:
+            email_match = re.search(r"[\w.+-]+@[\w.-]+\.\w+", line)
+            if email_match:
+                header.email = _sanitize_text(email_match.group(0))
+        if not header.phone:
+            phone_match = re.search(r"(?:\+?\d[\d\s().-]{7,}\d)", line)
+            if phone_match:
+                header.phone = _sanitize_text(phone_match.group(0).strip())
+        if not header.linkedin_url:
+            linkedin_match = re.search(r"(?:https?://)?(?:www\.)?linkedin\.com/in/[^\s|,;]+", line, re.IGNORECASE)
+            if linkedin_match:
+                header.linkedin_url = _sanitize_text(linkedin_match.group(0).rstrip("/"))
+                header.linkedin_display = _sanitize_text(re.sub(r"^(?:www\.)?linkedin\.com/in/", "", _url_to_display(header.linkedin_url)))
 
         for key, pattern in patterns.items():
+            if key == "phone" and header.phone:
+                continue
+            if key == "email" and header.email:
+                continue
+            if key == "linkedin" and header.linkedin_url:
+                continue
             m = pattern.search(line)
             if m:
                 val = _strip_markdown_formatting(m.group(1).strip())
@@ -425,7 +504,7 @@ def _parse_contact_body(body: str, header: HeaderInfo) -> None:
                     header.github_display = _sanitize_text(_url_to_display(val).replace("github.com/", ""))
                 elif key == "linkedin":
                     header.linkedin_url = _sanitize_text(val)
-                    header.linkedin_display = _sanitize_text(_url_to_display(val).replace("linkedin.com/in/", ""))
+                    header.linkedin_display = _sanitize_text(re.sub(r"^(?:www\.)?linkedin\.com/in/", "", _url_to_display(val)))
 
 
 def _url_to_display(url: str) -> str:
@@ -569,10 +648,26 @@ def _parse_skills_from_bullets(body: str) -> List[SkillRow]:
     """
     rows: List[SkillRow] = []
     lines = body.strip().split("\n")
+    current_label: Optional[str] = None
+    current_items: List[str] = []
+
+    def flush_group() -> None:
+        nonlocal current_label, current_items
+        if current_label and current_items:
+            rows.append(SkillRow(label=current_label, items=current_items))
+        current_label = None
+        current_items = []
 
     for line in lines:
         line = line.strip()
+        heading_match = re.match(r"^\*\*(.+?)\*\*\s*$", line)
+        if heading_match:
+            flush_group()
+            current_label = _sanitize_text(heading_match.group(1).strip())
+            continue
+
         # Strip bullet marker
+        is_bullet = bool(re.match(r"^\s*[-*+]\s*", line))
         line = re.sub(r"^\s*[-*+]\s*", "", line)
         if not line:
             continue
@@ -580,10 +675,15 @@ def _parse_skills_from_bullets(body: str) -> List[SkillRow]:
         # Try "Category: items" or "**Category:** items"
         m = re.match(r"^(?:\*\*)?(.+?)(?:\*\*)?\s*:\s*(.+)$", line)
         if m:
+            flush_group()
             label = _sanitize_text(_strip_markdown_formatting(m.group(1).strip()))
             items_str = _strip_markdown_formatting(m.group(2).strip())
-            items = [_sanitize_text(i) for i in _split_skill_items(items_str)]
-            rows.append(SkillRow(label=label, items=items))
+            current_label = label
+            current_items = [_sanitize_text(i) for i in _split_skill_items(items_str)]
+        elif current_label and is_bullet:
+            current_items.append(_sanitize_text(_strip_markdown_formatting(line)))
+
+    flush_group()
 
     return rows
 
@@ -596,6 +696,9 @@ def _parse_experience(classified: dict) -> List[ExperienceEntry]:
     """Parse work experience blocks into ExperienceEntry list."""
     role_blocks = classified.get("role_blocks", [])
     if not role_blocks:
+        work_block = classified.get("work_experience")
+        if work_block:
+            return _parse_loose_experience_entries(work_block[2])
         return []
 
     entries: List[ExperienceEntry] = []
@@ -605,6 +708,182 @@ def _parse_experience(classified: dict) -> List[ExperienceEntry]:
         entries.append(entry)
 
     return entries
+
+
+def _parse_loose_experience_entries(body: str) -> List[ExperienceEntry]:
+    """Parse common PDF/plaintext resume experience blocks.
+
+    This is a repair path for resumes that preserve a Professional Experience
+    section but do not use Markdown role headings.
+    """
+    lines = [line.strip() for line in body.splitlines() if line.strip()]
+    if not lines:
+        return []
+
+    starts: List[int] = []
+    for i, line in enumerate(lines):
+        if line.startswith(("-", "*", "+")):
+            continue
+        if _contains_date_range(line) and starts and i - starts[-1] <= 2:
+            continue
+        next_line = lines[i + 1] if i + 1 < len(lines) else ""
+        next_next = lines[i + 2] if i + 2 < len(lines) else ""
+        if _looks_like_loose_experience_start(line, next_line, next_next):
+            starts.append(i)
+
+    if not starts:
+        return []
+
+    entries: List[ExperienceEntry] = []
+    for pos, start in enumerate(starts):
+        end = starts[pos + 1] if pos + 1 < len(starts) else len(lines)
+        segment = lines[start:end]
+        entry = _parse_loose_experience_segment(segment)
+        if entry and (entry.company or entry.role) and entry.bullets:
+            entries.append(entry)
+    return entries
+
+
+def _looks_like_loose_experience_start(line: str, next_line: str, next_next: str) -> bool:
+    if _contains_date_range(line):
+        return True
+    if next_line and _contains_date_range(next_line):
+        return True
+    if next_next and _contains_date_range(next_next) and not line.endswith("."):
+        return True
+    if "|" in line and next_line and not next_line.startswith(("-", "*", "+")):
+        return _contains_date_range(next_line) or "|" in next_line
+    return False
+
+
+def _contains_date_range(text: str) -> bool:
+    return bool(re.search(
+        r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept?|Oct|Nov|Dec|"
+        r"January|February|March|April|June|July|August|September|October|November|December)"
+        r"\s+\d{4}\s*(?:-|–|—|to)\s*(?:Present|Current|"
+        r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept?|Oct|Nov|Dec|"
+        r"January|February|March|April|June|July|August|September|October|November|December)\s+\d{4})",
+        text,
+        re.IGNORECASE,
+    ))
+
+
+def _extract_date_range(text: str) -> tuple[str, str]:
+    pattern = re.compile(
+        r"\b((?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept?|Oct|Nov|Dec|"
+        r"January|February|March|April|June|July|August|September|October|November|December)"
+        r"\s+\d{4}\s*(?:-|–|—|to)\s*(?:Present|Current|"
+        r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept?|Oct|Nov|Dec|"
+        r"January|February|March|April|June|July|August|September|October|November|December)\s+\d{4}))",
+        re.IGNORECASE,
+    )
+    match = pattern.search(text)
+    if not match:
+        return "", text
+    dates = match.group(1).strip()
+    rest = (text[:match.start()] + text[match.end():]).strip(" |,-")
+    return dates, rest
+
+
+def _parse_loose_experience_segment(segment: List[str]) -> Optional[ExperienceEntry]:
+    date_idx = next((i for i, line in enumerate(segment) if _contains_date_range(line)), None)
+    if date_idx is not None:
+        header_lines = segment[:date_idx + 1]
+        body_lines = segment[date_idx + 1:]
+    else:
+        header_lines = []
+        body_lines = []
+        in_body = False
+        for line in segment:
+            if line.startswith(("-", "*", "+")):
+                in_body = True
+            if in_body:
+                body_lines.append(line)
+            else:
+                header_lines.append(line)
+
+    if not header_lines:
+        return None
+
+    company = ""
+    role = ""
+    location = ""
+    dates = ""
+
+    first = header_lines[0]
+    second = header_lines[1] if len(header_lines) > 1 else ""
+
+    if "|" in first and second and "|" in second:
+        left = [p.strip() for p in first.split("|") if p.strip()]
+        right = [p.strip() for p in second.split("|") if p.strip()]
+        company = left[0] if left else ""
+        location = left[1] if len(left) > 1 else ""
+        role = right[0] if right else ""
+        dates = right[1] if len(right) > 1 else ""
+    elif "|" in first and _contains_date_range(first):
+        parts = [p.strip() for p in first.split("|") if p.strip()]
+        if len(parts) >= 4:
+            company, role, location, dates = parts[0], parts[1], parts[2], parts[3]
+        elif len(parts) == 3:
+            company, role, dates = parts
+        elif len(parts) == 2:
+            company, dates = parts
+    else:
+        combined = " ".join(header_lines[:3])
+        dates, without_dates = _extract_date_range(combined)
+        if "|" in without_dates:
+            parts = [p.strip() for p in without_dates.split("|") if p.strip()]
+            company = parts[0] if parts else ""
+            role = parts[1] if len(parts) > 1 else ""
+            location = parts[2] if len(parts) > 2 else ""
+        else:
+            company, role, location = _split_loose_company_role_location(without_dates)
+
+    description_lines: List[str] = []
+    bullet_lines: List[str] = []
+    in_bullets = False
+    for line in body_lines:
+        if line.startswith(("-", "*", "+")):
+            in_bullets = True
+            bullet_lines.append(line)
+        elif in_bullets and bullet_lines:
+            bullet_lines[-1] += " " + line
+        else:
+            description_lines.append(line)
+    bullets = _process_bullets(bullet_lines)
+
+    return ExperienceEntry(
+        role=_sanitize_text(role, context="heading"),
+        company=_sanitize_text(company),
+        location=_sanitize_text(location),
+        dates=_sanitize_text(dates, context="daterange"),
+        description=" ".join(_sanitize_text(l) for l in description_lines).strip(),
+        bullets=bullets,
+    )
+
+
+def _split_loose_company_role_location(text: str) -> tuple[str, str, str]:
+    text = text.strip(" |,-")
+    location_match = re.search(
+        r"\b(Remote(?:\s*-\s*[A-Z][A-Za-z ]+(?:,\s*[A-Z][A-Za-z ]+)?)?|Chennai,\s*India|Bangalore,\s*India|"
+        r"Mumbai,\s*India|Delhi,\s*India|Toronto,\s*Canada)\b",
+        text,
+    )
+    location = ""
+    if location_match:
+        location = location_match.group(1).strip()
+        text = (text[:location_match.start()] + text[location_match.end():]).strip(" |,-")
+
+    role_keywords = [
+        "Category Manager", "Assistant Fashion Manager", "Founder",
+        "Merchandiser", "Buyer", "Manager", "Analyst", "Engineer",
+    ]
+    for keyword in role_keywords:
+        idx = text.lower().find(keyword.lower())
+        if idx > 0:
+            return text[:idx].strip(" |,-"), text[idx:].strip(" |,-"), location
+
+    return text, "", location
 
 
 def _parse_experience_entry(heading: str, body: str) -> ExperienceEntry:
@@ -740,19 +1019,16 @@ def _split_collapsed_bullets(text: str) -> List[str]:
     if COLLAPSED_BULLET_RE.search(text):
         parts = COLLAPSED_BULLET_RE.split(text)
         if len(parts) >= 2:
-            # Verify this isn't a false positive: each part should be substantial
-            if all(len(p.strip()) > 30 for p in parts if p.strip()):
+            if all(len(p.strip()) > 15 for p in parts if p.strip()):
                 return [p.strip() for p in parts if p.strip()]
 
     # Strategy 2: fallback to wider pattern (space-dash-space + capital)
     # Only use this if we find multiple such patterns on one long line
-    if len(text) > 200:
-        # Count potential bullet boundaries
+    if len(text) > 100:
         boundaries = list(COLLAPSED_BULLET_FALLBACK_RE.finditer(text))
         if len(boundaries) >= 2:
-            # Split and verify parts are substantial
             parts = COLLAPSED_BULLET_FALLBACK_RE.split(text)
-            if all(len(p.strip()) > 30 for p in parts if p.strip()):
+            if all(len(p.strip()) > 15 for p in parts if p.strip()):
                 return [p.strip() for p in parts if p.strip()]
 
     # No collapsed bullets detected

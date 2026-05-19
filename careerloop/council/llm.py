@@ -25,7 +25,7 @@ def load_council_model_config() -> dict[str, Any]:
         "strategy_model": "deepseek-chat",
         "writer_model": "deepseek-chat",
         "temperature": 0.2,
-        "max_tokens": 10000,
+        "max_tokens": 4000,
     }
     config_path = ROOT / "config" / "models.yml"
     if yaml is not None and config_path.exists():
@@ -53,7 +53,8 @@ class CouncilLLMClient:
     def available(self) -> bool:
         return bool(self.api_key)
 
-    def complete_json(self, system_prompt: str, user_prompt: str) -> dict[str, Any]:
+    def complete_json(self, system_prompt: str, user_prompt: str,
+                       max_tokens: int = None) -> dict[str, Any]:
         if not self.available:
             raise RuntimeError("DEEPSEEK_API_KEY is required for Resume Council LLM stages.")
         response = requests.post(
@@ -69,10 +70,10 @@ class CouncilLLMClient:
                     {"role": "user", "content": user_prompt},
                 ],
                 "temperature": self.temperature,
-                "max_tokens": self.max_tokens,
+                "max_tokens": max_tokens or self.max_tokens,
                 "response_format": {"type": "json_object"},
             },
-            timeout=120,
+            timeout=90,
         )
         response.raise_for_status()
         content = response.json()["choices"][0]["message"]["content"]

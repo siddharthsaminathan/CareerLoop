@@ -1,0 +1,56 @@
+{
+  "person_id": "default",
+  "sections": [
+    {
+      "section_id": "intro",
+      "section_title": "Intro/Contact",
+      "normalized_type": "contact",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "VARSHA SATHYANARAYANANthisisvarshasathya@gmail.com | +91 8939432182 | www.linkedin.com/in/varshasathya/",
+      "original_order": 0,
+      "links": [],
+      "confidence": 1.0
+    },
+    {
+      "section_id": "summary",
+      "section_title": "SUMMARY",
+      "normalized_type": "summary",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "Fashion professional with 3+ years of experience in buying, merchandising, category management, and P&L managementacross retail and e-commerce. Experienced in assortment planning, vendor sourcing, PO/PI coordination, and productlifecycle execution for apparel categories including bottom-wear, casualwear, and accessories. Proven ability to analyzesales performance, optimize assortments, negotiate supplier terms, and improve margins and sell-through across multi-channel retail environments.",
+      "original_order": 1,
+      "links": [],
+      "confidence": 1.0
+    },
+    {
+      "section_id": "professional_experience",
+      "section_title": "PROFESSIONAL EXPERIENCE",
+      "normalized_type": "experience",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "SuperK Bangalore, IndiaCategory Manager – Fashion Nov 2025 – PresentBuilt the fashion category from near zero across online channels and a tech-enabled retail network of 3+ coco stores,launching assortments across apparel, footwear, and accessories while driving vendor expansion, category P&Lmanagement, and data-led merchandising decisions.\n\n\n\n- Expanded the fashion assortment from 5 to 25+ subcategories across menswear, womenswear, kidswear,footwear, and accessories by onboarding 12+ regional vendors, identifying assortment gaps, and benchmarkingcategory offerings against value retail players like DMart and Vishal Mega Mart.\n- Analyzed weekly sales performance, pricing benchmarks, and customer demand signals thereby generating ₹ 3.5lakh in category revenue within two months.\n- Negotiated vendor pricing, MOQs, and sourcing terms, improving product margins from 22% to 35% whilemaintaining competitive retail pricing.\n- Partnered with marketing teams to launch fashion-led campaigns during New Year, Pongal and Republic Dayincreasing category visibility by ~22% and driving ~15% uplift in campaign period sales.\n- Collaborated with operations and supply chain teams to improve stock availability for fast-moving SKUs,coordinating warehouse invoicing and inventory flow to reduce stock-outs by ~20% across priority products.\n- Utilized Excel and Metabase dashboards for tracking sell-through, AOV, and margin performance; identifiedunderperforming SKUs and implemented assortment rationalization that improved category gross margin by ~6%.The Style Gram Founder Remote - Chennai, IndiaNov 2024 – Jun 2025Built and operated a lean fashion reselling brand focused on affordable women’s western-wear, managing end-to-endsourcing, merchandising, content creation, and customer engagement across Instagram and Swiggy Minis.\n- Generated ₹50,000 in revenue during the launch phase with an average order value of ₹600, fulfilling 80+customer orders across Tier 1 and Tier 2 cities with zero product returns.\n- Sourced and merchandised 60+ SKUs across tops, skirts, and dresses through direct supplier negotiations,maintaining 45% gross margins and reducing sourcing turnaround time by 25%.\n- Evaluated and engaged 5 supplier partners before finalizing a primary vendor to optimize pricing, qualityconsistency, and procurement turnaround time.\n- Executed pricing, merchandising, and inventory tracking through Excel-based systems, ensuring 100% orderfulfillment and streamlined stock management.\n- Managed 60+ SKUs on Swiggy Minis and built a custom Excel-based WIP tracker to manage catalog listings,order tracking, and inventory visibility, reducing catalog errors by 90% and improving stock flow for fast-sellingstyles.\n- Produced 25+ branded content assets and launched 3+ Instagram ad campaigns, improving click-through ratesby 22% through A/B testing and targeted messaging.Go Colors (Go Fashion India Ltd.) Assistant Fashion Manager Chennai, IndiaSept 2020 – June 2023Supported buying and merchandising for women’s and girls’ bottom-wear categories including leggings, track pants, formalpants, ethnic bottoms, and shorts, with responsibility for vendor coordination, product lifecycle execution, and data-ledassortment decisions.\n- Managed PO/PI coordination and vendor communication across 20+ suppliers and 10+ factories acrossIndia and Asia, ensuring 95% on-time delivery for seasonal production orders.\n- Analyzed weekly sales performance for 200+ SKUs, recommending replenishment and assortment adjustmentsthat improved category sell-through by 15%.\n- Aligned assortment planning with trend insights and performance data, driving a 10% lift in customer purchaserate across key bottom-wear categories.\n- Launched 3+ new sub-categories including kids-wear, leading a 2-member team to introduce new styles andrevamp existing collections, boosting category sales by 15% in the first quarter.\n- Negotiated supplier pricing and MOQs during fabric sourcing and production planning, maintaining productquality while ensuring competitive margins.\n- Led sampling, fit approvals, and production coordination for 30+ styles per season, reducing post-launch returnrates to under 10% while gaining exposure to PLM-driven product development workflows.\n- Built WIP trackers to monitor production timelines and collaborated with logistics, VM, and marketing teams toensure timely product launches.",
+      "original_order": 2,
+      "links": [],
+      "confidence": 1.0
+    },
+    {
+      "section_id": "education",
+      "section_title": "EDUCATION",
+      "normalized_type": "education",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "Humber College - Longo School of Business Graduate Certificate in Fashion Management National Institute of Fashion Technology (NIFT) Bachelor of Design - Fashion Design Toronto, CanadaSept 2023 – Aug 2024Chennai, IndiaJuly 2016 – July 2020",
+      "original_order": 3,
+      "links": [],
+      "confidence": 1.0
+    },
+    {
+      "section_id": "skills",
+      "section_title": "SKILLS",
+      "normalized_type": "skill",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "Core Competencies: Assortment Planning\n\n- Fashion Buying\n- PO/PI Coordination\n- Vendor Management\n- InventoryControl\n- Forecasting\n- TNA Calendar Tracking\n- Product Lifecycle Management (PLM)\n- Order TrackingTools: Advanced MS Excel (VLOOKUP, Pivot Tables, Dashboards)\n- MS Word\n- Google Sheets\n- Canva\n- Meta AdsManager\n- SAP (PO/Inventory Tracking – Basic)Functional Strengths: Cross-Functional Collaboration\n- Trend Analysis\n- Sales Performance Reporting\n- Catalog & ContentManagement\n- E-commerce Marketing\n- Vendor Negotiation",
+      "original_order": 4,
+      "links": [],
+      "confidence": 1.0
+    }
+  ],
+  "parse_warnings": []
+}
