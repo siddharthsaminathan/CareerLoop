@@ -148,7 +148,9 @@ class GreenhouseAdapter:
     Endpoint: https://boards.greenhouse.io/embed/job_board/jobs?for={token}
     """
 
-    BASE = "https://boards.greenhouse.io/embed/job_board/jobs?for={token}"
+    # boards-api.greenhouse.io is the current active endpoint
+    BASE = "https://boards-api.greenhouse.io/v1/boards/{token}/jobs?content=true"
+    BASE_LEGACY = "https://boards.greenhouse.io/embed/job_board/jobs?for={token}"
     JOB_URL = "https://boards.greenhouse.io/embed/job_board/job_json?for={token}&token={job_id}"
 
     def __init__(self):
@@ -159,7 +161,12 @@ class GreenhouseAdapter:
 
     def _token_from_url(self, ats_url: str) -> Optional[str]:
         """Extract company token from ATS URL."""
-        m = re.search(r"greenhouse\.io/(?:embed/job_board\?for=)?([a-z0-9_-]+)", ats_url, re.IGNORECASE)
+        # boards-api URL: /v1/boards/{token}/jobs
+        m = re.search(r"boards-api\.greenhouse\.io/v\d+/boards/([a-z0-9_-]+)", ats_url, re.IGNORECASE)
+        if m:
+            return m.group(1)
+        # Legacy embed URL: ?for={token}
+        m = re.search(r"greenhouse\.io/(?:embed/job_board\?for=|embed/job_board/jobs\?for=)?([a-z0-9_-]+)", ats_url, re.IGNORECASE)
         return m.group(1) if m else None
 
     def fetch(self, company_id: str, company_name: str, ats_url: str) -> list[ATSJob]:
@@ -168,12 +175,17 @@ class GreenhouseAdapter:
             logger.warning(f"[Greenhouse] Could not extract token from {ats_url}")
             return []
 
-        try:
-            resp = self.session.get(self.BASE.format(token=token), timeout=REQUEST_TIMEOUT)
-            resp.raise_for_status()
-            data = resp.json()
-        except Exception as e:
-            logger.warning(f"[Greenhouse] fetch failed for {company_name}: {e}")
+        # Try new boards-api endpoint first, fall back to legacy embed
+        for url_template in (self.BASE, self.BASE_LEGACY):
+            try:
+                resp = self.session.get(url_template.format(token=token), timeout=REQUEST_TIMEOUT)
+                if resp.ok:
+                    data = resp.json()
+                    break
+            except Exception:
+                continue
+        else:
+            logger.warning(f"[Greenhouse] fetch failed for {company_name}")
             return []
 
         jobs_raw = data.get("jobs", [])

@@ -22,10 +22,13 @@ from careerloop.india_filter import filter_india_jobs
 from careerloop.india_fit_engine import IndiaFitEngine
 from careerloop.role_keywords import RoleKeywordCache
 from careerloop.company_targeting import CompanyTargeting
+from careerloop.role_similarity import RoleSimilarityFilter
 from careerloop.sources.search_adapter import SearchAdapter
 from careerloop.sources.jobspy_adapter import JobSpyAdapter
 from careerloop.sources.scrapegraph_adapter import ScrapeGraphAdapter
 from careerloop.sources.indeed_scraper import IndeedScraper
+from careerloop.sources.api_interceptor import APIInterceptor
+from careerloop.sources.portal_scraper import PortalScraper
 from careerloop.models import URLType, classify_url_type
 from careerloop.profile_manager import ProfileManager
 
@@ -58,6 +61,9 @@ class OnDemandSearch:
         self.jobspy = JobSpyAdapter()
         self.scraper = ScrapeGraphAdapter()
         self._indeed = IndeedScraper()
+        self._interceptor = APIInterceptor()   # kept for backward compat
+        self._portal_scraper = PortalScraper()  # 3-layer replacement
+        self._role_filter = RoleSimilarityFilter()
         self._ats = None
         self._portal = None
 
@@ -98,13 +104,17 @@ class OnDemandSearch:
 
         all_jobs: list[dict] = []
 
-        # 2. Targeted company portals (employer-first path)
+        # 2. Phase A — Employer discovery + portal scrape
         try:
             ranked_companies = self.targeting.top_n(
                 function=role, city=city,
                 n=portal_companies,
                 min_function_probability=0.35,
             )
+            # Phase A fallback: if DB has < 5 candidates, run live discovery
+            if len(ranked_companies) < 5:
+                result.notes.append("Phase A: sparse DB — running live employer discovery")
+                ranked_companies = self._discover_and_rank(role, city, portal_companies)
             result.targeted_companies = [rc.company.name for rc in ranked_companies]
             portal_jobs = self._scrape_targeted_companies(ranked_companies)
             all_jobs.extend(portal_jobs)
@@ -126,49 +136,14 @@ class OnDemandSearch:
         # 4. India filter
         india_filtered, _ = filter_india_jobs(all_jobs)
 
-        # 4b. Role relevance prefilter
-        role_tokens = set(role.lower().split())
-        # Collect first-word signals from target_functions (not all tokens — avoids "manager" pollution)
-        # e.g. "category manager fashion" → only "category", "fashion buyer" → "fashion"
-        tf_head_tokens = set()
-        # Generic business words that appear in almost every job title — exclude from domain signals
-        _generic = {"with", "and", "for", "the", "that", "from", "into", "this", "your",
-                    "manager", "senior", "associate", "lead", "head", "director", "specialist",
-                    "analyst", "executive", "officer", "coordinator", "consultant", "principal"}
-        for fn in (self.profile.target_functions or []):
-            words = fn.lower().split()
-            tf_head_tokens.update(w for w in words if len(w) >= 4 and w not in _generic)
-        # role_signal: the search role tokens + domain words from profile functions
-        role_signal = role_tokens | tf_head_tokens
-
-        rejected_role_terms = {r.lower() for r in (self.profile.rejected_roles or [])}
-
-        def _title_relevant(job: dict) -> bool:
-            title = job.get("title", "").lower()
-            title_tokens = set(title.split())
-
-            # Profile-driven rejection
-            for reject in rejected_role_terms:
-                if reject in title:
-                    return False
-
-            # For "engineer" roles: tighten so we don't match QA/hardware/manufacturing engineers.
-            if "engineer" in title_tokens and "engineer" in role_tokens:
-                eng_qualifier = role_tokens - {"engineer"}
-                generic_sw = {"software", "data", "platform", "backend", "frontend",
-                              "fullstack", "full-stack", "sre", "cloud", "mobile"}
-                if eng_qualifier and not (title_tokens & (eng_qualifier | generic_sw)):
-                    return False
-
-            # Title must overlap with the actual search role tokens first.
-            # This is the primary signal — derived purely from the search query.
-            if title_tokens & role_tokens:
-                return True
-            # Broader domain match from profile target_functions (domain-specific words only)
-            return bool(title_tokens & tf_head_tokens)
-
-        relevant = [j for j in india_filtered if _title_relevant(j)]
-        result.notes.append(f"role filter: {len(india_filtered)} → {len(relevant)} relevant")
+        # Phase E — Role relevance filter (embedding similarity + profile rejection)
+        relevant, rejected_count = self._role_filter.filter_jobs(
+            india_filtered,
+            target_role=role,
+            target_functions=self.profile.target_functions or [],
+            rejected_roles=self.profile.rejected_roles or [],
+        )
+        result.notes.append(f"role filter: {len(india_filtered)} → {len(relevant)} relevant ({rejected_count} rejected)")
 
         # 5. Canonical dedup
         deduped = deduplicate_canonical(relevant)
@@ -195,6 +170,7 @@ class OnDemandSearch:
             company = rc.company
             try:
                 if company.ats_provider not in ("unknown", "none", ""):
+                    # Phase D — extract via known ATS adapter
                     ats_jobs = ats.fetch_jobs(
                         company.id, company.name,
                         company.ats_provider, company.ats_url,
@@ -204,39 +180,185 @@ class OnDemandSearch:
                         d["_source_type"] = aj.source
                         jobs.append(d)
                 elif company.career_page_url:
-                    # Try Spire AI first (used by Myntra and other Indian companies)
-                    ws_id = discover_workspace_id(company.career_page_url)
+                    # Phase B — find/confirm career page URL
+                    career_url = company.career_page_url
+
+                    # Try Spire AI first (fast, no Playwright)
+                    ws_id = discover_workspace_id(career_url)
                     if ws_id:
-                        spire_jobs = spire_fetch(ws_id, company.name, company.career_page_url)
+                        spire_jobs = spire_fetch(ws_id, company.name, career_url)
                         jobs.extend(spire_jobs)
-                        logger.info(f"[OnDemand] {company.name}: {len(spire_jobs)} jobs via SpireAI")
-                    else:
-                        # Fallback: crawl career page + extract JDs
-                        urls = crawler.crawl(company.career_page_url)
-                        for url in urls[:10]:
-                            try:
-                                jd = extractor.extract(url)
-                                if jd.extraction_confidence >= 0.6:
-                                    jobs.append({
-                                        "title": jd.job_title,
-                                        "company": company.name,
-                                        "location": jd.location,
-                                        "url": url,
-                                        "apply_url": url,
-                                        "url_type": URLType.INDIVIDUAL_JOB.value,
-                                        "description": jd.raw_text,
-                                        "role_summary": jd.role_summary,
-                                        "responsibilities": jd.responsibilities,
-                                        "requirements": jd.requirements,
-                                        "benefits": jd.benefits,
-                                        "extraction_confidence": jd.extraction_confidence,
-                                        "_source_type": "company_portal",
-                                    })
-                            except Exception:
-                                pass
+                        logger.info(f"[OnDemand] {company.name}: {len(spire_jobs)} via SpireAI")
+                        continue
+
+                    # Phases C+D — 3-layer portal scraper (single browser session)
+                    portal_result = self._portal_scraper.scrape(career_url)
+
+                    # Layer 1: structured API interception
+                    if portal_result.intercepted_apis:
+                        discovered = self._resolve_intercepted_apis(portal_result, company, ats)
+                        if discovered:
+                            jobs.extend(discovered)
+                            platform = portal_result.intercepted_apis[0].platform
+                            logger.info(f"[OnDemand] {company.name}: {len(discovered)} via L1 API ({platform})")
+                            continue
+
+                    # Layer 2+3: DOM + agentive jobs
+                    if portal_result.has_jobs:
+                        all_dom = portal_result.all_jobs
+                        for j in all_dom:
+                            j.setdefault("company", company.name)
+                        jobs.extend(all_dom)
+                        logger.info(
+                            f"[OnDemand] {company.name}: {len(all_dom)} via "
+                            f"L{'2+3' if portal_result.agentive_jobs else '2'} DOM "
+                            f"(layers={portal_result.layers_used})"
+                        )
+                        continue
+
+                    # Phase D final fallback — static HTML crawl (rarely needed now)
+                    urls = crawler.crawl(career_url)
+                    for url in urls[:10]:
+                        try:
+                            jd = extractor.extract(url)
+                            if jd.extraction_confidence >= 0.6:
+                                jobs.append({
+                                    "title": jd.job_title,
+                                    "company": company.name,
+                                    "location": jd.location,
+                                    "url": url,
+                                    "apply_url": url,
+                                    "url_type": URLType.INDIVIDUAL_JOB.value,
+                                    "description": jd.raw_text,
+                                    "role_summary": jd.role_summary,
+                                    "responsibilities": jd.responsibilities,
+                                    "requirements": jd.requirements,
+                                    "benefits": jd.benefits,
+                                    "extraction_confidence": jd.extraction_confidence,
+                                    "_source_type": "company_portal",
+                                })
+                        except Exception:
+                            pass
             except Exception as e:
                 logger.debug(f"[OnDemand] {company.name}: {e}")
         return jobs
+
+    def _resolve_intercepted_apis(self, interception, company, ats) -> list[dict]:
+        """Phase C+D: given intercepted APIs, fetch jobs via the right adapter."""
+        jobs = []
+        # PortalScraperResult uses .intercepted_apis; InterceptionResult uses .apis
+        api_list = getattr(interception, "intercepted_apis", None) or getattr(interception, "apis", [])
+        for api in api_list:
+            try:
+                if api.platform in ("lever", "greenhouse", "ashby", "workday"):
+                    # Build canonical ATS URL and fetch
+                    ats_url = self._build_ats_url(api)
+                    if ats_url:
+                        ats_jobs = ats.fetch_jobs(company.id, company.name, api.platform, ats_url)
+                        for aj in ats_jobs:
+                            d = aj.to_dict()
+                            d["_source_type"] = aj.source
+                            jobs.append(d)
+                        # Cache discovery in DB
+                        self._update_company_ats(company.id, api.platform, ats_url)
+                elif api.platform == "spireai":
+                    from careerloop.sources.spireai_adapter import fetch_jobs as spire_fetch
+                    ws_id = api.slug or ""
+                    if not ws_id and api.sample_data:
+                        ws_id = api.sample_data.get("workspaceId", "")
+                    if ws_id:
+                        jobs.extend(spire_fetch(ws_id, company.name, company.career_page_url or api.url))
+                elif api.platform == "custom_json" and api.sample_data:
+                    # Direct fetch of the discovered endpoint
+                    endpoint = api.sample_data.get("endpoint", "")
+                    if endpoint:
+                        jobs.extend(self._fetch_custom_json(endpoint, company.name))
+            except Exception as e:
+                logger.debug(f"[OnDemand] intercept resolve {api.platform}: {e}")
+        return jobs
+
+    def _build_ats_url(self, api) -> Optional[str]:
+        slug = api.slug
+        if not slug:
+            return None
+        if api.platform == "lever":
+            return f"https://api.lever.co/v0/postings/{slug}?mode=json"
+        if api.platform == "greenhouse":
+            return f"https://boards-api.greenhouse.io/v1/boards/{slug}/jobs?content=true"
+        if api.platform == "ashby":
+            return f"https://api.ashbyhq.com/posting-api/job-board/{slug}"
+        return None
+
+    def _update_company_ats(self, company_id: str, provider: str, ats_url: str):
+        try:
+            from careerloop.memory.connection import get_db_manager
+            db = get_db_manager(self.root)
+            with db.get_connection() as conn:
+                conn.execute(
+                    "UPDATE companies SET ats_provider=?, ats_url=? WHERE id=?",
+                    [provider, ats_url, company_id],
+                )
+            logger.info(f"[OnDemand] Cached ATS discovery: {company_id} → {provider}")
+        except Exception as e:
+            logger.debug(f"[OnDemand] ATS cache write failed: {e}")
+
+    def _fetch_custom_json(self, endpoint: str, company_name: str) -> list[dict]:
+        import requests
+        try:
+            r = requests.get(endpoint, timeout=10,
+                             headers={"User-Agent": "Mozilla/5.0"})
+            if not r.ok:
+                return []
+            data = r.json()
+            items = []
+            if isinstance(data, list):
+                items = data
+            elif isinstance(data, dict):
+                for k in ["jobs", "results", "data", "items", "entities", "postings"]:
+                    if isinstance(data.get(k), list):
+                        items = data[k]
+                        break
+            jobs = []
+            for item in items:
+                if not isinstance(item, dict):
+                    continue
+                title = item.get("title") or item.get("jobTitle") or item.get("name") or ""
+                if not title:
+                    continue
+                locs = item.get("location") or item.get("locations") or ""
+                if isinstance(locs, list):
+                    locs = locs[0] if locs else ""
+                if isinstance(locs, dict):
+                    locs = locs.get("city") or locs.get("name") or ""
+                jobs.append({
+                    "title": title,
+                    "company": company_name,
+                    "location": str(locs),
+                    "url": item.get("url") or item.get("apply_url") or endpoint,
+                    "apply_url": item.get("apply_url") or item.get("url") or endpoint,
+                    "description": item.get("description") or item.get("content") or "",
+                    "_source_type": "custom_api",
+                })
+            return jobs
+        except Exception as e:
+            logger.debug(f"[OnDemand] custom JSON fetch failed: {e}")
+            return []
+
+    def _discover_and_rank(self, role: str, city: str, n: int):
+        """Phase A fallback: run live company discovery when DB is sparse."""
+        try:
+            from careerloop.sources.company_discovery import CompanyDiscoveryEngine
+            from careerloop.company_targeting import RankedCompany
+            engine = CompanyDiscoveryEngine(self.root)
+            discovered = engine.discover(city=city, function_hint=role, limit=n * 2)
+            # After discovery, re-run targeting (DB now has new companies)
+            return self.targeting.top_n(
+                function=role, city=city, n=n,
+                min_function_probability=0.25,
+            )
+        except Exception as e:
+            logger.warning(f"[OnDemand] Phase A discovery failed: {e}")
+            return []
 
     def _board_search(self, queries: list[str], role: str = "", city: str = "") -> list[dict]:
         # Reuse SearchAdapter's queries interface
