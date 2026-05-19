@@ -315,7 +315,7 @@ The user should feel:
 
 ## 17. Product Engineering Tracker
 
-> Updated by the `careerloop-product-lead` skill. Last updated: 2026-05-19.
+> Updated by the `careerloop-product-lead` skill. Last updated: 2026-05-20.
 
 | System | Completion | Status | Notes |
 |--------|-----------|--------|-------|
@@ -324,12 +324,12 @@ The user should feel:
 | Opportunity scoring (14-dim) | 55% | 🟡 Active | function_probability.py + metrics.py; needs calibration |
 | Decision compression / triage | 20% | 🔴 Gap | modes/ofertas.md reusable; no UX |
 | Career state system (modes) | 10% | 🔴 Gap | Conceptual only |
-| Company intelligence | 30% | � Active | CompanyResearchAdapter built; grounding wired into S3; company_intel.py standalone not yet built |
-| Positioning engine | 25% | 🟡 Active | S6 schema-validated; tailoring delta unmeasured post-fix |
-| Resume Council (v3) | 72% | 🟡 Active | Per-section S7; structural postconditions; TruthGuard fixed; schema validation; Pipeline A→B |
-| Humanizer layer | 55% | 🟡 Active | Markdown safety gate; structure validation pre/post; LLM rewrite of full resume blocked |
-| Resume rendering (templates) | 75% | 🟡 Active | Hard fail on structure loss; PDF-style preamble + loose experience parsing |
-| Validator / QA | 65% | 🟡 Active | 36 regression tests; structural guard tests; render pipeline validation |
+| Company intelligence | 30% | 🟡 Active | CompanyResearchAdapter built; grounding wired into S3; company_intel.py standalone not yet built |
+| Positioning engine | 30% | 🟡 Active | S6 schema-validated; tailoring delta SUBSTANTIAL post-S7 fix |
+| Resume Council (v3) | 78% | 🟡 Active | S7 prescriptive prompt; 9/9 sections REWRITE; 0 skipped; 10 HTML + 10 PDF rendered |
+| Humanizer layer | 60% | 🟡 Active | Markdown safety gate; structure validation pre/post; Truth Guard misses year inflation (B9) |
+| Resume rendering (templates) | 78% | 🟡 Active | 10 templates; hard fail on structure loss; PDF preamble + loose experience parsing |
+| Validator / QA | 70% | 🟡 Active | 10/10 pass; collapsed_bullet_marker fixed; possible_truncation de-fanged; 64 tests |
 | Application execution | 15% | 🔴 Gap | modes/apply.md prototype; Chrome extension not started |
 | Chrome extension | 0% | ⚫ Not started | Phase 3 |
 | Follow-up system | 25% | 🔴 Gap | Ledger auto-schedules; UI missing |
@@ -338,7 +338,7 @@ The user should feel:
 | WhatsApp/transport UX | 15% | 🔴 Gap | Concept only |
 | Monetization logic | 30% | 🟡 Active | Strategic understanding solid |
 
-**Overall product maturity: ~38-40% of vision.** (+10% after 6-agent stabilization pass. Council 45→60%, Humanizer 5→50%, Rendering 60→70%, Validator new at 60%.)
+**Overall product maturity: ~41-43% of vision.** (+3% from S7 overhaul. Council 72→78%, Humanizer 55→60%, Positioning 25→30%, Rendering 75→78%, Validator 65→70%. Tailoring delta 3.6%→SUBSTANTIAL.)
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
