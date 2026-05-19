@@ -17,7 +17,7 @@
 
 ## System Status (Live)
 
-> Updated 2026-05-18 after 6-agent stabilization pass.
+> Updated 2026-05-19 after Resume Council structural stabilization + Codex functional pass.
 
 | System | % | Status | Blocking? | Notes |
 |--------|---|--------|-----------|-------|
@@ -26,12 +26,12 @@
 | Opportunity scoring (14-dim) | 55% | 🟡 | No | function_probability.py + metrics.py; needs calibration |
 | Decision compression / triage | 20% | 🔴 | No | modes/ofertas.md reusable; no UX |
 | Career state system (modes) | 10% | 🔴 | No | Conceptual only |
-| Company intelligence | 20% | 🔴 | No | Vision doc published; Council JD-grounded; company_intel.py not built |
-| Positioning engine | 20% | 🟡 | No | Council S6 wired; tailoring delta 3.6% (needs prompt work) |
-| Resume Council (v3) | 60% | 🟡 | No | All 8 systems pass; Humanizer; Truth Guard; deterministic compiler |
-| Humanizer layer | 50% | 🟡 | No | 5-phase pipeline; 28 banned words; LLM wired; post-Humanizer verification |
-| Resume rendering (templates) | 70% | 🟡 | No | NormalizedResume contract; 9 templates; 36/36 clean renders |
-| Validator / QA | 60% | 🟡 | No | 10 rules; regression_test.py CI-ready; 94.4% pass rate |
+| Company intelligence | 30% | � | No | CompanyResearchAdapter built; grounding/provenance wired into S3; company_intel.py not yet standalone |
+| Positioning engine | 25% | 🟡 | No | S6 wired + schema validated; tailoring delta still unmeasured post-fix |
+| Resume Council (v3) | 72% | 🟡 | No | Per-section S7 loop; structural postconditions; Truth Guard UNSUPPORTED fix; schema validation on all nodes; Pipeline A→B connected |
+| Humanizer layer | 55% | 🟡 | No | Markdown safety gate added; full LLM rewrite of resume blocked; structure validation pre/post |
+| Resume rendering (templates) | 75% | 🟡 | No | Hard fail on structure loss; normalizer handles PDF-style preamble + loose experience blocks |
+| Validator / QA | 65% | 🟡 | No | 36 regression tests (was 31); structural guard tests added; render pipeline validation |
 | Application execution | 15% | 🔴 | No | modes/apply.md prototype; Chrome extension not started |
 | Chrome extension | 0% | ⚫ | No | Phase 3 |
 | Follow-up system | 25% | 🔴 | No | Ledger auto-schedules; UI missing |
@@ -40,7 +40,7 @@
 | WhatsApp/transport UX | 15% | 🔴 | No | Concept only |
 | Monetization logic | 30% | 🟡 | No | Strategic understanding solid |
 
-**Overall product maturity: ~30-35% of vision.** (No change — 2026-05-19 session fixed bugs in discovery pipeline but did not extend capabilities.)
+**Overall product maturity: ~38-40% of vision.** (+5% from structural stabilization pass. Council 60→72%, Company Intel 20→30%, Humanizer 50→55%, Rendering 70→75%, Validator 60→65%.)
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -80,6 +80,35 @@
 ---
 
 ## Session Log
+
+---
+
+### 2026-05-19 — Session: Resume Council Structural Stabilization (Cascade + Codex)
+
+**What was done:**
+- **Bucket 1 — CV input preprocessing:** Extended `_preprocess_plaintext_cv()` (Pass B) to split run-on date/location/bullet blobs from PDF-extracted CVs. Detects `PresentBuilt` → `Present\n\nBuilt`, `IndiaCategory` → `India\nCategory`, `2024Chennai` → `2024\n\nChennai`, bullet chars `•●▸` → `\n- `. Runs on all inputs, not just headingless text. Also applied post-S7 to catch LLM re-collapses.
+- **Bucket 2 — S7 per-section loop:** Replaced single giant JSON blob LLM call with one focused call per section. Each call gets only its section text + top-5 proof points + tone + keywords + 4000 max_tokens. Long experience sections (>3500 chars) kept as originals.
+- **Bucket 2b — S7 structural postconditions:** `_rewrite_preserves_section_structure()` checks bullet count drop, collapsed bullet markers, truncation, and too-short rewrites. Rejects bad rewrites and keeps originals.
+- **Bucket 3 — TruthGuard over-repair fix:** `_repair_evidence_claim()` now returns original unchanged for UNSUPPORTED ownership claims (Jaccard false positives). Only FABRICATED/EXAGGERATED ownership gets minimized. Killed `data-contributed to` / `fashion-contributed to` artifacts.
+- **Bucket 4 — Pipeline A→B:** `modes/pdf.md` now has Step 0: check `output/council/{person_id}/{job_id}/10_final_resume.md` before reading `cv.md`.
+- **LLM client:** `max_tokens` default 10000→4000, timeout 120→90s, per-call override param, per-call progress print `⟳ LLM call [label]...`
+- **Humanizer safety gate:** Markdown structure validation pre/post — rejects rewrites that lose bullets or structure.
+- **Normalizer:** PDF-style preamble contact preservation; loose experience block parsing; `softbreak` AST node handled.
+- **Render pipeline:** Hard fail if normalization loses required structure.
+- **Company intelligence grounding:** `CompanyResearchAdapter` built; wired into S3 with grounding status + provenance.
+- **Schemas:** JSON schema validation on all 6 LLM nodes; `private_constraints` stripped at S5.
+- **Tests:** 36 regression tests (31 → 36); structural guard tests added.
+- **Varsha E2E run:** 3 experience entries / 19 bullets correctly parsed and preserved. Education, Skills clean. Cover note and recruiter DM generated.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED  
+PRD §11 (Council 60→72%), §12 (Humanizer 50→55%), Rendering (70→75%), §9 (Company Intel 20→30%), Validator (60→65%).
+
+**Deviations detected:** None. All work directly on the Council pipeline's core quality and correctness.
+
+**Recommended next 3 actions:**
+1. Measure tailoring delta post-fix — run Siddharth Nicobar end-to-end, compare keyword coverage before/after (B8, PRD §10-11)
+2. Build per-entry structured rewriting for S7 experience section — loop over individual job entries instead of skipping long sections (PRD §11)
+3. Build standalone `company_intel.py` engine using CompanyResearchAdapter as foundation (B6, PRD §9)
 
 ---
 
