@@ -1,0 +1,63 @@
+{
+  "total_years_experience": 1.0,
+  "confirmed_skills": [
+    {
+      "skill": "Python",
+      "years": 1,
+      "evidence": "Listed in skills with data engineering and analytics tools; used for cohort analysis and observability at Emote."
+    },
+    {
+      "skill": "SQL",
+      "years": 1,
+      "evidence": "Listed in skills (Postgres, Redshift); applied in data engineering and analytics roles."
+    },
+    {
+      "skill": "LLM APIs",
+      "years": 1,
+      "evidence": "Skills include prompt engineering and use of ChatGPT, Claude; used in building Emote's AI system and Reddit outreach."
+    }
+  ],
+  "weak_skills": [
+    "NodeJS",
+    "Frontend"
+  ],
+  "evidence_bank": {
+    "Python": [
+      "Listed in skills with data engineering tools",
+      "Used for analytics and cohort analysis at Emote"
+    ],
+    "SQL": [
+      "Listed in skills with Postgres, Redshift",
+      "Applied in data analysis for Emote and Grant Thornton"
+    ],
+    "LLM APIs": [
+      "Prompt engineering and use of ChatGPT/Claude in skills",
+      "Built AI-driven Reddit outreach using LLM-based personalization",
+      "Architected emotional AI system likely using LLM APIs"
+    ]
+  },
+  "strongest_proof_points": [
+    "Co-founded and shipped AI product Emote from 0 to 451 users in 7 months with 76% activation rate",
+    "Led enterprise AI enablement across 80+ departments at a major bank (Grant Thornton)",
+    "Built AI-driven outreach system with ~9% conversion on Reddit"
+  ],
+  "claims_allowed": [
+    "Python experience",
+    "SQL experience",
+    "LLM API experience",
+    "Product ownership and rapid iteration",
+    "AI product development",
+    "Banking and financial transformation consulting"
+  ],
+  "claims_not_allowed": [
+    "5+ years of experience",
+    "Frontend development",
+    "NodeJS experience",
+    "Deep learning expert",
+    "IIT/NIT/BITS degree",
+    "Retail/e-commerce experience"
+  ],
+  "private_constraints": [
+    "Chennai location preferred"
+  ]
+}

@@ -659,30 +659,43 @@ def positioning_node(state: CouncilState) -> CouncilState:
 
 # ─── System 7: Section Rewrites ───────────────────────────────────────────────
 
-_S7_PER_SECTION_SYSTEM = """You are a precise editor who sharpens specificity for recruiting impact.
-Your task is to rewrite ONE section of a candidate's resume so it aligns perfectly with the target role, while remaining rigorously honest.
+_S7_PER_SECTION_SYSTEM = """You are a resume tailoring engine. Your job is to rewrite ONE section so it reads like this candidate was BORN to fill the target role.
 
-DO:
-1. Lead bullets with specific outcomes and concrete nouns, not abstract processes.
-2. Weave in `role_keywords` and address `hidden_expectations` naturally—make the candidate look like a native to this domain.
-3. If a bullet proves they can deliver the `day_one_deliverables`, move it to the top.
-4. Replace weak generic verbs (Analyzed, Supported, Assisted, Utilized, Collaborated) with strong, outcome-oriented action verbs.
-5. Emphasize exactly what the `narrative_angle` dictates.
+You MUST rewrite every section. "KEEP" is only acceptable for factual data (contact info, dates, degrees, language lists). For experience, profile, skills, and achievements sections, you MUST produce a REWRITE.
 
-DO NOT:
-1. NEVER invent metrics, numbers, dates, or claims. Use ONLY what is in `section_text`.
-2. Do NOT add claims from `claims_not_allowed`.
-3. Do NOT use AI-slop or "cope" language (e.g., spearheaded, leveraged, synergy, passionate, results-driven).
-4. Preserve all `[Text](URL)` links exactly as-is.
-5. Keep the exact same bullet count. Do NOT merge or drop bullets.
-6. De-emphasize or omit `things_to_downplay`.
+REWRITING RULES — follow ALL of them:
 
-Return ONLY a JSON object with this exact shape:
+1. REFRAME every bullet to connect the candidate's work to what THIS role needs.
+   - If `company_context` includes `language_to_use`, those exact phrases MUST appear in at least 2 bullets.
+   - If `narrative_angle` says "outcome-driven AI engineer," every bullet must emphasize outcomes and AI.
+   - If the role needs "personalization" and the candidate built "memory systems," reframe: "Designed a memory-driven personalization engine that..."
+
+2. REORDER bullets: most role-relevant work goes first. If a bullet proves `day_one_deliverables`, it's bullet #1.
+
+3. INJECT role-native language from `role_keywords` into bullet phrasing — not as decoration, but as the framing of what was built.
+   Example: If role_keywords include "clienteling" and candidate built "user engagement tracking," rewrite as: "Built a clienteling intelligence layer that tracked user engagement..."
+
+4. STRENGTHEN weak verbs: Built→Shipped, Worked on→Owned, Helped→Drove, Used→Deployed, Created→Architected.
+
+5. APPLY `things_to_downplay`: de-emphasize or subordinate these into dependent clauses, never lead with them.
+
+6. For PROFILE/SUMMARY sections: rewrite the entire paragraph to position the candidate as described in `narrative_angle`. Use `language_to_use` phrases. This is the recruiter's first impression — it must scream "perfect fit."
+
+7. For SKILLS sections: reorder to put role-relevant skills first. Group by relevance to the target role.
+
+HONESTY GUARDRAILS:
+- NEVER invent metrics, numbers, dates, or claims. Use ONLY what is in `section_text`.
+- Do NOT add claims from `claims_not_allowed`.
+- No AI-slop (spearheaded, leveraged, synergy, passionate, results-driven, cutting-edge).
+- Preserve all `[Text](URL)` links exactly as-is.
+- Keep the exact same bullet count. Do NOT merge or drop bullets.
+
+Return ONLY a JSON object:
 {
   "section_id": "<same as input>",
-  "rewritten_text": "<full rewritten markdown for this section>",
+  "rewritten_text": "<full rewritten markdown>",
   "change_type": "KEEP|EXPAND|REWRITE|TRIM",
-  "change_reason": "<one sentence explaining the positioning angle applied>",
+  "change_reason": "<one sentence: what positioning angle was applied>",
   "claims_added": [],
   "claims_removed": [],
   "evidence_used": [],

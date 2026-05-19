@@ -1,0 +1,40 @@
+{
+  "summary": "Nicobar Design is a 10-year-old design-driven lifestyle brand with physical stores and likely D2C e-commerce, headquartered in Delhi. The JD reveals an ambition to become AI-native across customer engagement, store operations, and business intelligence.",
+  "business_model": "Retail (physical stores) and likely D2C e-commerce, selling design-focused lifestyle products (likely home and apparel)",
+  "india_presence": "Delhi HQ, retail stores across India (implied by 'every store')",
+  "maturity": "growth",
+  "hiring_urgency": "HIGH",
+  "culture_signals": [
+    "design-driven",
+    "founder-led (CEO's office role)",
+    "flat hierarchy (CEO-office role)",
+    "AI-native ambition",
+    "brand-focused",
+    "sharp, fast, unmistakably ours"
+  ],
+  "red_flags": [],
+  "positioning_implications": "Lead with consumer-facing AI product experience in retail/e-commerce; emphasize design-thinking and business-outcome focus; high-visibility role reporting to CEO.",
+  "interview_implications": "Expect design-thinking exercises, business-outcome discussions, and likely a case study on personalization or store tooling; UI sensibility may be assessed given the brand's visual nature.",
+  "signals_from_jd": [
+    "CEO-office role",
+    "AI-native ambition",
+    "retail/e-commerce domain",
+    "4 product areas (personalization, clienteling, BI, design workflows)",
+    "design-driven",
+    "Delhi HQ",
+    "10-year-old brand",
+    "IIT/BITS/NIT preference",
+    "LLM API experience required",
+    "Python/NodeJS/SQL stack"
+  ],
+  "confidence": 0.6,
+  "missing_data": [
+    "funding_round",
+    "employee_count",
+    "recent_layoffs",
+    "glassdoor_rating",
+    "exact_product_category",
+    "store_count",
+    "revenue_range"
+  ]
+}

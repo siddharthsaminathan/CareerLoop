@@ -107,7 +107,5 @@
   "section_rewrites": null,
   "application_pack": null,
   "truth_guard_report": null,
-  "errors": [
-    "HTTPSConnectionPool(host='api.deepseek.com', port=443): Max retries exceeded with url: /v1/chat/completions (Caused by NameResolutionError(\"HTTPSConnection(host='api.deepseek.com', port=443): Failed to resolve 'api.deepseek.com' ([Errno 8] nodename nor servname provided, or not known)\"))"
-  ]
+  "errors": []
 }

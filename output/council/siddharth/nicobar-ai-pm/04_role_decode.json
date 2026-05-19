@@ -2,57 +2,44 @@
   "normalized_title": "AI Product Engineer",
   "seniority": "mid-senior",
   "must_haves": [
-    "Degree from IIT, BITS, NIT or equivalent top engineering institute",
-    "Real-world LLM API experience (OpenAI, Claude, Gemini, etc.)",
-    "Proficiency in Python or NodeJS",
-    "Strong SQL skills",
-    "Experience with API integrations, webhooks, and data pipelines",
-    "Front-end development with design sensibility",
-    "E-commerce or retail data experience",
-    "Experience with CRM or marketing automation platforms"
+    "Engineering degree from IIT/BITS/NIT or equivalent",
+    "3-5 years of experience",
+    "LLM API experience (OpenAI, Claude, Gemini, etc.)",
+    "Python or NodeJS fluency",
+    "SQL proficiency",
+    "API, webhook, data pipeline integration skills",
+    "Front-end development ability"
   ],
   "nice_to_haves": [
-    "Specific Shopify API experience",
-    "MoEngage platform experience",
+    "Shopify API ecosystem familiarity",
+    "E-commerce data experience",
+    "MoEngage or CRM/marketing automation platform experience",
     "Microsoft Dynamics 365 exposure",
-    "Conversational AI or chatbot development",
-    "Demand forecasting or AI stylist projects"
+    "Retail/e-commerce industry background"
   ],
   "hidden_expectations": [
-    "CEO-facing communication and executive presence",
-    "Business-outcome thinking and strategic mindset",
-    "Ability to work autonomously in a design-conscious environment",
-    "Cross-functional collaboration with creative teams",
-    "Cultural fit for a brand-focused company"
+    "CEO-facing communication and strategic thinking",
+    "Entrepreneurial, self-directed problem solving",
+    "AI-native mindset and implementation ability"
   ],
   "day_one_deliverables": [
     "Customer personalization intelligence layer"
   ],
   "screening_keywords": [
     "AI-native",
-    "clienteling",
-    "business intelligence",
-    "LLM",
+    "LLM API",
+    "Python",
+    "SQL",
     "Shopify",
     "MoEngage",
-    "personalization",
-    "data pipelines",
-    "API integration",
-    "front-end",
-    "e-commerce",
-    "CRM",
-    "ERP",
-    "IIT",
-    "BITS",
-    "NIT"
+    "Dynamics 365",
+    "clienteling",
+    "business intelligence"
   ],
   "disqualifiers": [
-    "No hands-on LLM experience",
+    "No LLM API experience",
     "No coding skills",
-    "No front-end ability",
-    "No API integration experience",
-    "No SQL skills",
-    "Non-engineering background without equivalent"
+    "Lacks system integration experience"
   ],
-  "confidence": 0.9
+  "confidence": 0.85
 }

@@ -1,0 +1,22 @@
+{
+  "one_line_positioning": "AI Product Engineer who ships consumer personalization AI from concept to conversion",
+  "narrative_angle": "Product-minded AI engineer with a founder's instinct for user activation and business impact, ready to own customer intelligence for a design-led brand",
+  "lead_strengths": [
+    "LLM API integration for personalization",
+    "Python & SQL analytics stack",
+    "End-to-end AI product ownership"
+  ],
+  "proof_points_to_emphasize": [
+    "Built AI-driven outreach with ~9% conversion on Reddit",
+    "Co-founded Emote, shipping AI product to 451 users with 76% activation",
+    "Led enterprise AI enablement across 80+ departments at a major bank"
+  ],
+  "things_to_downplay": [
+    "Missing Node.js and frontend stack",
+    "Non-retail/e-commerce industry background"
+  ],
+  "tone_guidance": "Direct, technical, business-outcome focused",
+  "recruiter_first_impression_target": "Engineer who has end-to-end shipped an AI product and understands personalization at scale",
+  "application_stance": "CAREFUL_PUSH",
+  "reasoning": "Strong evidence of LLM API integration and personalization; misses NodeJS and frontend requirements but transferable product engineering and enterprise AI enablement experience."
+}

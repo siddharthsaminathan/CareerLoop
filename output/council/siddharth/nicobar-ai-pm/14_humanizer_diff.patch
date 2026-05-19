@@ -1,0 +1,87 @@
+--- pre_humanizer
++++ final_resume
+@@ -4,21 +4,13 @@
+ +91 7299707403 · siddharthsaminathan99@gmail.com · Chennai, India
+ Website: https://emotenow.app/ · github.com/siddharthsaminathan
+ 
+-
+-
+ ---
+-
+-
+ 
+ ## Profile
+ 
+ AI-native product engineer with 6+ years of experience shipping consumer-facing AI systems from concept to real users. Co-founded and scaled a hyper-personalized AI companion to 450+ users with 13–15% weekly retention, achieving 50x cost reduction and 5x latency improvement through LLM API optimization. Proven ability to architect and deploy intelligence layers that drive measurable customer outcomes—retention, personalization, and brand experience. Entrepreneurial, CEO-facing communicator who thrives on building AI products that delight users and deliver business impact.
+ 
+-
+-
+ ## Work Experience
+-
+-
+ 
+ ## AI Engineer — Omnex Systems (AquaPro AI)
+ 
+@@ -31,8 +23,6 @@
+ - Implemented observability (structured logging, tracing, and metrics) to monitor system behavior and debug production issues.
+ - Improved output consistency and reduced failures with validation layers, retry handling, and fallback logic.
+ - Enabled the system to map inputs to the right structures and suggest updates based on existing data, ensuring accurate and relevant outputs.
+-
+-
+ 
+ ## Co-Founder, AI Product Engineer — Emote (emotenow.app)
+ 
+@@ -47,8 +37,6 @@
+ - Built an internal AI product manager that monitors system behaviour, detects anomalies, and improves observability across the production AI stack.
+ - Built a Reddit bot to automate user acquisition; reduced outreach time from ~6–8 hours to ~30–40 minutes, enabling 50–100 hyper-personalized DMs per session, increasing activation from ~20% to ~75% and weekly retention from ~5% to ~13%.
+ 
+-
+-
+ ## Data Engineer — Akkodis AB (Ericsson Client)
+ 
+ **Nov 2022 – Nov 2024 | Sweden**
+@@ -57,8 +45,6 @@
+ - Architected end-to-end ETL lifecycle for Power BI and Tableau dashboards, delivering real-time customer personalization insights.
+ - Drove data reliability and consistency during platform migration through automated quality audits, ensuring zero downtime for brand experience reporting.
+ - Owned redesign of data pipelines powering reporting systems, aligning data owners and stakeholders around a unified customer view.
+-
+-
+ 
+ ## Data Analyst — Positive Integers Pvt Ltd
+ 
+@@ -70,8 +56,6 @@
+ 
+ ---
+ 
+-
+-
+ ## Skills
+ 
+ **AI & Personalization:** LLM APIs (OpenAI, Claude, Gemini), RAG pipelines, embeddings, prompt design, multi-model routing, multi-agent orchestration, memory systems, conversational AI
+@@ -81,8 +65,6 @@
+ **Data & Analytics:** SQL, ETL pipelines, business intelligence, Power BI, Tableau, data validation, pipeline optimization
+ 
+ **Infra & Deployment:** Docker, Fly.io, AWS (basics), logging, observability, performance optimization
+-
+-
+ 
+ ## Education
+ 
+@@ -95,8 +77,6 @@
+ 
+ **B.Tech Computer Science & Engineering** — SRM University, India · 2016–2020
+ 
+-
+-
+ ## Achievements
+ 
+ - Shipped Emote, an AI-native personalization app: grew to 450+ users with 40+ power users and 13–15% weekly retention through automated, personalized user acquisition. (https://emotenow.app/)
+@@ -104,8 +84,6 @@
+ 
+ ---
+ 
+-
+-
+ ## Languages
+ 
+ English (Fluent) · Tamil (Native) · Hindi

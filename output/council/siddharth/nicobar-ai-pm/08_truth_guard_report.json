@@ -1,67 +1,27 @@
 {
-  "total_claims": 12,
+  "total_claims": 11,
   "verified": 0,
-  "weak": 4,
-  "unsupported": 8,
+  "weak": 6,
+  "unsupported": 5,
   "exaggerated": 0,
   "fabricated": 0,
   "claims": [
     {
-      "text": "4+ years of experience building",
+      "text": "6+ years of experience shipping consumer-facing AI systems",
       "risk_level": "WEAK",
       "claim_type": "year_experience",
-      "start_pos": 37,
-      "end_pos": 68,
-      "evidence_match": "Partially supported: actual total = 6.67, claimed 4+",
+      "start_pos": 32,
+      "end_pos": 90,
+      "evidence_match": "Partially supported: actual total = 6.7, claimed 6+",
       "repair_suggestion": null,
       "confidence": 0.6
-    },
-    {
-      "text": "Built a production AI system enabling AI-assisted quality",
-      "risk_level": "WEAK",
-      "claim_type": "ownership",
-      "start_pos": 39,
-      "end_pos": 96,
-      "evidence_match": "Partial evidence match in 'Python'",
-      "repair_suggestion": null,
-      "confidence": 0.2545454545454545
-    },
-    {
-      "text": "Led migration of enterprise data platform",
-      "risk_level": "UNSUPPORTED",
-      "claim_type": "ownership",
-      "start_pos": 36,
-      "end_pos": 77,
-      "evidence_match": null,
-      "repair_suggestion": null,
-      "confidence": 0.0
-    },
-    {
-      "text": "Owned redesign of data pipelines powering reporting systems",
-      "risk_level": "UNSUPPORTED",
-      "claim_type": "ownership",
-      "start_pos": 132,
-      "end_pos": 191,
-      "evidence_match": null,
-      "repair_suggestion": null,
-      "confidence": 0.0
-    },
-    {
-      "text": "Built and designed end-to-end ETL lifecycle",
-      "risk_level": "WEAK",
-      "claim_type": "ownership",
-      "start_pos": 231,
-      "end_pos": 274,
-      "evidence_match": "Partial evidence match in 'data pipelines'",
-      "repair_suggestion": null,
-      "confidence": 0.3181818181818182
     },
     {
       "text": "Built the backend",
       "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 315,
-      "end_pos": 332,
+      "start_pos": 452,
+      "end_pos": 469,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0
@@ -70,58 +30,88 @@
       "text": "Built an internal AI product manager that monitors system behaviour",
       "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 793,
-      "end_pos": 860,
+      "start_pos": 930,
+      "end_pos": 997,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0
     },
     {
       "text": "Built a Reddit bot",
-      "risk_level": "UNSUPPORTED",
-      "claim_type": "ownership",
-      "start_pos": 942,
-      "end_pos": 960,
-      "evidence_match": null,
-      "repair_suggestion": null,
-      "confidence": 0.0
-    },
-    {
-      "text": "Built real-time Grafana dashboards",
-      "risk_level": "UNSUPPORTED",
-      "claim_type": "ownership",
-      "start_pos": 179,
-      "end_pos": 213,
-      "evidence_match": null,
-      "repair_suggestion": null,
-      "confidence": 0.0
-    },
-    {
-      "text": "Built Emote",
       "risk_level": "WEAK",
       "claim_type": "ownership",
-      "start_pos": 2,
-      "end_pos": 13,
-      "evidence_match": "Partial evidence match in 'API integrations'",
+      "start_pos": 1079,
+      "end_pos": 1097,
+      "evidence_match": "Partial evidence match in 'Entrepreneurial'",
       "repair_suggestion": null,
-      "confidence": 0.2333333333333333
+      "confidence": 0.26249999999999996
+    },
+    {
+      "text": "Architected a conversational BI system",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 277,
+      "end_pos": 315,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Architected end-to-end ETL lifecycle",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 182,
+      "end_pos": 218,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Owned redesign of data pipelines powering reporting systems",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 470,
+      "end_pos": 529,
+      "evidence_match": "Partial evidence match in 'API & Data Pipeline'",
+      "repair_suggestion": null,
+      "confidence": 0.2545454545454545
+    },
+    {
+      "text": "Built Tableau dashboards",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 44,
+      "end_pos": 68,
+      "evidence_match": "Partial evidence match in 'API & Data Pipeline'",
+      "repair_suggestion": null,
+      "confidence": 0.27999999999999997
+    },
+    {
+      "text": "Owned SQL-based ETL workflows",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 314,
+      "end_pos": 343,
+      "evidence_match": "Partial evidence match in 'SQL'",
+      "repair_suggestion": null,
+      "confidence": 0.21
     },
     {
       "text": "Led enterprise data platform migration (Azure",
-      "risk_level": "UNSUPPORTED",
+      "risk_level": "WEAK",
       "claim_type": "ownership",
-      "start_pos": 148,
-      "end_pos": 193,
-      "evidence_match": null,
+      "start_pos": 195,
+      "end_pos": 240,
+      "evidence_match": "Partial evidence match in 'SQL'",
       "repair_suggestion": null,
-      "confidence": 0.0
+      "confidence": 0.2545454545454545
     },
     {
       "text": "Built an ML pipeline",
       "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 88,
-      "end_pos": 108,
+      "start_pos": 96,
+      "end_pos": 116,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0

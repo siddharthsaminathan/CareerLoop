@@ -1,0 +1,32 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+        __start__([<p>__start__</p>]):::first
+        parse(System 1: Document Parser)
+        contract(System 2: Preservation Contract)
+        intelligence(System 3: Company Intelligence)
+        decode(System 4: Role Decoder)
+        truth(System 5: User Truth)
+        strategy(System 6: Positioning Strategy)
+        rewrites(System 7: Section Rewrites)
+        truth_guard(System 7.5: Truth Guard)
+        assembly(System 8: Safe Assembler)
+        __end__([<p>__end__</p>]):::last
+
+        __start__ --> parse;
+        parse --> contract;
+        contract --> intelligence;
+        intelligence --> decode;
+        decode --> truth;
+        truth --> strategy;
+        strategy --> rewrites;
+        rewrites --> truth_guard;
+        truth_guard --> assembly;
+        assembly --> __end__;
+
+        classDef default fill:#f2f0ff,line-height:1.2
+        classDef first fill-opacity:0
+        classDef last fill:#bfb6fc

@@ -1,0 +1,27 @@
+{
+  "required_public_sections": [
+    "contact",
+    "experience",
+    "education"
+  ],
+  "sections_to_exclude": [],
+  "unknown_sections_to_preserve": [
+    "hayagreev_sivakumar_cv",
+    "financial_transformation_consultant_grant_thornton_bharat_chennai_jul_2025_present",
+    "co_founder_emote_chennai_may_2025_present"
+  ],
+  "ordering_rules": [
+    "hayagreev_sivakumar_cv",
+    "profile",
+    "contact",
+    "experience",
+    "financial_transformation_consultant_grant_thornton_bharat_chennai_jul_2025_present",
+    "co_founder_emote_chennai_may_2025_present",
+    "education",
+    "skills"
+  ],
+  "link_preservation_rules": {
+    "all": "MUST_SURVIVE"
+  },
+  "max_allowed_changes": 3
+}

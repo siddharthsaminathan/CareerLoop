@@ -6,7 +6,7 @@
   ],
   "grounding_status": "PARTIAL",
   "confidence": 0.5,
-  "generated_at": "2026-05-19T17:10:57.116050+00:00",
+  "generated_at": "2026-05-19T22:04:46.120640+00:00",
   "cache_key": "909ea5c71e0f1e43",
   "ttl_days": 30,
   "company_summary": "Nicobar Design Pvt. Ltd.. operates in ecommerce. with a focus on ai_ml, ai_ml, retail_tech.",
@@ -36,24 +36,23 @@
   "language_to_use": [
     "AI-native",
     "intelligence layer",
-    "brand voice",
-    "personalization",
-    "clienteling"
+    "brand experience",
+    "customer personalization",
+    "conversational BI"
   ],
   "language_to_avoid": [
-    "enterprise",
-    "legacy",
-    "compliance",
-    "scalability",
-    "platform"
+    "enterprise-grade",
+    "scalable infrastructure",
+    "data pipeline",
+    "legacy migration",
+    "cost optimization"
   ],
   "candidate_angles": [],
   "transferability_angles": [],
   "risks_to_soften": [
-    "No e-commerce or retail domain experience",
-    "No experience with Shopify or MoEngage",
-    "No front-end work that matches design standards",
-    "No CEO-office or executive-facing role"
+    "No direct e-commerce or retail experience",
+    "No experience with Shopify, MoEngage, or Dynamics 365",
+    "Background in manufacturing quality, not consumer personalization"
   ],
   "claims_to_avoid": [],
   "resume_strategy_hint": "",
@@ -70,22 +69,21 @@
     "language_to_use": [
       "AI-native",
       "intelligence layer",
-      "brand voice",
-      "personalization",
-      "clienteling"
+      "brand experience",
+      "customer personalization",
+      "conversational BI"
     ],
     "language_to_avoid": [
-      "enterprise",
-      "legacy",
-      "compliance",
-      "scalability",
-      "platform"
+      "enterprise-grade",
+      "scalable infrastructure",
+      "data pipeline",
+      "legacy migration",
+      "cost optimization"
     ],
     "risks_to_soften": [
-      "No e-commerce or retail domain experience",
-      "No experience with Shopify or MoEngage",
-      "No front-end work that matches design standards",
-      "No CEO-office or executive-facing role"
+      "No direct e-commerce or retail experience",
+      "No experience with Shopify, MoEngage, or Dynamics 365",
+      "Background in manufacturing quality, not consumer personalization"
     ],
     "claims_to_avoid": [],
     "candidate_angles": [],
@@ -102,16 +100,16 @@
     "language_to_use": [
       "AI-native",
       "intelligence layer",
-      "brand voice",
-      "personalization",
-      "clienteling"
+      "brand experience",
+      "customer personalization",
+      "conversational BI"
     ],
     "language_to_avoid": [
-      "enterprise",
-      "legacy",
-      "compliance",
-      "scalability",
-      "platform"
+      "enterprise-grade",
+      "scalable infrastructure",
+      "data pipeline",
+      "legacy migration",
+      "cost optimization"
     ],
     "proof_points_to_prefer": [
       "measurable outcomes with numbers",
@@ -119,22 +117,20 @@
       "evidence of ownership and initiative"
     ],
     "risks_to_soften": [
-      "No e-commerce or retail domain experience",
-      "No experience with Shopify or MoEngage",
-      "No front-end work that matches design standards",
-      "No CEO-office or executive-facing role"
+      "No direct e-commerce or retail experience",
+      "No experience with Shopify, MoEngage, or Dynamics 365",
+      "Background in manufacturing quality, not consumer personalization"
     ],
     "avoid_overclaiming_about": [],
     "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact."
   },
   "unknowns": [
-    "Company revenue or funding",
-    "Number of employees",
+    "Company revenue, funding, employee count, and growth stage",
     "Company culture specifics beyond JD tone",
-    "Current tech stack details beyond Shopify, MoEngage, Dynamics 365",
-    "CEO's background or priorities",
-    "Team size for this role",
-    "Compensation range",
-    "Whether the role is remote or in-office"
+    "Exact tech stack beyond Shopify, MoEngage, Dynamics 365",
+    "Team size and reporting structure",
+    "Compensation and benefits",
+    "Recent news or layoffs",
+    "Customer demographics and market position"
   ]
 }

@@ -1,26 +1,25 @@
 {
-  "one_line_positioning": "AI Product Engineer who builds personalization intelligence layers and ships AI-native products from concept to scale.",
-  "narrative_angle": "AI-first product builder with a track record of creating user-loved, personalized AI experiences from scratch, optimizing for both performance and business outcomes.",
+  "one_line_positioning": "AI Product Engineer who builds hyper-personalized consumer AI experiences from prototype to production",
+  "narrative_angle": "Consumer AI founder turned product engineer, bringing AI-native personalization and entrepreneurial ownership to e-commerce",
   "lead_strengths": [
-    "End-to-end AI product development",
-    "LLM API orchestration and optimization",
-    "Data pipelines and API integrations",
-    "Zero-to-scale product ownership"
+    "Python & SQL backend engineering",
+    "LLM API orchestration & RAG pipelines",
+    "End-to-end product shipping & scaling (450+ users)"
   ],
   "proof_points_to_emphasize": [
-    "Built Emote from 0 to 450+ users with 13-15% weekly retention and zero paid acquisition",
-    "Reduced inference cost per conversation from $1.20 to $0.023",
-    "Improved AI latency from ~15s to ~3s",
-    "Built AI product manager that monitors system behavior and detects anomalies"
+    "Built hyper-personalized AI companion (memory, multi-agent) for consumer engagement",
+    "50x cost reduction and 5x latency improvement in production LLM systems",
+    "Scaled consumer AI to 450+ users via AI-driven marketing automation",
+    "Designed real-time data pipelines and REST APIs for mission-critical systems"
   ],
   "things_to_downplay": [
-    "No e-commerce domain experience",
-    "Limited front-end design sensibility",
-    "Non-top-tier engineering degree",
-    "Enterprise background at Omnex"
+    "Manufacturing quality industry background",
+    "Front-end development (basic proficiency only)",
+    "Enterprise data platform migration (Ericsson – not e-commerce)",
+    "Lack of Shopify, MoEngage, or Dynamics 365 experience"
   ],
-  "tone_guidance": "Direct, product-minded, and metrics-driven, with an appreciation for design and user experience.",
-  "recruiter_first_impression_target": "AI engineer who thinks like a product owner, shipping personalized AI solutions that drive measurable engagement and cost efficiency.",
+  "tone_guidance": "Direct, product-focused, customer-centric, avoiding enterprise terminology and emphasizing consumer outcomes",
+  "recruiter_first_impression_target": "A builder who personalizes customer experiences with AI, not just a backend developer",
   "application_stance": "CAREFUL_PUSH",
-  "reasoning": "Strong AI engineering and product-building skills align with core AI needs; e-commerce domain inexperience and front-end design gap are risks, but candidate's proven ability to build consumer AI from scratch and optimize for business outcomes is transferable."
+  "reasoning": "Strong AI engineering and product shipping evidence transfers well to e-commerce personalization, but lacks domain-specific tools (Shopify, MoEngage) and strong front-end skills. Entrepreneurial mindset fits CEO's office. Risk: no direct retail experience."
 }

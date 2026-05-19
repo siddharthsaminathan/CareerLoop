@@ -1,86 +1,94 @@
 {
-  "total_years_experience": 6.67,
+  "total_years_experience": 6.7,
   "confirmed_skills": [
     {
       "skill": "Python",
-      "years": 6.67,
-      "evidence": "Used Python across all roles, including building AI systems, data pipelines, and backend services."
+      "years": 6,
+      "evidence": "Used Python extensively in AI product engineering, backend development (FastAPI), data engineering, and analytics roles since 2019."
     },
     {
       "skill": "SQL",
-      "years": 6.67,
-      "evidence": "Designed ETL workflows, worked with PostgreSQL, and built reporting dashboards."
+      "years": 6,
+      "evidence": "Built SQL-based ETL workflows as Data Analyst, led data migration and pipeline design as Data Engineer."
     },
     {
-      "skill": "LLM API experience",
-      "years": 2.5,
-      "evidence": "Built production AI systems using LLM APIs, multi-model routing, and tool-calling orchestration."
+      "skill": "LLM APIs",
+      "years": 2,
+      "evidence": "Implemented multi-model routing and LLM APIs for production AI systems at Omnex and Emote, using tool-calling and orchestration."
     },
     {
-      "skill": "API integrations",
-      "years": 2.5,
-      "evidence": "Built REST APIs with FastAPI, WebSocket real-time pipelines, and integrated internal services."
-    },
-    {
-      "skill": "data pipelines",
+      "skill": "API & Data Pipeline Integration",
       "years": 4,
-      "evidence": "Led migration of enterprise data platform, redesigned data pipelines, and built end-to-end ETL lifecycles."
+      "evidence": "Designed and built REST APIs, WebSockets, SSE streaming in Emote; led enterprise data pipeline migration at Ericsson."
+    },
+    {
+      "skill": "AI/ML Systems",
+      "years": 2,
+      "evidence": "Built AI quality management system at Omnex, hyper-personalized companion at Emote with memory systems, RAG, multi-agent orchestration."
     }
   ],
   "weak_skills": [
-    "Front-end development with design sensibility",
-    "E-commerce or retail data experience",
-    "CRM or marketing automation platforms",
-    "Degree from top engineering institute (IIT/BITS/NIT equivalent)"
+    "Front-end development",
+    "Shopify API ecosystem",
+    "E-commerce data experience",
+    "MoEngage/CRM/marketing automation",
+    "Microsoft Dynamics 365",
+    "Retail/e-commerce industry background"
   ],
   "evidence_bank": {
     "Python": [
-      "Built AI quality management system at Omnex",
-      "Developed Emote backend from scratch",
-      "Built data pipelines at Akkodis/Ericsson",
-      "Used Python in all professional roles since 2019"
+      "Built AI quality management system with tool-calling at Omnex",
+      "Built Emote backend from scratch using FastAPI, Redis, PostgreSQL",
+      "Used Python for data processing in all roles"
     ],
     "SQL": [
-      "PostgreSQL migration and optimization at Akkodis",
-      "Built SQL-based ETL workflows for dashboards",
-      "Used PostgreSQL for Emote backend"
+      "Built SQL-based ETL workflows for reporting at Positive Integers",
+      "Led data migration from Azure to PostgreSQL at Akkodis",
+      "Performed data quality audits"
     ],
-    "LLM API experience": [
-      "Multi-agent orchestration at Omnex using tool-calling",
-      "Multi-model routing and prompt optimization at Emote",
-      "Reduced inference cost via model selection and caching"
+    "LLM APIs": [
+      "Multi-model routing and LLM APIs for Emote companion system",
+      "Orchestration layer with tool-calling at Omnex",
+      "Prompt optimization and RAG pipelines"
     ],
-    "API integrations": [
-      "Built FastAPI REST APIs for Emote",
-      "Implemented SSE streaming and WebSocket pipelines",
-      "Orchestration layer with tool-calling and service routing at Omnex"
+    "API & Data Pipeline": [
+      "Designed REST APIs, WebSockets, SSE streaming for Emote",
+      "Redesigned data pipelines for Ericsson reporting systems",
+      "Built real-time Grafana dashboards"
     ],
-    "data pipelines": [
-      "Led Azure to on-prem PostgreSQL migration for Ericsson",
-      "Redesigned reporting data pipelines across data owners",
-      "Built end-to-end ETL lifecycle for Power BI and Tableau dashboards"
+    "AI Systems": [
+      "Multi-agent orchestration and memory systems in Emote",
+      "Feedback-aware flows linking past concerns in Omnex",
+      "Reduced latency and cost through pipeline optimization"
+    ],
+    "Entrepreneurial": [
+      "Co-founded Emote, grew to 450+ users with zero paid acquisition",
+      "Built automated Reddit bot for user acquisition",
+      "Founded and managed product end-to-end"
     ]
   },
   "strongest_proof_points": [
-    "Built Emote from 0 to 450+ users with 13–15% weekly retention and zero paid acquisition",
-    "Reduced inference cost per conversation from $1.20 to $0.023 through optimization",
-    "Improved latency from ~15s to ~3s in production AI companion system",
-    "Built AI product manager that monitors system behavior and detects anomalies",
-    "Led enterprise data platform migration for Ericsson, improving reporting reliability"
+    "Shipped two production AI systems: Omnex Systems AquaPro AI for engineering quality workflows and Emote hyper-personalized companion with multi-agent memory.",
+    "Achieved 50x cost reduction (from $1.20 to $0.023/conversation) and 5x latency improvement (15s to 3s) in Emote through optimization.",
+    "Grew Emote to 450+ users with 13–15% weekly retention via automated, personalized user acquisition.",
+    "Led enterprise data platform migration from Azure to PostgreSQL for Ericsson, ensuring reporting reliability.",
+    "Demonstrated AI-native thinking with observable, memory-driven, and multi-agent architecture design."
   ],
   "claims_allowed": [
-    "4+ years Python experience",
-    "LLM API experience",
-    "Agent architectures and multi-agent orchestration",
-    "Production AI systems and data infrastructure",
-    "SQL proficiency",
-    "API integrations and data pipelines"
+    "6+ years professional experience in engineering and data roles, including 2+ years in AI product engineering.",
+    "Proven track record of building and shipping production AI systems (Emote, Omnex AquaPro).",
+    "Strong Python and SQL skills with extensive backend and data pipeline integration experience.",
+    "Experience with LLM APIs, multi-agent orchestration, and memory-based AI architectures.",
+    "Entrepreneurial mindset: co-founded and scaled a consumer AI app from zero to 450+ users.",
+    "Experience working with enterprise stakeholders (Ericsson) and delivering high-impact data solutions.",
+    "Holds B.Tech in Computer Science & Engineering from SRM University."
   ],
   "claims_not_allowed": [
-    "10 years AI experience",
-    "Deep learning expert",
-    "E-commerce data experience",
-    "Front-end development skills",
-    "IIT/BITS/NIT degree"
+    "4+ years of AI-specific experience (AI roles began in 2024).",
+    "Deep learning expert (no PhD or specialized focus).",
+    "Front-end development expertise (no evidence of building UI components).",
+    "Shopify or e-commerce platform integration experience.",
+    "CRM or marketing automation tool experience (MoEngage, Dynamics 365).",
+    "Retail or e-commerce industry domain knowledge."
   ]
 }
