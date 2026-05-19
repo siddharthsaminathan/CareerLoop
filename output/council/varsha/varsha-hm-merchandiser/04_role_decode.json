@@ -1,52 +1,55 @@
 {
   "normalized_title": "Senior Merchandiser",
-  "seniority": "senior",
+  "seniority": "mid-senior",
   "must_haves": [
-    "fashion merchandising experience",
-    "OTB and assortment planning",
-    "vendor and PO management",
-    "Advanced Excel and data analysis",
-    "womenswear trend expertise",
-    "omnichannel retail experience",
-    "SAP/ERP proficiency",
-    "cross-functional collaboration",
-    "negotiation skills"
+    "Fashion merchandising experience (4-6 years)",
+    "OTB management",
+    "Assortment planning",
+    "Advanced Excel skills",
+    "Vendor and factory coordination",
+    "Womenswear trend knowledge",
+    "Omnichannel merchandising experience",
+    "SAP or ERP proficiency",
+    "Negotiation skills"
   ],
   "nice_to_haves": [
-    "BI tools (Power BI, Metabase)",
-    "NIFT or equivalent fashion degree",
-    "fast-fashion/value retail experience",
-    "category launch or new market entry",
-    "WIP tracker and production calendar management"
+    "NIFT/Pearl fashion institute qualification",
+    "Fast-fashion/value retail experience",
+    "Category launch or new market entry exposure",
+    "WIP tracker and production calendar experience",
+    "BI tools experience (Metabase, Power BI)"
   ],
   "hidden_expectations": [
-    "P&L ownership mindset",
-    "localization of global assortments",
-    "data-driven storytelling",
-    "proactive supply chain problem-solving",
-    "stakeholder influence without authority"
+    "Fast-paced decision-making ability",
+    "P&L ownership and business acumen",
+    "Stakeholder management across functions",
+    "Possibility of travel to factories",
+    "Data analysis and dashboard creation"
   ],
   "day_one_deliverables": [
-    "assume ownership of jersey OTB and inventory levels",
-    "set up weekly sales and sell-through reporting",
-    "audit vendor production timelines and delivery schedules"
+    "OTB review and reforecast",
+    "Current season sales analysis",
+    "Supplier delivery schedule audit"
   ],
   "screening_keywords": [
     "OTB",
     "assortment planning",
-    "fashion merchandising",
-    "vendor management",
-    "P&L",
-    "omnichannel",
-    "SAP",
     "womenswear",
-    "negotiation"
+    "jersey",
+    "open-to-buy",
+    "sell-through",
+    "margin analysis",
+    "vendor management",
+    "SAP",
+    "omnichannel",
+    "NIFT",
+    "Pearl"
   ],
   "disqualifiers": [
-    "no fashion/apparel merchandising background",
-    "no OTB or assortment planning experience",
-    "no vendor negotiation experience",
-    "no Advanced Excel skills"
+    "No fashion/retail merchandising experience",
+    "No OTB management experience",
+    "No Advanced Excel skills",
+    "Less than 4 years relevant experience"
   ],
   "confidence": 0.9
 }

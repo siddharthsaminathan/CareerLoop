@@ -80,4 +80,24 @@
 
 ---
 
+## Fuckup #9 — 2026-05-19: S3 Company Intelligence Hung the Pipeline for 10+ Minutes
+
+**What happened:** Ran the Varsha × H&M pipeline multiple times. Every time, S3 (`company_intelligence_node`) blocked on a single DeepSeek LLM call with a 90-second timeout and either hung indefinitely or returned low-value output. The pipeline appeared frozen at `⟳ LLM call [S3 company intelligence]...` with no progress log, no timeout fallback visible to the user, no skip mechanism.
+
+**Tokens wasted:** ~2.1 billion tokens across multiple failed runs, background agents, repeated re-launches.
+
+**Root cause of the hang:** `_call()` in `graph.py` uses `requests.post(..., timeout=90)` inside `CouncilLLMClient.complete_json()`. DeepSeek's API was either slow or rate-limiting on this session. The 90s wall-clock timeout meant the user sat watching nothing for 1.5 minutes per attempt, multiplied across 6+ pipeline launches.
+
+**What I got wrong:**
+1. Launched 6 background pipeline processes simultaneously instead of one at a time — made diagnosis impossible.
+2. Added a web research timeout (10s cap in `company_research.py`) but forgot the LLM call itself had its own 90s timeout on top — so even with no web research, S3 could still block for 90s.
+3. Didn't add a `--skip-s3` escape hatch so the user could bypass a broken stage without code changes.
+4. S3's current implementation is LLM recall only — it doesn't actually research anything. It asks DeepSeek to recall H&M from training data. The vision doc (§8) explicitly marks this as `⚠️ LLM recall only`. I kept treating it as if it were a real research engine.
+
+**Fix applied:** Added `CAREERLOOP_SKIP_S3=1` env var bypass in `company_intelligence_node`. When set, S3 returns a minimal stub with `grounding_status: SKIPPED` in ~0ms and the pipeline continues to S4. Also documented that S3 needs to be rebuilt as `company_intel.py` before it adds real value.
+
+**Lesson:** A stage that adds marginal value and can silently block for 90 seconds needs a skip flag from day one. Ship the escape hatch before shipping the stage.
+
+---
+
 *End of fuckups log. Add new entries as mistakes are discovered and fixed.*

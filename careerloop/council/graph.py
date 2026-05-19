@@ -1,6 +1,7 @@
 import json
 import os
 import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from typing import Optional, Dict
 
@@ -86,6 +87,40 @@ def _has_errors(state: CouncilState) -> bool:
     return bool(state.get("errors"))
 
 
+def _split_section_into_chunks(text: str, max_chunk_chars: int = 1500) -> list:
+    """Split a long section into chunks at paragraph (double-newline) boundaries.
+
+    Each chunk is at most max_chunk_chars characters.  Paragraphs that are
+    themselves longer than the limit are kept as a single chunk — we never
+    split mid-paragraph.
+
+    Returns a list of non-empty chunk strings.  Falls back to [text] if
+    splitting produces nothing useful.
+    """
+    paragraphs = [p for p in re.split(r'\n{2,}', text.strip()) if p.strip()]
+    if not paragraphs:
+        return [text]
+
+    chunks = []
+    current: list = []
+    current_len = 0
+
+    for para in paragraphs:
+        plen = len(para)
+        if current and current_len + plen > max_chunk_chars:
+            chunks.append('\n\n'.join(current))
+            current = [para]
+            current_len = plen
+        else:
+            current.append(para)
+            current_len += plen
+
+    if current:
+        chunks.append('\n\n'.join(current))
+
+    return chunks if chunks else [text]
+
+
 def _count_markdown_bullets(text: str) -> int:
     return len(re.findall(r"(?m)^\s*[-*]\s+\S", text or ""))
 
@@ -109,6 +144,157 @@ def _rewrite_preserves_section_structure(original: str, rewritten: str) -> tuple
         issues.append(f"rewrite_too_short:{len(stripped)}<{len((original or '').strip())}")
 
     return not issues, issues
+
+
+def _rewrite_one_section(
+    section: dict,
+    tone: str,
+    narrative_angle: str,
+    things_to_downplay: list,
+    role_keywords: list,
+    hidden_expectations: list,
+    day_one_deliverables: list,
+    must_haves: list,
+    proof_points: list,
+    claims_allowed: list,
+    claims_not_allowed: list,
+) -> tuple:
+    """Worker for parallel S7 execution.
+
+    Handles both chunked (large experience sections) and standard rewrites.
+    Returns (sid, rewrite_dict_or_None, skip_reason_or_None).
+    Thread-safe: _call() creates a new CouncilLLMClient per invocation.
+    """
+    sid = section.get('section_id', '')
+    stitle = section.get('section_title', sid)
+    raw = section.get('raw_text', '')
+    normalized_type = section.get('normalized_type', '')
+
+    is_experience = normalized_type in {
+        "experience", "work_experience", "professional_experience"
+    }
+
+    # ── Chunked path for large experience sections ─────────────────────────
+    if is_experience and len(raw) > 1800:
+        chunks = _split_section_into_chunks(raw, max_chunk_chars=1400)
+        print(f"  → S7 chunked '{sid}' ({len(raw)} chars) → {len(chunks)} chunks")
+        rewritten_chunks = []
+        chunk_ok = True
+
+        for ci, chunk in enumerate(chunks):
+            chunk_prompt = json.dumps({
+                "section_id": f"{sid}_chunk{ci + 1}",
+                "section_title": stitle,
+                "section_text": chunk,
+                "tone_guidance": tone,
+                "narrative_angle": narrative_angle,
+                "role_keywords": role_keywords,
+                "must_haves": must_haves,
+                "hidden_expectations": hidden_expectations,
+                "day_one_deliverables": day_one_deliverables,
+                "things_to_downplay": things_to_downplay,
+                "proof_points": proof_points,
+                "claims_allowed": claims_allowed,
+                "claims_not_allowed": claims_not_allowed,
+            }, ensure_ascii=False)
+
+            cresult = _call(
+                _S7_PER_SECTION_SYSTEM, chunk_prompt,
+                max_tokens=2500,
+                label=f"S7 {sid} {ci + 1}/{len(chunks)}",
+            )
+            if not cresult.success:
+                print(f"  !! S7 chunk {ci + 1} failed — aborting chunked rewrite for '{sid}'")
+                chunk_ok = False
+                break
+
+            ctext = cresult.payload.get('rewritten_text', '').strip()
+            if not ctext or len(ctext) < len(chunk) * 0.4:
+                print(
+                    f"  !! S7 chunk {ci + 1} truncated "
+                    f"({len(ctext)} vs {len(chunk)} chars) — aborting"
+                )
+                chunk_ok = False
+                break
+
+            rewritten_chunks.append(ctext)
+
+        if not chunk_ok or not rewritten_chunks:
+            reason = "chunked_rewrite_failed"
+            print(f"  !! S7 fallback '{sid}' → {reason} — keeping original")
+            return sid, None, reason
+
+        rewritten = '\n\n'.join(rewritten_chunks)
+        rewritten = ResumeCompiler._preprocess_plaintext_cv(rewritten)
+        rewrite_dict = {
+            "section_id": sid,
+            "original_text": raw,
+            "rewritten_text": rewritten,
+            "change_type": "REWRITE",
+            "change_reason": f"Chunked rewrite ({len(chunks)} chunks, {len(raw)} → {len(rewritten)} chars)",
+            "claims_added": [],
+            "claims_removed": [],
+            "evidence_used": [],
+            "risk_level": "medium",
+        }
+        print(f"  → [CHUNKED] {stitle} ({len(rewritten)} chars from {len(chunks)} chunks)")
+        return sid, rewrite_dict, None
+
+    # ── Standard single-call rewrite ──────────────────────────────────────
+    prompt = json.dumps({
+        "section_id": sid,
+        "section_title": stitle,
+        "section_text": raw,
+        "tone_guidance": tone,
+        "narrative_angle": narrative_angle,
+        "role_keywords": role_keywords,
+        "must_haves": must_haves,
+        "hidden_expectations": hidden_expectations,
+        "day_one_deliverables": day_one_deliverables,
+        "things_to_downplay": things_to_downplay,
+        "proof_points": proof_points,
+        "claims_allowed": claims_allowed,
+        "claims_not_allowed": claims_not_allowed,
+    }, ensure_ascii=False)
+
+    result = _call(_S7_PER_SECTION_SYSTEM, prompt, max_tokens=4000, label=f"S7 {sid}")
+    if not result.success:
+        reason = f"llm_error:{result.errors}"
+        print(f"  !! S7 fallback '{sid}' → {reason}")
+        return sid, None, reason
+
+    payload = result.payload
+    rewritten = payload.get('rewritten_text', '').strip()
+    if not rewritten:
+        reason = "empty_rewrite"
+        print(f"  !! S7 fallback '{sid}' → {reason} — keeping original")
+        return sid, None, reason
+
+    if len(rewritten) < len(raw) * 0.5:
+        reason = f"truncation_suspected:rewrite={len(rewritten)}chars,original={len(raw)}chars"
+        print(f"  !! S7 fallback '{sid}' → {reason} — keeping original")
+        return sid, None, reason
+
+    rewritten = ResumeCompiler._preprocess_plaintext_cv(rewritten)
+    safe, issues = _rewrite_preserves_section_structure(raw, rewritten)
+    if not safe:
+        reason = f"structure_check_failed:{','.join(issues)}"
+        print(f"  !! S7 fallback '{sid}' → {reason} — keeping original")
+        return sid, None, reason
+
+    rewrite_dict = {
+        "section_id": sid,
+        "original_text": raw,
+        "rewritten_text": rewritten,
+        "change_type": payload.get('change_type', 'REWRITE'),
+        "change_reason": payload.get('change_reason', ''),
+        "claims_added": payload.get('claims_added', []),
+        "claims_removed": payload.get('claims_removed', []),
+        "evidence_used": payload.get('evidence_used', []),
+        "risk_level": payload.get('risk_level', 'low'),
+    }
+    print(f"  → [{payload.get('change_type','?')}] {stitle} ({len(rewritten)} chars)")
+    return sid, rewrite_dict, None
 
 
 # ─── System 1: Document Parser ───────────────────────────────────────────────
@@ -136,9 +322,11 @@ def contract_node(state: CouncilState) -> CouncilState:
         print("  → SKIPPING (previous errors)")
         return state
     try:
-        resume = CanonicalResume(**state["canonical_resume"])
+        from careerloop.council.safe_model import safe_construct
+        resume = safe_construct(CanonicalResume, state["canonical_resume"])
         resume.sections = [
-            ResumeSection(**s) for s in state["canonical_resume"]["sections"]
+            safe_construct(ResumeSection, s)
+            for s in state["canonical_resume"]["sections"]
         ]
         contract = ResumeCompiler.build_contract(resume, state["profile"])
         return {**state, "preservation_contract": contract.to_dict()}
@@ -170,6 +358,25 @@ def company_intelligence_node(state: CouncilState) -> CouncilState:
     if _has_errors(state):
         print("  → SKIPPING (previous errors)")
         return state
+
+    # Hard skip: set CAREERLOOP_SKIP_S3=1 to bypass the LLM call entirely.
+    # S4 Role Decoder extracts everything needed from the JD directly.
+    # Use this when DeepSeek is slow/rate-limited or S3 is blocking the run.
+    if os.getenv("CAREERLOOP_SKIP_S3", "").lower() in {"1", "true", "yes"}:
+        print("  → S3 SKIPPED (CAREERLOOP_SKIP_S3=1) — using JD-only stub")
+        stub = {
+            "company": state.get("company", ""),
+            "summary": "Skipped — JD-only mode. S4 Role Decoder will extract role signals directly from JD.",
+            "grounding_status": "SKIPPED",
+            "facts": [],
+            "inferences": [],
+            "gaps": ["S3 skipped by CAREERLOOP_SKIP_S3=1"],
+            "sources": [],
+            "role_implications": [],
+            "fetched_at": datetime.now(timezone.utc).isoformat(),
+            "confidence": 0.0,
+        }
+        return {**state, "company_intelligence": stub}
 
     jd = state['jd_text']
     company = state['company']
@@ -260,6 +467,11 @@ def role_decode_node(state: CouncilState) -> CouncilState:
         state.setdefault("errors", []).extend(result.errors)
         return state
     payload = result.payload
+    vresult = validate_payload("role_decode", payload)
+    if not vresult.ok:
+        for err in vresult.errors:
+            print(f"  !! Schema warning (role_decode): {err}")
+    payload = vresult.payload
     print(
         f"  → {payload.get('normalized_title', '')} | "
         f"{payload.get('seniority', '')[:80]}"
@@ -369,21 +581,26 @@ def positioning_node(state: CouncilState) -> CouncilState:
 
 # ─── System 7: Section Rewrites ───────────────────────────────────────────────
 
-_S7_PER_SECTION_SYSTEM = """You are a senior technical writer rewriting ONE resume section.
-CRITICAL RULES:
-1. Only rewrite the text in "section_text". Preserve all [Text](URL) links exactly.
-2. Use only claims listed in claims_allowed. Never invent new achievements or numbers.
-3. Do NOT add AI-slop: no 'spearheaded', 'leveraged', 'synergy', 'passionate'.
-4. Keep the same bullet count as the original. Do NOT collapse multiple bullets into one.
-5. Match the tone in tone_guidance exactly.
-6. Weave in role_keywords naturally — do not keyword-stuff.
+_S7_PER_SECTION_SYSTEM = """You are a senior resume writer rewriting ONE section of a candidate's resume for a specific role.
+
+CRITICAL RULES — follow every one:
+1. Rewrite ONLY the text in "section_text". Preserve all [Text](URL) links exactly as-is.
+2. Every metric, number, and date must come verbatim from the original section_text. NEVER invent figures.
+3. Do NOT add claims from claims_not_allowed — these are explicitly forbidden by the evidence audit.
+4. Keep the exact same bullet count. Do NOT merge or drop bullets.
+5. Replace weak generic verbs (Analyzed, Supported, Assisted, Utilized, Collaborated) with stronger action verbs that match the role. Keep all metrics intact.
+6. Weave in role_keywords and address hidden_expectations naturally — one keyword per bullet maximum. No keyword-stuffing.
+7. The narrative_angle tells you HOW to position the candidate. Use it to choose which aspects of each bullet to lead with.
+8. things_to_downplay should be de-emphasized — move them to the end of bullets or omit if redundant.
+9. day_one_deliverables tell you what the hiring manager actually needs on day one — if a bullet is evidence of that capability, make it the lead bullet for the role.
+10. NO AI-slop: no 'spearheaded', 'leveraged', 'synergy', 'passionate', 'results-driven'.
 
 Return ONLY a JSON object with this exact shape (no markdown, no explanation):
 {
   "section_id": "<same as input>",
   "rewritten_text": "<full rewritten markdown for this section>",
   "change_type": "KEEP|EXPAND|REWRITE|TRIM",
-  "change_reason": "<one sentence>",
+  "change_reason": "<one sentence explaining the positioning angle applied>",
   "claims_added": [],
   "claims_removed": [],
   "evidence_used": [],
@@ -408,12 +625,19 @@ def section_rewrites_node(state: CouncilState) -> CouncilState:
     canonical = state.get('canonical_resume') or {}
 
     tone = strategy.get('tone_guidance', '')
+    narrative_angle = strategy.get('narrative_angle', '')
+    things_to_downplay = strategy.get('things_to_downplay', [])[:5]
     role_keywords = role_decode.get('screening_keywords', [])[:10]
+    hidden_expectations = role_decode.get('hidden_expectations', [])[:5]
+    day_one_deliverables = role_decode.get('day_one_deliverables', [])[:3]
+    must_haves = role_decode.get('must_haves', [])[:5]
     proof_points = user_truth_safe.get('strongest_proof_points', [])[:5]
     claims_allowed = user_truth_safe.get('claims_allowed', [])
+    claims_not_allowed = user_truth_safe.get('claims_not_allowed', [])
 
     rewrites: dict = {}
-    skipped: list = []
+    # skipped maps section_id → reason string for diagnostics
+    skipped: dict = {}
 
     allowed_sections = [
         s for s in canonical.get('sections', [])
@@ -421,68 +645,51 @@ def section_rewrites_node(state: CouncilState) -> CouncilState:
            and s.get('raw_text', '').strip()
     ]
 
-    for section in allowed_sections:
-        sid = section.get('section_id', '')
-        stitle = section.get('section_title', sid)
-        raw = section.get('raw_text', '')
-        normalized_type = section.get('normalized_type', '')
+    # ── Parallel execution: all sections run concurrently ─────────────────
+    # Each section's LLM calls are independent — no cross-section state.
+    # max_workers = number of sections so they all fire simultaneously.
+    # Results are collected via futures and reassembled in original order.
+    worker_kwargs = dict(
+        tone=tone,
+        narrative_angle=narrative_angle,
+        things_to_downplay=things_to_downplay,
+        role_keywords=role_keywords,
+        hidden_expectations=hidden_expectations,
+        day_one_deliverables=day_one_deliverables,
+        must_haves=must_haves,
+        proof_points=proof_points,
+        claims_allowed=claims_allowed,
+        claims_not_allowed=claims_not_allowed,
+    )
 
-        if normalized_type in {"experience", "work_experience", "professional_experience"} and len(raw) > 3500:
-            print(f"  !! S7 skipped long structured section '{sid}' ({len(raw)} chars) - keeping original")
-            skipped.append(sid)
-            continue
+    n_workers = max(1, len(allowed_sections))
+    print(f"  → Launching {n_workers} parallel S7 workers...")
 
-        prompt = json.dumps({
-            "section_id": sid,
-            "section_title": stitle,
-            "section_text": raw,
-            "tone_guidance": tone,
-            "role_keywords": role_keywords,
-            "proof_points": proof_points,
-            "claims_allowed": claims_allowed,
-        }, ensure_ascii=False)
+    # Map future → original section order so we can print results in order
+    future_to_sid: dict = {}
+    with ThreadPoolExecutor(max_workers=n_workers) as executor:
+        for section in allowed_sections:
+            fut = executor.submit(_rewrite_one_section, section, **worker_kwargs)
+            future_to_sid[fut] = section.get('section_id', '')
 
-        result = _call(_S7_PER_SECTION_SYSTEM, prompt, max_tokens=4000, label=f"S7 {sid}")
-        if not result.success:
-            print(f"  !! S7 failed for section '{sid}': {result.errors}")
-            skipped.append(sid)
-            continue
-
-        payload = result.payload
-        rewritten = payload.get('rewritten_text', '').strip()
-        if not rewritten:
-            print(f"  !! S7 returned empty rewrite for '{sid}' — keeping original")
-            skipped.append(sid)
-            continue
-
-        rewritten = ResumeCompiler._preprocess_plaintext_cv(rewritten)
-        safe, issues = _rewrite_preserves_section_structure(raw, rewritten)
-        if not safe:
-            print(f"  !! S7 rejected rewrite for '{sid}' ({', '.join(issues)}) - keeping original")
-            skipped.append(sid)
-            continue
-
-        rewrites[sid] = {
-            "section_id": sid,
-            "original_text": raw,
-            "rewritten_text": rewritten,
-            "change_type": payload.get('change_type', 'REWRITE'),
-            "change_reason": payload.get('change_reason', ''),
-            "claims_added": payload.get('claims_added', []),
-            "claims_removed": payload.get('claims_removed', []),
-            "evidence_used": payload.get('evidence_used', []),
-            "risk_level": payload.get('risk_level', 'low'),
-        }
-        print(f"  → [{payload.get('change_type','?')}] {stitle} ({len(rewritten)} chars)")
+        for fut in as_completed(future_to_sid):
+            sid_result, rewrite_dict, skip_reason = fut.result()
+            if rewrite_dict is not None:
+                rewrites[sid_result] = rewrite_dict
+            elif skip_reason is not None:
+                skipped[sid_result] = skip_reason
 
     if skipped:
-        print(f"  !! Skipped {len(skipped)} sections (kept originals): {skipped}")
+        print(f"  !! {len(skipped)}/{len(allowed_sections)} sections fell back to original:")
+        for sid, reason in skipped.items():
+            print(f"       {sid}: {reason}")
     print(f"  → Rewrote {len(rewrites)}/{len(allowed_sections)} sections")
 
     return {**state, "section_rewrites": {
         "rewrites": rewrites,
         "forbidden_edits": list(exclude),
-        "skipped": skipped,
+        "skipped": list(skipped.keys()),
+        "skipped_reasons": skipped,
     }}
 
 
@@ -565,16 +772,20 @@ def truth_guard_node(state: CouncilState) -> CouncilState:
 
 # ─── System 8: Safe Assembler ─────────────────────────────────────────────────
 
-_COVER_NOTE_SYSTEM = """Write a 3-sentence cover note that compels a recruiter to interview. Lead with a concrete achievement from the candidate's strongest proof points — not "I am writing". Be specific. Use only confirmed experience.
+_COVER_NOTE_SYSTEM = """Write a 3-sentence cover note that compels a recruiter to interview. Lead with a concrete achievement from the candidate's strongest proof points — not "I am writing". Be specific. Use only confirmed experience from the proof points provided.
 
-EXAMPLE JSON OUTPUT:
-{"cover_note": "I built Emote from zero to 450+ users, driving activation from 20% to 75% through continuous product iteration. At Omnex, I built production multi-agent AI that automates manufacturing quality workflows across global supply chains. For Nicobar's AI Product Engineer role, I'd bring the same zero-to-one product ownership to customer personalization and store clienteling."}"""
+Use the candidate's actual role, company, and metrics from the input — never invent or recycle example names.
+
+Return JSON with this exact shape:
+{"cover_note": "<3-sentence cover note tailored to the specific role and company in the input>"}"""
 
 _RECRUITER_DM_SYSTEM = """Write a 2-sentence LinkedIn DM to a recruiter in JSON.
 One sentence on the role, one sentence on why the candidate fits. Under 250 chars. No fluff, no "I'm excited to apply".
 
-EXAMPLE JSON OUTPUT:
-{"recruiter_message": "Your AI Product Engineer role caught my eye — exactly the kind of AI-native, CEO-office work I thrive on. I shipped production AI from zero at Emote (agentic quality management, multi-agent orchestration) and would bring that same builder mindset to Nicobar."}"""
+Use the candidate's actual proof points from the input — never invent or recycle example names.
+
+Return JSON with this exact shape:
+{"recruiter_message": "<2-sentence DM tailored to the specific role in the input>"}"""
 
 
 def assembly_node(state: CouncilState) -> CouncilState:

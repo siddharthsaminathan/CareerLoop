@@ -86,11 +86,14 @@ class CouncilLLMClient:
             logging.warning(f"JSON parse error at char {e.pos}: {e.msg}. Attempting repair...")
 
         # Repair: try to close unclosed strings/brackets
+        print(f"  !! JSON repair fired — LLM output was truncated or malformed ({len(content)} chars)")
         repaired = self._repair_truncated_json(content)
         if repaired is not None:
+            print(f"  !! JSON repair succeeded — payload may be incomplete, check output carefully")
             return repaired
 
         # Last resort: strip to last valid JSON object
+        print(f"  !! JSON repair failed — falling back to partial extraction")
         return self._extract_partial_json(content)
 
     @staticmethod

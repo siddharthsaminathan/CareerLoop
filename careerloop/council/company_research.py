@@ -5,9 +5,14 @@ Grounding adapter for Resume Council Company Intelligence.
 from __future__ import annotations
 
 import os
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from typing import Any
+
+# Hard cap on how long web search can block the pipeline (seconds).
+# If exceeded, we fall through to JD-only grounding (PARTIAL status).
+_WEB_SEARCH_TIMEOUT_SECONDS = 10
 
 
 @dataclass
@@ -79,7 +84,7 @@ class CompanyResearchAdapter:
             ))
 
         if os.getenv("CAREERLOOP_ENABLE_WEB_RESEARCH", "").lower() in {"1", "true", "yes"}:
-            sources.extend(self._search_web(company))
+            sources.extend(self._search_web_with_timeout(company))
 
         bundle.sources = sources
         if any(s.source_type == "search" for s in sources):
@@ -95,6 +100,27 @@ class CompanyResearchAdapter:
             bundle.gaps.append("Company website not available in job data.")
 
         return bundle
+
+    def _search_web_with_timeout(self, company: str) -> list[ResearchSource]:
+        """Run _search_web with a hard timeout.
+
+        If web search hangs beyond _WEB_SEARCH_TIMEOUT_SECONDS, returns []
+        and logs a warning so the pipeline continues with JD-only grounding.
+        """
+        with ThreadPoolExecutor(max_workers=1) as ex:
+            future = ex.submit(self._search_web, company)
+            try:
+                return future.result(timeout=_WEB_SEARCH_TIMEOUT_SECONDS)
+            except FuturesTimeoutError:
+                print(
+                    f"  !! S3 web search timed out after {_WEB_SEARCH_TIMEOUT_SECONDS}s "
+                    f"— continuing with JD-only grounding (PARTIAL)"
+                )
+                future.cancel()
+                return []
+            except Exception as e:
+                print(f"  !! S3 web search error: {e} — continuing with JD-only grounding")
+                return []
 
     def _search_web(self, company: str) -> list[ResearchSource]:
         try:

@@ -263,6 +263,20 @@ class ResumeCompiler:
                 text,
             )
 
+        # 5. Any word character immediately followed by a month abbreviation +
+        #    space + 4-digit year.  Catches PDF run-ons like:
+        #      "FashionNov 2025" → "Fashion\n\nNov 2025"
+        #      "ManagerMar 2023" → "Manager\n\nMar 2023"
+        #    We use a word-char boundary on the left ([a-zA-Z]) to avoid
+        #    triggering on a digit (year-ranges like "2020–Nov" are handled
+        #    by rule 3 already).
+        _MONTHS = r'(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)'
+        text = re.sub(
+            r'([a-zA-Z])(' + _MONTHS + r'\s+\d{4})',
+            r'\1\n\n\2',
+            text,
+        )
+
         # ── Tidy up ───────────────────────────────────────────────────────
         text = re.sub(r'\n{3,}', '\n\n', text)
         return text.strip()

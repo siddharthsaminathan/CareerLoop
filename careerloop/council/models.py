@@ -22,7 +22,9 @@ class ResumeSection:
     raw_text: str
     original_order: int = 0
     links: List[str] = field(default_factory=list)
-    confidence: float = 1.0
+    # NOTE: `confidence` intentionally removed — it was produced by compiler.py
+    # but never read by any downstream node (S2–S8). safe_construct() silently
+    # drops it if it appears in persisted JSON from older runs.
 
     def to_dict(self) -> dict:
         return asdict(self)

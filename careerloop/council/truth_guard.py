@@ -771,17 +771,21 @@ class TruthGuard:
             return repaired
 
         if claim.risk_level == "UNSUPPORTED":
-            if claim.claim_type == "ownership":
-                # Leave ownership text intact — evidence bank paraphrase mismatch
-                # is a false positive.  Caller logs this for user review.
-                return original
-            # quantified_achievement / percentage: strip unverified metric
-            repaired = re.sub(r'\$?\d+[KMB]?\s*', '', original, count=1)
-            repaired = re.sub(r'\d+[.]?\d*\s*%\s*', '', repaired, count=1)
-            repaired = re.sub(r'\s{2,}', ' ', repaired).strip()
-            if not repaired or len(repaired) < 5:
-                return original
-            return repaired
+            # Leave ALL unsupported claims intact.
+            #
+            # UNSUPPORTED means we could not cross-reference the claim against
+            # the evidence bank — it does NOT mean the claim is false.  The
+            # evidence bank is built from LLM-paraphrased excerpts (S5), and
+            # the text under review is LLM-rewritten prose (S7).  Jaccard
+            # mismatch between two paraphrased representations of the same
+            # real fact is common (e.g. "Managed PO/PI coordination" vs
+            # "coordinated purchase orders for 20+ suppliers").
+            #
+            # Stripping verified resume metrics (₹3.5L, 22%→35%) because
+            # paraphrasing caused a Jaccard miss would corrupt truthful output.
+            # UNSUPPORTED claims are logged to the truth_guard_report for user
+            # review; they are never silently altered here.
+            return original
 
         return original
 
