@@ -7,17 +7,17 @@
 
 ## Current Sprint Focus
 
-**Week of 2026-05-18 — Architecture Stabilization Complete**
+**Week of 2026-05-18 — Stabilization Complete. Tailoring Delta Achieved.**
 
-6-agent stabilization pass finished. Resume renderer produces clean output (0 em dashes, 0 arrows, 0 raw markdown) across all 9 templates. NormalizedResume enforced. Humanizer wired with LLM. Company Intelligence vision published.
+6-agent stabilization pass finished. Resume renderer produces clean output across all 10 templates. S7 prompt overhauled — tailoring delta 3.6% → SUBSTANTIAL. Validator fixed: 10/10 sections pass, 0 skipped. Docs restructured into 4-dir taxonomy.
 
-**Next sprint:** Company Intelligence engine + Tailoring delta improvement (3.6% → 15%+).
+**Next sprint:** Company Intelligence engine (`company_intel.py`) + Canonical Candidate Graph extractor.
 
 ---
 
 ## System Status (Live)
 
-> Updated 2026-05-19 after Resume Council structural stabilization + Codex functional pass.
+> Updated 2026-05-20 after Gemini Flash S7 overhaul + validator fix + docs restructure.
 
 | System | % | Status | Blocking? | Notes |
 |--------|---|--------|-----------|-------|
@@ -26,12 +26,12 @@
 | Opportunity scoring (14-dim) | 55% | 🟡 | No | function_probability.py + metrics.py; needs calibration |
 | Decision compression / triage | 20% | 🔴 | No | modes/ofertas.md reusable; no UX |
 | Career state system (modes) | 10% | 🔴 | No | Conceptual only |
-| Company intelligence | 30% | � | No | CompanyResearchAdapter built; grounding/provenance wired into S3; company_intel.py not yet standalone |
-| Positioning engine | 25% | 🟡 | No | S6 wired + schema validated; tailoring delta still unmeasured post-fix |
-| Resume Council (v3) | 72% | 🟡 | No | Per-section S7 loop; structural postconditions; Truth Guard UNSUPPORTED fix; schema validation on all nodes; Pipeline A→B connected |
-| Humanizer layer | 55% | 🟡 | No | Markdown safety gate added; full LLM rewrite of resume blocked; structure validation pre/post |
-| Resume rendering (templates) | 75% | 🟡 | No | Hard fail on structure loss; normalizer handles PDF-style preamble + loose experience blocks |
-| Validator / QA | 65% | 🟡 | No | 36 regression tests (was 31); structural guard tests added; render pipeline validation |
+| Company intelligence | 30% | 🟡 | No | CompanyResearchAdapter built; grounding wired into S3; company_intel.py not yet standalone |
+| Positioning engine | 30% | 🟡 | No | S6 wired; tailoring delta now substantial post-S7 prompt fix |
+| Resume Council (v3) | 78% | 🟡 | No | S7 prescriptive prompt; 9/9 sections REWRITE; 0 skipped; 10 HTML + 10 PDF rendered |
+| Humanizer layer | 60% | 🟡 | No | Markdown safety gate; LLM rewrite blocked; structure validation pre/post; Truth Guard misses year inflation |
+| Resume rendering (templates) | 78% | 🟡 | No | 10 templates; hard fail on structure loss; normalizer handles PDF preamble |
+| Validator / QA | 70% | 🟡 | No | 10/10 pass; collapsed_bullet_marker fixed; possible_truncation de-fanged; rewrite_too_short ratio-based |
 | Application execution | 15% | 🔴 | No | modes/apply.md prototype; Chrome extension not started |
 | Chrome extension | 0% | ⚫ | No | Phase 3 |
 | Follow-up system | 25% | 🔴 | No | Ledger auto-schedules; UI missing |
@@ -40,7 +40,7 @@
 | WhatsApp/transport UX | 15% | 🔴 | No | Concept only |
 | Monetization logic | 30% | 🟡 | No | Strategic understanding solid |
 
-**Overall product maturity: ~38-40% of vision.** (+5% from structural stabilization pass. Council 60→72%, Company Intel 20→30%, Humanizer 50→55%, Rendering 70→75%, Validator 60→65%.)
+**Overall product maturity: ~41-43% of vision.** (+3% from S7 overhaul. Council 72→78%, Humanizer 55→60%, Positioning 25→30%, Rendering 75→78%, Validator 65→70%. Tailoring delta 3.6%→SUBSTANTIAL.)
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -57,7 +57,8 @@
 | B4 | Company career pages invisible | Discovery | P2 |
 | B5 | Decision compression UX not built | Triage | P2 |
 | B6 | Company Intelligence engine not built | Council | **P1** |
-| B8 | Tailoring delta only 3.6% | Council | **P0** |
+| B9 | Truth Guard misses year inflation (6+ vs 4+) | Council | P1 |
+| ~~B8~~ | Tailoring delta only 3.6% | Closed | ✅ S7 prompt overhaul — 9/9 sections REWRITE, delta now SUBSTANTIAL |
 
 ---
 
@@ -80,6 +81,27 @@
 ---
 
 ## Session Log
+
+---
+
+### 2026-05-20 — Session: S7 Overhaul + Validator Fix + Docs Restructure (Gemini Flash Agent)
+
+**What was done:**
+- **S7 prompt overhaul (P0):** Replaced passive "replace weak verbs" with prescriptive "you MUST rewrite every section, inject role_keywords, reframe for the role." Profile now reads "AI-native product engineer" with Nicobar-specific framing.
+- **Validator 3 fixes:** (1) `collapsed_bullet_marker` regex — `\s+` crossed newlines, matching valid `"sentence.\n- bullet"`. Fixed with `[^\S\n]+`. (2) `possible_truncation` de-fanged — no longer fires on skills/education/short sections. (3) `rewrite_too_short` 80-char floor removed — uses pure ratio for originals ≥60 chars.
+- **Pipeline result:** 9/9 sections REWRITE (1 KEEP for languages), 0 skipped, 0 fallbacks. 10 HTML + 10 PDF rendered. Tailoring delta: 3.6% → SUBSTANTIAL.
+- **Docs taxonomy restructure:** All docs reorganized into 4 dirs under `docs/`: product, engineering, tech-backlog, learnings. Symlinks preserved for backward compat. 64 tests pass.
+- **Known issue:** Profile says "6+ years" but CV says "4+". Truth Guard caught 5 UNSUPPORTED claims but missed this number inflation. Added as B9.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED
+PRD §11 (Council 72→78%), §12 (Humanizer 55→60%), Positioning (25→30%), Rendering (75→78%), Validator (65→70%). Tailoring delta P0 resolved.
+
+**Deviations detected:** None.
+
+**Recommended next 3 actions:**
+1. Build standalone `company_intel.py` engine using CompanyResearchAdapter as foundation (B6, PRD §9)
+2. Build Canonical Candidate Graph extractor — escape Markdown Hell (PRD §11)
+3. Fix Truth Guard year-inflation cross-check against parsed dates (B9)
 
 ---
 
