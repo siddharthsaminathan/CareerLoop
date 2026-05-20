@@ -930,6 +930,7 @@ Return JSON with this exact shape:
 _RECRUITER_DM_SYSTEM = """Write a 2-sentence LinkedIn DM to a recruiter in JSON.
 One sentence on the role, one sentence on why the candidate fits. Under 250 chars. No fluff, no "I'm excited to apply".
 
+If a recruiter name is provided in `recruiter_info`, use it (e.g. "Hi [Name], ...").
 Use the candidate's actual proof points from the input — never invent or recycle example names.
 
 Return JSON with this exact shape:
@@ -995,6 +996,7 @@ def assembly_node(state: CouncilState) -> CouncilState:
         final_resume = ResumeCompiler.assemble(resume, rewrites, contract)
 
         # Build rich context for cover note + recruiter DM
+        company_intel = state.get("company_intelligence", {})
         user_truth = state.get("user_truth", {})
         top_proofs = user_truth.get("strongest_proof_points", [])[:3]
         user_prompt_parts = [
@@ -1004,6 +1006,7 @@ def assembly_node(state: CouncilState) -> CouncilState:
         ]
         if top_proofs:
             user_prompt_parts.append(f"Strongest Proof Points: {json.dumps(top_proofs)}")
+        
         user_prompt = "\n".join(user_prompt_parts)
 
         cover_result = _call(_COVER_NOTE_SYSTEM, user_prompt, label="S8 cover note", model_kind="writer")
@@ -1013,7 +1016,13 @@ def assembly_node(state: CouncilState) -> CouncilState:
             else ""
         )
 
-        dm_result = _call(_RECRUITER_DM_SYSTEM, user_prompt, label="S8 recruiter DM", model_kind="writer")
+        # Recruiter DM gets specific recruiter info
+        recruiter_info = company_intel.get("recruiter_info", {})
+        dm_prompt = user_prompt
+        if recruiter_info:
+            dm_prompt += f"\nRecruiter Info: {json.dumps(recruiter_info)}"
+
+        dm_result = _call(_RECRUITER_DM_SYSTEM, dm_prompt, label="S8 recruiter DM", model_kind="writer")
         recruiter_message = (
             dm_result.payload.get("recruiter_message", "")
             if dm_result.success

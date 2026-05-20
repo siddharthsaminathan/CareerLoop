@@ -33,9 +33,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
+from careerloop.sources.portal_scraper import PortalScraper
+from careerloop.sources.scrapegraph_adapter import ScrapeGraphAdapter
+
 # ── Timeout constants ──────────────────────────────────────────────────────────
-_WEB_SEARCH_TIMEOUT_SECONDS = 10
-_TOTAL_NETWORK_BUDGET_SECONDS = 15
+_WEB_SEARCH_TIMEOUT_SECONDS = 12
+_TOTAL_NETWORK_BUDGET_SECONDS = 18
 
 # ── Data model ─────────────────────────────────────────────────────────────────
 
@@ -84,6 +87,8 @@ class CompanyIntelligenceResult:
     interview_implications: str = ""
     compensation_signals: str = ""
     red_flags: list[str] = field(default_factory=list)
+    red_flags_detail: list[dict[str, str]] = field(default_factory=list)  # [{signal, source, severity}]
+    recruiter_info: dict[str, str] = field(default_factory=dict)  # {name, link, role}
 
     # Positioning
     positioning_implications: str = ""
@@ -152,6 +157,8 @@ class CompanyIntelligenceResult:
             "interview_implications": self.interview_implications,
             "compensation_signals": self.compensation_signals,
             "red_flags": self.red_flags,
+            "red_flags_detail": self.red_flags_detail,
+            "recruiter_info": self.recruiter_info,
             "positioning_implications": self.positioning_implications,
             "language_to_use": self.language_to_use,
             "language_to_avoid": self.language_to_avoid,
@@ -431,7 +438,7 @@ def _derive_company_domain(company: str, job_url: str = "") -> str:
     return f"{slug}.com"
 
 
-def _extract_people_from_html(html_text: str) -> list[dict[str, str]]:
+def _extract_people_from_html(html_text: str, source_label: str = "company_website") -> list[dict[str, str]]:
     """Extract people names and titles from team/about page HTML text.
 
     Looks for patterns like "Name — Title", "Name, Title", or names under
@@ -451,7 +458,15 @@ def _extract_people_from_html(html_text: str) -> list[dict[str, str]]:
         name = m.group(1).strip()
         title = m.group(2).strip()
         if name not in seen_names and len(name) > 4:
-            people.append({"name": name, "title": title, "source": "company_website"})
+            people.append({"name": name, "title": title, "source": source_label})
+            seen_names.add(name)
+
+    # LinkedIn-specific: "Posted by\nFirstName LastName\nTitle"
+    for m in re.finditer(r"Posted by\s*\n\s*([A-Z][a-z]+\s[A-Z][a-z]+)\s*\n\s*([^\n]{5,100})", html_text):
+        name = m.group(1).strip()
+        title = m.group(2).strip()
+        if name not in seen_names:
+            people.append({"name": name, "title": title, "source": "linkedin"})
             seen_names.add(name)
 
     return people[:15]  # cap at 15
@@ -536,11 +551,11 @@ def _gather_web_sources(company: str, job_url: str = "") -> list[dict[str, str]]
         # D5: Market position — funding, news, growth
         (f'{search_name} funding valuation growth raised 2024 OR 2025', "market_news"),
         # D2: Culture — Glassdoor reviews
-        (f'site:glassdoor.com OR site:glassdoor.co.in {search_name} reviews', "glassdoor"),
+        (f'site:glassdoor.com OR site:glassdoor.co.in {search_name} reviews summary', "glassdoor"),
         # D2+D4: Culture + Role — Reddit sentiment
         (f'site:reddit.com {search_name} work interview culture salary', "reddit"),
         # D3: People — founders, leadership
-        (f'{search_name} CEO founder co-founder CTO', "people_search"),
+        (f'{search_name} CEO founder leadership team', "people_search"),
         # D1+D5: Identity + market — general company context
         (f'{search_name} company about products tech stack', "web_search"),
     ]
@@ -579,7 +594,67 @@ def _gather_web_sources(company: str, job_url: str = "") -> list[dict[str, str]]
     except Exception as e:
         print(f"  !! S3 web search error: {e}")
 
-    # ── Company website scrape (Phase 1.2) ──────────────────────────────
+    # ── Specialized Scrapers (Phase 2 & 3: LinkedIn & Glassdoor) ───────
+
+    def _run_specialized_scrapers():
+        # 1. LinkedIn Job Page (D3 - Recruiter info)
+        if job_url and ("linkedin.com/jobs" in job_url or "linkedin.com/feed" in job_url):
+            print(f"  → S3 scraping LinkedIn job page (D3)...")
+            try:
+                scraper = PortalScraper()
+                portal_res = scraper.scrape(job_url)
+                if portal_res.has_jobs or portal_res.dom_jobs:
+                    # Capture description and DOM snippets for synthesis
+                    content = " ".join([j.get("description", "") for j in portal_res.all_jobs])
+                    if not content and portal_res.dom_jobs:
+                        content = str(portal_res.dom_jobs[0])
+                    
+                    if content:
+                        sources.append({
+                            "url": job_url,
+                            "title": "LinkedIn Scraped Intelligence",
+                            "page_content": content[:5000],
+                            "source_type": "linkedin_scraping"
+                        })
+            except Exception as e:
+                print(f"  !! LinkedIn scrape failed: {e}")
+
+        # 2. Glassdoor (D2 - Culture Red Flags)
+        gd_url = next((s.get("url") for s in web_results if s.get("source_type") == "glassdoor"), None)
+        if gd_url:
+            print(f"  → S3 extracting Glassdoor signals (D2)...")
+            try:
+                adapter = ScrapeGraphAdapter()
+                if adapter.available:
+                    res = adapter.extract(gd_url)
+                    if res:
+                        sources.append({
+                            "url": gd_url,
+                            "title": "Glassdoor Extraction",
+                            "page_content": json.dumps(res),
+                            "source_type": "glassdoor_extraction"
+                        })
+                else:
+                    # Fallback to standard fetch if ScrapeGraph unavailable
+                    content = _fetch_page_content(gd_url, timeout=8)
+                    if content:
+                        sources.append({
+                            "url": gd_url,
+                            "title": "Glassdoor Page Content",
+                            "page_content": content,
+                            "source_type": "glassdoor_extraction"
+                        })
+            except Exception as e:
+                print(f"  !! Glassdoor extraction failed: {e}")
+
+    try:
+        with ThreadPoolExecutor(max_workers=1) as ex:
+            future = ex.submit(_run_specialized_scrapers)
+            future.result(timeout=10)
+    except Exception:
+        pass
+
+    # ── Company website scrape (D1: Identity/Product) ─────────────────
     domain = _derive_company_domain(company, job_url)
     if domain:
         print(f"  → S3 scraping company website: {domain}")
@@ -587,7 +662,7 @@ def _gather_web_sources(company: str, job_url: str = "") -> list[dict[str, str]]
             with ThreadPoolExecutor(max_workers=1) as ex:
                 future = ex.submit(_scrape_company_website, domain)
                 try:
-                    site_results = future.result(timeout=8)
+                    site_results = future.result(timeout=10)
                     sources.extend(site_results)
                     print(f"  → S3 company website: {len(site_results)} pages fetched")
                 except FuturesTimeoutError:
@@ -602,20 +677,15 @@ def _gather_web_sources(company: str, job_url: str = "") -> list[dict[str, str]]
            and not s.get("page_content")
     ]
     if search_urls:
-        urls_to_fetch = [s for s in search_urls[:_MAX_PAGES_TO_FETCH] if s.get("url", "").startswith("http")]
+        urls_to_fetch = [s for s in search_urls[:2] if s.get("url", "").startswith("http")]
         if urls_to_fetch:
-            print(f"  → S3 fetching content from {len(urls_to_fetch)} URLs...")
-            fetched_count = 0
+            print(f"  → S3 fetching content from {len(urls_to_fetch)} news/web URLs...")
             for source in urls_to_fetch:
                 url = source.get("url", "")
-                content = _fetch_page_content(url)
+                content = _fetch_page_content(url, timeout=6)
                 if content:
                     source["page_content"] = content
-                    fetched_count += 1
                     print(f"     ✓ {source.get('title', url)[:60]}: {len(content)} chars")
-                else:
-                    print(f"     ✗ {source.get('title', url)[:60]}: no content")
-            print(f"  → S3 fetched {fetched_count}/{len(urls_to_fetch)} pages")
 
     return sources
 
@@ -687,6 +757,8 @@ SOURCE-SPECIFIC EXTRACTION:
 - MARKET/NEWS → funding stage, growth trajectory, competitive position
 
 NEW FIELDS TO POPULATE:
+- recruiter_info: {name, link, role} — from LinkedIn scraping or JD "Posted by" section
+- red_flags_detail: [{signal, source, severity}] — specific negative signals (layoffs, toxic culture, late pay)
 - key_people: [{name, title, source}] — from website team page or people search
 - founder_background: 1-2 sentences on founder(s) background and vision
 - hiring_manager_context: any signal about who the hire reports to
@@ -744,8 +816,10 @@ def _build_synthesis_prompt(
     # ── Web sources by type (MECE) ────────────────────────────────────────
     source_types = {
         "company_website": "COMPANY WEBSITE PAGES (official)",
-        "glassdoor": "GLASSDOOR SIGNALS (culture/reviews)",
-        "reddit": "REDDIT MENTIONS (employee/candidate sentiment)",
+        "linkedin_scraping": "LINKEDIN JOB DETAILS & PEOPLE (scraped)",
+        "glassdoor_extraction": "GLASSDOOR DEEP ANALYSIS (scraped)",
+        "glassdoor": "GLASSDOOR SNIPPETS",
+        "reddit": "REDDIT MENTIONS (sentiment)",
         "people_search": "PEOPLE/LEADERSHIP SIGNALS",
         "market_news": "MARKET/FUNDING NEWS",
         "web_search": "GENERAL WEB RESULTS",
@@ -966,6 +1040,8 @@ def build_company_intelligence(
         interview_implications=payload.get("interview_implications", ""),
         compensation_signals=payload.get("compensation_signals", ""),
         red_flags=payload.get("red_flags", []),
+        red_flags_detail=payload.get("red_flags_detail", []),
+        recruiter_info=payload.get("recruiter_info", {}),
 
         positioning_implications=payload.get("positioning_implications", ""),
         language_to_use=payload.get("language_to_use", []),
@@ -990,15 +1066,25 @@ def build_company_intelligence(
         reddit_signal=payload.get("reddit_signal", ""),
     )
 
-    # ── Extract people from company website pages (deterministic) ───────────
-    website_pages = [s for s in web_sources if s.get("source_type") == "company_website"]
-    for page in website_pages:
-        content = page.get("page_content", "")
+    # ── Extract people from company website & LinkedIn (deterministic) ───────
+    people_sources = [
+        s for s in web_sources 
+        if s.get("source_type") in ("company_website", "linkedin_scraping")
+    ]
+    for source in people_sources:
+        content = source.get("page_content", "")
         if content:
-            extracted = _extract_people_from_html(content)
+            label = "linkedin" if source.get("source_type") == "linkedin_scraping" else "company_website"
+            extracted = _extract_people_from_html(content, source_label=label)
             for p in extracted:
                 if not any(ep.get("name") == p["name"] for ep in result.key_people):
                     result.key_people.append(p)
+                    # If this came from LinkedIn and we don't have recruiter_info name yet, try to set it
+                    if label == "linkedin" and not result.recruiter_info.get("name"):
+                        result.recruiter_info["name"] = p["name"]
+                        if not result.recruiter_info.get("link"):
+                            result.recruiter_info["link"] = source.get("url", "")
+    
     if result.key_people:
         print(f"  → S3 people extracted: {len(result.key_people)} ({', '.join(p['name'] for p in result.key_people[:3])}...)")
 
@@ -1103,6 +1189,7 @@ def _build_s7_context(result: CompanyIntelligenceResult) -> dict[str, Any]:
         "interview_prep_hints": result.interview_questions_likely[:3] if result.interview_questions_likely else [],
         "glassdoor_signal": result.glassdoor_signal or "",
         "reddit_signal": result.reddit_signal or "",
+        "recruiter_info": result.recruiter_info or {},
     }
     return ctx
 

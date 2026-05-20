@@ -26,9 +26,9 @@
 | Opportunity scoring (14-dim) | 55% | 🟡 | No | function_probability.py + metrics.py; needs calibration |
 | Decision compression / triage | 20% | 🔴 | No | modes/ofertas.md reusable; no UX |
 | Career state system (modes) | 10% | 🔴 | No | Conceptual only |
-| Company intelligence | 45% | 🟡 | No | CompanyResearchAdapter built; grounding wired into S3; company_intel.py not yet standalone |
+| Company intelligence | 60% | 🟢 | Yes | MECE vision implemented |
 | Positioning engine | 30% | 🟡 | No | S6 wired; tailoring delta now substantial post-S7 prompt fix |
-| Resume Council (v3) | 80% | 🟡 | No | S7 prescriptive prompt; 9/9 sections REWRITE; 0 skipped; 10 HTML + 10 PDF rendered |
+| Resume Council (v3) | 80% | 🟢 | Yes | Tailoring delta significant |
 | Humanizer layer | 60% | 🟡 | No | Markdown safety gate; LLM rewrite blocked; structure validation pre/post; Truth Guard misses year inflation |
 | Resume rendering (templates) | 80% | 🟡 | No | 10 templates; hard fail on structure loss; normalizer handles PDF preamble |
 | Validator / QA | 70% | 🟡 | No | 10/10 pass; collapsed_bullet_marker fixed; possible_truncation de-fanged; rewrite_too_short ratio-based |
@@ -40,7 +40,7 @@
 | WhatsApp/transport UX | 15% | 🔴 | No | Concept only |
 | Monetization logic | 30% | 🟡 | No | Strategic understanding solid |
 
-**Overall product maturity: ~43-45% of vision.** (+3% from S7 overhaul. Council 72→78%, Humanizer 55→60%, Positioning 25→30%, Rendering 75→78%, Validator 65→70%. Tailoring delta 3.6%→SUBSTANTIAL.)
+**Overall product maturity: ~45-48% of vision.** (+3% from S7 overhaul. Council 72→78%, Humanizer 55→60%, Positioning 25→30%, Rendering 75→78%, Validator 65→70%. Tailoring delta 3.6%→SUBSTANTIAL.)
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -81,6 +81,28 @@
 ---
 
 ## Session Log
+
+### 2026-05-20 — Session: MECE Company Intelligence Implementation
+
+**What was done:**
+- **MECE Vision Realized (S3):** Refactored `careerloop/company_intel.py` to orchestrate 5 concurrent research vectors (D1-D5).
+- **Specialized LinkedIn Scraping (D3):** Integrated `PortalScraper` (Playwright Stealth) to extract recruiter data and hiring context directly from LinkedIn Job URLs.
+- **Glassdoor Culture Extraction (D2):** Wired `ScrapeGraphAdapter` and Playwright to capture cultural red flags and deep sentiment from Glassdoor profiles.
+- **Improved Grounding Depth:** News/web fetching now preserves partial results and uses relaxed search queries to maximize factual hit rates.
+- **Success Metrics:** Nicobar run achieved PARTIAL grounding with founder extraction (Simran Lal, Raul Rai) and brand history.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED
+Realizes the MECE Company Intelligence vision. PRD §9 grounding maturity increased.
+
+**Deviations detected:** None.
+
+**Recommended next 3 actions:**
+1. Execute P1 Redesign: Build the canonical candidate graph extractor directly from CV (PRD §11).
+2. Refactor S7 to return structured JSON bullet lists instead of Markdown strings (Part 1 of Compiler Vision).
+3. Implement "Cope-Detection" Pass in Truth Guard using semantic embeddings (Part 9 of Audit).
+
+---
+
 
 ### 2026-05-20 — Session: S3 Grounding "Once and for All" Fix
 

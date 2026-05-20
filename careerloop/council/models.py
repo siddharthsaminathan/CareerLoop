@@ -66,6 +66,8 @@ class CompanyIntelligence:
     hiring_urgency: str = "MEDIUM"
     culture_signals: List[str] = field(default_factory=list)
     red_flags: List[str] = field(default_factory=list)
+    red_flags_detail: List[Dict[str, str]] = field(default_factory=list)  # [{signal, source, severity}]
+    recruiter_info: Dict[str, str] = field(default_factory=dict)  # {name, link, role}
     positioning_implications: str = ""
     interview_implications: str = ""
     confidence: float = 0.0
