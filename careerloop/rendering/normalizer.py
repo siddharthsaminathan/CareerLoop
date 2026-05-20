@@ -433,12 +433,14 @@ def _parse_header(classified: dict) -> HeaderInfo:
         # Some resumes embed contact directly under the name heading.
         if body and not classified.get("contact"):
             preview = "\n".join(body.strip().splitlines()[:6])
+            _parse_header_title(preview, header)
             _parse_contact_body(preview, header)
 
     # Extract contact details from contact block
     contact_block = classified.get("contact")
     if contact_block:
         _, _, body = contact_block
+        _parse_header_title(body, header)
         _parse_contact_body(body, header)
 
     # If no name from block heading, try contact body
@@ -455,6 +457,32 @@ def _parse_header(classified: dict) -> HeaderInfo:
     return header
 
 
+def _parse_header_title(body: str, header: HeaderInfo) -> None:
+    """Capture the candidate's declared professional title from the name block."""
+    if header.title:
+        return
+
+    for raw_line in body.strip().split("\n"):
+        line = _sanitize_text(_strip_markdown_formatting(raw_line.strip()))
+        line = line.strip(" -|")
+        if not line:
+            continue
+        if "@" in line or re.search(r"(?:https?://|www\.|github\.com|linkedin\.com)", line, re.IGNORECASE):
+            continue
+        if re.search(r"\+?\d[\d\s().-]{7,}\d", line):
+            continue
+        if header.name and line.lower() == header.name.lower():
+            continue
+        roleish = re.search(
+            r"\b(engineer|manager|founder|architect|developer|analyst|designer|scientist|consultant|product|systems?)\b",
+            line,
+            re.IGNORECASE,
+        )
+        if roleish and len(line) <= 90:
+            header.title = line
+            return
+
+
 def _parse_contact_body(body: str, header: HeaderInfo) -> None:
     """Parse contact bullet list into HeaderInfo fields."""
     patterns = {
@@ -468,7 +496,7 @@ def _parse_contact_body(body: str, header: HeaderInfo) -> None:
 
     for raw_line in body.strip().split("\n"):
         raw_line = _strip_markdown_formatting(raw_line.strip())
-        raw_line = re.sub(r"^[-*+•·\s]+", "", raw_line)
+        raw_line = re.sub(r"^\s*(?:[-*•·]\s+|\+\s+)", "", raw_line)
         if not raw_line:
             continue
         tokens = _split_contact_tokens(raw_line)
@@ -837,7 +865,7 @@ def _looks_like_loose_experience_start(line: str, next_line: str, next_next: str
 
 
 def _contains_date_range(text: str) -> bool:
-    return bool(re.search(
+    month_range = re.search(
         r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept?|Oct|Nov|Dec|"
         r"January|February|March|April|June|July|August|September|October|November|December)"
         r"\s+\d{4}\s*(?:-|–|—|to)\s*(?:Present|Current|"
@@ -845,16 +873,23 @@ def _contains_date_range(text: str) -> bool:
         r"January|February|March|April|June|July|August|September|October|November|December)\s+\d{4})",
         text,
         re.IGNORECASE,
-    ))
+    )
+    year_range = re.search(
+        r"\b\d{4}\s*(?:-|–|—|to)\s*(?:Present|Current|\d{4})\b",
+        text,
+        re.IGNORECASE,
+    )
+    return bool(month_range or year_range)
 
 
 def _extract_date_range(text: str) -> tuple[str, str]:
     pattern = re.compile(
-        r"\b((?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept?|Oct|Nov|Dec|"
+        r"\b((?:(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept?|Oct|Nov|Dec|"
         r"January|February|March|April|June|July|August|September|October|November|December)"
         r"\s+\d{4}\s*(?:-|–|—|to)\s*(?:Present|Current|"
         r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept?|Oct|Nov|Dec|"
-        r"January|February|March|April|June|July|August|September|October|November|December)\s+\d{4}))",
+        r"January|February|March|April|June|July|August|September|October|November|December)\s+\d{4}))|"
+        r"(?:\d{4}\s*(?:-|–|—|to)\s*(?:Present|Current|\d{4})))",
         re.IGNORECASE,
     )
     match = pattern.search(text)
@@ -999,7 +1034,15 @@ def _parse_experience_entry(heading: str, body: str) -> ExperienceEntry:
                     bullet_lines.append(stripped)
             else:
                 # Non-bullet paragraph before bullets = description
-                description_parts.append(_sanitize_text(stripped))
+                metadata = _strip_markdown_formatting(stripped)
+                if _contains_date_range(metadata):
+                    meta_dates, meta_location = _split_dates_location_metadata(metadata)
+                    if meta_dates:
+                        dates = meta_dates
+                    if meta_location and not location:
+                        location = meta_location
+                else:
+                    description_parts.append(_sanitize_text(stripped))
 
     # Process bullets (deduplicate, split collapsed, clean)
     bullets = _process_bullets(bullet_lines)
@@ -1029,7 +1072,7 @@ def _parse_role_heading(heading: str) -> Tuple[str, str, str, str]:
 
     # Extract dates from parentheses at end
     m = DATES_RE.search(heading)
-    if m:
+    if m and _contains_date_range(m.group(1)):
         dates = m.group(1).strip()
         heading = heading[:m.start()].strip()
 
@@ -1054,6 +1097,20 @@ def _parse_role_heading(heading: str) -> Tuple[str, str, str, str]:
             location = ""
 
     return role, company, location, dates
+
+
+def _split_dates_location_metadata(text: str) -> Tuple[str, str]:
+    """Split a leading metadata line like '2025 - Present | Chennai, India'."""
+    text = _sanitize_text(text, context="daterange").strip()
+    parts = [p.strip() for p in re.split(r"\s*\|\s*", text) if p.strip()]
+    dates = ""
+    location = ""
+    for part in parts:
+        if not dates and _contains_date_range(part):
+            dates = part
+        elif not location:
+            location = part
+    return dates, location
 
 
 def _process_bullets(bullet_lines: List[str]) -> List[str]:

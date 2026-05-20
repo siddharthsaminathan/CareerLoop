@@ -45,6 +45,7 @@ A prompt library loaded at conversation time by the AI CLI (Claude Code, Gemini,
 
 ### Where it is strong
 
+- **S3 Company Intelligence (FIXED):** Now uses a real research engine (`company_intel.py`) with relaxed search queries, incremental result harvesting, and job-board domain isolation. Grounding has moved from JD-only to PARTIAL/READY.
 - **Deterministic assembly** (System 1, 2, 8): `ResumeCompiler.parse_markdown()` uses mistune AST — no regex section-splitting. Assembly is zero-LLM. This correctly enforces the preservation contract.
 - **Humanizer architecture**: 5-phase (detect → realism → surgical rewrite → tone → sanitize), partially deterministic. The banned-words list (`humanizer_rules.py`) is real and specific.
 - **TruthGuard**: deterministic claim extraction using compiled regex patterns for years, percentages, skills, ownership, quantified achievements. Correct approach.

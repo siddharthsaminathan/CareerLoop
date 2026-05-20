@@ -47,13 +47,12 @@ master_cv (str)
 │  contract_node (S2) │    Calls:   compiler.py → ResumeCompiler.build_contract()
 │  DETERMINISTIC      │    Writes:  preservation_contract (dict)
 └────────┬────────────┘    Saves:   02_preservation_contract.json
-         │
          ▼ [graph.py:116-165]
 ┌─────────────────────┐    Reads:   company (str), jd_text[:3000]
-│  company_intel (S3) │    Calls:   _call(_S3_SYSTEM, prompt) → DeepSeek "strategy"
+│  company_intel (S3) │    Calls:   _call(_S3_SYNTHESIS_SYSTEM, prompt)
 │  LLM: DeepSeek T=.2 │    Writes:  company_intelligence (dict)
 └────────┬────────────┘    Saves:   03_company_intelligence.json
-         │                ⚠️ No JSON schema | ⚠️ Pure LLM recall
+         │                ✅ GROUNDED Research | ✅ Search Relaxation | ✅ Cache-Busting
          ▼ [graph.py:168-206]
 ┌─────────────────────┐    Reads:   jd_text + company_intelligence
 │  role_decode (S4)   │    Calls:   _call(_S4_SYSTEM, prompt) → DeepSeek "strategy"
@@ -247,11 +246,11 @@ Pipeline A (Council)                          Pipeline B (career-ops skill)
     │                                                    │
     └─→ 10_final_resume.md                   PDF reads cv.md directly
            │                                    │
-           │    ⚠️ DISCONNECTED GAP ⚠️            │
-           │    (P0 fix needed)                 │
+           │    ✅ CONNECTED (P0 Fix)            │
+           │    run_council calls renderer      │
            │                                    ▼
            └────────────────────────────> HTML template → PDF
-
+```
 Pipeline B evaluation (modes/_profile.md user framing)
     │
     │    ⚠️ DISCONNECTED GAP ⚠️

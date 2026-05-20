@@ -43,20 +43,25 @@ def _safe_href(url: str) -> str:
 
 
 def _derive_role_subtitle(resume: NormalizedResume) -> str:
-    # 1. Use the most recent job title if available
+    # 1. Prefer the candidate's declared headline from the markdown header.
+    header_title = (getattr(resume.header, "title", "") or "").strip()
+    if header_title:
+        return header_title[:80]
+
+    # 2. Use the most recent job title if no top-level title exists.
     if resume.experience:
         role = (resume.experience[0].role or "").strip()
         if role:
             # Clean up things like "Senior Merchandiser — Women's Wear" -> "Senior Merchandiser"
             return role.split("—")[0].split("-")[0].strip()[:60]
             
-    # 2. Look for the first bolded term in the profile (usually the target role)
+    # 3. Look for the first bolded term in the profile (usually the target role)
     if resume.profile:
         m = re.search(r"\*\*(.+?)\*\*", resume.profile)
         if m:
             return m.group(1).strip()[:60]
         
-    # 3. Fallback to first sentence of profile (shortened)
+    # 4. Fallback to first sentence of profile (shortened)
     if resume.profile:
         first = resume.profile.strip().split(".")[0]
         return first[:60]
@@ -263,7 +268,29 @@ def render_resume(input_path, candidate: str, run_id: str = "latest", out_dir=No
             if edu.details:
                 edu_items += f'<p class="edu-details">{_inline_md(edu.details)}</p>'
             edu_items += '</div>'
-        education_html_sidebar = edu_items
+        sidebar_items = ""
+        sidebar_count = 0
+        detail_starters = (
+            "thesis:", "deployed", "applied", "conducted", "built an ml pipeline",
+        )
+        for edu in resume.education:
+            degree_plain = (edu.degree or "").strip()
+            if not degree_plain:
+                continue
+            if degree_plain.lower().startswith(detail_starters):
+                continue
+            if len(degree_plain) > 120 and not edu.institution:
+                continue
+            sidebar_items += f'<div class="edu-item"><span class="degree">{_inline_md(degree_plain)}</span>'
+            if edu.institution:
+                sidebar_items += f', <span class="school">{_inline_md(edu.institution)}</span>'
+            if edu.dates:
+                sidebar_items += f' <span class="dates">{_inline_md(edu.dates)}</span>'
+            sidebar_items += '</div>'
+            sidebar_count += 1
+            if sidebar_count >= 3:
+                break
+        education_html_sidebar = sidebar_items
         education_html = edu_items
 
     # Thesis

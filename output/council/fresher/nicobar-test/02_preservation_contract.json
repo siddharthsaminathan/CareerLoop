@@ -1,0 +1,28 @@
+{
+  "required_public_sections": [
+    "education"
+  ],
+  "sections_to_exclude": [
+    "outreach_preferences_private"
+  ],
+  "unknown_sections_to_preserve": [
+    "sentiment_analysis_bot",
+    "portfolio_website",
+    "data_science_intern_fintech_corp_summer_2023"
+  ],
+  "ordering_rules": [
+    "fresher_profile_priya_sharma",
+    "profile",
+    "education",
+    "skills",
+    "projects",
+    "sentiment_analysis_bot",
+    "portfolio_website",
+    "internships",
+    "data_science_intern_fintech_corp_summer_2023"
+  ],
+  "link_preservation_rules": {
+    "all": "MUST_SURVIVE"
+  },
+  "max_allowed_changes": 3
+}

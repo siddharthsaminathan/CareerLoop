@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Non-Technical Profile: Mark Thompson — CV</title>
+<style>
+  /* ═══════════════════════════════════════════════
+     Modern Accent — single column with accent blue
+     ═══════════════════════════════════════════════ */
+  :root {
+    --ink: #1a1a1a;
+    --muted: #64748b;
+    --rule: #d4d4d4;
+    --accent: #0077b6;
+    --accent-light: #f0f8ff;
+    --accent-border: #caf0f8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: var(--ink);
+    background: #ffffff;
+    max-width: 8.5in;
+    margin: 0 auto;
+    padding: 0.55in 0.6in;
+  }
+
+  /* ── Header ────────────────────────────────── */
+  .header {
+    margin-bottom: 1.2rem;
+    border-bottom: 1.5px solid var(--rule);
+    padding-bottom: 0.8rem;
+  }
+  .header h1 {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 26pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+    line-height: 1.1;
+  }
+  .header-gradient {
+    height: 2px;
+    background: linear-gradient(to right, var(--accent), #e63946);
+    margin-bottom: 0.6rem;
+    border-radius: 1px;
+  }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.8rem;
+    font-size: 10pt;
+    color: var(--muted);
+  }
+  .contact-row a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .contact-row .separator { color: #ccc; }
+
+  /* ── Section headings ──────────────────────── */
+  .section { margin-bottom: 0.9rem; }
+  .section-title {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 11.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--accent);
+    border-bottom: 1.5px solid var(--rule);
+    padding-bottom: 3px;
+    margin: 1.5rem 0 0.4rem 0;
+  }
+  .section:first-of-type .section-title { margin-top: 0.4rem; }
+
+  /* ── Summary ───────────────────────────────── */
+  .summary-text {
+    font-size: 10.5pt;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  /* ── Experience (exp-header layout) ────────── */
+  .exp-item { margin-bottom: 0.9rem; }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.2rem;
+  }
+  .exp-header .role {
+    font-weight: 700;
+    font-size: 11pt;
+    color: var(--ink);
+    flex: 1;
+  }
+  .exp-header .exp-meta {
+    text-align: right;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .exp-header .company {
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 10pt;
+  }
+  .exp-header .dates {
+    font-size: 9pt;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Old job-* compat */
+  .job { margin-bottom: 0.9rem; }
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.2rem;
+  }
+  .job-company { font-weight: 700; color: var(--ink); }
+  .job-period { font-size: 9pt; color: var(--muted); font-style: italic; }
+  .job-role { font-size: 10pt; color: var(--muted); margin-bottom: 0.15rem; }
+  .job-location { font-size: 9pt; color: var(--muted); }
+
+  .job ul, .exp-item ul { padding-left: 1.3rem; margin-top: 0.25rem; }
+  .job li, .exp-item li {
+    font-size: 10pt;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+  }
+  .job li strong, .exp-item li strong { font-weight: 600; }
+  ul li::marker { color: var(--muted); }
+
+  /* ── Skills grid ───────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 0.3rem 1rem;
+    font-size: 10pt;
+  }
+  .skills-grid .cat {
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .skills-grid .tags {
+    color: var(--ink);
+  }
+  .skill-item { font-size: 10pt; color: var(--ink); }
+  .skill-category { font-weight: 700; color: var(--ink); }
+
+  /* ── Projects ──────────────────────────────── */
+  .project { margin-bottom: 0.8rem; }
+  .project-title { font-size: 11pt; font-weight: 600; color: var(--accent); }
+  .project-desc { font-size: 10pt; color: var(--ink); margin-top: 0.2rem; line-height: 1.55; }
+
+  /* ── Education ─────────────────────────────── */
+  .edu-item { margin-bottom: 0.4rem; }
+  .edu-header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; }
+  .edu-title { font-weight: 600; font-size: 10.5pt; color: var(--ink); }
+  .edu-org { color: var(--muted); font-weight: 400; }
+  .edu-year { font-size: 9.5pt; color: var(--muted); white-space: nowrap; }
+
+  /* ── Competencies ──────────────────────────── */
+  .competencies-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .competency-tag {
+    font-size: 9.5pt;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 3px 8px;
+    border-radius: 3px;
+    border: 1px solid var(--accent-border);
+  }
+
+  /* ── Links ─────────────────────────────────── */
+  a { white-space: nowrap; color: var(--accent); text-decoration: none; }
+
+  /* ── Rendering contract fallbacks ───────────────
+     Standard classes rendered by render_all_templates.py.
+     Keep alongside template-unique styles. */
+  .achievements { margin-top: 0.1rem; }
+  .achievements li { margin-bottom: 0.3rem; }
+  .achievements li strong { color: var(--ink); }
+  .exp-desc { font-size: inherit; color: var(--ink); margin-bottom: 0.3rem; }
+  .edu-item .degree { font-weight: 600; color: var(--ink); }
+  .edu-item .school { color: var(--muted); font-weight: 400; }
+  .edu-details { font-size: 9.5pt; color: var(--muted); margin-top: 2px; }
+  .tag { font-weight: 500; }
+  .thesis { font-size: 9.5pt; color: var(--muted); margin-top: 0.3rem; }
+  .thesis-heading { margin-top: 0.5rem; font-size: 10pt; }
+
+  /* ── Print ─────────────────────────────────── */
+  @media print {
+    body { padding: 0; background: #fff; }
+    @page { margin: 0.55in 0.6in; size: letter; }
+    .exp-item, .job { break-inside: avoid; }
+    h2, .section-title { break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Non-Technical Profile: Mark Thompson</h1>
+  <div class="header-gradient"></div>
+  <div class="contact-row">
+    <span></span><span class="separator">|</span>
+    <span></span><span class="separator">|</span>
+    <a href="#">LinkedIn</a><span class="separator">|</span>
+    <a href="#">Portfolio</a><span class="separator">|</span>
+    <span></span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Profile</div>
+  <div class="summary-text"><p>Customer-obsessed growth strategist with 10 years of experience scaling e-commerce brands through data-driven brand experiences and digital growth. Proven track record of driving measurable outcomes: increased organic traffic by 200% in 18 months, managed a $5M annual advertising budget, and scaled user base from 10k to 500k. Now focused on bridging business intelligence with AI-native personalization to build the next generation of conversational BI and clienteling tools.</p>
+</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Competencies</div>
+  <div class="competencies-grid"><div class="competencies-grid"><span class="competency-tag">Brand Strategy & Content Marketing</span><span class="competency-tag">Business Intelligence & Customer Personalization</span><span class="competency-tag">Budget Management</span><span class="competency-tag">Team Leadership</span><span class="competency-tag">AI-Native Mindset</span></div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Experience</div>
+  
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="role">Marketing Director</span>
+                    <span class="exp-meta">
+                        <span class="company">BrandGrowth</span>
+                        <span class="dates">2020 - Present</span>
+                    </span>
+                </div>
+                
+                <ul class="bullets"><li>Drove a 200% increase in organic traffic within 18 months, directly expanding the customer base for AI-native personalization initiatives.</li><li>Owned a $5M annual advertising budget, optimizing spend to maximize brand experience and customer acquisition.</li><li>Scaled user base from 10k to 500k, building the audience intelligence layer needed for conversational BI and clienteling.</li><li>Partnered with product and engineering to align marketing metrics with business intelligence, ensuring every campaign fed into the customer personalization engine.</li></ul>
+            </div>
+            
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="role">Growth Manager</span>
+                    <span class="exp-meta">
+                        <span class="company">StartupX</span>
+                        <span class="dates">2016 - 2020</span>
+                    </span>
+                </div>
+                
+                <ul class="bullets"><li>Drove user base growth from 10k to 500k by architecting a customer personalization intelligence layer that optimized acquisition and retention.</li></ul>
+            </div>
+            
+</div>
+
+<div class="section">
+  <div class="section-title">Key Achievements</div>
+  
+</div>
+
+<div class="section">
+  <div class="section-title">Education</div>
+  <div class="edu-item"><span class="degree">B.A. Communications</span>, <span class="school">New York University</span></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Skills</div>
+  <div class="skills-grid"><span class="cat">Brand Strategy & Content Marketing</span><span class="tags">Drove 200% organic traffic growth through SEO and content-led brand experience</span><span class="cat">Business Intelligence & Customer Personalization</span><span class="tags">Scaled user base from 10k to 500k by deploying data-driven growth strategies</span><span class="cat">Budget Management</span><span class="tags">Owned $5M annual advertising budget · optimizing spend for measurable ROI</span><span class="cat">Team Leadership</span><span class="tags">Led cross-functional teams to deliver business outcomes in fast-paced environments</span><span class="cat">AI-Native Mindset</span><span class="tags">Actively learning to bridge business strategy with conversational BI and intelligence layer tools</span></div>
+</div>
+
+</body>
+</html>

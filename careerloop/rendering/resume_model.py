@@ -21,6 +21,7 @@ from typing import List, Optional
 class HeaderInfo:
     """Candidate identity and contact information."""
     name: str = ""
+    title: str = ""
     phone: str = ""
     email: str = ""
     location: str = ""

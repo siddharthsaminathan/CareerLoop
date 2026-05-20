@@ -1,0 +1,85 @@
+{
+  "header": {
+    "name": "Non-Technical Profile: Mark Thompson",
+    "phone": "",
+    "email": "",
+    "location": "",
+    "portfolio_url": "",
+    "portfolio_display": "",
+    "github_url": "",
+    "github_display": "",
+    "linkedin_url": "",
+    "linkedin_display": ""
+  },
+  "profile": "Customer-obsessed growth strategist with 10 years of experience scaling e-commerce brands through data-driven brand experiences and digital growth. Proven track record of driving measurable outcomes: increased organic traffic by 200% in 18 months, managed a $5M annual advertising budget, and scaled user base from 10k to 500k. Now focused on bridging business intelligence with AI-native personalization to build the next generation of conversational BI and clienteling tools.",
+  "skills": [
+    {
+      "label": "Brand Strategy & Content Marketing",
+      "items": [
+        "Drove 200% organic traffic growth through SEO and content-led brand experience"
+      ]
+    },
+    {
+      "label": "Business Intelligence & Customer Personalization",
+      "items": [
+        "Scaled user base from 10k to 500k by deploying data-driven growth strategies"
+      ]
+    },
+    {
+      "label": "Budget Management",
+      "items": [
+        "Owned $5M annual advertising budget",
+        "optimizing spend for measurable ROI"
+      ]
+    },
+    {
+      "label": "Team Leadership",
+      "items": [
+        "Led cross-functional teams to deliver business outcomes in fast-paced environments"
+      ]
+    },
+    {
+      "label": "AI-Native Mindset",
+      "items": [
+        "Actively learning to bridge business strategy with conversational BI and intelligence layer tools"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Marketing Director",
+      "company": "BrandGrowth",
+      "location": "",
+      "dates": "2020 - Present",
+      "description": "",
+      "bullets": [
+        "Drove a 200% increase in organic traffic within 18 months, directly expanding the customer base for AI-native personalization initiatives.",
+        "Owned a $5M annual advertising budget, optimizing spend to maximize brand experience and customer acquisition.",
+        "Scaled user base from 10k to 500k, building the audience intelligence layer needed for conversational BI and clienteling.",
+        "Partnered with product and engineering to align marketing metrics with business intelligence, ensuring every campaign fed into the customer personalization engine."
+      ]
+    },
+    {
+      "role": "Growth Manager",
+      "company": "StartupX",
+      "location": "",
+      "dates": "2016 - 2020",
+      "description": "",
+      "bullets": [
+        "Drove user base growth from 10k to 500k by architecting a customer personalization intelligence layer that optimized acquisition and retention."
+      ]
+    }
+  ],
+  "achievements": [],
+  "projects": [],
+  "education": [
+    {
+      "degree": "B.A. Communications",
+      "institution": "New York University",
+      "dates": "",
+      "details": ""
+    }
+  ],
+  "thesis": null,
+  "languages": []
+}

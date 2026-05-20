@@ -2,44 +2,48 @@
   "normalized_title": "AI Product Engineer",
   "seniority": "mid-senior",
   "must_haves": [
-    "Engineering degree from IIT/BITS/NIT or equivalent",
-    "3-5 years of experience",
-    "LLM API experience (OpenAI, Claude, Gemini, etc.)",
-    "Python or NodeJS fluency",
-    "SQL proficiency",
-    "API, webhook, data pipeline integration skills",
-    "Front-end development ability"
+    "Python",
+    "LLM API experience",
+    "SQL",
+    "frontend skills"
   ],
   "nice_to_haves": [
-    "Shopify API ecosystem familiarity",
-    "E-commerce data experience",
-    "MoEngage or CRM/marketing automation platform experience",
-    "Microsoft Dynamics 365 exposure",
-    "Retail/e-commerce industry background"
+    "retail/e-commerce experience",
+    "IIT/BITS/NIT or equivalent degree",
+    "Shopify API experience",
+    "MoEngage or CRM experience",
+    "ERP exposure (e.g., Microsoft Dynamics 365)"
   ],
   "hidden_expectations": [
-    "CEO-facing communication and strategic thinking",
-    "Entrepreneurial, self-directed problem solving",
-    "AI-native mindset and implementation ability"
+    "CEO-facing communication",
+    "business-outcome thinking",
+    "design sensibility",
+    "proactive ownership",
+    "versatility across multiple domains"
   ],
   "day_one_deliverables": [
-    "Customer personalization intelligence layer"
+    "Customer personalization intelligence layer",
+    "Clienteling tool for store teams",
+    "Conversational BI layer replacing dashboards",
+    "Smoothing design workstreams",
+    "Open mandate projects like demand forecasting, AI stylist, gifting concierge"
   ],
   "screening_keywords": [
     "AI-native",
+    "clienteling",
+    "business intelligence",
     "LLM API",
+    "Shopify",
+    "personalization",
+    "front-end",
     "Python",
     "SQL",
-    "Shopify",
-    "MoEngage",
-    "Dynamics 365",
-    "clienteling",
-    "business intelligence"
+    "APIs"
   ],
   "disqualifiers": [
-    "No LLM API experience",
-    "No coding skills",
-    "Lacks system integration experience"
+    "no LLM experience",
+    "no coding skills",
+    "no frontend ability"
   ],
   "confidence": 0.85
 }

@@ -1,25 +1,23 @@
 {
-  "one_line_positioning": "AI Product Engineer who builds hyper-personalized consumer AI experiences from prototype to production",
-  "narrative_angle": "Consumer AI founder turned product engineer, bringing AI-native personalization and entrepreneurial ownership to e-commerce",
+  "one_line_positioning": "AI Product Engineer with strong backend and data infrastructure, building user-facing AI from concept to production",
+  "narrative_angle": "Backend-heavy AI engineer seeking transition to product-focused role, with proven ability to ship end-to-end AI features",
   "lead_strengths": [
-    "Python & SQL backend engineering",
-    "LLM API orchestration & RAG pipelines",
-    "End-to-end product shipping & scaling (450+ users)"
+    "Python and LLM API production experience",
+    "Multi-agent orchestration and cost optimization",
+    "End-to-end system architecture and user growth"
   ],
   "proof_points_to_emphasize": [
-    "Built hyper-personalized AI companion (memory, multi-agent) for consumer engagement",
-    "50x cost reduction and 5x latency improvement in production LLM systems",
-    "Scaled consumer AI to 450+ users via AI-driven marketing automation",
-    "Designed real-time data pipelines and REST APIs for mission-critical systems"
+    "Built Emote AI companion from 0 to 450+ users with 13-15% weekly retention",
+    "Reduced inference cost per conversation by 98%",
+    "Led enterprise data platform migration improving reporting reliability"
   ],
   "things_to_downplay": [
-    "Manufacturing quality industry background",
-    "Front-end development (basic proficiency only)",
-    "Enterprise data platform migration (Ericsson – not e-commerce)",
-    "Lack of Shopify, MoEngage, or Dynamics 365 experience"
+    "Lack of frontend development experience",
+    "No retail or e-commerce domain knowledge",
+    "Missing design sensibility and top-tier institute background"
   ],
-  "tone_guidance": "Direct, product-focused, customer-centric, avoiding enterprise terminology and emphasizing consumer outcomes",
-  "recruiter_first_impression_target": "A builder who personalizes customer experiences with AI, not just a backend developer",
-  "application_stance": "CAREFUL_PUSH",
-  "reasoning": "Strong AI engineering and product shipping evidence transfers well to e-commerce personalization, but lacks domain-specific tools (Shopify, MoEngage) and strong front-end skills. Entrepreneurial mindset fits CEO's office. Risk: no direct retail experience."
+  "tone_guidance": "Direct, acknowledges skill gaps, emphasizes transferable AI engineering strengths",
+  "recruiter_first_impression_target": "Strong AI engineer but missing core frontend and domain requirements",
+  "application_stance": "SKIP",
+  "reasoning": "Role requires frontend development skills which candidate lacks entirely. Additionally, missing retail/e-commerce experience and design alignment with the brand. Strong AI backend skills are not sufficient to overcome these gaps. Recommend building frontend skills and domain knowledge before applying."
 }

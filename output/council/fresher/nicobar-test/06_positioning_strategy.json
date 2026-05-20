@@ -1,0 +1,23 @@
+{
+  "one_line_positioning": "IIT Delhi CS graduate with ML project experience and a drive to build AI-native customer experiences",
+  "narrative_angle": "Recent graduate with a passion for AI product development, seeking to leverage ML skills and strong engineering foundation in a fast-paced retail AI environment",
+  "lead_strengths": [
+    "Strong CS fundamentals (IIT Delhi, GPA 9.2)",
+    "Hands-on ML project experience (BERT-based sentiment analysis)",
+    "Python and React proficiency"
+  ],
+  "proof_points_to_emphasize": [
+    "IIT Delhi CS degree with high GPA",
+    "Built BERT-based sentiment analysis project",
+    "Data Science internship at Fintech Corp"
+  ],
+  "things_to_downplay": [
+    "No professional work experience",
+    "No LLM API production experience",
+    "No e-commerce background"
+  ],
+  "tone_guidance": "Eager, humble, and ready to learn; own the narrative of being a fast ramp-up",
+  "recruiter_first_impression_target": "Smart CS grad who can be trained quickly, but needs ramp-up time",
+  "application_stance": "STRETCH",
+  "reasoning": "Strong CS foundation from IIT Delhi with ML project experience, but lacks required 3-5 years and LLM API production experience; role is a stretch for a fresh graduate"
+}

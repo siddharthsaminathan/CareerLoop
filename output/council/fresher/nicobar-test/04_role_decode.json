@@ -1,0 +1,44 @@
+{
+  "normalized_title": "AI Product Engineer",
+  "seniority": "mid-senior",
+  "must_haves": [
+    "IIT/BITS/NIT or equivalent engineering degree",
+    "3-5 years of experience",
+    "Built a real project with an LLM API (OpenAI, Claude, Gemini, etc.)",
+    "Proficiency in Python or NodeJS",
+    "SQL fluency",
+    "Frontend development skills with brand-appropriate design"
+  ],
+  "nice_to_haves": [
+    "Retail or e-commerce experience",
+    "Conversational AI or chatbot experience",
+    "Familiarity with business intelligence tools",
+    "Experience with Shopify, MoEngage, or Dynamics 365"
+  ],
+  "hidden_expectations": [
+    "CEO-facing communication and strategic thinking",
+    "Ability to deliver business outcomes rapidly",
+    "Cross-functional collaboration with creatives and store teams",
+    "Owning end-to-end product development in an AI-first context"
+  ],
+  "day_one_deliverables": [
+    "Customer personalization intelligence layer",
+    "Store clienteling tool",
+    "Conversational business intelligence replacement",
+    "Design workflow optimization"
+  ],
+  "screening_keywords": [
+    "AI-native",
+    "clienteling",
+    "business intelligence",
+    "LLM",
+    "Python",
+    "SQL"
+  ],
+  "disqualifiers": [
+    "No hands-on LLM API project experience",
+    "No coding skills",
+    "No frontend development ability"
+  ],
+  "confidence": 0.85
+}

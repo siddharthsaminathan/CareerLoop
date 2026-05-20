@@ -324,21 +324,21 @@ The user should feel:
 | Opportunity scoring (14-dim) | 55% | 🟡 Active | function_probability.py + metrics.py; needs calibration |
 | Decision compression / triage | 20% | 🔴 Gap | modes/ofertas.md reusable; no UX |
 | Career state system (modes) | 10% | 🔴 Gap | Conceptual only |
-| Company intelligence | 30% | 🟡 Active | CompanyResearchAdapter built; grounding wired into S3; company_intel.py standalone not yet built |
+| Company intelligence | 45% | 🟡 Active | CompanyResearchAdapter built; grounding wired into S3; company_intel.py standalone not yet built |
 | Positioning engine | 30% | 🟡 Active | S6 schema-validated; tailoring delta SUBSTANTIAL post-S7 fix |
-| Resume Council (v3) | 78% | 🟡 Active | S7 prescriptive prompt; 9/9 sections REWRITE; 0 skipped; 10 HTML + 10 PDF rendered |
+| Resume Council (v3) | 80% | 🟡 Active | S7 prescriptive prompt; 9/9 sections REWRITE; 0 skipped; 10 HTML + 10 PDF rendered |
 | Humanizer layer | 60% | 🟡 Active | Markdown safety gate; structure validation pre/post; Truth Guard misses year inflation (B9) |
-| Resume rendering (templates) | 78% | 🟡 Active | 10 templates; hard fail on structure loss; PDF preamble + loose experience parsing |
+| Resume rendering (templates) | 80% | 🟡 Active | 10 templates; hard fail on structure loss; PDF preamble + loose experience parsing |
 | Validator / QA | 70% | 🟡 Active | 10/10 pass; collapsed_bullet_marker fixed; possible_truncation de-fanged; 64 tests |
 | Application execution | 15% | 🔴 Gap | modes/apply.md prototype; Chrome extension not started |
 | Chrome extension | 0% | ⚫ Not started | Phase 3 |
 | Follow-up system | 25% | 🔴 Gap | Ledger auto-schedules; UI missing |
-| Interview memory | 10% | 🔴 Gap | modes/interview-prep.md 4★; no DB persistence |
+| Interview memory | 25% | 🟡 Active | interview-playbook skill auto-extracts learnings; modes/interview-playbook.md; interview-prep/interview-playbook.md with seed data |
 | Persistent memory graph | 25% | 🟡 Active | Ledger + company_registry + SQLite schema |
 | WhatsApp/transport UX | 15% | 🔴 Gap | Concept only |
 | Monetization logic | 30% | 🟡 Active | Strategic understanding solid |
 
-**Overall product maturity: ~41-43% of vision.** (+3% from S7 overhaul. Council 72→78%, Humanizer 55→60%, Positioning 25→30%, Rendering 75→78%, Validator 65→70%. Tailoring delta 3.6%→SUBSTANTIAL.)
+**Overall product maturity: ~43-45% of vision.** (+3% from S7 overhaul. Council 72→78%, Humanizer 55→60%, Positioning 25→30%, Rendering 75→78%, Validator 65→70%. Tailoring delta 3.6%→SUBSTANTIAL.)
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 

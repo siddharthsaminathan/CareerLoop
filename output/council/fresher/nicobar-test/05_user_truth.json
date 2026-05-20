@@ -1,0 +1,83 @@
+{
+  "total_years_experience": 0.0,
+  "confirmed_skills": [
+    {
+      "skill": "Python",
+      "years": 0,
+      "evidence": "Built Twitter sentiment analyzer, data science internship"
+    },
+    {
+      "skill": "React",
+      "years": 0,
+      "evidence": "Built personal portfolio"
+    },
+    {
+      "skill": "Machine Learning",
+      "years": 0,
+      "evidence": "Sentiment analysis with BERT, logistic regression for loan defaults"
+    },
+    {
+      "skill": "LLM",
+      "years": 0,
+      "evidence": "Built BERT-based sentiment analyzer"
+    }
+  ],
+  "weak_skills": [
+    "SQL",
+    "TensorFlow",
+    "PyTorch",
+    "Tableau",
+    "LLM API experience"
+  ],
+  "evidence_bank": {
+    "Python": [
+      "Built Twitter sentiment analyzer using BERT",
+      "Data Science internship at Fintech Corp"
+    ],
+    "Machine Learning": [
+      "Built sentiment analysis bot with BERT",
+      "Analyzed loan default patterns using logistic regression"
+    ],
+    "React": [
+      "Designed personal portfolio using React and Tailwind"
+    ],
+    "LLM": [
+      "Built Twitter sentiment analyzer using BERT"
+    ],
+    "SQL": [
+      "Listed in skills section"
+    ],
+    "TensorFlow": [
+      "Listed in skills section"
+    ],
+    "PyTorch": [
+      "Listed in skills section"
+    ],
+    "Tableau": [
+      "Listed in skills section"
+    ]
+  },
+  "strongest_proof_points": [
+    "IIT Delhi graduate with strong CS foundation (GPA 9.2)",
+    "Built ML project using BERT for sentiment analysis",
+    "Internship applying data science to finance"
+  ],
+  "claims_allowed": [
+    "Graduated from IIT Delhi with B.Tech in Computer Science",
+    "Proficient in Python",
+    "Built ML project with BERT",
+    "Basic frontend development with React",
+    "Some exposure to data analysis and logistic regression"
+  ],
+  "claims_not_allowed": [
+    "3-5 years of professional experience",
+    "Proven experience with LLM APIs like OpenAI, Claude, or Gemini",
+    "Retail or e-commerce experience",
+    "Conversational AI or chatbot development experience",
+    "Business intelligence tool proficiency",
+    "Shopify, MoEngage, or Dynamics 365 experience",
+    "CEO-facing communication skills",
+    "Proven ability to deliver business outcomes rapidly",
+    "Ownership of end-to-end AI product development"
+  ]
+}

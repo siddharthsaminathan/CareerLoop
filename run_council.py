@@ -487,5 +487,10 @@ if __name__ == "__main__":
                         help="Whose CV and profile to use")
     parser.add_argument("--intent", default="INTERESTED",
                         choices=["INTERESTED", "APPLY", "PREPARE_APPLICATION"])
+    parser.add_argument("--force-refresh-s3", action="store_true", help="Skip S3 cache and force fresh research")
     args = parser.parse_args()
+    
+    if args.force_refresh_s3:
+        os.environ["CAREERLOOP_FORCE_REFRESH_S3"] = "1"
+        
     run_council(args.job_id, person=args.person, intent=args.intent)

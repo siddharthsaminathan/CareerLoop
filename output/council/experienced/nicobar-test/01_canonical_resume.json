@@ -1,0 +1,89 @@
+{
+  "person_id": "default",
+  "sections": [
+    {
+      "section_id": "experienced_technical_profile_alex_chen",
+      "section_title": "Experienced Technical Profile: Alex Chen",
+      "normalized_type": "experience",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "",
+      "original_order": 0,
+      "links": []
+    },
+    {
+      "section_id": "profile",
+      "section_title": "Profile",
+      "normalized_type": "profile",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "Senior Staff Engineer with 12 years of experience in distributed systems and cloud infrastructure.",
+      "original_order": 1,
+      "links": []
+    },
+    {
+      "section_id": "contact",
+      "section_title": "Contact",
+      "normalized_type": "contact",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "Email: alex.chen@example.com\nGitHub: [github.com/alexchen](https://github.com/alexchen)",
+      "original_order": 2,
+      "links": [
+        "https://github.com/alexchen"
+      ]
+    },
+    {
+      "section_id": "skills",
+      "section_title": "Skills",
+      "normalized_type": "skill",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "- Golang, Rust, Python\n- Kubernetes, Terraform, AWS\n- System Design, Distributed Databases",
+      "original_order": 3,
+      "links": []
+    },
+    {
+      "section_id": "work_experience",
+      "section_title": "Work Experience",
+      "normalized_type": "experience",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "",
+      "original_order": 4,
+      "links": []
+    },
+    {
+      "section_id": "staff_engineer_cloudscale_2018_present",
+      "section_title": "Staff Engineer — CloudScale (2018 - Present)",
+      "normalized_type": "unknown",
+      "visibility_class": "UNKNOWN",
+      "raw_text": "- Led the migration of 500+ microservices to Kubernetes.\n- Optimized database latency by 40% using custom caching layers.",
+      "original_order": 5,
+      "links": []
+    },
+    {
+      "section_id": "senior_engineer_technova_2012_2018",
+      "section_title": "Senior Engineer — TechNova (2012 - 2018)",
+      "normalized_type": "unknown",
+      "visibility_class": "UNKNOWN",
+      "raw_text": "- Built a real-time analytics engine handling 1M events/sec.",
+      "original_order": 6,
+      "links": []
+    },
+    {
+      "section_id": "education",
+      "section_title": "Education",
+      "normalized_type": "education",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "M.S. Computer Science — Stanford University",
+      "original_order": 7,
+      "links": []
+    },
+    {
+      "section_id": "internal_strategy_metadata_private",
+      "section_title": "Internal Strategy Metadata (PRIVATE)",
+      "normalized_type": "private_metadata",
+      "visibility_class": "PRIVATE_STRATEGY_METADATA",
+      "raw_text": "- Target Role: Principal Engineer\n- Salary Floor: $250k\n- Deal-breaker: No blockchain companies",
+      "original_order": 8,
+      "links": []
+    }
+  ],
+  "parse_warnings": []
+}

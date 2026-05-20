@@ -1,0 +1,100 @@
+{
+  "person_id": "default",
+  "sections": [
+    {
+      "section_id": "fresher_profile_priya_sharma",
+      "section_title": "Fresher Profile: Priya Sharma",
+      "normalized_type": "profile",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "",
+      "original_order": 0,
+      "links": []
+    },
+    {
+      "section_id": "profile",
+      "section_title": "Profile",
+      "normalized_type": "profile",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "Recent Computer Science graduate with a passion for Machine Learning and Data Science.",
+      "original_order": 1,
+      "links": []
+    },
+    {
+      "section_id": "education",
+      "section_title": "Education",
+      "normalized_type": "education",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "B.Tech Computer Science — IIT Delhi (2020 - 2024)\n\n- GPA: 9.2/10",
+      "original_order": 2,
+      "links": []
+    },
+    {
+      "section_id": "skills",
+      "section_title": "Skills",
+      "normalized_type": "skill",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "- Python, R, SQL\n- TensorFlow, PyTorch\n- Data Visualization (Tableau)",
+      "original_order": 3,
+      "links": []
+    },
+    {
+      "section_id": "projects",
+      "section_title": "Projects",
+      "normalized_type": "project",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "",
+      "original_order": 4,
+      "links": []
+    },
+    {
+      "section_id": "sentiment_analysis_bot",
+      "section_title": "Sentiment Analysis Bot",
+      "normalized_type": "unknown",
+      "visibility_class": "UNKNOWN",
+      "raw_text": "- Built a Twitter sentiment analyzer using BERT. [Source Code](https://github.com/priya/bert-bot)",
+      "original_order": 5,
+      "links": [
+        "https://github.com/priya/bert-bot"
+      ]
+    },
+    {
+      "section_id": "portfolio_website",
+      "section_title": "Portfolio Website",
+      "normalized_type": "unknown",
+      "visibility_class": "UNKNOWN",
+      "raw_text": "- Designed a personal portfolio using React and Tailwind. [Live Demo](https://priya.dev)",
+      "original_order": 6,
+      "links": [
+        "https://priya.dev"
+      ]
+    },
+    {
+      "section_id": "internships",
+      "section_title": "Internships",
+      "normalized_type": "internship",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "",
+      "original_order": 7,
+      "links": []
+    },
+    {
+      "section_id": "data_science_intern_fintech_corp_summer_2023",
+      "section_title": "Data Science Intern — Fintech Corp (Summer 2023)",
+      "normalized_type": "unknown",
+      "visibility_class": "UNKNOWN",
+      "raw_text": "- Analyzed loan default patterns using logistic regression.",
+      "original_order": 8,
+      "links": []
+    },
+    {
+      "section_id": "outreach_preferences_private",
+      "section_title": "Outreach Preferences (PRIVATE)",
+      "normalized_type": "private_metadata",
+      "visibility_class": "PRIVATE_STRATEGY_METADATA",
+      "raw_text": "- Prefer email over LinkedIn DMs\n- Internal Note: Very interested in healthcare AI",
+      "original_order": 9,
+      "links": []
+    }
+  ],
+  "parse_warnings": []
+}

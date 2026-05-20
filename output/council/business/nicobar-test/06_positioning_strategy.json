@@ -1,0 +1,24 @@
+{
+  "one_line_positioning": "E-commerce growth leader who scaled user base from 10k to 500k and drove 200% organic traffic increase",
+  "narrative_angle": "Customer-obsessed growth strategist with deep e-commerce scaling experience, aiming to bridge business metrics with AI-driven personalization",
+  "lead_strengths": [
+    "Scaled user base from 10k to 500k",
+    "Drove 200% organic traffic growth in 18 months",
+    "Managed $5M annual advertising budget"
+  ],
+  "proof_points_to_emphasize": [
+    "Increased organic traffic by 200% in 18 months",
+    "Managed a $5M annual advertising budget",
+    "Scaled user base from 10k to 500k"
+  ],
+  "things_to_downplay": [
+    "No software engineering or coding background",
+    "No LLM API or AI/ML experience",
+    "No SQL, frontend development, or Python/NodeJS skills",
+    "Lacks required engineering degree from IIT/BITS/NIT"
+  ],
+  "tone_guidance": "Business-strategic, outcome-focused, and transparent about technical skill gaps",
+  "recruiter_first_impression_target": "A growth marketer applying for an AI engineering role — significant skill gap",
+  "application_stance": "SKIP",
+  "reasoning": "Missing all core technical must-haves (LLM API, Python/NodeJS, SQL, frontend, engineering degree). Evidence only supports marketing/growth achievements, not AI product engineering. High risk of failure in a CEO’s office technical role."
+}

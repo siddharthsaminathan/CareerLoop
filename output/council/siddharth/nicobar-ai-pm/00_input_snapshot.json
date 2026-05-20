@@ -107,5 +107,9 @@
   "section_rewrites": null,
   "application_pack": null,
   "truth_guard_report": null,
+  "pre_humanizer_resume": null,
+  "humanizer_output": null,
+  "humanizer_report": null,
+  "s7_debug": null,
   "errors": []
 }

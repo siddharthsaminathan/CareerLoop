@@ -27,7 +27,7 @@ import json
 import os
 import re
 import time
-from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError, as_completed
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -101,6 +101,20 @@ class CompanyIntelligenceResult:
     s6_positioning_context: dict[str, Any] = field(default_factory=dict)
     s7_rewrite_context: dict[str, Any] = field(default_factory=dict)
 
+    # People intelligence (Phase 2)
+    key_people: list[dict[str, str]] = field(default_factory=list)  # [{name, title, source}]
+    founder_background: str = ""
+    hiring_manager_context: str = ""
+
+    # Interview intelligence (Phase 2)
+    interview_questions_likely: list[str] = field(default_factory=list)
+    culture_keywords: list[str] = field(default_factory=list)
+    glassdoor_signal: str = ""  # brief culture signal from Glassdoor snippets
+    reddit_signal: str = ""  # brief sentiment from Reddit mentions
+
+    # Source tracking
+    sources_by_type: dict[str, int] = field(default_factory=dict)  # {source_type: count}
+
     # Honesty
     unknowns: list[str] = field(default_factory=list)
 
@@ -150,6 +164,14 @@ class CompanyIntelligenceResult:
             "interview_strategy_hint": self.interview_strategy_hint,
             "s6_positioning_context": self.s6_positioning_context,
             "s7_rewrite_context": self.s7_rewrite_context,
+            "key_people": self.key_people,
+            "founder_background": self.founder_background,
+            "hiring_manager_context": self.hiring_manager_context,
+            "interview_questions_likely": self.interview_questions_likely,
+            "culture_keywords": self.culture_keywords,
+            "glassdoor_signal": self.glassdoor_signal,
+            "reddit_signal": self.reddit_signal,
+            "sources_by_type": self.sources_by_type,
             "unknowns": self.unknowns,
         }
 
@@ -392,12 +414,106 @@ def _fetch_page_content(url: str, timeout: int = _PAGE_FETCH_TIMEOUT_SECONDS) ->
     return _try_requests()
 
 
-def _gather_web_sources(company: str, job_url: str = "") -> list[dict[str, str]]:
-    """Gather web sources with hard timeout. Never blocks the pipeline.
+def _derive_company_domain(company: str, job_url: str = "") -> str:
+    """Best-effort domain derivation from job URL or company name."""
+    if job_url:
+        from urllib.parse import urlparse
+        parsed = urlparse(job_url)
+        host = (parsed.hostname or "").lower()
+        # Strip common ATS and job board domains — we want the company's own site
+        ats_hosts = {"greenhouse.io", "lever.co", "ashbyhq.com", "workable.com",
+                     "breezy.hr", "recruitee.com", "jobs.lever.co", "boards.greenhouse.io",
+                     "linkedin.com", "indeed.com", "naukri.com", "cutshort.io", "instahyre.com"}
+        if host and not any(ats in host for ats in ats_hosts):
+            return host
+    # Fallback: guess from company name
+    slug = re.sub(r"[^a-z0-9]", "", company.lower())
+    return f"{slug}.com"
 
-    DuckDuckGo search → fetch top page contents → return enriched sources.
-    Each source gets a 'page_content' field with extracted text from the URL.
-    Always returns quickly — exceptions and timeouts are caught silently.
+
+def _extract_people_from_html(html_text: str) -> list[dict[str, str]]:
+    """Extract people names and titles from team/about page HTML text.
+
+    Looks for patterns like "Name — Title", "Name, Title", or names under
+    headings like Team, Leadership, Founders.
+    """
+    people: list[dict[str, str]] = []
+    seen_names: set[str] = set()
+
+    # Pattern: "FirstName LastName — Title" or "FirstName LastName, Title"
+    # Common on team pages
+    for m in re.finditer(
+        r"([A-Z][a-z]+(?:\s[A-Z][a-z]+){1,3})\s*[—–\-,|]\s*"
+        r"((?:CEO|CTO|COO|CFO|VP|Head|Director|Manager|Engineer|Designer|Founder|"
+        r"Co-Founder|Chief|President|Partner|Lead|Principal)[^\n]{0,60})",
+        html_text
+    ):
+        name = m.group(1).strip()
+        title = m.group(2).strip()
+        if name not in seen_names and len(name) > 4:
+            people.append({"name": name, "title": title, "source": "company_website"})
+            seen_names.add(name)
+
+    return people[:15]  # cap at 15
+
+
+def _scrape_company_website(domain: str) -> list[dict[str, str]]:
+    """Fetch key pages from the company website: /, /about, /team, /careers.
+
+    Returns sources with page_content populated.
+    """
+    results: list[dict[str, str]] = []
+    paths = ["/about", "/about-us", "/team", "/our-team", "/careers"]
+    base = f"https://{domain}"
+
+    for path in paths:
+        url = f"{base}{path}"
+        try:
+            content = _fetch_page_content(url, timeout=5)
+            if content and len(content) > 100:
+                results.append({
+                    "title": f"Company page: {domain}{path}",
+                    "url": url,
+                    "snippet": content[:200],
+                    "page_content": content[:3000],
+                    "source_type": "company_website",
+                })
+                print(f"     ✓ {domain}{path}: {len(content)} chars")
+        except Exception:
+            pass
+
+    return results
+
+
+def _run_ddg_query(query: str, source_type: str, max_results: int = 3) -> list[dict[str, str]]:
+    """Run a single DuckDuckGo query, return structured results."""
+    results: list[dict[str, str]] = []
+    try:
+        from duckduckgo_search import DDGS
+    except Exception:
+        try:
+            from ddgs import DDGS
+        except Exception:
+            return results
+    try:
+        with DDGS() as ddgs:
+            for item in ddgs.text(query, max_results=max_results):
+                results.append({
+                    "title": item.get("title", ""),
+                    "url": item.get("href", item.get("url", "")),
+                    "snippet": item.get("body", item.get("snippet", "")),
+                    "source_type": source_type,
+                })
+    except Exception:
+        pass
+    return [r for r in results if r.get("url") or r.get("snippet")]
+
+
+def _gather_web_sources(company: str, job_url: str = "") -> list[dict[str, str]]:
+    """Gather web sources with MECE targeted queries. Never blocks the pipeline.
+
+    5 parallel search queries (each source-typed) + company website scrape
+    + page content fetch for top results. All timeout-safe.
     """
     sources: list[dict[str, str]] = []
 
@@ -409,59 +525,96 @@ def _gather_web_sources(company: str, job_url: str = "") -> list[dict[str, str]]
             "source_type": "jd_url",
         })
 
-    # Web search is always attempted — never opt-in.
-    # Timeout safety ensures the pipeline never blocks.
-    def _search() -> list[dict[str, str]]:
-        results: list[dict[str, str]] = []
-        try:
-            from duckduckgo_search import DDGS
-        except Exception:
-            try:
-                from ddgs import DDGS
-            except Exception:
-                return results
-        try:
-            with DDGS() as ddgs:
-                for item in ddgs.text(f"{company} company careers funding news", max_results=5):
-                    results.append({
-                        "title": item.get("title", ""),
-                        "url": item.get("href", item.get("url", "")),
-                        "snippet": item.get("body", item.get("snippet", "")),
-                        "source_type": "web_search",
-                    })
-        except Exception:
-            pass
-        return [r for r in results if r.get("url") or r.get("snippet")]
+    # ── Simplified company name for better search results ──────────────────
+    search_name = re.sub(r"\s+(Pvt\s*Ltd|Ltd|Inc|Corp|LLP|Private\s+Limited).*$", "", company, flags=re.IGNORECASE).strip()
+    if len(search_name.split()) > 3:
+        # If still long, take first 3 words
+        search_name = " ".join(search_name.split()[:3])
 
+    # ── MECE query set: 5 targeted searches ─────────────────────────────
+    queries = [
+        # D5: Market position — funding, news, growth
+        (f'{search_name} funding valuation growth raised 2024 OR 2025', "market_news"),
+        # D2: Culture — Glassdoor reviews
+        (f'site:glassdoor.com OR site:glassdoor.co.in {search_name} reviews', "glassdoor"),
+        # D2+D4: Culture + Role — Reddit sentiment
+        (f'site:reddit.com {search_name} work interview culture salary', "reddit"),
+        # D3: People — founders, leadership
+        (f'{search_name} CEO founder co-founder CTO', "people_search"),
+        # D1+D5: Identity + market — general company context
+        (f'{search_name} company about products tech stack', "web_search"),
+    ]
+
+    def _run_all_queries(results_ref: list[dict[str, str]]) -> None:
+        with ThreadPoolExecutor(max_workers=5) as ex:
+            futures = {
+                ex.submit(_run_ddg_query, q, stype, 3): stype
+                for q, stype in queries
+            }
+            # Wait for as many as possible within the timeout, but gather them incrementally
+            for fut in as_completed(futures):
+                try:
+                    # Individual query timeout is generous
+                    results_ref.extend(fut.result(timeout=7))
+                except Exception:
+                    pass
+
+    web_results: list[dict[str, str]] = []
     try:
         with ThreadPoolExecutor(max_workers=1) as ex:
-            future = ex.submit(_search)
+            future = ex.submit(_run_all_queries, web_results)
             try:
-                web_results = future.result(timeout=_WEB_SEARCH_TIMEOUT_SECONDS)
-                sources.extend(web_results)
+                future.result(timeout=_WEB_SEARCH_TIMEOUT_SECONDS)
             except FuturesTimeoutError:
-                print(f"  !! S3 web search timed out after {_WEB_SEARCH_TIMEOUT_SECONDS}s")
+                print(f"  !! S3 web search timed out after {_WEB_SEARCH_TIMEOUT_SECONDS}s — kept {len(web_results)} results")
+        
+        if web_results:
+            sources.extend(web_results)
+            # Count by type
+            type_counts: dict[str, int] = {}
+            for s in web_results:
+                st = s.get("source_type", "unknown")
+                type_counts[st] = type_counts.get(st, 0) + 1
+            print(f"  → S3 MECE queries: {type_counts}")
     except Exception as e:
         print(f"  !! S3 web search error: {e}")
 
-    # ── Fetch actual page content for top search results ─────────────────
-    search_urls = [s for s in sources if s.get("source_type") == "web_search"]
+    # ── Company website scrape (Phase 1.2) ──────────────────────────────
+    domain = _derive_company_domain(company, job_url)
+    if domain:
+        print(f"  → S3 scraping company website: {domain}")
+        try:
+            with ThreadPoolExecutor(max_workers=1) as ex:
+                future = ex.submit(_scrape_company_website, domain)
+                try:
+                    site_results = future.result(timeout=8)
+                    sources.extend(site_results)
+                    print(f"  → S3 company website: {len(site_results)} pages fetched")
+                except FuturesTimeoutError:
+                    print(f"  !! S3 company website scrape timed out")
+        except Exception as e:
+            print(f"  !! S3 company website error: {e}")
+
+    # ── Fetch actual page content for non-site search results ───────────
+    search_urls = [
+        s for s in sources
+        if s.get("source_type") in ("web_search", "market_news", "people_search")
+           and not s.get("page_content")
+    ]
     if search_urls:
-        urls_to_fetch = [s["url"] for s in search_urls[:_MAX_PAGES_TO_FETCH] if s.get("url", "").startswith("http")]
+        urls_to_fetch = [s for s in search_urls[:_MAX_PAGES_TO_FETCH] if s.get("url", "").startswith("http")]
         if urls_to_fetch:
             print(f"  → S3 fetching content from {len(urls_to_fetch)} URLs...")
             fetched_count = 0
-            for source in search_urls[:_MAX_PAGES_TO_FETCH]:
+            for source in urls_to_fetch:
                 url = source.get("url", "")
-                if not url.startswith("http"):
-                    continue
                 content = _fetch_page_content(url)
                 if content:
                     source["page_content"] = content
                     fetched_count += 1
                     print(f"     ✓ {source.get('title', url)[:60]}: {len(content)} chars")
                 else:
-                    print(f"     ✗ {source.get('title', url)[:60]}: no content extracted")
+                    print(f"     ✗ {source.get('title', url)[:60]}: no content")
             print(f"  → S3 fetched {fetched_count}/{len(urls_to_fetch)} pages")
 
     return sources
@@ -519,30 +672,47 @@ def save_company_memory(root: Path, result: CompanyIntelligenceResult) -> Path:
 
 _S3_SYNTHESIS_SYSTEM = """You are CareerLoop's Company Intelligence Engine.
 
-Your job is to convert grounded evidence about a company and role into strategic career intelligence.
+Your job is to convert multi-source evidence about a company and role into strategic career intelligence. You receive evidence from up to 7 source types: JD, company website, Glassdoor, Reddit, people/leadership search, market/funding news, and general web. Each source type tells you something different.
 
-You must strictly separate your synthesis into Grounded Facts (direct matches from the input text), Plausible Inferences (logical reasoning derived solely from the provided signals), and Explicit Unknowns (missing information).
+STRICT EVIDENCE RULES:
+1. Grounded Facts MUST come from the provided text evidence. Do NOT use pre-training recall for company facts (headcount, revenue, funding, leadership names, office locations) unless explicitly in the input.
+2. If a field has no evidence, set to "UNKNOWN" or empty list/object. Add to "unknowns" array. "UNKNOWN" = high quality.
+3. Every claim must cite its source: [JD], [WEBSITE], [GLASSDOOR], [REDDIT], [NEWS], [WEB].
 
-STRICT RULES TO PREVENT AI HALLUCINATIONS:
-1. Grounded Facts MUST be derived directly from the provided text evidence. Do NOT use your general pre-training memory recall for facts about the company (such as headcount, actual revenues, funding rounds, specific leadership names, office locations) unless they are explicitly present in the provided input.
-2. If the input evidence does not contain specific information for a field, you MUST set the value to "UNKNOWN" or empty lists/objects, and add it to the "unknowns" array. DO NOT invent or guess. "UNKNOWN" is a sign of high quality.
-3. Plausible Inferences must be derived step-by-step from explicit text patterns. For example, "The JD states Range Review Presentation is a key duty -> Infer that presentation skills to management are highly valued."
-4. Every fact, implication, or cultural signal must cite its source (e.g., "[JD]" or "[WEB]").
+SOURCE-SPECIFIC EXTRACTION:
+- COMPANY WEBSITE → identity, mission, actual product, team names, culture claims
+- GLASSDOOR → culture score, interview style, management, salary range signals
+- REDDIT → unfiltered sentiment, red flags, honest employee/candidate experience
+- PEOPLE/LEADERSHIP → founder background, key hires, org structure clues
+- MARKET/NEWS → funding stage, growth trajectory, competitive position
 
-For downstream S7 rewrite context, provide a compact, actionable dictionary under "s7_rewrite_context" with:
-- company_archetype: e.g., "design-led D2C brand", "enterprise SaaS", "YC startup"
-- company_tone: e.g., "warm and design-aware", "direct and technical"
+NEW FIELDS TO POPULATE:
+- key_people: [{name, title, source}] — from website team page or people search
+- founder_background: 1-2 sentences on founder(s) background and vision
+- hiring_manager_context: any signal about who the hire reports to
+- interview_questions_likely: 3-5 likely interview topics based on JD + Glassdoor
+- culture_keywords: 5-10 culture words that resonate (from website + Glassdoor)
+- glassdoor_signal: 1-2 sentence summary of Glassdoor sentiment (or "No data")
+- reddit_signal: 1-2 sentence summary of Reddit mentions (or "No data")
+
+For downstream S7 rewrite context, provide a compact dictionary under "s7_rewrite_context" with:
+- company_archetype: e.g., "design-led D2C brand with AI ambitions"
+- company_tone: e.g., "warm and design-aware"
 - product_context: what they build/sell
 - business_problem: what problem this role is hired to solve
-- role_success_criteria: what "great" looks like
-- language_to_use: 3-5 specific words/phrases from evidence that resonate
-- language_to_avoid: 3-5 generic/fluffy words/phrases to avoid
-- proof_points_to_prefer: candidate evidence/projects they value most
+- role_success_criteria: what "great" looks like in 6 months
+- language_to_use: 5-8 specific words/phrases from evidence that resonate with this company
+- language_to_avoid: 5 generic/fluffy words to avoid
+- proof_points_to_prefer: candidate evidence/projects they'd value most
 - risks_to_soften: candidate gaps to reposition
-- avoid_overclaiming_about: things the candidate must not exaggerate
+- avoid_overclaiming_about: things NOT to exaggerate
+- founder_context: 1-line on founder personality/background (for culture fit)
+- hiring_reason: why this role exists NOW (growth? replacement? new initiative?)
+- culture_fit_signals: 3-5 culture traits to mirror in resume language
+- interview_prep_hints: 2-3 key topics to prepare for
 - max_5_bullet_guidance: 1-sentence on how to tailor experience bullets
 
-Return ONLY valid JSON matching the CompanyIntelligenceResult schema exactly."""
+Return ONLY valid JSON matching the CompanyIntelligenceResult schema."""
 
 
 def _build_synthesis_prompt(
@@ -571,19 +741,32 @@ def _build_synthesis_prompt(
         parts.append(json.dumps({k: v for k, v in jd_signals.items() if v}, indent=2))
         parts.append("")
 
-    # ── Web sources (snippets + fetched page content) ────────────────────────
-    web_search_sources = [s for s in web_sources if s.get("source_type") == "web_search"]
-    if web_search_sources:
-        parts.append("WEB SEARCH RESULTS (snippets):")
-        for i, s in enumerate(web_search_sources[:5]):
-            parts.append(f"{i+1}. [{s['title']}]({s['url']})")
-            parts.append(f"   Snippet: {s['snippet'][:300]}")
-            page_content = s.get("page_content", "")
-            if page_content:
-                parts.append(f"   Page content: {page_content[:1500]}")
-        parts.append("")
-    else:
-        parts.append("WEB SEARCH RESULTS: None available. Use JD-only evidence.")
+    # ── Web sources by type (MECE) ────────────────────────────────────────
+    source_types = {
+        "company_website": "COMPANY WEBSITE PAGES (official)",
+        "glassdoor": "GLASSDOOR SIGNALS (culture/reviews)",
+        "reddit": "REDDIT MENTIONS (employee/candidate sentiment)",
+        "people_search": "PEOPLE/LEADERSHIP SIGNALS",
+        "market_news": "MARKET/FUNDING NEWS",
+        "web_search": "GENERAL WEB RESULTS",
+    }
+    any_web = False
+    for stype, label in source_types.items():
+        typed = [s for s in web_sources if s.get("source_type") == stype]
+        if typed:
+            any_web = True
+            parts.append(f"{label}:")
+            for i, s in enumerate(typed[:4]):
+                parts.append(f"  {i+1}. [{s.get('title', '?')}]({s.get('url', '')})")
+                snippet = s.get("snippet", "")
+                if snippet:
+                    parts.append(f"     Snippet: {snippet[:300]}")
+                page_content = s.get("page_content", "")
+                if page_content:
+                    parts.append(f"     Content: {page_content[:1500]}")
+            parts.append("")
+    if not any_web:
+        parts.append("WEB SOURCES: None available. Use JD-only evidence.")
         parts.append("")
 
     # ── Candidate context (if provided) ─────────────────────────────────────
@@ -647,35 +830,41 @@ def build_company_intelligence(
     # ── Layer 1: JD extraction (always, deterministic) ──────────────────────
     jd_signals = _extract_jd_signals(jd_text) if jd_text else {}
 
-    # ── Layer 2+3: Web sources (timeout-safe) ───────────────────────────────
+    # ── Layer 2+3: Web sources (timeout-safe, skip if no LLM) ────────────────
     web_sources: list[dict[str, str]] = []
-    try:
-        with ThreadPoolExecutor(max_workers=1) as ex:
-            future = ex.submit(_gather_web_sources, company, job_url or "")
-            try:
-                remaining = _TOTAL_NETWORK_BUDGET_SECONDS - (time.monotonic() - started_at)
-                if remaining > 0:
-                    web_sources = future.result(timeout=remaining)
-                else:
-                    future.cancel()
-            except FuturesTimeoutError:
-                print(f"  !! S3 web source gathering timed out")
-    except Exception as e:
-        print(f"  !! S3 web source error: {e}")
+    if llm_client is None:
+        print(f"  → S3 no LLM client, skipping web enrichment (JD-only mode)")
+    else:
+        try:
+            with ThreadPoolExecutor(max_workers=1) as ex:
+                future = ex.submit(_gather_web_sources, company, job_url or "")
+                try:
+                    remaining = _TOTAL_NETWORK_BUDGET_SECONDS - (time.monotonic() - started_at)
+                    if remaining > 0:
+                        web_sources = future.result(timeout=remaining)
+                    else:
+                        future.cancel()
+                except FuturesTimeoutError:
+                    print(f"  !! S3 web source gathering timed out")
+        except Exception as e:
+            print(f"  !! S3 web source error: {e}")
 
-    # ── Determine grounding status ──────────────────────────────────────────
-    has_web = any(s.get("source_type") == "web_search" for s in web_sources)
+    # ── Determine grounding status (MECE-aware) ─────────────────────────────
     has_jd = bool(jd_text and jd_text.strip() and len(jd_text.strip()) > 20)
-    has_sources = bool(web_sources)
+    source_types_found = set(s.get("source_type", "") for s in web_sources)
+    source_types_found.discard("")
+    source_types_found.discard("jd_url")
+    n_source_types = len(source_types_found)
 
-    if has_web and has_sources:
-        grounding_status = "READY"
-    elif has_sources or has_jd:
+    if n_source_types >= 3:
+        grounding_status = "READY"  # Multi-source triangulation
+    elif n_source_types >= 1:
         grounding_status = "PARTIAL"
     elif has_jd:
         grounding_status = "JD_ONLY"
     else:
         grounding_status = "UNGROUNDED"
+    print(f"  → S3 grounding: {grounding_status} ({n_source_types} source types: {source_types_found})")
 
     max_conf = _confidence_cap(grounding_status)
 
@@ -790,7 +979,35 @@ def build_company_intelligence(
         interview_strategy_hint=payload.get("interview_strategy_hint", ""),
 
         unknowns=payload.get("unknowns", []),
+
+        # Phase 2 fields from LLM
+        key_people=payload.get("key_people", []),
+        founder_background=payload.get("founder_background", ""),
+        hiring_manager_context=payload.get("hiring_manager_context", ""),
+        interview_questions_likely=payload.get("interview_questions_likely", []),
+        culture_keywords=payload.get("culture_keywords", []),
+        glassdoor_signal=payload.get("glassdoor_signal", ""),
+        reddit_signal=payload.get("reddit_signal", ""),
     )
+
+    # ── Extract people from company website pages (deterministic) ───────────
+    website_pages = [s for s in web_sources if s.get("source_type") == "company_website"]
+    for page in website_pages:
+        content = page.get("page_content", "")
+        if content:
+            extracted = _extract_people_from_html(content)
+            for p in extracted:
+                if not any(ep.get("name") == p["name"] for ep in result.key_people):
+                    result.key_people.append(p)
+    if result.key_people:
+        print(f"  → S3 people extracted: {len(result.key_people)} ({', '.join(p['name'] for p in result.key_people[:3])}...)")
+
+    # ── Source tracking ─────────────────────────────────────────────────────
+    type_counts: dict[str, int] = {}
+    for s in web_sources:
+        st = s.get("source_type", "unknown")
+        type_counts[st] = type_counts.get(st, 0) + 1
+    result.sources_by_type = type_counts
 
     # ── Build downstream contexts ───────────────────────────────────────────
     result.s6_positioning_context = _build_s6_context(result)
@@ -863,7 +1080,7 @@ def _build_s7_context(result: CompanyIntelligenceResult) -> dict[str, Any]:
     screening_keywords from role_decode. Now it receives structured company
     context so section rewrites actually adapt to the company.
     """
-    return {
+    ctx = {
         "company_archetype": (
             result.communication_style
             or result.company_summary[:80]
@@ -879,7 +1096,15 @@ def _build_s7_context(result: CompanyIntelligenceResult) -> dict[str, Any]:
         "risks_to_soften": result.risks_to_soften or [],
         "avoid_overclaiming_about": result.claims_to_avoid or [],
         "max_5_bullet_guidance": result.resume_strategy_hint or _fallback_bullet_guidance(result),
+        # Phase 2 fields
+        "founder_context": result.founder_background or "",
+        "hiring_reason": result.hiring_urgency or result.role_reason or "",
+        "culture_fit_signals": result.culture_keywords[:5] if result.culture_keywords else [],
+        "interview_prep_hints": result.interview_questions_likely[:3] if result.interview_questions_likely else [],
+        "glassdoor_signal": result.glassdoor_signal or "",
+        "reddit_signal": result.reddit_signal or "",
     }
+    return ctx
 
 
 def _infer_tone(result: CompanyIntelligenceResult) -> str:

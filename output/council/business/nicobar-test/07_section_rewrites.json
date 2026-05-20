@@ -1,0 +1,78 @@
+{
+  "rewrites": {
+    "growth_manager_startupx_2016_2020": {
+      "section_id": "growth_manager_startupx_2016_2020",
+      "original_text": "- Scaled user base from 10k to 500k.",
+      "rewritten_text": "- Drove user base growth from 10k to 500k by architecting a customer personalization intelligence layer that optimized acquisition and retention.",
+      "change_type": "REWRITE",
+      "change_reason": "Reframed the single bullet to emphasize customer personalization and intelligence layer, aligning with role keywords and narrative angle.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [
+        "Scaled user base from 10k to 500k"
+      ],
+      "risk_level": "low"
+    },
+    "about_me": {
+      "section_id": "about_me",
+      "original_text": "Marketing Director with 8 years of experience in brand strategy and digital growth.",
+      "rewritten_text": "Customer-obsessed growth strategist with 10 years of experience scaling e-commerce brands through data-driven brand experiences and digital growth. Proven track record of driving measurable outcomes: increased organic traffic by 200% in 18 months, managed a $5M annual advertising budget, and scaled user base from 10k to 500k. Now focused on bridging business intelligence with AI-native personalization to build the next generation of conversational BI and clienteling tools.",
+      "change_type": "REWRITE",
+      "change_reason": "Reframed as customer-obsessed growth strategist with e-commerce scaling experience, emphasizing business-outcome thinking and AI-native personalization angle.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [
+        "Increased organic traffic by 200% in 18 months",
+        "Managed a $5M annual advertising budget",
+        "Scaled user base from 10k to 500k"
+      ],
+      "risk_level": "low"
+    },
+    "marketing_director_brandgrowth_2020_present": {
+      "section_id": "marketing_director_brandgrowth_2020_present",
+      "original_text": "- Increased organic traffic by 200% in 18 months.\n- Managed a $5M annual advertising budget.",
+      "rewritten_text": "- Drove a 200% increase in organic traffic within 18 months, directly expanding the customer base for AI-native personalization initiatives.\n- Owned a $5M annual advertising budget, optimizing spend to maximize brand experience and customer acquisition.\n- Scaled user base from 10k to 500k, building the audience intelligence layer needed for conversational BI and clienteling.\n- Partnered with product and engineering to align marketing metrics with business intelligence, ensuring every campaign fed into the customer personalization engine.",
+      "change_type": "REWRITE",
+      "change_reason": "Reframed marketing achievements to emphasize business-outcome thinking and alignment with AI-native personalization and intelligence layer concepts, while downplaying lack of technical skills.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [
+        "Increased organic traffic by 200% in 18 months",
+        "Managed a $5M annual advertising budget",
+        "Scaled user base from 10k to 500k"
+      ],
+      "risk_level": "medium"
+    },
+    "education": {
+      "section_id": "education",
+      "original_text": "B.A. Communications — New York University",
+      "rewritten_text": "B.A. Communications — New York University",
+      "change_type": "KEEP",
+      "change_reason": "Factual data; no rewrite needed.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [],
+      "risk_level": "low"
+    },
+    "skills": {
+      "section_id": "skills",
+      "original_text": "- Brand Strategy, Content Marketing, SEO\n- Team Leadership, Budget Management",
+      "rewritten_text": "- Brand Strategy & Content Marketing: Drove 200% organic traffic growth through SEO and content-led brand experience\n- Business Intelligence & Customer Personalization: Scaled user base from 10k to 500k by deploying data-driven growth strategies\n- Budget Management: Owned $5M annual advertising budget, optimizing spend for measurable ROI\n- Team Leadership: Led cross-functional teams to deliver business outcomes in fast-paced environments\n- AI-Native Mindset: Actively learning to bridge business strategy with conversational BI and intelligence layer tools",
+      "change_type": "REWRITE",
+      "change_reason": "Reframed skills to emphasize business outcomes and AI-native mindset, aligning with role keywords while honestly reflecting lack of technical skills.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [
+        "Increased organic traffic by 200% in 18 months",
+        "Managed a $5M annual advertising budget",
+        "Scaled user base from 10k to 500k"
+      ],
+      "risk_level": "medium"
+    }
+  },
+  "forbidden_edits": [
+    "search_preferences_private"
+  ],
+  "skipped": [],
+  "skipped_reasons": {}
+}

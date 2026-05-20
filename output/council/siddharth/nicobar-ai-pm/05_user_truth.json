@@ -1,94 +1,63 @@
 {
-  "total_years_experience": 6.7,
+  "total_years_experience": 6.67,
   "confirmed_skills": [
     {
       "skill": "Python",
-      "years": 6,
-      "evidence": "Used Python extensively in AI product engineering, backend development (FastAPI), data engineering, and analytics roles since 2019."
+      "years": 4,
+      "evidence": "Built production AI systems and data pipelines across multiple roles"
+    },
+    {
+      "skill": "LLM API experience",
+      "years": 1.5,
+      "evidence": "Designed multi-agent orchestration with tool-calling and multi-model routing"
     },
     {
       "skill": "SQL",
       "years": 6,
-      "evidence": "Built SQL-based ETL workflows as Data Analyst, led data migration and pipeline design as Data Engineer."
-    },
-    {
-      "skill": "LLM APIs",
-      "years": 2,
-      "evidence": "Implemented multi-model routing and LLM APIs for production AI systems at Omnex and Emote, using tool-calling and orchestration."
-    },
-    {
-      "skill": "API & Data Pipeline Integration",
-      "years": 4,
-      "evidence": "Designed and built REST APIs, WebSockets, SSE streaming in Emote; led enterprise data pipeline migration at Ericsson."
-    },
-    {
-      "skill": "AI/ML Systems",
-      "years": 2,
-      "evidence": "Built AI quality management system at Omnex, hyper-personalized companion at Emote with memory systems, RAG, multi-agent orchestration."
+      "evidence": "Led data migration and built ETL workflows for enterprise reporting"
     }
   ],
   "weak_skills": [
-    "Front-end development",
-    "Shopify API ecosystem",
-    "E-commerce data experience",
-    "MoEngage/CRM/marketing automation",
-    "Microsoft Dynamics 365",
-    "Retail/e-commerce industry background"
+    "frontend skills"
   ],
   "evidence_bank": {
     "Python": [
-      "Built AI quality management system with tool-calling at Omnex",
-      "Built Emote backend from scratch using FastAPI, Redis, PostgreSQL",
-      "Used Python for data processing in all roles"
+      "Built AI quality management system at Omnex",
+      "Built Emote backend from scratch with FastAPI",
+      "Data engineering pipelines at Akkodis"
+    ],
+    "LLM API experience": [
+      "Orchestration layer with tool-calling at Omnex",
+      "Multi-model routing and cost optimization at Emote",
+      "RAG pipelines and embeddings"
     ],
     "SQL": [
-      "Built SQL-based ETL workflows for reporting at Positive Integers",
-      "Led data migration from Azure to PostgreSQL at Akkodis",
-      "Performed data quality audits"
-    ],
-    "LLM APIs": [
-      "Multi-model routing and LLM APIs for Emote companion system",
-      "Orchestration layer with tool-calling at Omnex",
-      "Prompt optimization and RAG pipelines"
-    ],
-    "API & Data Pipeline": [
-      "Designed REST APIs, WebSockets, SSE streaming for Emote",
-      "Redesigned data pipelines for Ericsson reporting systems",
-      "Built real-time Grafana dashboards"
-    ],
-    "AI Systems": [
-      "Multi-agent orchestration and memory systems in Emote",
-      "Feedback-aware flows linking past concerns in Omnex",
-      "Reduced latency and cost through pipeline optimization"
-    ],
-    "Entrepreneurial": [
-      "Co-founded Emote, grew to 450+ users with zero paid acquisition",
-      "Built automated Reddit bot for user acquisition",
-      "Founded and managed product end-to-end"
+      "Migrated Azure to PostgreSQL for Ericsson",
+      "SQL-based ETL workflows for dashboards",
+      "PostgreSQL for Emote production backend"
     ]
   },
   "strongest_proof_points": [
-    "Shipped two production AI systems: Omnex Systems AquaPro AI for engineering quality workflows and Emote hyper-personalized companion with multi-agent memory.",
-    "Achieved 50x cost reduction (from $1.20 to $0.023/conversation) and 5x latency improvement (15s to 3s) in Emote through optimization.",
-    "Grew Emote to 450+ users with 13–15% weekly retention via automated, personalized user acquisition.",
-    "Led enterprise data platform migration from Azure to PostgreSQL for Ericsson, ensuring reporting reliability.",
-    "Demonstrated AI-native thinking with observable, memory-driven, and multi-agent architecture design."
+    "Built Emote AI companion from 0 to 450+ users with 13-15% weekly retention",
+    "Reduced inference cost per conversation from $1.20 to $0.023",
+    "Reduced response latency from 12.5s to 8s in AI quality system",
+    "Led enterprise data platform migration for Ericsson, improving reporting reliability"
   ],
   "claims_allowed": [
-    "6+ years professional experience in engineering and data roles, including 2+ years in AI product engineering.",
-    "Proven track record of building and shipping production AI systems (Emote, Omnex AquaPro).",
-    "Strong Python and SQL skills with extensive backend and data pipeline integration experience.",
-    "Experience with LLM APIs, multi-agent orchestration, and memory-based AI architectures.",
-    "Entrepreneurial mindset: co-founded and scaled a consumer AI app from zero to 450+ users.",
-    "Experience working with enterprise stakeholders (Ericsson) and delivering high-impact data solutions.",
-    "Holds B.Tech in Computer Science & Engineering from SRM University."
+    "4+ years of Python experience",
+    "Production AI deployment experience",
+    "Multi-agent orchestration",
+    "LLM API integration",
+    "System architecture design",
+    "Data engineering skills",
+    "User growth and retention optimization"
   ],
   "claims_not_allowed": [
-    "4+ years of AI-specific experience (AI roles began in 2024).",
-    "Deep learning expert (no PhD or specialized focus).",
-    "Front-end development expertise (no evidence of building UI components).",
-    "Shopify or e-commerce platform integration experience.",
-    "CRM or marketing automation tool experience (MoEngage, Dynamics 365).",
-    "Retail or e-commerce industry domain knowledge."
+    "Frontend development experience",
+    "Top-tier institute degree (IIT/BITS/NIT)",
+    "Retail/e-commerce experience",
+    "Shopify API experience",
+    "MoEngage or CRM experience",
+    "ERP exposure"
   ]
 }

@@ -473,6 +473,8 @@ def company_intelligence_node(state: CouncilState) -> CouncilState:
 
     # Use the real Company Intelligence engine
     from careerloop.company_intel import get_or_build_company_intelligence
+    
+    force_refresh = os.getenv("CAREERLOOP_FORCE_REFRESH_S3", "").lower() in {"1", "true", "yes"}
 
     # Build candidate context from profile if available
     candidate_context = None
@@ -494,6 +496,7 @@ def company_intelligence_node(state: CouncilState) -> CouncilState:
         job_url=job_url or None,
         candidate_context=candidate_context,
         llm_client=llm,
+        force_refresh=force_refresh
     )
 
     print(

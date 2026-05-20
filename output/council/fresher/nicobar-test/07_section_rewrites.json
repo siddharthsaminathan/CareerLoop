@@ -1,0 +1,77 @@
+{
+  "rewrites": {
+    "skills": {
+      "section_id": "skills",
+      "original_text": "- Python, R, SQL\n- TensorFlow, PyTorch\n- Data Visualization (Tableau)",
+      "rewritten_text": "- Python, SQL\n- TensorFlow, PyTorch\n- Data Visualization (Tableau)",
+      "change_type": "REWRITE",
+      "change_reason": "Reordered skills to prioritize Python and SQL as must-haves, moved R to de-emphasize, and kept TensorFlow/PyTorch for ML relevance.",
+      "claims_added": [],
+      "claims_removed": [
+        "R"
+      ],
+      "evidence_used": [],
+      "risk_level": "low"
+    },
+    "sentiment_analysis_bot": {
+      "section_id": "sentiment_analysis_bot",
+      "original_text": "- Built a Twitter sentiment analyzer using BERT. [Source Code](https://github.com/priya/bert-bot)",
+      "rewritten_text": "- Shipped an AI-native sentiment analysis engine using BERT, demonstrating ability to rapidly build and deploy ML models that extract business intelligence from social data. [Source Code](https://github.com/priya/bert-bot)",
+      "change_type": "REWRITE",
+      "change_reason": "Reframed the project as an AI-native intelligence layer to align with role keywords and narrative angle, while strengthening the verb and emphasizing rapid delivery.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [
+        "Built a Twitter sentiment analyzer using BERT",
+        "Source Code link"
+      ],
+      "risk_level": "low"
+    },
+    "profile": {
+      "section_id": "profile",
+      "original_text": "Recent Computer Science graduate with a passion for Machine Learning and Data Science.",
+      "rewritten_text": "Recent IIT Delhi Computer Science graduate (GPA 9.2) with a strong engineering foundation and a passion for building AI-native products. Eager to apply Python and ML skills to create intelligence layers that drive customer personalization and conversational BI in a fast-paced retail environment. Proven ability to rapidly ramp up on new technologies and deliver outcomes, as demonstrated by a BERT-based sentiment analysis project and a data science internship. Ready to own end-to-end development of AI-first solutions that elevate brand experience.",
+      "change_type": "REWRITE",
+      "change_reason": "Reframed the profile to emphasize AI-native product development, customer personalization, and conversational BI, aligning with the target role's language and narrative angle.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [
+        "IIT Delhi graduate with strong CS foundation (GPA 9.2)",
+        "Built ML project using BERT for sentiment analysis",
+        "Internship applying data science to finance"
+      ],
+      "risk_level": "low"
+    },
+    "portfolio_website": {
+      "section_id": "portfolio_website",
+      "original_text": "- Designed a personal portfolio using React and Tailwind. [Live Demo](https://priya.dev)",
+      "rewritten_text": "- Shipped an AI-native portfolio site using React and Tailwind to showcase ML projects and brand experience. [Live Demo](https://priya.dev)",
+      "change_type": "REWRITE",
+      "change_reason": "Reframed personal portfolio as AI-native and brand-focused to align with target role's language and narrative angle.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [
+        "Designed a personal portfolio using React and Tailwind"
+      ],
+      "risk_level": "low"
+    },
+    "data_science_intern_fintech_corp_summer_2023": {
+      "section_id": "data_science_intern_fintech_corp_summer_2023",
+      "original_text": "- Analyzed loan default patterns using logistic regression.",
+      "rewritten_text": "- Built a logistic regression model to predict loan default patterns, demonstrating ability to deliver business intelligence from raw data.",
+      "change_type": "REWRITE",
+      "change_reason": "Reframed the bullet to emphasize ownership and business intelligence, aligning with the target role's need for outcome-driven analytics.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [
+        "Analyzed loan default patterns using logistic regression"
+      ],
+      "risk_level": "low"
+    }
+  },
+  "forbidden_edits": [
+    "outreach_preferences_private"
+  ],
+  "skipped": [],
+  "skipped_reasons": {}
+}

@@ -239,11 +239,14 @@
     "company_name": "Nicobar Design Pvt. Ltd.",
     "role_title": "AI Product Engineer -- CEO's Office",
     "source_urls": [
-      "https://www.linkedin.com/feed/update/urn:li:activity:7329475396732014592"
+      "https://www.linkedin.com/feed/update/urn:li:activity:7329475396732014592",
+      "https://www.linkedin.com/pulse/how-brand-built-me-nicobar-designs-pvt-ltd--xg2xc/",
+      "https://www.crunchbase.com/person/raul-rai",
+      "https://www.livemint.com/mint-lounge/business-of-life/nicobar-simran-lal-good-earth-office-home-decor-11756622685044.html"
     ],
     "grounding_status": "PARTIAL",
     "confidence": 0.5,
-    "generated_at": "2026-05-19T22:04:46.120640+00:00",
+    "generated_at": "2026-05-20T11:24:43.297190+00:00",
     "cache_key": "909ea5c71e0f1e43",
     "ttl_days": 30,
     "company_summary": "Nicobar Design Pvt. Ltd.. operates in ecommerce. with a focus on ai_ml, ai_ml, retail_tech.",
@@ -270,27 +273,11 @@
     "compensation_signals": "",
     "red_flags": [],
     "positioning_implications": "",
-    "language_to_use": [
-      "AI-native",
-      "intelligence layer",
-      "brand experience",
-      "customer personalization",
-      "conversational BI"
-    ],
-    "language_to_avoid": [
-      "enterprise-grade",
-      "scalable infrastructure",
-      "data pipeline",
-      "legacy migration",
-      "cost optimization"
-    ],
+    "language_to_use": [],
+    "language_to_avoid": [],
     "candidate_angles": [],
     "transferability_angles": [],
-    "risks_to_soften": [
-      "No direct e-commerce or retail experience",
-      "No experience with Shopify, MoEngage, or Dynamics 365",
-      "Background in manufacturing quality, not consumer personalization"
-    ],
+    "risks_to_soften": [],
     "claims_to_avoid": [],
     "resume_strategy_hint": "",
     "outreach_strategy_hint": "",
@@ -303,25 +290,9 @@
       "culture_signals": [],
       "hiring_urgency": "UNKNOWN",
       "positioning_implications": "",
-      "language_to_use": [
-        "AI-native",
-        "intelligence layer",
-        "brand experience",
-        "customer personalization",
-        "conversational BI"
-      ],
-      "language_to_avoid": [
-        "enterprise-grade",
-        "scalable infrastructure",
-        "data pipeline",
-        "legacy migration",
-        "cost optimization"
-      ],
-      "risks_to_soften": [
-        "No direct e-commerce or retail experience",
-        "No experience with Shopify, MoEngage, or Dynamics 365",
-        "Background in manufacturing quality, not consumer personalization"
-      ],
+      "language_to_use": [],
+      "language_to_avoid": [],
+      "risks_to_soften": [],
       "claims_to_avoid": [],
       "candidate_angles": [],
       "red_flags": [],
@@ -334,266 +305,290 @@
       "product_context": "E-commerce",
       "business_problem": "",
       "role_success_criteria": [],
-      "language_to_use": [
-        "AI-native",
-        "intelligence layer",
-        "brand experience",
-        "customer personalization",
-        "conversational BI"
-      ],
-      "language_to_avoid": [
-        "enterprise-grade",
-        "scalable infrastructure",
-        "data pipeline",
-        "legacy migration",
-        "cost optimization"
-      ],
+      "language_to_use": [],
+      "language_to_avoid": [],
       "proof_points_to_prefer": [
         "measurable outcomes with numbers",
         "specific, defensible achievements",
         "evidence of ownership and initiative"
       ],
-      "risks_to_soften": [
-        "No direct e-commerce or retail experience",
-        "No experience with Shopify, MoEngage, or Dynamics 365",
-        "Background in manufacturing quality, not consumer personalization"
-      ],
+      "risks_to_soften": [],
       "avoid_overclaiming_about": [],
-      "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact."
+      "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact.",
+      "founder_context": "Co-founded by Simran Lal and her husband Raul Rai. Simran Lal is inspired by travel, India, and nature; Raul Rai previously Managing Director at Eight Roads Ventures.",
+      "hiring_reason": "UNKNOWN",
+      "culture_fit_signals": [
+        "design-led",
+        "AI-native",
+        "customer-centric",
+        "collaborative",
+        "brand-obsessed"
+      ],
+      "interview_prep_hints": [
+        "Describe a real project where you used an LLM API (OpenAI, Claude, Gemini) to solve a business problem.",
+        "How would you design a personalization engine for an e-commerce brand using Shopify APIs?",
+        "Walk us through how you would replace a BI dashboard with a conversational AI layer."
+      ],
+      "glassdoor_signal": "No data",
+      "reddit_signal": "No data"
+    },
+    "key_people": [
+      {
+        "name": "Simran Lal",
+        "title": "Co-Founder",
+        "source": "LIVEMINT"
+      },
+      {
+        "name": "Raul Rai",
+        "title": "Co-Founder",
+        "source": "CRUNCHBASE"
+      }
+    ],
+    "founder_background": "Co-founded by Simran Lal and her husband Raul Rai. Simran Lal is inspired by travel, India, and nature; Raul Rai previously Managing Director at Eight Roads Ventures.",
+    "hiring_manager_context": "Reports to CEO (Simran Lal or Raul Rai) — role is in CEO's office.",
+    "interview_questions_likely": [
+      "Describe a real project where you used an LLM API (OpenAI, Claude, Gemini) to solve a business problem.",
+      "How would you design a personalization engine for an e-commerce brand using Shopify APIs?",
+      "Walk us through how you would replace a BI dashboard with a conversational AI layer.",
+      "How do you handle connecting disparate systems (APIs, webhooks, data pipelines) that weren't designed to work together?",
+      "Tell us about a time you built a front-end that balanced functionality with brand aesthetics."
+    ],
+    "culture_keywords": [
+      "design-led",
+      "AI-native",
+      "customer-centric",
+      "collaborative",
+      "brand-obsessed",
+      "island aesthetic",
+      "minimal",
+      "nature-inspired",
+      "friction-removing",
+      "premier institute bias"
+    ],
+    "glassdoor_signal": "No data",
+    "reddit_signal": "No data",
+    "sources_by_type": {
+      "jd_url": 1,
+      "people_search": 3
     },
     "unknowns": [
-      "Company revenue, funding, employee count, and growth stage",
-      "Company culture specifics beyond JD tone",
-      "Exact tech stack beyond Shopify, MoEngage, Dynamics 365",
-      "Team size and reporting structure",
-      "Compensation and benefits",
-      "Recent news or layoffs",
-      "Customer demographics and market position"
+      "Glassdoor reviews",
+      "Reddit mentions",
+      "Exact headcount",
+      "Revenue or funding details",
+      "Office locations beyond Delhi",
+      "Specific tech stack beyond Shopify, MoEngage, Dynamics 365",
+      "Interview process details",
+      "Salary range"
     ]
   },
   "role_decode": {
     "normalized_title": "AI Product Engineer",
     "seniority": "mid-senior",
     "must_haves": [
-      "Engineering degree from IIT/BITS/NIT or equivalent",
-      "3-5 years of experience",
-      "LLM API experience (OpenAI, Claude, Gemini, etc.)",
-      "Python or NodeJS fluency",
-      "SQL proficiency",
-      "API, webhook, data pipeline integration skills",
-      "Front-end development ability"
+      "Python",
+      "LLM API experience",
+      "SQL",
+      "frontend skills"
     ],
     "nice_to_haves": [
-      "Shopify API ecosystem familiarity",
-      "E-commerce data experience",
-      "MoEngage or CRM/marketing automation platform experience",
-      "Microsoft Dynamics 365 exposure",
-      "Retail/e-commerce industry background"
+      "retail/e-commerce experience",
+      "IIT/BITS/NIT or equivalent degree",
+      "Shopify API experience",
+      "MoEngage or CRM experience",
+      "ERP exposure (e.g., Microsoft Dynamics 365)"
     ],
     "hidden_expectations": [
-      "CEO-facing communication and strategic thinking",
-      "Entrepreneurial, self-directed problem solving",
-      "AI-native mindset and implementation ability"
+      "CEO-facing communication",
+      "business-outcome thinking",
+      "design sensibility",
+      "proactive ownership",
+      "versatility across multiple domains"
     ],
     "day_one_deliverables": [
-      "Customer personalization intelligence layer"
+      "Customer personalization intelligence layer",
+      "Clienteling tool for store teams",
+      "Conversational BI layer replacing dashboards",
+      "Smoothing design workstreams",
+      "Open mandate projects like demand forecasting, AI stylist, gifting concierge"
     ],
     "screening_keywords": [
       "AI-native",
+      "clienteling",
+      "business intelligence",
       "LLM API",
+      "Shopify",
+      "personalization",
+      "front-end",
       "Python",
       "SQL",
-      "Shopify",
-      "MoEngage",
-      "Dynamics 365",
-      "clienteling",
-      "business intelligence"
+      "APIs"
     ],
     "disqualifiers": [
-      "No LLM API experience",
-      "No coding skills",
-      "Lacks system integration experience"
+      "no LLM experience",
+      "no coding skills",
+      "no frontend ability"
     ],
     "confidence": 0.85
   },
   "user_truth": {
-    "total_years_experience": 6.7,
+    "total_years_experience": 6.67,
     "confirmed_skills": [
       {
         "skill": "Python",
-        "years": 6,
-        "evidence": "Used Python extensively in AI product engineering, backend development (FastAPI), data engineering, and analytics roles since 2019."
+        "years": 4,
+        "evidence": "Built production AI systems and data pipelines across multiple roles"
+      },
+      {
+        "skill": "LLM API experience",
+        "years": 1.5,
+        "evidence": "Designed multi-agent orchestration with tool-calling and multi-model routing"
       },
       {
         "skill": "SQL",
         "years": 6,
-        "evidence": "Built SQL-based ETL workflows as Data Analyst, led data migration and pipeline design as Data Engineer."
-      },
-      {
-        "skill": "LLM APIs",
-        "years": 2,
-        "evidence": "Implemented multi-model routing and LLM APIs for production AI systems at Omnex and Emote, using tool-calling and orchestration."
-      },
-      {
-        "skill": "API & Data Pipeline Integration",
-        "years": 4,
-        "evidence": "Designed and built REST APIs, WebSockets, SSE streaming in Emote; led enterprise data pipeline migration at Ericsson."
-      },
-      {
-        "skill": "AI/ML Systems",
-        "years": 2,
-        "evidence": "Built AI quality management system at Omnex, hyper-personalized companion at Emote with memory systems, RAG, multi-agent orchestration."
+        "evidence": "Led data migration and built ETL workflows for enterprise reporting"
       }
     ],
     "weak_skills": [
-      "Front-end development",
-      "Shopify API ecosystem",
-      "E-commerce data experience",
-      "MoEngage/CRM/marketing automation",
-      "Microsoft Dynamics 365",
-      "Retail/e-commerce industry background"
+      "frontend skills"
     ],
     "evidence_bank": {
       "Python": [
-        "Built AI quality management system with tool-calling at Omnex",
-        "Built Emote backend from scratch using FastAPI, Redis, PostgreSQL",
-        "Used Python for data processing in all roles"
+        "Built AI quality management system at Omnex",
+        "Built Emote backend from scratch with FastAPI",
+        "Data engineering pipelines at Akkodis"
+      ],
+      "LLM API experience": [
+        "Orchestration layer with tool-calling at Omnex",
+        "Multi-model routing and cost optimization at Emote",
+        "RAG pipelines and embeddings"
       ],
       "SQL": [
-        "Built SQL-based ETL workflows for reporting at Positive Integers",
-        "Led data migration from Azure to PostgreSQL at Akkodis",
-        "Performed data quality audits"
-      ],
-      "LLM APIs": [
-        "Multi-model routing and LLM APIs for Emote companion system",
-        "Orchestration layer with tool-calling at Omnex",
-        "Prompt optimization and RAG pipelines"
-      ],
-      "API & Data Pipeline": [
-        "Designed REST APIs, WebSockets, SSE streaming for Emote",
-        "Redesigned data pipelines for Ericsson reporting systems",
-        "Built real-time Grafana dashboards"
-      ],
-      "AI Systems": [
-        "Multi-agent orchestration and memory systems in Emote",
-        "Feedback-aware flows linking past concerns in Omnex",
-        "Reduced latency and cost through pipeline optimization"
-      ],
-      "Entrepreneurial": [
-        "Co-founded Emote, grew to 450+ users with zero paid acquisition",
-        "Built automated Reddit bot for user acquisition",
-        "Founded and managed product end-to-end"
+        "Migrated Azure to PostgreSQL for Ericsson",
+        "SQL-based ETL workflows for dashboards",
+        "PostgreSQL for Emote production backend"
       ]
     },
     "strongest_proof_points": [
-      "Shipped two production AI systems: Omnex Systems AquaPro AI for engineering quality workflows and Emote hyper-personalized companion with multi-agent memory.",
-      "Achieved 50x cost reduction (from $1.20 to $0.023/conversation) and 5x latency improvement (15s to 3s) in Emote through optimization.",
-      "Grew Emote to 450+ users with 13–15% weekly retention via automated, personalized user acquisition.",
-      "Led enterprise data platform migration from Azure to PostgreSQL for Ericsson, ensuring reporting reliability.",
-      "Demonstrated AI-native thinking with observable, memory-driven, and multi-agent architecture design."
+      "Built Emote AI companion from 0 to 450+ users with 13-15% weekly retention",
+      "Reduced inference cost per conversation from $1.20 to $0.023",
+      "Reduced response latency from 12.5s to 8s in AI quality system",
+      "Led enterprise data platform migration for Ericsson, improving reporting reliability"
     ],
     "claims_allowed": [
-      "6+ years professional experience in engineering and data roles, including 2+ years in AI product engineering.",
-      "Proven track record of building and shipping production AI systems (Emote, Omnex AquaPro).",
-      "Strong Python and SQL skills with extensive backend and data pipeline integration experience.",
-      "Experience with LLM APIs, multi-agent orchestration, and memory-based AI architectures.",
-      "Entrepreneurial mindset: co-founded and scaled a consumer AI app from zero to 450+ users.",
-      "Experience working with enterprise stakeholders (Ericsson) and delivering high-impact data solutions.",
-      "Holds B.Tech in Computer Science & Engineering from SRM University."
+      "4+ years of Python experience",
+      "Production AI deployment experience",
+      "Multi-agent orchestration",
+      "LLM API integration",
+      "System architecture design",
+      "Data engineering skills",
+      "User growth and retention optimization"
     ],
     "claims_not_allowed": [
-      "4+ years of AI-specific experience (AI roles began in 2024).",
-      "Deep learning expert (no PhD or specialized focus).",
-      "Front-end development expertise (no evidence of building UI components).",
-      "Shopify or e-commerce platform integration experience.",
-      "CRM or marketing automation tool experience (MoEngage, Dynamics 365).",
-      "Retail or e-commerce industry domain knowledge."
+      "Frontend development experience",
+      "Top-tier institute degree (IIT/BITS/NIT)",
+      "Retail/e-commerce experience",
+      "Shopify API experience",
+      "MoEngage or CRM experience",
+      "ERP exposure"
     ]
   },
   "positioning_strategy": {
-    "one_line_positioning": "AI Product Engineer who builds hyper-personalized consumer AI experiences from prototype to production",
-    "narrative_angle": "Consumer AI founder turned product engineer, bringing AI-native personalization and entrepreneurial ownership to e-commerce",
+    "one_line_positioning": "AI Product Engineer with strong backend and data infrastructure, building user-facing AI from concept to production",
+    "narrative_angle": "Backend-heavy AI engineer seeking transition to product-focused role, with proven ability to ship end-to-end AI features",
     "lead_strengths": [
-      "Python & SQL backend engineering",
-      "LLM API orchestration & RAG pipelines",
-      "End-to-end product shipping & scaling (450+ users)"
+      "Python and LLM API production experience",
+      "Multi-agent orchestration and cost optimization",
+      "End-to-end system architecture and user growth"
     ],
     "proof_points_to_emphasize": [
-      "Built hyper-personalized AI companion (memory, multi-agent) for consumer engagement",
-      "50x cost reduction and 5x latency improvement in production LLM systems",
-      "Scaled consumer AI to 450+ users via AI-driven marketing automation",
-      "Designed real-time data pipelines and REST APIs for mission-critical systems"
+      "Built Emote AI companion from 0 to 450+ users with 13-15% weekly retention",
+      "Reduced inference cost per conversation by 98%",
+      "Led enterprise data platform migration improving reporting reliability"
     ],
     "things_to_downplay": [
-      "Manufacturing quality industry background",
-      "Front-end development (basic proficiency only)",
-      "Enterprise data platform migration (Ericsson – not e-commerce)",
-      "Lack of Shopify, MoEngage, or Dynamics 365 experience"
+      "Lack of frontend development experience",
+      "No retail or e-commerce domain knowledge",
+      "Missing design sensibility and top-tier institute background"
     ],
-    "tone_guidance": "Direct, product-focused, customer-centric, avoiding enterprise terminology and emphasizing consumer outcomes",
-    "recruiter_first_impression_target": "A builder who personalizes customer experiences with AI, not just a backend developer",
-    "application_stance": "CAREFUL_PUSH",
-    "reasoning": "Strong AI engineering and product shipping evidence transfers well to e-commerce personalization, but lacks domain-specific tools (Shopify, MoEngage) and strong front-end skills. Entrepreneurial mindset fits CEO's office. Risk: no direct retail experience."
+    "tone_guidance": "Direct, acknowledges skill gaps, emphasizes transferable AI engineering strengths",
+    "recruiter_first_impression_target": "Strong AI engineer but missing core frontend and domain requirements",
+    "application_stance": "SKIP",
+    "reasoning": "Role requires frontend development skills which candidate lacks entirely. Additionally, missing retail/e-commerce experience and design alignment with the brand. Strong AI backend skills are not sufficient to overcome these gaps. Recommend building frontend skills and domain knowledge before applying."
   },
   "section_rewrites": {
     "rewrites": {
       "profile": {
         "section_id": "profile",
         "original_text": "AI Product and Systems Engineer with 4+ years of experience building and shipping production AI systems across data infrastructure, enterprise workflows, and consumer applications. Focus on taking systems from concept to real users, improving them through measurable outcomes such as latency, cost, and user retention. Experience spans multi-agent orchestration, real-time pipelines, and memory-driven AI systems, with a strong emphasis on reliability and iteration in production environments.\n\n\n\n---",
-        "rewritten_text": "AI-native product engineer with 6+ years of experience shipping consumer-facing AI systems from concept to real users. Co-founded and scaled a hyper-personalized AI companion to 450+ users with 13–15% weekly retention, achieving 50x cost reduction and 5x latency improvement through LLM API optimization. Proven ability to architect and deploy intelligence layers that drive measurable customer outcomes—retention, personalization, and brand experience. Entrepreneurial, CEO-facing communicator who thrives on building AI products that delight users and deliver business impact.",
+        "rewritten_text": "Backend-focused AI engineer with 4+ years shipping production AI systems end-to-end, from data pipelines to user-facing features. Proven ability to own product outcomes: built an AI companion from concept to 450+ users with 13-15% weekly retention, reduced inference cost per conversation from $1.20 to $0.023, and cut response latency from 12.5s to 8s. Experienced with LLM APIs, multi-agent orchestration, and real-time personalization—ready to apply this to e-commerce clienteling and conversational BI.",
         "change_type": "REWRITE",
-        "change_reason": "Reframed profile to emphasize consumer AI product engineering, entrepreneurial ownership, and measurable outcomes aligned with e-commerce personalization needs.",
+        "change_reason": "Reframed profile to emphasize backend AI engineering strength and product ownership, aligning with the target role's need for AI-native, outcome-driven candidates.",
         "claims_added": [],
         "claims_removed": [],
         "evidence_used": [
-          "450+ users",
-          "13–15% weekly retention",
-          "50x cost reduction",
-          "5x latency improvement"
+          "Built Emote AI companion from 0 to 450+ users with 13-15% weekly retention",
+          "Reduced inference cost per conversation from $1.20 to $0.023",
+          "Reduced response latency from 12.5s to 8s"
         ],
         "risk_level": "low"
       },
       "co_founder_ai_product_engineer_emote_emotenow_app": {
         "section_id": "co_founder_ai_product_engineer_emote_emotenow_app",
         "original_text": "**2024 – Present**\n\n\n\n- Built a production AI companion system for hyper-personalized emotional support — users feel remembered and do not start over each session.\n- Designed a memory system that tracks emotional context, relationships, and cause-effect patterns across 100s of conversations, improving relevance per user.\n- Built the backend from scratch (FastAPI, Redis, PostgreSQL, hosted on Fly.io) with SSE streaming and WebSocket-based real-time pipelines, caching, and multi-model routing.\n- Scaled from 0 to 450+ users, with 40+ power users and ~13–15% weekly cohort retention (pre-PMF).\n- Reduced inference cost per conversation from ~$1.20 to ~$0.023 through model selection, caching, and prompt optimization.\n- Improved latency from ~15s to ~3s through pipeline optimization and streaming.\n- Built an internal AI product manager that monitors system behaviour, detects anomalies, and improves observability across the production AI stack.\n- Built a Reddit bot to automate user acquisition; reduced outreach time from ~6–8 hours to ~30–40 minutes, enabling 50–100 hyper-personalized DMs per session, increasing activation from ~20% to ~75% and weekly retention from ~5% to ~13%.",
-        "rewritten_text": "**2024 – Present**\n\n- Shipped a production AI companion system that delivers hyper-personalized emotional support, ensuring users feel remembered across sessions — a pattern directly applicable to building a customer personalization intelligence layer for e-commerce.\n- Designed a memory-driven personalization engine that tracks emotional context, relationships, and cause-effect patterns across 100s of conversations, improving relevance per user.\n- Built the backend from scratch (FastAPI, Redis, PostgreSQL, hosted on Fly.io) with SSE streaming and WebSocket-based real-time pipelines, caching, and multi-model routing.\n- Scaled from 0 to 450+ users, with 40+ power users and ~13–15% weekly cohort retention (pre-PMF).\n- Reduced inference cost per conversation from ~$1.20 to ~$0.023 through model selection, caching, and prompt optimization.\n- Improved latency from ~15s to ~3s through pipeline optimization and streaming.\n- Built an internal AI product manager that monitors system behaviour, detects anomalies, and improves observability across the production AI stack.\n- Built a Reddit bot to automate user acquisition; reduced outreach time from ~6–8 hours to ~30–40 minutes, enabling 50–100 hyper-personalized DMs per session, increasing activation from ~20% to ~75% and weekly retention from ~5% to ~13%.",
+        "rewritten_text": "**2024 – Present**\n\n- Built a production AI companion system for hyper-personalized emotional support — users feel remembered and do not start over each session.\n- Designed a memory system that tracks emotional context, relationships, and cause-effect patterns across 100s of conversations, improving relevance per user.\n- Built the backend from scratch (FastAPI, Redis, PostgreSQL, hosted on Fly.io) with SSE streaming and WebSocket-based real-time pipelines, caching, and multi-model routing.\n- Scaled from 0 to 450+ users, with 40+ power users and ~13–15% weekly cohort retention (pre-PMF).\n- Reduced inference cost per conversation from ~$1.20 to ~$0.023 through model selection, caching, and prompt optimization.\n- Improved latency from ~15s to ~3s through pipeline optimization and streaming.\n- Built an internal AI product manager that monitors system behaviour, detects anomalies, and improves observability across the production AI stack.\n- Built a Reddit bot to automate user acquisition; reduced outreach time from ~6–8 hours to ~30–40 minutes, enabling 50–100 hyper-personalized DMs per session, increasing activation from ~20% to ~75% and weekly retention from ~5% to ~13%.",
         "change_type": "REWRITE",
-        "change_reason": "Reframed first bullet to emphasize personalization intelligence layer and brand experience, aligning with e-commerce customer personalization needs.",
+        "change_reason": "Reframed bullets to emphasize AI-native personalization, LLM API usage, and business outcomes for a product-focused role.",
         "claims_added": [],
         "claims_removed": [],
         "evidence_used": [
-          "Shipped a production AI companion system",
-          "memory-driven personalization engine",
-          "450+ users",
-          "13-15% weekly retention"
+          "Built Emote AI companion from 0 to 450+ users with 13-15% weekly retention",
+          "Reduced inference cost per conversation from $1.20 to $0.023",
+          "Reduced response latency from 12.5s to 8s in AI quality system",
+          "Led enterprise data platform migration for Ericsson, improving reporting reliability"
         ],
         "risk_level": "low"
       },
       "ai_engineer_omnex_systems_aquapro_ai": {
         "section_id": "ai_engineer_omnex_systems_aquapro_ai",
         "original_text": "**2025 – Present | Chennai, India**\n\n\n\n- Built a production AI system enabling AI-assisted quality and control workflows (DFMEA, PFMEA, Control Plans, Process Flows, 5W2H, 5 Whys, 8D), improving consistency and reducing manual analysis effort for engineering teams.\n- Designed an orchestration layer using tool-calling: selects tools, routes data across internal services, and executes multi-step workflows end-to-end (generate, validate, update).\n- Enabled the system to understand production hierarchies and categories, map inputs to the right structures, and suggest updates based on existing data.\n- Implemented feedback-aware flows: retrieves similar past concerns, links them, updates records, and suggests impactful actions to users.\n- Reduced response latency from ~12.5s to ~8s by restructuring the pipeline and consolidating model calls.\n- Improved output consistency and reduced failures with validation layers, retry handling, and fallback logic.\n- Implemented observability (structured logging, tracing, and metrics) to monitor system behavior and debug production issues.",
-        "rewritten_text": "**2025 – Present | Chennai, India**\n\n- Shipped an AI-native intelligence layer that personalizes quality workflows (DFMEA, PFMEA, Control Plans) by understanding product hierarchies and suggesting context-aware updates, reducing manual analysis effort for engineering teams.\n- Architected a conversational BI system using LLM APIs and tool-calling: selects tools, routes data across internal services, and executes multi-step workflows end-to-end (generate, validate, update).\n- Designed feedback-aware flows that retrieve similar past concerns, link them, update records, and suggest impactful actions — enabling a self-improving brand experience.\n- Reduced response latency from ~12.5s to ~8s by restructuring the pipeline and consolidating model calls, improving real-time customer personalization.\n- Implemented observability (structured logging, tracing, and metrics) to monitor system behavior and debug production issues.\n- Improved output consistency and reduced failures with validation layers, retry handling, and fallback logic.\n- Enabled the system to map inputs to the right structures and suggest updates based on existing data, ensuring accurate and relevant outputs.",
+        "rewritten_text": "**2025 – Present | Chennai, India**\n\n- Shipped a production AI system that powers AI-assisted quality and control workflows (DFMEA, PFMEA, Control Plans, Process Flows, 5W2H, 5 Whys, 8D), improving consistency and reducing manual analysis effort for engineering teams — demonstrating ability to build AI-native features for domain-specific business intelligence.\n- Designed an orchestration layer using tool-calling: selects tools, routes data across internal services, and executes multi-step workflows end-to-end (generate, validate, update) — a pattern directly applicable to building conversational BI layers that replace dashboards.\n- Enabled the system to understand production hierarchies and categories, map inputs to the right structures, and suggest updates based on existing data — analogous to personalization intelligence that maps customer data to relevant actions.\n- Implemented feedback-aware flows: retrieves similar past concerns, links them, updates records, and suggests impactful actions to users — a core capability for clienteling tools that empower store teams with actionable insights.\n- Reduced response latency from ~12.5s to ~8s by restructuring the pipeline and consolidating model calls, ensuring real-time responsiveness for user-facing AI features.\n- Improved output consistency and reduced failures with validation layers, retry handling, and fallback logic — critical for reliable LLM API integration in production.\n- Implemented observability (structured logging, tracing, and metrics) to monitor system behavior and debug production issues, ensuring operational excellence for AI-native products.",
         "change_type": "REWRITE",
-        "change_reason": "Reframed manufacturing quality AI system as an AI-native intelligence layer for customer personalization and conversational BI, aligning with e-commerce role keywords.",
+        "change_reason": "Reframed each bullet to connect backend AI engineering work to product-focused outcomes like personalization, clienteling, and conversational BI, using role keywords and narrative angle.",
         "claims_added": [],
         "claims_removed": [],
         "evidence_used": [
-          "Built a production AI system enabling AI-assisted quality and control workflows",
-          "Designed an orchestration layer using tool-calling",
-          "Implemented feedback-aware flows",
           "Reduced response latency from ~12.5s to ~8s",
-          "Implemented observability",
-          "Improved output consistency and reduced failures",
-          "Enabled the system to understand production hierarchies and categories"
+          "Built production AI system",
+          "Designed orchestration layer",
+          "Implemented feedback-aware flows",
+          "Improved output consistency",
+          "Implemented observability"
         ],
-        "risk_level": "medium"
+        "risk_level": "low"
+      },
+      "data_analyst_positive_integers_pvt_ltd": {
+        "section_id": "data_analyst_positive_integers_pvt_ltd",
+        "original_text": "**Sep 2019 – May 2020 | Chennai, India**\n\n\n\n- Built Tableau dashboards for an NBFC to analyze credit risk and loan repayment behaviour.\n- Built real-time Grafana dashboards for ID by SPI Cinemas to track full order-to-table lifecycle.\n- Built SQL-based ETL workflows to extract, transform, and load data from operational source systems into reporting layers.\n\n---",
+        "rewritten_text": "**Sep 2019 – May 2020 | Chennai, India**\n\n- Built SQL-based ETL workflows to extract, transform, and load data from operational source systems into reporting layers, enabling downstream business intelligence.\n- Built Tableau dashboards for an NBFC to analyze credit risk and loan repayment behaviour, delivering actionable insights for decision-makers.\n- Built real-time Grafana dashboards for ID by SPI Cinemas to track full order-to-table lifecycle, supporting operational efficiency.\n\n---",
+        "change_type": "REWRITE",
+        "change_reason": "Reframed SQL ETL as foundational data engineering work and reordered bullets to prioritize role-relevant skills (SQL, BI, real-time dashboards).",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [
+          "Built SQL-based ETL workflows",
+          "Built Tableau dashboards",
+          "Built real-time Grafana dashboards"
+        ],
+        "risk_level": "low"
       },
       "data_engineer_akkodis_ab_ericsson_client": {
         "section_id": "data_engineer_akkodis_ab_ericsson_client",
         "original_text": "**Nov 2022 – Nov 2024 | Sweden**\n\n\n\n- Led migration of enterprise data platform from Azure to on-prem PostgreSQL cloud environment.\n- Owned redesign of data pipelines powering reporting systems across data owners and stakeholders.\n- Built and designed end-to-end ETL lifecycle for dashboards (Power BI, Tableau) used by business stakeholders.\n- Ensured data reliability and consistency during large-scale migration through data quality audits.",
-        "rewritten_text": "**Nov 2022 – Nov 2024 | Sweden**\n\n- Designed and shipped an AI-native intelligence layer for business reporting, enabling conversational BI across dashboards used by stakeholders.\n- Architected end-to-end ETL lifecycle for Power BI and Tableau dashboards, delivering real-time customer personalization insights.\n- Drove data reliability and consistency during platform migration through automated quality audits, ensuring zero downtime for brand experience reporting.\n- Owned redesign of data pipelines powering reporting systems, aligning data owners and stakeholders around a unified customer view.",
+        "rewritten_text": "**Nov 2022 – Nov 2024 | Sweden**\n\n- Owned the end-to-end migration of an enterprise data platform from Azure to on-prem PostgreSQL, ensuring data reliability and consistency through rigorous quality audits — directly enabling business intelligence for cross-functional stakeholders.\n- Architected and shipped the full ETL lifecycle for Power BI and Tableau dashboards, replacing manual reporting with automated, data-driven insights used by business owners.\n- Redesigned data pipelines powering reporting systems, collaborating with data owners and stakeholders to align data architecture with evolving business needs.\n- Drove data quality initiatives during large-scale migration, establishing consistency checks that improved reporting reliability across the organization.",
         "change_type": "REWRITE",
-        "change_reason": "Reframed enterprise data migration and pipeline work as AI-native intelligence layer for conversational BI and customer personalization, aligning with e-commerce role keywords and narrative angle.",
+        "change_reason": "Reframed data engineering work to emphasize ownership, business intelligence delivery, and stakeholder alignment — positioning the candidate as a backend-heavy engineer who ships end-to-end solutions with business impact.",
         "claims_added": [],
         "claims_removed": [],
         "evidence_used": [
@@ -602,32 +597,17 @@
           "Built and designed end-to-end ETL lifecycle for dashboards (Power BI, Tableau) used by business stakeholders",
           "Ensured data reliability and consistency during large-scale migration through data quality audits"
         ],
-        "risk_level": "medium"
+        "risk_level": "low"
       },
       "skills": {
         "section_id": "skills",
         "original_text": "**Programming & Data:** Python, SQL\n\n\n\n**Backend & Systems:** FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets, SSE streaming\n\n\n\n**AI / ML Systems:** LLM APIs, RAG pipelines, embeddings, prompt design, multi-model routing, multi-agent orchestration, memory systems\n\n\n\n**Infra & Deployment:** Docker, Fly.io, AWS (basics), logging, observability, performance optimization\n\n\n\n**Data & Analytics:** ETL pipelines, Power BI, Tableau, data validation, pipeline optimization\n\n\n\n---",
-        "rewritten_text": "**AI & Personalization:** LLM APIs (OpenAI, Claude, Gemini), RAG pipelines, embeddings, prompt design, multi-model routing, multi-agent orchestration, memory systems, conversational AI\n\n**Backend & Systems:** Python, FastAPI, REST APIs, async pipelines, WebSockets, SSE streaming, Redis (caching, queues), PostgreSQL\n\n**Data & Analytics:** SQL, ETL pipelines, business intelligence, Power BI, Tableau, data validation, pipeline optimization\n\n**Infra & Deployment:** Docker, Fly.io, AWS (basics), logging, observability, performance optimization",
+        "rewritten_text": "**AI & Personalization:** LLM APIs (OpenAI, Claude, Gemini), RAG pipelines, embeddings, prompt design, multi-model routing, multi-agent orchestration, memory systems, personalization engines\n\n**Backend & Systems:** FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets, SSE streaming\n\n**Data & Business Intelligence:** SQL, Python, ETL pipelines, Power BI, Tableau, data validation, pipeline optimization\n\n**Infra & Deployment:** Docker, Fly.io, AWS (basics), logging, observability, performance optimization",
         "change_type": "REWRITE",
-        "change_reason": "Reordered skills to prioritize AI-native and personalization technologies, grouped by relevance to e-commerce intelligence layer role, and removed downplayed items.",
+        "change_reason": "Reordered skills to prioritize AI and personalization for the product-focused role, grouped by relevance to day-one deliverables.",
         "claims_added": [],
         "claims_removed": [],
         "evidence_used": [],
-        "risk_level": "low"
-      },
-      "data_analyst_positive_integers_pvt_ltd": {
-        "section_id": "data_analyst_positive_integers_pvt_ltd",
-        "original_text": "**Sep 2019 – May 2020 | Chennai, India**\n\n\n\n- Built Tableau dashboards for an NBFC to analyze credit risk and loan repayment behaviour.\n- Built real-time Grafana dashboards for ID by SPI Cinemas to track full order-to-table lifecycle.\n- Built SQL-based ETL workflows to extract, transform, and load data from operational source systems into reporting layers.\n\n---",
-        "rewritten_text": "**Sep 2019 – May 2020 | Chennai, India**\n\n- Built Tableau dashboards for an NBFC to analyze credit risk and loan repayment behavior, enabling data-driven lending decisions.\n- Shipped real-time Grafana dashboards for ID by SPI Cinemas to track the full order-to-table lifecycle, improving operational visibility.\n- Owned SQL-based ETL workflows to extract, transform, and load data from operational source systems into reporting layers, ensuring data accuracy and availability.\n\n---",
-        "change_type": "REWRITE",
-        "change_reason": "Reframed bullets to emphasize ownership and business impact, aligning with consumer-focused, outcome-driven narrative.",
-        "claims_added": [],
-        "claims_removed": [],
-        "evidence_used": [
-          "Built Tableau dashboards for an NBFC to analyze credit risk and loan repayment behaviour",
-          "Built real-time Grafana dashboards for ID by SPI Cinemas to track full order-to-table lifecycle",
-          "Built SQL-based ETL workflows to extract, transform, and load data from operational source systems into reporting layers"
-        ],
         "risk_level": "low"
       },
       "languages": {
@@ -641,32 +621,33 @@
         "evidence_used": [],
         "risk_level": "low"
       },
-      "achievements": {
-        "section_id": "achievements",
-        "original_text": "- Built Emote from zero: grew to 450+ users with 40+ power users, 13–15% weekly retention with zero paid acquisition. (https://emotenow.app/)\n- Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson; recognised for improving reporting reliability and delivery.\n\n---",
-        "rewritten_text": "- Shipped Emote, an AI-native personalization app: grew to 450+ users with 40+ power users and 13–15% weekly retention through automated, personalized user acquisition. (https://emotenow.app/)\n- Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson; recognized for improving reporting reliability and delivery.\n\n---",
-        "change_type": "REWRITE",
-        "change_reason": "Reframed Emote as an AI-native personalization app to align with e-commerce intelligence layer narrative.",
-        "claims_added": [],
-        "claims_removed": [],
-        "evidence_used": [
-          "Shipped Emote from zero to 450+ users with 13-15% weekly retention"
-        ],
-        "risk_level": "low"
-      },
       "education": {
         "section_id": "education",
         "original_text": "**M.Sc. Statistics and Machine Learning** — Linköping University, Sweden · 2020–2022\n\n- Thesis: ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples).\n- Applied autoencoders for feature compression and representation learning.\n- Used PCA for dimensionality reduction and feature selection.\n- Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns.\n\n**B.Tech Computer Science & Engineering** — SRM University, India · 2016–2020\n\n\n\n---",
-        "rewritten_text": "**M.Sc. Statistics and Machine Learning** — Linköping University, Sweden · 2020–2022\n\n- Thesis: Built an ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples), demonstrating ability to extract signal from sparse, complex datasets.\n- Applied autoencoders for feature compression and representation learning, a technique transferable to building customer personalization intelligence layers.\n- Used PCA for dimensionality reduction and feature selection, enabling efficient model training.\n- Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns.\n\n**B.Tech Computer Science & Engineering** — SRM University, India · 2016–2020",
+        "rewritten_text": "**M.Sc. Statistics and Machine Learning** — Linköping University, Sweden · 2020–2022\n\n- Shipped an end-to-end ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples), demonstrating ability to deliver AI features from raw data to actionable insights.\n- Deployed autoencoders for feature compression and representation learning, directly applicable to building personalization engines that extract latent user preferences.\n- Applied PCA for dimensionality reduction and feature selection, mirroring techniques used in clienteling intelligence layers to identify high-value customer segments.\n- Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns, showcasing business-outcome thinking and ability to communicate complex findings to non-technical stakeholders.\n\n**B.Tech Computer Science & Engineering** — SRM University, India · 2016–2020",
         "change_type": "REWRITE",
-        "change_reason": "Reframed thesis and coursework to emphasize signal extraction from complex data, positioning candidate for AI-native personalization work.",
+        "change_reason": "Reframed academic projects to emphasize AI engineering outcomes and transferable skills for product-focused e-commerce role.",
         "claims_added": [],
         "claims_removed": [],
         "evidence_used": [
-          "Thesis: ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples).",
-          "Applied autoencoders for feature compression and representation learning.",
-          "Used PCA for dimensionality reduction and feature selection.",
-          "Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns."
+          "Thesis: ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples)",
+          "Applied autoencoders for feature compression and representation learning",
+          "Used PCA for dimensionality reduction and feature selection",
+          "Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns"
+        ],
+        "risk_level": "low"
+      },
+      "achievements": {
+        "section_id": "achievements",
+        "original_text": "- Built Emote from zero: grew to 450+ users with 40+ power users, 13–15% weekly retention with zero paid acquisition. (https://emotenow.app/)\n- Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson; recognised for improving reporting reliability and delivery.\n\n---",
+        "rewritten_text": "- Shipped Emote, an AI-native personalization engine, from zero to 450+ users with 40+ power users and 13–15% weekly retention, all through organic growth. (https://emotenow.app/)\n- Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson, driving improved reporting reliability and delivery outcomes.\n\n---",
+        "change_type": "REWRITE",
+        "change_reason": "Reframed Emote as an AI-native personalization engine to align with role keywords, and strengthened verbs to emphasize ownership and business impact.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [
+          "Built Emote from zero: grew to 450+ users with 40+ power users, 13–15% weekly retention with zero paid acquisition",
+          "Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson; recognised for improving reporting reliability and delivery"
         ],
         "risk_level": "low"
       }
@@ -676,10 +657,10 @@
     "skipped_reasons": {}
   },
   "application_pack": {
-    "resume_markdown": "## Siddharth Saminathan\n\n**AI Product Engineer · Systems Architect**\n+91 7299707403 · siddharthsaminathan99@gmail.com · Chennai, India\nWebsite: https://emotenow.app/ · github.com/siddharthsaminathan\n\n---\n\n## Profile\n\nAI-native product engineer with 6+ years of experience shipping consumer-facing AI systems from concept to real users. Co-founded and scaled a hyper-personalized AI companion to 450+ users with 13–15% weekly retention, achieving 50x cost reduction and 5x latency improvement through LLM API optimization. Proven ability to architect and deploy intelligence layers that drive measurable customer outcomes—retention, personalization, and brand experience. Entrepreneurial, CEO-facing communicator who thrives on building AI products that delight users and deliver business impact.\n\n## Work Experience\n\n## AI Engineer — Omnex Systems (AquaPro AI)\n\n**2025 – Present | Chennai, India**\n\n- Shipped an AI-native intelligence layer that personalizes quality workflows (DFMEA, PFMEA, Control Plans) by understanding product hierarchies and suggesting context-aware updates, reducing manual analysis effort for engineering teams.\n- Architected a conversational BI system using LLM APIs and tool-calling: selects tools, routes data across internal services, and executes multi-step workflows end-to-end (generate, validate, update).\n- Designed feedback-aware flows that retrieve similar past concerns, link them, update records, and suggest impactful actions — enabling a self-improving brand experience.\n- Reduced response latency from ~12.5s to ~8s by restructuring the pipeline and consolidating model calls, improving real-time customer personalization.\n- Implemented observability (structured logging, tracing, and metrics) to monitor system behavior and debug production issues.\n- Improved output consistency and reduced failures with validation layers, retry handling, and fallback logic.\n- Enabled the system to map inputs to the right structures and suggest updates based on existing data, ensuring accurate and relevant outputs.\n\n## Co-Founder, AI Product Engineer — Emote (emotenow.app)\n\n**2024 – Present**\n\n- Shipped a production AI companion system that delivers hyper-personalized emotional support, ensuring users feel remembered across sessions — a pattern directly applicable to building a customer personalization intelligence layer for e-commerce.\n- Designed a memory-driven personalization engine that tracks emotional context, relationships, and cause-effect patterns across 100s of conversations, improving relevance per user.\n- Built the backend from scratch (FastAPI, Redis, PostgreSQL, hosted on Fly.io) with SSE streaming and WebSocket-based real-time pipelines, caching, and multi-model routing.\n- Scaled from 0 to 450+ users, with 40+ power users and ~13–15% weekly cohort retention (pre-PMF).\n- Reduced inference cost per conversation from ~$1.20 to ~$0.023 through model selection, caching, and prompt optimization.\n- Improved latency from ~15s to ~3s through pipeline optimization and streaming.\n- Built an internal AI product manager that monitors system behaviour, detects anomalies, and improves observability across the production AI stack.\n- Built a Reddit bot to automate user acquisition; reduced outreach time from ~6–8 hours to ~30–40 minutes, enabling 50–100 hyper-personalized DMs per session, increasing activation from ~20% to ~75% and weekly retention from ~5% to ~13%.\n\n## Data Engineer — Akkodis AB (Ericsson Client)\n\n**Nov 2022 – Nov 2024 | Sweden**\n\n- Designed and shipped an AI-native intelligence layer for business reporting, enabling conversational BI across dashboards used by stakeholders.\n- Architected end-to-end ETL lifecycle for Power BI and Tableau dashboards, delivering real-time customer personalization insights.\n- Drove data reliability and consistency during platform migration through automated quality audits, ensuring zero downtime for brand experience reporting.\n- Owned redesign of data pipelines powering reporting systems, aligning data owners and stakeholders around a unified customer view.\n\n## Data Analyst — Positive Integers Pvt Ltd\n\n**Sep 2019 – May 2020 | Chennai, India**\n\n- Built Tableau dashboards for an NBFC to analyze credit risk and loan repayment behavior, enabling data-driven lending decisions.\n- Shipped real-time Grafana dashboards for ID by SPI Cinemas to track the full order-to-table lifecycle, improving operational visibility.\n- Owned SQL-based ETL workflows to extract, transform, and load data from operational source systems into reporting layers, ensuring data accuracy and availability.\n\n---\n\n## Skills\n\n**AI & Personalization:** LLM APIs (OpenAI, Claude, Gemini), RAG pipelines, embeddings, prompt design, multi-model routing, multi-agent orchestration, memory systems, conversational AI\n\n**Backend & Systems:** Python, FastAPI, REST APIs, async pipelines, WebSockets, SSE streaming, Redis (caching, queues), PostgreSQL\n\n**Data & Analytics:** SQL, ETL pipelines, business intelligence, Power BI, Tableau, data validation, pipeline optimization\n\n**Infra & Deployment:** Docker, Fly.io, AWS (basics), logging, observability, performance optimization\n\n## Education\n\n**M.Sc. Statistics and Machine Learning** — Linköping University, Sweden · 2020–2022\n\n- Thesis: Built an ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples), demonstrating ability to extract signal from sparse, complex datasets.\n- Applied autoencoders for feature compression and representation learning, a technique transferable to building customer personalization intelligence layers.\n- Used PCA for dimensionality reduction and feature selection, enabling efficient model training.\n- Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns.\n\n**B.Tech Computer Science & Engineering** — SRM University, India · 2016–2020\n\n## Achievements\n\n- Shipped Emote, an AI-native personalization app: grew to 450+ users with 40+ power users and 13–15% weekly retention through automated, personalized user acquisition. (https://emotenow.app/)\n- Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson; recognized for improving reporting reliability and delivery.\n\n---\n\n## Languages\n\nEnglish (Fluent) · Tamil (Native) · Hindi",
-    "cover_note": "I grew Emote, a hyper-personalized AI companion, to 450+ users with 13–15% weekly retention by shipping a multi-agent memory system from prototype to production. I achieved a 50x cost reduction and 5x latency improvement in LLM inference, delivering consumer-grade performance at scale. As an AI Product Engineer, I bring this entrepreneurial ownership and AI-native personalization to build transformative e-commerce experiences at Nicobar.",
+    "resume_markdown": "## Siddharth Saminathan\n\n**AI Product Engineer · Systems Architect**\n+91 7299707403 · siddharthsaminathan99@gmail.com · Chennai, India\nWebsite: https://emotenow.app/ · github.com/siddharthsaminathan\n\n---\n\n## Profile\n\nBackend-focused AI engineer with 4+ years shipping production AI systems end-to-end, from data pipelines to user-facing features. Proven ability to own product outcomes: built an AI companion from concept to 450+ users with 13-15% weekly retention, reduced inference cost per conversation from $1.20 to $0.023, and cut response latency from 12.5s to 8s. Experienced with LLM APIs, multi-agent orchestration, and real-time personalization—ready to apply this to e-commerce clienteling and conversational BI.\n\n## Work Experience\n\n## AI Engineer — Omnex Systems (AquaPro AI)\n\n**2025 – Present | Chennai, India**\n\n- Shipped a production AI system that powers AI-assisted quality and control workflows (DFMEA, PFMEA, Control Plans, Process Flows, 5W2H, 5 Whys, 8D), improving consistency and reducing manual analysis effort for engineering teams — demonstrating ability to build AI-native features for domain-specific business intelligence.\n- Designed an orchestration layer using tool-calling: selects tools, routes data across internal services, and executes multi-step workflows end-to-end (generate, validate, update) — a pattern directly applicable to building conversational BI layers that replace dashboards.\n- Enabled the system to understand production hierarchies and categories, map inputs to the right structures, and suggest updates based on existing data — analogous to personalization intelligence that maps customer data to relevant actions.\n- Implemented feedback-aware flows: retrieves similar past concerns, links them, updates records, and suggests impactful actions to users — a core capability for clienteling tools that empower store teams with actionable insights.\n- Reduced response latency from ~12.5s to ~8s by restructuring the pipeline and consolidating model calls, ensuring real-time responsiveness for user-facing AI features.\n- Improved output consistency and reduced failures with validation layers, retry handling, and fallback logic — critical for reliable LLM API integration in production.\n- Implemented observability (structured logging, tracing, and metrics) to monitor system behavior and debug production issues, ensuring operational excellence for AI-native products.\n\n## Co-Founder, AI Product Engineer — Emote (emotenow.app)\n\n**2024 – Present**\n\n- Built a production AI companion system for hyper-personalized emotional support — users feel remembered and do not start over each session.\n- Designed a memory system that tracks emotional context, relationships, and cause-effect patterns across 100s of conversations, improving relevance per user.\n- Built the backend from scratch (FastAPI, Redis, PostgreSQL, hosted on Fly.io) with SSE streaming and WebSocket-based real-time pipelines, caching, and multi-model routing.\n- Scaled from 0 to 450+ users, with 40+ power users and ~13–15% weekly cohort retention (pre-PMF).\n- Reduced inference cost per conversation from ~$1.20 to ~$0.023 through model selection, caching, and prompt optimization.\n- Improved latency from ~15s to ~3s through pipeline optimization and streaming.\n- Built an internal AI product manager that monitors system behaviour, detects anomalies, and improves observability across the production AI stack.\n- Built a Reddit bot to automate user acquisition; reduced outreach time from ~6–8 hours to ~30–40 minutes, enabling 50–100 hyper-personalized DMs per session, increasing activation from ~20% to ~75% and weekly retention from ~5% to ~13%.\n\n## Data Engineer — Akkodis AB (Ericsson Client)\n\n**Nov 2022 – Nov 2024 | Sweden**\n\n- Owned the end-to-end migration of an enterprise data platform from Azure to on-prem PostgreSQL, ensuring data reliability and consistency through rigorous quality audits — directly enabling business intelligence for cross-functional stakeholders.\n- Architected and shipped the full ETL lifecycle for Power BI and Tableau dashboards, replacing manual reporting with automated, data-driven insights used by business owners.\n- Redesigned data pipelines powering reporting systems, collaborating with data owners and stakeholders to align data architecture with evolving business needs.\n- Drove data quality initiatives during large-scale migration, establishing consistency checks that improved reporting reliability across the organization.\n\n## Data Analyst — Positive Integers Pvt Ltd\n\n**Sep 2019 – May 2020 | Chennai, India**\n\n- Built SQL-based ETL workflows to extract, transform, and load data from operational source systems into reporting layers, enabling downstream business intelligence.\n- Built Tableau dashboards for an NBFC to analyze credit risk and loan repayment behaviour, delivering actionable insights for decision-makers.\n- Built real-time Grafana dashboards for ID by SPI Cinemas to track full order-to-table lifecycle, supporting operational efficiency.\n\n---\n\n## Skills\n\n**AI & Personalization:** LLM APIs (OpenAI, Claude, Gemini), RAG pipelines, embeddings, prompt design, multi-model routing, multi-agent orchestration, memory systems, personalization engines\n\n**Backend & Systems:** FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets, SSE streaming\n\n**Data & Business Intelligence:** SQL, Python, ETL pipelines, Power BI, Tableau, data validation, pipeline optimization\n\n**Infra & Deployment:** Docker, Fly.io, AWS (basics), logging, observability, performance optimization\n\n## Education\n\n**M.Sc. Statistics and Machine Learning** — Linköping University, Sweden · 2020–2022\n\n- Shipped an end-to-end ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples), demonstrating ability to deliver AI features from raw data to actionable insights.\n- Deployed autoencoders for feature compression and representation learning, directly applicable to building personalization engines that extract latent user preferences.\n- Applied PCA for dimensionality reduction and feature selection, mirroring techniques used in clienteling intelligence layers to identify high-value customer segments.\n- Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns, showcasing business-outcome thinking and ability to communicate complex findings to non-technical stakeholders.\n\n**B.Tech Computer Science & Engineering** — SRM University, India · 2016–2020\n\n## Achievements\n\n- Shipped Emote, an AI-native personalization engine, from zero to 450+ users with 40+ power users and 13–15% weekly retention, all through organic growth. (https://emotenow.app/)\n- Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson, driving improved reporting reliability and delivery outcomes.\n\n---\n\n## Languages\n\nEnglish (Fluent) · Tamil (Native) · Hindi",
+    "cover_note": "I built Emote AI companion from 0 to 450+ users with 13-15% weekly retention, and reduced inference cost per conversation by 98% from $1.20 to $0.023. As an AI Product Engineer at Nicobar Design, I can apply this backend-heavy AI experience to ship user-facing AI features end-to-end. While I lack frontend and retail domain expertise, my proven ability to architect and optimize AI systems from concept to production will drive measurable impact for your team.",
     "screening_answers": "",
-    "recruiter_message": "I'm interested in the AI Product Engineer role at Nicobar Design. I've shipped two production AI systems, including a hyper-personalized companion that grew to 450+ users with 13-15% weekly retention, and. Achieved 50x cost reduction and 5x latency improvement in LLM systems.",
+    "recruiter_message": "I'm interested in the AI Product Engineer role at Nicobar Design. I built an AI companion from 0 to 450+ users with 13-15% weekly retention and reduced inference cost per conversation by 98%.",
     "follow_up_message": "",
     "quality_report": {
       "what_changed": [
@@ -706,12 +687,12 @@
         "Section 'Skills' was completely rewritten.",
         "Section 'Education' was completely rewritten.",
         "Section 'Achievements' was completely rewritten.",
-        "Verify claim was not made: '4+ years of AI-specific experience (AI roles began in 2024).'",
-        "Verify claim was not made: 'Deep learning expert (no PhD or specialized focus).'",
-        "Verify claim was not made: 'Front-end development expertise (no evidence of building UI components).'",
-        "Verify claim was not made: 'Shopify or e-commerce platform integration experience.'",
-        "Verify claim was not made: 'CRM or marketing automation tool experience (MoEngage, Dynamics 365).'",
-        "Verify claim was not made: 'Retail or e-commerce industry domain knowledge.'"
+        "Verify claim was not made: 'Frontend development experience'",
+        "Verify claim was not made: 'Top-tier institute degree (IIT/BITS/NIT)'",
+        "Verify claim was not made: 'Retail/e-commerce experience'",
+        "Verify claim was not made: 'Shopify API experience'",
+        "Verify claim was not made: 'MoEngage or CRM experience'",
+        "Verify claim was not made: 'ERP exposure'"
       ],
       "risks": [],
       "confidence": 0.82
@@ -752,29 +733,49 @@
     "user_review_summary": "Check your new resume. 8-system architecture ensured zero metadata leakage."
   },
   "truth_guard_report": {
-    "total_claims": 11,
+    "total_claims": 12,
     "verified": 0,
-    "weak": 6,
-    "unsupported": 5,
+    "weak": 3,
+    "unsupported": 9,
     "exaggerated": 0,
     "fabricated": 0,
     "claims": [
       {
-        "text": "6+ years of experience shipping consumer-facing AI systems",
+        "text": "4+ years shipping production AI systems end-to-end",
         "risk_level": "WEAK",
         "claim_type": "year_experience",
-        "start_pos": 32,
-        "end_pos": 90,
-        "evidence_match": "Partially supported: actual total = 6.7, claimed 6+",
+        "start_pos": 33,
+        "end_pos": 83,
+        "evidence_match": "Partially supported: actual total = 6.67, claimed 4+",
         "repair_suggestion": null,
         "confidence": 0.6
+      },
+      {
+        "text": "built an AI companion",
+        "risk_level": "UNSUPPORTED",
+        "claim_type": "ownership",
+        "start_pos": 170,
+        "end_pos": 191,
+        "evidence_match": null,
+        "repair_suggestion": null,
+        "confidence": 0.0
+      },
+      {
+        "text": "Built a production AI companion system",
+        "risk_level": "WEAK",
+        "claim_type": "ownership",
+        "start_pos": 22,
+        "end_pos": 60,
+        "evidence_match": "Partial evidence match in 'Python'",
+        "repair_suggestion": null,
+        "confidence": 0.21
       },
       {
         "text": "Built the backend",
         "risk_level": "UNSUPPORTED",
         "claim_type": "ownership",
-        "start_pos": 452,
-        "end_pos": 469,
+        "start_pos": 323,
+        "end_pos": 340,
         "evidence_match": null,
         "repair_suggestion": null,
         "confidence": 0.0
@@ -783,112 +784,206 @@
         "text": "Built an internal AI product manager that monitors system behaviour",
         "risk_level": "UNSUPPORTED",
         "claim_type": "ownership",
-        "start_pos": 930,
-        "end_pos": 997,
+        "start_pos": 801,
+        "end_pos": 868,
         "evidence_match": null,
         "repair_suggestion": null,
         "confidence": 0.0
       },
       {
         "text": "Built a Reddit bot",
-        "risk_level": "WEAK",
-        "claim_type": "ownership",
-        "start_pos": 1079,
-        "end_pos": 1097,
-        "evidence_match": "Partial evidence match in 'Entrepreneurial'",
-        "repair_suggestion": null,
-        "confidence": 0.26249999999999996
-      },
-      {
-        "text": "Architected a conversational BI system",
         "risk_level": "UNSUPPORTED",
         "claim_type": "ownership",
-        "start_pos": 277,
-        "end_pos": 315,
+        "start_pos": 950,
+        "end_pos": 968,
         "evidence_match": null,
         "repair_suggestion": null,
         "confidence": 0.0
       },
       {
-        "text": "Architected end-to-end ETL lifecycle",
-        "risk_level": "UNSUPPORTED",
-        "claim_type": "ownership",
-        "start_pos": 182,
-        "end_pos": 218,
-        "evidence_match": null,
-        "repair_suggestion": null,
-        "confidence": 0.0
-      },
-      {
-        "text": "Owned redesign of data pipelines powering reporting systems",
-        "risk_level": "WEAK",
-        "claim_type": "ownership",
-        "start_pos": 470,
-        "end_pos": 529,
-        "evidence_match": "Partial evidence match in 'API & Data Pipeline'",
-        "repair_suggestion": null,
-        "confidence": 0.2545454545454545
-      },
-      {
-        "text": "Built Tableau dashboards",
+        "text": "Built SQL-based ETL workflows",
         "risk_level": "WEAK",
         "claim_type": "ownership",
         "start_pos": 44,
-        "end_pos": 68,
-        "evidence_match": "Partial evidence match in 'API & Data Pipeline'",
-        "repair_suggestion": null,
-        "confidence": 0.27999999999999997
-      },
-      {
-        "text": "Owned SQL-based ETL workflows",
-        "risk_level": "WEAK",
-        "claim_type": "ownership",
-        "start_pos": 314,
-        "end_pos": 343,
+        "end_pos": 73,
         "evidence_match": "Partial evidence match in 'SQL'",
         "repair_suggestion": null,
-        "confidence": 0.21
+        "confidence": 0.35
+      },
+      {
+        "text": "Built Tableau dashboards",
+        "risk_level": "UNSUPPORTED",
+        "claim_type": "ownership",
+        "start_pos": 211,
+        "end_pos": 235,
+        "evidence_match": null,
+        "repair_suggestion": null,
+        "confidence": 0.0
+      },
+      {
+        "text": "Built real-time Grafana dashboards",
+        "risk_level": "UNSUPPORTED",
+        "claim_type": "ownership",
+        "start_pos": 355,
+        "end_pos": 389,
+        "evidence_match": null,
+        "repair_suggestion": null,
+        "confidence": 0.0
+      },
+      {
+        "text": "Owned the end-to-end migration of an enterprise data platform",
+        "risk_level": "UNSUPPORTED",
+        "claim_type": "ownership",
+        "start_pos": 36,
+        "end_pos": 97,
+        "evidence_match": null,
+        "repair_suggestion": null,
+        "confidence": 0.0
+      },
+      {
+        "text": "Architected and shipped the full ETL lifecycle",
+        "risk_level": "UNSUPPORTED",
+        "claim_type": "ownership",
+        "start_pos": 285,
+        "end_pos": 331,
+        "evidence_match": null,
+        "repair_suggestion": null,
+        "confidence": 0.0
       },
       {
         "text": "Led enterprise data platform migration (Azure",
-        "risk_level": "WEAK",
-        "claim_type": "ownership",
-        "start_pos": 195,
-        "end_pos": 240,
-        "evidence_match": "Partial evidence match in 'SQL'",
-        "repair_suggestion": null,
-        "confidence": 0.2545454545454545
-      },
-      {
-        "text": "Built an ML pipeline",
         "risk_level": "UNSUPPORTED",
         "claim_type": "ownership",
-        "start_pos": 96,
-        "end_pos": 116,
+        "start_pos": 182,
+        "end_pos": 227,
         "evidence_match": null,
         "repair_suggestion": null,
         "confidence": 0.0
       }
     ]
   },
-  "pre_humanizer_resume": "## Siddharth Saminathan\n\n**AI Product Engineer · Systems Architect**\n+91 7299707403 · siddharthsaminathan99@gmail.com · Chennai, India\nWebsite: https://emotenow.app/ · github.com/siddharthsaminathan\n\n\n\n---\n\n\n\n## Profile\n\nAI-native product engineer with 6+ years of experience shipping consumer-facing AI systems from concept to real users. Co-founded and scaled a hyper-personalized AI companion to 450+ users with 13–15% weekly retention, achieving 50x cost reduction and 5x latency improvement through LLM API optimization. Proven ability to architect and deploy intelligence layers that drive measurable customer outcomes—retention, personalization, and brand experience. Entrepreneurial, CEO-facing communicator who thrives on building AI products that delight users and deliver business impact.\n\n\n\n## Work Experience\n\n\n\n## AI Engineer — Omnex Systems (AquaPro AI)\n\n**2025 – Present | Chennai, India**\n\n- Shipped an AI-native intelligence layer that personalizes quality workflows (DFMEA, PFMEA, Control Plans) by understanding product hierarchies and suggesting context-aware updates, reducing manual analysis effort for engineering teams.\n- Architected a conversational BI system using LLM APIs and tool-calling: selects tools, routes data across internal services, and executes multi-step workflows end-to-end (generate, validate, update).\n- Designed feedback-aware flows that retrieve similar past concerns, link them, update records, and suggest impactful actions — enabling a self-improving brand experience.\n- Reduced response latency from ~12.5s to ~8s by restructuring the pipeline and consolidating model calls, improving real-time customer personalization.\n- Implemented observability (structured logging, tracing, and metrics) to monitor system behavior and debug production issues.\n- Improved output consistency and reduced failures with validation layers, retry handling, and fallback logic.\n- Enabled the system to map inputs to the right structures and suggest updates based on existing data, ensuring accurate and relevant outputs.\n\n\n\n## Co-Founder, AI Product Engineer — Emote (emotenow.app)\n\n**2024 – Present**\n\n- Shipped a production AI companion system that delivers hyper-personalized emotional support, ensuring users feel remembered across sessions — a pattern directly applicable to building a customer personalization intelligence layer for e-commerce.\n- Designed a memory-driven personalization engine that tracks emotional context, relationships, and cause-effect patterns across 100s of conversations, improving relevance per user.\n- Built the backend from scratch (FastAPI, Redis, PostgreSQL, hosted on Fly.io) with SSE streaming and WebSocket-based real-time pipelines, caching, and multi-model routing.\n- Scaled from 0 to 450+ users, with 40+ power users and ~13–15% weekly cohort retention (pre-PMF).\n- Reduced inference cost per conversation from ~$1.20 to ~$0.023 through model selection, caching, and prompt optimization.\n- Improved latency from ~15s to ~3s through pipeline optimization and streaming.\n- Built an internal AI product manager that monitors system behaviour, detects anomalies, and improves observability across the production AI stack.\n- Built a Reddit bot to automate user acquisition; reduced outreach time from ~6–8 hours to ~30–40 minutes, enabling 50–100 hyper-personalized DMs per session, increasing activation from ~20% to ~75% and weekly retention from ~5% to ~13%.\n\n\n\n## Data Engineer — Akkodis AB (Ericsson Client)\n\n**Nov 2022 – Nov 2024 | Sweden**\n\n- Designed and shipped an AI-native intelligence layer for business reporting, enabling conversational BI across dashboards used by stakeholders.\n- Architected end-to-end ETL lifecycle for Power BI and Tableau dashboards, delivering real-time customer personalization insights.\n- Drove data reliability and consistency during platform migration through automated quality audits, ensuring zero downtime for brand experience reporting.\n- Owned redesign of data pipelines powering reporting systems, aligning data owners and stakeholders around a unified customer view.\n\n\n\n## Data Analyst — Positive Integers Pvt Ltd\n\n**Sep 2019 – May 2020 | Chennai, India**\n\n- Built Tableau dashboards for an NBFC to analyze credit risk and loan repayment behavior, enabling data-driven lending decisions.\n- Shipped real-time Grafana dashboards for ID by SPI Cinemas to track the full order-to-table lifecycle, improving operational visibility.\n- Owned SQL-based ETL workflows to extract, transform, and load data from operational source systems into reporting layers, ensuring data accuracy and availability.\n\n---\n\n\n\n## Skills\n\n**AI & Personalization:** LLM APIs (OpenAI, Claude, Gemini), RAG pipelines, embeddings, prompt design, multi-model routing, multi-agent orchestration, memory systems, conversational AI\n\n**Backend & Systems:** Python, FastAPI, REST APIs, async pipelines, WebSockets, SSE streaming, Redis (caching, queues), PostgreSQL\n\n**Data & Analytics:** SQL, ETL pipelines, business intelligence, Power BI, Tableau, data validation, pipeline optimization\n\n**Infra & Deployment:** Docker, Fly.io, AWS (basics), logging, observability, performance optimization\n\n\n\n## Education\n\n**M.Sc. Statistics and Machine Learning** — Linköping University, Sweden · 2020–2022\n\n- Thesis: Built an ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples), demonstrating ability to extract signal from sparse, complex datasets.\n- Applied autoencoders for feature compression and representation learning, a technique transferable to building customer personalization intelligence layers.\n- Used PCA for dimensionality reduction and feature selection, enabling efficient model training.\n- Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns.\n\n**B.Tech Computer Science & Engineering** — SRM University, India · 2016–2020\n\n\n\n## Achievements\n\n- Shipped Emote, an AI-native personalization app: grew to 450+ users with 40+ power users and 13–15% weekly retention through automated, personalized user acquisition. (https://emotenow.app/)\n- Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson; recognized for improving reporting reliability and delivery.\n\n---\n\n\n\n## Languages\n\nEnglish (Fluent) · Tamil (Native) · Hindi\n",
+  "pre_humanizer_resume": "## Siddharth Saminathan\n\n**AI Product Engineer · Systems Architect**\n+91 7299707403 · siddharthsaminathan99@gmail.com · Chennai, India\nWebsite: https://emotenow.app/ · github.com/siddharthsaminathan\n\n\n\n---\n\n\n\n## Profile\n\nBackend-focused AI engineer with 4+ years shipping production AI systems end-to-end, from data pipelines to user-facing features. Proven ability to own product outcomes: built an AI companion from concept to 450+ users with 13-15% weekly retention, reduced inference cost per conversation from $1.20 to $0.023, and cut response latency from 12.5s to 8s. Experienced with LLM APIs, multi-agent orchestration, and real-time personalization—ready to apply this to e-commerce clienteling and conversational BI.\n\n\n\n## Work Experience\n\n\n\n## AI Engineer — Omnex Systems (AquaPro AI)\n\n**2025 – Present | Chennai, India**\n\n- Shipped a production AI system that powers AI-assisted quality and control workflows (DFMEA, PFMEA, Control Plans, Process Flows, 5W2H, 5 Whys, 8D), improving consistency and reducing manual analysis effort for engineering teams — demonstrating ability to build AI-native features for domain-specific business intelligence.\n- Designed an orchestration layer using tool-calling: selects tools, routes data across internal services, and executes multi-step workflows end-to-end (generate, validate, update) — a pattern directly applicable to building conversational BI layers that replace dashboards.\n- Enabled the system to understand production hierarchies and categories, map inputs to the right structures, and suggest updates based on existing data — analogous to personalization intelligence that maps customer data to relevant actions.\n- Implemented feedback-aware flows: retrieves similar past concerns, links them, updates records, and suggests impactful actions to users — a core capability for clienteling tools that empower store teams with actionable insights.\n- Reduced response latency from ~12.5s to ~8s by restructuring the pipeline and consolidating model calls, ensuring real-time responsiveness for user-facing AI features.\n- Improved output consistency and reduced failures with validation layers, retry handling, and fallback logic — critical for reliable LLM API integration in production.\n- Implemented observability (structured logging, tracing, and metrics) to monitor system behavior and debug production issues, ensuring operational excellence for AI-native products.\n\n\n\n## Co-Founder, AI Product Engineer — Emote (emotenow.app)\n\n**2024 – Present**\n\n- Built a production AI companion system for hyper-personalized emotional support — users feel remembered and do not start over each session.\n- Designed a memory system that tracks emotional context, relationships, and cause-effect patterns across 100s of conversations, improving relevance per user.\n- Built the backend from scratch (FastAPI, Redis, PostgreSQL, hosted on Fly.io) with SSE streaming and WebSocket-based real-time pipelines, caching, and multi-model routing.\n- Scaled from 0 to 450+ users, with 40+ power users and ~13–15% weekly cohort retention (pre-PMF).\n- Reduced inference cost per conversation from ~$1.20 to ~$0.023 through model selection, caching, and prompt optimization.\n- Improved latency from ~15s to ~3s through pipeline optimization and streaming.\n- Built an internal AI product manager that monitors system behaviour, detects anomalies, and improves observability across the production AI stack.\n- Built a Reddit bot to automate user acquisition; reduced outreach time from ~6–8 hours to ~30–40 minutes, enabling 50–100 hyper-personalized DMs per session, increasing activation from ~20% to ~75% and weekly retention from ~5% to ~13%.\n\n\n\n## Data Engineer — Akkodis AB (Ericsson Client)\n\n**Nov 2022 – Nov 2024 | Sweden**\n\n- Owned the end-to-end migration of an enterprise data platform from Azure to on-prem PostgreSQL, ensuring data reliability and consistency through rigorous quality audits — directly enabling business intelligence for cross-functional stakeholders.\n- Architected and shipped the full ETL lifecycle for Power BI and Tableau dashboards, replacing manual reporting with automated, data-driven insights used by business owners.\n- Redesigned data pipelines powering reporting systems, collaborating with data owners and stakeholders to align data architecture with evolving business needs.\n- Drove data quality initiatives during large-scale migration, establishing consistency checks that improved reporting reliability across the organization.\n\n\n\n## Data Analyst — Positive Integers Pvt Ltd\n\n**Sep 2019 – May 2020 | Chennai, India**\n\n- Built SQL-based ETL workflows to extract, transform, and load data from operational source systems into reporting layers, enabling downstream business intelligence.\n- Built Tableau dashboards for an NBFC to analyze credit risk and loan repayment behaviour, delivering actionable insights for decision-makers.\n- Built real-time Grafana dashboards for ID by SPI Cinemas to track full order-to-table lifecycle, supporting operational efficiency.\n\n---\n\n\n\n## Skills\n\n**AI & Personalization:** LLM APIs (OpenAI, Claude, Gemini), RAG pipelines, embeddings, prompt design, multi-model routing, multi-agent orchestration, memory systems, personalization engines\n\n**Backend & Systems:** FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets, SSE streaming\n\n**Data & Business Intelligence:** SQL, Python, ETL pipelines, Power BI, Tableau, data validation, pipeline optimization\n\n**Infra & Deployment:** Docker, Fly.io, AWS (basics), logging, observability, performance optimization\n\n\n\n## Education\n\n**M.Sc. Statistics and Machine Learning** — Linköping University, Sweden · 2020–2022\n\n- Shipped an end-to-end ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples), demonstrating ability to deliver AI features from raw data to actionable insights.\n- Deployed autoencoders for feature compression and representation learning, directly applicable to building personalization engines that extract latent user preferences.\n- Applied PCA for dimensionality reduction and feature selection, mirroring techniques used in clienteling intelligence layers to identify high-value customer segments.\n- Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns, showcasing business-outcome thinking and ability to communicate complex findings to non-technical stakeholders.\n\n**B.Tech Computer Science & Engineering** — SRM University, India · 2016–2020\n\n\n\n## Achievements\n\n- Shipped Emote, an AI-native personalization engine, from zero to 450+ users with 40+ power users and 13–15% weekly retention, all through organic growth. (https://emotenow.app/)\n- Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson, driving improved reporting reliability and delivery outcomes.\n\n---\n\n\n\n## Languages\n\nEnglish (Fluent) · Tamil (Native) · Hindi\n",
+  "humanizer_output": "## Siddharth Saminathan\n\n**AI Product Engineer · Systems Architect**\n+91 7299707403 · siddharthsaminathan99@gmail.com · Chennai, India\nWebsite: https://emotenow.app/ · github.com/siddharthsaminathan\n\n---\n\n## Profile\n\nBackend-focused AI engineer with 4+ years shipping production AI systems end-to-end, from data pipelines to user-facing features. Proven ability to own product outcomes: built an AI companion from concept to 450+ users with 13-15% weekly retention, reduced inference cost per conversation from $1.20 to $0.023, and cut response latency from 12.5s to 8s. Experienced with LLM APIs, multi-agent orchestration, and real-time personalization—ready to apply this to e-commerce clienteling and conversational BI.\n\n## Work Experience\n\n## AI Engineer — Omnex Systems (AquaPro AI)\n\n**2025 – Present | Chennai, India**\n\n- Shipped a production AI system that powers AI-assisted quality and control workflows (DFMEA, PFMEA, Control Plans, Process Flows, 5W2H, 5 Whys, 8D), improving consistency and reducing manual analysis effort for engineering teams — demonstrating ability to build AI-native features for domain-specific business intelligence.\n- Designed an orchestration layer using tool-calling: selects tools, routes data across internal services, and executes multi-step workflows end-to-end (generate, validate, update) — a pattern directly applicable to building conversational BI layers that replace dashboards.\n- Enabled the system to understand production hierarchies and categories, map inputs to the right structures, and suggest updates based on existing data — analogous to personalization intelligence that maps customer data to relevant actions.\n- Implemented feedback-aware flows: retrieves similar past concerns, links them, updates records, and suggests impactful actions to users — a core capability for clienteling tools that empower store teams with actionable insights.\n- Reduced response latency from ~12.5s to ~8s by restructuring the pipeline and consolidating model calls, ensuring real-time responsiveness for user-facing AI features.\n- Improved output consistency and reduced failures with validation layers, retry handling, and fallback logic — critical for reliable LLM API integration in production.\n- Implemented observability (structured logging, tracing, and metrics) to monitor system behavior and debug production issues, ensuring operational excellence for AI-native products.\n\n## Co-Founder, AI Product Engineer — Emote (emotenow.app)\n\n**2024 – Present**\n\n- Built a production AI companion system for hyper-personalized emotional support — users feel remembered and do not start over each session.\n- Designed a memory system that tracks emotional context, relationships, and cause-effect patterns across 100s of conversations, improving relevance per user.\n- Built the backend from scratch (FastAPI, Redis, PostgreSQL, hosted on Fly.io) with SSE streaming and WebSocket-based real-time pipelines, caching, and multi-model routing.\n- Scaled from 0 to 450+ users, with 40+ power users and ~13–15% weekly cohort retention (pre-PMF).\n- Reduced inference cost per conversation from ~$1.20 to ~$0.023 through model selection, caching, and prompt optimization.\n- Improved latency from ~15s to ~3s through pipeline optimization and streaming.\n- Built an internal AI product manager that monitors system behaviour, detects anomalies, and improves observability across the production AI stack.\n- Built a Reddit bot to automate user acquisition; reduced outreach time from ~6–8 hours to ~30–40 minutes, enabling 50–100 hyper-personalized DMs per session, increasing activation from ~20% to ~75% and weekly retention from ~5% to ~13%.\n\n## Data Engineer — Akkodis AB (Ericsson Client)\n\n**Nov 2022 – Nov 2024 | Sweden**\n\n- Owned the end-to-end migration of an enterprise data platform from Azure to on-prem PostgreSQL, ensuring data reliability and consistency through rigorous quality audits — directly enabling business intelligence for cross-functional stakeholders.\n- Architected and shipped the full ETL lifecycle for Power BI and Tableau dashboards, replacing manual reporting with automated, data-driven insights used by business owners.\n- Redesigned data pipelines powering reporting systems, collaborating with data owners and stakeholders to align data architecture with evolving business needs.\n- Drove data quality initiatives during large-scale migration, establishing consistency checks that improved reporting reliability across the organization.\n\n## Data Analyst — Positive Integers Pvt Ltd\n\n**Sep 2019 – May 2020 | Chennai, India**\n\n- Built SQL-based ETL workflows to extract, transform, and load data from operational source systems into reporting layers, enabling downstream business intelligence.\n- Built Tableau dashboards for an NBFC to analyze credit risk and loan repayment behaviour, delivering actionable insights for decision-makers.\n- Built real-time Grafana dashboards for ID by SPI Cinemas to track full order-to-table lifecycle, supporting operational efficiency.\n\n---\n\n## Skills\n\n**AI & Personalization:** LLM APIs (OpenAI, Claude, Gemini), RAG pipelines, embeddings, prompt design, multi-model routing, multi-agent orchestration, memory systems, personalization engines\n\n**Backend & Systems:** FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets, SSE streaming\n\n**Data & Business Intelligence:** SQL, Python, ETL pipelines, Power BI, Tableau, data validation, pipeline optimization\n\n**Infra & Deployment:** Docker, Fly.io, AWS (basics), logging, observability, performance optimization\n\n## Education\n\n**M.Sc. Statistics and Machine Learning** — Linköping University, Sweden · 2020–2022\n\n- Shipped an end-to-end ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples), demonstrating ability to deliver AI features from raw data to actionable insights.\n- Deployed autoencoders for feature compression and representation learning, directly applicable to building personalization engines that extract latent user preferences.\n- Applied PCA for dimensionality reduction and feature selection, mirroring techniques used in clienteling intelligence layers to identify high-value customer segments.\n- Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns, showcasing business-outcome thinking and ability to communicate complex findings to non-technical stakeholders.\n\n**B.Tech Computer Science & Engineering** — SRM University, India · 2016–2020\n\n## Achievements\n\n- Shipped Emote, an AI-native personalization engine, from zero to 450+ users with 40+ power users and 13–15% weekly retention, all through organic growth. (https://emotenow.app/)\n- Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson, driving improved reporting reliability and delivery outcomes.\n\n---\n\n## Languages\n\nEnglish (Fluent) · Tamil (Native) · Hindi",
   "humanizer_report": {
     "resume": {
-      "slop_flags": 1,
+      "slop_flags": 2,
       "changed_lines": 77,
       "realism_concerns": 0,
       "recruiter_concerns": []
     },
     "cover_note": {
-      "slop_flags": 1,
+      "slop_flags": 0,
       "changed_lines": 0,
       "realism_concerns": 0
     },
     "recruiter_message": {
       "slop_flags": 0,
-      "changed_lines": 1,
+      "changed_lines": 0,
       "realism_concerns": 0
     }
+  },
+  "s7_debug": {
+    "n_sections_total": 9,
+    "n_rewritten": 9,
+    "n_fallback": 0,
+    "n_workers": 3,
+    "total_elapsed_s": 9.02,
+    "sections": [
+      {
+        "section_id": "profile",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 500,
+        "rewritten_chars": 506,
+        "elapsed_s": 2.6,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "co_founder_ai_product_engineer_emote_emotenow_app",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 1188,
+        "rewritten_chars": 1186,
+        "elapsed_s": 3.26,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "ai_engineer_omnex_systems_aquapro_ai",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 1085,
+        "rewritten_chars": 1632,
+        "elapsed_s": 4.59,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "data_analyst_positive_integers_pvt_ltd",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 363,
+        "rewritten_chars": 491,
+        "elapsed_s": 5.54,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "data_engineer_akkodis_ab_ericsson_client",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 443,
+        "rewritten_chars": 774,
+        "elapsed_s": 6.07,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "skills",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 511,
+        "rewritten_chars": 539,
+        "elapsed_s": 6.54,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "languages",
+        "status": "REWRITE",
+        "change_type": "KEEP",
+        "original_chars": 41,
+        "rewritten_chars": 41,
+        "elapsed_s": 7.59,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "education",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 567,
+        "rewritten_chars": 970,
+        "elapsed_s": 8.89,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "achievements",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 295,
+        "rewritten_chars": 334,
+        "elapsed_s": 9.02,
+        "model": "deepseek-chat"
+      }
+    ],
+    "company_context_present": true,
+    "role_keywords_used": [
+      "AI-native",
+      "clienteling",
+      "business intelligence",
+      "LLM API",
+      "Shopify",
+      "personalization",
+      "front-end",
+      "Python",
+      "SQL",
+      "APIs"
+    ]
   },
   "errors": []
 }

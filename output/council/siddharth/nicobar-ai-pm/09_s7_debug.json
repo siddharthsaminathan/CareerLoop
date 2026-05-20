@@ -1,0 +1,103 @@
+{
+  "n_sections_total": 9,
+  "n_rewritten": 9,
+  "n_fallback": 0,
+  "n_workers": 3,
+  "total_elapsed_s": 9.02,
+  "sections": [
+    {
+      "section_id": "profile",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 500,
+      "rewritten_chars": 506,
+      "elapsed_s": 2.6,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "co_founder_ai_product_engineer_emote_emotenow_app",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 1188,
+      "rewritten_chars": 1186,
+      "elapsed_s": 3.26,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "ai_engineer_omnex_systems_aquapro_ai",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 1085,
+      "rewritten_chars": 1632,
+      "elapsed_s": 4.59,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "data_analyst_positive_integers_pvt_ltd",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 363,
+      "rewritten_chars": 491,
+      "elapsed_s": 5.54,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "data_engineer_akkodis_ab_ericsson_client",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 443,
+      "rewritten_chars": 774,
+      "elapsed_s": 6.07,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "skills",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 511,
+      "rewritten_chars": 539,
+      "elapsed_s": 6.54,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "languages",
+      "status": "REWRITE",
+      "change_type": "KEEP",
+      "original_chars": 41,
+      "rewritten_chars": 41,
+      "elapsed_s": 7.59,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "education",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 567,
+      "rewritten_chars": 970,
+      "elapsed_s": 8.89,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "achievements",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 295,
+      "rewritten_chars": 334,
+      "elapsed_s": 9.02,
+      "model": "deepseek-chat"
+    }
+  ],
+  "company_context_present": true,
+  "role_keywords_used": [
+    "AI-native",
+    "clienteling",
+    "business intelligence",
+    "LLM API",
+    "Shopify",
+    "personalization",
+    "front-end",
+    "Python",
+    "SQL",
+    "APIs"
+  ]
+}

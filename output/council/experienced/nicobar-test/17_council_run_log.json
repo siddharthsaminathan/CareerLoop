@@ -1,0 +1,418 @@
+{
+  "job_id": "nicobar-test",
+  "person_id": "experienced",
+  "job_title": "AI Product Engineer",
+  "company": "Nicobar Design Pvt. Ltd.",
+  "job_url": "https://example.com",
+  "jd_text": "\nJob Title: AI Product Engineer \u2014 CEO's Office\nCompany: Nicobar Design Pvt. Ltd. (nicobar.com)\nLocation: Delhi\nExperience: 3-5 years\n\nTHE OPPORTUNITY\nWe've spent a decade building a brand that looks and feels unmistakably Nicobar. The next chapter is building a company that thinks the same way \u2014 every store, every collection, every customer conversation: sharper, faster, unmistakably ours. AI-native, not in theory, but in every room we walk into.\n\nWHAT YOU'LL OWN\n01 Customer Personalization : Build the intelligence layer beneath all our customer communication that understands who each customer actually is.\n02 Store Clienteling : Build the clienteling tool our store teams reach for every day.\n03 Business Intelligence : Replace Microsoft BI dashboards with a live, conversational intelligence layer.\n04 Smoothen Design Workstreams : Remove friction so the creative team can make more, better, faster.\n\nWHAT WE'RE LOOKING FOR\nEngineering degree from IIT, BITS, NIT or equivalent with 3-5 years of experience.\nYou've built something real with an LLM API - OpenAI, Claude, Gemini, etc.\nFluent in Python/ NodeJS. Comfortable writing and querying SQL.\nAbility to build front-ends that don't embarrass the brand. We're visual people.\n",
+  "master_cv": "# Experienced Technical Profile: Alex Chen\n\n## Profile\nSenior Staff Engineer with 12 years of experience in distributed systems and cloud infrastructure.\n\n## Contact\nEmail: alex.chen@example.com\nGitHub: [github.com/alexchen](https://github.com/alexchen)\n\n## Skills\n- Golang, Rust, Python\n- Kubernetes, Terraform, AWS\n- System Design, Distributed Databases\n\n## Work Experience\n\n### Staff Engineer \u2014 CloudScale (2018 - Present)\n- Led the migration of 500+ microservices to Kubernetes.\n- Optimized database latency by 40% using custom caching layers.\n\n### Senior Engineer \u2014 TechNova (2012 - 2018)\n- Built a real-time analytics engine handling 1M events/sec.\n\n## Education\nM.S. Computer Science \u2014 Stanford University\n\n## Internal Strategy Metadata (PRIVATE)\n- Target Role: Principal Engineer\n- Salary Floor: $250k\n- Deal-breaker: No blockchain companies\n",
+  "profile": {
+    "candidate": {
+      "full_name": "Test User experienced"
+    },
+    "search_preferences": {
+      "target_roles": [
+        "Engineer",
+        "Lead"
+      ],
+      "deal_breakers": [
+        "No mass recruiters"
+      ],
+      "salary_floor": 100000
+    }
+  },
+  "today": "May 2026",
+  "canonical_resume": {
+    "person_id": "default",
+    "sections": [
+      {
+        "section_id": "experienced_technical_profile_alex_chen",
+        "section_title": "Experienced Technical Profile: Alex Chen",
+        "normalized_type": "experience",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "",
+        "original_order": 0,
+        "links": []
+      },
+      {
+        "section_id": "profile",
+        "section_title": "Profile",
+        "normalized_type": "profile",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "Senior Staff Engineer with 12 years of experience in distributed systems and cloud infrastructure.",
+        "original_order": 1,
+        "links": []
+      },
+      {
+        "section_id": "contact",
+        "section_title": "Contact",
+        "normalized_type": "contact",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "Email: alex.chen@example.com\nGitHub: [github.com/alexchen](https://github.com/alexchen)",
+        "original_order": 2,
+        "links": [
+          "https://github.com/alexchen"
+        ]
+      },
+      {
+        "section_id": "skills",
+        "section_title": "Skills",
+        "normalized_type": "skill",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "- Golang, Rust, Python\n- Kubernetes, Terraform, AWS\n- System Design, Distributed Databases",
+        "original_order": 3,
+        "links": []
+      },
+      {
+        "section_id": "work_experience",
+        "section_title": "Work Experience",
+        "normalized_type": "experience",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "",
+        "original_order": 4,
+        "links": []
+      },
+      {
+        "section_id": "staff_engineer_cloudscale_2018_present",
+        "section_title": "Staff Engineer \u2014 CloudScale (2018 - Present)",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "- Led the migration of 500+ microservices to Kubernetes.\n- Optimized database latency by 40% using custom caching layers.",
+        "original_order": 5,
+        "links": []
+      },
+      {
+        "section_id": "senior_engineer_technova_2012_2018",
+        "section_title": "Senior Engineer \u2014 TechNova (2012 - 2018)",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "- Built a real-time analytics engine handling 1M events/sec.",
+        "original_order": 6,
+        "links": []
+      },
+      {
+        "section_id": "education",
+        "section_title": "Education",
+        "normalized_type": "education",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "M.S. Computer Science \u2014 Stanford University",
+        "original_order": 7,
+        "links": []
+      },
+      {
+        "section_id": "internal_strategy_metadata_private",
+        "section_title": "Internal Strategy Metadata (PRIVATE)",
+        "normalized_type": "private_metadata",
+        "visibility_class": "PRIVATE_STRATEGY_METADATA",
+        "raw_text": "- Target Role: Principal Engineer\n- Salary Floor: $250k\n- Deal-breaker: No blockchain companies",
+        "original_order": 8,
+        "links": []
+      }
+    ],
+    "parse_warnings": []
+  },
+  "preservation_contract": {
+    "required_public_sections": [
+      "experienced_technical_profile_alex_chen",
+      "contact",
+      "work_experience",
+      "education"
+    ],
+    "sections_to_exclude": [
+      "internal_strategy_metadata_private"
+    ],
+    "unknown_sections_to_preserve": [
+      "staff_engineer_cloudscale_2018_present",
+      "senior_engineer_technova_2012_2018"
+    ],
+    "ordering_rules": [
+      "experienced_technical_profile_alex_chen",
+      "profile",
+      "contact",
+      "skills",
+      "work_experience",
+      "staff_engineer_cloudscale_2018_present",
+      "senior_engineer_technova_2012_2018",
+      "education"
+    ],
+    "link_preservation_rules": {
+      "all": "MUST_SURVIVE"
+    },
+    "max_allowed_changes": 3
+  },
+  "company_intelligence": {
+    "company_name": "Nicobar Design Pvt. Ltd.",
+    "role_title": "AI Product Engineer -- CEO's Office",
+    "source_urls": [
+      "https://www.linkedin.com/feed/update/urn:li:activity:7329475396732014592"
+    ],
+    "grounding_status": "PARTIAL",
+    "confidence": 0.5,
+    "generated_at": "2026-05-19T22:04:46.120640+00:00",
+    "cache_key": "909ea5c71e0f1e43",
+    "ttl_days": 30,
+    "company_summary": "Nicobar Design Pvt. Ltd.. operates in ecommerce. with a focus on ai_ml, ai_ml, retail_tech.",
+    "business_model": "E-commerce",
+    "revenue_model": "",
+    "customer_segment": "",
+    "product_category": "",
+    "india_presence": "UNKNOWN",
+    "company_maturity": "UNKNOWN",
+    "growth_signals": [],
+    "stability_signals": [],
+    "hiring_urgency": "UNKNOWN",
+    "role_reason": "",
+    "likely_success_criteria": [],
+    "likely_failure_modes": [],
+    "culture_signals": [],
+    "communication_style": "",
+    "founder_or_leadership_signals": "",
+    "org_maturity": "UNKNOWN",
+    "technical_maturity": "UNKNOWN",
+    "ai_maturity": "UNKNOWN",
+    "likely_stack": "",
+    "interview_implications": "",
+    "compensation_signals": "",
+    "red_flags": [],
+    "positioning_implications": "",
+    "language_to_use": [
+      "AI-native",
+      "intelligence layer",
+      "brand experience",
+      "customer personalization",
+      "conversational BI"
+    ],
+    "language_to_avoid": [
+      "enterprise-grade",
+      "scalable infrastructure",
+      "data pipeline",
+      "legacy migration",
+      "cost optimization"
+    ],
+    "candidate_angles": [],
+    "transferability_angles": [],
+    "risks_to_soften": [
+      "No direct e-commerce or retail experience",
+      "No experience with Shopify, MoEngage, or Dynamics 365",
+      "Background in manufacturing quality, not consumer personalization"
+    ],
+    "claims_to_avoid": [],
+    "resume_strategy_hint": "",
+    "outreach_strategy_hint": "",
+    "interview_strategy_hint": "",
+    "s6_positioning_context": {
+      "company_archetype": "Nicobar Design Pvt. Ltd.. operates in ecommerce. with a focus on ai_ml, ai_ml, retail_tech.",
+      "business_model": "E-commerce",
+      "company_maturity": "UNKNOWN",
+      "india_presence": "UNKNOWN",
+      "culture_signals": [],
+      "hiring_urgency": "UNKNOWN",
+      "positioning_implications": "",
+      "language_to_use": [
+        "AI-native",
+        "intelligence layer",
+        "brand experience",
+        "customer personalization",
+        "conversational BI"
+      ],
+      "language_to_avoid": [
+        "enterprise-grade",
+        "scalable infrastructure",
+        "data pipeline",
+        "legacy migration",
+        "cost optimization"
+      ],
+      "risks_to_soften": [
+        "No direct e-commerce or retail experience",
+        "No experience with Shopify, MoEngage, or Dynamics 365",
+        "Background in manufacturing quality, not consumer personalization"
+      ],
+      "claims_to_avoid": [],
+      "candidate_angles": [],
+      "red_flags": [],
+      "grounding_status": "PARTIAL",
+      "confidence": 0.0
+    },
+    "s7_rewrite_context": {
+      "company_archetype": "Nicobar Design Pvt. Ltd.. operates in ecommerce. with a focus on ai_ml, ai_ml, r",
+      "company_tone": "professional and direct",
+      "product_context": "E-commerce",
+      "business_problem": "",
+      "role_success_criteria": [],
+      "language_to_use": [
+        "AI-native",
+        "intelligence layer",
+        "brand experience",
+        "customer personalization",
+        "conversational BI"
+      ],
+      "language_to_avoid": [
+        "enterprise-grade",
+        "scalable infrastructure",
+        "data pipeline",
+        "legacy migration",
+        "cost optimization"
+      ],
+      "proof_points_to_prefer": [
+        "measurable outcomes with numbers",
+        "specific, defensible achievements",
+        "evidence of ownership and initiative"
+      ],
+      "risks_to_soften": [
+        "No direct e-commerce or retail experience",
+        "No experience with Shopify, MoEngage, or Dynamics 365",
+        "Background in manufacturing quality, not consumer personalization"
+      ],
+      "avoid_overclaiming_about": [],
+      "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact."
+    },
+    "unknowns": [
+      "Company revenue, funding, employee count, and growth stage",
+      "Company culture specifics beyond JD tone",
+      "Exact tech stack beyond Shopify, MoEngage, Dynamics 365",
+      "Team size and reporting structure",
+      "Compensation and benefits",
+      "Recent news or layoffs",
+      "Customer demographics and market position"
+    ]
+  },
+  "role_decode": {
+    "normalized_title": "AI Product Engineer",
+    "seniority": "mid-senior",
+    "must_haves": [
+      "Python or NodeJS",
+      "LLM API experience (OpenAI, Claude, Gemini, etc.)",
+      "SQL",
+      "Frontend development skills"
+    ],
+    "nice_to_haves": [
+      "retail/e-commerce experience",
+      "IIT/BITS/NIT or equivalent",
+      "Experience with Shopify, MoEngage, or Dynamics 365"
+    ],
+    "hidden_expectations": [
+      "CEO-facing communication",
+      "business-outcome driven thinking",
+      "brand aesthetic sensibility",
+      "ownership mentality"
+    ],
+    "day_one_deliverables": [
+      "Customer personalization intelligence layer",
+      "Store clienteling tool",
+      "Conversational BI interface",
+      "Design workflow automation"
+    ],
+    "screening_keywords": [
+      "AI-native",
+      "clienteling",
+      "business intelligence",
+      "LLM API",
+      "Python",
+      "SQL",
+      "frontend",
+      "personalization",
+      "IIT",
+      "NIT",
+      "BITS"
+    ],
+    "disqualifiers": [
+      "no LLM API experience",
+      "no production coding experience",
+      "no frontend abilities",
+      "weak visual design sense"
+    ],
+    "confidence": 0.85
+  },
+  "user_truth": {
+    "total_years_experience": 14.0,
+    "confirmed_skills": [
+      {
+        "skill": "Kubernetes",
+        "years": 8,
+        "evidence": "Led migration of 500+ microservices to Kubernetes at CloudScale (2018-present)"
+      },
+      {
+        "skill": "Distributed Systems",
+        "years": 14,
+        "evidence": "Built real-time analytics engine (1M events/sec) at TechNova; led massive microservices migration"
+      },
+      {
+        "skill": "Database Optimization",
+        "years": 8,
+        "evidence": "Optimized database latency by 40% using custom caching layers at CloudScale"
+      }
+    ],
+    "weak_skills": [
+      "Python (listed, but no production evidence)",
+      "NodeJS (absent)",
+      "LLM API experience (absent)",
+      "SQL (absent)",
+      "Frontend development (absent)",
+      "retail/e-commerce experience (absent)",
+      "Shopify/MoEngage/D365 (absent)",
+      "IIT/BITS/NIT education (Stanford is not equivalent)"
+    ],
+    "evidence_bank": {
+      "Python": [
+        "Listed in Skills section"
+      ],
+      "Kubernetes": [
+        "Led migration of 500+ microservices to Kubernetes"
+      ],
+      "Distributed Systems": [
+        "Built a real-time analytics engine handling 1M events/sec",
+        "Led migration of 500+ microservices to Kubernetes"
+      ],
+      "Database Optimization": [
+        "Optimized database latency by 40% using custom caching layers"
+      ],
+      "Golang": [
+        "Listed in Skills section"
+      ],
+      "Rust": [
+        "Listed in Skills section"
+      ]
+    },
+    "strongest_proof_points": [
+      "Led migration of 500+ microservices to Kubernetes",
+      "Optimized database latency by 40% with custom caching",
+      "Built real-time analytics engine handling 1M events/sec"
+    ],
+    "claims_allowed": [
+      "14+ years distributed systems experience",
+      "Kubernetes expertise (led 500+ microservice migration)",
+      "Database latency optimization (40% improvement)",
+      "Real-time analytics engine (1M events/sec)",
+      "Proficient in Golang, Rust, Python (as listed)",
+      "AWS cloud infrastructure experience",
+      "Terraform experience"
+    ],
+    "claims_not_allowed": [
+      "LLM API experience",
+      "Frontend development experience",
+      "SQL proficiency",
+      "E-commerce/retail experience",
+      "IIT/BITS/NIT education",
+      "Shopify, MoEngage, or Dynamics 365 experience",
+      "AI product engineering experience",
+      "Business intelligence tooling experience"
+    ]
+  },
+  "positioning_strategy": null,
+  "section_rewrites": null,
+  "application_pack": {
+    "resume_markdown": "",
+    "cover_note": "",
+    "screening_answers": "",
+    "recruiter_message": "",
+    "follow_up_message": "",
+    "quality_report": null,
+    "preserved_links": [],
+    "link_audit": null,
+    "user_review_summary": "FAILURE: Council stopped with 1 error(s). See failure_report.md in output directory.",
+    "failure_report": "# Resume Council Failure Report\n\n**Generated:** 2026-05-20T05:51:20.089461+00:00\n**Job:** AI Product Engineer at Nicobar Design Pvt. Ltd.\n\n## Errors (1)\n\n1. Unrecoverable JSON from LLM: ...\n\n## Next Steps\n\n1. Fix the underlying issue (API key, model config, input data).\n2. Re-run the council for this job.\n"
+  },
+  "errors": [
+    "Unrecoverable JSON from LLM: ..."
+  ]
+}
