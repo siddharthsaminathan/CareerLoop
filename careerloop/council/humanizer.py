@@ -442,53 +442,23 @@ class Humanizer:
         Applies:
         - Sentence length caps
         - Basic formality adjustments
+        - Preserves bullet points and headings without flattening them.
         """
         profile = TONE_PROFILES.get(company_type, TONE_PROFILES["default"])
         max_len = profile["max_sentence_length"]
-        result = text
 
-        # Apply max sentence length by splitting overly long sentences
-        sentences = _split_sentences(result)
-        adjusted = []
-        for sent in sentences:
-            words = sent.split()
-            if len(words) > max_len:
-                # Split at the nearest conjunction or comma near the midpoint
-                mid = len(words) // 2
-                # Look for a split point near the middle
-                split_point = None
-                for j in range(mid, min(mid + 10, len(words))):
-                    if words[j].rstrip(".,;:") in ("and", "but", "or", "while", "where", "which"):
-                        split_point = j + 1
-                        break
-                if split_point is None:
-                    # Try comma split
-                    for j in range(mid, min(mid + 10, len(words))):
-                        if words[j].endswith(","):
-                            split_point = j + 1
-                            break
-                if split_point:
-                    adjusted.append(" ".join(words[:split_point]).rstrip(",") + ".")
-                    second = " ".join(words[split_point:])
-                    if second and not second.endswith((".", "!", "?")):
-                        second += "."
-                    adjusted.append(second[0].upper() + second[1:] if second else "")
-                else:
-                    adjusted.append(sent)
-            else:
-                adjusted.append(sent)
+        if not text:
+            return text
 
-        # Preserve paragraph breaks — split by double newline, process each paragraph,
-        # then rejoin with double newlines
-        paragraphs = text.split("\n\n")
-        processed = []
-        for para in paragraphs:
-            if not para.strip():
-                processed.append(para)
-                continue
-            sentences_in_para = _split_sentences(para)
-            adjusted_para = []
-            for sent in sentences_in_para:
+        lines = text.split("\n")
+        processed_lines = []
+
+        def process_text_block(block_text: str) -> str:
+            if not block_text.strip():
+                return block_text
+            sentences = _split_sentences(block_text)
+            adjusted_sentences = []
+            for sent in sentences:
                 words = sent.split()
                 if len(words) > max_len:
                     mid = len(words) // 2
@@ -503,17 +473,69 @@ class Humanizer:
                                 split_point = j + 1
                                 break
                     if split_point:
-                        adjusted_para.append(" ".join(words[:split_point]).rstrip(",") + ".")
+                        adjusted_sentences.append(" ".join(words[:split_point]).rstrip(",") + ".")
                         second = " ".join(words[split_point:])
                         if second and not second.endswith((".", "!", "?")):
                             second += "."
-                        adjusted_para.append(second[0].upper() + second[1:] if second else "")
+                        adjusted_sentences.append(second[0].upper() + second[1:] if second else "")
                     else:
-                        adjusted_para.append(sent)
+                        adjusted_sentences.append(sent)
                 else:
-                    adjusted_para.append(sent)
-            processed.append(" ".join(adjusted_para))
-        return "\n\n".join(processed)
+                    adjusted_sentences.append(sent)
+            return " ".join(adjusted_sentences)
+
+        current_para_lines = []
+
+        for line in lines:
+            stripped = line.strip()
+
+            is_empty = not stripped
+            is_heading = stripped.startswith("#")
+            is_hr = stripped in ("---", "***", "___")
+            is_bullet = bool(re.match(r"^\s*[-*+]\s+", line))
+            is_numbered = bool(re.match(r"^\s*\d+\.\s+", line))
+            is_blockquote = stripped.startswith(">")
+
+            if is_empty or is_heading or is_hr or is_bullet or is_numbered or is_blockquote:
+                if current_para_lines:
+                    block_text = " ".join(current_para_lines)
+                    processed_lines.append(process_text_block(block_text))
+                    current_para_lines = []
+
+                if is_empty or is_heading or is_hr:
+                    processed_lines.append(line)
+                elif is_bullet:
+                    match = re.match(r"^(\s*[-*+]\s+)(.*)$", line)
+                    if match:
+                        prefix, content = match.groups()
+                        processed_content = process_text_block(content)
+                        processed_lines.append(f"{prefix}{processed_content}")
+                    else:
+                        processed_lines.append(line)
+                elif is_numbered:
+                    match = re.match(r"^(\s*\d+\.\s+)(.*)$", line)
+                    if match:
+                        prefix, content = match.groups()
+                        processed_content = process_text_block(content)
+                        processed_lines.append(f"{prefix}{processed_content}")
+                    else:
+                        processed_lines.append(line)
+                elif is_blockquote:
+                    match = re.match(r"^(\s*>\s*)(.*)$", line)
+                    if match:
+                        prefix, content = match.groups()
+                        processed_content = process_text_block(content)
+                        processed_lines.append(f"{prefix}{processed_content}")
+                    else:
+                        processed_lines.append(line)
+            else:
+                current_para_lines.append(line)
+
+        if current_para_lines:
+            block_text = " ".join(current_para_lines)
+            processed_lines.append(process_text_block(block_text))
+
+        return "\n".join(processed_lines)
 
 
     # ─── Phase 5: Output Sanitization (DETERMINISTIC) ────────────────────────

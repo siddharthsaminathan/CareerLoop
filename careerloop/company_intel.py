@@ -507,7 +507,8 @@ def save_company_memory(root: Path, result: CompanyIntelligenceResult) -> Path:
     path = _cache_path(root, result.company_name)
     result.cache_key = _cache_key(result.company_name, result.role_title or "")
     result.ttl_days = _ttl_for_result(result)
-    result.generated_at = datetime.now(timezone.utc).isoformat()
+    if not result.generated_at:
+        result.generated_at = datetime.now(timezone.utc).isoformat()
     data = result.to_dict()
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
     return path
@@ -520,40 +521,28 @@ _S3_SYNTHESIS_SYSTEM = """You are CareerLoop's Company Intelligence Engine.
 
 Your job is to convert grounded evidence about a company and role into strategic career intelligence.
 
-You are NOT writing a company summary.
-You are NOT writing resume text.
-You are NOT inventing facts.
+You must strictly separate your synthesis into Grounded Facts (direct matches from the input text), Plausible Inferences (logical reasoning derived solely from the provided signals), and Explicit Unknowns (missing information).
 
-You must answer:
-- what kind of company this is
-- what problem this role likely solves
-- what candidate traits will resonate
-- what risks exist
-- how the candidate should position themselves
-- what downstream resume rewriting should know
+STRICT RULES TO PREVENT AI HALLUCINATIONS:
+1. Grounded Facts MUST be derived directly from the provided text evidence. Do NOT use your general pre-training memory recall for facts about the company (such as headcount, actual revenues, funding rounds, specific leadership names, office locations) unless they are explicitly present in the provided input.
+2. If the input evidence does not contain specific information for a field, you MUST set the value to "UNKNOWN" or empty lists/objects, and add it to the "unknowns" array. DO NOT invent or guess. "UNKNOWN" is a sign of high quality.
+3. Plausible Inferences must be derived step-by-step from explicit text patterns. For example, "The JD states Range Review Presentation is a key duty -> Infer that presentation skills to management are highly valued."
+4. Every fact, implication, or cultural signal must cite its source (e.g., "[JD]" or "[WEB]").
 
-RULES:
-1. Use ONLY the provided evidence. Never use training data recall.
-2. Label unknowns explicitly in the unknowns[] list. "UNKNOWN" is better than a guess.
-3. Separate facts (from sources) from inferences (your reasoning).
-4. Never fabricate: funding amounts, layoffs, revenue, employee count, compensation, culture details.
-5. If evidence is weak, lower confidence.
-6. Pay special attention to JD tone — it reveals what the company values.
-
-For the S7 rewrite context, provide compact, actionable guidance:
-- company_archetype: what kind of company (e.g., "design-led D2C brand", "enterprise SaaS", "YC startup")
-- company_tone: how they communicate (e.g., "warm and design-aware", "direct and technical", "formal and process-oriented")
-- product_context: what the company builds/sells
+For downstream S7 rewrite context, provide a compact, actionable dictionary under "s7_rewrite_context" with:
+- company_archetype: e.g., "design-led D2C brand", "enterprise SaaS", "YC startup"
+- company_tone: e.g., "warm and design-aware", "direct and technical"
+- product_context: what they build/sell
 - business_problem: what problem this role is hired to solve
-- role_success_criteria: what "great" looks like in this role
-- language_to_use: 3-5 words/phrases that resonate
-- language_to_avoid: 3-5 words/phrases that will feel foreign
-- proof_points_to_prefer: which candidate evidence types this company values most
-- risks_to_soften: candidate gaps to acknowledge and reposition
-- avoid_overclaiming_about: things the candidate should NOT exaggerate
-- max_5_bullet_guidance: 1-sentence of how to rewrite bullets for this company
+- role_success_criteria: what "great" looks like
+- language_to_use: 3-5 specific words/phrases from evidence that resonate
+- language_to_avoid: 3-5 generic/fluffy words/phrases to avoid
+- proof_points_to_prefer: candidate evidence/projects they value most
+- risks_to_soften: candidate gaps to reposition
+- avoid_overclaiming_about: things the candidate must not exaggerate
+- max_5_bullet_guidance: 1-sentence on how to tailor experience bullets
 
-Return ONLY valid JSON matching the schema exactly."""
+Return ONLY valid JSON matching the CompanyIntelligenceResult schema exactly."""
 
 
 def _build_synthesis_prompt(

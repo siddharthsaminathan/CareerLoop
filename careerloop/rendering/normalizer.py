@@ -468,6 +468,7 @@ def _parse_contact_body(body: str, header: HeaderInfo) -> None:
 
     for raw_line in body.strip().split("\n"):
         raw_line = _strip_markdown_formatting(raw_line.strip())
+        raw_line = re.sub(r"^[-*+•·\s]+", "", raw_line)
         if not raw_line:
             continue
         tokens = _split_contact_tokens(raw_line)
@@ -500,7 +501,12 @@ def _parse_contact_body(body: str, header: HeaderInfo) -> None:
                         header.portfolio_url = _sanitize_text(url_match.group(0).rstrip("/"))
                         header.portfolio_display = _sanitize_text(_url_to_display(header.portfolio_url))
             if not header.location:
-                if (
+                is_explicit_field = False
+                for other_key, other_pattern in patterns.items():
+                    if other_pattern.search(line):
+                        is_explicit_field = True
+                        break
+                if not is_explicit_field and (
                     "@" not in line
                     and not re.search(r"(?:https?://|www\.)", line, re.IGNORECASE)
                     and re.search(r"[A-Za-z]", line)

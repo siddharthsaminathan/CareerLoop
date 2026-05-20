@@ -56,7 +56,9 @@ class CouncilState(TypedDict):
     application_pack: Optional[Dict]
     truth_guard_report: Optional[Dict]
     pre_humanizer_resume: Optional[str]
+    humanizer_output: Optional[str]  # post-humanizer resume (the actual deliverable)
     humanizer_report: Optional[Dict]
+    s7_debug: Optional[Dict]  # per-section timing, model, rewrite stats
 
     errors: list
 
@@ -706,7 +708,9 @@ _S7_SYSTEM = _S7_PER_SECTION_SYSTEM
 
 
 def section_rewrites_node(state: CouncilState) -> CouncilState:
+    import time as _time
     print("\n--- System 7: Section Rewrites (per-section loop) ---")
+    s7_started_at = _time.monotonic()
     if _has_errors(state):
         print("  → SKIPPING (previous errors)")
         return state
@@ -742,6 +746,8 @@ def section_rewrites_node(state: CouncilState) -> CouncilState:
     rewrites: dict = {}
     # skipped maps section_id → reason string for diagnostics
     skipped: dict = {}
+    # per-section timing log for 09_s7_debug.json
+    section_timing: list = []
 
     allowed_sections = [
         s for s in canonical.get('sections', [])
@@ -752,7 +758,7 @@ def section_rewrites_node(state: CouncilState) -> CouncilState:
 
     # ── Parallel execution: all sections run concurrently ─────────────────
     # Each section's LLM calls are independent — no cross-section state.
-    # max_workers = number of sections so they all fire simultaneously.
+    # max_workers capped at 3 to avoid rate-limit hammering.
     # Results are collected via futures and reassembled in original order.
     worker_kwargs = dict(
         tone=tone,
@@ -771,32 +777,65 @@ def section_rewrites_node(state: CouncilState) -> CouncilState:
     n_workers = min(3, max(1, len(allowed_sections)))
     print(f"  → Launching {n_workers} parallel S7 workers ({len(allowed_sections)} sections)...")
 
-    # Map future → original section order so we can print results in order
-    future_to_sid: dict = {}
+    # Map future → (section_id, start_time) so we can emit per-section debug info
+    future_to_meta: dict = {}
     with ThreadPoolExecutor(max_workers=n_workers) as executor:
         for section in allowed_sections:
+            t0 = _time.monotonic()
             fut = executor.submit(_rewrite_one_section, section, **worker_kwargs)
-            future_to_sid[fut] = section.get('section_id', '')
+            future_to_meta[fut] = (section.get('section_id', ''), t0,
+                                   len(section.get('raw_text', '')))
 
-        for fut in as_completed(future_to_sid):
+        for fut in as_completed(future_to_meta):
+            fut_sid, fut_t0, orig_len = future_to_meta[fut]
+            elapsed = round(_time.monotonic() - fut_t0, 2)
             sid_result, rewrite_dict, skip_reason = fut.result()
             if rewrite_dict is not None:
                 rewrites[sid_result] = rewrite_dict
+                section_timing.append({
+                    "section_id": sid_result,
+                    "status": "REWRITE",
+                    "change_type": rewrite_dict.get("change_type", "REWRITE"),
+                    "original_chars": orig_len,
+                    "rewritten_chars": len(rewrite_dict.get("rewritten_text", "")),
+                    "elapsed_s": elapsed,
+                    "model": "deepseek-chat",
+                })
             elif skip_reason is not None:
                 skipped[sid_result] = skip_reason
+                section_timing.append({
+                    "section_id": sid_result,
+                    "status": "FALLBACK",
+                    "skip_reason": skip_reason,
+                    "original_chars": orig_len,
+                    "elapsed_s": elapsed,
+                    "model": "deepseek-chat",
+                })
 
     if skipped:
         print(f"  !! {len(skipped)}/{len(allowed_sections)} sections fell back to original:")
         for sid, reason in skipped.items():
             print(f"       {sid}: {reason}")
-    print(f"  → Rewrote {len(rewrites)}/{len(allowed_sections)} sections")
+    total_elapsed = round(_time.monotonic() - s7_started_at, 2)
+    print(f"  → Rewrote {len(rewrites)}/{len(allowed_sections)} sections in {total_elapsed}s")
+
+    s7_debug = {
+        "n_sections_total": len(allowed_sections),
+        "n_rewritten": len(rewrites),
+        "n_fallback": len(skipped),
+        "n_workers": n_workers,
+        "total_elapsed_s": total_elapsed,
+        "sections": section_timing,
+        "company_context_present": bool(s7_ctx),
+        "role_keywords_used": role_keywords,
+    }
 
     return {**state, "section_rewrites": {
         "rewrites": rewrites,
         "forbidden_edits": list(exclude),
         "skipped": list(skipped.keys()),
         "skipped_reasons": skipped,
-    }}
+    }, "s7_debug": s7_debug}
 
 
 # ─── System 7.5: Truth Guard ──────────────────────────────────────────────────
@@ -1090,6 +1129,7 @@ def assembly_node(state: CouncilState) -> CouncilState:
             **state,
             "application_pack": pack.to_dict(),
             "pre_humanizer_resume": final_resume,
+            "humanizer_output": resume_result.humanized_text,  # post-humanizer (actual deliverable)
             "humanizer_report": humanizer_report,
         }
 

@@ -1,4 +1,241 @@
 {
+  "council_nicobar-compact-dark": {
+    "passed": true,
+    "passed_strict": true,
+    "strict_mode": false,
+    "error_count": 0,
+    "warning_count": 0,
+    "rules": {
+      "RAW_MARKDOWN_TOKENS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "EM_DASH": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "ARROWS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "COLLAPSED_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "FORBIDDEN_SECTIONS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "ZERO_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "Found 20 bullet item(s) in Work Experience section",
+        "count": 20,
+        "locations": []
+      },
+      "INLINE_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "MALFORMED_LISTS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "All lists properly formed",
+        "count": 0,
+        "locations": []
+      },
+      "ORPHAN_HEADINGS": {
+        "severity": "WARNING",
+        "passed": true,
+        "details": "All headings have content",
+        "count": 0,
+        "locations": []
+      },
+      "TAILORING_DELTA": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "No base resume provided for comparison \u2014 skipping delta check",
+        "count": 0,
+        "locations": []
+      }
+    }
+  },
+  "council_nicobar-compact-light": {
+    "passed": true,
+    "passed_strict": true,
+    "strict_mode": false,
+    "error_count": 0,
+    "warning_count": 0,
+    "rules": {
+      "RAW_MARKDOWN_TOKENS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "EM_DASH": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "ARROWS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "COLLAPSED_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "FORBIDDEN_SECTIONS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "ZERO_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "Found 20 bullet item(s) in Work Experience section",
+        "count": 20,
+        "locations": []
+      },
+      "INLINE_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "MALFORMED_LISTS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "All lists properly formed",
+        "count": 0,
+        "locations": []
+      },
+      "ORPHAN_HEADINGS": {
+        "severity": "WARNING",
+        "passed": true,
+        "details": "All headings have content",
+        "count": 0,
+        "locations": []
+      },
+      "TAILORING_DELTA": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "No base resume provided for comparison \u2014 skipping delta check",
+        "count": 0,
+        "locations": []
+      }
+    }
+  },
+  "council_nicobar-compact-sidebar": {
+    "passed": true,
+    "passed_strict": true,
+    "strict_mode": false,
+    "error_count": 0,
+    "warning_count": 0,
+    "rules": {
+      "RAW_MARKDOWN_TOKENS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "EM_DASH": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "ARROWS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "COLLAPSED_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "FORBIDDEN_SECTIONS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "ZERO_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "Found 20 bullet item(s) in Work Experience section",
+        "count": 20,
+        "locations": []
+      },
+      "INLINE_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "MALFORMED_LISTS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "All lists properly formed",
+        "count": 0,
+        "locations": []
+      },
+      "ORPHAN_HEADINGS": {
+        "severity": "WARNING",
+        "passed": true,
+        "details": "All headings have content",
+        "count": 0,
+        "locations": []
+      },
+      "TAILORING_DELTA": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "No base resume provided for comparison \u2014 skipping delta check",
+        "count": 0,
+        "locations": []
+      }
+    }
+  },
   "council_nicobar-resume": {
     "passed": false,
     "passed_strict": false,
@@ -2864,54 +3101,32 @@
     }
   },
   "gemini_nicobar_old_classic-ats": {
-    "passed": false,
-    "passed_strict": false,
+    "passed": true,
+    "passed_strict": true,
     "strict_mode": false,
-    "error_count": 3,
+    "error_count": 0,
     "warning_count": 0,
     "rules": {
       "RAW_MARKDOWN_TOKENS": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 5 raw markdown token(s)",
-        "count": 5,
-        "locations": [
-          "Line ~37: **Enterprise AI Quality Platform (EQMS)**",
-          "Line ~81: **Built Emote from zero:**",
-          "Line ~81: **Latency reduction:**",
-          "Line ~81: **Enterprise migration:**",
-          "Line ~81: **Agentic manufacturing quality system:**"
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "EM_DASH": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 6 em dash(es), 8 en dash(es)",
-        "count": 14,
-        "locations": [
-          "Line 17, col 179: em dash in \"...critical enterprise workflows \u2014 from agentic quality managem...\"",
-          "Line 17, col 511: em dash in \"...I build doesn't just respond \u2014 it improves over time.</p> <...\"",
-          "Line 37, col 207: em dash in \"...turing quality digitalization \u2014 automating the core quality...\"",
-          "Line 38, col 224: em dash in \"...ans, and 8D corrective action \u2014 reducing manual engineering...\"",
-          "Line 38, col 846: em dash in \"...m performance and reliability \u2014 reduced workflow latency (~1...\"",
-          "Line 34: en dash in \"...<span class=\"dates\">Jul 2025 \u2013 Present</span>...\""
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "ARROWS": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 13 arrow character(s)",
-        "count": 13,
-        "locations": [
-          "Line 38: right arrow (U+2192) in \"...lity workflows (generate \u2192 validate \u2192 update \u2192 act...\"",
-          "Line 38: right arrow (U+2192) in \"...ows (generate \u2192 validate \u2192 update \u2192 act) with full...\"",
-          "Line 38: right arrow (U+2192) in \"...rate \u2192 validate \u2192 update \u2192 act) with full traceabi...\"",
-          "Line 38: right arrow (U+2192) in \"...workflow latency (~12.5s \u2192 ~8s), built validation...\"",
-          "Line 50: right arrow (U+2192) in \"..., reducing latency (~15s \u2192 ~3s) and Inference cost...\"",
-          "Line 50: right arrow (U+2192) in \"...d Inference cost (~$1.20 \u2192 ~$0.023) through pipeli...\"",
-          "Line 50: right arrow (U+2192) in \"...the full product loop (0 \u2192 1 \u2192 iteration): scaled...\"",
-          "Line 50: right arrow (U+2192) in \"...full product loop (0 \u2192 1 \u2192 iteration): scaled to 4...\""
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "COLLAPSED_BULLETS": {
         "severity": "ERROR",
@@ -2930,8 +3145,8 @@
       "ZERO_BULLETS": {
         "severity": "ERROR",
         "passed": true,
-        "details": "Found 20 bullet item(s) in Work Experience section",
-        "count": 20,
+        "details": "Found 24 bullet item(s) in Work Experience section",
+        "count": 24,
         "locations": []
       },
       "INLINE_BULLETS": {
@@ -2965,54 +3180,32 @@
     }
   },
   "gemini_nicobar_old_compact-one-page": {
-    "passed": false,
-    "passed_strict": false,
+    "passed": true,
+    "passed_strict": true,
     "strict_mode": false,
-    "error_count": 3,
+    "error_count": 0,
     "warning_count": 0,
     "rules": {
       "RAW_MARKDOWN_TOKENS": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 5 raw markdown token(s)",
-        "count": 5,
-        "locations": [
-          "Line ~37: **Enterprise AI Quality Platform (EQMS)**",
-          "Line ~81: **Built Emote from zero:**",
-          "Line ~81: **Latency reduction:**",
-          "Line ~81: **Enterprise migration:**",
-          "Line ~81: **Agentic manufacturing quality system:**"
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "EM_DASH": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 6 em dash(es), 8 en dash(es)",
-        "count": 14,
-        "locations": [
-          "Line 17, col 179: em dash in \"...critical enterprise workflows \u2014 from agentic quality managem...\"",
-          "Line 17, col 511: em dash in \"...I build doesn't just respond \u2014 it improves over time.</p> <...\"",
-          "Line 37, col 207: em dash in \"...turing quality digitalization \u2014 automating the core quality...\"",
-          "Line 38, col 224: em dash in \"...ans, and 8D corrective action \u2014 reducing manual engineering...\"",
-          "Line 38, col 846: em dash in \"...m performance and reliability \u2014 reduced workflow latency (~1...\"",
-          "Line 34: en dash in \"...<span class=\"dates\">Jul 2025 \u2013 Present</span>...\""
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "ARROWS": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 13 arrow character(s)",
-        "count": 13,
-        "locations": [
-          "Line 38: right arrow (U+2192) in \"...lity workflows (generate \u2192 validate \u2192 update \u2192 act...\"",
-          "Line 38: right arrow (U+2192) in \"...ows (generate \u2192 validate \u2192 update \u2192 act) with full...\"",
-          "Line 38: right arrow (U+2192) in \"...rate \u2192 validate \u2192 update \u2192 act) with full traceabi...\"",
-          "Line 38: right arrow (U+2192) in \"...workflow latency (~12.5s \u2192 ~8s), built validation...\"",
-          "Line 50: right arrow (U+2192) in \"..., reducing latency (~15s \u2192 ~3s) and Inference cost...\"",
-          "Line 50: right arrow (U+2192) in \"...d Inference cost (~$1.20 \u2192 ~$0.023) through pipeli...\"",
-          "Line 50: right arrow (U+2192) in \"...the full product loop (0 \u2192 1 \u2192 iteration): scaled...\"",
-          "Line 50: right arrow (U+2192) in \"...full product loop (0 \u2192 1 \u2192 iteration): scaled to 4...\""
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "COLLAPSED_BULLETS": {
         "severity": "ERROR",
@@ -3031,8 +3224,245 @@
       "ZERO_BULLETS": {
         "severity": "ERROR",
         "passed": true,
-        "details": "Found 20 bullet item(s) in Work Experience section",
-        "count": 20,
+        "details": "Found 24 bullet item(s) in Work Experience section",
+        "count": 24,
+        "locations": []
+      },
+      "INLINE_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "MALFORMED_LISTS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "All lists properly formed",
+        "count": 0,
+        "locations": []
+      },
+      "ORPHAN_HEADINGS": {
+        "severity": "WARNING",
+        "passed": true,
+        "details": "All headings have content",
+        "count": 0,
+        "locations": []
+      },
+      "TAILORING_DELTA": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "No base resume provided for comparison \u2014 skipping delta check",
+        "count": 0,
+        "locations": []
+      }
+    }
+  },
+  "gemini_nicobar_old_compact-sidebar-premium": {
+    "passed": true,
+    "passed_strict": true,
+    "strict_mode": false,
+    "error_count": 0,
+    "warning_count": 0,
+    "rules": {
+      "RAW_MARKDOWN_TOKENS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "EM_DASH": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "ARROWS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "COLLAPSED_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "FORBIDDEN_SECTIONS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "ZERO_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "No Work Experience heading found (may use different markup)",
+        "count": 0,
+        "locations": []
+      },
+      "INLINE_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "MALFORMED_LISTS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "All lists properly formed",
+        "count": 0,
+        "locations": []
+      },
+      "ORPHAN_HEADINGS": {
+        "severity": "WARNING",
+        "passed": true,
+        "details": "All headings have content",
+        "count": 0,
+        "locations": []
+      },
+      "TAILORING_DELTA": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "No base resume provided for comparison \u2014 skipping delta check",
+        "count": 0,
+        "locations": []
+      }
+    }
+  },
+  "gemini_nicobar_old_cv-template-v2": {
+    "passed": true,
+    "passed_strict": true,
+    "strict_mode": false,
+    "error_count": 0,
+    "warning_count": 0,
+    "rules": {
+      "RAW_MARKDOWN_TOKENS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "EM_DASH": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "ARROWS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "COLLAPSED_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "FORBIDDEN_SECTIONS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "ZERO_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "Found 16 bullet item(s) in Work Experience section",
+        "count": 16,
+        "locations": []
+      },
+      "INLINE_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "MALFORMED_LISTS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "All lists properly formed",
+        "count": 0,
+        "locations": []
+      },
+      "ORPHAN_HEADINGS": {
+        "severity": "WARNING",
+        "passed": true,
+        "details": "All headings have content",
+        "count": 0,
+        "locations": []
+      },
+      "TAILORING_DELTA": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "No base resume provided for comparison \u2014 skipping delta check",
+        "count": 0,
+        "locations": []
+      }
+    }
+  },
+  "gemini_nicobar_old_design-brand-compact": {
+    "passed": true,
+    "passed_strict": true,
+    "strict_mode": false,
+    "error_count": 0,
+    "warning_count": 0,
+    "rules": {
+      "RAW_MARKDOWN_TOKENS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "EM_DASH": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "ARROWS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "COLLAPSED_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "FORBIDDEN_SECTIONS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
+      },
+      "ZERO_BULLETS": {
+        "severity": "ERROR",
+        "passed": true,
+        "details": "No Work Experience heading found (may use different markup)",
+        "count": 0,
         "locations": []
       },
       "INLINE_BULLETS": {
@@ -3066,54 +3496,32 @@
     }
   },
   "gemini_nicobar_old_executive-clean": {
-    "passed": false,
-    "passed_strict": false,
+    "passed": true,
+    "passed_strict": true,
     "strict_mode": false,
-    "error_count": 3,
+    "error_count": 0,
     "warning_count": 0,
     "rules": {
       "RAW_MARKDOWN_TOKENS": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 5 raw markdown token(s)",
-        "count": 5,
-        "locations": [
-          "Line ~37: **Enterprise AI Quality Platform (EQMS)**",
-          "Line ~81: **Built Emote from zero:**",
-          "Line ~81: **Latency reduction:**",
-          "Line ~81: **Enterprise migration:**",
-          "Line ~81: **Agentic manufacturing quality system:**"
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "EM_DASH": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 6 em dash(es), 8 en dash(es)",
-        "count": 14,
-        "locations": [
-          "Line 17, col 179: em dash in \"...critical enterprise workflows \u2014 from agentic quality managem...\"",
-          "Line 17, col 511: em dash in \"...I build doesn't just respond \u2014 it improves over time.</p> <...\"",
-          "Line 37, col 207: em dash in \"...turing quality digitalization \u2014 automating the core quality...\"",
-          "Line 38, col 224: em dash in \"...ans, and 8D corrective action \u2014 reducing manual engineering...\"",
-          "Line 38, col 846: em dash in \"...m performance and reliability \u2014 reduced workflow latency (~1...\"",
-          "Line 34: en dash in \"...<span class=\"dates\">Jul 2025 \u2013 Present</span>...\""
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "ARROWS": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 13 arrow character(s)",
-        "count": 13,
-        "locations": [
-          "Line 38: right arrow (U+2192) in \"...lity workflows (generate \u2192 validate \u2192 update \u2192 act...\"",
-          "Line 38: right arrow (U+2192) in \"...ows (generate \u2192 validate \u2192 update \u2192 act) with full...\"",
-          "Line 38: right arrow (U+2192) in \"...rate \u2192 validate \u2192 update \u2192 act) with full traceabi...\"",
-          "Line 38: right arrow (U+2192) in \"...workflow latency (~12.5s \u2192 ~8s), built validation...\"",
-          "Line 50: right arrow (U+2192) in \"..., reducing latency (~15s \u2192 ~3s) and Inference cost...\"",
-          "Line 50: right arrow (U+2192) in \"...d Inference cost (~$1.20 \u2192 ~$0.023) through pipeli...\"",
-          "Line 50: right arrow (U+2192) in \"...the full product loop (0 \u2192 1 \u2192 iteration): scaled...\"",
-          "Line 50: right arrow (U+2192) in \"...full product loop (0 \u2192 1 \u2192 iteration): scaled to 4...\""
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "COLLAPSED_BULLETS": {
         "severity": "ERROR",
@@ -3132,8 +3540,8 @@
       "ZERO_BULLETS": {
         "severity": "ERROR",
         "passed": true,
-        "details": "Found 20 bullet item(s) in Work Experience section",
-        "count": 20,
+        "details": "Found 24 bullet item(s) in Work Experience section",
+        "count": 24,
         "locations": []
       },
       "INLINE_BULLETS": {
@@ -3167,54 +3575,32 @@
     }
   },
   "gemini_nicobar_old_founder-operator": {
-    "passed": false,
-    "passed_strict": false,
+    "passed": true,
+    "passed_strict": true,
     "strict_mode": false,
-    "error_count": 3,
+    "error_count": 0,
     "warning_count": 0,
     "rules": {
       "RAW_MARKDOWN_TOKENS": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 5 raw markdown token(s)",
-        "count": 5,
-        "locations": [
-          "Line ~37: **Enterprise AI Quality Platform (EQMS)**",
-          "Line ~81: **Built Emote from zero:**",
-          "Line ~81: **Latency reduction:**",
-          "Line ~81: **Enterprise migration:**",
-          "Line ~81: **Agentic manufacturing quality system:**"
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "EM_DASH": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 6 em dash(es), 8 en dash(es)",
-        "count": 14,
-        "locations": [
-          "Line 17, col 179: em dash in \"...critical enterprise workflows \u2014 from agentic quality managem...\"",
-          "Line 17, col 511: em dash in \"...I build doesn't just respond \u2014 it improves over time.</p> <...\"",
-          "Line 37, col 207: em dash in \"...turing quality digitalization \u2014 automating the core quality...\"",
-          "Line 38, col 224: em dash in \"...ans, and 8D corrective action \u2014 reducing manual engineering...\"",
-          "Line 38, col 846: em dash in \"...m performance and reliability \u2014 reduced workflow latency (~1...\"",
-          "Line 34: en dash in \"...<span class=\"dates\">Jul 2025 \u2013 Present</span>...\""
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "ARROWS": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 13 arrow character(s)",
-        "count": 13,
-        "locations": [
-          "Line 38: right arrow (U+2192) in \"...lity workflows (generate \u2192 validate \u2192 update \u2192 act...\"",
-          "Line 38: right arrow (U+2192) in \"...ows (generate \u2192 validate \u2192 update \u2192 act) with full...\"",
-          "Line 38: right arrow (U+2192) in \"...rate \u2192 validate \u2192 update \u2192 act) with full traceabi...\"",
-          "Line 38: right arrow (U+2192) in \"...workflow latency (~12.5s \u2192 ~8s), built validation...\"",
-          "Line 50: right arrow (U+2192) in \"..., reducing latency (~15s \u2192 ~3s) and Inference cost...\"",
-          "Line 50: right arrow (U+2192) in \"...d Inference cost (~$1.20 \u2192 ~$0.023) through pipeli...\"",
-          "Line 50: right arrow (U+2192) in \"...the full product loop (0 \u2192 1 \u2192 iteration): scaled...\"",
-          "Line 50: right arrow (U+2192) in \"...full product loop (0 \u2192 1 \u2192 iteration): scaled to 4...\""
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "COLLAPSED_BULLETS": {
         "severity": "ERROR",
@@ -3233,8 +3619,8 @@
       "ZERO_BULLETS": {
         "severity": "ERROR",
         "passed": true,
-        "details": "Found 20 bullet item(s) in Work Experience section",
-        "count": 20,
+        "details": "Found 24 bullet item(s) in Work Experience section",
+        "count": 24,
         "locations": []
       },
       "INLINE_BULLETS": {
@@ -3268,54 +3654,32 @@
     }
   },
   "gemini_nicobar_old_modern-accent": {
-    "passed": false,
-    "passed_strict": false,
+    "passed": true,
+    "passed_strict": true,
     "strict_mode": false,
-    "error_count": 3,
+    "error_count": 0,
     "warning_count": 0,
     "rules": {
       "RAW_MARKDOWN_TOKENS": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 5 raw markdown token(s)",
-        "count": 5,
-        "locations": [
-          "Line ~37: **Enterprise AI Quality Platform (EQMS)**",
-          "Line ~81: **Built Emote from zero:**",
-          "Line ~81: **Latency reduction:**",
-          "Line ~81: **Enterprise migration:**",
-          "Line ~81: **Agentic manufacturing quality system:**"
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "EM_DASH": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 6 em dash(es), 8 en dash(es)",
-        "count": 14,
-        "locations": [
-          "Line 17, col 179: em dash in \"...critical enterprise workflows \u2014 from agentic quality managem...\"",
-          "Line 17, col 511: em dash in \"...I build doesn't just respond \u2014 it improves over time.</p> <...\"",
-          "Line 37, col 207: em dash in \"...turing quality digitalization \u2014 automating the core quality...\"",
-          "Line 38, col 224: em dash in \"...ans, and 8D corrective action \u2014 reducing manual engineering...\"",
-          "Line 38, col 846: em dash in \"...m performance and reliability \u2014 reduced workflow latency (~1...\"",
-          "Line 34: en dash in \"...<span class=\"dates\">Jul 2025 \u2013 Present</span>...\""
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "ARROWS": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 13 arrow character(s)",
-        "count": 13,
-        "locations": [
-          "Line 38: right arrow (U+2192) in \"...lity workflows (generate \u2192 validate \u2192 update \u2192 act...\"",
-          "Line 38: right arrow (U+2192) in \"...ows (generate \u2192 validate \u2192 update \u2192 act) with full...\"",
-          "Line 38: right arrow (U+2192) in \"...rate \u2192 validate \u2192 update \u2192 act) with full traceabi...\"",
-          "Line 38: right arrow (U+2192) in \"...workflow latency (~12.5s \u2192 ~8s), built validation...\"",
-          "Line 50: right arrow (U+2192) in \"..., reducing latency (~15s \u2192 ~3s) and Inference cost...\"",
-          "Line 50: right arrow (U+2192) in \"...d Inference cost (~$1.20 \u2192 ~$0.023) through pipeli...\"",
-          "Line 50: right arrow (U+2192) in \"...the full product loop (0 \u2192 1 \u2192 iteration): scaled...\"",
-          "Line 50: right arrow (U+2192) in \"...full product loop (0 \u2192 1 \u2192 iteration): scaled to 4...\""
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "COLLAPSED_BULLETS": {
         "severity": "ERROR",
@@ -3334,8 +3698,8 @@
       "ZERO_BULLETS": {
         "severity": "ERROR",
         "passed": true,
-        "details": "Found 20 bullet item(s) in Work Experience section",
-        "count": 20,
+        "details": "Found 24 bullet item(s) in Work Experience section",
+        "count": 24,
         "locations": []
       },
       "INLINE_BULLETS": {
@@ -3369,54 +3733,32 @@
     }
   },
   "gemini_nicobar_old_product-engineer": {
-    "passed": false,
-    "passed_strict": false,
+    "passed": true,
+    "passed_strict": true,
     "strict_mode": false,
-    "error_count": 3,
+    "error_count": 0,
     "warning_count": 0,
     "rules": {
       "RAW_MARKDOWN_TOKENS": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 5 raw markdown token(s)",
-        "count": 5,
-        "locations": [
-          "Line ~37: **Enterprise AI Quality Platform (EQMS)**",
-          "Line ~81: **Built Emote from zero:**",
-          "Line ~81: **Latency reduction:**",
-          "Line ~81: **Enterprise migration:**",
-          "Line ~81: **Agentic manufacturing quality system:**"
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "EM_DASH": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 6 em dash(es), 8 en dash(es)",
-        "count": 14,
-        "locations": [
-          "Line 17, col 179: em dash in \"...critical enterprise workflows \u2014 from agentic quality managem...\"",
-          "Line 17, col 511: em dash in \"...I build doesn't just respond \u2014 it improves over time.</p> <...\"",
-          "Line 37, col 207: em dash in \"...turing quality digitalization \u2014 automating the core quality...\"",
-          "Line 38, col 224: em dash in \"...ans, and 8D corrective action \u2014 reducing manual engineering...\"",
-          "Line 38, col 846: em dash in \"...m performance and reliability \u2014 reduced workflow latency (~1...\"",
-          "Line 34: en dash in \"...<span class=\"dates\">Jul 2025 \u2013 Present</span>...\""
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "ARROWS": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 13 arrow character(s)",
-        "count": 13,
-        "locations": [
-          "Line 38: right arrow (U+2192) in \"...lity workflows (generate \u2192 validate \u2192 update \u2192 act...\"",
-          "Line 38: right arrow (U+2192) in \"...ows (generate \u2192 validate \u2192 update \u2192 act) with full...\"",
-          "Line 38: right arrow (U+2192) in \"...rate \u2192 validate \u2192 update \u2192 act) with full traceabi...\"",
-          "Line 38: right arrow (U+2192) in \"...workflow latency (~12.5s \u2192 ~8s), built validation...\"",
-          "Line 50: right arrow (U+2192) in \"..., reducing latency (~15s \u2192 ~3s) and Inference cost...\"",
-          "Line 50: right arrow (U+2192) in \"...d Inference cost (~$1.20 \u2192 ~$0.023) through pipeli...\"",
-          "Line 50: right arrow (U+2192) in \"...the full product loop (0 \u2192 1 \u2192 iteration): scaled...\"",
-          "Line 50: right arrow (U+2192) in \"...full product loop (0 \u2192 1 \u2192 iteration): scaled to 4...\""
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "COLLAPSED_BULLETS": {
         "severity": "ERROR",
@@ -3435,8 +3777,8 @@
       "ZERO_BULLETS": {
         "severity": "ERROR",
         "passed": true,
-        "details": "Found 20 bullet item(s) in Work Experience section",
-        "count": 20,
+        "details": "Found 24 bullet item(s) in Work Experience section",
+        "count": 24,
         "locations": []
       },
       "INLINE_BULLETS": {
@@ -3470,54 +3812,32 @@
     }
   },
   "gemini_nicobar_old_technical-two-column": {
-    "passed": false,
-    "passed_strict": false,
+    "passed": true,
+    "passed_strict": true,
     "strict_mode": false,
-    "error_count": 3,
+    "error_count": 0,
     "warning_count": 0,
     "rules": {
       "RAW_MARKDOWN_TOKENS": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 5 raw markdown token(s)",
-        "count": 5,
-        "locations": [
-          "Line ~47: **Enterprise AI Quality Platform (EQMS)**",
-          "Line ~90: **Built Emote from zero:**",
-          "Line ~90: **Latency reduction:**",
-          "Line ~90: **Enterprise migration:**",
-          "Line ~90: **Agentic manufacturing quality system:**"
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "EM_DASH": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 6 em dash(es), 8 en dash(es)",
-        "count": 14,
-        "locations": [
-          "Line 33, col 181: em dash in \"...critical enterprise workflows \u2014 from agentic quality managem...\"",
-          "Line 33, col 513: em dash in \"...I build doesn't just respond \u2014 it improves over time.</p> <...\"",
-          "Line 47, col 207: em dash in \"...turing quality digitalization \u2014 automating the core quality...\"",
-          "Line 48, col 224: em dash in \"...ans, and 8D corrective action \u2014 reducing manual engineering...\"",
-          "Line 48, col 846: em dash in \"...m performance and reliability \u2014 reduced workflow latency (~1...\"",
-          "Line 22: en dash in \"...span> <span class=\"dates\">2020\u20132022</span><p class=\"edu-deta...\""
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "ARROWS": {
         "severity": "ERROR",
-        "passed": false,
-        "details": "Found 13 arrow character(s)",
-        "count": 13,
-        "locations": [
-          "Line 48: right arrow (U+2192) in \"...lity workflows (generate \u2192 validate \u2192 update \u2192 act...\"",
-          "Line 48: right arrow (U+2192) in \"...ows (generate \u2192 validate \u2192 update \u2192 act) with full...\"",
-          "Line 48: right arrow (U+2192) in \"...rate \u2192 validate \u2192 update \u2192 act) with full traceabi...\"",
-          "Line 48: right arrow (U+2192) in \"...workflow latency (~12.5s \u2192 ~8s), built validation...\"",
-          "Line 60: right arrow (U+2192) in \"..., reducing latency (~15s \u2192 ~3s) and Inference cost...\"",
-          "Line 60: right arrow (U+2192) in \"...d Inference cost (~$1.20 \u2192 ~$0.023) through pipeli...\"",
-          "Line 60: right arrow (U+2192) in \"...the full product loop (0 \u2192 1 \u2192 iteration): scaled...\"",
-          "Line 60: right arrow (U+2192) in \"...full product loop (0 \u2192 1 \u2192 iteration): scaled to 4...\""
-        ]
+        "passed": true,
+        "details": "",
+        "count": 0,
+        "locations": []
       },
       "COLLAPSED_BULLETS": {
         "severity": "ERROR",
@@ -3536,8 +3856,8 @@
       "ZERO_BULLETS": {
         "severity": "ERROR",
         "passed": true,
-        "details": "Found 20 bullet item(s) in Work Experience section",
-        "count": 20,
+        "details": "Found 24 bullet item(s) in Work Experience section",
+        "count": 24,
         "locations": []
       },
       "INLINE_BULLETS": {

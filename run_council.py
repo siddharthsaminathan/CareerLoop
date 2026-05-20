@@ -15,8 +15,14 @@ Output for each run:
         05_user_truth.json
         06_positioning_strategy.json
         07_section_rewrites.json
-        10_final_resume.md
+        08_truth_guard_report.json
+        09_s7_debug.json          ← per-section timing, model, rewrite stats
+        10_final_resume.md        ← post-humanizer (final deliverable)
         11_cover_note.md
+        12_pre_humanizer_resume.md← before humanizer
+        12_humanized_resume.md    ← same as 10, explicit humanizer output
+        13_humanizer_report.json
+        14_humanizer_diff.patch
         15_quality_report.md
         17_council_run_log.json
 """
@@ -341,6 +347,10 @@ def run_council(job_id: str, person: str = "siddharth", intent: str = "INTERESTE
         "section_rewrites": None,
         "application_pack": None,
         "truth_guard_report": None,
+        "pre_humanizer_resume": None,
+        "humanizer_output": None,
+        "humanizer_report": None,
+        "s7_debug": None,
         "errors": [],
     }
 
@@ -412,10 +422,19 @@ def run_council(job_id: str, person: str = "siddharth", intent: str = "INTERESTE
             lines += ["\n## Warnings\n"] + [f"- {x}\n" for x in qr["warnings"]]
         (output_dir / "15_quality_report.md").write_text("".join(lines), encoding="utf-8")
 
-    # Humanizer pre/post artifacts
+    # S7 debug artifact (per-section timing, model, rewrite stats)
+    s7_debug = final_state.get("s7_debug")
+    if s7_debug:
+        with open(output_dir / "09_s7_debug.json", "w", encoding="utf-8") as f:
+            json.dump(s7_debug, f, indent=2, ensure_ascii=False)
+
+    # Humanizer before/after artifacts
     pre_humanizer = final_state.get("pre_humanizer_resume", "")
     if pre_humanizer:
         (output_dir / "12_pre_humanizer_resume.md").write_text(pre_humanizer, encoding="utf-8")
+    humanizer_text = final_state.get("humanizer_output", "")
+    if humanizer_text:
+        (output_dir / "12_humanized_resume.md").write_text(humanizer_text, encoding="utf-8")
     humanizer_rpt = final_state.get("humanizer_report")
     if humanizer_rpt:
         with open(output_dir / "13_humanizer_report.json", "w", encoding="utf-8") as f:

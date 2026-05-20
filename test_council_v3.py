@@ -7,6 +7,7 @@ import os
 import sys
 import re
 import json
+import pytest
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -47,6 +48,11 @@ Fluent in Python/ NodeJS. Comfortable writing and querying SQL.
 Ability to build front-ends that don't embarrass the brand. We're visual people.
 """
 
+@pytest.mark.parametrize("person_id,fixture_path", [
+    ("experienced", "examples/fixtures/experienced_tech.md"),
+    ("fresher", "examples/fixtures/fresher_ml.md"),
+    ("business", "examples/fixtures/business_lead.md"),
+])
 def test_fixture(person_id: str, fixture_path: str):
     print(f"\n{'='*80}")
     print(f" TESTING FIXTURE: {person_id}")

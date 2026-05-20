@@ -46,7 +46,8 @@ from careerloop.company_intel import (
 H_M_JD = """
 Senior Merchandiser — Womenswear Jersey
 
-H&M is looking for a Senior Merchandiser to own OTB and inventory for the Womenswear Jersey category in Bengaluru.
+H&M is looking for a Senior Merchandiser to own OTB and inventory for the Womenswear Jersey category in value retail Bengaluru.
+We are looking for a senior merchandiser to scale our brand footprint.
 
 Key Responsibilities:
 - Own OTB planning and management for jersey category
@@ -58,13 +59,15 @@ Key Responsibilities:
 - Ensure localization of global assortments for Indian market
 
 Requirements:
-- 5+ years of fashion merchandising or buying experience
+- 5+ years of fashion retail experience
 - Strong OTB and inventory management skills
 - Experience with SAP, PLM systems
 - Analytical and entrepreneurial mindset
 - Cross-functional collaboration skills
 - Experience with womenswear preferred
 - Based in Bengaluru
+
+You will lead vendor management and expand the category.
 """
 
 
