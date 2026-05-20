@@ -193,6 +193,29 @@ PRD §11 (Council 45→60%), §12 (Humanizer 5→50%), §9 (Company Intel 10→2
 <!-- product-lead appends new entries above this line -->
 
 
+### 2026-05-20 — Session: S3 Grounded Synthesis + S7 Timing Diagnostics + Humanizer Bullet Fix
+
+**What was done:**
+- **S3 Grounded Synthesis:** Rewrote `_S3_SYNTHESIS_SYSTEM` in `company_intel.py` to strictly separate Grounded Facts (from JD/web text only), Plausible Inferences (step-by-step reasoning from signals), and Explicit Unknowns. LLM is explicitly instructed NOT to recall training data for facts like headcount, funding, or leadership names. Every fact must cite source [JD] or [WEB]. This closes the hallucination gap where S3 was inventing H&M-specific details not in the JD.
+- **S7 Timing Diagnostics:** `section_rewrites_node` in `graph.py` now tracks per-section elapsed time, original/rewritten char counts, model (`deepseek-chat`), and fallback reason. Total S7 wall-clock time printed to console and stored in `s7_debug` state key. Saved as `09_s7_debug.json` each run.
+- **New State Keys (LangGraph topology unchanged):** `humanizer_output` (post-humanizer resume markdown, distinct from `pre_humanizer_resume`) and `s7_debug` (S7 timing payload) added to `CouncilState`.
+- **Diagnostic Artifacts:** `run_council.py` now saves `09_s7_debug.json` and `12_humanized_resume.md` per run. Docstring updated to reflect all 17 artifact files.
+- **Humanizer Bullet Collapse Fix (from prior sub-session):** `_deterministic_tone_adapt()` refactored with line-aware segment parser. 29/29 unit tests pass.
+- **E2E Tests:** `test_council_v3.py` 4/4 pass (683s). All imports clean.
+- **Pushed:** Commit `a8a6ef5` on `main`.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED
+PRD §9 (Company Intel grounding — LLM recall inhibition), §11 (Council diagnostic visibility), §12 (Humanizer bullet structure preserved). S3 grounding + S7 diagnostics = building toward Company Intel completeness (30→35% estimate).
+
+**Deviations detected:** None.
+
+**Recommended next 3 actions:**
+1. Build standalone `company_intel.py` engine using CompanyResearchAdapter as foundation — web enrichment path with 10s timeout (B6, PRD §9)
+2. Truth Guard year-inflation cross-check: parse date ranges from CV, validate claimed "X+ years" against actual tenure (B9)
+3. Field-level S7 rewriting: parse experience bullets as arrays, not markdown blocks, for surgical per-bullet rewriting
+
+
+
 ### 2026-05-20 — Session: Deep Delta, Humanizer Assertiveness, and Rendering Fixes
 
 **What was done:**
