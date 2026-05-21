@@ -3,61 +3,61 @@
     "sections_total": 4,
     "sections_changed": 4,
     "sections_changed_pct": 100.0,
-    "average_section_delta_pct": 62.01,
+    "average_section_delta_pct": 51.6,
     "sections": [
       {
         "section_id": "education",
         "change_type": "KEEP",
-        "similarity": 0.7959,
-        "delta_pct": 20.41,
+        "similarity": 0.7667,
+        "delta_pct": 23.33,
         "original_chars": 242,
-        "rewritten_chars": 243,
+        "rewritten_chars": 251,
         "original_bullets": 0,
         "rewritten_bullets": 0,
         "changed": true,
-        "change_reason": "Education section contains only factual dates and degrees; no rewriting needed."
+        "change_reason": "Education entries are factual data; no rewriting needed."
       },
       {
         "section_id": "summary",
         "change_type": "REWRITE",
-        "similarity": 0.0854,
-        "delta_pct": 91.46,
+        "similarity": 0.113,
+        "delta_pct": 88.7,
         "original_chars": 497,
-        "rewritten_chars": 862,
+        "rewritten_chars": 936,
         "original_bullets": 0,
         "rewritten_bullets": 0,
         "changed": true,
-        "change_reason": "Reframed summary to lead with metrics and P&L ownership, inject role keywords (OTB, sell-through, range planning), and position candidate as ready for day-one deliverables despite limited SAP experience."
+        "change_reason": "Reframed summary to emphasize NIFT foundation, category-building proof points, and commercial acumen while implicitly addressing OTB as a learnable skill."
       },
       {
         "section_id": "skills",
         "change_type": "REWRITE",
-        "similarity": 0.0531,
-        "delta_pct": 94.69,
+        "similarity": 0.6375,
+        "delta_pct": 36.25,
         "original_chars": 536,
-        "rewritten_chars": 745,
+        "rewritten_chars": 540,
         "original_bullets": 18,
-        "rewritten_bullets": 5,
+        "rewritten_bullets": 3,
         "changed": true,
-        "change_reason": "Reframed skills to emphasize OTB, assortment planning, and measurable outcomes (revenue, margins, on-time delivery) as required by the role."
+        "change_reason": "Reordered skills to prioritize OTB and assortment planning, added OTB Management to core competencies, and kept all original content while aligning with role keywords."
       },
       {
         "section_id": "professional_experience",
         "change_type": "REWRITE",
-        "similarity": 0.5853,
-        "delta_pct": 41.47,
+        "similarity": 0.4187,
+        "delta_pct": 58.13,
         "original_chars": 4429,
-        "rewritten_chars": 2508,
+        "rewritten_chars": 2401,
         "original_bullets": 19,
-        "rewritten_bullets": 6,
+        "rewritten_bullets": 7,
         "changed": true,
-        "change_reason": "Chunked rewrite (2 chunks, 4429 → 2508 chars)"
+        "change_reason": "Chunked rewrite (2 chunks, 4429 → 2401 chars)"
       }
     ]
   },
   "humanization_delta": {
-    "similarity": 0.9959,
-    "delta_pct": 0.41,
+    "similarity": 0.9957,
+    "delta_pct": 0.43,
     "nonblank_line_changes": 4,
     "mostly_whitespace": false
   },

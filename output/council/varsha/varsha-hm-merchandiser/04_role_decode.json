@@ -1,59 +1,51 @@
 {
-  "normalized_title": "Senior Merchandiser, Women's Wear (Jersey)",
+  "normalized_title": "Senior Merchandiser - Women's Wear (Jersey)",
   "seniority": "mid-senior",
   "must_haves": [
-    "4-6 years fashion buying/merchandising experience",
-    "OTB management",
-    "assortment planning",
+    "4-6 years experience in fashion buying/merchandising/category management",
+    "OTB management and assortment planning",
     "Advanced Excel (pivot tables, VLOOKUP, dashboards)",
     "PO/PI coordination with multiple vendors",
-    "womenswear trend knowledge (jersey/casualwear)",
-    "supplier/factory management in Asia",
-    "omnichannel merchandising (offline + e-commerce)",
-    "SAP/ERP experience for PO and inventory",
-    "cross-functional collaboration",
-    "negotiation skills (vendor pricing, MOQs)"
+    "Womenswear trend knowledge, especially jersey/casualwear",
+    "Experience managing suppliers in India and Asia",
+    "Offline retail and e-commerce/omnichannel experience",
+    "Familiarity with SAP/ERP for PO and inventory",
+    "Cross-functional collaboration skills",
+    "Vendor negotiation skills"
   ],
   "nice_to_haves": [
-    "NIFT/Pearl Academy or equivalent fashion degree",
-    "fast-fashion/value retail experience (DMart, Zara, etc.)",
-    "category launch or new market entry",
-    "WIP tracker and production calendar management",
-    "BI tools (Metabase, Power BI)"
+    "NIFT/Pearl Academy degree",
+    "Fast-fashion/value retail experience (Zara, Zudio, etc.)",
+    "Category launch or new market entry projects",
+    "Experience with WIP trackers and production calendars",
+    "BI tools: Metabase / Power BI"
   ],
   "hidden_expectations": [
-    "P&L ownership mentality",
-    "data-driven decision-making",
-    "stakeholder management across buying, design, regional teams",
-    "strategic thinking in range planning",
-    "ability to work in fast-paced, iterative retail environment"
+    "P&L ownership and commercial acumen",
+    "Ability to work under pressure in fast-paced fashion cycles",
+    "End-to-end product lifecycle management",
+    "Cross-cultural communication with regional teams",
+    "Data-driven decision-making on markdowns and replenishment"
   ],
   "day_one_deliverables": [
-    "Assess current OTB and inventory health",
-    "Analyze sell-through data and propose markdowns",
-    "Review supplier delivery performance and address bottlenecks",
-    "Initiate range review meetings with cross-functional teams"
+    "Seasonal assortment strategy and OTB plan for women's jersey"
   ],
   "screening_keywords": [
     "OTB",
     "assortment planning",
     "merchandising",
-    "buying",
-    "category management",
-    "Advanced Excel",
-    "SAP",
+    "fashion buying",
     "vendor management",
-    "omnichannel",
-    "P&L",
-    "womenswear",
-    "jersey",
-    "fashion retail"
+    "PLM",
+    "sell-through",
+    "category management",
+    "WIP tracker"
   ],
   "disqualifiers": [
-    "no fashion buying/merchandising experience",
-    "no OTB management experience",
-    "no Advanced Excel skills",
-    "no vendor/supplier coordination experience"
+    "No OTB management experience",
+    "No fashion/apparel industry background",
+    "No vendor or supplier management experience",
+    "No retail or omnichannel experience"
   ],
-  "confidence": 0.85
+  "confidence": 0.9
 }

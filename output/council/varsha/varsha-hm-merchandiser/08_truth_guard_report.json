@@ -1,70 +1,80 @@
 {
-  "total_claims": 6,
+  "total_claims": 7,
   "verified": 0,
-  "weak": 1,
-  "unsupported": 5,
+  "weak": 4,
+  "unsupported": 2,
   "exaggerated": 0,
-  "fabricated": 0,
+  "fabricated": 1,
   "claims": [
     {
-      "text": "4+ years in fashion buying",
-      "risk_level": "WEAK",
+      "text": "4 years of experience in fashion buying",
+      "risk_level": "FABRICATED",
       "claim_type": "year_experience",
-      "start_pos": 19,
-      "end_pos": 45,
-      "evidence_match": "Partially supported: verified_years = 4.1, claimed 4+",
+      "start_pos": 31,
+      "end_pos": 70,
+      "evidence_match": "Matches disallowed claim: '10 years fashion experience'",
       "repair_suggestion": null,
-      "confidence": 0.6
+      "confidence": 0.375
     },
     {
-      "text": "Built buy plans",
+      "text": "Built a women's casualwear category",
       "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 29,
-      "end_pos": 44,
-      "evidence_match": null,
-      "repair_suggestion": null,
-      "confidence": 0.0
-    },
-    {
-      "text": "managed open-to-buy",
-      "risk_level": "UNSUPPORTED",
-      "claim_type": "ownership",
-      "start_pos": 49,
-      "end_pos": 68,
+      "start_pos": 141,
+      "end_pos": 176,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0
     },
     {
       "text": "Built the fashion category",
-      "risk_level": "UNSUPPORTED",
+      "risk_level": "WEAK",
       "claim_type": "ownership",
       "start_pos": 70,
       "end_pos": 96,
+      "evidence_match": "Partial evidence match in 'Category Management'",
+      "repair_suggestion": null,
+      "confidence": 0.2333333333333333
+    },
+    {
+      "text": "Built a women's casualwear category",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 351,
+      "end_pos": 386,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0
     },
     {
-      "text": "Managed PO/PI coordination",
-      "risk_level": "UNSUPPORTED",
+      "text": "Managed 200+ SKUs",
+      "risk_level": "WEAK",
       "claim_type": "ownership",
-      "start_pos": 390,
-      "end_pos": 416,
-      "evidence_match": null,
+      "start_pos": 1122,
+      "end_pos": 1139,
+      "evidence_match": "Numbers present in evidence bank — claim likely grounded",
       "repair_suggestion": null,
-      "confidence": 0.0
+      "confidence": 0.4
+    },
+    {
+      "text": "Built Excel-based WIP trackers",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 1354,
+      "end_pos": 1384,
+      "evidence_match": "Partial evidence match in 'Advanced Excel'",
+      "repair_suggestion": null,
+      "confidence": 0.35
     },
     {
       "text": "Built and operated a lean fashion reselling brand focused",
-      "risk_level": "UNSUPPORTED",
+      "risk_level": "WEAK",
       "claim_type": "ownership",
-      "start_pos": 1931,
-      "end_pos": 1988,
-      "evidence_match": null,
+      "start_pos": 1623,
+      "end_pos": 1680,
+      "evidence_match": "Partial evidence match in 'Womenswear Trend Knowledge'",
       "repair_suggestion": null,
-      "confidence": 0.0
+      "confidence": 0.2333333333333333
     }
   ]
 }
