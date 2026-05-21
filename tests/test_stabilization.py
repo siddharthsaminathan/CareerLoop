@@ -202,12 +202,104 @@ class TestS7StructuredRewriteContract:
         text = _payload_to_rewritten_text(payload, "Old profile paragraph.", "profile")
         assert text == "AI product engineer with production LLM systems experience."
 
-    def test_legacy_rewritten_text_still_supported(self):
+    def test_legacy_rewritten_text_wins_for_non_scaffold_sections(self):
+        """For non-scaffold sections (summary, skills), rewritten_text takes priority."""
         payload = {
-            "rewritten_text": "Legacy rewritten markdown",
-            "tailored_bullets": ["Should not win"],
+            "rewritten_text": "Full rewritten summary paragraph.",
+            "tailored_bullets": ["Should not win for summary."],
         }
-        assert _payload_to_rewritten_text(payload, "- Original", "experience") == "Legacy rewritten markdown"
+        assert _payload_to_rewritten_text(payload, "Old summary text.", "summary") == "Full rewritten summary paragraph."
+
+    def test_scaffold_section_prefers_tailored_bullets_when_both_present(self):
+        """For experience sections, tailored_bullets wins over rewritten_text so that
+        scaffold reconstruction preserves company headers, job titles, and dates."""
+        original = "Acme Corp\nEngineer 2022–Present\n- Old bullet one.\n- Old bullet two."
+        payload = {
+            "rewritten_text": "Rewrite without company headers.\n- New bullet.",
+            "tailored_bullets": ["New bullet via scaffold."],
+        }
+        text = _payload_to_rewritten_text(payload, original, "experience")
+        # Scaffold reconstruction should be used — company header preserved
+        assert "Acme Corp" in text
+        assert "New bullet via scaffold" in text
+
+    def test_legacy_rewritten_text_extracted_when_no_tailored_bullets(self):
+        """For experience sections with only rewritten_text, extract bullets from it
+        and run scaffold reconstruction so company headers are preserved."""
+        original = "Acme Corp\nEngineer 2022–Present\n- Old bullet one.\n- Old bullet two."
+        payload = {
+            "rewritten_text": "Rewrite prose.\n- Extracted new bullet.",
+        }
+        text = _payload_to_rewritten_text(payload, original, "experience")
+        # Company header should be preserved via scaffold reconstruction
+        assert "Acme Corp" in text
+        assert "Extracted new bullet" in text
+
+    def test_skills_section_uses_flat_list_path(self):
+        """Skills sections skip scaffold reconstruction and output LLM bullets directly."""
+        payload = {
+            "tailored_bullets": [
+                "Core Competencies: OTB Management, Assortment Planning, Vendor Negotiation",
+                "Tools: Advanced Excel, SAP (Basic), Google Sheets",
+            ]
+        }
+        # Original has more bullets (15) and subsection headers — scaffold would be garbled
+        original = (
+            "Core Competencies: Assortment Planning\n\n"
+            "- Fashion Buying\n- PO/PI Coordination\n- Vendor Management\n"
+            "- Inventory\nControl\n"
+            "Tools: Advanced MS Excel\n- MS Word\n- Google Sheets\n"
+        )
+        text = _payload_to_rewritten_text(payload, original, "skills")
+        # Should be flat 2-bullet list — no original content leaking through
+        assert text == (
+            "- Core Competencies: OTB Management, Assortment Planning, Vendor Negotiation\n"
+            "- Tools: Advanced Excel, SAP (Basic), Google Sheets"
+        )
+        # Crucially — no original artifacts in output
+        assert "Fashion Buying" not in text
+        assert "Inventory\nControl" not in text
+
+    def test_experience_continuation_lines_are_skipped(self):
+        """Multi-line wrapped bullets: continuation lines must not appear after rewrite."""
+        # Simulates PDF-extracted experience where bullets wrap across multiple lines
+        original = (
+            "Acme Corp\nSoftware Engineer Jan 2022 – Present\n\n"
+            "- Built recommendation engine using\ncollaborative filtering across 1M users.\n"
+            "- Reduced latency from 12s to 800ms by\nrefactoring the cache layer.\n"
+        )
+        payload = {
+            "tailored_bullets": [
+                "Shipped personalization engine that drove 22% lift in engagement across 1M users.",
+                "Cut API latency 93% by redesigning cache invalidation strategy.",
+            ]
+        }
+        text = _payload_to_rewritten_text(payload, original, "experience")
+        # Structural lines preserved
+        assert "Acme Corp" in text
+        assert "Software Engineer Jan 2022" in text
+        # Rewritten bullets present
+        assert "- Shipped personalization engine" in text
+        assert "- Cut API latency 93%" in text
+        # Continuation lines from original MUST NOT appear
+        assert "collaborative filtering" not in text
+        assert "refactoring the cache layer" not in text
+
+    def test_experience_excess_original_bullets_are_dropped(self):
+        """When LLM returns fewer bullets than original, excess originals are not kept."""
+        original = (
+            "- Bullet one original.\n"
+            "- Bullet two original.\n"
+            "- Bullet three original.\n"
+            "- Bullet four original.\n"
+        )
+        payload = {"tailored_bullets": ["Rewritten one.", "Rewritten two."]}
+        text = _payload_to_rewritten_text(payload, original, "experience")
+        assert "- Rewritten one." in text
+        assert "- Rewritten two." in text
+        # The two un-replaced originals must not appear
+        assert "Bullet three original" not in text
+        assert "Bullet four original" not in text
 
 
 # ─── Normalizer bullet preservation tests ─────────────────────────────────────

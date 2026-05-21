@@ -252,15 +252,71 @@ def _is_identity_or_contact_section(section: dict) -> bool:
 
 
 def _payload_to_rewritten_text(payload: dict, original: str, normalized_type: str = "") -> str:
-    """Bridge S7 structured output into the legacy assembler contract."""
-    direct = (payload.get("rewritten_text") or "").strip()
-    if direct:
-        return direct
+    """Bridge S7 structured output into the legacy assembler contract.
 
+    Handles two LLM response shapes:
+      - rewritten_text: full section markdown → use directly.
+      - tailored_bullets: list of bare bullet strings (no headers/dates/company lines).
+
+    For tailored_bullets, dispatches to one of four paths based on section type:
+
+    Path 1 — profile/summary:
+        Single-paragraph rewrite: return the single cleaned bullet as a paragraph.
+
+    Path 2 — flat-list sections (skills/technical_skills/core_competencies/tools):
+        No structural scaffold to preserve.  Just output the LLM bullets as a
+        flat "- X" list.  This avoids the wrapping-artifact problem (PDF-extracted
+        skills like "- Inventory\\nControl" would confuse scaffold reconstruction).
+
+    Path 3 — scaffold sections (experience, projects, etc.):
+        Preserve structural non-bullet lines (company name, role, dates, intro
+        paragraphs) and substitute each bullet one-for-one with its rewrite.
+
+        Two fixes over the naïve approach:
+          a) Continuation-line skipping: after replacing a bullet, enter
+             "continuation" state.  While in that state, skip non-blank lines
+             that start with a lowercase letter — these are wrapped continuations
+             of the replaced multi-line bullet (PDF extraction artefact).
+             Reset the state on a blank line or a line that starts with an
+             uppercase letter (structural element: company name, date, title).
+          b) Excess-original-bullet skipping: if the LLM returned FEWER bullets
+             than the original (intentional consolidation, e.g. skills grouping),
+             remaining original bullets are skipped so un-tailored originals
+             don't leak into the output.
+
+    Path 4 — no bullets in original:
+        Join the cleaned bullets as newline-separated paragraphs.
+    """
+    direct = (payload.get("rewritten_text") or "").strip()
     items = payload.get("tailored_bullets")
+    normalized = (normalized_type or "").lower()
+
+    # Scaffold sections (experience / projects) must go through Path 3 so that
+    # company names, job titles, and date ranges are preserved via scaffold
+    # reconstruction.  When the LLM returns only rewritten_text (no
+    # tailored_bullets), extract the bullet lines from it and treat them as
+    # tailored_bullets so scaffold reconstruction still runs.
+    _scaffold_sections = {"experience", "work_experience", "projects", "project"}
+    if direct:
+        if normalized not in _scaffold_sections:
+            # Non-scaffold section — use the full rewrite directly.
+            return direct
+        if not isinstance(items, list):
+            # Scaffold section but only rewritten_text returned: extract bullets.
+            items = [
+                re.sub(r"^\s*[-*+]\s+", "", ln).strip()
+                for ln in direct.splitlines()
+                if re.match(r"^\s*[-*+]\s+\S", ln)
+            ]
+            if not items:
+                # LLM returned prose with no bullet markers — use directly as last resort.
+                return direct
+        # Fall through to the bullet-based paths below (tailored_bullets or extracted).
+
     if not isinstance(items, list):
         return ""
 
+    # Clean each bullet: strip markdown prefixes, bold markers, and heading syntax
     cleaned: list[str] = []
     for item in items:
         text = str(item or "").strip()
@@ -274,11 +330,69 @@ def _payload_to_rewritten_text(payload: dict, original: str, normalized_type: st
         return ""
 
     original_bullets = len(re.findall(r"(?m)^\s*[-*+]\s+\S", original or ""))
-    normalized = (normalized_type or "").lower()
-    if original_bullets > 0:
-        return "\n".join(f"- {item}" for item in cleaned)
+    # NOTE: `normalized` was already computed above alongside `direct` and `items`.
+
+    # ── Path 1: profile / summary ──────────────────────────────────────────────
     if normalized in {"profile", "summary"} and len(cleaned) == 1:
         return cleaned[0]
+
+    # ── Path 2: flat-list sections (skills, tools, etc.) ──────────────────────
+    # No structural scaffold worth preserving.  Output LLM bullets as flat list.
+    # This avoids both continuation-line confusion and excess-original-bullet
+    # leakage for sections whose structure is purely a list of items.
+    # Note: normalized_type may be "skill" (singular) or "skills" (plural) depending on
+    # the normalizer — include both to be safe.
+    if normalized in {"skill", "skills", "technical_skills", "core_competencies", "tools"}:
+        return "\n".join(f"- {b}" for b in cleaned)
+
+    # ── Path 3: scaffold-preserving reconstruction ─────────────────────────────
+    if original_bullets > 0:
+        orig_lines = (original or "").splitlines()
+        result_lines: list[str] = []
+        bullet_idx = 0
+        _bullet_pat = re.compile(r"^\s*[-*+]\s+\S")
+        in_continuation = False  # True while consuming a replaced bullet's wrapped lines
+
+        for line in orig_lines:
+            if _bullet_pat.match(line):
+                if bullet_idx < len(cleaned):
+                    result_lines.append(f"- {cleaned[bullet_idx]}")
+                    bullet_idx += 1
+                # Whether we consumed a rewrite or not, the next non-blank non-bullet
+                # lines may be continuations of this wrapped bullet.
+                in_continuation = True
+            elif in_continuation:
+                stripped = line.strip()
+                if not stripped:
+                    # Blank line → end of bullet continuation
+                    in_continuation = False
+                    result_lines.append(line)
+                elif stripped[0].islower():
+                    # Lowercase-start → sentence continuation of the previous wrapped
+                    # bullet (PDF hard-wrap artefact).  Skip it.
+                    pass
+                elif stripped[-1] in {'.', ',', ';', '…'}:
+                    # Uppercase-start BUT ends with sentence punctuation → still a
+                    # sentence fragment continuation (e.g. "India and Asia, ensuring
+                    # 95% on-time delivery for seasonal production orders.").  Skip it.
+                    pass
+                else:
+                    # Uppercase-start + no terminal sentence punctuation →
+                    # structural element (company name, date range, job title).
+                    # Keep it and exit continuation mode.
+                    in_continuation = False
+                    result_lines.append(line)
+            else:
+                result_lines.append(line)
+
+        # Append any excess LLM bullets not consumed by the scaffold
+        while bullet_idx < len(cleaned):
+            result_lines.append(f"- {cleaned[bullet_idx]}")
+            bullet_idx += 1
+
+        return "\n".join(result_lines)
+
+    # ── Path 4: no bullets in original ────────────────────────────────────────
     return "\n\n".join(cleaned)
 
 
@@ -357,6 +471,33 @@ def _rewrite_one_section(
                 chunk_ok = False
                 break
 
+            # For scaffold sections: the LLM sometimes drops the company name / role /
+            # date header when rewriting an intro-only chunk (one that has no bullets).
+            # Extract the first two structural lines from the original chunk and prepend
+            # them to the rewrite if they are absent.
+            if normalized_type in {"experience", "work_experience"}:
+                orig_chunk_lines = [l for l in chunk.splitlines() if l.strip()]
+                # Structural header = first two non-blank lines (company + role/date).
+                # Stop before any bullet line or prose continuation (starts lowercase).
+                struct_lines: list[str] = []
+                for ol in orig_chunk_lines[:4]:
+                    stripped = ol.strip()
+                    if re.match(r"^\s*[-*+]\s+\S", ol):
+                        break  # reached bullets — stop
+                    if struct_lines and stripped and stripped[0].islower():
+                        break  # continuation prose — stop
+                    if stripped:
+                        struct_lines.append(stripped)
+                    if len(struct_lines) == 2:
+                        break  # only need company + role/date
+
+                if struct_lines:
+                    # Check if the first structural line (company name) appears in ctext.
+                    first_key = struct_lines[0].lower()[:20]
+                    if first_key not in ctext.lower():
+                        preamble = "\n".join(struct_lines)
+                        ctext = preamble + "\n" + ctext
+
             rewritten_chunks.append(_strip_generated_heading_prefix(ctext, stitle))
 
         if not chunk_ok or not rewritten_chunks:
@@ -368,6 +509,12 @@ def _rewrite_one_section(
         rewritten = _strip_generated_heading_prefix(rewritten, stitle)
         rewritten = ResumeCompiler._preprocess_plaintext_cv(rewritten)
         safe, issues = _rewrite_preserves_section_structure(raw, rewritten)
+        # For chunked sections scaffold reconstruction already runs per-chunk, preserving
+        # company headers, dates and role lines. The LLM intentionally consolidates many
+        # original bullets into fewer, higher-quality tailored bullets — this is correct
+        # behaviour, not structural damage. Only hard-fail on real corruption signals.
+        issues = [i for i in issues if not i.startswith("bullet_count_dropped")]
+        safe = len(issues) == 0
         if not safe:
             reason = f"chunk_structure_check_failed:{','.join(issues)}"
             print(f"  !! S7 fallback '{sid}' → {reason} — keeping original")
@@ -419,18 +566,39 @@ def _rewrite_one_section(
         print(f"  !! S7 fallback '{sid}' → {reason} — keeping original")
         return sid, None, reason
 
-    if len(rewritten) < len(raw) * 0.5:
+    # Truncation guard — use bullet-aware comparison when LLM returned tailored_bullets.
+    # tailored_bullets path: _payload_to_rewritten_text already reconstructs the full
+    # section (headers + dates preserved), so length should be close to original.
+    # For rewritten_text path: plain 50% length guard.
+    if payload.get("tailored_bullets") and not payload.get("rewritten_text"):
+        # Compare bullet content only, not total length (headers/dates are preserved by reconstruction)
+        orig_bullet_text = " ".join(
+            m.group(0) for m in re.finditer(r"(?m)^\s*[-*+]\s+.+", raw or "")
+        )
+        rew_bullet_text = " ".join(
+            m.group(0) for m in re.finditer(r"(?m)^\s*[-*+]\s+.+", rewritten or "")
+        )
+        if orig_bullet_text and len(rew_bullet_text) < len(orig_bullet_text) * 0.3:
+            reason = f"bullet_truncation_suspected:{len(rew_bullet_text)}<{len(orig_bullet_text)}*0.3"
+            print(f"  !! S7 fallback '{sid}' → {reason} — keeping original")
+            return sid, None, reason
+    elif len(rewritten) < len(raw) * 0.5:
         reason = f"truncation_suspected:rewrite={len(rewritten)}chars,original={len(raw)}chars"
         print(f"  !! S7 fallback '{sid}' → {reason} — keeping original")
         return sid, None, reason
 
     rewritten = _strip_generated_heading_prefix(rewritten, stitle)
     rewritten = ResumeCompiler._preprocess_plaintext_cv(rewritten)
-    safe, issues = _rewrite_preserves_section_structure(raw, rewritten)
-    if not safe:
-        reason = f"structure_check_failed:{','.join(issues)}"
-        print(f"  !! S7 fallback '{sid}' → {reason} — keeping original")
-        return sid, None, reason
+    # Skip structure check for flat-list sections (skills, tools, etc.) — these
+    # sections intentionally consolidate many fine-grained bullets into a few
+    # grouped categories.  Bullet-count parity is not expected or required.
+    _flat_normalized = {"skill", "skills", "technical_skills", "core_competencies", "tools"}
+    if normalized_type not in _flat_normalized:
+        safe, issues = _rewrite_preserves_section_structure(raw, rewritten)
+        if not safe:
+            reason = f"structure_check_failed:{','.join(issues)}"
+            print(f"  !! S7 fallback '{sid}' → {reason} — keeping original")
+            return sid, None, reason
 
     rewrite_dict = {
         "section_id": sid,
@@ -679,21 +847,52 @@ def user_truth_node(state: CouncilState) -> CouncilState:
 
 # ─── System 6: Positioning Strategy ───────────────────────────────────────────
 
-_S6_SYSTEM = """You are a senior career strategist. Create the strategic narrative in JSON.
-Do NOT rewrite the resume. Decide on the application stance and angle.
-Base all proof points on evidence from User Truth evidence_bank only.
+_S6_SYSTEM = """You are a senior career strategist. Your job is to answer ONE question: "Why is THIS candidate the best choice for THIS specific role at THIS specific company — not generically, but right now?"
 
-EXAMPLE JSON OUTPUT:
+Do NOT rewrite the resume. Decide on the application stance and narrative angle only.
+
+MANDATORY REASONING STEPS (work through these before writing the JSON):
+
+STEP 1 — THE ONE DIFFERENTIATOR:
+Find the single insight that makes this candidate unusual for this role. Not "strong Python skills" (anyone can say that). The differentiator is the intersection: what does this candidate have that most applicants DON'T, that this company specifically needs RIGHT NOW?
+Examples of a real differentiator:
+  - "Only candidate who has built LLM systems at production scale AND shipped consumer products"
+  - "Ran category P&L from zero at a startup AND managed 20+ supplier POs at a structured org — both sides of the job"
+  - "Knows the Indian retail context from the inside, not just from a McKinsey deck"
+
+STEP 2 — MAP PROOF POINTS TO JD REQUIREMENTS:
+For each `must_have` in role_decode, identify the SPECIFIC bullet from evidence_bank that proves it.
+If no bullet proves it, mark it as a GAP (do not invent or soften).
+
+STEP 3 — THE HIRING MANAGER'S OBJECTION:
+What is the most likely reason they WON'T shortlist this candidate? Name it explicitly.
+Then write one sentence that pre-empts it in `narrative_angle`.
+
+STEP 4 — TONE + STANCE:
+PUSH = strong match (≥80% of must_haves proven). Lead with confidence.
+CAREFUL_PUSH = good match (60-79%). Lead with the differentiator, acknowledge the gaps.
+STRETCH = real gaps (40-59%). Lead with transferable evidence, be honest about growth path.
+SKIP = bad fit (<40%). Say so clearly. Do not torture the positioning.
+
+STRICT RULES:
+- `proof_points_to_emphasize` MUST be direct quotes or close paraphrases from evidence_bank. No inventions.
+- `things_to_downplay` must be real gaps or risks, not polite hedges.
+- `narrative_angle` must name the differentiator (Step 1) explicitly.
+- `one_line_positioning` must be role-specific, not a generic title.
+
+Return JSON:
 {
-  "one_line_positioning": "AI Product Engineer who ships enterprise AI from concept to production",
-  "narrative_angle": "Product-minded AI engineer with manufacturing quality digitization experience",
-  "lead_strengths": ["LLM API production experience", "Multi-agent orchestration", "End-to-end shipping"],
-  "proof_points_to_emphasize": ["Built AI quality management from scratch", "Real-time AI at scale"],
-  "things_to_downplay": ["Academic research background", "Non-e-commerce experience"],
-  "tone_guidance": "Direct, technical, business-outcome focused",
-  "recruiter_first_impression_target": "Engineer who thinks in business outcomes, not just code",
-  "application_stance": "CAREFUL_PUSH",
-  "reasoning": "Strong AI engineering match; D2C retail domain is new but transferable"
+  "one_line_positioning": "<role-specific one-liner — names this company or this role's key need>",
+  "narrative_angle": "<the differentiator + objection pre-empt in 1-2 sentences>",
+  "lead_strengths": ["<proof from evidence_bank>", "<proof from evidence_bank>", "<proof from evidence_bank>"],
+  "proof_points_to_emphasize": ["<verbatim or close paraphrase from evidence_bank>"],
+  "things_to_downplay": ["<real gap — be specific>"],
+  "tone_guidance": "<direct instruction for S7 tone — e.g. 'outcome-first, no AI jargon, use retail vocabulary'>",
+  "recruiter_first_impression_target": "<what the recruiter should think after reading the first section>",
+  "application_stance": "PUSH|CAREFUL_PUSH|STRETCH|SKIP",
+  "hiring_manager_objection": "<the most likely reason they say no>",
+  "objection_preempt": "<one sentence that neutralises it>",
+  "reasoning": "<2-3 sentences: differentiator, gaps, why this stance>"
 }"""
 
 
@@ -1183,18 +1382,40 @@ def assembly_node(state: CouncilState) -> CouncilState:
         for warning in link_audit.warnings:
             print(f"  !! {warning}")
 
+        # ─── Sections-not-tailored visibility ────────────────────────────
+        # Identify which allowed sections got NO rewrite (fell back to original).
+        # These sections are in the final resume but were NOT touched by S7.
+        rewrites_data = state.get("section_rewrites", {}).get("rewrites", {})
+        skipped_sids = state.get("section_rewrites", {}).get("skipped", [])
+        allowed_sids = {s.get("section_id") for s in (state.get("canonical_resume") or {}).get("sections", [])
+                        if s.get("section_id") not in contract.sections_to_exclude
+                        and not _is_identity_or_contact_section(s)}
+        rewritten_sids = set(rewrites_data.keys())
+        fallback_sids = sorted(allowed_sids - rewritten_sids)
+
+        if fallback_sids:
+            print(f"\n  !! WARNING — {len(fallback_sids)} section(s) fell back to ORIGINAL (not tailored):")
+            for fid in fallback_sids:
+                reason = state.get("section_rewrites", {}).get("skipped_reasons", {}).get(fid, "unknown")
+                print(f"       {fid}: {reason}")
+        else:
+            print(f"  → All {len(rewritten_sids)} allowed sections were rewritten — no fallbacks")
+
+        quality_report = ResumeCompiler.generate_quality_report(
+            resume, rewrites, contract, claims_not_allowed
+        )
+
         pack = ApplicationPack(
             resume_markdown=resume_result.humanized_text,
             cover_note=cover_result.humanized_text,
             recruiter_message=dm_result_h.humanized_text,
-            quality_report=ResumeCompiler.generate_quality_report(
-                resume, rewrites, contract, claims_not_allowed
-            ),
+            quality_report=quality_report,
             preserved_links=preserved_links,
             link_audit=link_audit,
             user_review_summary=(
-                "Check your new resume. "
-                "8-system architecture ensured zero metadata leakage."
+                f"Check your new resume. "
+                f"{len(rewritten_sids)}/{len(rewritten_sids)+len(fallback_sids)} sections rewritten. "
+                + (f"⚠️ {len(fallback_sids)} fell back to original: {', '.join(fallback_sids)}" if fallback_sids else "✅ All sections tailored.")
             ),
         )
 

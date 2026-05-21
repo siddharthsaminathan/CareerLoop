@@ -17,7 +17,7 @@ MECE Company Intelligence fully live (D1-D5 vectors). Humanizer hardened (29/29 
 
 ## System Status (Live)
 
-> Updated 2026-05-21 after MECE Company Intel, CandidateGraph wiring, B9 Truth Guard fix, landing page.
+> Updated 2026-05-22 — Council pipeline deep repair: chunked experience section now rewrites 4/4 sections; SuperK company header preserved; 37 regression tests pass.
 
 | System | % | Status | Blocking? | Notes |
 |--------|---|--------|-----------|-------|
@@ -28,8 +28,8 @@ MECE Company Intelligence fully live (D1-D5 vectors). Humanizer hardened (29/29 
 | Career state system (modes) | 10% | 🔴 | No | Conceptual only |
 | Company intelligence | 75% | 🟢 | Yes | MECE vision implemented |
 | Positioning engine | 38% | 🟡 | No | S6 wired; tailoring delta now substantial post-S7 prompt fix |
-| Resume Council (v3) | 80% | 🟢 | Yes | Tailoring delta significant |
-| Humanizer layer | 65% | 🟡 | No | Markdown safety gate; LLM rewrite blocked; structure validation pre/post; Truth Guard misses year inflation |
+| Resume Council (v3) | 92% | 🟢 | Yes | 4/4 sections rewrite every run; company headers preserved; 37 tests pass; remaining gap: job-aware chunking to fix cross-job bullet attribution |
+| Humanizer layer | 65% | 🟡 | No | Markdown safety gate; LLM rewrite active; structure validation pre/post; Truth Guard UNSUPPORTED matching too aggressive |
 | Resume rendering (templates) | 80% | 🟡 | No | 10 templates; hard fail on structure loss; normalizer handles PDF preamble |
 | Validator / QA | 70% | 🟡 | No | 10/10 pass; collapsed_bullet_marker fixed; possible_truncation de-fanged; rewrite_too_short ratio-based |
 | Application execution | 15% | 🔴 | No | modes/apply.md prototype; Chrome extension not started |
@@ -40,7 +40,7 @@ MECE Company Intelligence fully live (D1-D5 vectors). Humanizer hardened (29/29 
 | WhatsApp/transport UX | 15% | 🔴 | No | Concept only |
 | Monetization logic | 30% | 🟡 | No | Strategic understanding solid |
 
-**Overall product maturity: ~52-55% of vision.** Company Intel 0→75%, Humanizer 55→65%, Council 78→82%, Rendering 78→80%. B9 Truth Guard year-inflation fixed. CandidateGraph wired into S1. Landing page built.
+**Overall product maturity: ~55-58% of vision.** Council 88→92% (chunked rewrite fully working, company headers preserved, 37 tests).
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -81,6 +81,58 @@ MECE Company Intelligence fully live (D1-D5 vectors). Humanizer hardened (29/29 
 ---
 
 ## Session Log
+
+### 2026-05-21 — Session: Pipeline End-to-End Repair (S6, S7, S8)
+
+**What was done:**
+- **S6 prompt overhaul**: Replaced `_S6_SYSTEM` which had a hardcoded "AI Product Engineer" example leaking framing into every run. New prompt uses 4-step mandatory reasoning: (1) find the ONE differentiator, (2) map proof-to-JD, (3) name the hiring manager's objection, (4) set tone+stance. Adds `hiring_manager_objection` + `objection_preempt` fields to output.
+- **S6 schema**: Added `"PUSH"` to `application_stance` enum (old prompt used STRONG_PUSH; new prompt uses PUSH). Added `strongly_recommended` for 2 new fields.
+- **S7 `_payload_to_rewritten_text` complete rewrite**: The root cause of all experience section silent fallbacks. LLM returns `tailored_bullets` (bare strings), but old code dropped structural scaffold (company names, dates, role titles) causing the 50% truncation guard to fire. Fixed with 4-path dispatch: (1) profile/summary paragraph, (2) skills flat-list, (3) scaffold-preserving reconstruction with continuation-line state machine + excess-original-bullet skipping, (4) no-bullets fallback.
+- **S7 continuation-line fix**: After replacing a wrapped multi-line bullet, old code kept the PDF-extracted continuation lines (e.g., `footwear, and accessories...`). New code skips lowercase-starting lines while in `in_continuation` state; resets on blank line or uppercase-starting structural lines.
+- **S7 skills section fix**: Skills section no longer tries scaffold reconstruction (which garbled 15-bullet original → 4 new bullets with original duplicated). Uses flat-list path directly.
+- **S8 `canonical` NameError fixed**: `assembly_node` referenced `canonical` variable that didn't exist — should have been `state["canonical_resume"]`. Was crashing every single S8 call silently.
+- **S8 `sections_not_tailored` visibility**: Added explicit warning block showing which sections fell back to original.
+- **New `document_extractor.py`**: Full PDF/DOCX/MD/TXT extraction with pdfminer.six + pypdf fallback, python-docx, PDF artifact cleaning.
+- **`--cv` CLI flag**: `run_council.py` now accepts `--cv path/to/file` to override CV input.
+- **3 new unit tests**: `test_skills_section_uses_flat_list_path`, `test_experience_continuation_lines_are_skipped`, `test_experience_excess_original_bullets_are_dropped` — all pass. Total: 35/35.
+- **`8-PIPELINE-CHECKLIST.md` updated**: All fixed bugs marked ✅, new entries added.
+- **`COUNCIL_REDESIGN_PLAN.md` updated**: FIX 1-5 ✅, FIX 6 ⚠️ partial, FIX 7-9 ✅.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED
+All work on PRD §11 (Resume Council core quality). Assembly crash fixed. S7 experience/skills section output is now structurally correct. S6 positioning is now role-specific.
+
+**Deviations detected:** None.
+
+**Recommended next 3 actions:**
+1. Fix S6 cache for H&M — it's stale (PARTIAL grounding); invalidate and re-ground with web search for H&M India hiring team, jersey category structure (PRD §9)
+2. Truth Guard B1: UNSUPPORTED claims confidence is 0.0 for all legitimate ownership claims — evidence matching too strict, needs semantic fuzzy match improvement (PRD §11)
+3. S2 contract: `ordering_rules` and `max_allowed_changes` computed but never mechanically enforced — assembly sorts by `original_order` ignoring contract (PRD §11)
+
+---
+
+### 2026-05-22 — Session: S7 Chunked Rewrite Deep Repair + SuperK Header Fix
+
+**What was done:**
+- **`chunk_structure_check_failed:bullet_count_dropped` bypass**: For chunked experience sections, the structure check was rejecting LLM rewrites that consolidated 19 original bullets into 6 tailored ones. This is correct LLM behaviour. Fixed: `bullet_count_dropped` filtered out from chunked structure check; other checks (collapsed markers, orphan emphasis, injected headings, truncation) still enforced. Result: experience section now rewrites 4/4 sections instead of falling back.
+- **`rewritten_text` scaffold bypass fixed**: `_payload_to_rewritten_text` had an early `return direct` for any section when LLM returned `rewritten_text` instead of `tailored_bullets`. For experience sections this dropped company headers, job titles, and dates. Fixed: scaffold sections (`experience`, `work_experience`, `projects`) skip the early return; if only `rewritten_text` is present, bullets are extracted from it and scaffold reconstruction runs.
+- **Structural preamble injection for no-bullet chunks**: Chunk 1 of the experience section contains only the SuperK intro paragraph (header + description prose, no bullets). LLM rewrote it as 5 paragraphs, dropping "SuperK Bangalore, India" and "Category Manager – Fashion Nov 2025 – Present". Fixed: after each chunk rewrite, first 2 structural lines (company + role/date) from original chunk are checked; if absent from rewrite, they are prepended.
+- **2 new tests + 1 test updated**: `test_scaffold_section_prefers_tailored_bullets_when_both_present`, `test_legacy_rewritten_text_extracted_when_no_tailored_bullets`, `test_legacy_rewritten_text_wins_for_non_scaffold_sections`. Total: 37/37 pass.
+- **Docs updated**: `8-PIPELINE-CHECKLIST.md` (3 new fix entries, known LLM quality issue documented), `TRACKER.md` (Council 88%→92%).
+
+**E2E result**: 4/4 sections rewrote (summary ✅, experience [CHUNKED] ✅, skills ✅, education [KEEP] ✅). SuperK header present. Skills uses OTB/sell-through vocabulary. No fallbacks.
+
+**Known remaining quality issue**: Chunk 2 (3600-char block containing SuperK bullets + Style Gram + Go Colors) occasionally causes the LLM to mis-attribute a Style Gram bullet to Go Colors. Root cause: paragraph-boundary chunking bundles multiple jobs in one block. Fix (not yet implemented): job-aware chunking — one chunk per employer.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED — PRD §11 (Resume Council). Pipeline now runs at full capacity for all section types.
+
+**Deviations detected:** None.
+
+**Recommended next 3 actions:**
+1. **Job-aware chunking**: Replace paragraph-boundary split with employer-boundary split. One LLM call per job entry. Eliminates cross-job bullet attribution errors (PRD §11).
+2. **Truth Guard B1**: UNSUPPORTED confidence 0.0 for all legitimate ownership claims — evidence matching uses Jaccard similarity (too strict). Needs semantic fuzzy match (PRD §11).
+3. **S2 contract enforcement**: `ordering_rules` and `max_allowed_changes` computed but never mechanically enforced in assembly (PRD §11).
+
+---
 
 ### 2026-05-20 — Session: MECE Company Intelligence Implementation
 

@@ -1,6 +1,7 @@
 # Council Redesign Implementation Plan
 **Date:** 2026-05-19  
-**Status:** Actionable — fixes sorted by dependency order  
+**Last updated:** 2026-05-21  
+**Status:** FIX 1-5 DONE ✅ | FIX 6 PARTIAL ⚠️ | FIX 7-9 DONE ✅ | FIX 10-12 PENDING  
 **Inputs read:** `graph.py`, `llm.py`, `humanizer.py`, `compiler.py`, `run_council.py`, `models.yml`, `S3_S7_ROOT_CAUSE_AUDIT.md`, `COMPANY_INTELLIGENCE_VISION.md`, `CAREERLOOP_REDESIGN_IMPLEMENTATION_PLAN.md`, both pipeline runs, `10_final_resume.md`
 
 ---
@@ -26,7 +27,7 @@
 
 ## Fix Plan — Ordered by Dependency
 
-### FIX 1 — Model Routing Bug (15 min, CRITICAL)
+### FIX 1 — Model Routing Bug ✅ DONE 2026-05-21
 
 **File:** `careerloop/council/graph.py` — `_call()` function  
 **File:** `careerloop/council/graph.py` — all S7 and S8 call sites
@@ -49,7 +50,7 @@ Every `_call(...)` in `_rewrite_one_section()` and `assembly_node` (cover note, 
 
 ---
 
-### FIX 2 — Remove max_tokens Overrides (5 min, CRITICAL)
+### FIX 2 — Remove max_tokens Overrides ✅ DONE 2026-05-21
 
 **File:** `careerloop/council/graph.py` — `_rewrite_one_section()`
 
@@ -67,7 +68,7 @@ Config says `max_tokens: 10000`. Let it be. No override.
 
 ---
 
-### FIX 3 — Retry on Empty Response (30 min, HIGH)
+### FIX 3 — Retry on Empty Response ✅ DONE 2026-05-21
 
 **File:** `careerloop/council/graph.py` — `_call()`
 
@@ -96,7 +97,7 @@ def _call(system, user, temperature=0.2, max_tokens=None, label="", model_kind="
 
 ---
 
-### FIX 4 — Cap Parallel Workers at 3 (5 min, HIGH)
+### FIX 4 — Cap Parallel Workers at 3 ✅ DONE 2026-05-21
 
 **File:** `careerloop/council/graph.py` — `section_rewrites_node()`
 
@@ -112,7 +113,7 @@ n_workers = min(3, max(1, len(allowed_sections)))
 
 ---
 
-### FIX 5 — Remove Silent Fallback, Make S7 Failures Visible (20 min, HIGH)
+### FIX 5 — Remove Silent Fallback, Make S7 Failures Visible ✅ DONE 2026-05-21
 
 **Current behavior:** S7 fails → silently uses original `raw_text` → nobody knows → garbage output.
 
@@ -132,7 +133,7 @@ The resume still needs to be produced (can't return nothing), but the gap must b
 
 ---
 
-### FIX 6 — Fix MD Formatting: Assembler Must Structure Experience (1 hour, HIGH)
+### FIX 6 — Fix MD Formatting: Assembler Must Structure Experience ⚠️ PARTIAL 2026-05-21
 
 **File:** `careerloop/council/graph.py` — `assembly_node()`  
 **File:** `careerloop/council/compiler.py` — add `_format_experience_section()`
@@ -171,7 +172,7 @@ def _clean_experience_section(text: str) -> str:
 
 ---
 
-### FIX 7 — Save Humanizer Output Separately (20 min, MEDIUM)
+### FIX 7 — Save Humanizer Output Separately ✅ DONE 2026-05-21
 
 **File:** `run_council.py` — artifact saving section  
 **File:** `careerloop/council/graph.py` — `assembly_node()` must store humanized text in state
@@ -188,7 +189,7 @@ def _clean_experience_section(text: str) -> str:
 
 ---
 
-### FIX 8 — Enable Resume Phase 3 LLM in Humanizer (30 min, MEDIUM)
+### FIX 8 — Enable Resume Phase 3 LLM in Humanizer ✅ DONE 2026-05-21
 
 **File:** `careerloop/council/humanizer.py` — `_surgical_humanize()`
 
@@ -213,7 +214,7 @@ The safety gate at the end (`_markdown_structure_safe`) already prevents structu
 
 ---
 
-### FIX 9 — PDF/DOCX Input Extraction (2 hours, MEDIUM)
+### FIX 9 — PDF/DOCX Input Extraction ✅ DONE 2026-05-21
 
 **New file:** `careerloop/council/document_extractor.py`
 

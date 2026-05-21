@@ -1,6 +1,6 @@
 # CareerLoop Resume Council — 8-Stage Pipeline Checklist
 
-**Last updated:** 2026-05-19  
+**Last updated:** 2026-05-22  
 **Purpose:** Stage-by-stage status map. Use this to diagnose which stage is broken before running the full graph.  
 **How to use:** Run each stage manually using the test commands. Fix failures before running the full pipeline.
 
@@ -178,9 +178,12 @@ for s in r.sections:
 | Check | Status |
 |-------|--------|
 | Schema validation wired | ✅ Working |
-| `narrative_angle` reaching S7 | ✅ Fixed (just added) |
-| `things_to_downplay` reaching S7 | ✅ Fixed (just added) |
+| `narrative_angle` reaching S7 | ✅ Fixed |
+| `things_to_downplay` reaching S7 | ✅ Fixed |
 | `proof_points_to_emphasize` restricted to evidence_bank only | ⚠️ Prompt instructs it but not mechanically enforced |
+| **Generic prompt leaked "AI Product Engineer" example into every run** | ✅ Fixed 2026-05-21 — `_S6_SYSTEM` rewritten with 4-step mandatory reasoning |
+| **`"PUSH"` not in application_stance enum** | ✅ Fixed 2026-05-21 — added to schema + "STRONG_PUSH" kept for back-compat |
+| **`hiring_manager_objection` and `objection_preempt` fields** | ✅ Added 2026-05-21 — new fields in S6 output, `strongly_recommended` in schema |
 
 ---
 
@@ -213,13 +216,23 @@ With chunking, experience section = 3 chunks = 3 extra calls = ~75s more.
 | **Identity Slop (Name Mangle)** | ✅ Fixed (Bypasses LLM for contact info) |
 | **Negative Constraint Overload** | ✅ Fixed (Prompt is now affirmative) |
 
-**KNOWN BUGS — see `docs/S3_S7_ROOT_CAUSE_AUDIT.md` for full audit:**
+**All previously-known S7 bugs are now resolved (2026-05-21):**
 
-1. `_call()` hardcodes `model_kind="strategy"` → ALL calls use `deepseek-v4-pro`, including S7. Config says S7 should use `deepseek-chat` (writer_model). This causes rate limiting + 10x higher cost.
-2. S7 overrides `max_tokens=2500` (chunks) / `4000` (standard) — config says 10000. Self-inflicted truncation.
-3. 5 parallel workers hit `deepseek-v4-pro` simultaneously → rate limit → 0-char empty responses silently falling back to original.
-4. No retry on empty response — one retry with 3s delay would recover most throttled calls.
-5. MD formatting garbage because S7 falls back to raw_text which has PDF extraction artifacts (split words, concatenated company names, no job entry spacing). Separate from the LLM bug.
+| # | Was | Now |
+|---|-----|-----|
+| 1 | `_call()` hardcoded `model_kind="strategy"` (all S7 calls used deepseek-v4-pro) | ✅ Fixed — S7 now uses `model_kind="writer"` (deepseek-chat) |
+| 2 | `max_tokens=2500/4000` caused self-inflicted truncation | ✅ Fixed — uses config `max_tokens=10000` |
+| 3 | 5 parallel workers hit deepseek-v4-pro simultaneously → rate limit | ✅ Fixed — worker cap added, rate limit handled |
+| 4 | No retry on empty response | ✅ Fixed — `retries=1` added on all S7 calls |
+| 5 | `_payload_to_rewritten_text()` dropped scaffold (company/date/title lines) causing truncation-guard false positives | ✅ Fixed — scaffold-preserving reconstruction (2026-05-21) |
+| 6 | Skills section scaffold-reconstruction garbled output (continuation lines retained) | ✅ Fixed — skills uses flat-list path; experience uses continuation-line state machine (2026-05-21) |
+| 7 | Chunked sections fell back due to `bullet_count_dropped` (LLM consolidation treated as structural damage) | ✅ Fixed (2026-05-22) — `bullet_count_dropped` excluded from chunk structure check; scaffold preserves headers |
+| 8 | `rewritten_text` path bypassed scaffold for experience sections (company header lost) | ✅ Fixed (2026-05-22) — bullets extracted from `rewritten_text` for scaffold sections; scaffold runs on them |
+| 9 | No-bullet intro chunk (SuperK) rewritten as prose without company name / role / date header | ✅ Fixed (2026-05-22) — structural preamble injected if missing from chunk output |
+
+**Remaining S7 gap:** Section type `summary` can produce verbose multi-paragraph output instead of a single punchy paragraph. This is a prompt quality issue, not a structural bug.
+
+**Known LLM quality issue (chunk 2 attribution):** When chunk 2 contains multiple jobs (Style Gram + Go Colors) in one undivided block, the LLM occasionally mis-attributes a bullet from job A to job B. Root cause: paragraph-boundary chunking leaves all bullets in one flat 3600-char block. Fix: job-aware chunking (split per employer, not per paragraph). Tracked as improvement item.
 
 ---
 
@@ -273,6 +286,8 @@ With chunking, experience section = 3 chunks = 3 extra calls = ~75s more.
 | **Humanizer Prompt Assertiveness** | ✅ Fixed (No longer minimal; heavily rewrites slop) |
 | **Template Placeholder Matching** | ✅ Fixed (`PREMIUM_` and `SIDEBAR_` tags supported) |
 | **Role Subtitle Derivation** | ✅ Fixed (Concise job title, not a full sentence) |
+| **`canonical` NameError crash** | ✅ Fixed 2026-05-21 — `state["canonical_resume"]` used in `sections_not_tailored` visibility block |
+| **`sections_not_tailored` visibility** | ✅ Added 2026-05-21 — warnings printed if any allowed sections fell back to original |
 
 ---
 
@@ -335,3 +350,20 @@ With chunking, experience section = 3 chunks = 3 extra calls = ~75s more.
 | **Domain Isolation (S3)** | `company_intel.py` | ✅ |
 | **Search Query Relaxation (S3)** | `company_intel.py` | ✅ |
 | **Cache-Busting flag** | `run_council.py` | ✅ |
+| **S7 model routing (writer not strategy)** | `graph.py` | ✅ 2026-05-21 |
+| **S7 `_payload_to_rewritten_text` scaffold reconstruction** | `graph.py` | ✅ 2026-05-21 |
+| **Skills flat-list path (no scaffold duplication)** | `graph.py` | ✅ 2026-05-21 |
+| **Experience continuation-line skipping (PDF wrap artefacts)** | `graph.py` | ✅ 2026-05-21 |
+| **Excess-original-bullet skipping** | `graph.py` | ✅ 2026-05-21 |
+| **S6 prompt: role-specific 4-step reasoning (no hardcoded example)** | `graph.py` | ✅ 2026-05-21 |
+| **S6 `hiring_manager_objection` + `objection_preempt` fields** | `graph.py`, `schemas.py` | ✅ 2026-05-21 |
+| **`"PUSH"` added to positioning stance enum** | `schemas.py` | ✅ 2026-05-21 |
+| **`canonical` NameError in assembly_node** | `graph.py` | ✅ 2026-05-21 |
+| **`sections_not_tailored` visibility** | `graph.py` | ✅ 2026-05-21 |
+| **B9 Truth Guard year inflation fix (cv_tenure_years from S1)** | `graph.py` | ✅ 2026-05-21 |
+| **S7 chunked `bullet_count_dropped` bypass** | `graph.py` | ✅ 2026-05-22 |
+| **`rewritten_text` scaffold bypass for experience sections** | `graph.py` | ✅ 2026-05-22 |
+| **Structural preamble injection (company + role/date) for no-bullet chunks** | `graph.py` | ✅ 2026-05-22 |
+| **37 regression tests (5 new: scaffold, flat-list, continuation, preamble extraction)** | `tests/test_stabilization.py` | ✅ 2026-05-22 |
+| **`document_extractor.py` (PDF/DOCX/MD/TXT input)** | `document_extractor.py` | ✅ 2026-05-21 |
+| **`--cv` CLI flag for CV override** | `run_council.py` | ✅ 2026-05-21 |
