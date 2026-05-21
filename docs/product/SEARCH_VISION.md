@@ -27,6 +27,25 @@ adaptive search optimization.
 
 ---
 
+## POSITIONING CONTEXT
+
+**The Default Assumption:** "CareerLoop is another job board."
+
+**The Truth:** CareerLoop is a career operating system. A command center. Like having a recruiter + strategist + researcher working for you, 24/7.
+
+**Our Core Optimization:** 
+- Job boards optimize: application volume
+- Resume tools optimize: keyword matching  
+- **CareerLoop optimizes: employment probability**
+
+Everyone else asks: "How many jobs can we show you?"
+
+CareerLoop asks: "How do we get you hired?"
+
+See detailed market analysis in: [COMPETITIVE_POSITIONING.md](COMPETITIVE_POSITIONING.md)
+
+---
+
 # THE 3 CORE SEARCH SYSTEMS
 
 CareerLoop has 3 independent but interconnected search engines.
