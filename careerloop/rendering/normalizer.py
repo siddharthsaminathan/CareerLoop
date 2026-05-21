@@ -792,6 +792,19 @@ def _parse_skills_from_bullets(body: str) -> List[SkillRow]:
             current_items.append(_sanitize_text(_strip_markdown_formatting(line)))
 
     flush_group()
+    
+    # Fallback: no colon-separated categories found — treat each bullet as a compact skill row
+    # Format: "- Python, SQL, Airflow - deployed for data pipelines"
+    if not rows:
+        flat_items: List[str] = []
+        for line in lines:
+            line = line.strip()
+            line = re.sub(r"^\s*[-*+]\s*", "", line)
+            if not line:
+                continue
+            flat_items.append(_sanitize_text(_strip_markdown_formatting(line)))
+        if flat_items:
+            rows.append(SkillRow(label="Skills", items=flat_items))
 
     return rows
 

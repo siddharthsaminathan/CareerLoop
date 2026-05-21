@@ -13,7 +13,18 @@
     "linkedin_display": "hayagreev13"
   },
   "profile": "Neuroscience-trained PM who ships AI products in high-velocity build-measure-learn cycles. Co-founded Emote, an Emotional Sense-Making AI, taking it from zero to 451 users in 7 months through continuous discovery and iteration. Led Data and AI platform scoping across 80+ bank departments at Grant Thornton. Strong in PRDs, behavioral data, system design, and technical collaboration. Looking to bring 5 years across engineering, data, product, and consulting to AI automation in regulated environments.",
-  "skills": [],
+  "skills": [
+    {
+      "label": "Skills",
+      "items": [
+        "Python, SQL (Postgres, Redshift), Apache Spark, Airflow - deployed for data pipelines and AI product development",
+        "PyTorch, TensorFlow, scikit-learn, MLOps (Kubeflow, Docker, Azure ML), Prompt Engineering - built and iterated LLM-based AI systems",
+        "AWS (S3, EMR), Anaconda, Jupyter, Git, VS Code - used for cloud-based development and version control",
+        "ChatGPT, Claude, Gemini, Perplexity, Zapier, Make, Lovable - applied for rapid prototyping and automation",
+        "Project Management, Lean Management, Stakeholder Management, Client Relationships, GTM - drove cross-functional collaboration and product delivery"
+      ]
+    }
+  ],
   "experience": [
     {
       "role": "",
