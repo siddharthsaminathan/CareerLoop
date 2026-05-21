@@ -9,7 +9,7 @@
   "templates": [
     {
       "template": "classic-ats",
-      "pages": "3",
+      "pages": "2",
       "html": "output/council/hayagreev/loop-0129/rendered/classic-ats.html",
       "pdf": "output/council/hayagreev/loop-0129/rendered/classic-ats.pdf",
       "pdf_status": "ok"

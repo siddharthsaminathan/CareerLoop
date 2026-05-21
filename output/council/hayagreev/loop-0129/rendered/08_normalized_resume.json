@@ -58,39 +58,21 @@
   "projects": [],
   "education": [
     {
-      "degree": "Stoa School, Remote, India",
-      "institution": "",
-      "dates": "",
-      "details": ""
-    },
-    {
-      "degree": "General MBA Program, Sept 2023",
-      "institution": "Apr 2024",
-      "dates": "",
+      "degree": "General MBA Program",
+      "institution": "Stoa School, Remote, India",
+      "dates": "Sept 2023 - Apr 2024",
       "details": "Awarded the Stoa Charter for presenting a Go-To-Market strategy for Wint Wealth by experts from the IB and D2C industry. Awarded top performer in Customer Journey, Venture Creation, Operations, and Product Development sprints. Led a team of 5 to solve case studies, achieving top team status in 3 out of 5 sprints."
     },
     {
-      "degree": "CentraleSupelec, Paris, France",
-      "institution": "",
-      "dates": "",
-      "details": ""
-    },
-    {
-      "degree": "M.Sc. Computational Neuroscience and Neuroengineering, Sept 2021",
-      "institution": "Aug 2022",
-      "dates": "",
+      "degree": "M.Sc. Computational Neuroscience and Neuroengineering",
+      "institution": "CentraleSupelec, Paris, France",
+      "dates": "Sept 2021 - Aug 2022",
       "details": "GPA: 17.42/20, (top 15% of class with top scores in 3/6 modules). Led a team of 5 to cover the Deep Tech Conference, Hello Tomorrow 2021, and presented key learnings to the class through a detailed presentation and a follow-up Q&A session."
     },
     {
-      "degree": "SSN College of Engineering, Chennai, India",
-      "institution": "",
-      "dates": "",
-      "details": ""
-    },
-    {
-      "degree": "B.E. Electronics and Communications Engineering, Jul 2016",
-      "institution": "Sept 2020",
-      "dates": "",
+      "degree": "B.E. Electronics and Communications Engineering",
+      "institution": "SSN College of Engineering, Chennai, India",
+      "dates": "Jul 2016 - Sept 2020",
       "details": "Graduated First Class with CGPA: 8.38/10. Successfully led a team of 3 students and a professor to pitch and secure 1 Lakh INR from IIT Madras for developing an innovative self-balancing guidebot, after surveying 120+ journal publications on existing models."
     }
   ],

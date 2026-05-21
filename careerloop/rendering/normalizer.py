@@ -1294,6 +1294,8 @@ def _parse_education(classified: dict) -> List[EducationEntry]:
         return []
 
     entries: List[EducationEntry] = []
+    pending_institution: str = ""
+    
     for line in body.strip().split("\n"):
         stripped = line.strip()
         if not stripped:
@@ -1316,6 +1318,32 @@ def _parse_education(classified: dict) -> List[EducationEntry]:
             continue
 
         degree, institution, dates, details = _parse_education_line(cleaned)
+        
+        # Multi-line format: institution line followed by degree+dates line
+        # "Stoa School, Remote, India" then "General MBA Program, Sept 2023 - Apr 2024"
+        has_dates = bool(dates) or bool(re.search(r"\b\d{4}\b", cleaned))
+        looks_like_institution = not has_dates and not re.search(r"\s+[—\-–]\s+", cleaned) and not is_bullet
+        
+        if looks_like_institution and not pending_institution:
+            pending_institution = cleaned
+            continue
+        
+        if pending_institution:
+            # Pair: institution line + degree/dates line
+            institution = _strip_markdown_formatting(pending_institution)
+            pending_institution = ""
+            # Parse degree and dates from this line
+            # Format: "General MBA Program, Sept 2023 - Apr 2024"
+            # or "B.E. Electronics and Communications Engineering, Jul 2016 - Sept 2020"
+            degree = _strip_markdown_formatting(cleaned)
+            dates = ""
+            details = ""
+            # Extract date range
+            dm = re.search(r",?\s*((?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept?|Oct|Nov|Dec|January|February|March|April|June|July|August|September|October|November|December)\s+\d{4}\s*(?:-|–|—|to)\s*(?:Present|Current|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept?|Oct|Nov|Dec|January|February|March|April|June|July|August|September|October|November|December)\s+\d{4}))", degree)
+            if dm:
+                dates = dm.group(1).strip()
+                degree = degree[:dm.start()].strip().rstrip(',')
+        
         entries.append(EducationEntry(
             degree=degree,
             institution=institution,
