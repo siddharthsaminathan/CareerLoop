@@ -7,7 +7,11 @@
 
 ## Current Sprint Focus
 
-**Week of 2026-05-21 — CandidateGraph + MECE Intel deployed. Council at 92%.**
+**Week of 2026-05-22 — Normalizer Hardening. Rendering stabilized across 3 user formats.**
+
+7 normalizer bugs fixed: skills parsing (description-style bullets), header phone/location dedup, experience company+role separation (two-line headers), role preservation when second line is pure date, Go Colors restored (no bullets required), education multi-line pairing, automated pre-render validation. 3 councils (Siddharth/Hayagreev/Varsha) validated with 10 HTML+PDF per user. ROI_UX_PRODUCT_VISION created. Interview playbook system built.
+
+**Next sprint:** Decision Compression UX (B5, P2) + Education single-line format for Varsha-format schools
 
 MECE Company Intelligence fully live (D1-D5 vectors, 1,419 lines). CandidateGraph extraction wired into S1 — structured bullet arrays, metric_vault, contact fields. B9 cv_tenure_years computed from parsed CV (not S5 LLM). S7 chunked rewrite: 4/4 sections rewrite, company headers preserved. 37/37 stabilization, 22/22 integration pass. SuperK pipeline: 4 experience blocks correctly rewritten with scaffolds preserved.
 
@@ -30,8 +34,8 @@ MECE Company Intelligence fully live (D1-D5 vectors, 1,419 lines). CandidateGrap
 | Positioning engine | 38% | 🟡 | No | S6 wired; tailoring delta now substantial post-S7 prompt fix |
 | Resume Council (v3) | 92% | 🟢 | Yes | 4/4 sections rewrite; CandidateGraph extracts structured bullets; company headers preserved; 37+22 tests pass; remaining: Humanizer UNSUPPORTED calibration |
 | Humanizer layer | 65% | 🟡 | No | Markdown safety gate; LLM rewrite active; structure validation pre/post; Truth Guard UNSUPPORTED matching too aggressive |
-| Resume rendering (templates) | 80% | 🟡 | No | 10 templates; hard fail on structure loss; normalizer handles PDF preamble |
-| Validator / QA | 70% | 🟡 | No | 10/10 pass; collapsed_bullet_marker fixed; possible_truncation de-fanged; rewrite_too_short ratio-based |
+| Resume rendering (templates) | 85% | 🟡 | No | 10 templates; hard fail on structure loss; normalizer now handles 3 user CV formats |
+| Validator / QA | 75% | 🟡 | No | 10/10 pass; automated pre-render validation wired; 3 user formats verified |
 | Application execution | 15% | 🔴 | No | modes/apply.md prototype; Chrome extension not started |
 | Chrome extension | 0% | ⚫ | No | Phase 3 |
 | Follow-up system | 25% | 🔴 | No | Ledger auto-schedules; UI missing |
@@ -40,7 +44,7 @@ MECE Company Intelligence fully live (D1-D5 vectors, 1,419 lines). CandidateGrap
 | WhatsApp/transport UX | 15% | 🔴 | No | Concept only |
 | Monetization logic | 30% | 🟡 | No | Strategic understanding solid |
 
-**Overall product maturity: ~55-58% of vision.** Council 88→92% (chunked rewrite fully working, company headers preserved, 37 tests).
+**Overall product maturity: ~57-60% of vision.** Rendering 80→85%, Validator 70→75% (automated normalizer validation). 7 normalizer bugs fixed.
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -130,28 +134,52 @@ All work on PRD §11 (Resume Council core quality). Assembly crash fixed. S7 exp
 **Recommended next 3 actions:**
 1. **Job-aware chunking**: Replace paragraph-boundary split with employer-boundary split. One LLM call per job entry. Eliminates cross-job bullet attribution errors (PRD §11).
 2. **Truth Guard B1**: UNSUPPORTED confidence 0.0 for all legitimate ownership claims — evidence matching uses Jaccard similarity (too strict). Needs semantic fuzzy match (PRD §11).
-3. **S2 contract enforcement**: `ordering_rules` and `max_allowed_changes` computed but never mechanically enforced in assembly (PRD §11).
+## Session Log
 
 ---
 
-### 2026-05-20 — Session: MECE Company Intelligence Implementation
+### 2026-05-22 — Session: Normalizer Hardening — 7 Bugs Fixed Across 3 User Formats
 
 **What was done:**
-- **MECE Vision Realized (S3):** Refactored `careerloop/company_intel.py` to orchestrate 5 concurrent research vectors (D1-D5).
-- **Specialized LinkedIn Scraping (D3):** Integrated `PortalScraper` (Playwright Stealth) to extract recruiter data and hiring context directly from LinkedIn Job URLs.
-- **Glassdoor Culture Extraction (D2):** Wired `ScrapeGraphAdapter` and Playwright to capture cultural red flags and deep sentiment from Glassdoor profiles.
-- **Improved Grounding Depth:** News/web fetching now preserves partial results and uses relaxed search queries to maximize factual hit rates.
-- **Success Metrics:** Nicobar run achieved PARTIAL grounding with founder extraction (Simran Lal, Raul Rai) and brand history.
+- **Normalizer bug fixes (7):** (1) Skills: description-style bullets now parsed (Hayagreev). (2) Header: phone no longer leaks into location field. (3) Experience: two-line headers (company/location then role/dates) now correctly separate company from role. (4) Role preservation: when second line is pure date, role from first line is kept. (5) Go Colors restored: entry filter relaxed to not require bullets. (6) Education multi-line: institution/degree on separate lines now paired into single entries with dates. (7) Automated validation: `_validate_normalized()` runs on every normalize(), checks name/skills/experience/education/roles.
+- **ROI_UX_PRODUCT_VISION.md created** — 12 workflows, 4 entry points, pricing ₹399-₹2,999, competitor map, metrics hierarchy.
+- **PRD.md §20 added** — ROI & UX Architecture section.
+- **docs/README.md rewritten** — master index of all 34 documents.
+- **Interview playbook system built** — auto-extracts learnings from user venting, patterns after 2+ interviews.
+- **Product-lead skill updated** — dev-blog creation step added.
+- **Council runs:** Siddharth (Nicobar AI PM), Hayagreev (Deloitte Gen AI), Varsha (H&M Senior Merchandiser) — all validated, 10 HTML+10 PDF each.
+- **Hayagreev PERSON_CONFIG added** to run_council.py.
 
 **Vision alignment verdict:** ✅ STRONGLY ALIGNED
-Realizes the MECE Company Intelligence vision. PRD §9 grounding maturity increased.
+PRD §12 (Rendering 80→85%), Validator/QA (70→75%), Interview Memory (25→30%). ROI_UX product vision now canonically documented. All 3 user formats render cleanly with automated validation.
 
 **Deviations detected:** None.
 
 **Recommended next 3 actions:**
-1. Execute P1 Redesign: Build the canonical candidate graph extractor directly from CV (PRD §11).
-2. Refactor S7 to return structured JSON bullet lists instead of Markdown strings (Part 1 of Compiler Vision).
-3. Implement "Cope-Detection" Pass in Truth Guard using semantic embeddings (Part 9 of Audit).
+1. Build Decision Compression UX (B5, P2) — daily brief, triage board
+2. Fix education single-line format for Varsha-style schools (NIFT degree shows school in degree field)
+3. Humanizer UNSUPPORTED matching calibration
+
+---
+
+### 2026-05-20 — Session: S7 Overhaul + Validator Fix + Docs Restructure (Gemini Flash Agent)
+
+**What was done:**
+- **S7 prompt overhaul (P0):** Replaced passive "replace weak verbs" with prescriptive "you MUST rewrite every section, inject role_keywords, reframe for the role." Profile now reads "AI-native product engineer" with Nicobar-specific framing.
+- **Validator 3 fixes:** (1) `collapsed_bullet_marker` regex — `\s+` crossed newlines, matching valid `"sentence.\n- bullet"`. Fixed with `[^\S\n]+`. (2) `possible_truncation` de-fanged — no longer fires on skills/education/short sections. (3) `rewrite_too_short` 80-char floor removed — uses pure ratio for originals ≥60 chars.
+- **Pipeline result:** 9/9 sections REWRITE (1 KEEP for languages), 0 skipped, 0 fallbacks. 10 HTML + 10 PDF rendered. Tailoring delta: 3.6% → SUBSTANTIAL.
+- **Docs taxonomy restructure:** All docs reorganized into 4 dirs under `docs/`: product, engineering, tech-backlog, learnings. Symlinks preserved for backward compat. 64 tests pass.
+- **Known issue:** Profile says "6+ years" but CV says "4+". Truth Guard caught 5 UNSUPPORTED claims but missed this number inflation. Added as B9.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED
+PRD §11 (Council 72→78%), §12 (Humanizer 55→60%), Positioning (25→30%), Rendering (75→78%), Validator (65→70%). Tailoring delta P0 resolved.
+
+**Deviations detected:** None.
+
+**Recommended next 3 actions:**
+1. Build standalone `company_intel.py` engine using CompanyResearchAdapter as foundation (B6, PRD §9)
+2. Build Canonical Candidate Graph extractor — escape Markdown Hell (PRD §11)
+3. Fix Truth Guard year-inflation cross-check against parsed dates (B9)
 
 ---
 
@@ -177,7 +205,31 @@ Directly resolves the #1 performance and quality bottleneck in the pipeline. Com
 3. Truth Guard year-inflation cross-check against parsed dates (B9).
 
 ---
+## Session Log
 
+---
+
+### 2026-05-22 — Session: Normalizer Hardening — 7 Bugs Fixed Across 3 User Formats
+
+**What was done:**
+- **Normalizer bug fixes (7):** (1) Skills: description-style bullets now parsed (Hayagreev). (2) Header: phone no longer leaks into location field. (3) Experience: two-line headers (company/location then role/dates) now correctly separate company from role. (4) Role preservation: when second line is pure date, role from first line is kept. (5) Go Colors restored: entry filter relaxed to not require bullets. (6) Education multi-line: institution/degree on separate lines now paired into single entries with dates. (7) Automated validation: `_validate_normalized()` runs on every normalize(), checks name/skills/experience/education/roles.
+- **ROI_UX_PRODUCT_VISION.md created** — 12 workflows, 4 entry points, pricing ₹399-₹2,999, competitor map, metrics hierarchy.
+- **PRD.md §20 added** — ROI & UX Architecture section.
+- **docs/README.md rewritten** — master index of all 34 documents.
+- **Interview playbook system built** — auto-extracts learnings from user venting, patterns after 2+ interviews.
+- **Product-lead skill updated** — dev-blog creation step added.
+- **Council runs:** Siddharth (Nicobar AI PM), Hayagreev (Deloitte Gen AI), Varsha (H&M Senior Merchandiser) — all validated, 10 HTML+10 PDF each.
+- **Hayagreev PERSON_CONFIG added** to run_council.py.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED
+PRD §12 (Rendering 80→85%), Validator/QA (70→75%), Interview Memory (25→30%). ROI_UX product vision now canonically documented. All 3 user formats render cleanly with automated validation.
+
+**Deviations detected:** None.
+
+**Recommended next 3 actions:**
+1. Build Decision Compression UX (B5, P2) — daily brief, triage board
+2. Fix education single-line format for Varsha-style schools (NIFT degree shows school in degree field)
+3. Humanizer UNSUPPORTED matching calibration
 
 ---
 
@@ -196,7 +248,7 @@ PRD §11 (Council 72→78%), §12 (Humanizer 55→60%), Positioning (25→30%), 
 **Deviations detected:** None.
 
 **Recommended next 3 actions:**
-1. Build standalone `company_intel.py` engine using CompanyResearchAdapter as foundation (B6, PRD §9) (✅ DONE — commit 5617cee)
+1. Build standalone `company_intel.py` engine using CompanyResearchAdapter as foundation (B6, PRD §9)
 2. Build Canonical Candidate Graph extractor — escape Markdown Hell (PRD §11)
 3. Fix Truth Guard year-inflation cross-check against parsed dates (B9)
 
