@@ -2,7 +2,7 @@
 
 **Author:** Siddharth Saminathan  
 **Status:** Canonical Vision v1.0 — Active  
-**Last Updated:** 2026-05-18  
+**Last Updated:** 2026-05-21  
 
 > This is the single source of truth for what CareerLoop is, who it's for, and what it must do.  
 > All engineering, design, and agent work must align to this document.  
@@ -324,10 +324,10 @@ The user should feel:
 | Opportunity scoring (14-dim) | 55% | 🟡 Active | function_probability.py + metrics.py; needs calibration |
 | Decision compression / triage | 20% | 🔴 Gap | modes/ofertas.md reusable; no UX |
 | Career state system (modes) | 10% | 🔴 Gap | Conceptual only |
-| Company intelligence | 60% | 🟢 | Yes | MECE vision implemented |
+| Company intelligence | 75% | 🟢 | Yes | MECE vision implemented |
 | Positioning engine | 30% | 🟡 Active | S6 schema-validated; tailoring delta SUBSTANTIAL post-S7 fix |
 | Resume Council (v3) | 80% | 🟢 | Yes | Tailoring delta significant |
-| Humanizer layer | 60% | 🟡 Active | Markdown safety gate; structure validation pre/post; Truth Guard misses year inflation (B9) |
+| Humanizer layer | 65% | 🟡 Active | Markdown safety gate; structure validation pre/post; Truth Guard misses year inflation (B9) |
 | Resume rendering (templates) | 80% | 🟡 Active | 10 templates; hard fail on structure loss; PDF preamble + loose experience parsing |
 | Validator / QA | 70% | 🟡 Active | 10/10 pass; collapsed_bullet_marker fixed; possible_truncation de-fanged; 64 tests |
 | Application execution | 15% | 🔴 Gap | modes/apply.md prototype; Chrome extension not started |
@@ -338,7 +338,7 @@ The user should feel:
 | WhatsApp/transport UX | 15% | 🔴 Gap | Concept only |
 | Monetization logic | 30% | 🟡 Active | Strategic understanding solid |
 
-**Overall product maturity: ~45-48% of vision.** (+3% from S7 overhaul. Council 72→78%, Humanizer 55→60%, Positioning 25→30%, Rendering 75→78%, Validator 65→70%. Tailoring delta 3.6%→SUBSTANTIAL.)
+**Overall product maturity: ~50-53% of vision.** (+3% from S7 overhaul. Council 72→78%, Humanizer 55→60%, Positioning 25→30%, Rendering 75→78%, Validator 65→70%. Tailoring delta 3.6%→SUBSTANTIAL.)
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 

@@ -248,6 +248,37 @@ def _is_identity_or_contact_section(section: dict) -> bool:
     return False
 
 
+def _payload_to_rewritten_text(payload: dict, original: str, normalized_type: str = "") -> str:
+    """Bridge S7 structured output into the legacy assembler contract."""
+    direct = (payload.get("rewritten_text") or "").strip()
+    if direct:
+        return direct
+
+    items = payload.get("tailored_bullets")
+    if not isinstance(items, list):
+        return ""
+
+    cleaned: list[str] = []
+    for item in items:
+        text = str(item or "").strip()
+        text = re.sub(r"^\s{0,3}#{1,6}\s+", "", text)
+        text = re.sub(r"^\s*[-*+]\s+", "", text)
+        text = text.strip("*").strip()
+        if text:
+            cleaned.append(text)
+
+    if not cleaned:
+        return ""
+
+    original_bullets = len(re.findall(r"(?m)^\s*[-*+]\s+\S", original or ""))
+    normalized = (normalized_type or "").lower()
+    if original_bullets > 0:
+        return "\n".join(f"- {item}" for item in cleaned)
+    if normalized in {"profile", "summary"} and len(cleaned) == 1:
+        return cleaned[0]
+    return "\n\n".join(cleaned)
+
+
 def _rewrite_one_section(
     section: dict,
     tone: str,
@@ -314,7 +345,7 @@ def _rewrite_one_section(
                 chunk_ok = False
                 break
 
-            ctext = cresult.payload.get('rewritten_text', '').strip()
+            ctext = _payload_to_rewritten_text(cresult.payload, chunk, normalized_type).strip()
             if not ctext or len(ctext) < len(chunk) * 0.4:
                 print(
                     f"  !! S7 chunk {ci + 1} truncated "
@@ -379,7 +410,7 @@ def _rewrite_one_section(
         return sid, None, reason
 
     payload = result.payload
-    rewritten = payload.get('rewritten_text', '').strip()
+    rewritten = _payload_to_rewritten_text(payload, raw, normalized_type).strip()
     if not rewritten:
         reason = "empty_rewrite"
         print(f"  !! S7 fallback '{sid}' → {reason} — keeping original")
@@ -706,14 +737,20 @@ HONESTY GUARDRAILS:
 Return ONLY a JSON object:
 {
   "section_id": "<same as input>",
-  "rewritten_text": "<full rewritten markdown>",
-  "change_type": "KEEP|EXPAND|REWRITE|TRIM",
-  "change_reason": "<one sentence: what positioning angle was applied>",
-  "claims_added": [],
-  "claims_removed": [],
-  "evidence_used": [],
+  "tailored_bullets": [
+    "<punchy, outcome-oriented version of bullet 1>",
+    "<punchy, outcome-oriented version of bullet 2>"
+  ],
+  "change_type": "KEEP|REWRITE",
+  "change_reason": "<one sentence on the tailoring logic>",
   "risk_level": "low|medium|high"
-}"""
+}
+FORBIDDEN:
+- Do NOT include headers (e.g. ## Experience)
+- Do NOT include bullet markers (e.g. - or *)
+- Do NOT include bolding wrappers (e.g. **)
+- Return the raw text strings for the bullets only.
+"""
 
 _S7_SYSTEM = _S7_PER_SECTION_SYSTEM
 

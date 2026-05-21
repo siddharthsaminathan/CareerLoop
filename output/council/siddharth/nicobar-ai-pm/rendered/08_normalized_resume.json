@@ -119,52 +119,27 @@
       "bullets": [
         "Built SQL-based ETL workflows to extract, transform, and load data from operational source systems into reporting layers, enabling downstream business intelligence.",
         "Built Tableau dashboards for an NBFC to analyze credit risk and loan repayment behaviour, delivering actionable insights for decision-makers.",
-        "Built real-time Grafana dashboards for ID by SPI Cinemas to track full order-to-table lifecycle, supporting operational efficiency. ---"
+        "Built real-time Grafana dashboards for ID by SPI Cinemas to track full order-to-table lifecycle, supporting operational efficiency."
       ]
     }
   ],
   "achievements": [
     "Shipped Emote, an AI-native personalization engine, from zero to 450+ users with 40+ power users and 13-15% weekly retention, all through organic growth. (https://emotenow.app/)",
-    "Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson, driving improved reporting reliability and delivery outcomes.",
-    "--"
+    "Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson, driving improved reporting reliability and delivery outcomes."
   ],
   "projects": [],
   "education": [
     {
       "degree": "M.Sc. Statistics and Machine Learning",
       "institution": "Linköping University",
-      "dates": "",
-      "details": "Sweden · 2020-2022"
-    },
-    {
-      "degree": "Shipped an end-to-end ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples), demonstrating ability to deliver AI features from raw data to actionable insights.",
-      "institution": "",
-      "dates": "",
-      "details": ""
-    },
-    {
-      "degree": "Deployed autoencoders for feature compression and representation learning, directly applicable to building personalization engines that extract latent user preferences.",
-      "institution": "",
-      "dates": "",
-      "details": ""
-    },
-    {
-      "degree": "Applied PCA for dimensionality reduction and feature selection, mirroring techniques used in clienteling intelligence layers to identify high-value customer segments.",
-      "institution": "",
-      "dates": "",
-      "details": ""
-    },
-    {
-      "degree": "Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns, showcasing business-outcome thinking and ability to communicate complex findings to non-technical stakeholders.",
-      "institution": "",
-      "dates": "",
-      "details": ""
+      "dates": "2020-2022",
+      "details": "Sweden Shipped an end-to-end ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples), demonstrating ability to deliver AI features from raw data to actionable insights. Deployed autoencoders for feature compression and representation learning, directly applicable to building personalization engines that extract latent user preferences. Applied PCA for dimensionality reduction and feature selection, mirroring techniques used in clienteling intelligence layers to identify high-value customer segments. Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns, showcasing business-outcome thinking and ability to communicate complex findings to non-technical stakeholders."
     },
     {
       "degree": "B.Tech Computer Science & Engineering",
       "institution": "SRM University",
-      "dates": "",
-      "details": "India · 2016-2020"
+      "dates": "2016-2020",
+      "details": "India"
     }
   ],
   "thesis": null,

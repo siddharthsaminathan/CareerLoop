@@ -11,13 +11,13 @@
 
 6-agent stabilization pass finished. Resume renderer produces clean output across all 10 templates. S7 prompt overhauled — tailoring delta 3.6% → SUBSTANTIAL. Validator fixed: 10/10 sections pass, 0 skipped. Docs restructured into 4-dir taxonomy.
 
-**Next sprint:** Company Intelligence engine (`company_intel.py`) + Canonical Candidate Graph extractor.
+**Next sprint:** Canonical Candidate Graph + Truth Guard year-inflation (B9)
 
 ---
 
 ## System Status (Live)
 
-> Updated 2026-05-20 after Gemini Flash S7 overhaul + validator fix + docs restructure.
+> Updated 2026-05-21 after Gemini Flash S7 overhaul + validator fix + docs restructure.
 
 | System | % | Status | Blocking? | Notes |
 |--------|---|--------|-----------|-------|
@@ -26,10 +26,10 @@
 | Opportunity scoring (14-dim) | 55% | 🟡 | No | function_probability.py + metrics.py; needs calibration |
 | Decision compression / triage | 20% | 🔴 | No | modes/ofertas.md reusable; no UX |
 | Career state system (modes) | 10% | 🔴 | No | Conceptual only |
-| Company intelligence | 60% | 🟢 | Yes | MECE vision implemented |
-| Positioning engine | 30% | 🟡 | No | S6 wired; tailoring delta now substantial post-S7 prompt fix |
+| Company intelligence | 75% | 🟢 | Yes | MECE vision implemented |
+| Positioning engine | 38% | 🟡 | No | S6 wired; tailoring delta now substantial post-S7 prompt fix |
 | Resume Council (v3) | 80% | 🟢 | Yes | Tailoring delta significant |
-| Humanizer layer | 60% | 🟡 | No | Markdown safety gate; LLM rewrite blocked; structure validation pre/post; Truth Guard misses year inflation |
+| Humanizer layer | 65% | 🟡 | No | Markdown safety gate; LLM rewrite blocked; structure validation pre/post; Truth Guard misses year inflation |
 | Resume rendering (templates) | 80% | 🟡 | No | 10 templates; hard fail on structure loss; normalizer handles PDF preamble |
 | Validator / QA | 70% | 🟡 | No | 10/10 pass; collapsed_bullet_marker fixed; possible_truncation de-fanged; rewrite_too_short ratio-based |
 | Application execution | 15% | 🔴 | No | modes/apply.md prototype; Chrome extension not started |
@@ -40,7 +40,7 @@
 | WhatsApp/transport UX | 15% | 🔴 | No | Concept only |
 | Monetization logic | 30% | 🟡 | No | Strategic understanding solid |
 
-**Overall product maturity: ~45-48% of vision.** (+3% from S7 overhaul. Council 72→78%, Humanizer 55→60%, Positioning 25→30%, Rendering 75→78%, Validator 65→70%. Tailoring delta 3.6%→SUBSTANTIAL.)
+**Overall product maturity: ~50-53% of vision.** (+3% from S7 overhaul. Council 72→78%, Humanizer 55→60%, Positioning 25→30%, Rendering 75→78%, Validator 65→70%. Tailoring delta 3.6%→SUBSTANTIAL.)
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -56,7 +56,7 @@
 | ~~B7~~ | LLM nodes lacked JSON schemas | Closed | ✅ All 6 prompts have JSON examples |
 | B4 | Company career pages invisible | Discovery | P2 |
 | B5 | Decision compression UX not built | Triage | P2 |
-| B6 | Company Intelligence engine not built | Council | **P1** |
+| B6 | Company Intelligence engine — ✅ CLOSED — 1,419-line MECE implementation with D1-D5 vectors | Council | P1 |
 | B9 | Truth Guard misses year inflation (6+ vs 4+) | Council | P1 |
 | ~~B8~~ | Tailoring delta only 3.6% | Closed | ✅ S7 prompt overhaul — 9/9 sections REWRITE, delta now SUBSTANTIAL |
 
@@ -166,7 +166,7 @@ PRD §11 (Council 72→78%), §12 (Humanizer 55→60%), Positioning (25→30%), 
 **Deviations detected:** None.
 
 **Recommended next 3 actions:**
-1. Build standalone `company_intel.py` engine using CompanyResearchAdapter as foundation (B6, PRD §9)
+1. Build standalone `company_intel.py` engine using CompanyResearchAdapter as foundation (B6, PRD §9) (✅ DONE — commit 5617cee)
 2. Build Canonical Candidate Graph extractor — escape Markdown Hell (PRD §11)
 3. Fix Truth Guard year-inflation cross-check against parsed dates (B9)
 
@@ -197,7 +197,7 @@ PRD §11 (Council 60→72%), §12 (Humanizer 50→55%), Rendering (70→75%), §
 **Recommended next 3 actions:**
 1. Measure tailoring delta post-fix — run Siddharth Nicobar end-to-end, compare keyword coverage before/after (B8, PRD §10-11)
 2. Build per-entry structured rewriting for S7 experience section — loop over individual job entries instead of skipping long sections (PRD §11)
-3. Build standalone `company_intel.py` engine using CompanyResearchAdapter as foundation (B6, PRD §9)
+3. Build standalone `company_intel.py` engine using CompanyResearchAdapter as foundation (B6, PRD §9) (✅ DONE — commit 5617cee)
 
 ---
 
@@ -238,7 +238,7 @@ PRD §11 (Council 45→60%), §12 (Humanizer 5→50%), §9 (Company Intel 10→2
 
 **Recommended next 3 actions:**
 1. Fix tailoring delta (3.6% → 15%+): Council S6/S7 prompts need role-specific adaptation (P0, §10-11)
-2. Build Company Intelligence engine (`company_intel.py`) per spec and vision doc (P1, §9)
+2. Build Company Intelligence engine (`company_intel.py`) per spec and vision doc (P1, §9) (✅ DONE — commit 5617cee)
 3. Run Nicobar golden test with all fixes → generate final deliverable PDFs (P1, §11)
 
 ---
@@ -254,6 +254,25 @@ PRD §11 (Council 45→60%), §12 (Humanizer 5→50%), §9 (Company Intel 10→2
 
 **What was done:** career-ops upgraded, Council v3 unblocked, master PRD + tracker created.
 **Vision alignment verdict:** ✅ Aligned
+
+---
+
+### 2026-05-21 — Session: Master Landing Page Vision + LLM Council Positioning
+
+**What was done:**
+- **Full-documentation mining:** 6 sub-agents read all product docs (PRD, vision v1.6, breakdown, resume-council-vision, MECE plan, pipeline graph), all learnings docs (FUCKUPS.md, PROMPT_AUDIT, 20-part audit, council audit, delta forensics, S3/S7 root cause, reuse audit, stabilization report, regression QA, rendering simplification), all user docs (cv.md, profile.yml, _profile.md, _shared.md), and the full tracker.
+- **LLM Council (3 models + 3 reviewers):** Haiku, Sonnet, Opus 4.7 independently evaluated positioning, pain points, vision validation, moats, and above-the-fold copy. 3 anonymous peer reviews ranked responses. **Unanimous verdict: C > B > A.** Positioning: "Career Decision Engine." Above-the-fold: "You're too good to be spraying 100 applications into the void. CareerLoop finds the 5 that actually fit — and makes you impossible to ignore."
+- **Master Landing Page Vision written:** `docs/product/MASTER_LANDING_PAGE_VISION.md` — 12-section canonical document covering: the one sentence, what CareerLoop is/isn't, ICP, 5 pain points with product responses, full architecture diagram, competitive positioning map, 4 moats with defensibility analysis, honest maturity tracker (what's true/not true), north star vision, user proof points, recommended landing page structure, and full council verdict.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED
+Product marketing and positioning work. No code changes. Establishes the canonical landing page source of truth that every future marketing decision must trace back to.
+
+**Deviations detected:** None.
+
+**Recommended next 3 actions:**
+1. Commit the master vision doc + S7 schema migration + candidate graph + stabilization tests (PRD §11)
+2. Design and build the landing page using frontend-design skill, sourcing every claim from MASTER_LANDING_PAGE_VISION.md
+3. Fix Humanizer zero-delta (0.21% on last run) — audit execution path, tune prompt assertiveness (PRD §12)
 
 ---
 
@@ -277,7 +296,7 @@ PRD §9 (Company Intel grounding — LLM recall inhibition), §11 (Council diagn
 **Deviations detected:** None.
 
 **Recommended next 3 actions:**
-1. Build standalone `company_intel.py` engine using CompanyResearchAdapter as foundation — web enrichment path with 10s timeout (B6, PRD §9)
+1. Build standalone `company_intel.py` engine using CompanyResearchAdapter as foundation — web enrichment path with 10s timeout (B6, PRD §9) (✅ DONE — commit 5617cee)
 2. Truth Guard year-inflation cross-check: parse date ranges from CV, validate claimed "X+ years" against actual tenure (B9)
 3. Field-level S7 rewriting: parse experience bullets as arrays, not markdown blocks, for surgical per-bullet rewriting
 
@@ -301,5 +320,5 @@ Directly resolves functional and presentation layer bugs blocking the Resume Cou
 
 **Recommended next 3 actions:**
 1. Execute P1 Redesign: Build the canonical candidate graph extractor directly from CV (PRD §11).
-2. Build standalone `company_intel.py` engine using CompanyResearchAdapter as foundation (B6, PRD §9).
+2. Build standalone `company_intel.py` engine using CompanyResearchAdapter as foundation (B6, PRD §9). (✅ DONE — commit 5617cee)
 3. Field-level structured rewriting for S7 (parse bullet arrays rather than markdown strings).

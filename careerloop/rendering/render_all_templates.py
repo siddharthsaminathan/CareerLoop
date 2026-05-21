@@ -87,6 +87,23 @@ def _build_header_contact_row(header, portfolio_href: str, github_href: str, lin
     return '<span class="sep">|</span>'.join(parts)
 
 
+def _strip_dead_contact_links(html: str) -> str:
+    """Remove optional contact anchors rendered from missing links."""
+    html = re.sub(
+        r'\s*<a href="#">(?:LinkedIn|Portfolio)</a><span class="separator">\|</span>\s*',
+        "",
+        html,
+        flags=re.IGNORECASE,
+    )
+    html = re.sub(
+        r'\s*<span class="separator">\|</span>\s*<a href="#">(?:LinkedIn|Portfolio)</a>\s*',
+        "",
+        html,
+        flags=re.IGNORECASE,
+    )
+    return html
+
+
 # ── Post-render validation: forbidden characters in final HTML body ──
 _FORBIDDEN_IN_BODY = {
     '**': 'raw bold markers (markdown not converted to HTML)',
@@ -388,6 +405,7 @@ def render_resume(input_path, candidate: str, run_id: str = "latest", out_dir=No
         # Replace placeholders
         for k, v in placeholders.items():
             tmpl_html = tmpl_html.replace(f"{{{{{k}}}}}", str(v))
+        tmpl_html = _strip_dead_contact_links(tmpl_html)
 
         out_html = out_dir / f"{tmpl_id}.html"
         out_html.write_text(tmpl_html, encoding="utf-8")
