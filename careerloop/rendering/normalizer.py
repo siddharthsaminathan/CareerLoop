@@ -867,7 +867,7 @@ def _parse_loose_experience_entries(body: str) -> List[ExperienceEntry]:
         end = starts[pos + 1] if pos + 1 < len(starts) else len(lines)
         segment = lines[start:end]
         entry = _parse_loose_experience_segment(segment)
-        if entry and (entry.company or entry.role) and entry.bullets:
+        if entry and (entry.company or entry.role):
             entries.append(entry)
     return entries
 
@@ -967,9 +967,11 @@ def _parse_loose_experience_segment(segment: List[str]) -> Optional[ExperienceEn
         # Two-line header: company/location then role/dates
         # "Grant Thornton Bharat, Chennai, India" / "Financial Transformation Consultant, Jul 2025 - Present"
         if len(header_lines) == 2 and _contains_date_range(second) and not _contains_date_range(first):
-            company, _, location = _split_loose_company_role_location(first)
+            company, first_role, location = _split_loose_company_role_location(first)
             role_date = second
-            dates, role = _extract_date_range(role_date)
+            dates, role_from_date = _extract_date_range(role_date)
+            # If second line is pure date (no role text), keep role from first line
+            role = first_role if first_role and not role_from_date else (role_from_date or first_role)
             role = role.strip(", ")
         else:
             combined = " ".join(header_lines[:3])
