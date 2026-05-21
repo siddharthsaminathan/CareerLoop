@@ -534,6 +534,13 @@ def _parse_contact_body(body: str, header: HeaderInfo) -> None:
                     if other_pattern.search(line):
                         is_explicit_field = True
                         break
+                # Skip: line already yielded phone/email/linkedin/github
+                already_has_contact = bool(
+                    (header.phone and re.search(r"(?:\+?\d[\d\s().-]{7,}\d)", line))
+                    or (header.email and re.search(r"[\w.+-]+@[\w.-]+\.\w+", line))
+                )
+                if already_has_contact:
+                    continue
                 if not is_explicit_field and (
                     "@" not in line
                     and not re.search(r"(?:https?://|www\.)", line, re.IGNORECASE)
@@ -957,15 +964,23 @@ def _parse_loose_experience_segment(segment: List[str]) -> Optional[ExperienceEn
         elif len(parts) == 2:
             company, dates = parts
     else:
-        combined = " ".join(header_lines[:3])
-        dates, without_dates = _extract_date_range(combined)
-        if "|" in without_dates:
-            parts = [p.strip() for p in without_dates.split("|") if p.strip()]
-            company = parts[0] if parts else ""
-            role = parts[1] if len(parts) > 1 else ""
-            location = parts[2] if len(parts) > 2 else ""
+        # Two-line header: company/location then role/dates
+        # "Grant Thornton Bharat, Chennai, India" / "Financial Transformation Consultant, Jul 2025 - Present"
+        if len(header_lines) == 2 and _contains_date_range(second) and not _contains_date_range(first):
+            company, _, location = _split_loose_company_role_location(first)
+            role_date = second
+            dates, role = _extract_date_range(role_date)
+            role = role.strip(", ")
         else:
-            company, role, location = _split_loose_company_role_location(without_dates)
+            combined = " ".join(header_lines[:3])
+            dates, without_dates = _extract_date_range(combined)
+            if "|" in without_dates:
+                parts = [p.strip() for p in without_dates.split("|") if p.strip()]
+                company = parts[0] if parts else ""
+                role = parts[1] if len(parts) > 1 else ""
+                location = parts[2] if len(parts) > 2 else ""
+            else:
+                company, role, location = _split_loose_company_role_location(without_dates)
 
     description_lines: List[str] = []
     bullet_lines: List[str] = []

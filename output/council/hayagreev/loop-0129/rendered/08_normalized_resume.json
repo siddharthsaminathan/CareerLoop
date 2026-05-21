@@ -4,7 +4,7 @@
     "title": "",
     "phone": "+91-9841837272",
     "email": "hayagreev.sivakumar@gmail.com",
-    "location": "T: +91-9841837272",
+    "location": "",
     "portfolio_url": "",
     "portfolio_display": "",
     "github_url": "",
@@ -27,8 +27,8 @@
   ],
   "experience": [
     {
-      "role": "",
-      "company": "Grant Thornton Bharat,  Financial Transformation Consultant",
+      "role": "Financial Transformation Consultant",
+      "company": "Grant Thornton Bharat",
       "location": "Chennai, India",
       "dates": "Jul 2025 - Present",
       "description": "A leading professional services firm focused on advisory, audit, and financial transformation, working with enterprises to design, implement, and optimize large-scale business and technology systems.",
@@ -40,8 +40,8 @@
       ]
     },
     {
-      "role": "Founder",
-      "company": "Emote,  Co",
+      "role": "Co-Founder",
+      "company": "Emote",
       "location": "Chennai, India",
       "dates": "May 2025 - Present",
       "description": "An AI system for emotional sense-making that helps users process experiences over time by tracking patterns, retaining context, and enabling deeper understanding across conversations.",
