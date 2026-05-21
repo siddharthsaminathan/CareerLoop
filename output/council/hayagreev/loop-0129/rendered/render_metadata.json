@@ -9,73 +9,73 @@
   "templates": [
     {
       "template": "classic-ats",
-      "pages": "skipped",
+      "pages": "3",
       "html": "output/council/hayagreev/loop-0129/rendered/classic-ats.html",
       "pdf": "output/council/hayagreev/loop-0129/rendered/classic-ats.pdf",
-      "pdf_status": "skipped"
+      "pdf_status": "ok"
     },
     {
       "template": "modern-accent",
-      "pages": "skipped",
+      "pages": "3",
       "html": "output/council/hayagreev/loop-0129/rendered/modern-accent.html",
       "pdf": "output/council/hayagreev/loop-0129/rendered/modern-accent.pdf",
-      "pdf_status": "skipped"
+      "pdf_status": "ok"
     },
     {
       "template": "executive-clean",
-      "pages": "skipped",
+      "pages": "3",
       "html": "output/council/hayagreev/loop-0129/rendered/executive-clean.html",
       "pdf": "output/council/hayagreev/loop-0129/rendered/executive-clean.pdf",
-      "pdf_status": "skipped"
+      "pdf_status": "ok"
     },
     {
       "template": "compact-one-page",
-      "pages": "skipped",
+      "pages": "2",
       "html": "output/council/hayagreev/loop-0129/rendered/compact-one-page.html",
       "pdf": "output/council/hayagreev/loop-0129/rendered/compact-one-page.pdf",
-      "pdf_status": "skipped"
+      "pdf_status": "ok"
     },
     {
       "template": "technical-two-column",
-      "pages": "skipped",
+      "pages": "2",
       "html": "output/council/hayagreev/loop-0129/rendered/technical-two-column.html",
       "pdf": "output/council/hayagreev/loop-0129/rendered/technical-two-column.pdf",
-      "pdf_status": "skipped"
+      "pdf_status": "ok"
     },
     {
       "template": "product-engineer",
-      "pages": "skipped",
+      "pages": "3",
       "html": "output/council/hayagreev/loop-0129/rendered/product-engineer.html",
       "pdf": "output/council/hayagreev/loop-0129/rendered/product-engineer.pdf",
-      "pdf_status": "skipped"
+      "pdf_status": "ok"
     },
     {
       "template": "founder-operator",
-      "pages": "skipped",
+      "pages": "3",
       "html": "output/council/hayagreev/loop-0129/rendered/founder-operator.html",
       "pdf": "output/council/hayagreev/loop-0129/rendered/founder-operator.pdf",
-      "pdf_status": "skipped"
+      "pdf_status": "ok"
     },
     {
       "template": "compact-sidebar-premium",
-      "pages": "skipped",
+      "pages": "1",
       "html": "output/council/hayagreev/loop-0129/rendered/compact-sidebar-premium.html",
       "pdf": "output/council/hayagreev/loop-0129/rendered/compact-sidebar-premium.pdf",
-      "pdf_status": "skipped"
+      "pdf_status": "ok"
     },
     {
       "template": "design-brand-compact",
-      "pages": "skipped",
+      "pages": "1",
       "html": "output/council/hayagreev/loop-0129/rendered/design-brand-compact.html",
       "pdf": "output/council/hayagreev/loop-0129/rendered/design-brand-compact.pdf",
-      "pdf_status": "skipped"
+      "pdf_status": "ok"
     },
     {
       "template": "design-brand-compact-dark",
-      "pages": "skipped",
+      "pages": "1",
       "html": "output/council/hayagreev/loop-0129/rendered/design-brand-compact-dark.html",
       "pdf": "output/council/hayagreev/loop-0129/rendered/design-brand-compact-dark.pdf",
-      "pdf_status": "skipped"
+      "pdf_status": "ok"
     }
   ]
 }
