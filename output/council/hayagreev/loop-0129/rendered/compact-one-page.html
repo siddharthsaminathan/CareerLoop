@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAYAGREEV SIVAKUMAR — CV</title>
+<style>
+  /* ═══════════════════════════════════════════════
+     Compact One-Page — aggressive density, fits 1 page
+     ═══════════════════════════════════════════════ */
+  :root {
+    --ink: #1a1a1a;
+    --muted: #64748b;
+    --rule: #cccccc;
+    --accent: #2c5282;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 9pt;
+    line-height: 1.35;
+    color: var(--ink);
+    background: #ffffff;
+    max-width: 8.5in;
+    margin: 0 auto;
+    padding: 0.4in 0.5in;
+  }
+
+  /* ── Header ────────────────────────────────── */
+  .header {
+    margin-bottom: 0.6rem;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 0.4rem;
+  }
+  .header h1 {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 20pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+    line-height: 1.1;
+  }
+  .header-gradient { display: none; }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.15rem 0.6rem;
+    font-size: 8.5pt;
+    color: var(--muted);
+  }
+  .contact-row a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .contact-row .separator { color: #ccc; }
+
+  /* ── Section headings ──────────────────────── */
+  .section { margin-bottom: 0.5rem; }
+  .section-title {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+    margin: 0.8rem 0 0.25rem 0;
+  }
+  .section:first-of-type .section-title { margin-top: 0.25rem; }
+
+  /* ── Summary ───────────────────────────────── */
+  .summary-text {
+    font-size: 9pt;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+
+  /* ── Experience (exp-header layout) ────────── */
+  .exp-item { margin-bottom: 0.45rem; }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.4rem;
+    margin-bottom: 0.1rem;
+  }
+  .exp-header .role {
+    font-weight: 700;
+    font-size: 9.5pt;
+    color: var(--ink);
+    flex: 1;
+  }
+  .exp-header .exp-meta {
+    text-align: right;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .exp-header .company {
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 8.5pt;
+  }
+  .exp-header .dates {
+    font-size: 8pt;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Old job-* compat */
+  .job { margin-bottom: 0.45rem; }
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.4rem;
+    margin-bottom: 0.1rem;
+  }
+  .job-company { font-weight: 700; color: var(--ink); }
+  .job-period { font-size: 8pt; color: var(--muted); font-style: italic; }
+  .job-role { font-size: 8.5pt; color: var(--muted); margin-bottom: 0.1rem; }
+  .job-location { font-size: 8pt; color: var(--muted); }
+
+  .job ul, .exp-item ul { padding-left: 1.1rem; margin-top: 0.15rem; }
+  .job li, .exp-item li {
+    font-size: 8.5pt;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 0.08rem;
+  }
+  .job li strong, .exp-item li strong { font-weight: 600; }
+  ul li::marker { color: var(--muted); }
+
+  /* ── Skills grid ───────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 0.15rem 0.6rem;
+    font-size: 8.5pt;
+  }
+  .skills-grid .cat {
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .skills-grid .tags {
+    color: var(--ink);
+  }
+  .skill-item { font-size: 8.5pt; color: var(--ink); }
+  .skill-category { font-weight: 700; color: var(--ink); }
+
+  /* ── Projects ──────────────────────────────── */
+  .project { margin-bottom: 0.4rem; }
+  .project-title { font-size: 9.5pt; font-weight: 600; color: var(--ink); }
+  .project-desc { font-size: 8.5pt; color: var(--ink); margin-top: 0.1rem; line-height: 1.4; }
+
+  /* ── Education ─────────────────────────────── */
+  .edu-item { margin-bottom: 0.2rem; }
+  .edu-header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.4rem; }
+  .edu-title { font-weight: 600; font-size: 9pt; color: var(--ink); }
+  .edu-org { color: var(--muted); font-weight: 400; }
+  .edu-year { font-size: 8pt; color: var(--muted); white-space: nowrap; }
+
+  /* ── Competencies ──────────────────────────── */
+  .competencies-grid { display: flex; flex-wrap: wrap; gap: 4px; }
+  .competency-tag {
+    font-size: 8pt;
+    font-weight: 500;
+    color: var(--ink);
+    background: #eeeeee;
+    padding: 2px 6px;
+    border-radius: 2px;
+    border: none;
+  }
+
+  /* ── Links ─────────────────────────────────── */
+  a { white-space: nowrap; color: var(--accent); text-decoration: none; }
+
+  /* ── Rendering contract fallbacks ───────────────
+     Standard classes rendered by render_all_templates.py.
+     Keep alongside template-unique styles. */
+  .achievements { margin-top: 0.05rem; }
+  .achievements li { margin-bottom: 0.15rem; }
+  .achievements li strong { color: var(--ink); }
+  .exp-desc { font-size: inherit; color: var(--ink); margin-bottom: 0.15rem; }
+  .edu-item .degree { font-weight: 600; color: var(--ink); font-size: 9pt; }
+  .edu-item .school { color: var(--muted); font-weight: 400; }
+  .edu-details { font-size: 8pt; color: var(--muted); margin-top: 1px; }
+  .tag { font-weight: 500; }
+  .thesis { font-size: 8pt; color: var(--muted); margin-top: 0.15rem; }
+  .thesis-heading { margin-top: 0.4rem; font-size: 9pt; }
+
+  /* ── Print ─────────────────────────────────── */
+  @media print {
+    body { padding: 0; background: #fff; }
+    @page { margin: 0.4in 0.5in; size: letter; }
+    .exp-item, .job { break-inside: avoid; }
+    h2, .section-title { break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>HAYAGREEV SIVAKUMAR</h1>
+  <div class="header-gradient"></div>
+  <div class="contact-row">
+    <span>+91-9841837272</span><span class="separator">|</span>
+    <span>hayagreev.sivakumar@gmail.com</span><span class="separator">|</span>
+    <a href="https://www.linkedin.com/in/hayagreev13">hayagreev13</a><span class="separator">|</span><span>T: +91-9841837272</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Profile</div>
+  <div class="summary-text"><p>Neuroscience-trained PM who ships AI products in high-velocity build-measure-learn cycles. Co-founded Emote, an Emotional Sense-Making AI, taking it from zero to 451 users in 7 months through continuous discovery and iteration. Led Data and AI platform scoping across 80+ bank departments at Grant Thornton. Strong in PRDs, behavioral data, system design, and technical collaboration. Looking to bring 5 years across engineering, data, product, and consulting to AI automation in regulated environments.</p>
+</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Competencies</div>
+  <div class="competencies-grid"></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Experience</div>
+  
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="role"></span>
+                    <span class="exp-meta">
+                        <span class="company">Grant Thornton Bharat,  Financial Transformation Consultant, Chennai, India</span>
+                        <span class="dates">Jul 2025 - Present</span>
+                    </span>
+                </div>
+                <div class="exp-desc">A leading professional services firm focused on advisory, audit, and financial transformation, working with enterprises to design, implement, and optimize large-scale business and technology systems.</div>
+                <ul class="bullets"><li>Led enterprise AI use case discovery for a data lakehouse and AI enablement program at an Indian Private Sector Bank, working directly with 80+ departments to identify high-value analytics and LLM use cases, prioritize by feasibility and business impact, and shape the final RFP and implementation roadmap.</li><li>Co-developed the RFP and solution blueprint for an AI-enabled data platform, aligning leadership and domain teams on ML and LLM use cases, data architecture, and governance to accelerate vendor evaluation and onboarding for next-generation analytics capabilities.</li><li>Executed ITGC and application control audits across critical banking systems (Calypso, MFI platforms), assessing access, change, processing, interface, and resilience controls, and translating findings into defined control designs to strengthen system reliability and risk posture.</li><li>Drove CRM transformation delivery (Zoho CRM) by translating gap assessment outputs into system-ready requirements, authoring BRDs and SRS, aligning business validation with bank stakeholders, and coordinating with API teams and vendors to ensure builds matched approved workflows and integrations, including post-go-live issue resolution across IDMS and CCMS systems.</li></ul>
+            </div>
+            
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="role">Founder</span>
+                    <span class="exp-meta">
+                        <span class="company">Emote,  Co, Chennai, India</span>
+                        <span class="dates">May 2025 - Present</span>
+                    </span>
+                </div>
+                <div class="exp-desc">An AI system for emotional sense-making that helps users process experiences over time by tracking patterns, retaining context, and enabling deeper understanding across conversations.</div>
+                <ul class="bullets"><li>Architected an emotionally intelligent AI system grounded in behavioral science, defining the product's core loop from emotional trigger to pattern insight, and translating this into system design across memory, conversation modes, and interaction flows.</li><li>Shipped an AI product from 0 to 451 users in 7 months by running rapid build-measure-learn cycles using live user data (169 sessions, 1,313+ turns), identifying a critical drop at Session 1 to Session 2 (24.1%) and redesigning entry behavior to improve activation (76%) and early engagement.</li><li>Led end-to-end product execution by defining vision, converting it into structured requirements (BRDs and system specifications using AI-assisted tools like Copilot), collaborating with engineering on implementation, and iterating based on behavioral deltas; contributed to achieving 54.4% deep sessions (>5 turns) and 7.8 avg turns per session.</li><li>Built a feedback-driven product system by integrating cohort analysis, power-user segmentation, and observability, enabling continuous iteration and driving post-activation engagement (S2 to S3 ~68%, WoW retention ~12.9%) with repeat usage patterns emerging across high-intent user segments.</li><li>Built an AI-driven Reddit outreach system to acquire users by identifying high-intent threads, generating personalized messages, and automating engagement; executed 5,100+ targeted DMs with ~17-21% reply rate (12-15 replies per ~70 DMs/day) and ~9% conversion (~456 users), establishing a scalable zero-cost acquisition channel aligned with product-market discovery.</li></ul>
+            </div>
+            
+</div>
+
+<div class="section">
+  <div class="section-title">Key Achievements</div>
+  
+</div>
+
+<div class="section">
+  <div class="section-title">Education</div>
+  <div class="edu-item"><span class="degree">Stoa School, Remote, India</span></div><div class="edu-item"><span class="degree">General MBA Program, Sept 2023</span>, <span class="school">Apr 2024</span><p class="edu-details">Awarded the Stoa Charter for presenting a Go-To-Market strategy for Wint Wealth by experts from the IB and D2C industry. Awarded top performer in Customer Journey, Venture Creation, Operations, and Product Development sprints. Led a team of 5 to solve case studies, achieving top team status in 3 out of 5 sprints.</p></div><div class="edu-item"><span class="degree">CentraleSupelec, Paris, France</span></div><div class="edu-item"><span class="degree">M.Sc. Computational Neuroscience and Neuroengineering, Sept 2021</span>, <span class="school">Aug 2022</span><p class="edu-details">GPA: 17.42/20, (top 15% of class with top scores in 3/6 modules). Led a team of 5 to cover the Deep Tech Conference, Hello Tomorrow 2021, and presented key learnings to the class through a detailed presentation and a follow-up Q&A session.</p></div><div class="edu-item"><span class="degree">SSN College of Engineering, Chennai, India</span></div><div class="edu-item"><span class="degree">B.E. Electronics and Communications Engineering, Jul 2016</span>, <span class="school">Sept 2020</span><p class="edu-details">Graduated First Class with CGPA: 8.38/10. Successfully led a team of 3 students and a professor to pitch and secure 1 Lakh INR from IIT Madras for developing an innovative self-balancing guidebot, after surveying 120+ journal publications on existing models.</p></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Skills</div>
+  
+</div>
+
+</body>
+</html>

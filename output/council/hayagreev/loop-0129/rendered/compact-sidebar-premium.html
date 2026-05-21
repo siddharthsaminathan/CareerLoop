@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAYAGREEV SIVAKUMAR — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f172a;
+    --slate: #475569;
+    --muted: #94a3b8;
+    --rule: #e2e8f0;
+    --accent: #1d4ed8;
+    --bg-sidebar: #f8fafc;
+    --display: 'DM Serif Display', Georgia, serif;
+    --body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--body);
+    font-size: 10px;
+    line-height: 1.45;
+    color: var(--ink);
+    background: #fff;
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 28px 32px 24px 32px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Header ──────────────────────────── */
+  .header {
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid var(--rule);
+  }
+  .header h1 {
+    font-family: var(--display);
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 2px;
+  }
+  .header .subtitle {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--slate);
+    margin-bottom: 6px;
+  }
+  .header .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    font-size: 9px;
+    color: var(--slate);
+  }
+  .header .contact-row a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .header .contact-row .sep {
+    color: var(--muted);
+  }
+
+  /* ── Two-Column Layout ───────────────── */
+  .layout {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 0 24px;
+  }
+
+  /* ── Sidebar ─────────────────────────── */
+  .sidebar {
+    background: var(--bg-sidebar);
+    padding: 14px 16px;
+    font-size: 9px;
+    line-height: 1.4;
+  }
+  .sidebar .sblock {
+    margin-bottom: 14px;
+  }
+  .sidebar .sblock:last-child { margin-bottom: 0; }
+  .sidebar .stitle {
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    margin-bottom: 6px;
+    padding-bottom: 3px;
+    border-bottom: 0.75px solid var(--rule);
+  }
+  .sidebar a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .sidebar .edu-item {
+    margin-bottom: 6px;
+  }
+  .sidebar .edu-item .degree {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 9px;
+  }
+  .sidebar .edu-item .school {
+    color: var(--slate);
+    font-size: 8.5px;
+  }
+  .sidebar .skill-cat {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 9px;
+    margin-top: 5px;
+  }
+  .sidebar .skill-cat:first-child { margin-top: 0; }
+  .sidebar .skill-tags {
+    color: var(--slate);
+    font-size: 8.5px;
+    line-height: 1.35;
+    margin-bottom: 4px;
+  }
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  .sidebar li {
+    margin-bottom: 2px;
+    font-size: 9px;
+    color: var(--slate);
+  }
+
+  /* ── Main Content ────────────────────── */
+  .main { min-width: 0; }
+
+  .section {
+    margin-bottom: 12px;
+  }
+  .section:last-child { margin-bottom: 0; }
+
+  .section-title {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--ink);
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+    border-bottom: 0.75px solid var(--rule);
+  }
+
+  .profile-text {
+    font-size: 10px;
+    line-height: 1.45;
+    color: var(--slate);
+  }
+
+  /* ── Experience ──────────────────────── */
+  .exp-item {
+    margin-bottom: 10px;
+  }
+  .exp-item:last-child { margin-bottom: 0; }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+  .exp-header .role {
+    font-weight: 700;
+    font-size: 10.5px;
+    color: var(--ink);
+  }
+  .exp-header .meta,
+  .exp-header .exp-meta {
+    text-align: right;
+    font-size: 9px;
+    color: var(--slate);
+    flex-shrink: 0;
+  }
+  .exp-desc {
+    font-size: 9.5px;
+    color: var(--slate);
+    margin-bottom: 3px;
+    line-height: 1.4;
+  }
+  ul.bullets, .exp-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  ul.bullets li, .exp-item ul li {
+    position: relative;
+    padding-left: 10px;
+    margin-bottom: 1px;
+    font-size: 9.5px;
+    line-height: 1.4;
+    color: var(--slate);
+  }
+  ul.bullets li::before, .exp-item ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 8px;
+  }
+
+  /* ── Achievements ────────────────────── */
+  .achievements ul {
+    list-style: none;
+    padding: 0;
+  }
+  .achievements li {
+    font-size: 9.5px;
+    line-height: 1.4;
+    color: var(--slate);
+    margin-bottom: 2px;
+    padding-left: 10px;
+    position: relative;
+  }
+  .achievements li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 8px;
+  }
+
+  /* ── Print ───────────────────────────── */
+  @media print {
+    body {
+      padding: 28px 32px 24px 32px;
+      background: #fff;
+    }
+    @page {
+      margin: 0;
+      size: A4;
+    }
+    .exp-item { break-inside: avoid; }
+    .section-title { break-after: avoid; }
+    .sidebar { background: #f8fafc; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header">
+  <h1>HAYAGREEV SIVAKUMAR</h1>
+  <div class="subtitle">Neuroscience-trained PM who ships AI products in high-veloci</div>
+  <div class="contact-row">
+    <span>+91-9841837272</span><span class="sep">|</span><span>hayagreev.sivakumar@gmail.com</span><span class="sep">|</span><span>T: +91-9841837272</span><span class="sep">|</span><a href="https://www.linkedin.com/in/hayagreev13">LinkedIn</a>
+  </div>
+</header>
+
+<!-- ═══ TWO-COLUMN LAYOUT ═══ -->
+<div class="layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sblock"><div class="stitle">Contact</div><ul><li>+91-9841837272</li><li>hayagreev.sivakumar@gmail.com</li><li>T: +91-9841837272</li><li><a href="https://www.linkedin.com/in/hayagreev13">LinkedIn</a></li></ul></div>
+    <div class="sblock"><div class="stitle">Education</div><div class="edu-item"><span class="degree">Stoa School, Remote, India</span></div><div class="edu-item"><span class="degree">General MBA Program, Sept 2023</span>, <span class="school">Apr 2024</span></div><div class="edu-item"><span class="degree">CentraleSupelec, Paris, France</span></div></div>
+    
+    
+    
+  </aside>
+
+  <!-- RIGHT MAIN -->
+  <main class="main">
+    <div class="section"><div class="section-title">Profile</div><div class="profile-text"><p>Neuroscience-trained PM who ships AI products in high-velocity build-measure-learn cycles. Co-founded Emote, an Emotional Sense-Making AI, taking it from zero to 451 users in 7 months through continuous discovery and iteration. Led Data and AI platform scoping across 80+ bank departments at Grant Thornton. Strong in PRDs, behavioral data, system design, and technical collaboration. Looking to bring 5 years across engineering, data, product, and consulting to AI automation in regulated environments.</p>
+</div></div>
+    <div class="section"><div class="section-title">Experience</div>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="role"></span>
+                    <span class="exp-meta">
+                        <span class="company">Grant Thornton Bharat,  Financial Transformation Consultant, Chennai, India</span>
+                        <span class="dates">Jul 2025 - Present</span>
+                    </span>
+                </div>
+                <div class="exp-desc">A leading professional services firm focused on advisory, audit, and financial transformation, working with enterprises to design, implement, and optimize large-scale business and technology systems.</div>
+                <ul class="bullets"><li>Led enterprise AI use case discovery for a data lakehouse and AI enablement program at an Indian Private Sector Bank, working directly with 80+ departments to identify high-value analytics and LLM use cases, prioritize by feasibility and business impact, and shape the final RFP and implementation roadmap.</li><li>Co-developed the RFP and solution blueprint for an AI-enabled data platform, aligning leadership and domain teams on ML and LLM use cases, data architecture, and governance to accelerate vendor evaluation and onboarding for next-generation analytics capabilities.</li><li>Executed ITGC and application control audits across critical banking systems (Calypso, MFI platforms), assessing access, change, processing, interface, and resilience controls, and translating findings into defined control designs to strengthen system reliability and risk posture.</li><li>Drove CRM transformation delivery (Zoho CRM) by translating gap assessment outputs into system-ready requirements, authoring BRDs and SRS, aligning business validation with bank stakeholders, and coordinating with API teams and vendors to ensure builds matched approved workflows and integrations, including post-go-live issue resolution across IDMS and CCMS systems.</li></ul>
+            </div>
+            
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="role">Founder</span>
+                    <span class="exp-meta">
+                        <span class="company">Emote,  Co, Chennai, India</span>
+                        <span class="dates">May 2025 - Present</span>
+                    </span>
+                </div>
+                <div class="exp-desc">An AI system for emotional sense-making that helps users process experiences over time by tracking patterns, retaining context, and enabling deeper understanding across conversations.</div>
+                <ul class="bullets"><li>Architected an emotionally intelligent AI system grounded in behavioral science, defining the product's core loop from emotional trigger to pattern insight, and translating this into system design across memory, conversation modes, and interaction flows.</li><li>Shipped an AI product from 0 to 451 users in 7 months by running rapid build-measure-learn cycles using live user data (169 sessions, 1,313+ turns), identifying a critical drop at Session 1 to Session 2 (24.1%) and redesigning entry behavior to improve activation (76%) and early engagement.</li><li>Led end-to-end product execution by defining vision, converting it into structured requirements (BRDs and system specifications using AI-assisted tools like Copilot), collaborating with engineering on implementation, and iterating based on behavioral deltas; contributed to achieving 54.4% deep sessions (>5 turns) and 7.8 avg turns per session.</li><li>Built a feedback-driven product system by integrating cohort analysis, power-user segmentation, and observability, enabling continuous iteration and driving post-activation engagement (S2 to S3 ~68%, WoW retention ~12.9%) with repeat usage patterns emerging across high-intent user segments.</li><li>Built an AI-driven Reddit outreach system to acquire users by identifying high-intent threads, generating personalized messages, and automating engagement; executed 5,100+ targeted DMs with ~17-21% reply rate (12-15 replies per ~70 DMs/day) and ~9% conversion (~456 users), establishing a scalable zero-cost acquisition channel aligned with product-market discovery.</li></ul>
+            </div>
+            </div>
+    
+  </main>
+
+</div>
+
+</body>
+</html>
