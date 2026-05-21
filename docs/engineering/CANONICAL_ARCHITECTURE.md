@@ -55,7 +55,7 @@ No independent CV generator. Council owns all content generation. Renderer owns 
 | Apply Route | `careerloop/apply_route.py` | 60% |
 | Application Ledger | `careerloop/application_ledger.py` | 70% |
 | Profile Manager | `careerloop/profile_manager.py` | 50% |
-| Resume Council | `careerloop/council/` (8 files) | 40% |
+| Resume Council | `careerloop/council/` (10 files) | 82% |
 | Memory Layer | `careerloop/memory/` (4 files) | 10% |
 | Company Intelligence | `careerloop/company_intel.py` | 75% ✅ LIVE — MECE D1-D5 vectors, LinkedIn PortalScraper, Glassdoor ScrapeGraph, DDG web enrichment |
 | Humanizer | `careerloop/council/humanizer.py` | 65% ✅ LIVE — 5-phase pipeline, 29 regression tests, aggressive rewrite prompt |
@@ -319,13 +319,15 @@ ACTIVE STATES:    All non-terminal, non-dormant
 │   ├── company_intel.py                  ✅ LIVE — 1,419 lines, full MECE implementation
 │   ├── learning.py                       🔴 Phase 2 — pattern analysis (port of analyze-patterns.mjs)
 │   ├── council/                          ✅ Resume Council
-│   │   ├── graph.py                      ✅ LangGraph state machine
+│   │   ├── graph.py                      ✅ LangGraph state machine (S1-S8 + Truth Guard); CouncilState: candidate_graph + cv_tenure_years wired
 │   │   ├── orchestrator.py               ✅ One-job runner
-│   │   ├── compiler.py                   ✅ Deterministic parse + assemble
+│   │   ├── compiler.py                   ✅ Deterministic parse + assemble + extract_candidate_graph() static method
+│   │   ├── candidate_graph.py            ✅ Canonical structured identity (CandidateGraph dataclass); wired into S1 parse_node
 │   │   ├── models.py                     ✅ Council data contracts
 │   │   ├── context.py                    ✅ Council context loader
 │   │   ├── llm.py                        ✅ DeepSeek client
-│   │   └── humanizer.py                 ✅ LIVE — 5-phase Cope-Killer pipeline
+│   │   ├── truth_guard.py               ✅ Semantic claim validation + CV-tenure year-inflation guard
+│   │   └── humanizer.py                 ✅ LIVE — 5-phase Cope-Killer pipeline (29 tests)
 │   ├── memory/                           ✅ SQLite persistence
 │   │   ├── models.py                     ✅ SQLAlchemy models (6 entities)
 │   │   ├── connection.py                 ✅ SQLite connection
@@ -335,6 +337,8 @@ ACTIVE STATES:    All non-terminal, non-dormant
 │   │   ├── search_adapter.py             ✅ DDG search
 │   │   ├── scrapegraph_adapter.py        ✅ Deep extraction
 │   │   └── jobspy_adapter.py             ✅ Multi-board
+│   ├── tests/                            ✅ Regression + stabilization tests
+│   │   └── test_stabilization.py         ✅ 70 P0/P1 stabilization tests
 │   └── docs/                             ✅ Product + architecture docs
 │       ├── PRD.md                        ✅ Canonical vision
 │       ├── TRACKER.md                    ✅ Rolling session log

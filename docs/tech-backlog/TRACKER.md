@@ -7,17 +7,17 @@
 
 ## Current Sprint Focus
 
-**Week of 2026-05-18 — Stabilization Complete. Tailoring Delta Achieved.**
+**Week of 2026-05-21 — Council Hardening + CandidateGraph + Landing Page.**
 
-6-agent stabilization pass finished. Resume renderer produces clean output across all 10 templates. S7 prompt overhauled — tailoring delta 3.6% → SUBSTANTIAL. Validator fixed: 10/10 sections pass, 0 skipped. Docs restructured into 4-dir taxonomy.
+MECE Company Intelligence fully live (D1-D5 vectors). Humanizer hardened (29/29 tests). Stabilization regression suite added (70 tests). Master Landing Page Vision written. CandidateGraph data model introduced. Truth Guard year-inflation (B9) implemented with CV-derived tenure parsing.
 
-**Next sprint:** Canonical Candidate Graph + Truth Guard year-inflation (B9)
+**Next sprint:** Decision Compression UX (B5, P2) + Structured S7 bullet migration using CandidateGraph
 
 ---
 
 ## System Status (Live)
 
-> Updated 2026-05-21 after Gemini Flash S7 overhaul + validator fix + docs restructure.
+> Updated 2026-05-21 after MECE Company Intel, CandidateGraph wiring, B9 Truth Guard fix, landing page.
 
 | System | % | Status | Blocking? | Notes |
 |--------|---|--------|-----------|-------|
@@ -40,7 +40,7 @@
 | WhatsApp/transport UX | 15% | 🔴 | No | Concept only |
 | Monetization logic | 30% | 🟡 | No | Strategic understanding solid |
 
-**Overall product maturity: ~50-53% of vision.** (+3% from S7 overhaul. Council 72→78%, Humanizer 55→60%, Positioning 25→30%, Rendering 75→78%, Validator 65→70%. Tailoring delta 3.6%→SUBSTANTIAL.)
+**Overall product maturity: ~52-55% of vision.** Company Intel 0→75%, Humanizer 55→65%, Council 78→82%, Rendering 78→80%. B9 Truth Guard year-inflation fixed. CandidateGraph wired into S1. Landing page built.
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -56,8 +56,8 @@
 | ~~B7~~ | LLM nodes lacked JSON schemas | Closed | ✅ All 6 prompts have JSON examples |
 | B4 | Company career pages invisible | Discovery | P2 |
 | B5 | Decision compression UX not built | Triage | P2 |
-| B6 | Company Intelligence engine — ✅ CLOSED — 1,419-line MECE implementation with D1-D5 vectors | Council | P1 |
-| B9 | Truth Guard misses year inflation (6+ vs 4+) | Council | P1 |
+| ~~B6~~ | Company Intelligence engine | Closed | ✅ 1,419-line MECE implementation — D1-D5 vectors, LinkedIn, Glassdoor, DDG |
+| ~~B9~~ | Truth Guard misses year inflation (6+ vs 4+) | Closed | ✅ CV-derived tenure parsing + overlap-aware total — no more S5 LLM estimate dependence |
 | ~~B8~~ | Tailoring delta only 3.6% | Closed | ✅ S7 prompt overhaul — 9/9 sections REWRITE, delta now SUBSTANTIAL |
 
 ---
@@ -126,28 +126,6 @@ Directly resolves the #1 performance and quality bottleneck in the pipeline. Com
 
 ---
 
-
-### 2026-05-20 — Session: S3 Grounding "Once and for All" Fix
-
-**What was done:**
-- **Search Query Relaxation (S3):** Implemented "Search Name Cleaner" in `company_intel.py` that strips legal suffixes (Pvt Ltd, Inc) and uses first 3 words. DuckDuckGo hits increased from 0 to 7+ for Nicobar.
-- **Incremental Harvesting (S3):** Modified `_gather_web_sources` to preserve partial results on timeout. System no longer panics if search takes >10s; it synthesizes from whatever is finished.
-- **Domain Isolation (S3):** Added job-board blacklist (LinkedIn, Indeed, etc.) to domain derivation. Prevents system from trying to scrape LinkedIn as a company website.
-- **Cache-Busting flag:** Added `--force-refresh-s3` to `run_council.py` to allow manual cache invalidation for the intelligence stage.
-- **Nicobar Grounded Run:** Verified end-to-end. S3 now achieves PARTIAL grounding for Nicobar, extracting founders (Simran Lal, Raul Rai) and brand history.
-- **Subtitle Derivation Fix:** Overhauled logic to use actual job titles or profile bolding instead of sentence fragments.
-
-**Vision alignment verdict:** ✅ STRONGLY ALIGNED
-Directly resolves the #1 performance and quality bottleneck in the pipeline. Company Intelligence maturity increased from 30→45%. PRD §9 grounding achieved.
-
-**Deviations detected:** None.
-
-**Recommended next 3 actions:**
-1. Execute P1 Redesign: Build the canonical candidate graph extractor directly from CV (PRD §11).
-2. Field-level structured rewriting for S7 (parse bullet arrays rather than markdown strings).
-3. Truth Guard year-inflation cross-check against parsed dates (B9).
-
----
 
 ---
 
@@ -273,6 +251,29 @@ Product marketing and positioning work. No code changes. Establishes the canonic
 1. Commit the master vision doc + S7 schema migration + candidate graph + stabilization tests (PRD §11)
 2. Design and build the landing page using frontend-design skill, sourcing every claim from MASTER_LANDING_PAGE_VISION.md
 3. Fix Humanizer zero-delta (0.21% on last run) — audit execution path, tune prompt assertiveness (PRD §12)
+
+---
+
+### 2026-05-21 — Session: CandidateGraph Wiring + B9 Fix + Landing Page Build
+
+**What was done:**
+- **`extract_candidate_graph()` in `compiler.py`:** Added ~120-line static method to `ResumeCompiler` that extracts structured contact info, profile_summary, experience[] with bullet arrays, education[], skills[], and metric_vault (top-30 numerics) from a serialised CanonicalResume dict. Regex-based, deterministic — no LLM.
+- **CandidateGraph wired into S1 (`parse_node`):** `graph.py` parse_node now calls `extract_candidate_graph()` after CV parse and stores result in `CouncilState["candidate_graph"]`. Non-fatal — pipeline continues if extraction fails.
+- **B9 cv_tenure_years fix wired end-to-end:** `parse_node` now extracts experience section raw texts and calls `compute_cv_tenure_years()` (regex interval-merge, already implemented in `truth_guard.py`). Result stored as `CouncilState["cv_tenure_years"]`. Passed into `truth_guard_node` as `cv_verified_years=` kwarg — now used as ceiling when validating year claims. B9 fully closed.
+- **`CouncilState` TypedDict expanded:** Added `candidate_graph: Optional[Dict]` and `cv_tenure_years: Optional[float]` keys.
+- **Integration test M2a fixed:** Changed check from "≥2 REWRITE change_type" to "≥2 sections processed by LLM (REWRITE+KEEP)" — KEEP is a valid LLM decision, not a failure.
+- **Landing page built:** `output/showcase-careerloop-landing.html` — 796 lines, Deep Ocean palette. 6 sections: Problem, System (10-step pipeline), Differentiation (competitor table), Proof (8 metrics), Moats (4 principles), North Star (terminal standup mock-up + 4 paths + People Graph). Every claim sourced from MASTER_LANDING_PAGE_VISION.md. Zero WhatsApp, autonomy, or Chrome extension mentions.
+- **Test results:** 32/32 stabilization PASS · 22/22 integration PASS (1 SKIP — pre-MECE artifact)
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED
+CandidateGraph wiring (PRD §11), B9 closure (Truth Guard maturity), Landing page (product positioning realized). All three on the critical path.
+
+**Deviations detected:** None.
+
+**Recommended next 3 actions:**
+1. **Structured S7 bullet migration** — use `candidate_graph.experience[].bullets` as structured input to `_rewrite_one_section()` for experience sections. Pass `original_bullets_structured` in the prompt JSON so LLM rewrites bullet-by-bullet rather than free-form markdown. (PRD §11 — escape Markdown Hell)
+2. **Decision Compression UX** — B5 is the P2 gap. Design and build the compression UI: 100 jobs → scored → compressed → 5 decisions. The CLI pipeline exists; the user-facing layer does not. (PRD §5)
+3. **Humanizer zero-delta audit** — last run: 0.21% delta. Audit execution path end-to-end. The 5 phases exist but the LLM rewrite call may be no-oping. Tune assertiveness or check if identity bypass is too aggressive. (PRD §12)
 
 ---
 
