@@ -1,63 +1,80 @@
 {
-  "total_years_experience": 6.67,
+  "total_years_experience": 4.3,
   "confirmed_skills": [
     {
       "skill": "Python",
       "years": 4,
-      "evidence": "Built production AI systems and data pipelines across multiple roles"
-    },
-    {
-      "skill": "LLM API experience",
-      "years": 1.5,
-      "evidence": "Designed multi-agent orchestration with tool-calling and multi-model routing"
+      "evidence": "Built production AI systems, backend services with FastAPI, ETL pipelines, and multi-agent orchestration."
     },
     {
       "skill": "SQL",
-      "years": 6,
-      "evidence": "Led data migration and built ETL workflows for enterprise reporting"
+      "years": 5,
+      "evidence": "SQL-based ETL workflows, data validation, enterprise data platform migration to PostgreSQL, and dashboarding."
+    },
+    {
+      "skill": "LLM API experience",
+      "years": 2,
+      "evidence": "Built AI companion system using LLM APIs, RAG pipelines, prompt design, and multi-model routing; reduced inference cost by 98%."
+    },
+    {
+      "skill": "REST API integration",
+      "years": 4,
+      "evidence": "Designed and built REST APIs, WebSockets, SSE streaming in production backends from scratch."
     }
   ],
   "weak_skills": [
-    "frontend skills"
+    "NodeJS",
+    "front-end development"
   ],
   "evidence_bank": {
     "Python": [
-      "Built AI quality management system at Omnex",
-      "Built Emote backend from scratch with FastAPI",
-      "Data engineering pipelines at Akkodis"
-    ],
-    "LLM API experience": [
-      "Orchestration layer with tool-calling at Omnex",
-      "Multi-model routing and cost optimization at Emote",
-      "RAG pipelines and embeddings"
+      "Built AI quality management system",
+      "Multi-agent orchestration with tool-calling",
+      "Backend development with FastAPI, async pipelines",
+      "ETL pipelines for enterprise data migration"
     ],
     "SQL": [
-      "Migrated Azure to PostgreSQL for Ericsson",
-      "SQL-based ETL workflows for dashboards",
-      "PostgreSQL for Emote production backend"
+      "SQL-based ETL workflows for data extraction and reporting",
+      "Migration of enterprise data platform to PostgreSQL",
+      "Data quality audits and validation",
+      "Built Tableau and Power BI dashboards using SQL"
+    ],
+    "LLM API experience": [
+      "Integrated LLM APIs for AI companion system (Emote)",
+      "Designed memory system tracking emotional context across conversations",
+      "Reduced LLM inference cost per conversation from $1.20 to $0.023",
+      "Implemented multi-model routing and prompt optimization",
+      "Built multi-agent orchestration with tool-calling for enterprise AI system (AquaPro AI)"
+    ],
+    "REST API integration": [
+      "Built backend from scratch using FastAPI, REST APIs",
+      "Implemented SSE streaming and WebSockets for real-time pipelines",
+      "Designed internal services routing and API integrations"
     ]
   },
   "strongest_proof_points": [
-    "Built Emote AI companion from 0 to 450+ users with 13-15% weekly retention",
-    "Reduced inference cost per conversation from $1.20 to $0.023",
-    "Reduced response latency from 12.5s to 8s in AI quality system",
-    "Led enterprise data platform migration for Ericsson, improving reporting reliability"
+    "Built Emote from zero to 450+ users with 40+ power users and 13-15% weekly retention without paid acquisition.",
+    "Reduced LLM inference cost per conversation by ~98% (from $1.20 to $0.023) through model selection, caching, and prompt optimization.",
+    "Reduced AI response latency from ~15s to ~3s through pipeline optimization and streaming.",
+    "Designed multi-agent orchestration layer enabling AI-assisted quality and control workflows for engineering teams."
   ],
   "claims_allowed": [
-    "4+ years of Python experience",
-    "Production AI deployment experience",
-    "Multi-agent orchestration",
-    "LLM API integration",
-    "System architecture design",
-    "Data engineering skills",
-    "User growth and retention optimization"
+    "4+ years Python experience",
+    "5+ years SQL experience",
+    "LLM API experience in production",
+    "REST API design and integration",
+    "Production AI systems from concept to real users",
+    "Multi-agent orchestration and tool-calling",
+    "Cost and latency optimization of AI systems",
+    "Self-starter with ownership (co-founder and built product from zero)",
+    "Cross-functional collaboration and stakeholder management (enterprise migration project)"
   ],
   "claims_not_allowed": [
-    "Frontend development experience",
-    "Top-tier institute degree (IIT/BITS/NIT)",
-    "Retail/e-commerce experience",
+    "NodeJS experience",
+    "Front-end development experience",
     "Shopify API experience",
-    "MoEngage or CRM experience",
-    "ERP exposure"
+    "MoEngage/CRM experience",
+    "Microsoft Dynamics 365 exposure",
+    "E-commerce or retail domain experience"
   ]
 }

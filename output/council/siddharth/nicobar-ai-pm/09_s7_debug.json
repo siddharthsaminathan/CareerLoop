@@ -3,15 +3,24 @@
   "n_rewritten": 9,
   "n_fallback": 0,
   "n_workers": 3,
-  "total_elapsed_s": 9.02,
+  "total_elapsed_s": 6.23,
   "sections": [
     {
       "section_id": "profile",
       "status": "REWRITE",
       "change_type": "REWRITE",
       "original_chars": 500,
-      "rewritten_chars": 506,
-      "elapsed_s": 2.6,
+      "rewritten_chars": 481,
+      "elapsed_s": 1.69,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "ai_engineer_omnex_systems_aquapro_ai",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 1085,
+      "rewritten_chars": 1083,
+      "elapsed_s": 2.55,
       "model": "deepseek-chat"
     },
     {
@@ -20,25 +29,7 @@
       "change_type": "REWRITE",
       "original_chars": 1188,
       "rewritten_chars": 1186,
-      "elapsed_s": 3.26,
-      "model": "deepseek-chat"
-    },
-    {
-      "section_id": "ai_engineer_omnex_systems_aquapro_ai",
-      "status": "REWRITE",
-      "change_type": "REWRITE",
-      "original_chars": 1085,
-      "rewritten_chars": 1632,
-      "elapsed_s": 4.59,
-      "model": "deepseek-chat"
-    },
-    {
-      "section_id": "data_analyst_positive_integers_pvt_ltd",
-      "status": "REWRITE",
-      "change_type": "REWRITE",
-      "original_chars": 363,
-      "rewritten_chars": 491,
-      "elapsed_s": 5.54,
+      "elapsed_s": 3.1,
       "model": "deepseek-chat"
     },
     {
@@ -46,8 +37,17 @@
       "status": "REWRITE",
       "change_type": "REWRITE",
       "original_chars": 443,
-      "rewritten_chars": 774,
-      "elapsed_s": 6.07,
+      "rewritten_chars": 542,
+      "elapsed_s": 3.78,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "data_analyst_positive_integers_pvt_ltd",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 363,
+      "rewritten_chars": 477,
+      "elapsed_s": 4.25,
       "model": "deepseek-chat"
     },
     {
@@ -55,8 +55,8 @@
       "status": "REWRITE",
       "change_type": "REWRITE",
       "original_chars": 511,
-      "rewritten_chars": 539,
-      "elapsed_s": 6.54,
+      "rewritten_chars": 492,
+      "elapsed_s": 5.21,
       "model": "deepseek-chat"
     },
     {
@@ -65,16 +65,7 @@
       "change_type": "KEEP",
       "original_chars": 41,
       "rewritten_chars": 41,
-      "elapsed_s": 7.59,
-      "model": "deepseek-chat"
-    },
-    {
-      "section_id": "education",
-      "status": "REWRITE",
-      "change_type": "REWRITE",
-      "original_chars": 567,
-      "rewritten_chars": 970,
-      "elapsed_s": 8.89,
+      "elapsed_s": 6.23,
       "model": "deepseek-chat"
     },
     {
@@ -82,22 +73,31 @@
       "status": "REWRITE",
       "change_type": "REWRITE",
       "original_chars": 295,
-      "rewritten_chars": 334,
-      "elapsed_s": 9.02,
+      "rewritten_chars": 283,
+      "elapsed_s": 6.23,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "education",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 567,
+      "rewritten_chars": 774,
+      "elapsed_s": 6.23,
       "model": "deepseek-chat"
     }
   ],
   "company_context_present": true,
   "role_keywords_used": [
-    "AI-native",
-    "clienteling",
-    "business intelligence",
     "LLM API",
-    "Shopify",
-    "personalization",
-    "front-end",
     "Python",
     "SQL",
-    "APIs"
+    "Shopify",
+    "MoEngage",
+    "Dynamics 365",
+    "front-end",
+    "e-commerce",
+    "clienteling",
+    "personalization"
   ]
 }

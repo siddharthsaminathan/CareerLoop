@@ -12,7 +12,7 @@
  
  ## Profile
  
- Backend-focused AI engineer with 4+ years shipping production AI systems end-to-end, from data pipelines to user-facing features. Proven ability to own product outcomes: built an AI companion from concept to 450+ users with 13-15% weekly retention, reduced inference cost per conversation from $1.20 to $0.023, and cut response latency from 12.5s to 8s. Experienced with LLM APIs, multi-agent orchestration, and real-time personalization—ready to apply this to e-commerce clienteling and conversational BI.
+ AI Product and Systems Engineer with 4+ years of experience building and shipping production AI systems across data infrastructure, enterprise workflows, and consumer applications. Focus on taking systems from concept to real users, improving them through measurable outcomes such as latency, cost, and user retention. Experience spans orchestration, real-time pipelines, and memory-driven AI systems, with a strong emphasis on reliability and iteration in production environments.
  
 -
 -
@@ -23,9 +23,9 @@
  ## AI Engineer — Omnex Systems (AquaPro AI)
  
 @@ -31,8 +23,6 @@
- - Reduced response latency from ~12.5s to ~8s by restructuring the pipeline and consolidating model calls, ensuring real-time responsiveness for user-facing AI features.
- - Improved output consistency and reduced failures with validation layers, retry handling, and fallback logic — critical for reliable LLM API integration in production.
- - Implemented observability (structured logging, tracing, and metrics) to monitor system behavior and debug production issues, ensuring operational excellence for AI-native products.
+ - Reduced response latency from ~12.5s to ~8s by restructuring the pipeline and consolidating model calls.
+ - Improved output consistency and reduced failures with validation layers, retry handling, and fallback logic.
+ - Implemented observability (structured logging, tracing, and metrics) to monitor system behavior and debug production issues.
 -
 -
  
@@ -41,9 +41,9 @@
  
  **Nov 2022 – Nov 2024 | Sweden**
 @@ -57,8 +45,6 @@
- - Architected and shipped the full ETL lifecycle for Power BI and Tableau dashboards, replacing manual reporting with automated, data-driven insights used by business owners.
- - Redesigned data pipelines powering reporting systems, collaborating with data owners and stakeholders to align data architecture with evolving business needs.
- - Drove data quality initiatives during large-scale migration, establishing consistency checks that improved reporting reliability across the organization.
+ - Built and designed end-to-end ETL lifecycle for dashboards (Power BI, Tableau) used by business stakeholders to drive decisions.
+ - Led migration of enterprise data platform from Azure to on-prem PostgreSQL cloud environment, ensuring data reliability through quality audits.
+ - Ensured data consistency and reliability during large-scale migration via rigorous data quality audits.
 -
 -
  
@@ -57,11 +57,11 @@
 -
  ## Skills
  
- **AI & Personalization:** LLM APIs (OpenAI, Claude, Gemini), RAG pipelines, embeddings, prompt design, multi-model routing, multi-agent orchestration, memory systems, personalization engines
-@@ -81,8 +65,6 @@
- **Data & Business Intelligence:** SQL, Python, ETL pipelines, Power BI, Tableau, data validation, pipeline optimization
- 
- **Infra & Deployment:** Docker, Fly.io, AWS (basics), logging, observability, performance optimization
+ - Programming & Data:** Python, SQL
+@@ -79,8 +63,6 @@
+ - AI / ML Systems:** LLM APIs, RAG pipelines, embeddings, prompt design, multi-model routing, multi-agent orchestration, memory systems
+ - Infra & Deployment:** Docker, Fly.io, AWS (basics), logging, observability, performance optimization
+ - Data & Analytics:** ETL pipelines, Power BI, Tableau, data validation, pipeline optimization
 -
 -
  
@@ -69,13 +69,13 @@
  
 @@ -95,8 +77,6 @@
  
- **B.Tech Computer Science & Engineering** — SRM University, India · 2016–2020
+ ---
  
 -
 -
  ## Achievements
  
- - Shipped Emote, an AI-native personalization engine, from zero to 450+ users with 40+ power users and 13–15% weekly retention, all through organic growth. (https://emotenow.app/)
+ - Built Emote from zero to 450+ users with 40+ power users and 13–15% weekly retention, achieving zero paid acquisition. (https://emotenow.app/)
 @@ -104,8 +84,6 @@
  
  ---

@@ -1,30 +1,30 @@
 {
-  "total_claims": 12,
+  "total_claims": 15,
   "verified": 0,
-  "weak": 3,
-  "unsupported": 9,
+  "weak": 7,
+  "unsupported": 8,
   "exaggerated": 0,
   "fabricated": 0,
   "claims": [
     {
-      "text": "4+ years shipping production AI systems end-to-end",
+      "text": "4+ years of experience building",
       "risk_level": "WEAK",
       "claim_type": "year_experience",
-      "start_pos": 33,
-      "end_pos": 83,
-      "evidence_match": "Partially supported: actual total = 6.67, claimed 4+",
+      "start_pos": 37,
+      "end_pos": 68,
+      "evidence_match": "Partially supported: verified_years = 4.3, claimed 4+",
       "repair_suggestion": null,
       "confidence": 0.6
     },
     {
-      "text": "built an AI companion",
-      "risk_level": "UNSUPPORTED",
+      "text": "Built a production AI system enabling AI-assisted quality",
+      "risk_level": "WEAK",
       "claim_type": "ownership",
-      "start_pos": 170,
-      "end_pos": 191,
-      "evidence_match": null,
+      "start_pos": 39,
+      "end_pos": 96,
+      "evidence_match": "Partial evidence match in 'Python'",
       "repair_suggestion": null,
-      "confidence": 0.0
+      "confidence": 0.31111111111111106
     },
     {
       "text": "Built a production AI companion system",
@@ -34,7 +34,7 @@
       "end_pos": 60,
       "evidence_match": "Partial evidence match in 'Python'",
       "repair_suggestion": null,
-      "confidence": 0.21
+      "confidence": 0.26249999999999996
     },
     {
       "text": "Built the backend",
@@ -67,61 +67,91 @@
       "confidence": 0.0
     },
     {
-      "text": "Built SQL-based ETL workflows",
-      "risk_level": "WEAK",
-      "claim_type": "ownership",
-      "start_pos": 44,
-      "end_pos": 73,
-      "evidence_match": "Partial evidence match in 'SQL'",
-      "repair_suggestion": null,
-      "confidence": 0.35
-    },
-    {
-      "text": "Built Tableau dashboards",
+      "text": "Owned the redesign of data pipelines powering reporting systems",
       "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 211,
-      "end_pos": 235,
+      "start_pos": 36,
+      "end_pos": 99,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0
+    },
+    {
+      "text": "Built and designed end-to-end ETL lifecycle",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 162,
+      "end_pos": 205,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Led migration of enterprise data platform",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 293,
+      "end_pos": 334,
+      "evidence_match": "Partial evidence match in 'Python'",
+      "repair_suggestion": null,
+      "confidence": 0.2333333333333333
+    },
+    {
+      "text": "Built Tableau dashboards",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 44,
+      "end_pos": 68,
+      "evidence_match": "Partial evidence match in 'SQL'",
+      "repair_suggestion": null,
+      "confidence": 0.26249999999999996
     },
     {
       "text": "Built real-time Grafana dashboards",
       "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 355,
-      "end_pos": 389,
+      "start_pos": 175,
+      "end_pos": 209,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0
     },
     {
-      "text": "Owned the end-to-end migration of an enterprise data platform",
-      "risk_level": "UNSUPPORTED",
+      "text": "Built SQL-based ETL workflows",
+      "risk_level": "WEAK",
       "claim_type": "ownership",
-      "start_pos": 36,
-      "end_pos": 97,
-      "evidence_match": null,
+      "start_pos": 312,
+      "end_pos": 341,
+      "evidence_match": "Partial evidence match in 'SQL'",
       "repair_suggestion": null,
-      "confidence": 0.0
+      "confidence": 0.2333333333333333
     },
     {
-      "text": "Architected and shipped the full ETL lifecycle",
+      "text": "Built Emote",
       "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 285,
-      "end_pos": 331,
+      "start_pos": 2,
+      "end_pos": 13,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0
     },
     {
       "text": "Led enterprise data platform migration (Azure",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 147,
+      "end_pos": 192,
+      "evidence_match": "Partial evidence match in 'Python'",
+      "repair_suggestion": null,
+      "confidence": 0.2333333333333333
+    },
+    {
+      "text": "Built an ML pipeline",
       "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 182,
-      "end_pos": 227,
+      "start_pos": 88,
+      "end_pos": 108,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0

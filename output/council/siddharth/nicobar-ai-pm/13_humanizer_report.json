@@ -1,13 +1,13 @@
 {
   "resume": {
-    "slop_flags": 2,
-    "changed_lines": 77,
+    "slop_flags": 1,
+    "changed_lines": 80,
     "realism_concerns": 0,
     "recruiter_concerns": []
   },
   "cover_note": {
-    "slop_flags": 0,
-    "changed_lines": 0,
+    "slop_flags": 1,
+    "changed_lines": 1,
     "realism_concerns": 0
   },
   "recruiter_message": {

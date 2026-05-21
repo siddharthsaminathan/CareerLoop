@@ -1,23 +1,26 @@
 {
-  "one_line_positioning": "AI Product Engineer with strong backend and data infrastructure, building user-facing AI from concept to production",
-  "narrative_angle": "Backend-heavy AI engineer seeking transition to product-focused role, with proven ability to ship end-to-end AI features",
+  "one_line_positioning": "AI Product Engineer with proven success building and shipping consumer AI products from zero to engaged users, delivering cost and performance optimizations at scale",
+  "narrative_angle": "Built and shipped a consumer AI product (Emote) from zero to 450+ users with strong retention, reducing LLM costs by 98% — a rare blend of technical depth, product ownership, and business focus that a CEO’s office role demands. While lacking direct front-end and retail experience, demonstrated ability to master any tech stack and domain quickly in high-ambiguity environments.",
   "lead_strengths": [
-    "Python and LLM API production experience",
-    "Multi-agent orchestration and cost optimization",
-    "End-to-end system architecture and user growth"
+    "Built Emote from zero to 450+ users with 40+ power users and 13-15% weekly retention without paid acquisition.",
+    "Reduced LLM inference cost per conversation by ~98% (from $1.20 to $0.023) through model selection, caching, and prompt optimization.",
+    "Designed multi-agent orchestration layer enabling AI-assisted quality and control workflows for engineering teams."
   ],
   "proof_points_to_emphasize": [
-    "Built Emote AI companion from 0 to 450+ users with 13-15% weekly retention",
-    "Reduced inference cost per conversation by 98%",
-    "Led enterprise data platform migration improving reporting reliability"
+    "Reduced LLM inference cost per conversation by ~98% (from $1.20 to $0.023) through model selection, caching, and prompt optimization.",
+    "Reduced AI response latency from ~15s to ~3s through pipeline optimization and streaming.",
+    "Built Emote from zero to 450+ users with 40+ power users and 13-15% weekly retention without paid acquisition."
   ],
   "things_to_downplay": [
-    "Lack of frontend development experience",
-    "No retail or e-commerce domain knowledge",
-    "Missing design sensibility and top-tier institute background"
+    "No front-end development experience (disqualifier per JD)",
+    "No e-commerce or retail domain experience",
+    "No Shopify/MoEngage/Dynamics 365 exposure",
+    "No NodeJS experience (if required)"
   ],
-  "tone_guidance": "Direct, acknowledges skill gaps, emphasizes transferable AI engineering strengths",
-  "recruiter_first_impression_target": "Strong AI engineer but missing core frontend and domain requirements",
-  "application_stance": "SKIP",
-  "reasoning": "Role requires frontend development skills which candidate lacks entirely. Additionally, missing retail/e-commerce experience and design alignment with the brand. Strong AI backend skills are not sufficient to overcome these gaps. Recommend building frontend skills and domain knowledge before applying."
+  "tone_guidance": "Outcome-first, emphasize metrics and ownership. Use 'built', 'improved', 'delivered'. Avoid AI jargon like 'agentic' or 'multi-agent'; reframe as orchestration or collaborative systems. Highlight user-centric metrics and cost savings to resonate with e-commerce personalization goals.",
+  "recruiter_first_impression_target": "This candidate has the rare ability to not only build AI systems but also drive product outcomes and cost efficiency — exactly what our CEO's office needs to push personalization initiatives, even if they lack retail background.",
+  "application_stance": "STRETCH",
+  "hiring_manager_objection": "No front-end development experience, which is a disqualifier per the JD, and no e-commerce or retail background to understand customer personalization.",
+  "objection_preempt": "While I haven't worked in retail or front-end, my track record of building a consumer AI product from scratch and delivering 98% cost reduction shows I can quickly master any tech stack and domain to drive business impact in a CEO's office context.",
+  "reasoning": "The candidate has strong AI engineering and product ownership experience aligning with core AI and business impact needs, but lacks front-end development (a disqualifier) and e-commerce domain familiarity. The stance is STRETCH because the strengths are compelling but the front-end gap may screen them out automatically. The narrative pivots to transferable skills, fast learning, and proven ability to deliver in ambiguous, ownership-heavy roles."
 }
