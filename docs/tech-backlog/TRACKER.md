@@ -7,11 +7,11 @@
 
 ## Current Sprint Focus
 
-**Week of 2026-05-21 — Council Hardening + CandidateGraph + Landing Page.**
+**Week of 2026-05-21 — CandidateGraph + MECE Intel deployed. Council at 92%.**
 
-MECE Company Intelligence fully live (D1-D5 vectors). Humanizer hardened (29/29 tests). Stabilization regression suite added (70 tests). Master Landing Page Vision written. CandidateGraph data model introduced. Truth Guard year-inflation (B9) implemented with CV-derived tenure parsing.
+MECE Company Intelligence fully live (D1-D5 vectors, 1,419 lines). CandidateGraph extraction wired into S1 — structured bullet arrays, metric_vault, contact fields. B9 cv_tenure_years computed from parsed CV (not S5 LLM). S7 chunked rewrite: 4/4 sections rewrite, company headers preserved. 37/37 stabilization, 22/22 integration pass. SuperK pipeline: 4 experience blocks correctly rewritten with scaffolds preserved.
 
-**Next sprint:** Decision Compression UX (B5, P2) + Structured S7 bullet migration using CandidateGraph
+**Next sprint:** Decision Compression UX (B5, P2) + Humanizer UNSUPPORTED matching calibration
 
 ---
 
@@ -28,7 +28,7 @@ MECE Company Intelligence fully live (D1-D5 vectors). Humanizer hardened (29/29 
 | Career state system (modes) | 10% | 🔴 | No | Conceptual only |
 | Company intelligence | 75% | 🟢 | Yes | MECE vision implemented |
 | Positioning engine | 38% | 🟡 | No | S6 wired; tailoring delta now substantial post-S7 prompt fix |
-| Resume Council (v3) | 92% | 🟢 | Yes | 4/4 sections rewrite every run; company headers preserved; 37 tests pass; remaining gap: job-aware chunking to fix cross-job bullet attribution |
+| Resume Council (v3) | 92% | 🟢 | Yes | 4/4 sections rewrite; CandidateGraph extracts structured bullets; company headers preserved; 37+22 tests pass; remaining: Humanizer UNSUPPORTED calibration |
 | Humanizer layer | 65% | 🟡 | No | Markdown safety gate; LLM rewrite active; structure validation pre/post; Truth Guard UNSUPPORTED matching too aggressive |
 | Resume rendering (templates) | 80% | 🟡 | No | 10 templates; hard fail on structure loss; normalizer handles PDF preamble |
 | Validator / QA | 70% | 🟡 | No | 10/10 pass; collapsed_bullet_marker fixed; possible_truncation de-fanged; rewrite_too_short ratio-based |
