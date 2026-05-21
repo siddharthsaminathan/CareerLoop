@@ -70,9 +70,14 @@ def _call(system: str, user: str, temperature: float = 0.2,
           retries: int = 0) -> NodeResult:
     """Call the LLM and return a structured NodeResult.
 
+    Args:
+        model_kind: "strategy" → deepseek-v4-pro (S3-S6)
+                    "writer"   → deepseek-chat    (S7-S8: rewrites, cover, DM)
+        retries:    Number of extra attempts on empty/parse-error response.
+
     NEVER raises — failures are captured in NodeResult.success=False.
-    model_kind: "strategy" (deepseek-v4-pro) for S3-S6, "writer" (deepseek-chat) for S7-S8.
     """
+    import time
     tag = f" [{label}]" if label else ""
     for attempt in range(retries + 1):
         client = CouncilLLMClient(model_kind)
@@ -82,17 +87,20 @@ def _call(system: str, user: str, temperature: float = 0.2,
         try:
             payload = client.complete_json(system, user, max_tokens=max_tokens)
             if payload.get("_parse_error") and attempt < retries:
-                import time; time.sleep(2)
+                print(f"empty — retrying in 2s")
+                time.sleep(2)
                 continue
             if isinstance(payload, dict) and not any(v for v in payload.values() if v):
                 if attempt < retries:
-                    import time; time.sleep(2)
+                    print(f"all-empty response — retrying in 2s")
+                    time.sleep(2)
                     continue
             print("done")
             return NodeResult(success=True, confidence=0.8, payload=payload)
         except Exception as e:
             if attempt < retries:
-                import time; time.sleep(2)
+                print(f"error ({e}) — retrying in 2s")
+                time.sleep(2)
                 continue
             print(f"FAILED")
             print(f"  !! LLM Call error: {e}")
@@ -778,7 +786,7 @@ def section_rewrites_node(state: CouncilState) -> CouncilState:
     )
 
     n_workers = min(3, max(1, len(allowed_sections)))
-    print(f"  → Launching {n_workers} parallel S7 workers ({len(allowed_sections)} sections)...")
+    print(f"  → Launching {n_workers} parallel S7 workers ({len(allowed_sections)} sections, model: deepseek-chat)...")
 
     # Map future → (section_id, start_time) so we can emit per-section debug info
     future_to_meta: dict = {}
