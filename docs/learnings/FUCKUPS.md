@@ -4,6 +4,38 @@
 
 ---
 
+## Fuckup #10 — 2026-05-22: 3 Hours Fixing Normalizer Symptoms Instead of Root Cause
+
+**What happened:** Spent 3 hours fixing individual normalizer bugs (skills parsing, header phone/location, experience company+role concatenation, education multi-line, competencies rendering) — each fix targeted a specific Hayagreev or Varsha resume format edge case. Every fix solved one person's resume but broke assumptions for another format.
+
+**The real problem:** There is no validation layer between the council output and the rendered HTML. The pipeline works like this:
+
+```
+Council → Markdown → Normalizer → Structured Data → Templates → HTML
+```
+
+If the normalizer drops ANY section (skills, education, experience entries), the templates silently render blank sections. There's no check that says "the original resume had a Skills section but the normalizer produced skills=[] — go back and fix it."
+
+**Root cause:** We fixed each normalizer edge case reactively instead of building a validation gate that compares normalized output against the original markdown and flags missing sections BEFORE rendering. The normalizer will ALWAYS encounter new resume formats it can't parse. The fix isn't a better normalizer — it's a validation layer that catches normalizer failures.
+
+**What we did (symptoms):**
+- Fixed skills parsing for colon-less bullets (Hayagreev)
+- Fixed header phone→location leak
+- Fixed experience company+title concatenation
+- Fixed education multi-line pairing
+- Fixed competencies showing labels instead of items
+- Fixed "Skills Skills" double label
+
+**What we should have done (root cause):**
+- Built a validation gate: after normalize(), check every expected section exists
+- If sections are missing, log LOUDLY, re-run with different parsing strategy
+- NEVER render a resume with empty sections without explicit warning
+
+**Tokens wasted:** ~4M tokens across 60+ API calls for normalizer debugging
+**Time wasted:** ~3 hours on symptom fixes instead of root cause
+
+**Lesson:** Every rendering bug is a validation failure. Fix the VALIDATION, not the parser. The parser will always have gaps. The validation gate catches them all.
+
 ## Fuckup #1 — 2026-05-18: Gemini 7 Templates — Claimed Working When They Weren't
 
 **What I claimed:** All 7 Gemini templates populated with content, 0 empty placeholders.

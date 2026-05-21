@@ -63,6 +63,7 @@ MECE Company Intelligence fully live (D1-D5 vectors, 1,419 lines). CandidateGrap
 | ~~B6~~ | Company Intelligence engine | Closed | ✅ 1,419-line MECE implementation — D1-D5 vectors, LinkedIn, Glassdoor, DDG |
 | ~~B9~~ | Truth Guard misses year inflation (6+ vs 4+) | Closed | ✅ CV-derived tenure parsing + overlap-aware total — no more S5 LLM estimate dependence |
 | ~~B8~~ | Tailoring delta only 3.6% | Closed | ✅ S7 prompt overhaul — 9/9 sections REWRITE, delta now SUBSTANTIAL |
+| B10 | No pre-render validation gate — sections silently drop | Rendering | **P0** | 🔴 Normalizer drops sections for unknown CV formats. Need validation layer: compare normalized output against original markdown, flag missing sections BEFORE templates render. See Fuckup #10. |
 
 ---
 
