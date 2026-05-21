@@ -1,0 +1,58 @@
+{
+  "n_sections_total": 4,
+  "n_rewritten": 4,
+  "n_fallback": 0,
+  "n_workers": 3,
+  "total_elapsed_s": 5.58,
+  "sections": [
+    {
+      "section_id": "education",
+      "status": "REWRITE",
+      "change_type": "KEEP",
+      "original_chars": 242,
+      "rewritten_chars": 243,
+      "elapsed_s": 1.72,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "summary",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 497,
+      "rewritten_chars": 862,
+      "elapsed_s": 3.65,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "skills",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 536,
+      "rewritten_chars": 745,
+      "elapsed_s": 4.68,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "professional_experience",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 4429,
+      "rewritten_chars": 2508,
+      "elapsed_s": 5.58,
+      "model": "deepseek-chat"
+    }
+  ],
+  "company_context_present": true,
+  "role_keywords_used": [
+    "OTB",
+    "assortment planning",
+    "merchandising",
+    "buying",
+    "category management",
+    "Advanced Excel",
+    "SAP",
+    "vendor management",
+    "omnichannel",
+    "P&L"
+  ]
+}

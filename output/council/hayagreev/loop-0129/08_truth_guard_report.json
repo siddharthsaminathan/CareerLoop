@@ -1,0 +1,80 @@
+{
+  "total_claims": 7,
+  "verified": 0,
+  "weak": 2,
+  "unsupported": 5,
+  "exaggerated": 0,
+  "fabricated": 0,
+  "claims": [
+    {
+      "text": "Built a Go-To-Market strategy",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 0,
+      "end_pos": 29,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Led a team of 5",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 282,
+      "end_pos": 297,
+      "evidence_match": "Numbers present in evidence bank — claim likely grounded",
+      "repair_suggestion": null,
+      "confidence": 0.4
+    },
+    {
+      "text": "Led enterprise AI use case discovery",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 313,
+      "end_pos": 349,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Architected an emotionally intelligent AI system grounded in behavioral science",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 1803,
+      "end_pos": 1882,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Led end-to-end product execution",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 2351,
+      "end_pos": 2383,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built a feedback-driven product system",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 2698,
+      "end_pos": 2736,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built an AI-driven Reddit outreach system",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 2988,
+      "end_pos": 3029,
+      "evidence_match": "Partial evidence match in 'Python'",
+      "repair_suggestion": null,
+      "confidence": 0.35
+    }
+  ]
+}

@@ -1,30 +1,40 @@
 {
-  "total_claims": 11,
-  "verified": 1,
-  "weak": 2,
-  "unsupported": 7,
+  "total_claims": 6,
+  "verified": 0,
+  "weak": 1,
+  "unsupported": 5,
   "exaggerated": 0,
-  "fabricated": 1,
+  "fabricated": 0,
   "claims": [
     {
-      "text": "5+ years of experience in buying",
-      "risk_level": "FABRICATED",
+      "text": "4+ years in fashion buying",
+      "risk_level": "WEAK",
       "claim_type": "year_experience",
-      "start_pos": 30,
-      "end_pos": 62,
-      "evidence_match": "Matches disallowed claim: '10+ years of experience'",
+      "start_pos": 19,
+      "end_pos": 45,
+      "evidence_match": "Partially supported: verified_years = 4.1, claimed 4+",
       "repair_suggestion": null,
-      "confidence": 0.42857142857142855
+      "confidence": 0.6
     },
     {
-      "text": "Skilled in OTB planning",
-      "risk_level": "VERIFIED",
-      "claim_type": "skill_assertion",
-      "start_pos": 325,
-      "end_pos": 348,
-      "evidence_match": "Confirmed skill: assortment planning",
+      "text": "Built buy plans",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 29,
+      "end_pos": 44,
+      "evidence_match": null,
       "repair_suggestion": null,
-      "confidence": 0.5
+      "confidence": 0.0
+    },
+    {
+      "text": "managed open-to-buy",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 49,
+      "end_pos": 68,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
     },
     {
       "text": "Built the fashion category",
@@ -37,11 +47,11 @@
       "confidence": 0.0
     },
     {
-      "text": "Built fashion category",
+      "text": "Managed PO/PI coordination",
       "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 350,
-      "end_pos": 372,
+      "start_pos": 390,
+      "end_pos": 416,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0
@@ -50,71 +60,11 @@
       "text": "Built and operated a lean fashion reselling brand focused",
       "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 1571,
-      "end_pos": 1628,
+      "start_pos": 1931,
+      "end_pos": 1988,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0
-    },
-    {
-      "text": "Managed 60+ SKUs",
-      "risk_level": "UNSUPPORTED",
-      "claim_type": "ownership",
-      "start_pos": 2461,
-      "end_pos": 2477,
-      "evidence_match": null,
-      "repair_suggestion": null,
-      "confidence": 0.0
-    },
-    {
-      "text": "built a custom Excel-based WIP tracker",
-      "risk_level": "WEAK",
-      "claim_type": "ownership",
-      "start_pos": 2498,
-      "end_pos": 2536,
-      "evidence_match": "Partial evidence match in 'Advanced Excel (Pivot Tables, VLOOKUP)'",
-      "repair_suggestion": null,
-      "confidence": 0.2333333333333333
-    },
-    {
-      "text": "Managed PO/PI coordination",
-      "risk_level": "UNSUPPORTED",
-      "claim_type": "ownership",
-      "start_pos": 3212,
-      "end_pos": 3238,
-      "evidence_match": null,
-      "repair_suggestion": null,
-      "confidence": 0.0
-    },
-    {
-      "text": "10% lift",
-      "risk_level": "UNSUPPORTED",
-      "claim_type": "percentage",
-      "start_pos": 3549,
-      "end_pos": 3557,
-      "evidence_match": null,
-      "repair_suggestion": null,
-      "confidence": 0.0
-    },
-    {
-      "text": "Led sampling",
-      "risk_level": "UNSUPPORTED",
-      "claim_type": "ownership",
-      "start_pos": 4033,
-      "end_pos": 4045,
-      "evidence_match": null,
-      "repair_suggestion": null,
-      "confidence": 0.0
-    },
-    {
-      "text": "Built WIP trackers",
-      "risk_level": "WEAK",
-      "claim_type": "ownership",
-      "start_pos": 4234,
-      "end_pos": 4252,
-      "evidence_match": "Partial evidence match in 'Advanced Excel (Pivot Tables, VLOOKUP)'",
-      "repair_suggestion": null,
-      "confidence": 0.21
     }
   ]
 }

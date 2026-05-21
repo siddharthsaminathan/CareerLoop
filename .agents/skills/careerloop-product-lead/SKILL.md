@@ -39,6 +39,30 @@ Run this automatically at the start of every session. Keep it to **3 bullets max
 4. Identify which systems the recent commits touched
 5. Output exactly this format (3 bullets, no more):
 
+**Step 2a — Dev-Blog Entry (for significant sessions):**
+After completing any significant engineering session (structural changes, major fixes, new subsystems, architecture decisions), write a daily dev-blog entry at `docs/learnings/dev-blog/YYYY-MM-DD-{slug}.md`. Format:
+
+```markdown
+# Dev Blog — YYYY-MM-DD: {Short Title}
+
+## What Was Done
+- <bullet list of concrete actions taken>
+
+## Key Decisions
+- <decisions made and why>
+
+## Issues Encountered
+- <bugs, blockers, surprises>
+
+## Files Changed
+- <list of key files modified>
+
+## Next Session
+- <what to pick up next>
+```
+
+Only create a dev-blog entry for sessions with meaningful progress. Skip for trivial sessions (minor fixes, reading-only, documentation-only).
+
 ```
 [product-lead] Last session: <what was done in 1 line>.
 Aligned to: PRD §<N> (<system name>). Status: <system>% → estimated <new>%.
@@ -158,6 +182,7 @@ Entry format:
 | File | Purpose |
 |------|---------|
 | `docs/product/PRD.md` | Master vision PRD — source of truth |
+| `docs/product/ROI_UX_PRODUCT_VISION.md` | ROI thesis, UX philosophy, metrics hierarchy, competitor map |
 | `docs/tech-backlog/TRACKER.md` | Rolling session log + system status |
 | `docs/learnings/20_PART_ARCHITECTURAL_AUDIT.md` | Exhaustive breakdown of V3 vs Reality |
 | `docs/learnings/PROMPT_AUDIT.md` | Comprehensive prompt analysis |

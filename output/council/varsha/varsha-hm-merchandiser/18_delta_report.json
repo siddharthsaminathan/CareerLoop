@@ -1,0 +1,75 @@
+{
+  "tailoring_delta": {
+    "sections_total": 4,
+    "sections_changed": 4,
+    "sections_changed_pct": 100.0,
+    "average_section_delta_pct": 62.01,
+    "sections": [
+      {
+        "section_id": "education",
+        "change_type": "KEEP",
+        "similarity": 0.7959,
+        "delta_pct": 20.41,
+        "original_chars": 242,
+        "rewritten_chars": 243,
+        "original_bullets": 0,
+        "rewritten_bullets": 0,
+        "changed": true,
+        "change_reason": "Education section contains only factual dates and degrees; no rewriting needed."
+      },
+      {
+        "section_id": "summary",
+        "change_type": "REWRITE",
+        "similarity": 0.0854,
+        "delta_pct": 91.46,
+        "original_chars": 497,
+        "rewritten_chars": 862,
+        "original_bullets": 0,
+        "rewritten_bullets": 0,
+        "changed": true,
+        "change_reason": "Reframed summary to lead with metrics and P&L ownership, inject role keywords (OTB, sell-through, range planning), and position candidate as ready for day-one deliverables despite limited SAP experience."
+      },
+      {
+        "section_id": "skills",
+        "change_type": "REWRITE",
+        "similarity": 0.0531,
+        "delta_pct": 94.69,
+        "original_chars": 536,
+        "rewritten_chars": 745,
+        "original_bullets": 18,
+        "rewritten_bullets": 5,
+        "changed": true,
+        "change_reason": "Reframed skills to emphasize OTB, assortment planning, and measurable outcomes (revenue, margins, on-time delivery) as required by the role."
+      },
+      {
+        "section_id": "professional_experience",
+        "change_type": "REWRITE",
+        "similarity": 0.5853,
+        "delta_pct": 41.47,
+        "original_chars": 4429,
+        "rewritten_chars": 2508,
+        "original_bullets": 19,
+        "rewritten_bullets": 6,
+        "changed": true,
+        "change_reason": "Chunked rewrite (2 chunks, 4429 → 2508 chars)"
+      }
+    ]
+  },
+  "humanization_delta": {
+    "similarity": 0.9959,
+    "delta_pct": 0.41,
+    "nonblank_line_changes": 4,
+    "mostly_whitespace": false
+  },
+  "cope_detection": {
+    "slop_hits": {
+      "spearheaded": 0,
+      "leveraged": 0,
+      "synergy": 0,
+      "passionate": 0,
+      "cutting-edge": 0,
+      "results-driven": 0
+    },
+    "status": "PASS"
+  }
+}

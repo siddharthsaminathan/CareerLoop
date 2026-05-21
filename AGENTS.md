@@ -44,6 +44,7 @@ On-demand: invoke `/careerloop-product-lead` (Claude Code) or `/careerloop-produ
 | File | Purpose |
 |------|---------|
 | `docs/product/PRD.md` | Canonical product vision — source of truth for all engineering |
+| `docs/product/ROI_UX_PRODUCT_VISION.md` | ROI thesis, UX philosophy, metrics hierarchy, competitor map |
 | `docs/tech-backlog/TRACKER.md` | Rolling session log + live system status |
 | `docs/product/vision_v1.6_historical.md` | Historical vision v1.6 |
 | `docs/engineering/breakdown-20-part.md` | Architecture breakdown reference |

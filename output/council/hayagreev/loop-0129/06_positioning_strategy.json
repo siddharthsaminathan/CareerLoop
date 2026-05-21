@@ -1,0 +1,26 @@
+{
+  "one_line_positioning": "Early-career AI product builder who shipped an LLM-powered consumer chatbot from zero to 451 users, with rapid learning ability and full-stack AI ownership.",
+  "narrative_angle": "Only applicant who has taken an AI system from idea to market—designing conversation flows, building with Python, and scaling to hundreds of users. While newer to specific agentic frameworks, the candidate’s product-building velocity and hands-on LLM experience position them to master LangChain, microservices, and CI/CD quickly.",
+  "lead_strengths": [
+    "Designed emotionally intelligent AI system with memory and conversation flows",
+    "Built AI-driven Reddit outreach system automating 5,100+ DMs",
+    "Shipped AI product Emote from 0 to 451 users in 7 months with rapid iteration"
+  ],
+  "proof_points_to_emphasize": [
+    "Shipped AI product Emote from 0 to 451 users in 7 months with rapid iteration",
+    "Designed emotionally intelligent AI system with memory and conversation flows",
+    "Built AI-driven Reddit outreach system automating 5,100+ DMs",
+    "Led enterprise AI use case discovery across 80+ bank departments"
+  ],
+  "things_to_downplay": [
+    "No direct experience with agentic frameworks (LangChain, CrewAI, AutoGen)",
+    "No production microservices or RESTful API design experience",
+    "Limited cloud infrastructure experience beyond basic Azure ML exposure"
+  ],
+  "tone_guidance": "Outcome-first, use product and engineering language, frame learning gaps as opportunities for rapid growth, avoid overclaiming AI expertise, emphasize speed of iteration.",
+  "recruiter_first_impression_target": "A scrappy, product-minded engineer who builds AI features end-to-end and learns whatever tools are needed.",
+  "application_stance": "STRETCH",
+  "hiring_manager_objection": "Lacks production experience with agentic frameworks and cloud-native deployment; too junior for a mid-senior role.",
+  "objection_preempt": "The candidate’s track record of shipping an LLM-based AI product independently shows they can master new frameworks and deliver under constraints.",
+  "reasoning": "Strong product-building evidence and AI system design, but gaps in agentic frameworks, production cloud, and CI/CD are real. STRETCH stance because must-haves are largely unproven, yet the candidate’s autonomous shipping ability offers a high-upside bet if they can be onboarded quickly."
+}

@@ -1,0 +1,19 @@
+{
+  "required_public_sections": [
+    "intro",
+    "experience",
+    "education"
+  ],
+  "sections_to_exclude": [],
+  "unknown_sections_to_preserve": [],
+  "ordering_rules": [
+    "intro",
+    "experience",
+    "education",
+    "skills"
+  ],
+  "link_preservation_rules": {
+    "all": "MUST_SURVIVE"
+  },
+  "max_allowed_changes": 3
+}

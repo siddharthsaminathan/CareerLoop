@@ -1,0 +1,42 @@
+{
+  "person_id": "default",
+  "sections": [
+    {
+      "section_id": "intro",
+      "section_title": "Intro/Contact",
+      "normalized_type": "contact",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "HAYAGREEV SIVAKUMAR\nT: +91-9841837272 | E: hayagreev.sivakumar@gmail.com | LinkedIn: www.linkedin.com/in/hayagreev13/\nNeuroscience-trained PM who ships AI products in high-velocity build-measure-learn cycles. Co-founded Emote, an Emotional Sense-Making AI, taking it from zero to 451 users in 7 months through continuous discovery and iteration. Led Data and AI platform scoping across 80+ bank departments at Grant Thornton. Strong in PRDs, behavioral data, system design, and technical collaboration. Looking to bring 5 years across engineering, data, product, and consulting to AI automation in regulated environments.",
+      "original_order": 0,
+      "links": []
+    },
+    {
+      "section_id": "experience",
+      "section_title": "EXPERIENCE",
+      "normalized_type": "experience",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "Financial Transformation Consultant at Grant Thornton Bharat  – Chennai, India\t\t\t             Jul 2025 - Present\nA leading professional services firm focused on advisory, audit, and financial transformation, working with enterprises to design, implement, and optimize large-scale business and technology systems.\nLed enterprise requirement discovery for a data lakehouse and AI enablement program at an Indian Private Sector Bank  by working directly with 80+ departments, identifying high-value analytics and AI use cases, and prioritizing scope based on feasibility, data readiness, and business impact to shape the final RFP and implementation roadmap\nCo-developed the RFP and solution blueprint for an AI-enabled data platform by aligning leadership, domain teams, and SMEs on ML and LLM use cases, data architecture, and governance, accelerating vendor evaluation and onboarding for next-generation analytics capabilities\nExecuted ITGC and application control audits across critical banking systems (including Calypso and MFI platforms), assessing access, change, processing, interface, and resilience controls, and translating audit findings into defined control designs and operational flows to strengthen system reliability and risk posture\nDrove CRM transformation delivery (Zoho CRM) by translating gap assessment outputs into system-ready requirements, authoring BRDs and SRS, aligning business validation with bank stakeholders, and coordinating with API teams and vendors to ensure builds matched approved workflows and integrations, including post-go-live issue resolution across IDMS and CCMS systems\n\n\n\nCo-Founder at Emote – Chennai, India\t\t\t        \t\t\t\t\t         May  2025 - Present\nAn AI system for emotional sense-making that helps users process experiences over time by tracking patterns, retaining context, and enabling deeper understanding across conversations.\nArchitected an emotionally intelligent AI system grounded in behavioral science (habit loops, dopamine reward prediction, narrative processing), defining the product’s core loop from emotional trigger → low-friction expression → state shift → pattern insight, and translating this into system design across memory, conversation modes, and interaction flows\nRan rapid build–measure–learn cycles using live user data (451 users, 169 sessions, 1,313+ turns), leveraging observability systems and pattern analytics to identify a critical drop at Session 1 → Session 2 (24.1%) and redesign entry behavior to improve activation (76%) and early engagement\nLed end-to-end product execution by defining vision, converting it into structured requirements (BRDs and system specifications using AI-assisted tools like Copilot), collaborating with engineering on implementation, and iterating based on behavioral deltas; contributed to achieving 54.4% deep sessions (≥5 turns) and 7.8 avg turns per session\nBuilt a feedback-driven product system by integrating cohort analysis, power-user segmentation, and observability, enabling continuous iteration and driving post-activation engagement (S2→S3 ~68%, WoW retention ~12.9%) with repeat usage patterns emerging across high-intent user segments\nBuilt an AI-driven Reddit outreach system to acquire users by identifying high-intent threads, generating personalized messages, and automating engagement; executed 5,100+ targeted DMs with ~17–21% reply rate (12–15 replies per ~70 DMs/day) and ~9% conversion (~456 users), establishing a scalable zero-cost acquisition channel aligned with product-market discovery",
+      "original_order": 1,
+      "links": []
+    },
+    {
+      "section_id": "education",
+      "section_title": "EDUCATION",
+      "normalized_type": "education",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "Stoa School - Remote, India | General MBA Program\t\t\t\t\t\t  \t      Sept 2023 - Apr 2024\nAwarded the Stoa Charter for presenting a Go-To-Market strategy for Wint Wealth by experts from the IB and D2C industry.\nAwarded top performer in Customer Journey, Venture Creation, Operations, and Product Development sprints.\nLed a team of 5 to solve case studies, achieving top team status in 3 out of 5 sprints.\n\n\n\nCentraleSupelec - Paris, France | M.Sc. Computational Neuroscience and Neuroengineering\t\t     Sept 2021 - Aug 2022\nGPA: 17.42/20, (top 15% of class with top scores in 3/6 modules).\nLed a team of 5 to cover the Deep Tech Conference, Hello Tomorrow 2021, and presented key learnings to the class through a detailed presentation and a follow-up Q&A session.\n\n\n\nSSN College of Engineering - Chennai, India | B.E. Electronics and Communications Engineering\t      \t        Jul 2016 - Sept 2020\nGraduated First Class with CGPA: 8.38/10.\nSuccessfully led a team of 3 students and a professor to pitch and secure ₹1 Lakh from IIT Madras for developing an innovative self-balancing guidebot, after surveying 120+ journal publications on existing models.",
+      "original_order": 2,
+      "links": []
+    },
+    {
+      "section_id": "skills",
+      "section_title": "SKILLS",
+      "normalized_type": "skill",
+      "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+      "raw_text": "Management & Consulting: Project Management, Lean Management, Stakeholder Management, Client Relationships, GTMData Engineering & Analytics: Python, SQL (Postgres, Redshift), Apache Spark, Airflow, Power BI, TableauML & AI: PyTorch, TensorFlow, scikit‑learn, MLOps (Kubeflow, Docker, Azure ML), Prompt EngineeringTools & Platforms: AWS (S3, EMR), Anaconda, Jupyter, Git, MS Office (Excel, PowerPoint), VS CodeAI & Automation: ChatGPT, Claude, Gemini, Perplexity, Zapier, Make, Lovable",
+      "original_order": 3,
+      "links": []
+    }
+  ],
+  "parse_warnings": []
+}

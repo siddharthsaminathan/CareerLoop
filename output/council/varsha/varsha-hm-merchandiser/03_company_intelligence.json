@@ -1,33 +1,31 @@
 {
   "company_name": "H&M",
   "role_title": "Senior Merchandiser -- Women's Wear (Jersey)",
-  "source_urls": [
-    "https://www2.hm.com/en_in/index.html?msockid=3bd7e66d547d6b1d32aef133554a6af3",
-    "https://en.wikipedia.org/wiki/H",
-    "https://www.britannica.com/topic/H-letter",
-    "https://www.youtube.com/watch?v=cOTbc54ogOw",
-    "https://www.myntra.com/h-and-m"
-  ],
-  "grounding_status": "READY",
-  "confidence": 0.5,
-  "generated_at": "2026-05-19T16:06:30.074390+00:00",
+  "source_urls": [],
+  "grounding_status": "JD_ONLY",
+  "confidence": 0.35,
+  "generated_at": "2026-05-21T16:23:41.053721+00:00",
   "cache_key": "001d8aa5a6de6772",
   "ttl_days": 30,
-  "company_summary": "H&M. operates in ecommerce, omnichannel, retail. with a focus on ai_ml, analytics, manufacturing.",
+  "company_summary": "H&M. operates in ecommerce, omnichannel, retail. with focus on manufacturing, vendor_mgmt, supply_chain.",
   "business_model": "E-commerce, Retail, Fashion / Retail",
   "revenue_model": "",
   "customer_segment": "",
-  "product_category": "",
-  "india_presence": "UNKNOWN",
+  "product_category": "ai_ml, analytics, erp, fashion_retail, fashion_retail",
+  "india_presence": "Likely (India role posting)",
   "company_maturity": "UNKNOWN",
   "growth_signals": [],
   "stability_signals": [],
   "hiring_urgency": "UNKNOWN",
-  "role_reason": "",
+  "role_reason": "- 4-6 years of experience in fashion buying",
   "likely_success_criteria": [],
   "likely_failure_modes": [],
-  "culture_signals": [],
-  "communication_style": "",
+  "culture_signals": [
+    "ownership_culture",
+    "data_driven",
+    "collaborative"
+  ],
+  "communication_style": "analytical and metrics-focused",
   "founder_or_leadership_signals": "",
   "org_maturity": "UNKNOWN",
   "technical_maturity": "UNKNOWN",
@@ -36,102 +34,110 @@
   "interview_implications": "",
   "compensation_signals": "",
   "red_flags": [],
+  "red_flags_detail": [],
+  "recruiter_info": {},
   "positioning_implications": "",
   "language_to_use": [
-    "OTB",
-    "sell-through",
-    "assortment planning",
-    "vendor negotiation",
-    "omnichannel"
+    "built",
+    "improved",
+    "delivered"
   ],
   "language_to_avoid": [
-    "creative direction",
-    "luxury",
-    "bespoke",
-    "artisanal",
-    "slow fashion"
+    "agentic",
+    "multi-agent",
+    "autonomous",
+    "swarm",
+    "AI revolution",
+    "spearheaded",
+    "synergy",
+    "leverage"
   ],
   "candidate_angles": [],
   "transferability_angles": [],
-  "risks_to_soften": [
-    "lack of direct jersey category experience",
-    "limited omnichannel exposure",
-    "less experience with BI tools like Metabase/Power BI"
-  ],
+  "risks_to_soften": [],
   "claims_to_avoid": [],
   "resume_strategy_hint": "",
   "outreach_strategy_hint": "",
   "interview_strategy_hint": "",
   "s6_positioning_context": {
-    "company_archetype": "H&M. operates in ecommerce, omnichannel, retail. with a focus on ai_ml, analytics, manufacturing.",
+    "company_archetype": "analytical and metrics-focused",
     "business_model": "E-commerce, Retail, Fashion / Retail",
     "company_maturity": "UNKNOWN",
-    "india_presence": "UNKNOWN",
-    "culture_signals": [],
+    "india_presence": "Likely (India role posting)",
+    "culture_signals": [
+      "ownership_culture",
+      "data_driven",
+      "collaborative"
+    ],
     "hiring_urgency": "UNKNOWN",
     "positioning_implications": "",
     "language_to_use": [
-      "OTB",
-      "sell-through",
-      "assortment planning",
-      "vendor negotiation",
-      "omnichannel"
+      "built",
+      "improved",
+      "delivered"
     ],
     "language_to_avoid": [
-      "creative direction",
-      "luxury",
-      "bespoke",
-      "artisanal",
-      "slow fashion"
+      "agentic",
+      "multi-agent",
+      "autonomous",
+      "swarm",
+      "AI revolution",
+      "spearheaded",
+      "synergy",
+      "leverage"
     ],
-    "risks_to_soften": [
-      "lack of direct jersey category experience",
-      "limited omnichannel exposure",
-      "less experience with BI tools like Metabase/Power BI"
-    ],
+    "risks_to_soften": [],
     "claims_to_avoid": [],
     "candidate_angles": [],
     "red_flags": [],
-    "grounding_status": "READY",
-    "confidence": 0.0
+    "grounding_status": "JD_ONLY",
+    "confidence": 0.35
   },
   "s7_rewrite_context": {
-    "company_archetype": "H&M. operates in ecommerce, omnichannel, retail. with a focus on ai_ml, analytic",
-    "company_tone": "professional and direct",
-    "product_context": "E-commerce, Retail, Fashion / Retail",
-    "business_problem": "",
+    "company_archetype": "analytical and metrics-focused",
+    "company_tone": "analytical and metrics-focused",
+    "product_context": "ai_ml, analytics, erp, fashion_retail, fashion_retail",
+    "business_problem": "- 4-6 years of experience in fashion buying",
     "role_success_criteria": [],
     "language_to_use": [
-      "OTB",
-      "sell-through",
-      "assortment planning",
-      "vendor negotiation",
-      "omnichannel"
+      "built",
+      "improved",
+      "delivered"
     ],
     "language_to_avoid": [
-      "creative direction",
-      "luxury",
-      "bespoke",
-      "artisanal",
-      "slow fashion"
+      "agentic",
+      "multi-agent",
+      "autonomous",
+      "swarm",
+      "AI revolution",
+      "spearheaded",
+      "synergy",
+      "leverage"
     ],
     "proof_points_to_prefer": [
       "customer-facing product outcomes",
       "brand-aware execution"
     ],
-    "risks_to_soften": [
-      "lack of direct jersey category experience",
-      "limited omnichannel exposure",
-      "less experience with BI tools like Metabase/Power BI"
-    ],
+    "risks_to_soften": [],
     "avoid_overclaiming_about": [],
-    "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact."
+    "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact.",
+    "founder_context": "",
+    "hiring_reason": "UNKNOWN",
+    "culture_fit_signals": [],
+    "interview_prep_hints": [],
+    "glassdoor_signal": "",
+    "reddit_signal": "",
+    "recruiter_info": {}
   },
+  "key_people": [],
+  "founder_background": "",
+  "hiring_manager_context": "",
+  "interview_questions_likely": [],
+  "culture_keywords": [],
+  "glassdoor_signal": "",
+  "reddit_signal": "",
+  "sources_by_type": {},
   "unknowns": [
-    "exact revenue or employee count",
-    "specific culture details beyond JD tone",
-    "current team size or reporting structure",
-    "funding or financial performance",
-    "layoffs or recent restructuring"
+    "No web research available for H&M."
   ]
 }

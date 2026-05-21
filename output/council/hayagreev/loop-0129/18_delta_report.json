@@ -1,0 +1,63 @@
+{
+  "tailoring_delta": {
+    "sections_total": 3,
+    "sections_changed": 3,
+    "sections_changed_pct": 100.0,
+    "average_section_delta_pct": 46.03,
+    "sections": [
+      {
+        "section_id": "education",
+        "change_type": "REWRITE",
+        "similarity": 0.3028,
+        "delta_pct": 69.72,
+        "original_chars": 1146,
+        "rewritten_chars": 631,
+        "original_bullets": 0,
+        "rewritten_bullets": 0,
+        "changed": true,
+        "change_reason": "Reframed education bullets to emphasize product-building, cross-functional leadership, and measurable outcomes, aligning with the collaborative and outcome-driven tone."
+      },
+      {
+        "section_id": "skills",
+        "change_type": "REWRITE",
+        "similarity": 0.4666,
+        "delta_pct": 53.34,
+        "original_chars": 484,
+        "rewritten_chars": 609,
+        "original_bullets": 0,
+        "rewritten_bullets": 5,
+        "changed": true,
+        "change_reason": "Reordered skills to prioritize Python and AI/ML tools relevant to the role, grouped by relevance, and framed with outcome-oriented language."
+      },
+      {
+        "section_id": "experience",
+        "change_type": "REWRITE",
+        "similarity": 0.8497,
+        "delta_pct": 15.03,
+        "original_chars": 3531,
+        "rewritten_chars": 3354,
+        "original_bullets": 0,
+        "rewritten_bullets": 0,
+        "changed": true,
+        "change_reason": "Chunked rewrite (2 chunks, 3531 → 3354 chars)"
+      }
+    ]
+  },
+  "humanization_delta": {
+    "similarity": 0.9936,
+    "delta_pct": 0.64,
+    "nonblank_line_changes": 6,
+    "mostly_whitespace": false
+  },
+  "cope_detection": {
+    "slop_hits": {
+      "spearheaded": 0,
+      "leveraged": 0,
+      "synergy": 0,
+      "passionate": 0,
+      "cutting-edge": 0,
+      "results-driven": 0
+    },
+    "status": "PASS"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "normalized_title": "Gen AI Python Developer",
+  "seniority": "mid-senior",
+  "must_haves": [
+    "Python",
+    "agentic frameworks (LangChain, CrewAI, AutoGen)",
+    "AI agent design",
+    "RESTful APIs",
+    "microservices",
+    "LLMs/RAG/fine-tuning",
+    "cloud (AWS/GCP/Azure)",
+    "Docker/Kubernetes",
+    "Git",
+    "CI/CD"
+  ],
+  "nice_to_haves": [
+    "production-scale AI deployment",
+    "asyncio",
+    "SQL/NoSQL databases",
+    "data security/privacy",
+    "portfolio of AI projects"
+  ],
+  "hidden_expectations": [
+    "strong cross-functional collaboration",
+    "autonomous problem-solving",
+    "production CI/CD for AI",
+    "ability to keep up with AI advancements"
+  ],
+  "day_one_deliverables": [
+    "Deploy a working AI agent prototype integrated with existing APIs"
+  ],
+  "screening_keywords": [
+    "LangChain",
+    "CrewAI",
+    "AutoGen",
+    "multi-agent",
+    "LLM",
+    "RAG",
+    "fine-tuning",
+    "Docker",
+    "Kubernetes",
+    "CI/CD",
+    "microservices",
+    "API design",
+    "Python",
+    "agentic"
+  ],
+  "disqualifiers": [
+    "no experience with agentic frameworks",
+    "no production Python experience",
+    "no cloud experience"
+  ],
+  "confidence": 0.9
+}

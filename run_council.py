@@ -290,6 +290,11 @@ PERSON_CONFIGS = {
         "profile_path": ROOT / "careerloop" / "profile_varsha.yml",
         "output_name": "varsha",
     },
+    "hayagreev": {
+        "cv_path": ROOT / "test data" / "hayagreev_resume_0426.md",
+        "profile_path": ROOT / "config" / "profile.yml",
+        "output_name": "hayagreev",
+    },
 }
 
 

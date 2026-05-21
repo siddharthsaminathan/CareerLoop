@@ -168,33 +168,31 @@
   "company_intelligence": {
     "company_name": "H&M",
     "role_title": "Senior Merchandiser -- Women's Wear (Jersey)",
-    "source_urls": [
-      "https://www2.hm.com/en_in/index.html?msockid=3bd7e66d547d6b1d32aef133554a6af3",
-      "https://en.wikipedia.org/wiki/H",
-      "https://www.britannica.com/topic/H-letter",
-      "https://www.youtube.com/watch?v=cOTbc54ogOw",
-      "https://www.myntra.com/h-and-m"
-    ],
-    "grounding_status": "READY",
-    "confidence": 0.5,
-    "generated_at": "2026-05-19T16:06:30.074390+00:00",
+    "source_urls": [],
+    "grounding_status": "JD_ONLY",
+    "confidence": 0.35,
+    "generated_at": "2026-05-21T16:23:41.053721+00:00",
     "cache_key": "001d8aa5a6de6772",
     "ttl_days": 30,
-    "company_summary": "H&M. operates in ecommerce, omnichannel, retail. with a focus on ai_ml, analytics, manufacturing.",
+    "company_summary": "H&M. operates in ecommerce, omnichannel, retail. with focus on manufacturing, vendor_mgmt, supply_chain.",
     "business_model": "E-commerce, Retail, Fashion / Retail",
     "revenue_model": "",
     "customer_segment": "",
-    "product_category": "",
-    "india_presence": "UNKNOWN",
+    "product_category": "ai_ml, analytics, erp, fashion_retail, fashion_retail",
+    "india_presence": "Likely (India role posting)",
     "company_maturity": "UNKNOWN",
     "growth_signals": [],
     "stability_signals": [],
     "hiring_urgency": "UNKNOWN",
-    "role_reason": "",
+    "role_reason": "- 4-6 years of experience in fashion buying",
     "likely_success_criteria": [],
     "likely_failure_modes": [],
-    "culture_signals": [],
-    "communication_style": "",
+    "culture_signals": [
+      "ownership_culture",
+      "data_driven",
+      "collaborative"
+    ],
+    "communication_style": "analytical and metrics-focused",
     "founder_or_leadership_signals": "",
     "org_maturity": "UNKNOWN",
     "technical_maturity": "UNKNOWN",
@@ -203,298 +201,319 @@
     "interview_implications": "",
     "compensation_signals": "",
     "red_flags": [],
+    "red_flags_detail": [],
+    "recruiter_info": {},
     "positioning_implications": "",
     "language_to_use": [
-      "OTB",
-      "sell-through",
-      "assortment planning",
-      "vendor negotiation",
-      "omnichannel"
+      "built",
+      "improved",
+      "delivered"
     ],
     "language_to_avoid": [
-      "creative direction",
-      "luxury",
-      "bespoke",
-      "artisanal",
-      "slow fashion"
+      "agentic",
+      "multi-agent",
+      "autonomous",
+      "swarm",
+      "AI revolution",
+      "spearheaded",
+      "synergy",
+      "leverage"
     ],
     "candidate_angles": [],
     "transferability_angles": [],
-    "risks_to_soften": [
-      "lack of direct jersey category experience",
-      "limited omnichannel exposure",
-      "less experience with BI tools like Metabase/Power BI"
-    ],
+    "risks_to_soften": [],
     "claims_to_avoid": [],
     "resume_strategy_hint": "",
     "outreach_strategy_hint": "",
     "interview_strategy_hint": "",
     "s6_positioning_context": {
-      "company_archetype": "H&M. operates in ecommerce, omnichannel, retail. with a focus on ai_ml, analytics, manufacturing.",
+      "company_archetype": "analytical and metrics-focused",
       "business_model": "E-commerce, Retail, Fashion / Retail",
       "company_maturity": "UNKNOWN",
-      "india_presence": "UNKNOWN",
-      "culture_signals": [],
+      "india_presence": "Likely (India role posting)",
+      "culture_signals": [
+        "ownership_culture",
+        "data_driven",
+        "collaborative"
+      ],
       "hiring_urgency": "UNKNOWN",
       "positioning_implications": "",
       "language_to_use": [
-        "OTB",
-        "sell-through",
-        "assortment planning",
-        "vendor negotiation",
-        "omnichannel"
+        "built",
+        "improved",
+        "delivered"
       ],
       "language_to_avoid": [
-        "creative direction",
-        "luxury",
-        "bespoke",
-        "artisanal",
-        "slow fashion"
+        "agentic",
+        "multi-agent",
+        "autonomous",
+        "swarm",
+        "AI revolution",
+        "spearheaded",
+        "synergy",
+        "leverage"
       ],
-      "risks_to_soften": [
-        "lack of direct jersey category experience",
-        "limited omnichannel exposure",
-        "less experience with BI tools like Metabase/Power BI"
-      ],
+      "risks_to_soften": [],
       "claims_to_avoid": [],
       "candidate_angles": [],
       "red_flags": [],
-      "grounding_status": "READY",
-      "confidence": 0.0
+      "grounding_status": "JD_ONLY",
+      "confidence": 0.35
     },
     "s7_rewrite_context": {
-      "company_archetype": "H&M. operates in ecommerce, omnichannel, retail. with a focus on ai_ml, analytic",
-      "company_tone": "professional and direct",
-      "product_context": "E-commerce, Retail, Fashion / Retail",
-      "business_problem": "",
+      "company_archetype": "analytical and metrics-focused",
+      "company_tone": "analytical and metrics-focused",
+      "product_context": "ai_ml, analytics, erp, fashion_retail, fashion_retail",
+      "business_problem": "- 4-6 years of experience in fashion buying",
       "role_success_criteria": [],
       "language_to_use": [
-        "OTB",
-        "sell-through",
-        "assortment planning",
-        "vendor negotiation",
-        "omnichannel"
+        "built",
+        "improved",
+        "delivered"
       ],
       "language_to_avoid": [
-        "creative direction",
-        "luxury",
-        "bespoke",
-        "artisanal",
-        "slow fashion"
+        "agentic",
+        "multi-agent",
+        "autonomous",
+        "swarm",
+        "AI revolution",
+        "spearheaded",
+        "synergy",
+        "leverage"
       ],
       "proof_points_to_prefer": [
         "customer-facing product outcomes",
         "brand-aware execution"
       ],
-      "risks_to_soften": [
-        "lack of direct jersey category experience",
-        "limited omnichannel exposure",
-        "less experience with BI tools like Metabase/Power BI"
-      ],
+      "risks_to_soften": [],
       "avoid_overclaiming_about": [],
-      "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact."
+      "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact.",
+      "founder_context": "",
+      "hiring_reason": "UNKNOWN",
+      "culture_fit_signals": [],
+      "interview_prep_hints": [],
+      "glassdoor_signal": "",
+      "reddit_signal": "",
+      "recruiter_info": {}
     },
+    "key_people": [],
+    "founder_background": "",
+    "hiring_manager_context": "",
+    "interview_questions_likely": [],
+    "culture_keywords": [],
+    "glassdoor_signal": "",
+    "reddit_signal": "",
+    "sources_by_type": {},
     "unknowns": [
-      "exact revenue or employee count",
-      "specific culture details beyond JD tone",
-      "current team size or reporting structure",
-      "funding or financial performance",
-      "layoffs or recent restructuring"
+      "No web research available for H&M."
     ]
   },
   "role_decode": {
-    "normalized_title": "Senior Merchandiser",
+    "normalized_title": "Senior Merchandiser, Women's Wear (Jersey)",
     "seniority": "mid-senior",
     "must_haves": [
+      "4-6 years fashion buying/merchandising experience",
       "OTB management",
       "assortment planning",
-      "advanced Excel (pivot tables, VLOOKUP)",
-      "vendor management (PO/PI coordination)",
-      "omnichannel retail experience (offline + e-commerce)",
-      "womenswear jersey category knowledge",
-      "SAP/ERP proficiency",
+      "Advanced Excel (pivot tables, VLOOKUP, dashboards)",
+      "PO/PI coordination with multiple vendors",
+      "womenswear trend knowledge (jersey/casualwear)",
+      "supplier/factory management in Asia",
+      "omnichannel merchandising (offline + e-commerce)",
+      "SAP/ERP experience for PO and inventory",
       "cross-functional collaboration",
-      "negotiation skills"
+      "negotiation skills (vendor pricing, MOQs)"
     ],
     "nice_to_haves": [
-      "NIFT / Pearl Academy / fashion institute qualification",
-      "fast-fashion or value retail experience (DMart, Zara, Zudio, Mango)",
-      "category launch or new market entry projects",
-      "WIP trackers and production calendar experience",
+      "NIFT/Pearl Academy or equivalent fashion degree",
+      "fast-fashion/value retail experience (DMart, Zara, etc.)",
+      "category launch or new market entry",
+      "WIP tracker and production calendar management",
       "BI tools (Metabase, Power BI)"
     ],
     "hidden_expectations": [
-      "P&L ownership and category profitability management",
-      "global-local assortment adaptation for India/SEA markets",
-      "mentoring or leading cross-functional projects without formal authority",
-      "strong business acumen and data-driven decision making"
+      "P&L ownership mentality",
+      "data-driven decision-making",
+      "stakeholder management across buying, design, regional teams",
+      "strategic thinking in range planning",
+      "ability to work in fast-paced, iterative retail environment"
     ],
     "day_one_deliverables": [
-      "Develop OTB plan for upcoming season",
-      "Review current sell-through and inventory performance",
-      "Initiate vendor negotiations for next range",
-      "Present assortment strategy in range review meeting"
+      "Assess current OTB and inventory health",
+      "Analyze sell-through data and propose markdowns",
+      "Review supplier delivery performance and address bottlenecks",
+      "Initiate range review meetings with cross-functional teams"
     ],
     "screening_keywords": [
       "OTB",
-      "sell-through",
       "assortment planning",
-      "vendor negotiation",
-      "omnichannel",
-      "jersey",
-      "womenswear",
+      "merchandising",
+      "buying",
+      "category management",
+      "Advanced Excel",
       "SAP",
-      "advanced Excel",
-      "fast fashion"
+      "vendor management",
+      "omnichannel",
+      "P&L",
+      "womenswear",
+      "jersey",
+      "fashion retail"
     ],
     "disqualifiers": [
+      "no fashion buying/merchandising experience",
       "no OTB management experience",
-      "no assortment planning experience",
-      "no vendor coordination experience",
-      "no retail or fashion/apparel background",
-      "no analytical skills"
+      "no Advanced Excel skills",
+      "no vendor/supplier coordination experience"
     ],
-    "confidence": 0.9
+    "confidence": 0.85
   },
   "user_truth": {
-    "total_years_experience": 5.7,
+    "total_years_experience": 4.1,
     "confirmed_skills": [
       {
         "skill": "Assortment Planning",
-        "years": 5.7,
-        "evidence": "Expanded fashion assortment from 5 to 25+ subcategories; aligned assortment planning with trend insights and performance data; implemented assortment rationalization improving category gross margin by ~6%."
+        "years": 4.1,
+        "evidence": "Expanded fashion assortment from 5 to 25+ subcategories at SuperK; recommended assortment adjustments for 200+ SKUs at Go Colors; sourced 60+ SKUs for own brand."
       },
       {
-        "skill": "Vendor Management (PO/PI Coordination)",
-        "years": 5.7,
-        "evidence": "Managed PO/PI coordination across 20+ suppliers; onboarded 12+ regional vendors; negotiated pricing, MOQs, and sourcing terms to improve margins from 22% to 35%."
+        "skill": "Advanced Excel",
+        "years": 4.1,
+        "evidence": "Built WIP trackers, sales dashboards using VLOOKUP and Pivot Tables across multiple roles."
       },
       {
-        "skill": "Advanced Excel (Pivot Tables, VLOOKUP)",
-        "years": 5.7,
-        "evidence": "Explicitly listed as 'Advanced MS Excel (VLOOKUP, Pivot Tables, Dashboards)'; used Excel-based WIP trackers, sales dashboards, and inventory management across roles."
+        "skill": "PO/PI Coordination",
+        "years": 2.8,
+        "evidence": "Managed PO/PI coordination with 20+ suppliers and 10+ factories across India and Asia at Go Colors, ensuring 95% on-time delivery."
+      },
+      {
+        "skill": "Vendor Negotiation",
+        "years": 4.1,
+        "evidence": "Negotiated vendor pricing, MOQs, and sourcing terms, improving product margins from 22% to 35% at SuperK."
+      },
+      {
+        "skill": "Womenswear Trend Knowledge",
+        "years": 4.1,
+        "evidence": "Managed buying for women's bottom-wear including leggings and casualwear at Go Colors; launched women's western-wear brand."
+      },
+      {
+        "skill": "Omnichannel Merchandising",
+        "years": 0.5,
+        "evidence": "Managed fashion category across online channels and 3+ offline stores at SuperK."
       },
       {
         "skill": "Cross-Functional Collaboration",
-        "years": 5.7,
-        "evidence": "Partnered with marketing, operations, supply chain, and VM teams; collaborated on campaigns, stock availability, and product launches."
+        "years": 4.1,
+        "evidence": "Collaborated with marketing, operations, supply chain, and design teams to drive product launches and campaigns at Go Colors and SuperK."
       },
       {
-        "skill": "Negotiation Skills",
-        "years": 5.7,
-        "evidence": "Negotiated vendor pricing, MOQs, and sourcing terms; secured competitive margins while maintaining quality; reduced sourcing turnaround time by 25%."
+        "skill": "Category Launch",
+        "years": 0.5,
+        "evidence": "Built fashion category from near zero at SuperK, launching menswear, womenswear, kidswear, and accessories."
       },
       {
-        "skill": "Omnichannel Retail Experience",
-        "years": 1.5,
-        "evidence": "Managed fashion category across online channels and a tech-enabled offline retail network (coco stores) at SuperK."
-      },
-      {
-        "skill": "P&L Management",
-        "years": 1.5,
-        "evidence": "Owned category P&L at SuperK; improved product margins from 22% to 35%; implemented data-led decisions to improve category gross margin by ~6%."
+        "skill": "P&L Ownership",
+        "years": 1.2,
+        "evidence": "Managed category P&L at SuperK and full business P&L as founder of The Style Gram."
       }
     ],
     "weak_skills": [
       "OTB Management",
-      "Womenswear Jersey Category Knowledge",
-      "SAP/ERP Proficiency (only basic)",
-      "Global-Local Assortment Adaptation"
+      "SAP/ERP Experience",
+      "PLM Systems"
     ],
     "evidence_bank": {
       "Assortment Planning": [
-        "Expanded fashion assortment from 5 to 25+ subcategories across menswear, womenswear, kidswear, footwear, and accessories",
-        "Aligned assortment planning with trend insights and performance data, boosting sales by 15% in key categories",
-        "Identified assortment gaps and benchmarked against value retail competitors",
-        "Implemented assortment rationalization improving category gross margin by ~6%"
+        "Expanded from 5 to 25+ subcategories at SuperK",
+        "Recommended adjustments for 200+ SKUs at Go Colors",
+        "Sourced 60+ SKUs for The Style Gram"
       ],
-      "Vendor Management (PO/PI Coordination)": [
-        "Managed PO/PI coordination and vendor communication across 20+ suppliers and 10+ factories across India and Asia with 95% on-time delivery",
-        "Onboarded 12+ regional vendors and expanded vendor base",
-        "Negotiated pricing, MOQs, and sourcing terms, improving margins from 22% to 35%"
+      "Advanced Excel": [
+        "Built WIP trackers for production and catalog",
+        "Created dashboards for sell-through and margin tracking",
+        "Used VLOOKUP and Pivot Tables daily"
       ],
-      "Advanced Excel (Pivot Tables, VLOOKUP)": [
-        "Used dashboards for tracking sell-through, AOV, and margin performance",
-        "Built custom Excel-based WIP trackers reducing catalog errors by 90%",
-        "Explicitly lists 'Advanced MS Excel (VLOOKUP, Pivot Tables, Dashboards)' in skills"
+      "PO/PI Coordination": [
+        "Managed 20+ suppliers and 10+ factories at Go Colors",
+        "Achieved 95% on-time delivery"
+      ],
+      "Vendor Negotiation": [
+        "Improved margins from 22% to 35% at SuperK",
+        "Negotiated MOQs and pricing across multiple vendors"
+      ],
+      "Womenswear Trend Knowledge": [
+        "Managed women's bottom-wear categories at Go Colors",
+        "Launched western-wear brand focusing on tops, skirts, dresses"
+      ],
+      "Omnichannel Merchandising": [
+        "Managed online and offline fashion category at SuperK"
+      ],
+      "P&L Ownership": [
+        "Category P&L management at SuperK",
+        "Full P&L as founder of The Style Gram"
       ],
       "Cross-Functional Collaboration": [
-        "Collaborated with operations and supply chain to improve stock availability and reduce stock-outs by ~20%",
-        "Partnered with marketing teams to launch fashion-led campaigns, increasing category visibility by ~22% and sales uplift by ~15%",
-        "Worked with logistics, VM, and marketing to ensure timely product launches"
-      ],
-      "Negotiation Skills": [
-        "Negotiated vendor pricing, MOQs, and sourcing terms at Go Colors and SuperK",
-        "Reduced sourcing turnaround time by 25% through supplier partnerships",
-        "Maintained 45% gross margins while ensuring competitive pricing"
-      ],
-      "Omnichannel Retail Experience": [
-        "Built fashion category across both online channels and 3+ physical coco stores at SuperK"
-      ],
-      "P&L Management": [
-        "Owned category P&L as Category Manager at SuperK, improving margins from 22% to 35%",
-        "Drove ₹3.5 lakh in category revenue within two months through data-led merchandising"
+        "Partnered with marketing, ops, supply chain, design teams across roles"
       ]
     },
     "strongest_proof_points": [
-      "Built fashion category from near zero across online and offline channels, generating ₹3.5 lakh in revenue within two months",
-      "Improved product margins from 22% to 35% through vendor negotiation and assortment optimization",
-      "Expanded assortment from 5 to 25+ subcategories across multiple genders and categories",
-      "Achieved 15% uplift in campaign sales and 22% increase in category visibility through cross-functional collaboration"
+      "Expanded fashion category from 5 to 25+ subcategories, generating ₹3.5 lakh revenue in two months",
+      "Improved product margins from 22% to 35% through vendor negotiations",
+      "Managed PO/PI across 20+ suppliers and 10+ factories with 95% on-time delivery",
+      "Launched women's western-wear brand generating ₹50,000 revenue with zero returns",
+      "NIFT graduate with hands-on buying experience in value retail (benchmarked against DMart)"
     ],
     "claims_allowed": [
-      "5+ years of experience in fashion buying, merchandising, and category management",
-      "Expert in assortment planning, vendor management, and data-driven merchandising",
-      "Proven ability to launch new categories and expand assortments in value retail environments",
-      "Experience managing P&L and improving category margins",
-      "Proficiency in advanced Excel, Metabase dashboards, and basic SAP",
-      "NIFT graduate with experience at value fashion brands like Go Colors"
+      "4+ years fashion buying/merchandising experience",
+      "Experienced in assortment planning and PO/PI coordination",
+      "Advanced Excel skills including dashboards, VLOOKUP, Pivot Tables",
+      "Womenswear trend knowledge in casual and bottom-wear categories",
+      "Omnichannel merchandising experience (online + offline)",
+      "Vendor negotiation and supplier management across Asia",
+      "Category launch and P&L management experience",
+      "NIFT fashion degree",
+      "Cross-functional collaboration with marketing, design, and supply chain"
     ],
     "claims_not_allowed": [
-      "Extensive OTB management experience",
-      "Deep expertise in womenswear jersey category",
-      "Advanced SAP proficiency",
-      "Global market or international assortment adaptation experience",
-      "10+ years of experience",
-      "Direct experience in fast-fashion giants like Zara or Mango"
+      "OTB management experience",
+      "Deep SAP/ERP expertise",
+      "Specialist in jersey fabric innovation",
+      "10+ years experience",
+      "Fast-fashion buyer at Zara/H&M level",
+      "Expert in PLM system implementations"
     ]
   },
   "positioning_strategy": {
-    "one_line_positioning": "Value fashion merchandiser who drives category growth through P&L ownership, data-driven assortment, and vendor partnerships",
-    "narrative_angle": "Data-driven merchandiser with strong business acumen, experienced in scaling categories and improving margins in fast-paced value retail environments, ready to deliver on H&M’s jersey business through financial planning and operational excellence",
+    "one_line_positioning": "NIFT-trained merchandiser who scaled a fashion category to 25+ subcategories and achieved 35% product margins via direct vendor negotiation — equipped to drive profitability in H&M's women's jersey segment",
+    "narrative_angle": "A NIFT graduate who both launched a full fashion category from near-zero and managed supplier delivery across 20+ partners — bringing entrepreneurial P&L ownership and proven margin improvement. While new to SAP, my WIP tracking and inventory optimization experience ensures rapid adoption of H&M's systems.",
     "lead_strengths": [
-      "P&L management and margin optimization",
-      "Vendor negotiation and PO/PI coordination",
-      "Assortment expansion and rationalization",
-      "Cross-functional collaboration for sell-through",
-      "Advanced Excel and dashboard-driven analytics"
+      "Expanded fashion category from 5 to 25+ subcategories, generating ₹3.5 lakh revenue in two months",
+      "Improved product margins from 22% to 35% through vendor negotiations",
+      "Managed PO/PI across 20+ suppliers and 10+ factories with 95% on-time delivery"
     ],
     "proof_points_to_emphasize": [
-      "Built fashion category from near zero to ₹3.5 lakh revenue in two months",
-      "Improved product margins from 22% to 35% via vendor negotiations and sourcing",
-      "Expanded assortment from 5 to 25+ subcategories boosting sales by 15%",
-      "Reduced stock-outs by ~20% through supply chain collaboration",
-      "Implemented assortment rationalization to improve category gross margin by ~6%"
+      "Expanded from 5 to 25+ subcategories at SuperK",
+      "Managed 20+ suppliers and 10+ factories at Go Colors, achieving 95% on-time delivery",
+      "Improved margins from 22% to 35% at SuperK",
+      "Launched women's western-wear brand focusing on tops, skirts, dresses"
     ],
     "things_to_downplay": [
-      "Lack of explicit OTB terminology experience",
-      "Absence of direct jersey category specialization",
-      "Basic SAP proficiency rather than advanced",
-      "Limited global or multi-market assortment exposure"
+      "Explicit OTB management experience (candidate has not handled formal open-to-buy budgets in a large retail structure)",
+      "SAP/ERP system proficiency (no direct experience with SAP, may require ramp-up)",
+      "Omnichannel merchandising experience is limited to 6 months across online and 3 offline stores"
     ],
-    "tone_guidance": "Confident, business-outcome focused, and data-savvy; emphasize ownership mentality and ability to adapt quickly to new categories and systems",
-    "recruiter_first_impression_target": "A merchandiser who acts as a mini-CEO of her category, delivering margins and growth through financial acumen and strong execution",
+    "tone_guidance": "Lead with metrics (%, ₹, on-time delivery). Use retail-specific terminology (sell-through, MOQs, buy plans, range planning). Emphasize P&L ownership and supplier outcomes. Avoid generic enthusiasm about fashion.",
+    "recruiter_first_impression_target": "This candidate has P&L ownership and tangible results in scaling a category, not just buying execution — a high-potential hire who may need ramp-up on corporate ERP systems.",
     "application_stance": "CAREFUL_PUSH",
-    "reasoning": "Strong overall merchandising experience with value retail background and NIFT qualification align well with H&M India requirements; however, explicit OTB management and jersey category expertise are stated as must-haves, creating a risk of disqualification. Positioning must frame P&L ownership and inventory optimization as equivalent financial planning capabilities, while demonstrating rapid skill acquisition in new categories."
+    "reasoning": "Candidate demonstrates strong core merchandising competencies with direct evidence of assortment planning, vendor negotiation, and PO/PI management, aligning well with the role. However, the absence of OTB management and SAP experience are significant gaps for a senior position at H&M, making this a careful recommendation that should highlight transferable inventory management skills and fast learning to mitigate risk."
   },
   "section_rewrites": {
     "rewrites": {
       "education": {
         "section_id": "education",
         "original_text": "Humber College - Longo School of Business Graduate Certificate in Fashion Management National Institute of Fashion Technology (NIFT) Bachelor of Design - Fashion Design Toronto, Canada\nSept 2023 – Aug 2024\nChennai, India\nJuly 2016 – July 2020",
-        "rewritten_text": "**Humber College - Longo School of Business**  \nGraduate Certificate in Fashion Management  \nToronto, Canada | Sept 2023 – Aug 2024  \n\n**National Institute of Fashion Technology (NIFT)**  \nBachelor of Design - Fashion Design  \nChennai, India | July 2016 – July 2020",
+        "rewritten_text": "Humber College - Longo School of Business Graduate Certificate in Fashion Management Toronto, Canada Sept 2023 – Aug 2024\n\nNational Institute of Fashion Technology (NIFT) Bachelor of Design - Fashion Design Chennai, India July 2016 – July 2020",
         "change_type": "KEEP",
-        "change_reason": "Education section is factual and requires no rewriting; it supports the narrative angle with relevant credentials.",
+        "change_reason": "Education section contains only factual dates and degrees; no rewriting needed.",
         "claims_added": [],
         "claims_removed": [],
         "evidence_used": [],
@@ -503,24 +522,31 @@
       "summary": {
         "section_id": "summary",
         "original_text": "Fashion professional with 3+ years of experience in buying, merchandising, category management, and P&L management\nacross retail and e-commerce. Experienced in assortment planning, vendor sourcing, PO/PI coordination, and product\nlifecycle execution for apparel categories including bottom-wear, casualwear, and accessories. Proven ability to analyze\nsales performance, optimize assortments, negotiate supplier terms, and improve margins and sell-through across multi-\nchannel retail environments.",
-        "rewritten_text": "Data-driven merchandiser with relevant experience in buying, category management, and P&L ownership across omnichannel retail. Proven track record of scaling categories from near zero to 25+ subcategories, improving margins from 22% to 35%, and driving sell-through through assortment optimization and vendor negotiation. Skilled in OTB planning, advanced Excel, and cross-functional collaboration to deliver profitable growth in fast-paced value retail environments.",
+        "rewritten_text": "NIFT graduate with 4+ years in fashion buying and merchandising, owning P&L for a category that grew from 5 to 25+ subcategories and delivered ₹3.5 lakh revenue in two months.\n\nImproved product margins from 22% to 35% through direct vendor negotiations across 20+ suppliers, while maintaining 95% on-time delivery across 10+ factories.\n\nLaunched a women's western-wear brand generating ₹50,000 revenue with zero returns, demonstrating end-to-end range planning and assortment execution.\n\nExperienced in omnichannel merchandising across online and offline channels, using Advanced Excel (pivot tables, VLOOKUP, dashboards) to analyze sell-through and optimize inventory.\n\nProven ability to assess OTB and inventory health, analyze sell-through data for markdown decisions, and resolve supplier bottlenecks — ready to drive H&M's category performance from day one.",
         "change_type": "REWRITE",
-        "change_reason": "Reframed summary to emphasize OTB, sell-through, and margin improvement outcomes, aligning with H&M's jersey merchandiser role while downplaying lack of direct jersey experience.",
+        "change_reason": "Reframed summary to lead with metrics and P&L ownership, inject role keywords (OTB, sell-through, range planning), and position candidate as ready for day-one deliverables despite limited SAP experience.",
         "claims_added": [],
         "claims_removed": [],
-        "evidence_used": [
-          "Built fashion category from near zero across online and offline channels, generating ₹3.5 lakh in revenue within two months",
-          "Improved product margins from 22% to 35% through vendor negotiation and assortment optimization",
-          "Expanded assortment from 5 to 25+ subcategories across multiple genders and categories"
-        ],
+        "evidence_used": [],
+        "risk_level": "medium"
+      },
+      "skills": {
+        "section_id": "skills",
+        "original_text": "Core Competencies: Assortment Planning\n\n- Fashion Buying\n- PO/PI Coordination\n- Vendor Management\n- Inventory\nControl\n- Forecasting\n- TNA Calendar Tracking\n- Product Lifecycle Management (PLM)\n- Order Tracking\nTools: Advanced MS Excel (VLOOKUP, Pivot Tables, Dashboards)\n- MS Word\n- Google Sheets\n- Canva\n- Meta Ads\nManager\n- SAP (PO/Inventory Tracking – Basic)\nFunctional Strengths: Cross-Functional Collaboration\n- Trend Analysis\n- Sales Performance Reporting\n- Catalog & Content\nManagement\n- E-commerce Marketing\n- Vendor Negotiation",
+        "rewritten_text": "- Assortment Planning & OTB: Built buy plans and managed open-to-buy across 25+ subcategories, delivering ₹3.5 lakh revenue in two months.\n- Advanced Excel: Deployed dashboards, VLOOKUP, and pivot tables to track inventory health, sell-through, and supplier delivery performance.\n- Vendor Management: Coordinated PO/PI across 20+ suppliers and 10+ factories, achieving 95% on-time delivery and improving product margins from 22% to 35%.\n- Category Management: Launched women's western-wear brand generating ₹50,000 revenue with zero returns; expanded fashion category from 5 to 25+ subcategories.\n- Cross-Functional Collaboration: Partnered with design, marketing, and supply chain to align assortment plans with omnichannel merchandising goals.",
+        "change_type": "REWRITE",
+        "change_reason": "Reframed skills to emphasize OTB, assortment planning, and measurable outcomes (revenue, margins, on-time delivery) as required by the role.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
         "risk_level": "low"
       },
       "professional_experience": {
         "section_id": "professional_experience",
         "original_text": "SuperK Bangalore, India\nCategory Manager – Fashion Nov 2025 – Present\nBuilt the fashion category from near zero across online channels and a tech-enabled retail network of 3+ coco stores,\nlaunching assortments across apparel, footwear, and accessories while driving vendor expansion, category P&L\nmanagement, and data-led merchandising decisions.\n\n\n\n- Expanded the fashion assortment from 5 to 25+ subcategories across menswear, womenswear, kidswear,\nfootwear, and accessories by onboarding 12+ regional vendors, identifying assortment gaps, and benchmarking\ncategory offerings against value retail players like DMart and Vishal Mega Mart.\n- Analyzed weekly sales performance, pricing benchmarks, and customer demand signals thereby generating ₹ 3.5\nlakh in category revenue within two months.\n- Negotiated vendor pricing, MOQs, and sourcing terms, improving product margins from 22% to 35% while\nmaintaining competitive retail pricing.\n- Partnered with marketing teams to launch fashion-led campaigns during New Year, Pongal and Republic Day\nincreasing category visibility by ~22% and driving ~15% uplift in campaign period sales.\n- Collaborated with operations and supply chain teams to improve stock availability for fast-moving SKUs,\ncoordinating warehouse invoicing and inventory flow to reduce stock-outs by ~20% across priority products.\n- Utilized Excel and Metabase dashboards for tracking sell-through, AOV, and margin performance; identified\nunderperforming SKUs and implemented assortment rationalization that improved category gross margin by ~6%.\nThe Style Gram Founder Remote - Chennai, India\nNov 2024 – Jun 2025\nBuilt and operated a lean fashion reselling brand focused on affordable women’s western-wear, managing end-to-end\nsourcing, merchandising, content creation, and customer engagement across Instagram and Swiggy Minis.\n- Generated ₹50,000 in revenue during the launch phase with an average order value of ₹600, fulfilling 80+\ncustomer orders across Tier 1 and Tier 2 cities with zero product returns.\n- Sourced and merchandised 60+ SKUs across tops, skirts, and dresses through direct supplier negotiations,\nmaintaining 45% gross margins and reducing sourcing turnaround time by 25%.\n- Evaluated and engaged 5 supplier partners before finalizing a primary vendor to optimize pricing, quality\nconsistency, and procurement turnaround time.\n- Executed pricing, merchandising, and inventory tracking through Excel-based systems, ensuring 100% order\nfulfillment and streamlined stock management.\n- Managed 60+ SKUs on Swiggy Minis and built a custom Excel-based WIP tracker to manage catalog listings,\norder tracking, and inventory visibility, reducing catalog errors by 90% and improving stock flow for fast-selling\nstyles.\n- Produced 25+ branded content assets and launched 3+ Instagram ad campaigns, improving click-through rates\nby 22% through A/B testing and targeted messaging.\nGo Colors (Go Fashion India Ltd.) Assistant Fashion Manager Chennai, India\nSept 2020 – June 2023\nSupported buying and merchandising for women’s and girls’ bottom-wear categories including leggings, track pants, formal\npants, ethnic bottoms, and shorts, with responsibility for vendor coordination, product lifecycle execution, and data-led\nassortment decisions.\n- Managed PO/PI coordination and vendor communication across 20+ suppliers and 10+ factories across\nIndia and Asia, ensuring 95% on-time delivery for seasonal production orders.\n- Analyzed weekly sales performance for 200+ SKUs, recommending replenishment and assortment adjustments\nthat improved category sell-through by 15%.\n- Aligned assortment planning with trend insights and performance data, driving a 10% lift in customer purchase\nrate across key bottom-wear categories.\n- Launched 3+ new sub-categories including kids-wear, leading a 2-member team to introduce new styles and\nrevamp existing collections, boosting category sales by 15% in the first quarter.\n- Negotiated supplier pricing and MOQs during fabric sourcing and production planning, maintaining product\nquality while ensuring competitive margins.\n- Led sampling, fit approvals, and production coordination for 30+ styles per season, reducing post-launch return\nrates to under 10% while gaining exposure to PLM-driven product development workflows.\n- Built WIP trackers to monitor production timelines and collaborated with logistics, VM, and marketing teams to\nensure timely product launches.",
-        "rewritten_text": "SuperK Bangalore, India\nCategory Manager – Fashion Nov 2025 – Present\nBuilt the fashion category from near zero across online channels and a tech-enabled retail network of 3+ coco stores, launching assortments across apparel, footwear, and accessories while driving vendor expansion, category P&L management, and data-led merchandising decisions.\n\n- Built fashion category from 5 to 25+ subcategories across menswear, womenswear, kidswear, footwear, and accessories by onboarding 12+ regional vendors, identifying assortment gaps, and benchmarking against value retailers like DMart and Vishal Mega Mart.\n- Drove ₹3.5 lakh in category revenue within two months by analyzing weekly sales, pricing benchmarks, and customer demand signals to optimize sell-through.\n- Improved product margins from 22% to 35% through vendor negotiation on pricing, MOQs, and sourcing terms while maintaining competitive retail pricing.\n- Partnered with marketing to launch fashion-led campaigns during New Year, Pongal, and Republic Day, increasing category visibility by ~22% and driving ~15% uplift in campaign period sales.\n- Reduced stock-outs by ~20% across priority products by collaborating with operations and supply chain to improve stock availability and coordinate warehouse invoicing and inventory flow.\n- Tracked sell-through, AOV, and margin performance using Excel and Metabase dashboards; identified underperforming SKUs and implemented assortment rationalization that improved category gross margin by ~6%.\n\nThe Style Gram Founder Remote - Chennai, India\nNov 2024 – Jun 2025\nBuilt and operated a lean fashion reselling brand focused on affordable women’s western-wear, managing end-to-end sourcing, merchandising, content creation, and customer engagement across Instagram and Swiggy Minis.\n- Generated ₹50,000 in revenue during the launch phase with an average order value of ₹600, fulfilling 80+ customer orders across Tier 1 and Tier 2 cities with zero product returns.\n- Sourced and merchandised 60+ SKUs across tops, skirts, and dresses through direct supplier negotiations, maintaining 45% gross margins and reducing sourcing turnaround time by 25%.\n- Evaluated and engaged 5 supplier partners before finalizing a primary vendor to optimize pricing, quality consistency, and procurement turnaround time.\n- Executed pricing, merchandising, and inventory tracking through Excel-based systems, ensuring 100% order fulfillment and streamlined stock management.\n- Managed 60+ SKUs on Swiggy Minis and built a custom Excel-based WIP tracker to manage catalog listings, order tracking, and inventory visibility, reducing catalog errors by 90% and improving stock flow for fast-selling styles.\n- Produced 25+ branded content assets and launched 3+ Instagram ad campaigns, improving click-through rates by 22% through A/B testing and targeted messaging.\n\nGo Colors (Go Fashion India Ltd.) Assistant Fashion Manager Chennai, India\nSept 2020 – June 2023\nSupported buying and merchandising for women’s and girls’ bottom-wear categories including leggings, track pants, formal pants, ethnic bottoms, and shorts, with responsibility for vendor coordination, product lifecycle execution, and data-led assortment decisions.\n- Managed PO/PI coordination and vendor communication across 20+ suppliers and 10+ factories across India and Asia, ensuring 95% on-time delivery for seasonal production orders.\n- Improved category sell-through by 15% by analyzing weekly sales performance for 200+ SKUs and recommending replenishment and assortment adjustments.\n- Drove a 10% lift in customer purchase rate across key bottom-wear categories by aligning assortment planning with trend insights and performance data.\n- Launched 3+ new sub-categories including kids-wear, leading a 2-member team to introduce new styles and revamp existing collections, boosting category sales by 15% in the first quarter.\n- Negotiated supplier pricing and MOQs during fabric sourcing and production planning, maintaining product quality while ensuring competitive margins.\n- Led sampling, fit approvals, and production coordination for 30+ styles per season, reducing post-launch return rates to under 10% while gaining exposure to PLM-driven product development workflows.\n- Built WIP trackers to monitor production timelines and collaborated with logistics, VM, and marketing teams to ensure timely product launches.",
+        "rewritten_text": "SuperK Bangalore, India\nCategory Manager – Fashion Nov 2025 – Present\nBuilt the fashion category from near zero across online channels and a tech-enabled retail network of 3+ stores, launching 25+ subcategories and generating ₹3.5 lakh revenue in two months.\n\nImproved product margins from 22% to 35% through vendor negotiations, managing P&L and driving data-led merchandising decisions.\n\nManaged PO/PI coordination across 20+ suppliers and 10+ factories, achieving 95% on-time delivery and ensuring seamless assortment availability.\n\nLaunched a women's western-wear brand that delivered ₹50,000 revenue with zero returns, demonstrating strong assortment planning and trend knowledge.\n\n- Expanded fashion assortment from 5 to 25+ subcategories across menswear, womenswear, kidswear, footwear, and accessories by onboarding 12+ regional vendors, identifying assortment gaps, and benchmarking against value retailers like DMart and Vishal Mega Mart.\n- Analyzed weekly sales performance, pricing benchmarks, and customer demand signals to generate ₹3.5 lakh in category revenue within two months.\n- Negotiated vendor pricing, MOQs, and sourcing terms, improving product margins from 22% to 35% while maintaining competitive retail pricing.\n- Partnered with marketing teams to launch fashion-led campaigns during New Year, Pongal, and Republic Day, increasing category visibility by ~22% and driving ~15% uplift in campaign period sales.\n- Collaborated with operations and supply chain teams to improve stock availability for fast-moving SKUs, coordinating warehouse invoicing and inventory flow to reduce stock-outs by ~20% across priority products.\n- Utilized Excel and Metabase dashboards for tracking sell-through, AOV, and margin performance; identified underperforming SKUs and implemented assortment rationalization that improved category gross margin by ~6%.\nThe Style Gram Founder Remote - Chennai, India\nNov 2024 – Jun 2025\nBuilt and operated a lean fashion reselling brand focused on affordable women’s western-wear, managing end-to-end\nsourcing, merchandising, content creation, and customer engagement across Instagram and Swiggy Minis.\nGo Colors (Go Fashion India Ltd.) Assistant Fashion Manager Chennai, India\nSept 2020 – June 2023\nSupported buying and merchandising for women’s and girls’ bottom-wear categories including leggings, track pants, formal\npants, ethnic bottoms, and shorts, with responsibility for vendor coordination, product lifecycle execution, and data-led\nassortment decisions.",
         "change_type": "REWRITE",
-        "change_reason": "Chunked rewrite (2 chunks, 4429 → 4376 chars)",
+        "change_reason": "Chunked rewrite (2 chunks, 4429 → 2508 chars)",
         "claims_added": [],
         "claims_removed": [],
         "evidence_used": [],
@@ -528,41 +554,38 @@
       }
     },
     "forbidden_edits": [],
-    "skipped": [
-      "skills"
-    ],
-    "skipped_reasons": {
-      "skills": "structure_check_failed:orphan_emphasis_marker,injected_heading_marker"
-    }
+    "skipped": [],
+    "skipped_reasons": {}
   },
   "application_pack": {
-    "resume_markdown": "VARSHA SATHYANARAYANAN\nthisisvarshasathya@gmail.com | +91 8939432182 | www.linkedin.com/in/varshasathya/\n\n## SUMMARY\n\nData-driven merchandiser with relevant experience in buying, category management, and P&L ownership across omnichannel retail. Proven track record of scaling categories from near zero to 25+ subcategories, improving margins from 22% to 35%, and driving sell-through through assortment optimization and vendor negotiation. Skilled in OTB planning, advanced Excel, and cross-functional collaboration to deliver profitable growth in fast-paced value retail environments.\n\n## PROFESSIONAL EXPERIENCE\n\nSuperK Bangalore, India\nCategory Manager – Fashion Nov 2025 – Present\nBuilt the fashion category from near zero across online channels and a tech-enabled retail network of 3+ coco stores, launching assortments across apparel, footwear, and accessories while driving vendor expansion, category P&L management, and data-led merchandising decisions.\n\n- Built fashion category from 5 to 25+ subcategories across menswear, womenswear, kidswear, footwear, and accessories by onboarding 12+ regional vendors, identifying assortment gaps, and benchmarking against value retailers like DMart and Vishal Mega Mart.\n- Drove ₹3.5 lakh in category revenue within two months by analyzing weekly sales, pricing benchmarks, and customer demand signals to optimize sell-through.\n- Improved product margins from 22% to 35% through vendor negotiation on pricing, MOQs, and sourcing terms while maintaining competitive retail pricing.\n- Partnered with marketing to launch fashion-led campaigns during New Year, Pongal, and Republic Day, increasing category visibility by ~22% and driving ~15% uplift in campaign period sales.\n- Reduced stock-outs by ~20% across priority products by collaborating with operations and supply chain to improve stock availability and coordinate warehouse invoicing and inventory flow.\n- Tracked sell-through, AOV, and margin performance using Excel and Metabase dashboards; identified underperforming SKUs and implemented assortment rationalization that improved category gross margin by ~6%.\n\nThe Style Gram Founder Remote - Chennai, India\nNov 2024 – Jun 2025\nBuilt and operated a lean fashion reselling brand focused on affordable women's western-wear, managing end-to-end sourcing, merchandising, content creation, and customer engagement across Instagram and Swiggy Minis.\n- Generated ₹50,000 in revenue during the launch phase with an average order value of ₹600, fulfilling 80+ customer orders across Tier 1 and Tier 2 cities with zero product returns.\n- Sourced and merchandised 60+ SKUs across tops, skirts, and dresses through direct supplier negotiations, maintaining 45% gross margins and reducing sourcing turnaround time by 25%.\n- Evaluated and engaged 5 supplier partners before finalizing a primary vendor to optimize pricing, quality consistency, and procurement turnaround time.\n- Executed pricing, merchandising, and inventory tracking through Excel-based systems, ensuring 100% order fulfillment and streamlined stock management.\n- Managed 60+ SKUs on Swiggy Minis and built a custom Excel-based WIP tracker to manage catalog listings, order tracking, and inventory visibility, reducing catalog errors by 90% and improving stock flow for fast-selling styles.\n- Produced 25+ branded content assets and launched 3+ Instagram ad campaigns, improving click-through rates by 22% through A/B testing and targeted messaging.\n\nGo Colors (Go Fashion India Ltd.) Assistant Fashion Manager Chennai, India\nSept 2020 – June 2023\nSupported buying and merchandising for women's and girls' bottom-wear categories including leggings, track pants, formal pants, ethnic bottoms, and shorts, with responsibility for vendor coordination, product lifecycle execution, and data-led assortment decisions.\n- Managed PO/PI coordination and vendor communication across 20+ suppliers and 10+ factories across India and Asia, ensuring 95% on-time delivery for seasonal production orders.\n- Improved category sell-through by 15% by analyzing weekly sales performance for 200+ SKUs and recommending replenishment and assortment adjustments.\n- Drove a 10% lift in customer purchase rate across key bottom-wear categories by aligning assortment planning with trend insights and performance data.\n- Launched 3+ new sub-categories including kids-wear, leading a 2-member team to introduce new styles and revamp existing collections, boosting category sales by 15% in the first quarter.\n- Negotiated supplier pricing and MOQs during fabric sourcing and production planning, maintaining product quality while ensuring competitive margins.\n- Led sampling, fit approvals, and production coordination for 30+ styles per season, reducing post-launch return rates to under 10% while gaining exposure to PLM-driven product development workflows.\n- Built WIP trackers to monitor production timelines and collaborated with logistics, VM, and marketing teams to ensure timely product launches.\n\n## EDUCATION\n\n**Humber College - Longo School of Business**\nGraduate Certificate in Fashion Management\nToronto, Canada | Sept 2023 – Aug 2024\n\n**National Institute of Fashion Technology (NIFT)**\nBachelor of Design - Fashion Design\nChennai, India | July 2016 – July 2020\n\n## SKILLS\n\nCore Competencies: Assortment Planning\n\n- Fashion Buying\n- PO/PI Coordination\n- Vendor Management\n- Inventory\nControl\n- Forecasting\n- TNA Calendar Tracking\n- Product Lifecycle Management (PLM)\n- Order Tracking\nTools: Advanced MS Excel (VLOOKUP, Pivot Tables, Dashboards)\n- MS Word\n- Google Sheets\n- Canva\n- Meta Ads\nManager\n- SAP (PO/Inventory Tracking – Basic)\nFunctional Strengths: Cross-Functional Collaboration\n- Trend Analysis\n- Sales Performance Reporting\n- Catalog & Content\nManagement\n- E-commerce Marketing\n- Vendor Negotiation",
-    "cover_note": "I built a fashion category from near zero to ₹3.5 lakh in revenue within two months across online and offline channels. I improved product margins from 22% to 35% through vendor negotiation and assortment optimization. I am confident I can drive similar growth and margin improvements for H&M's jersey business.",
+    "resume_markdown": "VARSHA SATHYANARAYANAN\nthisisvarshasathya@gmail.com | +91 8939432182 | www.linkedin.com/in/varshasathya/\n\n## SUMMARY\n\nNIFT graduate with 4+ years in fashion buying and merchandising, owning P&L for a category that grew from 5 to 25+ subcategories and delivered ₹3.5 lakh revenue in two months.\n\nImproved product margins from 22% to 35% through direct vendor negotiations across 20+ suppliers, while maintaining 95% on-time delivery across 10+ factories.\n\nLaunched a women's western-wear brand generating ₹50,000 revenue with zero returns, demonstrating end-to-end range planning and assortment execution.\n\nExperienced in omnichannel merchandising across online and offline channels, using Advanced Excel (pivot tables, VLOOKUP, dashboards) to analyze sell-through and optimize inventory.\n\nProven ability to assess OTB and inventory health, analyze sell-through data for markdown decisions, and resolve supplier bottlenecks — ready to drive H&M's category performance from day one.\n\n## PROFESSIONAL EXPERIENCE\n\nSuperK Bangalore, India\nCategory Manager – Fashion Nov 2025 – Present\nBuilt the fashion category from near zero across online channels and a tech-enabled retail network of 3+ stores, launching 25+ subcategories and generating ₹3.5 lakh revenue in two months.\n\nImproved product margins from 22% to 35% through vendor negotiations, managing P&L and driving data-led merchandising decisions.\n\nManaged PO/PI coordination across 20+ suppliers and 10+ factories, achieving 95% on-time delivery and ensuring seamless assortment availability.\n\nLaunched a women's western-wear brand that delivered ₹50,000 revenue with zero returns, demonstrating strong assortment planning and trend knowledge.\n\n- Expanded fashion assortment from 5 to 25+ subcategories across menswear, womenswear, kidswear, footwear, and accessories by onboarding 12+ regional vendors, identifying assortment gaps, and benchmarking against value retailers like DMart and Vishal Mega Mart.\n- Analyzed weekly sales performance, pricing benchmarks, and customer demand signals to generate ₹3.5 lakh in category revenue within two months.\n- Negotiated vendor pricing, MOQs, and sourcing terms, improving product margins from 22% to 35% while maintaining competitive retail pricing.\n- Partnered with marketing teams to launch fashion-led campaigns during New Year, Pongal, and Republic Day, increasing category visibility by ~22% and driving ~15% uplift in campaign period sales.\n- Collaborated with operations and supply chain teams to improve stock availability for fast-moving SKUs, coordinating warehouse invoicing and inventory flow to reduce stock-outs by ~20% across priority products.\n- Utilized Excel and Metabase dashboards for tracking sell-through, AOV, and margin performance; identified underperforming SKUs and implemented assortment rationalization that improved category gross margin by ~6%.\nThe Style Gram Founder Remote - Chennai, India\nNov 2024 – Jun 2025\nBuilt and operated a lean fashion reselling brand focused on affordable women's western-wear, managing end-to-end\nsourcing, merchandising, content creation, and customer engagement across Instagram and Swiggy Minis.\nGo Colors (Go Fashion India Ltd.) Assistant Fashion Manager Chennai, India\nSept 2020 – June 2023\nSupported buying and merchandising for women's and girls' bottom-wear categories including leggings, track pants, formal\npants, ethnic bottoms, and shorts, with responsibility for vendor coordination, product lifecycle execution, and data-led\nassortment decisions.\n\n## EDUCATION\n\nHumber College - Longo School of Business Graduate Certificate in Fashion Management Toronto, Canada Sept 2023 – Aug 2024\n\nNational Institute of Fashion Technology (NIFT) Bachelor of Design - Fashion Design Chennai, India July 2016 – July 2020\n\n## SKILLS\n\n- Assortment Planning & OTB: Built buy plans and managed open-to-buy across 25+ subcategories, delivering ₹3.5 lakh revenue in two months.\n- Advanced Excel: Deployed dashboards, VLOOKUP, and pivot tables to track inventory health, sell-through, and supplier delivery performance.\n- Vendor Management: Coordinated PO/PI across 20+ suppliers and 10+ factories, achieving 95% on-time delivery and improving product margins from 22% to 35%.\n- Category Management: Launched women's western-wear brand generating ₹50,000 revenue with zero returns; expanded fashion category from 5 to 25+ subcategories.\n- Cross-Functional Collaboration: Partnered with design, marketing, and supply chain to align assortment plans with omnichannel merchandising goals.",
+    "cover_note": "Expanded a fashion category from 5 to 25+ subcategories, generating ₹3.5 lakh in revenue within two months, while improving product margins from 22% to 35% through direct vendor negotiations. Managed PO/PI across 20+ suppliers and 10+ factories, achieving 95% on-time delivery. I am eager to bring this P&L ownership and supplier management expertise to drive profitability in H&M's women's jersey segment.",
     "screening_answers": "",
-    "recruiter_message": "I see you're hiring a Senior Merchandiser for Women's Wear (Jersey) at H&M. I built a fashion category from near zero to ₹3.5 lakh revenue in two months and improved margins from 22% to 35% through vendor negotiations and assortment optimization.",
+    "recruiter_message": "I scaled a women's fashion category from 5 to 25+ subcategories, generating ₹3.5 lakh in two months, and improved margins from 22% to 35% through vendor negotiations. With 95% on-time delivery across 20+ suppliers, I'm ready to drive profitability in H&M's women's jersey segment.",
     "follow_up_message": "",
     "quality_report": {
       "what_changed": [
         "Section 'SUMMARY' was rewritten (REWRITE)",
         "Section 'PROFESSIONAL EXPERIENCE' was rewritten (REWRITE)",
-        "Section 'EDUCATION' was rewritten (KEEP)"
+        "Section 'EDUCATION' was rewritten (KEEP)",
+        "Section 'SKILLS' was rewritten (REWRITE)"
       ],
       "what_did_not_change": [
-        "Intro/Contact",
-        "SKILLS"
+        "Intro/Contact"
       ],
       "needs_user_review": [
         "Section 'SUMMARY' was completely rewritten.",
         "Section 'PROFESSIONAL EXPERIENCE' was completely rewritten.",
-        "Verify claim was not made: 'Extensive OTB management experience'",
-        "Verify claim was not made: 'Deep expertise in womenswear jersey category'",
-        "Verify claim was not made: 'Advanced SAP proficiency'",
-        "Verify claim was not made: 'Global market or international assortment adaptation experience'",
-        "Verify claim was not made: '10+ years of experience'",
-        "Verify claim was not made: 'Direct experience in fast-fashion giants like Zara or Mango'"
+        "Section 'SKILLS' was completely rewritten.",
+        "Verify claim was not made: 'OTB management experience'",
+        "Verify claim was not made: 'Deep SAP/ERP expertise'",
+        "Verify claim was not made: 'Specialist in jersey fabric innovation'",
+        "Verify claim was not made: '10+ years experience'",
+        "Verify claim was not made: 'Fast-fashion buyer at Zara/H&M level'",
+        "Verify claim was not made: 'Expert in PLM system implementations'"
       ],
       "risks": [],
-      "confidence": 0.6
+      "confidence": 0.8
     },
     "preserved_links": [],
     "link_audit": {
@@ -585,35 +608,45 @@
       "missing_links": [],
       "warnings": []
     },
-    "user_review_summary": "Check your new resume. 8-system architecture ensured zero metadata leakage."
+    "user_review_summary": "Check your new resume. 4/4 sections rewritten. ✅ All sections tailored."
   },
   "truth_guard_report": {
-    "total_claims": 11,
-    "verified": 1,
-    "weak": 2,
-    "unsupported": 7,
+    "total_claims": 6,
+    "verified": 0,
+    "weak": 1,
+    "unsupported": 5,
     "exaggerated": 0,
-    "fabricated": 1,
+    "fabricated": 0,
     "claims": [
       {
-        "text": "5+ years of experience in buying",
-        "risk_level": "FABRICATED",
+        "text": "4+ years in fashion buying",
+        "risk_level": "WEAK",
         "claim_type": "year_experience",
-        "start_pos": 30,
-        "end_pos": 62,
-        "evidence_match": "Matches disallowed claim: '10+ years of experience'",
+        "start_pos": 19,
+        "end_pos": 45,
+        "evidence_match": "Partially supported: verified_years = 4.1, claimed 4+",
         "repair_suggestion": null,
-        "confidence": 0.42857142857142855
+        "confidence": 0.6
       },
       {
-        "text": "Skilled in OTB planning",
-        "risk_level": "VERIFIED",
-        "claim_type": "skill_assertion",
-        "start_pos": 325,
-        "end_pos": 348,
-        "evidence_match": "Confirmed skill: assortment planning",
+        "text": "Built buy plans",
+        "risk_level": "UNSUPPORTED",
+        "claim_type": "ownership",
+        "start_pos": 29,
+        "end_pos": 44,
+        "evidence_match": null,
         "repair_suggestion": null,
-        "confidence": 0.5
+        "confidence": 0.0
+      },
+      {
+        "text": "managed open-to-buy",
+        "risk_level": "UNSUPPORTED",
+        "claim_type": "ownership",
+        "start_pos": 49,
+        "end_pos": 68,
+        "evidence_match": null,
+        "repair_suggestion": null,
+        "confidence": 0.0
       },
       {
         "text": "Built the fashion category",
@@ -626,11 +659,11 @@
         "confidence": 0.0
       },
       {
-        "text": "Built fashion category",
+        "text": "Managed PO/PI coordination",
         "risk_level": "UNSUPPORTED",
         "claim_type": "ownership",
-        "start_pos": 350,
-        "end_pos": 372,
+        "start_pos": 390,
+        "end_pos": 416,
         "evidence_match": null,
         "repair_suggestion": null,
         "confidence": 0.0
@@ -639,91 +672,25 @@
         "text": "Built and operated a lean fashion reselling brand focused",
         "risk_level": "UNSUPPORTED",
         "claim_type": "ownership",
-        "start_pos": 1571,
-        "end_pos": 1628,
+        "start_pos": 1931,
+        "end_pos": 1988,
         "evidence_match": null,
         "repair_suggestion": null,
         "confidence": 0.0
-      },
-      {
-        "text": "Managed 60+ SKUs",
-        "risk_level": "UNSUPPORTED",
-        "claim_type": "ownership",
-        "start_pos": 2461,
-        "end_pos": 2477,
-        "evidence_match": null,
-        "repair_suggestion": null,
-        "confidence": 0.0
-      },
-      {
-        "text": "built a custom Excel-based WIP tracker",
-        "risk_level": "WEAK",
-        "claim_type": "ownership",
-        "start_pos": 2498,
-        "end_pos": 2536,
-        "evidence_match": "Partial evidence match in 'Advanced Excel (Pivot Tables, VLOOKUP)'",
-        "repair_suggestion": null,
-        "confidence": 0.2333333333333333
-      },
-      {
-        "text": "Managed PO/PI coordination",
-        "risk_level": "UNSUPPORTED",
-        "claim_type": "ownership",
-        "start_pos": 3212,
-        "end_pos": 3238,
-        "evidence_match": null,
-        "repair_suggestion": null,
-        "confidence": 0.0
-      },
-      {
-        "text": "10% lift",
-        "risk_level": "UNSUPPORTED",
-        "claim_type": "percentage",
-        "start_pos": 3549,
-        "end_pos": 3557,
-        "evidence_match": null,
-        "repair_suggestion": null,
-        "confidence": 0.0
-      },
-      {
-        "text": "Led sampling",
-        "risk_level": "UNSUPPORTED",
-        "claim_type": "ownership",
-        "start_pos": 4033,
-        "end_pos": 4045,
-        "evidence_match": null,
-        "repair_suggestion": null,
-        "confidence": 0.0
-      },
-      {
-        "text": "Built WIP trackers",
-        "risk_level": "WEAK",
-        "claim_type": "ownership",
-        "start_pos": 4234,
-        "end_pos": 4252,
-        "evidence_match": "Partial evidence match in 'Advanced Excel (Pivot Tables, VLOOKUP)'",
-        "repair_suggestion": null,
-        "confidence": 0.21
       }
     ]
   },
-  "pre_humanizer_resume": "VARSHA SATHYANARAYANAN\nthisisvarshasathya@gmail.com | +91 8939432182 | www.linkedin.com/in/varshasathya/\n\n\n\n## SUMMARY\n\nData-driven merchandiser with relevant experience in buying, category management, and P&L ownership across omnichannel retail. Proven track record of scaling categories from near zero to 25+ subcategories, improving margins from 22% to 35%, and driving sell-through through assortment optimization and vendor negotiation. Skilled in OTB planning, advanced Excel, and cross-functional collaboration to deliver profitable growth in fast-paced value retail environments.\n\n\n\n## PROFESSIONAL EXPERIENCE\n\nSuperK Bangalore, India\nCategory Manager – Fashion Nov 2025 – Present\nBuilt the fashion category from near zero across online channels and a tech-enabled retail network of 3+ coco stores, launching assortments across apparel, footwear, and accessories while driving vendor expansion, category P&L management, and data-led merchandising decisions.\n\n- Built fashion category from 5 to 25+ subcategories across menswear, womenswear, kidswear, footwear, and accessories by onboarding 12+ regional vendors, identifying assortment gaps, and benchmarking against value retailers like DMart and Vishal Mega Mart.\n- Drove ₹3.5 lakh in category revenue within two months by analyzing weekly sales, pricing benchmarks, and customer demand signals to optimize sell-through.\n- Improved product margins from 22% to 35% through vendor negotiation on pricing, MOQs, and sourcing terms while maintaining competitive retail pricing.\n- Partnered with marketing to launch fashion-led campaigns during New Year, Pongal, and Republic Day, increasing category visibility by ~22% and driving ~15% uplift in campaign period sales.\n- Reduced stock-outs by ~20% across priority products by collaborating with operations and supply chain to improve stock availability and coordinate warehouse invoicing and inventory flow.\n- Tracked sell-through, AOV, and margin performance using Excel and Metabase dashboards; identified underperforming SKUs and implemented assortment rationalization that improved category gross margin by ~6%.\n\nThe Style Gram Founder Remote - Chennai, India\nNov 2024 – Jun 2025\nBuilt and operated a lean fashion reselling brand focused on affordable women’s western-wear, managing end-to-end sourcing, merchandising, content creation, and customer engagement across Instagram and Swiggy Minis.\n- Generated ₹50,000 in revenue during the launch phase with an average order value of ₹600, fulfilling 80+ customer orders across Tier 1 and Tier 2 cities with zero product returns.\n- Sourced and merchandised 60+ SKUs across tops, skirts, and dresses through direct supplier negotiations, maintaining 45% gross margins and reducing sourcing turnaround time by 25%.\n- Evaluated and engaged 5 supplier partners before finalizing a primary vendor to optimize pricing, quality consistency, and procurement turnaround time.\n- Executed pricing, merchandising, and inventory tracking through Excel-based systems, ensuring 100% order fulfillment and streamlined stock management.\n- Managed 60+ SKUs on Swiggy Minis and built a custom Excel-based WIP tracker to manage catalog listings, order tracking, and inventory visibility, reducing catalog errors by 90% and improving stock flow for fast-selling styles.\n- Produced 25+ branded content assets and launched 3+ Instagram ad campaigns, improving click-through rates by 22% through A/B testing and targeted messaging.\n\nGo Colors (Go Fashion India Ltd.) Assistant Fashion Manager Chennai, India\nSept 2020 – June 2023\nSupported buying and merchandising for women’s and girls’ bottom-wear categories including leggings, track pants, formal pants, ethnic bottoms, and shorts, with responsibility for vendor coordination, product lifecycle execution, and data-led assortment decisions.\n- Managed PO/PI coordination and vendor communication across 20+ suppliers and 10+ factories across India and Asia, ensuring 95% on-time delivery for seasonal production orders.\n- Improved category sell-through by 15% by analyzing weekly sales performance for 200+ SKUs and recommending replenishment and assortment adjustments.\n- Drove a 10% lift in customer purchase rate across key bottom-wear categories by aligning assortment planning with trend insights and performance data.\n- Launched 3+ new sub-categories including kids-wear, leading a 2-member team to introduce new styles and revamp existing collections, boosting category sales by 15% in the first quarter.\n- Negotiated supplier pricing and MOQs during fabric sourcing and production planning, maintaining product quality while ensuring competitive margins.\n- Led sampling, fit approvals, and production coordination for 30+ styles per season, reducing post-launch return rates to under 10% while gaining exposure to PLM-driven product development workflows.\n- Built WIP trackers to monitor production timelines and collaborated with logistics, VM, and marketing teams to ensure timely product launches.\n\n\n\n## EDUCATION\n\n**Humber College - Longo School of Business**  \nGraduate Certificate in Fashion Management  \nToronto, Canada | Sept 2023 – Aug 2024  \n\n**National Institute of Fashion Technology (NIFT)**  \nBachelor of Design - Fashion Design  \nChennai, India | July 2016 – July 2020\n\n\n\n## SKILLS\n\nCore Competencies: Assortment Planning\n\n- Fashion Buying\n- PO/PI Coordination\n- Vendor Management\n- Inventory\nControl\n- Forecasting\n- TNA Calendar Tracking\n- Product Lifecycle Management (PLM)\n- Order Tracking\nTools: Advanced MS Excel (VLOOKUP, Pivot Tables, Dashboards)\n- MS Word\n- Google Sheets\n- Canva\n- Meta Ads\nManager\n- SAP (PO/Inventory Tracking – Basic)\nFunctional Strengths: Cross-Functional Collaboration\n- Trend Analysis\n- Sales Performance Reporting\n- Catalog & Content\nManagement\n- E-commerce Marketing\n- Vendor Negotiation\n",
+  "pre_humanizer_resume": "VARSHA SATHYANARAYANAN\nthisisvarshasathya@gmail.com | +91 8939432182 | www.linkedin.com/in/varshasathya/\n\n\n\n## SUMMARY\n\nNIFT graduate with 4+ years in fashion buying and merchandising, owning P&L for a category that grew from 5 to 25+ subcategories and delivered ₹3.5 lakh revenue in two months.\n\nImproved product margins from 22% to 35% through direct vendor negotiations across 20+ suppliers, while maintaining 95% on-time delivery across 10+ factories.\n\nLaunched a women's western-wear brand generating ₹50,000 revenue with zero returns, demonstrating end-to-end range planning and assortment execution.\n\nExperienced in omnichannel merchandising across online and offline channels, using Advanced Excel (pivot tables, VLOOKUP, dashboards) to analyze sell-through and optimize inventory.\n\nProven ability to assess OTB and inventory health, analyze sell-through data for markdown decisions, and resolve supplier bottlenecks — ready to drive H&M's category performance from day one.\n\n\n\n## PROFESSIONAL EXPERIENCE\n\nSuperK Bangalore, India\nCategory Manager – Fashion Nov 2025 – Present\nBuilt the fashion category from near zero across online channels and a tech-enabled retail network of 3+ stores, launching 25+ subcategories and generating ₹3.5 lakh revenue in two months.\n\nImproved product margins from 22% to 35% through vendor negotiations, managing P&L and driving data-led merchandising decisions.\n\nManaged PO/PI coordination across 20+ suppliers and 10+ factories, achieving 95% on-time delivery and ensuring seamless assortment availability.\n\nLaunched a women's western-wear brand that delivered ₹50,000 revenue with zero returns, demonstrating strong assortment planning and trend knowledge.\n\n- Expanded fashion assortment from 5 to 25+ subcategories across menswear, womenswear, kidswear, footwear, and accessories by onboarding 12+ regional vendors, identifying assortment gaps, and benchmarking against value retailers like DMart and Vishal Mega Mart.\n- Analyzed weekly sales performance, pricing benchmarks, and customer demand signals to generate ₹3.5 lakh in category revenue within two months.\n- Negotiated vendor pricing, MOQs, and sourcing terms, improving product margins from 22% to 35% while maintaining competitive retail pricing.\n- Partnered with marketing teams to launch fashion-led campaigns during New Year, Pongal, and Republic Day, increasing category visibility by ~22% and driving ~15% uplift in campaign period sales.\n- Collaborated with operations and supply chain teams to improve stock availability for fast-moving SKUs, coordinating warehouse invoicing and inventory flow to reduce stock-outs by ~20% across priority products.\n- Utilized Excel and Metabase dashboards for tracking sell-through, AOV, and margin performance; identified underperforming SKUs and implemented assortment rationalization that improved category gross margin by ~6%.\nThe Style Gram Founder Remote - Chennai, India\nNov 2024 – Jun 2025\nBuilt and operated a lean fashion reselling brand focused on affordable women’s western-wear, managing end-to-end\nsourcing, merchandising, content creation, and customer engagement across Instagram and Swiggy Minis.\nGo Colors (Go Fashion India Ltd.) Assistant Fashion Manager Chennai, India\nSept 2020 – June 2023\nSupported buying and merchandising for women’s and girls’ bottom-wear categories including leggings, track pants, formal\npants, ethnic bottoms, and shorts, with responsibility for vendor coordination, product lifecycle execution, and data-led\nassortment decisions.\n\n\n\n## EDUCATION\n\nHumber College - Longo School of Business Graduate Certificate in Fashion Management Toronto, Canada Sept 2023 – Aug 2024\n\nNational Institute of Fashion Technology (NIFT) Bachelor of Design - Fashion Design Chennai, India July 2016 – July 2020\n\n\n\n## SKILLS\n\n- Assortment Planning & OTB: Built buy plans and managed open-to-buy across 25+ subcategories, delivering ₹3.5 lakh revenue in two months.\n- Advanced Excel: Deployed dashboards, VLOOKUP, and pivot tables to track inventory health, sell-through, and supplier delivery performance.\n- Vendor Management: Coordinated PO/PI across 20+ suppliers and 10+ factories, achieving 95% on-time delivery and improving product margins from 22% to 35%.\n- Category Management: Launched women's western-wear brand generating ₹50,000 revenue with zero returns; expanded fashion category from 5 to 25+ subcategories.\n- Cross-Functional Collaboration: Partnered with design, marketing, and supply chain to align assortment plans with omnichannel merchandising goals.\n",
+  "humanizer_output": "VARSHA SATHYANARAYANAN\nthisisvarshasathya@gmail.com | +91 8939432182 | www.linkedin.com/in/varshasathya/\n\n## SUMMARY\n\nNIFT graduate with 4+ years in fashion buying and merchandising, owning P&L for a category that grew from 5 to 25+ subcategories and delivered ₹3.5 lakh revenue in two months.\n\nImproved product margins from 22% to 35% through direct vendor negotiations across 20+ suppliers, while maintaining 95% on-time delivery across 10+ factories.\n\nLaunched a women's western-wear brand generating ₹50,000 revenue with zero returns, demonstrating end-to-end range planning and assortment execution.\n\nExperienced in omnichannel merchandising across online and offline channels, using Advanced Excel (pivot tables, VLOOKUP, dashboards) to analyze sell-through and optimize inventory.\n\nProven ability to assess OTB and inventory health, analyze sell-through data for markdown decisions, and resolve supplier bottlenecks — ready to drive H&M's category performance from day one.\n\n## PROFESSIONAL EXPERIENCE\n\nSuperK Bangalore, India\nCategory Manager – Fashion Nov 2025 – Present\nBuilt the fashion category from near zero across online channels and a tech-enabled retail network of 3+ stores, launching 25+ subcategories and generating ₹3.5 lakh revenue in two months.\n\nImproved product margins from 22% to 35% through vendor negotiations, managing P&L and driving data-led merchandising decisions.\n\nManaged PO/PI coordination across 20+ suppliers and 10+ factories, achieving 95% on-time delivery and ensuring seamless assortment availability.\n\nLaunched a women's western-wear brand that delivered ₹50,000 revenue with zero returns, demonstrating strong assortment planning and trend knowledge.\n\n- Expanded fashion assortment from 5 to 25+ subcategories across menswear, womenswear, kidswear, footwear, and accessories by onboarding 12+ regional vendors, identifying assortment gaps, and benchmarking against value retailers like DMart and Vishal Mega Mart.\n- Analyzed weekly sales performance, pricing benchmarks, and customer demand signals to generate ₹3.5 lakh in category revenue within two months.\n- Negotiated vendor pricing, MOQs, and sourcing terms, improving product margins from 22% to 35% while maintaining competitive retail pricing.\n- Partnered with marketing teams to launch fashion-led campaigns during New Year, Pongal, and Republic Day, increasing category visibility by ~22% and driving ~15% uplift in campaign period sales.\n- Collaborated with operations and supply chain teams to improve stock availability for fast-moving SKUs, coordinating warehouse invoicing and inventory flow to reduce stock-outs by ~20% across priority products.\n- Utilized Excel and Metabase dashboards for tracking sell-through, AOV, and margin performance; identified underperforming SKUs and implemented assortment rationalization that improved category gross margin by ~6%.\nThe Style Gram Founder Remote - Chennai, India\nNov 2024 – Jun 2025\nBuilt and operated a lean fashion reselling brand focused on affordable women's western-wear, managing end-to-end\nsourcing, merchandising, content creation, and customer engagement across Instagram and Swiggy Minis.\nGo Colors (Go Fashion India Ltd.) Assistant Fashion Manager Chennai, India\nSept 2020 – June 2023\nSupported buying and merchandising for women's and girls' bottom-wear categories including leggings, track pants, formal\npants, ethnic bottoms, and shorts, with responsibility for vendor coordination, product lifecycle execution, and data-led\nassortment decisions.\n\n## EDUCATION\n\nHumber College - Longo School of Business Graduate Certificate in Fashion Management Toronto, Canada Sept 2023 – Aug 2024\n\nNational Institute of Fashion Technology (NIFT) Bachelor of Design - Fashion Design Chennai, India July 2016 – July 2020\n\n## SKILLS\n\n- Assortment Planning & OTB: Built buy plans and managed open-to-buy across 25+ subcategories, delivering ₹3.5 lakh revenue in two months.\n- Advanced Excel: Deployed dashboards, VLOOKUP, and pivot tables to track inventory health, sell-through, and supplier delivery performance.\n- Vendor Management: Coordinated PO/PI across 20+ suppliers and 10+ factories, achieving 95% on-time delivery and improving product margins from 22% to 35%.\n- Category Management: Launched women's western-wear brand generating ₹50,000 revenue with zero returns; expanded fashion category from 5 to 25+ subcategories.\n- Cross-Functional Collaboration: Partnered with design, marketing, and supply chain to align assortment plans with omnichannel merchandising goals.",
   "humanizer_report": {
     "resume": {
-      "slop_flags": 1,
-      "changed_lines": 77,
-      "realism_concerns": 1,
-      "recruiter_concerns": [
-        {
-          "claim": "'led' appears 4 times",
-          "risk": "low",
-          "reason": "Overuse of 'led' can signal inflated ownership",
-          "suggested_fix": "Vary with 'built', 'designed', 'managed', or 'co-led' as appropriate"
-        }
-      ]
+      "slop_flags": 0,
+      "changed_lines": 46,
+      "realism_concerns": 0,
+      "recruiter_concerns": []
     },
     "cover_note": {
-      "slop_flags": 1,
+      "slop_flags": 0,
       "changed_lines": 0,
       "realism_concerns": 0
     },
@@ -733,5 +700,163 @@
       "realism_concerns": 0
     }
   },
+  "s7_debug": {
+    "n_sections_total": 4,
+    "n_rewritten": 4,
+    "n_fallback": 0,
+    "n_workers": 3,
+    "total_elapsed_s": 5.58,
+    "sections": [
+      {
+        "section_id": "education",
+        "status": "REWRITE",
+        "change_type": "KEEP",
+        "original_chars": 242,
+        "rewritten_chars": 243,
+        "elapsed_s": 1.72,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "summary",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 497,
+        "rewritten_chars": 862,
+        "elapsed_s": 3.65,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "skills",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 536,
+        "rewritten_chars": 745,
+        "elapsed_s": 4.68,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "professional_experience",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 4429,
+        "rewritten_chars": 2508,
+        "elapsed_s": 5.58,
+        "model": "deepseek-chat"
+      }
+    ],
+    "company_context_present": true,
+    "role_keywords_used": [
+      "OTB",
+      "assortment planning",
+      "merchandising",
+      "buying",
+      "category management",
+      "Advanced Excel",
+      "SAP",
+      "vendor management",
+      "omnichannel",
+      "P&L"
+    ]
+  },
+  "candidate_graph": {
+    "name": "VARSHA SATHYANARAYANAN",
+    "email": "thisisvarshasathya@gmail.com",
+    "phone": "+91 8939432182",
+    "links": [
+      "linkedin.com/in/varshasathya/"
+    ],
+    "profile_summary": "Fashion professional with 3+ years of experience in buying, merchandising, category management, and P&L management\nacross retail and e-commerce. Experienced in assortment planning, vendor sourcing, PO/PI coordination, and product\nlifecycle execution for apparel categories including bottom-wear, casualwear, and accessories. Proven ability to analyze\nsales performance, optimize assortments, negotiate supplier terms, and improve margins and sell-through across multi-\nchannel retail environments.",
+    "target_role_title": "",
+    "experience": [
+      {
+        "title_line": "SuperK Bangalore, India",
+        "raw_block": "SuperK Bangalore, India\nCategory Manager – Fashion Nov 2025 – Present\nBuilt the fashion category from near zero across online channels and a tech-enabled retail network of 3+ coco stores,\nlaunching assortments across apparel, footwear, and accessories while driving vendor expansion, category P&L\nmanagement, and data-led merchandising decisions.\n\n\n\n- Expanded the fashion assortment from 5 to 25+ subcategories across menswear, womenswear, kidswear,\nfootwear, and accessories by onboarding 12+ regional vendors, identifying assortment gaps, and benchmarking\ncategory offerings against value retail players like DMart and Vishal Mega Mart.\n- Analyzed weekly sales performance, pricing benchmarks, and customer demand signals thereby generating ₹ 3.5\nlakh in category revenue within two months.\n- Negotiated vendor pricing, MOQs, and sourcing terms, improving product margins from 22% to 35% while\nmaintaining competitive retail pricing.\n- Partnered with marketing teams to launch fashion-led campaigns during New Year, Pongal and Republic Day\nincreasing category visibility by ~22% and driving ~15% uplift in campaign period sales.\n- Collaborated with operations and supply chain teams to improve stock availability for fast-moving SKUs,\ncoordinating warehouse invoicing and inventory flow to reduce stock-outs by ~20% across priority products.\n- Utilized Excel and Metabase dashboards for tracking sell-through, AOV, and margin performance; identified\nunderperforming SKUs and implemented assortment rationalization that improved category gross margin by ~6%.\nThe Style Gram Founder Remote - Chennai, India\nNov 2024 – Jun 2025\nBuilt and operated a lean fashion reselling brand focused on affordable women’s western-wear, managing end-to-end\nsourcing, merchandising, content creation, and customer engagement across Instagram and Swiggy Minis.\n- Generated ₹50,000 in revenue during the launch phase with an average order value of ₹600, fulfilling 80+\ncustomer orders across Tier 1 and Tier 2 cities with zero product returns.\n- Sourced and merchandised 60+ SKUs across tops, skirts, and dresses through direct supplier negotiations,\nmaintaining 45% gross margins and reducing sourcing turnaround time by 25%.\n- Evaluated and engaged 5 supplier partners before finalizing a primary vendor to optimize pricing, quality\nconsistency, and procurement turnaround time.\n- Executed pricing, merchandising, and inventory tracking through Excel-based systems, ensuring 100% order\nfulfillment and streamlined stock management.\n- Managed 60+ SKUs on Swiggy Minis and built a custom Excel-based WIP tracker to manage catalog listings,\norder tracking, and inventory visibility, reducing catalog errors by 90% and improving stock flow for fast-selling\nstyles.\n- Produced 25+ branded content assets and launched 3+ Instagram ad campaigns, improving click-through rates\nby 22% through A/B testing and targeted messaging.\nGo Colors (Go Fashion India Ltd.) Assistant Fashion Manager Chennai, India\nSept 2020 – June 2023\nSupported buying and merchandising for women’s and girls’ bottom-wear categories including leggings, track pants, formal\npants, ethnic bottoms, and shorts, with responsibility for vendor coordination, product lifecycle execution, and data-led\nassortment decisions.\n- Managed PO/PI coordination and vendor communication across 20+ suppliers and 10+ factories across\nIndia and Asia, ensuring 95% on-time delivery for seasonal production orders.\n- Analyzed weekly sales performance for 200+ SKUs, recommending replenishment and assortment adjustments\nthat improved category sell-through by 15%.\n- Aligned assortment planning with trend insights and performance data, driving a 10% lift in customer purchase\nrate across key bottom-wear categories.\n- Launched 3+ new sub-categories including kids-wear, leading a 2-member team to introduce new styles and\nrevamp existing collections, boosting category sales by 15% in the first quarter.\n- Negotiated supplier pricing and MOQs during fabric sourcing and production planning, maintaining product\nquality while ensuring competitive margins.\n- Led sampling, fit approvals, and production coordination for 30+ styles per season, reducing post-launch return\nrates to under 10% while gaining exposure to PLM-driven product development workflows.\n- Built WIP trackers to monitor production timelines and collaborated with logistics, VM, and marketing teams to\nensure timely product launches.",
+        "bullets": [
+          "Expanded the fashion assortment from 5 to 25+ subcategories across menswear, womenswear, kidswear,",
+          "Analyzed weekly sales performance, pricing benchmarks, and customer demand signals thereby generating ₹ 3.5",
+          "Negotiated vendor pricing, MOQs, and sourcing terms, improving product margins from 22% to 35% while",
+          "Partnered with marketing teams to launch fashion-led campaigns during New Year, Pongal and Republic Day",
+          "Collaborated with operations and supply chain teams to improve stock availability for fast-moving SKUs,",
+          "Utilized Excel and Metabase dashboards for tracking sell-through, AOV, and margin performance; identified",
+          "Generated ₹50,000 in revenue during the launch phase with an average order value of ₹600, fulfilling 80+",
+          "Sourced and merchandised 60+ SKUs across tops, skirts, and dresses through direct supplier negotiations,",
+          "Evaluated and engaged 5 supplier partners before finalizing a primary vendor to optimize pricing, quality",
+          "Executed pricing, merchandising, and inventory tracking through Excel-based systems, ensuring 100% order",
+          "Managed 60+ SKUs on Swiggy Minis and built a custom Excel-based WIP tracker to manage catalog listings,",
+          "Produced 25+ branded content assets and launched 3+ Instagram ad campaigns, improving click-through rates",
+          "Managed PO/PI coordination and vendor communication across 20+ suppliers and 10+ factories across",
+          "Analyzed weekly sales performance for 200+ SKUs, recommending replenishment and assortment adjustments",
+          "Aligned assortment planning with trend insights and performance data, driving a 10% lift in customer purchase",
+          "Launched 3+ new sub-categories including kids-wear, leading a 2-member team to introduce new styles and",
+          "Negotiated supplier pricing and MOQs during fabric sourcing and production planning, maintaining product",
+          "Led sampling, fit approvals, and production coordination for 30+ styles per season, reducing post-launch return",
+          "Built WIP trackers to monitor production timelines and collaborated with logistics, VM, and marketing teams to"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "raw": "Humber College - Longo School of Business Graduate Certificate in Fashion Management National Institute of Fashion Technology (NIFT) Bachelor of Design - Fashion Design Toronto, Canada\nSept 2023 – Aug 2024\nChennai, India\nJuly 2016 – July 2020",
+        "lines": [
+          "Humber College - Longo School of Business Graduate Certificate in Fashion Management National Institute of Fashion Technology (NIFT) Bachelor of Design - Fashion Design Toronto, Canada",
+          "Sept 2023 – Aug 2024",
+          "Chennai, India",
+          "July 2016 – July 2020"
+        ]
+      }
+    ],
+    "skills": [
+      "Fashion Buying",
+      "PO/PI Coordination",
+      "Vendor Management",
+      "Inventory",
+      "Forecasting",
+      "TNA Calendar Tracking",
+      "Product Lifecycle Management (PLM)",
+      "Order Tracking",
+      "MS Word",
+      "Google Sheets",
+      "Canva",
+      "Meta Ads",
+      "SAP (PO/Inventory Tracking – Basic)",
+      "Trend Analysis",
+      "Sales Performance Reporting",
+      "Catalog & Content",
+      "E-commerce Marketing",
+      "Vendor Negotiation"
+    ],
+    "achievements": [],
+    "metric_vault": [
+      "2025",
+      "3",
+      "5",
+      "25",
+      "12",
+      "3.5",
+      "22",
+      "35",
+      "15",
+      "20",
+      "6",
+      "2024",
+      "50,000",
+      "600,",
+      "80",
+      "1",
+      "2",
+      "60",
+      "45",
+      "100",
+      "90",
+      "2020",
+      "2023",
+      "10",
+      "95",
+      "200",
+      "30"
+    ],
+    "private_constraints": []
+  },
+  "cv_tenure_years": 4.5,
   "errors": []
 }

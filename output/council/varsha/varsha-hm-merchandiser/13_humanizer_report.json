@@ -1,19 +1,12 @@
 {
   "resume": {
-    "slop_flags": 1,
-    "changed_lines": 77,
-    "realism_concerns": 1,
-    "recruiter_concerns": [
-      {
-        "claim": "'led' appears 4 times",
-        "risk": "low",
-        "reason": "Overuse of 'led' can signal inflated ownership",
-        "suggested_fix": "Vary with 'built', 'designed', 'managed', or 'co-led' as appropriate"
-      }
-    ]
+    "slop_flags": 0,
+    "changed_lines": 46,
+    "realism_concerns": 0,
+    "recruiter_concerns": []
   },
   "cover_note": {
-    "slop_flags": 1,
+    "slop_flags": 0,
     "changed_lines": 0,
     "realism_concerns": 0
   },

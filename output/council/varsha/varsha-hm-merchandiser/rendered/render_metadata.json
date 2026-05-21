@@ -9,7 +9,7 @@
   "templates": [
     {
       "template": "classic-ats",
-      "pages": "3",
+      "pages": "2",
       "html": "/Users/siddharthsaminathan/Projects/CareerLoop/output/council/varsha/varsha-hm-merchandiser/rendered/classic-ats.html",
       "pdf": "/Users/siddharthsaminathan/Projects/CareerLoop/output/council/varsha/varsha-hm-merchandiser/rendered/classic-ats.pdf",
       "pdf_status": "ok"
@@ -37,7 +37,7 @@
     },
     {
       "template": "technical-two-column",
-      "pages": "3",
+      "pages": "2",
       "html": "/Users/siddharthsaminathan/Projects/CareerLoop/output/council/varsha/varsha-hm-merchandiser/rendered/technical-two-column.html",
       "pdf": "/Users/siddharthsaminathan/Projects/CareerLoop/output/council/varsha/varsha-hm-merchandiser/rendered/technical-two-column.pdf",
       "pdf_status": "ok"

@@ -517,3 +517,87 @@ This is the real long-term moat. Not scraped job counts. **Career transition con
 | Warm referral path | P2 | Not started |
 | Cold outreach path | P2 | Not started |
 | People graph persistence | P3 | Not started |
+
+---
+
+## 20. ROI & UX Architecture (Addendum — 2026-05-21)
+
+> This section references the full ROI/UX Product Vision document at `docs/product/ROI_UX_PRODUCT_VISION.md`. That document is the canonical source for the product's ROI thesis, UX philosophy, metric hierarchy, and competitive landscape. This section summarizes the key architectural decisions that flow from it.
+
+### Core Principle
+
+**Intelligence is the product. Automation is the UX.**
+
+CareerLoop's ROI is measured as: how much uncertainty, time, repetition, and missed opportunity it removes from a user's career transition. Every feature must justify itself against that measure.
+
+### ROI Formula
+
+The core ROI of CareerLoop is:
+
+```
+ROI = (time saved × decision quality improvement) ÷ (cognitive load + application friction)
+```
+
+The system wins when the numerator grows and the denominator shrinks. This drives all prioritization.
+
+### The 12 Product Workflows
+
+The ROI/UX Vision maps 12 end-to-end workflows, each with a user pain point and a measurable ROI delta:
+
+| # | Workflow | User Pain | ROI Metric |
+|---|----------|-----------|------------|
+| 1 | Market Scan | Manual job search across 7+ platforms | Time saved per search session |
+| 2 | Job Quality Filtering | Fake/stale/irrelevant postings | Signal-to-noise ratio |
+| 3 | Decision Compression | Choice paralysis from 500+ results | Decisions per session |
+| 4 | Application Pack Creation | Manual resume tailoring per job | Packs generated per session |
+| 5 | Humanizer Layer | Generic AI-slop language hurting credibility | Human-reader acceptance rate |
+| 6 | Company Intelligence | Uninformed applications to bad-fit companies | Informed decision rate |
+| 7 | Chrome Extension / Application Assist | Re-typing same info across ATS forms | Fields auto-filled per app |
+| 8 | Follow-Up Intelligence | Forgetting to follow up, missing timing windows | Follow-up conversion rate |
+| 9 | Gmail Career Memory | Losing context across recruiter email threads | Context retention across threads |
+| 10 | Interview Prep | Unprepared, generic answers | Interview-to-offer conversion |
+| 11 | Interview Post-Mortem / Venting | No structured learning from rejections | Learning captured per rejection |
+| 12 | Salary / Notice Period / Negotiation | Leaving money on the table, bad notice-period timing | Comp uplift from baseline |
+
+### The Four Entry Points
+
+CareerLoop serves four distinct user states, each with different ROI expectations:
+
+| Entry Point | State | Primary ROI Need |
+|-------------|-------|------------------|
+| A. Student / Fresher | No experience, no network | Discovery + positioning + confidence |
+| B. Graduate Applying Without Results | Applying blindly, no feedback loop | Decision compression + feedback + iteration |
+| C. Working Switcher | Employed, seeking upgrade | High-signal filtering + negotiation leverage |
+| D. Notice-Period Warrior | Clock ticking, high pressure | Velocity + accountability + opportunity cost minimization |
+
+### Metrics Hierarchy
+
+The ROI/UX Vision defines a 3-tier metrics hierarchy:
+
+1. **North Star Metric:** Career transition conversion rate (how many users land roles they're happy with)
+2. **Leading Indicators:** Application-to-interview rate, interview-to-offer rate, time-to-first-interview, pack quality scores
+3. **Operational Metrics:** Daily active sessions, packs generated, companies researched, follow-ups sent
+
+### Over-Engineering Guard
+
+The ROI/UX Vision includes a built-in anti-bloat rule: **no feature ships without a measurable ROI line item.** If a proposed feature cannot answer "what user pain does this remove and how do we measure that?", it is deferred. This is the primary defense against scope creep and feature factories.
+
+### Brutal Prioritization (from ROI/UX Vision)
+
+All features rank on a 2×2 matrix: **User ROI Impact × Engineering Complexity**. Low-complexity, high-ROI items ship first. High-complexity, low-ROI items are killed. This is enforced at every product review session.
+
+### UX Architecture Principle
+
+CareerLoop is not a dashboard. It is a command center. The UX must feel like:
+
+> "Tell me what to do next. I'll do it. Then tell me what just happened and what to do after that."
+
+This means: minimal UI chrome, maximum action density, conversational interface with structured outputs, zero-config onboarding, progressive disclosure of complexity.
+
+### Reference Document
+
+The complete ROI thesis, 12-workflow deep-dives, competitor map, monetization strategy, and rollout phasing live at:
+
+**→ `docs/product/ROI_UX_PRODUCT_VISION.md`**
+
+All engineering and agent work must align to both this PRD (what we build) and the ROI/UX Vision (why we build it, and how we measure success).

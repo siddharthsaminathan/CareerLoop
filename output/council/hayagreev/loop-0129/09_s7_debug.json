@@ -1,0 +1,49 @@
+{
+  "n_sections_total": 3,
+  "n_rewritten": 3,
+  "n_fallback": 0,
+  "n_workers": 3,
+  "total_elapsed_s": 6.82,
+  "sections": [
+    {
+      "section_id": "education",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 1146,
+      "rewritten_chars": 631,
+      "elapsed_s": 2.55,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "skills",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 484,
+      "rewritten_chars": 609,
+      "elapsed_s": 3.22,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "experience",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 3531,
+      "rewritten_chars": 3354,
+      "elapsed_s": 6.81,
+      "model": "deepseek-chat"
+    }
+  ],
+  "company_context_present": true,
+  "role_keywords_used": [
+    "LangChain",
+    "CrewAI",
+    "AutoGen",
+    "multi-agent",
+    "LLM",
+    "RAG",
+    "fine-tuning",
+    "Docker",
+    "Kubernetes",
+    "CI/CD"
+  ]
+}
