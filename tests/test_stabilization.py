@@ -26,6 +26,7 @@ sys.path.insert(0, str(ROOT))
 import pytest
 
 from careerloop.council.schemas import validate_payload, schema_instruction, NODE_SCHEMAS
+from careerloop.council.graph import _payload_to_rewritten_text
 from careerloop.council.company_research import CompanyResearchAdapter, quality_score
 from careerloop.council.compiler import ResumeCompiler
 from careerloop.council.humanizer import Humanizer
@@ -187,6 +188,28 @@ class TestSchemaValidation:
         assert any("confidence" in e for e in r.errors)
 
 
+class TestS7StructuredRewriteContract:
+    def test_tailored_bullets_compile_to_markdown_bullets(self):
+        payload = {
+            "tailored_bullets": ["Shipped the system.", "- Reduced latency."],
+        }
+        original = "- Built the system.\n- Improved speed."
+        text = _payload_to_rewritten_text(payload, original, "experience")
+        assert text == "- Shipped the system.\n- Reduced latency."
+
+    def test_profile_tailored_bullet_compiles_to_paragraph(self):
+        payload = {"tailored_bullets": ["AI product engineer with production LLM systems experience."]}
+        text = _payload_to_rewritten_text(payload, "Old profile paragraph.", "profile")
+        assert text == "AI product engineer with production LLM systems experience."
+
+    def test_legacy_rewritten_text_still_supported(self):
+        payload = {
+            "rewritten_text": "Legacy rewritten markdown",
+            "tailored_bullets": ["Should not win"],
+        }
+        assert _payload_to_rewritten_text(payload, "- Original", "experience") == "Legacy rewritten markdown"
+
+
 # ─── Normalizer bullet preservation tests ─────────────────────────────────────
 
 class TestNormalizerBulletPreservation:
@@ -234,6 +257,53 @@ Role Jan 2024 - Present
         ).lower()
         assert "target role" not in all_text, "Target Roles leaked into normalized output"
         assert "deal-breaker" not in all_text, "Deal-breakers leaked into normalized output"
+
+    def test_achievement_thematic_break_is_not_parsed_as_bullet(self):
+        resume = normalize("""\
+## Test Candidate
+
+## Achievements
+- Shipped one real thing.
+
+---
+""")
+        assert resume.achievements == ["Shipped one real thing."]
+
+    def test_experience_thematic_break_is_not_appended_to_last_bullet(self):
+        resume = normalize("""\
+## Test Candidate
+
+## Work Experience
+
+## Data Analyst — TestCo
+
+- Built dashboards.
+
+---
+
+## Skills
+Python
+""")
+        assert resume.experience[0].bullets == ["Built dashboards."]
+
+    def test_education_detail_bullets_stay_inside_degree(self):
+        resume = normalize("""\
+## Test Candidate
+
+## Education
+
+**M.Sc. Statistics and Machine Learning** — Linköping University, Sweden · 2020-2022
+
+- Thesis: Built an ML pipeline.
+- Applied PCA for modeling.
+
+**B.Tech Computer Science & Engineering** — SRM University, India · 2016-2020
+""")
+        assert len(resume.education) == 2
+        assert resume.education[0].degree == "M.Sc. Statistics and Machine Learning"
+        assert resume.education[0].dates == "2020-2022"
+        assert "Thesis: Built an ML pipeline." in resume.education[0].details
+        assert "Applied PCA for modeling." in resume.education[0].details
 
     @pytest.mark.skipif(not SIDDHARTH_MD, reason="cv.md not present")
     def test_siddharth_cv_md_bullet_counts(self):

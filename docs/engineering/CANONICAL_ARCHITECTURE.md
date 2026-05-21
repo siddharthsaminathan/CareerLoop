@@ -1,7 +1,7 @@
 # CareerLoop — Canonical Architecture v1.0
 
 **Status:** FINAL — all architecture decisions locked  
-**Date:** 2026-05-18  
+**Date:** 2026-05-21  
 **Supersedes:** All prior architecture documents  
 **Based on:** PRD.md v1.0 + CAREERLOOP_REUSE_AUDIT.md + CAREERLOOP_COUNCIL_AUDIT.md
 
@@ -57,8 +57,8 @@ No independent CV generator. Council owns all content generation. Renderer owns 
 | Profile Manager | `careerloop/profile_manager.py` | 50% |
 | Resume Council | `careerloop/council/` (8 files) | 40% |
 | Memory Layer | `careerloop/memory/` (4 files) | 10% |
-| Company Intelligence | `careerloop/company_intel.py` (future) | 0% |
-| Humanizer | `careerloop/council/humanizer.py` (future) | 0% |
+| Company Intelligence | `careerloop/company_intel.py` | 75% ✅ LIVE — MECE D1-D5 vectors, LinkedIn PortalScraper, Glassdoor ScrapeGraph, DDG web enrichment |
+| Humanizer | `careerloop/council/humanizer.py` | 65% ✅ LIVE — 5-phase pipeline, 29 regression tests, aggressive rewrite prompt |
 | Product Lead Skill | `.claude/skills/careerloop-product-lead/` | 100% |
 
 ### Inherited from Career-Ops (kept, maintained here)
@@ -316,7 +316,7 @@ ACTIVE STATES:    All non-terminal, non-dormant
 │   ├── audit.py                          ✅ Pipeline health
 │   ├── shortlist_formatter.py            ✅ WhatsApp-style output
 │   ├── daily_runner.py                   ✅ Daily pipeline orchestrator
-│   ├── company_intel.py                  🔴 Phase 2 — structured company research
+│   ├── company_intel.py                  ✅ LIVE — 1,419 lines, full MECE implementation
 │   ├── learning.py                       🔴 Phase 2 — pattern analysis (port of analyze-patterns.mjs)
 │   ├── council/                          ✅ Resume Council
 │   │   ├── graph.py                      ✅ LangGraph state machine
@@ -325,7 +325,7 @@ ACTIVE STATES:    All non-terminal, non-dormant
 │   │   ├── models.py                     ✅ Council data contracts
 │   │   ├── context.py                    ✅ Council context loader
 │   │   ├── llm.py                        ✅ DeepSeek client
-│   │   └── humanizer.py                 🔴 P0 — post-processing pass
+│   │   └── humanizer.py                 ✅ LIVE — 5-phase Cope-Killer pipeline
 │   ├── memory/                           ✅ SQLite persistence
 │   │   ├── models.py                     ✅ SQLAlchemy models (6 entities)
 │   │   ├── connection.py                 ✅ SQLite connection
@@ -391,7 +391,7 @@ ACTIVE STATES:    All non-terminal, non-dormant
 |-------|---------|-------------|-----------------|
 | **Phase 1** (Discovery + Pre-filter) | Discovery, Verification, India Fit Engine, Ledger | ~25% | 70% built |
 | **Phase 1.5** (Decision + Memory) | Triage UX, Career State Modes, A-G wrapper, Ledger migration | ~20% | 25% built |
-| **Phase 2** (Intelligence + Positioning) | Company Intel, Humanizer, Council hardening, Positioning engine | ~25% | 15% built |
+| **Phase 2** (Intelligence + Positioning) | Company Intel, Humanizer, Council hardening, Positioning engine | ~25% | 50% built (Company Intel + Humanizer live) |
 | **Phase 3** (Execution) | Application assist, Chrome extension, Follow-up surface, Outreach | ~20% | 5% built |
 | **Phase 4** (Learning Loop) | Interview memory, Pattern learning, Profile auto-tuning, Monetization | ~10% | 2% built |
 

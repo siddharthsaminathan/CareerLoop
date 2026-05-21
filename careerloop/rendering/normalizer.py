@@ -1020,6 +1020,8 @@ def _parse_experience_entry(heading: str, body: str) -> ExperienceEntry:
                 else:
                     # Empty line before bullets starts the bullet section
                     continue
+            if re.fullmatch(r"[-*_]{2,}", stripped):
+                continue
 
             # Check if this is a bullet line
             if re.match(r"^\s*[-*+]\s", stripped):
@@ -1028,6 +1030,8 @@ def _parse_experience_entry(heading: str, body: str) -> ExperienceEntry:
             elif in_bullets:
                 # Continuation of previous bullet (indented or paragraph after bullet)
                 # Append to last bullet or treat as new bullet content
+                if re.fullmatch(r"[-*_]{2,}", stripped):
+                    continue
                 if bullet_lines:
                     bullet_lines[-1] += " " + stripped
                 else:
@@ -1191,8 +1195,12 @@ def _parse_achievements(classified: dict) -> List[str]:
         stripped = line.strip()
         if not stripped:
             continue
+        if re.fullmatch(r"[-*_]{2,}", stripped):
+            continue
         # Strip bullet marker
         cleaned = re.sub(r"^\s*[-*+]\s*", "", stripped)
+        if re.fullmatch(r"[-*_]{2,}", cleaned.strip()):
+            continue
         if cleaned:
             achievements.append(_sanitize_text(cleaned))
 
@@ -1224,10 +1232,21 @@ def _parse_education(classified: dict) -> List[EducationEntry]:
         stripped = line.strip()
         if not stripped:
             continue
+        if re.fullmatch(r"[-*_]{2,}", stripped):
+            continue
 
         # Strip bullet marker
+        is_bullet = bool(re.match(r"^\s*[-*+]\s+", stripped))
         cleaned = re.sub(r"^\s*[-*+]\s*", "", stripped)
         if not cleaned:
+            continue
+        if re.fullmatch(r"[-*_]{2,}", cleaned.strip()):
+            continue
+
+        if is_bullet and entries and not re.search(r"\s+[—\-–]\s+", cleaned):
+            existing = entries[-1].details.strip()
+            addition = _sanitize_text(_strip_markdown_formatting(cleaned))
+            entries[-1].details = f"{existing} {addition}".strip() if existing else addition
             continue
 
         degree, institution, dates, details = _parse_education_line(cleaned)
@@ -1272,6 +1291,10 @@ def _parse_education_line(text: str) -> Tuple[str, str, str, str]:
             institution = _strip_markdown_formatting(rest)
     else:
         degree = _strip_markdown_formatting(text)
+
+    if details and not dates and _contains_date_range(details):
+        dates, details = _extract_date_range(details)
+        details = details.strip(" ·,|-")
 
     return (
         _sanitize_text(degree),

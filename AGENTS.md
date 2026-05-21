@@ -371,13 +371,13 @@ Write one TSV file per evaluation to `batch/tracker-additions/{num}-{company-slu
 <claude-mem-context>
 # Memory Context
 
-# [CareerLoop] recent context, 2026-05-20 1:30pm GMT+5:30
+# [CareerLoop] recent context, 2026-05-20 11:17pm GMT+5:30
 
 Legend: 🎯session 🔴bugfix 🟣feature 🔄refactor ✅change 🔵discovery ⚖️decision 🚨security_alert 🔐security_note
 Format: ID TIME TYPE TITLE
 Fetch details: get_observations([IDs]) | Search: mem-search skill
 
-Stats: 50 obs (21,278t read) | 684,011t work | 97% savings
+Stats: 50 obs (21,322t read) | 1,772,777t work | 99% savings
 
 ### May 18, 2026
 S403 Deploy Nicobar AI Product Engineer showcase HTML to GitHub Pages so animated version is shareable (not raw HTML via Google Drive) (May 18 at 7:53 PM)
@@ -386,32 +386,8 @@ S404 Deploy Nicobar showcase HTML to GitHub Pages — hit UI issue where /public
 S405 Fix GitHub Pages deployment — move showcase from /public to /docs folder so branch source selector works (May 19 at 1:00 AM)
 S406 Deploy Nicobar showcase to GitHub Pages — session wrap-up with all outputs committed (May 19 at 1:01 AM)
 S407 Session wrap-up: codify Nicobar showcase design system into reusable showcase-builder skill (May 19 at 1:04 AM)
-964 1:06a 🟣 showcase-builder skill committed and pushed to CareerLoop repo
 S408 Update showcase-builder skill with final Nicobar HTML as canonical template + 5 named color variants (May 19 at 1:06 AM)
-965 1:59a ⚖️ showcase-builder skill to be updated with final Nicobar template + 5-6 color themes
-966 " 🔵 Final Nicobar HTML uses Playfair Display + DM Sans — different from earlier Cormorant Garamond version
-967 " 🔵 Final Nicobar template has ambient orbs, floating CTA, stagger animations, and richer component patterns
-968 2:00a 🔵 Final Nicobar template — complete component CSS spec extracted
-970 " 🟣 showcase-builder skill overhauled with 5 named color variants and updated design system
-971 " 🔵 Git push blocked by unstaged changes after parallel writes
-972 " 🟣 showcase-builder v2 committed — canonical template + 5 color variants shipped
-969 " ✅ Final Nicobar HTML saved as canonical showcase template
 S409 CareerLoop pipeline E2E fix: tailoring delta P0 fix, validator bug fixes, full pipeline run for nicobar-ai-pm job, and output quality review (May 19 at 2:02 AM)
-973 2:05a ⚖️ Hayagreev Sivakumar showcase page requested — CEO's resume to be built using showcase-builder skill
-974 10:13p 🔴 S4/S5/S6 Model Routing Fixed to Use Strategy Model
-975 " 🔴 S7 Parallel Workers Capped at 3
-976 " 🔵 S7 Structural Validator is the Real Root Cause — 8/10 Sections Blocked
-977 " 🔵 API Key Exposure via CLI Override Instead of .env
-978 10:14p 🔵 Exact S7 Section Failure Breakdown Traced from 07_section_rewrites.json
-980 " ⚖️ LLM Council Decision: Fix All 3 Validator Checks in _rewrite_preserves_section_structure
-981 " ⚖️ Council Synthesis: Use [^\S\n]+ Instead of Removing collapsed_bullet_marker Check Entirely
-979 " 🔵 _preprocess_plaintext_cv Creates the collapsed_bullet_marker Pattern That the Validator Rejects
-982 10:15p ⚖️ Council Member C (Opus) Proposed Per-Line Iteration for collapsed_bullet_marker and Strictest possible_truncation
-983 " ⚖️ Council Reviewer Ranked Response B (Sonnet) as Best Fix for _rewrite_preserves_section_structure
-984 10:17p ⚖️ Reviewer Split: Reviewer 1 Ranked B First, Reviewer 2 Ranked C First — Tied Council Vote
-985 " ⚖️ Final Council Vote: Response B Wins 2-1 — [^\S\n]+ Regex Swap is the Chosen Implementation
-986 " 🔴 _rewrite_preserves_section_structure Fixed — All 3 Validator Bugs Patched
-987 10:18p 🔵 pytest Not Installed in .venv — Tests Partially Run via unittest Only
 988 10:19p 🔵 Pre-existing Test Failure in test_company_intel: _extract_jd_signals Misses "retail" Business Term
 989 " 🔵 All 26 Stabilization Tests Pass After Validator Fix
 990 " 🔵 CouncilLLMClient Reads DEEPSEEK_API_KEY via os.getenv — No .env Loading in llm.py
@@ -422,6 +398,14 @@ S409 CareerLoop pipeline E2E fix: tailoring delta P0 fix, validator bug fixes, f
 995 " 🔵 ledger.json Does Not Exist — ApplicationLedger Cannot Find "nicobar-test" Job
 996 10:28p 🔴 CareerLoop S7 validator fix confirmed working — 9/10 sections rewritten
 997 " 🔵 skills section still fails possible_truncation after validator fix
+1014 11:36p 🟣 HeaderInfo.title field + _parse_header_title() extracts declared professional headline
+1015 " 🔴 _derive_role_subtitle now prefers HeaderInfo.title over first experience role
+1016 " 🔴 _contains_date_range now matches year-only ranges like "2025 - Present"
+1017 " 🔴 Sidebar education block now filters out thesis/detail entries, caps at 3 items
+1018 " ✅ design-brand-compact palette darkened for stronger contrast
+1019 " 🔵 Playwright PDF generation broken in this environment due to macOS Chromium permission denial
+1020 " ✅ IMPLEMENTATION_HANDOFF.md created documenting all rendering fixes for nicobar-ai-pm run
+1021 " 🟣 CareerLoop session handoff: 12-part Senior Engineer summary of today's 0-to-100 execution
 ### May 20, 2026
 998 3:32a 🔵 CareerLoop State of the Union 2026-05-20 — full system audit documented
 999 " 🔵 S7 prompt lacks prescriptive rewrite mandate — root cause of 3.6% tailoring delta
@@ -442,6 +426,22 @@ S411 Implement all company intel phases (P1+P2+P3) — multi-source research eng
 1011 12:27p 🔵 company_intel.py Full Code Audit Before Phase 1-3 Implementation
 1012 " 🟣 CompanyIntelligenceResult Schema Extended — Phase 2 People + Culture + Source Tracking Fields
 1013 12:28p 🟣 _gather_web_sources() Replaced with MECE 5-Query Parallel Engine + Company Website Scraper
+1022 11:11p 🔵 Critical S7 schema mismatch: prompt returns tailored_bullets but code reads rewritten_text
+1023 " 🟣 candidate_graph.py: new structured dataclass for canonical candidate identity
+1024 " 🔵 S3 company intelligence grounding upgraded to PARTIAL with 4 real sources for Nicobar run
+1025 " 🔵 S7 section rewrite quality audit: profile similarity 0.217, Emote experience similarity 0.999 (no actual rewrite)
+1026 " 🔵 Humanizer changed 77 lines, 2 slop flags detected, zero slop terms in final output
+1027 " 🔵 LinkedIn URL renders as href="#" in 8 of 10 templates — placeholder not resolved
+1028 11:13p ⚖️ Product-lead alignment audit agent dispatched to assess S7/S3/rendering work against PRD
+1029 " 🔵 CareerLoop PRD canonical vision — 16-part product structure confirmed
+1030 " 🔵 CareerLoop system offline at v1.8.0 — core config files all present
+1031 11:14p 🔵 CareerLoop product-lead alignment audit — current system status and open blockers
+1032 " 🔵 Uncommitted S7 schema migration: rewritten_text → tailored_bullets array in graph.py and schemas.py
+1033 " 🟣 CandidateGraph dataclass created as new untracked file — canonical structured identity for Resume Council
+1034 " 🔵 PRD-to-code alignment verdict: current S7/company-intel/rendering work is ALIGNED, with one structural risk
+1035 11:16p 🔵 S7 section rewrites node uses ThreadPoolExecutor with 3 workers — parallel execution architecture confirmed
+1036 " 🔵 Last 10 commits added 39,522 lines — company_intel.py rebuilt from scratch at 1,419 new lines
+1037 " 🔵 render_all_templates.py _derive_role_subtitle uses 4-level cascade — header title → recent job role → bolded profile term → profile first sentence
 
-Access 684k tokens of past work via get_observations([IDs]) or mem-search skill.
+Access 1773k tokens of past work via get_observations([IDs]) or mem-search skill.
 </claude-mem-context>

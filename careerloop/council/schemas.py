@@ -75,7 +75,17 @@ NODE_SCHEMAS: dict[str, dict[str, Any]] = {
         "enums": {"application_stance": {"STRONG_PUSH", "CAREFUL_PUSH", "STRETCH", "HOLD", "SKIP"}},
     },
     "section_rewrites": {
-        "required": {"rewrites": dict, "forbidden_edits": list},
+        "required": {
+            "section_id": str,
+            "change_type": str,
+            "change_reason": str,
+            "tailored_bullets": list, # List of tailored strings
+            "risk_level": str,
+        },
+        "enums": {
+            "change_type": {"KEEP", "LIGHT_EDIT", "REWRITE", "REMOVE_PRIVATE"},
+            "risk_level": {"low", "medium", "high"}
+        }
     },
     "cover_note": {
         "required": {"cover_note": str},

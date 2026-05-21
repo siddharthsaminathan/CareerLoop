@@ -1,0 +1,135 @@
+{
+  "tailoring_delta": {
+    "sections_total": 9,
+    "sections_changed": 7,
+    "sections_changed_pct": 77.78,
+    "average_section_delta_pct": 39.19,
+    "sections": [
+      {
+        "section_id": "profile",
+        "change_type": "REWRITE",
+        "similarity": 0.2167,
+        "delta_pct": 78.33,
+        "original_chars": 500,
+        "rewritten_chars": 506,
+        "original_bullets": 0,
+        "rewritten_bullets": 0,
+        "changed": true,
+        "change_reason": "Reframed profile to emphasize backend AI engineering strength and product ownership, aligning with the target role's need for AI-native, outcome-driven candidates."
+      },
+      {
+        "section_id": "co_founder_ai_product_engineer_emote_emotenow_app",
+        "change_type": "REWRITE",
+        "similarity": 0.9992,
+        "delta_pct": 0.08,
+        "original_chars": 1188,
+        "rewritten_chars": 1186,
+        "original_bullets": 8,
+        "rewritten_bullets": 8,
+        "changed": false,
+        "change_reason": "Reframed bullets to emphasize AI-native personalization, LLM API usage, and business outcomes for a product-focused role."
+      },
+      {
+        "section_id": "ai_engineer_omnex_systems_aquapro_ai",
+        "change_type": "REWRITE",
+        "similarity": 0.7862,
+        "delta_pct": 21.38,
+        "original_chars": 1085,
+        "rewritten_chars": 1632,
+        "original_bullets": 7,
+        "rewritten_bullets": 7,
+        "changed": true,
+        "change_reason": "Reframed each bullet to connect backend AI engineering work to product-focused outcomes like personalization, clienteling, and conversational BI, using role keywords and narrative angle."
+      },
+      {
+        "section_id": "data_analyst_positive_integers_pvt_ltd",
+        "change_type": "REWRITE",
+        "similarity": 0.548,
+        "delta_pct": 45.2,
+        "original_chars": 363,
+        "rewritten_chars": 491,
+        "original_bullets": 3,
+        "rewritten_bullets": 3,
+        "changed": true,
+        "change_reason": "Reframed SQL ETL as foundational data engineering work and reordered bullets to prioritize role-relevant skills (SQL, BI, real-time dashboards)."
+      },
+      {
+        "section_id": "data_engineer_akkodis_ab_ericsson_client",
+        "change_type": "REWRITE",
+        "similarity": 0.2662,
+        "delta_pct": 73.38,
+        "original_chars": 443,
+        "rewritten_chars": 774,
+        "original_bullets": 4,
+        "rewritten_bullets": 4,
+        "changed": true,
+        "change_reason": "Reframed data engineering work to emphasize ownership, business intelligence delivery, and stakeholder alignment — positioning the candidate as a backend-heavy engineer who ships end-to-end solutions with business impact."
+      },
+      {
+        "section_id": "skills",
+        "change_type": "REWRITE",
+        "similarity": 0.4038,
+        "delta_pct": 59.62,
+        "original_chars": 511,
+        "rewritten_chars": 539,
+        "original_bullets": 0,
+        "rewritten_bullets": 0,
+        "changed": true,
+        "change_reason": "Reordered skills to prioritize AI and personalization for the product-focused role, grouped by relevance to day-one deliverables."
+      },
+      {
+        "section_id": "languages",
+        "change_type": "KEEP",
+        "similarity": 1.0,
+        "delta_pct": 0.0,
+        "original_chars": 41,
+        "rewritten_chars": 41,
+        "original_bullets": 0,
+        "rewritten_bullets": 0,
+        "changed": false,
+        "change_reason": "Factual data; no rewrite needed."
+      },
+      {
+        "section_id": "education",
+        "change_type": "REWRITE",
+        "similarity": 0.6233,
+        "delta_pct": 37.67,
+        "original_chars": 567,
+        "rewritten_chars": 970,
+        "original_bullets": 4,
+        "rewritten_bullets": 4,
+        "changed": true,
+        "change_reason": "Reframed academic projects to emphasize AI engineering outcomes and transferable skills for product-focused e-commerce role."
+      },
+      {
+        "section_id": "achievements",
+        "change_type": "REWRITE",
+        "similarity": 0.6296,
+        "delta_pct": 37.04,
+        "original_chars": 295,
+        "rewritten_chars": 334,
+        "original_bullets": 2,
+        "rewritten_bullets": 2,
+        "changed": true,
+        "change_reason": "Reframed Emote as an AI-native personalization engine to align with role keywords, and strengthened verbs to emphasize ownership and business impact."
+      }
+    ]
+  },
+  "humanization_delta": {
+    "similarity": 0.9979,
+    "delta_pct": 0.21,
+    "nonblank_line_changes": 0,
+    "mostly_whitespace": true
+  },
+  "cope_detection": {
+    "slop_hits": {
+      "spearheaded": 0,
+      "leveraged": 0,
+      "synergy": 0,
+      "passionate": 0,
+      "cutting-edge": 0,
+      "results-driven": 0
+    },
+    "status": "PASS"
+  }
+}

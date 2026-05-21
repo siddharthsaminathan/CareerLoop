@@ -30,9 +30,11 @@ Output for each run:
 from __future__ import annotations
 
 import argparse
+import difflib
 import io
 import json
 import os
+import re
 import sys
 import textwrap
 from datetime import datetime
@@ -51,6 +53,101 @@ ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 
 import yaml
+
+
+def _build_delta_report(final_state: dict, pre_humanizer: str, final_resume: str) -> dict:
+    rewrites = (final_state.get("section_rewrites") or {}).get("rewrites", {})
+    section_deltas = []
+    changed_sections = 0
+    for section_id, rewrite in rewrites.items():
+        original = (rewrite.get("original_text") or "").strip()
+        rewritten = (rewrite.get("rewritten_text") or "").strip()
+        similarity = difflib.SequenceMatcher(None, original, rewritten).ratio() if (original or rewritten) else 1.0
+        original_bullets = len(re.findall(r"(?m)^\s*[-*+]\s+\S", original))
+        rewritten_bullets = len(re.findall(r"(?m)^\s*[-*+]\s+\S", rewritten))
+        changed = similarity < 0.92 or original_bullets != rewritten_bullets
+        if changed:
+            changed_sections += 1
+        section_deltas.append({
+            "section_id": section_id,
+            "change_type": rewrite.get("change_type"),
+            "similarity": round(similarity, 4),
+            "delta_pct": round((1 - similarity) * 100, 2),
+            "original_chars": len(original),
+            "rewritten_chars": len(rewritten),
+            "original_bullets": original_bullets,
+            "rewritten_bullets": rewritten_bullets,
+            "changed": changed,
+            "change_reason": rewrite.get("change_reason", ""),
+        })
+
+    humanizer_similarity = difflib.SequenceMatcher(None, pre_humanizer or "", final_resume or "").ratio() if (pre_humanizer or final_resume) else 1.0
+    diff_lines = difflib.unified_diff(
+        (pre_humanizer or "").splitlines(),
+        (final_resume or "").splitlines(),
+        lineterm="",
+    )
+    content_changes = [
+        line for line in diff_lines
+        if line.startswith(("+", "-")) and not line.startswith(("+++", "---"))
+    ]
+    nonblank_line_changes = [
+        line for line in content_changes
+        if line[1:].strip() and not re.fullmatch(r"[-*_]{2,}", line[1:].strip())
+    ]
+    slop_terms = ["spearheaded", "leveraged", "synergy", "passionate", "cutting-edge", "results-driven"]
+    slop_hits = {
+        term: len(re.findall(rf"\b{re.escape(term)}\b", final_resume or "", re.IGNORECASE))
+        for term in slop_terms
+    }
+    total_sections = len(section_deltas)
+    return {
+        "tailoring_delta": {
+            "sections_total": total_sections,
+            "sections_changed": changed_sections,
+            "sections_changed_pct": round((changed_sections / total_sections) * 100, 2) if total_sections else 0,
+            "average_section_delta_pct": round(
+                sum(item["delta_pct"] for item in section_deltas) / total_sections, 2
+            ) if total_sections else 0,
+            "sections": section_deltas,
+        },
+        "humanization_delta": {
+            "similarity": round(humanizer_similarity, 4),
+            "delta_pct": round((1 - humanizer_similarity) * 100, 2),
+            "nonblank_line_changes": len(nonblank_line_changes),
+            "mostly_whitespace": len(nonblank_line_changes) <= 3,
+        },
+        "cope_detection": {
+            "slop_hits": slop_hits,
+            "status": "PASS" if not any(slop_hits.values()) else "REVIEW",
+        },
+    }
+
+
+def _write_delta_report(output_dir: Path, report: dict) -> None:
+    (output_dir / "18_delta_report.json").write_text(
+        json.dumps(report, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    td = report["tailoring_delta"]
+    hd = report["humanization_delta"]
+    lines = [
+        "# Resume Delta Report\n\n",
+        "## Tailoring Delta\n",
+        f"- Sections changed: {td['sections_changed']}/{td['sections_total']} ({td['sections_changed_pct']}%)\n",
+        f"- Average section delta: {td['average_section_delta_pct']}%\n\n",
+        "## Humanization Delta\n",
+        f"- Delta: {hd['delta_pct']}%\n",
+        f"- Nonblank line changes: {hd['nonblank_line_changes']}\n",
+        f"- Mostly whitespace: {hd['mostly_whitespace']}\n\n",
+        "## Section Breakdown\n",
+    ]
+    for item in td["sections"]:
+        lines.append(
+            f"- {item['section_id']}: {item['delta_pct']}% delta, "
+            f"similarity {item['similarity']}, bullets {item['original_bullets']}->{item['rewritten_bullets']}\n"
+        )
+    (output_dir / "18_delta_report.md").write_text("".join(lines), encoding="utf-8")
 
 
 # ─── Hardcoded JDs (fetched / constructed from real sources) ──────────────────
@@ -440,7 +537,6 @@ def run_council(job_id: str, person: str = "siddharth", intent: str = "INTERESTE
         with open(output_dir / "13_humanizer_report.json", "w", encoding="utf-8") as f:
             json.dump(humanizer_rpt, f, indent=2)
     if pre_humanizer and pack.get("resume_markdown"):
-        import difflib
         diff_lines = list(
             difflib.unified_diff(
                 pre_humanizer.splitlines(),
@@ -451,6 +547,10 @@ def run_council(job_id: str, person: str = "siddharth", intent: str = "INTERESTE
             )
         )
         (output_dir / "14_humanizer_diff.patch").write_text("\n".join(diff_lines), encoding="utf-8")
+        _write_delta_report(
+            output_dir,
+            _build_delta_report(final_state, pre_humanizer, pack.get("resume_markdown", "")),
+        )
 
     # Full run log
     with open(output_dir / "17_council_run_log.json", "w", encoding="utf-8") as f:
