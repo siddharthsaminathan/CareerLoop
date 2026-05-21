@@ -103,6 +103,9 @@ def normalize(md_text: str) -> NormalizedResume:
     thesis = _parse_thesis(classified)
     languages = _parse_languages(classified)
 
+    # ── Post-normalization validation ──────────────────────────────────────
+    _validate_normalized(header, skills, experience, education, achievements, md_text)
+
     return NormalizedResume(
         header=header,
         profile=profile,
@@ -114,6 +117,39 @@ def normalize(md_text: str) -> NormalizedResume:
         thesis=thesis,
         languages=languages,
     )
+
+
+def _validate_normalized(header, skills, experience, education, achievements, md_text):
+    """Validate normalized resume completeness. Logs warnings, never blocks."""
+    issues = []
+    
+    if not header or not header.name:
+        issues.append("Name missing from header")
+    if not skills:
+        issues.append("Skills section empty — no skills parsed from resume")
+    if not experience:
+        issues.append("Experience section empty — no work entries parsed")
+    if not education:
+        issues.append("Education section empty — no education entries parsed")
+    
+    # Check for empty roles in experience
+    empty_roles = [e for e in experience if not e.role]
+    if empty_roles:
+        companies = [e.company for e in empty_roles]
+        issues.append(f"Missing role title for: {', '.join(companies)}")
+    
+    # Check skills have items
+    empty_skill_rows = [s for s in skills if not s.items]
+    if empty_skill_rows:
+        labels = [s.label for s in empty_skill_rows]
+        issues.append(f"Empty skill rows: {', '.join(labels)}")
+    
+    if issues:
+        print("  ⚠ Normalizer validation warnings:")
+        for issue in issues:
+            print(f"    - {issue}")
+    else:
+        print("  ✓ Normalizer validation passed")
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
