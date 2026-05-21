@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareerLoop — Career Decision Engine for Indian Professionals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f7f9fb;
+    --surface: #edf1f7;
+    --ink: #0f1729;
+    --ink-mid: #1e3148;
+    --slate: #3b5068;
+    --muted: #6b8299;
+    --rule: #d4dde8;
+    --accent: #2c5f8a;
+    --accent-deep: #1d3f5e;
+    --accent-mid: #4a7fad;
+    --accent-soft: #e4edf5;
+    --accent-softer: #f0f4f9;
+    --display: 'Playfair Display', Georgia, serif;
+    --body: 'DM Sans', system-ui, sans-serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 999;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+    background-size: 180px;
+  }
+
+  .bg-orbs { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.12; animation: orbFloat linear infinite; }
+  .orb1 { width: 640px; height: 640px; background: #4a7fad; top: -220px; right: -120px; animation-duration: 26s; }
+  .orb2 { width: 420px; height: 420px; background: #2c5f8a; top: 42%; left: -160px; animation-duration: 34s; animation-delay: -9s; }
+  .orb3 { width: 320px; height: 320px; background: #1d3f5e; bottom: 8%; right: 12%; animation-duration: 22s; animation-delay: -15s; }
+  @keyframes orbFloat {
+    0%   { transform: translateY(0) scale(1); }
+    33%  { transform: translateY(-44px) scale(1.04); }
+    66%  { transform: translateY(22px) scale(0.97); }
+    100% { transform: translateY(0) scale(1); }
+  }
+
+  /* floating cta */
+  .float-cta {
+    position: fixed; bottom: 32px; right: 32px; z-index: 900;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+    pointer-events: none;
+  }
+  .float-cta.show { opacity: 1; transform: translateY(0); pointer-events: all; }
+  .float-btn {
+    display: flex; align-items: center; gap: 9px;
+    padding: 12px 22px; border-radius: 40px;
+    font-family: var(--body); font-size: 13px; font-weight: 500;
+    text-decoration: none; letter-spacing: 0.02em;
+    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    white-space: nowrap; border: none; cursor: pointer;
+  }
+  .float-btn:hover { transform: translateY(-2px); }
+  .float-btn-dark { background: var(--ink); color: var(--paper); box-shadow: 0 4px 20px rgba(15,23,41,0.35); }
+  .float-btn-dark:hover { box-shadow: 0 8px 32px rgba(15,23,41,0.45); }
+  .float-btn-light { background: var(--paper); color: var(--ink); border: 1px solid var(--rule); box-shadow: 0 2px 12px rgba(15,23,41,0.1); }
+  .float-btn-light:hover { box-shadow: 0 4px 20px rgba(15,23,41,0.16); }
+  .float-arr { transition: transform 0.2s; display: inline-block; }
+  .float-btn:hover .float-arr { transform: translateX(3px); }
+
+  /* layout */
+  .page { max-width: 960px; margin: 0 auto; padding: 0 52px 120px; position: relative; z-index: 1; }
+
+  /* reveals */
+  .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-left { opacity: 0; transform: translateX(-24px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .stagger > * { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+  .stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0ms; }
+  .stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:80ms; }
+  .stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:160ms; }
+  .stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:240ms; }
+  .stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:320ms; }
+  .stagger.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay:400ms; }
+  .stagger.visible > *:nth-child(7) { opacity:1; transform:none; transition-delay:480ms; }
+  .stagger.visible > *:nth-child(8) { opacity:1; transform:none; transition-delay:560ms; }
+
+  /* hero */
+  .hero { padding: 88px 0 0; }
+  .hero-inner { border-bottom: 1px solid var(--rule); padding-bottom: 88px; }
+  .overline {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--accent); margin-bottom: 40px;
+  }
+  .overline::before { content: ''; display: inline-block; width: 22px; height: 1px; background: var(--accent); }
+  .hero h1 {
+    font-family: var(--display);
+    font-size: 62px; font-weight: 500; line-height: 1.07;
+    letter-spacing: -0.025em; color: var(--ink);
+    margin-bottom: 30px; max-width: 780px;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero .subhead { font-size: 19px; font-weight: 300; line-height: 1.7; color: var(--slate); max-width: 600px; margin-bottom: 16px; }
+  .hero .sub-detail {
+    font-size: 15px; font-weight: 300; line-height: 1.8; color: var(--muted);
+    max-width: 540px; margin-bottom: 52px;
+    font-style: italic;
+    border-left: 2px solid var(--accent-soft);
+    padding-left: 16px;
+  }
+  .hero-cta { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 15px 28px; border-radius: 3px;
+    font-family: var(--body); font-size: 14px; font-weight: 500; letter-spacing: 0.04em;
+    text-decoration: none; transition: all 0.25s var(--ease); border: 1px solid transparent;
+  }
+  .btn-dark { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .btn-dark:hover { background: var(--ink-mid); border-color: var(--ink-mid); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(15,23,41,0.25); }
+  .btn-outline { background: transparent; color: var(--ink); border-color: var(--rule); }
+  .btn-outline:hover { border-color: var(--muted); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(15,23,41,0.08); }
+  .btn-arr { transition: transform 0.2s; display: inline-block; }
+  .btn:hover .btn-arr { transform: translateX(4px); }
+  .hero .identity { font-size: 14px; color: var(--muted); line-height: 1.9; }
+  .hero .identity a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent-mid); transition: color 0.2s; }
+  .hero .identity a:hover { color: var(--accent-deep); }
+
+  /* sections */
+  .section { margin: 100px 0; }
+  .section-eyebrow {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--accent); margin-bottom: 16px;
+  }
+  .section-eyebrow::before { content:''; display:inline-block; width:14px; height:1px; background:var(--accent); }
+  .section-title { font-family: var(--display); font-size: 40px; font-weight: 500; line-height: 1.18; color: var(--ink); margin-bottom: 20px; letter-spacing: -0.015em; max-width: 640px; }
+  .section-narrative { font-size: 17px; font-weight: 300; line-height: 1.8; color: var(--slate); max-width: 620px; margin-bottom: 36px; }
+  .section-note { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 8px; }
+
+  /* metrics */
+  .metrics-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--rule); margin: 32px 0 14px; }
+  .metric-card { background: var(--paper); padding: 34px 22px 28px; text-align: center; transition: background 0.3s var(--ease), transform 0.3s var(--ease); cursor: default; }
+  .metric-card:hover { background: var(--accent-softer); transform: translateY(-3px); position: relative; z-index: 1; box-shadow: 0 6px 24px rgba(15,23,41,0.07); }
+  .metric-card .number { font-family: var(--display); font-size: 48px; font-weight: 400; color: var(--ink); line-height: 1; margin-bottom: 10px; letter-spacing: -0.025em; }
+  .metric-card .label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-deep); margin-bottom: 8px; }
+  .metric-card .meaning { font-size: 13px; font-weight: 300; color: var(--slate); line-height: 1.5; }
+  .metric-card .period { font-size: 11px; color: var(--accent-mid); font-style: italic; margin-top: 8px; display: block; }
+
+  /* lessons / pain points */
+  .lessons-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--rule); margin: 36px 0; }
+  .lesson-card { background: var(--paper); padding: 34px 28px; transition: background 0.3s ease; }
+  .lesson-card:hover { background: var(--accent-softer); }
+  .lesson-card .lesson-num { font-family: var(--display); font-size: 16px; font-style: italic; color: var(--accent); margin-bottom: 14px; }
+  .lesson-card .lesson-title { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .lesson-card .lesson-text { font-size: 14px; font-weight: 300; line-height: 1.65; color: var(--slate); }
+
+  /* "not" list */
+  .not-list { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--rule); margin: 32px 0; }
+  .not-card { background: var(--surface); padding: 28px 32px; display: flex; align-items: flex-start; gap: 14px; transition: background 0.3s ease; }
+  .not-card:hover { background: var(--accent-softer); }
+  .not-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; opacity: 0.7; }
+  .not-card .not-label { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .not-card .not-body { font-size: 13px; font-weight: 300; color: var(--slate); line-height: 1.55; }
+
+  /* pipeline */
+  .pipeline-wrap { margin: 40px 0; padding: 38px 28px 32px; background: var(--surface); border-left: 3px solid var(--accent); }
+  .pipeline-title { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 28px; }
+  .pipeline { display: flex; align-items: flex-start; justify-content: space-between; gap: 0; }
+  .pipe-step { text-align: center; flex: 1; position: relative; }
+  .pipe-step::after { content:''; position:absolute; right:-50%; top:17px; width:100%; height:1px; background:var(--rule); z-index:0; transform:translateX(-12px); }
+  .pipe-step:last-child::after { display: none; }
+  .pipe-step .pipe-dot { width:36px; height:36px; border-radius:50%; background:var(--accent-soft); border:1px solid var(--accent-mid); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; position:relative; z-index:1; transition:all 0.3s var(--ease); font-size:12px; font-weight:500; color:var(--accent-deep); }
+  .pipe-step:hover .pipe-dot { background:var(--accent); border-color:var(--accent); color:#fff; transform:scale(1.14); }
+  .pipe-step .pipe-label { font-size:10px; font-weight:500; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-mid); position:relative; z-index:1; }
+
+  /* mapping / comparison */
+  .mapping-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--rule); margin: 36px 0; }
+  .map-card { background: var(--paper); padding: 38px 32px; transition: background 0.3s ease; }
+  .map-card:hover { background: var(--accent-softer); }
+  .map-card .map-domain { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 12px; }
+  .map-card .map-title { font-family: var(--display); font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 14px; line-height: 1.22; }
+  .map-card .map-body { font-size: 15px; font-weight: 300; line-height: 1.7; color: var(--slate); }
+
+  /* competitor table */
+  .comp-table { width: 100%; border-collapse: collapse; margin: 32px 0; font-size: 14px; }
+  .comp-table th { text-align: left; padding: 12px 18px; font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); border-bottom: 1px solid var(--rule); background: var(--surface); }
+  .comp-table td { padding: 16px 18px; vertical-align: top; border-bottom: 1px solid var(--rule); font-weight: 300; color: var(--slate); line-height: 1.55; }
+  .comp-table tr:last-child td { border-bottom: none; background: var(--accent-softer); font-weight: 400; color: var(--ink); }
+  .comp-table tr:last-child td:first-child { font-weight: 500; color: var(--accent); }
+  .comp-table .miss { color: var(--muted); font-style: italic; }
+  .comp-table .win { color: var(--accent); font-weight: 400; }
+
+  /* principles — moats */
+  .principles-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--rule); margin: 36px 0; }
+  .principle-card { background: var(--paper); padding: 38px 22px; text-align: center; transition: background 0.3s ease; }
+  .principle-card:hover { background: var(--accent-softer); }
+  .principle-card .principle-num {
+    font-family: var(--display); font-size: 52px; font-weight: 400; font-style: italic;
+    color: var(--accent-mid);
+    opacity: 0.5;
+    line-height: 1; margin-bottom: 14px;
+    transition: opacity 0.3s, color 0.3s;
+  }
+  .principle-card:hover .principle-num { opacity: 1; color: var(--accent); }
+  .principle-card .principle-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-deep); margin-bottom: 10px; }
+  .principle-card .principle-text { font-size: 13px; font-weight: 300; line-height: 1.6; color: var(--slate); }
+
+  /* terminal / standup block */
+  .terminal {
+    margin: 36px 0;
+    background: #0f1729;
+    border: 1px solid #1e3148;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .terminal-bar {
+    background: #1a2740;
+    padding: 10px 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .terminal-dot.red { background: #ff5f56; }
+  .terminal-dot.yellow { background: #ffbd2e; }
+  .terminal-dot.green { background: #27c93f; }
+  .terminal-label { font-size: 11px; color: #6b8299; margin-left: 8px; font-family: 'DM Mono', 'Fira Code', monospace; }
+  .terminal-body { padding: 28px 32px; font-size: 14px; line-height: 2; font-family: 'DM Mono', 'Courier New', monospace; }
+  .t-line { display: block; color: #8fafc8; }
+  .t-bold { color: #e8f0f7; font-weight: 500; }
+  .t-accent { color: #4a7fad; }
+  .t-green { color: #5db87a; }
+  .t-yellow { color: #e6b84a; }
+  .t-red { color: #e06060; }
+  .t-dim { color: #4a5a6e; }
+  .t-prompt { color: #2c5f8a; }
+  .t-reply { color: #a8c4dc; font-style: italic; }
+
+  /* vision paths */
+  .paths-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--rule); margin: 36px 0; }
+  .path-card { background: var(--paper); padding: 32px 28px; transition: background 0.3s ease; }
+  .path-card:hover { background: var(--accent-softer); }
+  .path-card .path-num { font-family: var(--display); font-size: 32px; font-weight: 400; font-style: italic; color: var(--accent-mid); opacity: 0.6; line-height: 1; margin-bottom: 10px; }
+  .path-card .path-title { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .path-card .path-body { font-size: 14px; font-weight: 300; color: var(--slate); line-height: 1.6; }
+
+  /* trust strip */
+  .trust-strip {
+    display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap;
+    padding: 28px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    margin: 32px 0;
+  }
+  .trust-item { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 300; color: var(--slate); }
+  .trust-icon { font-size: 16px; }
+
+  /* closing */
+  .closing { border-top: 1px solid var(--rule); padding: 88px 0; text-align: center; }
+  .closing-quote { font-family: var(--display); font-size: 28px; font-weight: 400; font-style: italic; line-height: 1.55; color: var(--ink); max-width: 680px; margin: 0 auto 28px; }
+  .closing-quote::before { content: '\201C'; color: var(--accent); }
+  .closing-quote::after  { content: '\201D'; color: var(--accent); }
+  .closing-id { font-size: 15px; font-weight: 300; color: var(--slate); line-height: 2.2; margin-bottom: 44px; }
+  .closing-id a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent-mid); }
+
+  /* contact card */
+  .contact-card {
+    display: inline-flex; flex-direction: column; align-items: center; gap: 20px;
+    background: var(--surface); border: 1px solid var(--rule);
+    padding: 36px 52px; margin-bottom: 40px;
+  }
+  .contact-card .contact-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); }
+  .contact-row { display: flex; align-items: center; gap: 36px; flex-wrap: wrap; justify-content: center; }
+  .contact-item { display: flex; flex-direction: column; align-items: center; gap: 5px; text-decoration: none; }
+  .c-type { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); }
+  .c-value { font-size: 16px; font-weight: 400; color: var(--ink); transition: color 0.2s; }
+  .contact-item:hover .c-value { color: var(--accent); }
+  .contact-divider { width: 1px; height: 40px; background: var(--rule); }
+  .closing-cta { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .rule-divider { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+  /* maturity badge */
+  .maturity-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0 32px; }
+  .maturity-tag {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+    padding: 5px 12px; border: 1px solid var(--rule);
+    background: var(--surface); color: var(--slate);
+    border-radius: 2px;
+  }
+  .maturity-tag .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .dot-green { background: #5db87a; }
+  .dot-yellow { background: #e6b84a; }
+  .dot-orange { background: #e6904a; }
+
+  @media print {
+    body::before, .bg-orbs, .float-cta { display: none; }
+    .page { padding: 40px; }
+    .reveal, .reveal-left, .stagger > * { opacity: 1 !important; transform: none !important; }
+    .hero { padding: 20px 0 0; } .hero-inner { padding-bottom: 40px; } .section { margin: 50px 0; }
+    @page { margin: 0; size: A4; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal-left, .stagger > * { opacity: 1; transform: none; transition: none; }
+    .orb { animation: none; }
+  }
+  @media (max-width: 780px) {
+    .page { padding: 0 20px 80px; } .hero { padding: 52px 0 0; }
+    .hero h1 { font-size: 38px; } .section-title { font-size: 30px; }
+    .metrics-grid { grid-template-columns: repeat(2,1fr); }
+    .lessons-grid, .mapping-grid, .paths-grid { grid-template-columns: 1fr; }
+    .not-list { grid-template-columns: 1fr; }
+    .principles-row { grid-template-columns: repeat(2,1fr); }
+    .pipeline { flex-direction: column; gap: 20px; } .pipe-step::after { display: none; }
+    .float-cta { bottom: 16px; right: 16px; }
+    .contact-card { padding: 28px 20px; } .contact-divider { display: none; }
+    .trust-strip { gap: 16px; }
+    .comp-table { font-size: 13px; }
+    .comp-table th, .comp-table td { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-orbs" aria-hidden="true">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
+
+<div class="float-cta" id="floatCta">
+  <a href="https://github.com/siddharthsaminathan" target="_blank" rel="noopener" class="float-btn float-btn-dark">
+    View on GitHub <span class="float-arr">→</span>
+  </a>
+  <a href="mailto:siddharthsaminathan99@gmail.com" class="float-btn float-btn-light">
+    Join the waitlist
+  </a>
+</div>
+
+<div class="page">
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="overline reveal-left">CareerLoop · Career Decision Engine · India-first</div>
+    <h1 class="reveal">You're too good to be <em>spraying 100 applications</em> into the void.</h1>
+    <p class="subhead reveal">CareerLoop finds the 5 that actually fit — and makes you impossible to ignore.</p>
+    <p class="sub-detail reveal">Found 57 jobs today. Only 8 clear your personal threshold. Apply to 5. Save 3. Ignore the rest.</p>
+    <div class="hero-cta reveal">
+      <a href="#how-it-works" class="btn btn-dark">See how it works <span class="btn-arr">→</span></a>
+      <a href="https://github.com/siddharthsaminathan" target="_blank" rel="noopener" class="btn btn-outline">Open source on GitHub</a>
+    </div>
+    <div class="identity reveal">
+      Built by Siddharth Saminathan &nbsp;·&nbsp; AI Product Engineer &nbsp;·&nbsp; Chennai<br>
+      <a href="https://github.com/siddharthsaminathan">github.com/siddharthsaminathan</a> &nbsp;·&nbsp;
+      siddharthsaminathan99@gmail.com &nbsp;·&nbsp; +91 72997 07403
+    </div>
+  </div>
+</header>
+
+<!-- ── SECTION 01: THE PROBLEM ── -->
+<section class="section">
+  <div class="section-eyebrow reveal-left">01 — The Problem</div>
+  <h2 class="section-title reveal">You weren't supposed to do this alone.</h2>
+  <p class="section-narrative reveal">Indian professionals are navigating Naukri, LinkedIn, Instahyre, Wellfound, CutShort, Hirist, IIMJobs, Foundit, company portals, and 15 WhatsApp groups — manually, across 8 open browser tabs, with no system connecting any of it. This is what exhaustion looks like before it has a name.</p>
+  <div class="lessons-grid stagger">
+    <div class="lesson-card">
+      <div class="lesson-num">01</div>
+      <div class="lesson-title">Platform Fragmentation</div>
+      <div class="lesson-text">You're not overwhelmed by one platform. You're overwhelmed by the fragmentation of ten. No single verified, scored queue exists. CareerLoop collapses this with an India-first discovery layer.</div>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">02</div>
+      <div class="lesson-title">AI Slop Is Backfiring</div>
+      <div class="lesson-text">ChatGPT writes "spearheaded," "leveraged," "orchestrated." Recruiters now filter on these tells. AI-generated applications are becoming a negative signal. The more people use ChatGPT, the worse it gets for everyone.</div>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">03</div>
+      <div class="lesson-title">Zero Learning Loop</div>
+      <div class="lesson-text">You apply to 100 jobs. You get 90 ghosts, 7 rejections, 3 callbacks. None of the rejections tell you why. Every application starts from scratch. Every rejection is wasted information.</div>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">04</div>
+      <div class="lesson-title">Weak Positioning</div>
+      <div class="lesson-text">Generic bullet structures. Same vague verbs. Same positioning regardless of company or role. Your resume doesn't answer: "Why this person, for this role, right now?" CareerLoop does.</div>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-num">05</div>
+      <div class="lesson-title">Decision Paralysis</div>
+      <div class="lesson-text">100+ open tabs. 57 jobs found. No way to know which 5 matter. You don't need more jobs — you need fewer, better decisions. This is what CareerLoop was built to solve.</div>
+    </div>
+    <div class="lesson-card" style="background:var(--surface);">
+      <div class="lesson-num" style="font-size:28px; margin-bottom:18px;">→</div>
+      <div class="lesson-title" style="font-size:16px; font-family:'Playfair Display', serif; font-weight:500; line-height:1.4;">The user should make decisions.<br>The system should handle the chaos.</div>
+      <div class="lesson-text" style="margin-top:12px;">That's the philosophy. Everything else follows from it.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule-divider">
+
+<!-- ── SECTION 02: WHAT IT DOES ── -->
+<section class="section" id="how-it-works">
+  <div class="section-eyebrow reveal-left">02 — The System</div>
+  <h2 class="section-title reveal">From 100 tabs to 5 decisions.</h2>
+  <p class="section-narrative reveal">CareerLoop is a career decision engine — not a point tool. It runs a full loop: discover → compress → research → position → tailor → humanize → apply → learn. Every step feeds the next. Every outcome feeds back. The system gets smarter with every application.</p>
+
+  <div class="not-list stagger">
+    <div class="not-card">
+      <div class="not-icon">✗</div>
+      <div>
+        <div class="not-label">Not a job board</div>
+        <div class="not-body">We don't host listings. We pull from everywhere — Naukri, LinkedIn, Wellfound, Hirist, IIMJobs, company portals — and filter ruthlessly. Only verified opportunities survive.</div>
+      </div>
+    </div>
+    <div class="not-card">
+      <div class="not-icon">✗</div>
+      <div>
+        <div class="not-label">Not a resume builder</div>
+        <div class="not-body">We don't ask you to drag-and-drop sections. We surgically adapt your real experience to each opportunity — in 8 structured stages, with semantic claim validation at every step.</div>
+      </div>
+    </div>
+    <div class="not-card">
+      <div class="not-icon">✗</div>
+      <div>
+        <div class="not-label">Not a chatbot</div>
+        <div class="not-body">You don't chat with your career. The system executes on a structured pipeline; you review and decide. Human in the loop, machine doing the heavy lifting.</div>
+      </div>
+    </div>
+    <div class="not-card">
+      <div class="not-icon">✗</div>
+      <div>
+        <div class="not-label">Not an ATS spray tool</div>
+        <div class="not-body">We don't help you blast 500 applications. We help you send 5 that actually land — with the right positioning, the right evidence, the right tone for each company.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pipeline-wrap reveal">
+    <div class="pipeline-title">The full loop</div>
+    <div class="pipeline">
+      <div class="pipe-step"><div class="pipe-dot">1</div><div class="pipe-label">Discover</div></div>
+      <div class="pipe-step"><div class="pipe-dot">2</div><div class="pipe-label">Verify</div></div>
+      <div class="pipe-step"><div class="pipe-dot">3</div><div class="pipe-label">Score</div></div>
+      <div class="pipe-step"><div class="pipe-dot">4</div><div class="pipe-label">Compress</div></div>
+      <div class="pipe-step"><div class="pipe-dot">5</div><div class="pipe-label">Research</div></div>
+      <div class="pipe-step"><div class="pipe-dot">6</div><div class="pipe-label">Position</div></div>
+      <div class="pipe-step"><div class="pipe-dot">7</div><div class="pipe-label">Tailor</div></div>
+      <div class="pipe-step"><div class="pipe-dot">8</div><div class="pipe-label">Humanize</div></div>
+      <div class="pipe-step"><div class="pipe-dot">9</div><div class="pipe-label">Apply</div></div>
+      <div class="pipe-step"><div class="pipe-dot">10</div><div class="pipe-label">Learn</div></div>
+    </div>
+  </div>
+  <p class="section-note reveal">India-first geographic hard filter · 141 jobs scored · 14-dimensional opportunity scoring · 33 GO opportunities (70+ score)</p>
+</section>
+
+<hr class="rule-divider">
+
+<!-- ── SECTION 03: DIFFERENTIATION ── -->
+<section class="section">
+  <div class="section-eyebrow reveal-left">03 — Differentiation</div>
+  <h2 class="section-title reveal">Every other tool helps you apply. We help you decide.</h2>
+  <p class="section-narrative reveal">Every competitor is a point solution — one step in the pipeline. CareerLoop is the full loop. Individual features can be copied. The feedback loop cannot — it requires the whole system to exist.</p>
+
+  <table class="comp-table reveal">
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>What They Do</th>
+        <th>What They Don't Do</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Teal</td>
+        <td>Resume builder + job tracker</td>
+        <td class="miss">No discovery, no scoring, no positioning, no memory graph</td>
+      </tr>
+      <tr>
+        <td>Simplify</td>
+        <td>Application autofill</td>
+        <td class="miss">No discovery, no tailoring, no research, no learning loop</td>
+      </tr>
+      <tr>
+        <td>Kickresume</td>
+        <td>Resume templates</td>
+        <td class="miss">No pipeline, no intelligence, no humanization</td>
+      </tr>
+      <tr>
+        <td>Rezi</td>
+        <td>ATS keyword optimization</td>
+        <td class="miss">No discovery, no decision compression, no truth guard</td>
+      </tr>
+      <tr>
+        <td>Jobscan</td>
+        <td>ATS match scoring</td>
+        <td class="miss">Single JD vs. resume only — no discovery, no positioning, no memory</td>
+      </tr>
+      <tr>
+        <td>CareerLoop</td>
+        <td class="win">Full-loop career decision engine — discovers, compresses, researches, positions, tailors, humanizes, and learns from every cycle</td>
+        <td class="win">Nothing left to a point tool. Gets smarter every time you use it.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="section-narrative reveal" style="margin-top:0;">CareerLoop is the only product in the top-right quadrant: it both <strong>discovers</strong> and <strong>executes</strong>. Job boards are pure discovery. Resume builders are pure execution. The gap between them — research, positioning, tailoring, humanizing, learning — is where CareerLoop lives.</p>
+</section>
+
+<hr class="rule-divider">
+
+<!-- ── SECTION 04: PROOF ── -->
+<section class="section">
+  <div class="section-eyebrow reveal-left">04 — Proof</div>
+  <h2 class="section-title reveal">Built by someone in the arena.</h2>
+  <p class="section-narrative reveal">These aren't demo metrics. This is production output from real AI systems I built, measured, and iterated on — the same engineering discipline that went into CareerLoop.</p>
+
+  <div class="metrics-grid stagger">
+    <div class="metric-card">
+      <div class="number">50×</div>
+      <div class="label">Cost Reduction</div>
+      <div class="meaning">Inference cost: $1.20 → $0.023 per conversation</div>
+      <span class="period">Emote · All-time</span>
+    </div>
+    <div class="metric-card">
+      <div class="number">5×</div>
+      <div class="label">Latency Improvement</div>
+      <div class="meaning">Response time: 15s → 3s under production load</div>
+      <span class="period">Emote · All-time</span>
+    </div>
+    <div class="metric-card">
+      <div class="number">450+</div>
+      <div class="label">Users</div>
+      <div class="meaning">Built from 0, no paid acquisition, organic + community</div>
+      <span class="period">Emote · All-time</span>
+    </div>
+    <div class="metric-card">
+      <div class="number">75%</div>
+      <div class="label">Activation Rate</div>
+      <div class="meaning">Outreach activation lifted from ~20% to ~75% with automation</div>
+      <span class="period">Emote · Community bot</span>
+    </div>
+    <div class="metric-card">
+      <div class="number">52%</div>
+      <div class="label">Tailoring Delta</div>
+      <div class="meaning">Resume changed by more than half on a real run — surgical, not cosmetic</div>
+      <span class="period">CareerLoop · Live run</span>
+    </div>
+    <div class="metric-card">
+      <div class="number">70</div>
+      <div class="label">Tests Passing</div>
+      <div class="meaning">Stabilization test suite — schema, structure, validator, rendering</div>
+      <span class="period">CareerLoop · Today</span>
+    </div>
+    <div class="metric-card">
+      <div class="number">8</div>
+      <div class="label">Pipeline Systems</div>
+      <div class="meaning">Independently testable stages — S1 parse through S8 assembly</div>
+      <span class="period">Resume Council v3</span>
+    </div>
+    <div class="metric-card">
+      <div class="number">141</div>
+      <div class="label">Jobs Scored</div>
+      <div class="meaning">Across 14 dimensions. 33 GO opportunities (score ≥70). Zero paid ads.</div>
+      <span class="period">CareerLoop · Discovery</span>
+    </div>
+  </div>
+
+  <div class="trust-strip reveal">
+    <div class="trust-item"><span class="trust-icon">🔓</span> Open source — audit the pipeline</div>
+    <div class="trust-item"><span class="trust-icon">🔒</span> Data Contract — your data never trains the model</div>
+    <div class="trust-item"><span class="trust-icon">⚖️</span> No auto-submit — you review every application</div>
+    <div class="trust-item"><span class="trust-icon">🛡️</span> Truth Guard — zero fabricated claims</div>
+  </div>
+
+  <div class="maturity-row reveal">
+    <div class="maturity-tag"><span class="dot dot-green"></span> Resume Council: 80%</div>
+    <div class="maturity-tag"><span class="dot dot-green"></span> Resume Rendering: 80%</div>
+    <div class="maturity-tag"><span class="dot dot-yellow"></span> Discovery: 75%</div>
+    <div class="maturity-tag"><span class="dot dot-yellow"></span> Humanizer: 60%</div>
+    <div class="maturity-tag"><span class="dot dot-yellow"></span> Company Intel: 60%</div>
+    <div class="maturity-tag"><span class="dot dot-orange"></span> Opportunity Scoring: 55%</div>
+    <div class="maturity-tag"><span class="dot dot-orange"></span> Memory Graph: 25%</div>
+  </div>
+  <p class="section-note reveal">Product maturity: ~52–55% of full vision. No vanity metrics. No demos as proof. What ships is what gets claimed.</p>
+</section>
+
+<hr class="rule-divider">
+
+<!-- ── SECTION 05: THE MOATS ── -->
+<section class="section">
+  <div class="section-eyebrow reveal-left">05 — Why This Is Defensible</div>
+  <h2 class="section-title reveal">Four moats. One compounds with every use.</h2>
+  <p class="section-narrative reveal">Individual features can be copied. A feedback loop that gets smarter with every application cannot. Here's what makes CareerLoop structurally hard to replicate.</p>
+  <div class="principles-row stagger">
+    <div class="principle-card">
+      <div class="principle-num">1</div>
+      <div class="principle-label">Memory Graph</div>
+      <div class="principle-text">SQLite-based career memory: 6 entities, 13 application states. Every rejection becomes training data for the next cycle. Like Spotify Discover Weekly — the data is the product.</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-num">2</div>
+      <div class="principle-label">8-System Council</div>
+      <div class="principle-text">Not a single LLM call with a big prompt. Eight specialized, independently testable systems with cross-validation. A process moat — you cannot clone architecture by reading the PRD.</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-num">3</div>
+      <div class="principle-label">Anti-Slop Engine</div>
+      <div class="principle-text">The Humanizer + Truth Guard get stronger as AI saturation increases. Every new ChatGPT user makes CareerLoop's value more apparent. A timing moat that appreciates over time.</div>
+    </div>
+    <div class="principle-card">
+      <div class="principle-num">4</div>
+      <div class="principle-label">Open Source + Trust</div>
+      <div class="principle-text">Full audit trail. Explicit Data Contract separating user layer from system layer. In an era of "we train on your data" ToS, trust is the hardest moat to compete on.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule-divider">
+
+<!-- ── SECTION 06: VISION / NORTH STAR ── -->
+<section class="section">
+  <div class="section-eyebrow reveal-left">06 — North Star</div>
+  <h2 class="section-title reveal">Where we're going.</h2>
+  <p class="section-narrative reveal">This is the daily experience in v2.0. Not a dashboard. Not a search bar. A decision intelligence layer that runs in the background, surfaces only what matters, and tells you exactly why.</p>
+
+  <div class="terminal reveal">
+    <div class="terminal-bar">
+      <div class="terminal-dot red"></div>
+      <div class="terminal-dot yellow"></div>
+      <div class="terminal-dot green"></div>
+      <div class="terminal-label">careerloop · morning standup · 2026-05-21 08:14</div>
+    </div>
+    <div class="terminal-body">
+      <span class="t-line"><span class="t-prompt">→</span> <span class="t-bold">Found 57 jobs.</span></span>
+      <span class="t-line"><span class="t-accent">Only 8 clear your personal threshold.</span></span>
+      <span class="t-line">&nbsp;</span>
+      <span class="t-line"><span class="t-bold">My recommendation:</span></span>
+      <span class="t-line"><span class="t-green">Apply to 5 today.</span></span>
+      <span class="t-line"><span class="t-yellow">Save 3.</span></span>
+      <span class="t-line"><span class="t-red">Ignore the rest.</span></span>
+      <span class="t-line">&nbsp;</span>
+      <span class="t-line"><span class="t-dim">Why: The rest are too sales-heavy, startup-chaotic,</span></span>
+      <span class="t-line"><span class="t-dim">     or exhibit weak salary signals for your stage.</span></span>
+      <span class="t-line">&nbsp;</span>
+      <span class="t-line"><span class="t-prompt">→</span> <span class="t-reply">go = prepare 5 applications · review = show one by one · more = loosen filters</span></span>
+    </div>
+  </div>
+
+  <p class="section-narrative reveal" style="margin-bottom: 24px;">The end state: CareerLoop feels like a recruiter + a strategist + a researcher + a brutally honest editor + a memory system — working together, 24/7, for one user. Four application paths, fully covered:</p>
+
+  <div class="paths-grid stagger">
+    <div class="path-card">
+      <div class="path-num">1</div>
+      <div class="path-title">Direct Application</div>
+      <div class="path-body">ATS or career portal submission. The core Council pipeline — parse, research, position, tailor, humanize, assemble. Fully covered today.</div>
+    </div>
+    <div class="path-card">
+      <div class="path-num">2</div>
+      <div class="path-title">Recruiter Inbound</div>
+      <div class="path-body">Evaluate the inbound, prep positioning, draft reply, fast-track Council. Prioritize without guessing whether it's worth your time.</div>
+    </div>
+    <div class="path-card">
+      <div class="path-num">3</div>
+      <div class="path-title">Warm Referral</div>
+      <div class="path-body">Find employees at the target company, identify connectors, draft outreach. The People Graph surfaces who's connected to whom.</div>
+    </div>
+    <div class="path-card">
+      <div class="path-num">4</div>
+      <div class="path-title">Cold Outreach</div>
+      <div class="path-body">Find the hiring manager, draft cold DM or email, personalize per company. Structured, grounded, no spray.</div>
+    </div>
+  </div>
+
+  <div class="mapping-grid stagger" style="margin-top: 8px;">
+    <div class="map-card">
+      <div class="map-domain">The Real Long-Term Moat</div>
+      <div class="map-title">The People Graph</div>
+      <div class="map-body">Every recruiter who replied, every hiring manager who responded, every referral that converted — these compound into a people graph. The system learns which outreach patterns work per sector, which companies are referral-friendly, which recruiters are responsive. Not scraped job counts. Career transition conversion rate.</div>
+    </div>
+    <div class="map-card">
+      <div class="map-domain">The One Feeling That Matters</div>
+      <div class="map-title">"I am no longer handling my career transition alone."</div>
+      <div class="map-body">That's the job CareerLoop is hired to do. Not to find more jobs. Not to write better resumes. To reduce psychological load. To make the user feel capable, not overwhelmed — and to compound that feeling with every session.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CLOSING ── -->
+<section class="closing reveal">
+  <p class="closing-quote">Decision compression. Humanized output. Compounding memory. Those three. Everything else is where we're going.</p>
+
+  <div class="closing-id">
+    Siddharth Saminathan &nbsp;·&nbsp; AI Product Engineer &nbsp;·&nbsp; Chennai<br>
+    M.Sc. Statistics &amp; Machine Learning, Linköping University, Sweden<br>
+    <a href="https://github.com/siddharthsaminathan">github.com/siddharthsaminathan</a> &nbsp;·&nbsp;
+    siddharthsaminathan99@gmail.com
+  </div>
+
+  <div class="contact-card">
+    <div class="contact-label">Early access &amp; waitlist</div>
+    <div class="contact-row">
+      <a href="mailto:siddharthsaminathan99@gmail.com" class="contact-item">
+        <span class="c-type">Email</span>
+        <span class="c-value">siddharthsaminathan99@gmail.com</span>
+      </a>
+      <div class="contact-divider"></div>
+      <a href="tel:+917299707403" class="contact-item">
+        <span class="c-type">Phone</span>
+        <span class="c-value">+91 72997 07403</span>
+      </a>
+      <div class="contact-divider"></div>
+      <a href="https://github.com/siddharthsaminathan" target="_blank" rel="noopener" class="contact-item">
+        <span class="c-type">GitHub</span>
+        <span class="c-value">Open source</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="closing-cta">
+    <a href="https://github.com/siddharthsaminathan" target="_blank" rel="noopener" class="btn btn-dark">View on GitHub <span class="btn-arr">→</span></a>
+    <a href="mailto:siddharthsaminathan99@gmail.com" class="btn btn-outline">Join the waitlist <span class="btn-arr">→</span></a>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal, .reveal-left, .stagger').forEach(el => obs.observe(el));
+
+  const countUp = (el, target, isDecimal, suffix, prefix) => {
+    const dur = 1500, start = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now-start)/dur, 1), eased = 1-Math.pow(1-p,3), val = target*eased;
+      let txt;
+      if(isDecimal) txt = val.toFixed(1);
+      else if(target>=1000) txt = Math.round(val).toLocaleString();
+      else txt = Math.round(val).toString();
+      el.textContent = (prefix||'') + txt + (suffix||'');
+      if(p<1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  const metObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(!e.isIntersecting||e.target.dataset.counted) return;
+      e.target.dataset.counted='1';
+      const nel=e.target.querySelector('.number'); if(!nel) return;
+      const raw=nel.textContent.trim();
+      // Skip non-numeric like "Wednesday"
+      const num=parseFloat(raw.replace(/[^0-9.]/g,''));
+      if(isNaN(num)||num===0) return;
+      const suffix = raw.replace(/^[~\d,.\s]+/,'');
+      const prefix = raw.match(/^[^0-9]*/)[0];
+      countUp(nel, num, raw.includes('.'), suffix, prefix);
+    });
+  }, { threshold: 0.25 });
+  document.querySelectorAll('.metric-card').forEach(c => metObs.observe(c));
+
+  const floatCta = document.getElementById('floatCta');
+  const heroInner = document.querySelector('.hero-inner');
+  if(heroInner){
+    new IntersectionObserver((entries) => {
+      entries.forEach(e => floatCta.classList.toggle('show', !e.isIntersecting));
+    }, { threshold: 0 }).observe(heroInner);
+  }
+
+  if(window.matchMedia('(prefers-reduced-motion: no-preference)').matches){
+    const h1 = document.querySelector('.hero h1');
+    if(h1) window.addEventListener('scroll', () => { h1.style.transform=`translateY(${window.scrollY*0.06}px)`; }, { passive:true });
+  }
+})();
+</script>
+</body>
+</html>
