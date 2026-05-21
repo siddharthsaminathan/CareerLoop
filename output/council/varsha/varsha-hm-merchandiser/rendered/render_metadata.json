@@ -2,7 +2,7 @@
   "input_resume_path": "output/council/varsha/varsha-hm-merchandiser/10_final_resume.md",
   "final_resume_markdown_path": "output/council/varsha/varsha-hm-merchandiser/10_final_resume.md",
   "normalized_resume_json_path": "output/council/varsha/varsha-hm-merchandiser/rendered/08_normalized_resume.json",
-  "candidate": "Varsha Sathyanarayanan",
+  "candidate": "Varsha",
   "run_id": "latest",
   "renderer": "careerloop.rendering.render_all_templates.render_resume",
   "output_dir": "output/council/varsha/varsha-hm-merchandiser/rendered",
@@ -16,7 +16,7 @@
     },
     {
       "template": "modern-accent",
-      "pages": "2",
+      "pages": "3",
       "html": "output/council/varsha/varsha-hm-merchandiser/rendered/modern-accent.html",
       "pdf": "output/council/varsha/varsha-hm-merchandiser/rendered/modern-accent.pdf",
       "pdf_status": "ok"
@@ -51,7 +51,7 @@
     },
     {
       "template": "founder-operator",
-      "pages": "2",
+      "pages": "3",
       "html": "output/council/varsha/varsha-hm-merchandiser/rendered/founder-operator.html",
       "pdf": "output/council/varsha/varsha-hm-merchandiser/rendered/founder-operator.pdf",
       "pdf_status": "ok"

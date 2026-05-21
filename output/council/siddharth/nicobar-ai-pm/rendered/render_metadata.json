@@ -2,14 +2,14 @@
   "input_resume_path": "output/council/siddharth/nicobar-ai-pm/10_final_resume.md",
   "final_resume_markdown_path": "output/council/siddharth/nicobar-ai-pm/10_final_resume.md",
   "normalized_resume_json_path": "output/council/siddharth/nicobar-ai-pm/rendered/08_normalized_resume.json",
-  "candidate": "Siddharth Saminathan",
+  "candidate": "Siddharth",
   "run_id": "latest",
   "renderer": "careerloop.rendering.render_all_templates.render_resume",
   "output_dir": "output/council/siddharth/nicobar-ai-pm/rendered",
   "templates": [
     {
       "template": "classic-ats",
-      "pages": "2",
+      "pages": "3",
       "html": "output/council/siddharth/nicobar-ai-pm/rendered/classic-ats.html",
       "pdf": "output/council/siddharth/nicobar-ai-pm/rendered/classic-ats.pdf",
       "pdf_status": "ok"

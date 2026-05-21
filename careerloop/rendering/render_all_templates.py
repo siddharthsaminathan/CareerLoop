@@ -326,12 +326,13 @@ def render_resume(input_path, candidate: str, run_id: str = "latest", out_dir=No
             projects_html += f'<li>{_inline_md(item)}</li>'
         projects_html += '</ul></div>'
 
-    # ── Competencies HTML (derived from skill labels) ────────────────────
+    # ── Competencies HTML (derived from skill items) ────────────────────
     competencies_html = ""
     if resume.skills:
         competencies_html = '<div class="competencies-grid">'
         for skill in resume.skills:
-            competencies_html += f'<span class="competency-tag">{skill.label}</span>'
+            for item in skill.items:
+                competencies_html += f'<span class="competency-tag">{item}</span>'
         competencies_html += '</div>'
 
     role_subtitle = _derive_role_subtitle(resume)

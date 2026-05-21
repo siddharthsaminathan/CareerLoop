@@ -2,7 +2,7 @@
   "input_resume_path": "output/council/hayagreev/loop-0129/10_final_resume.md",
   "final_resume_markdown_path": "output/council/hayagreev/loop-0129/10_final_resume.md",
   "normalized_resume_json_path": "output/council/hayagreev/loop-0129/rendered/08_normalized_resume.json",
-  "candidate": "Hayagreev Sivakumar",
+  "candidate": "Hayagreev",
   "run_id": "latest",
   "renderer": "careerloop.rendering.render_all_templates.render_resume",
   "output_dir": "output/council/hayagreev/loop-0129/rendered",
