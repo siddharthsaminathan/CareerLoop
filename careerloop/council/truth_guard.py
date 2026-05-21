@@ -5,10 +5,14 @@ NEVER deletes text blindly.
 
 Deterministic: no LLM dependency. Uses regex extraction,
 token-overlap fuzzy matching, and pattern-based repair.
+
+B9 fix: CV-derived tenure parsing prevents year-inflation
+when S5 (User Truth LLM) over-estimates total_years_experience.
 """
 
 import re
 from dataclasses import dataclass, field
+from datetime import date, datetime
 from typing import List, Optional, Tuple
 
 
@@ -41,6 +45,134 @@ class TruthGuardReport:
     exaggerated: int = 0
     fabricated: int = 0
     claims: list = field(default_factory=list)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CV Tenure Parser (B9 fix)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+_MONTH_MAP = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+    "january": 1, "february": 2, "march": 3, "april": 4,
+    "june": 6, "july": 7, "august": 8, "september": 9,
+    "october": 10, "november": 11, "december": 12,
+}
+
+# Matches: "Nov 2022", "November 2022", "2022", "Present", "Currently"
+_DATE_TOKEN = re.compile(
+    r"""(?:(?P<month>jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|
+                          jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|
+                          oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+)?
+        (?P<year>\d{4})|
+        (?P<present>present|currently)""",
+    re.IGNORECASE | re.VERBOSE,
+)
+
+# Matches a date range: "Nov 2022 – Nov 2024" / "2024 – Present" / "2025–Present"
+_DATE_RANGE = re.compile(
+    r"""(?:(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|
+                jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|
+                oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+)?
+        \d{4}
+        \s*[–\-—/]\s*
+        (?:(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|
+                jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|
+                oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+)?
+        (?:\d{4}|present|currently)""",
+    re.IGNORECASE | re.VERBOSE,
+)
+
+
+def _parse_date_token(token: str, today: date) -> Optional[date]:
+    """Parse a single date token ('Nov 2022', '2024', 'Present') into a date.
+
+    Returns the first day of the parsed month/year, or today for Present/Currently.
+    Returns None if unparseable.
+    """
+    token = token.strip()
+    if not token:
+        return None
+    if re.match(r'^(present|currently)$', token, re.IGNORECASE):
+        return today
+
+    m = re.match(
+        r"""^(?:(?P<month>jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|
+                           jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|
+                           oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+)?
+             (?P<year>\d{4})$""",
+        token, re.IGNORECASE | re.VERBOSE,
+    )
+    if not m:
+        return None
+    year = int(m.group("year"))
+    month_str = (m.group("month") or "").lower().rstrip(".")[:3]
+    month = _MONTH_MAP.get(month_str, 1)
+    try:
+        return date(year, month, 1)
+    except ValueError:
+        return None
+
+
+def _parse_date_range_str(range_str: str, today: date) -> Optional[Tuple[date, date]]:
+    """Parse 'Nov 2022 – Nov 2024' or '2024 – Present' into (start, end).
+
+    Returns None if either half is unparseable.
+    """
+    # Split on dash/en-dash/em-dash
+    parts = re.split(r'\s*[–\-—/]\s*', range_str, maxsplit=1)
+    if len(parts) != 2:
+        return None
+    start = _parse_date_token(parts[0].strip(), today)
+    end = _parse_date_token(parts[1].strip(), today)
+    if start is None or end is None:
+        return None
+    if end < start:
+        return None
+    return (start, end)
+
+
+def compute_cv_tenure_years(sections_raw_text: List[str], today: Optional[date] = None) -> float:
+    """Parse date ranges from experience section text and compute non-overlapping tenure.
+
+    This is the B9 fix: derives verified tenure directly from CV dates rather than
+    trusting the S5 LLM's total_years_experience estimate, which can over-count.
+
+    Args:
+        sections_raw_text: raw_text strings from experience/work sections only.
+        today: override today's date (for testing).
+
+    Returns:
+        Total non-overlapping years of experience, rounded to 1 decimal.
+        Returns 0.0 if no date ranges can be parsed.
+    """
+    if today is None:
+        today = date.today()
+
+    intervals: List[Tuple[date, date]] = []
+    for text in sections_raw_text:
+        for match in _DATE_RANGE.finditer(text):
+            parsed = _parse_date_range_str(match.group(0), today)
+            if parsed:
+                intervals.append(parsed)
+
+    if not intervals:
+        return 0.0
+
+    # Merge overlapping intervals and sum durations
+    intervals.sort(key=lambda x: x[0])
+    merged: List[Tuple[date, date]] = []
+    cur_start, cur_end = intervals[0]
+    for start, end in intervals[1:]:
+        if start <= cur_end:          # overlapping or touching — extend
+            cur_end = max(cur_end, end)
+        else:
+            merged.append((cur_start, cur_end))
+            cur_start, cur_end = start, end
+    merged.append((cur_start, cur_end))
+
+    total_days = sum((e - s).days for s, e in merged)
+    return round(total_days / 365.25, 1)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -211,6 +343,7 @@ class TruthGuard:
         evidence_bank: dict,
         claims_not_allowed: List[str],
         claims_allowed: List[str],
+        cv_verified_years: Optional[float] = None,
     ) -> Claim:
         """Classify a single claim's risk level against evidence."""
 
@@ -229,7 +362,7 @@ class TruthGuard:
 
         # ── Tier 2: Type-specific classification ────────────────
         if claim.claim_type == "year_experience":
-            self._classify_year_claim(claim, user_truth)
+            self._classify_year_claim(claim, user_truth, cv_verified_years)
         elif claim.claim_type == "skill_assertion":
             self._classify_skill_claim(claim, user_truth)
         elif claim.claim_type in (
@@ -243,9 +376,28 @@ class TruthGuard:
 
         return claim
 
-    def _classify_year_claim(self, claim: Claim, user_truth: dict):
-        """Classify year-experience claims against total_years_experience."""
-        total_years = user_truth.get("total_years_experience", 0)
+    def _classify_year_claim(
+        self,
+        claim: Claim,
+        user_truth: dict,
+        cv_verified_years: Optional[float] = None,
+    ):
+        """Classify year-experience claims against total_years_experience.
+
+        B9 fix: if cv_verified_years is provided (parsed directly from CV date
+        ranges — not from the S5 LLM estimate), use the LOWER of the two as the
+        authoritative ceiling.  This prevents S5 over-counting overlapping roles
+        (e.g. Emote + Omnex both "present") from masking "6+ years" inflation
+        when the CV only documents ~4 years.
+        """
+        llm_total = float(user_truth.get("total_years_experience") or 0)
+        # If both sources available, use the stricter (lower) bound.
+        # If only one is available, use what we have.
+        if cv_verified_years and cv_verified_years > 0:
+            total_years = min(llm_total, cv_verified_years) if llm_total > 0 else cv_verified_years
+        else:
+            total_years = llm_total
+
         year_match = re.search(r'(\d+)', claim.text)
         if not year_match:
             claim.risk_level = "UNSUPPORTED"
@@ -264,14 +416,15 @@ class TruthGuard:
             claim.risk_level = "VERIFIED"
             claim.confidence = 0.9
             claim.evidence_match = (
-                f"Confirmed: total_years_experience = {total_years}"
+                f"Confirmed: verified_years = {total_years} "
+                f"(cv={cv_verified_years}, llm={llm_total})"
             )
         elif claimed_years <= total_years and has_plus:
-            # "X+ years" when total >= X — technically true, puffery
+            # "X+ years" when total >= X — technically true, mild puffery
             claim.risk_level = "WEAK"
             claim.confidence = 0.6
             claim.evidence_match = (
-                f"Partially supported: actual total = {total_years}, "
+                f"Partially supported: verified_years = {total_years}, "
                 f"claimed {claimed_years}+"
             )
         elif claimed_years > total_years:
@@ -580,8 +733,15 @@ class TruthGuard:
         user_truth: dict,
         evidence_bank: dict,
         claims_not_allowed: List[str],
+        cv_verified_years: Optional[float] = None,
     ) -> List[Claim]:
-        """Extract and classify all claims in text. Deterministic."""
+        """Extract and classify all claims in text. Deterministic.
+
+        Args:
+            cv_verified_years: total non-overlapping years derived from CV date
+                ranges (B9 fix).  When provided, used as a lower bound against
+                S5's total_years_experience to catch LLM over-counting.
+        """
         if not text or not text.strip():
             return []
 
@@ -600,6 +760,7 @@ class TruthGuard:
                 evidence_bank,
                 claims_not_allowed,
                 claims_allowed,
+                cv_verified_years=cv_verified_years,
             )
 
         return claims

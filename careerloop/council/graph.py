@@ -60,6 +60,9 @@ class CouncilState(TypedDict):
     humanizer_report: Optional[Dict]
     s7_debug: Optional[Dict]  # per-section timing, model, rewrite stats
 
+    candidate_graph: Optional[Dict]    # structured CandidateGraph (wired in S1)
+    cv_tenure_years: Optional[float]   # CV-verified non-overlapping tenure (B9 fix)
+
     errors: list
 
 
@@ -452,8 +455,37 @@ def parse_node(state: CouncilState) -> CouncilState:
         print("  → SKIPPING (previous errors)")
         return state
     try:
+        from careerloop.council.truth_guard import compute_cv_tenure_years
         resume = ResumeCompiler.parse_markdown(state["master_cv"])
-        return {**state, "canonical_resume": resume.to_dict()}
+        resume_dict = resume.to_dict()
+
+        # ── CandidateGraph (structured bullet extraction) ──────────────
+        try:
+            candidate_graph = ResumeCompiler.extract_candidate_graph(resume_dict)
+            print(f"  → CandidateGraph: {len(candidate_graph.get('experience', []))} experience blocks, "
+                  f"{len(candidate_graph.get('metric_vault', []))} metrics")
+        except Exception as cg_err:
+            print(f"  !! CandidateGraph extraction failed (non-fatal): {cg_err}")
+            candidate_graph = None
+
+        # ── CV tenure (B9 fix: regex-parsed non-overlapping years) ─────
+        try:
+            experience_texts = [
+                s.get("raw_text", "")
+                for s in resume_dict.get("sections", [])
+                if (s.get("section_type") or "").lower() == "experience"
+                   or "experience" in (s.get("section_title") or "").lower()
+            ]
+            cv_tenure_years = compute_cv_tenure_years(experience_texts) if experience_texts else None
+            if cv_tenure_years is not None:
+                print(f"  → CV tenure (verified): {cv_tenure_years} years")
+        except Exception as tenure_err:
+            print(f"  !! CV tenure computation failed (non-fatal): {tenure_err}")
+            cv_tenure_years = None
+
+        return {**state, "canonical_resume": resume_dict,
+                "candidate_graph": candidate_graph,
+                "cv_tenure_years": cv_tenure_years}
     except Exception as e:
         msg = f"Document Parser failed: {e}"
         print(f"  !! {msg}")
@@ -903,6 +935,9 @@ def truth_guard_node(state: CouncilState) -> CouncilState:
     claims_not_allowed = (
         user_truth.get("claims_not_allowed", []) if user_truth else []
     )
+    cv_tenure_years = state.get("cv_tenure_years")  # B9: CV-verified tenure ceiling
+    if cv_tenure_years is not None:
+        print(f"  → Using cv_tenure_years={cv_tenure_years} as year-claim ceiling")
     errors = state.get("errors", [])
     all_claims = []
 
@@ -910,9 +945,10 @@ def truth_guard_node(state: CouncilState) -> CouncilState:
         for section_id, rewrite in rewrites["rewrites"].items():
             text = rewrite.get("rewritten_text", "")
 
-            # Validate every claim in the text
+            # Validate every claim in the text (B9: pass cv_tenure_years ceiling)
             claims = guard.validate(
-                text, user_truth, evidence_bank, claims_not_allowed
+                text, user_truth, evidence_bank, claims_not_allowed,
+                cv_verified_years=cv_tenure_years,
             )
             all_claims.extend(claims)
 

@@ -590,6 +590,149 @@ class ResumeCompiler:
             warnings=warn,
         )
 
+    # ── CandidateGraph Extraction ───────────────────────────────────────────
+
+    @staticmethod
+    def extract_candidate_graph(canonical_resume_dict: dict) -> dict:
+        """Extract a structured CandidateGraph dict from a serialised CanonicalResume.
+
+        Walks the sections list and builds:
+          - contact fields (name, email, phone, links) from intro/contact sections
+          - profile_summary from profile/summary sections
+          - experience[] with structured bullet arrays from experience sections
+          - education[] from education sections
+          - skills[] from skills sections
+          - metric_vault (top-30 numeric values found across all bullets)
+        """
+        import re as _re
+
+        sections = canonical_resume_dict.get("sections") or []
+
+        name = canonical_resume_dict.get("candidate_name", "")
+        email = ""
+        phone = ""
+        links: list = []
+        profile_summary = ""
+        experience: list = []
+        education: list = []
+        skills: list = []
+        metric_vault: list = []
+
+        _EMAIL = _re.compile(r"[\w.+-]+@[\w-]+\.[a-zA-Z]{2,}")
+        _PHONE = _re.compile(r"[\+\(]?[\d][\d\s\-\(\)\.]{6,}[\d]")
+        _URL   = _re.compile(r"https?://\S+|linkedin\.com/\S+|github\.com/\S+", _re.I)
+        _METRIC = _re.compile(r"\b\d[\d,\.]*\s*(?:%|x|k|m|bn|usd|million|billion|years?|months?|days?|hrs?|hours?)?\b", _re.I)
+
+        def _extract_bullets(raw: str) -> list:
+            """Return list of bullet strings (strips leading - / * / • )."""
+            bullets = []
+            for line in raw.splitlines():
+                stripped = line.strip()
+                if stripped.startswith(("-", "*", "•", "–")):
+                    bullet_text = stripped.lstrip("-*•– ").strip()
+                    if bullet_text:
+                        bullets.append(bullet_text)
+            return bullets
+
+        def _extract_metrics(text: str) -> list:
+            return _METRIC.findall(text)
+
+        for section in sections:
+            stype  = (section.get("section_type") or "").lower()
+            stitle = (section.get("section_title") or "").lower()
+            raw    = section.get("raw_text") or ""
+
+            # ── Contact / Intro ──────────────────────────────────────────
+            if stype in ("intro", "contact") or any(k in stitle for k in ("contact", "intro", "header")):
+                em = _EMAIL.search(raw)
+                if em:
+                    email = em.group(0)
+                ph = _PHONE.search(raw)
+                if ph:
+                    phone = ph.group(0).strip()
+                for url in _URL.findall(raw):
+                    if url not in links:
+                        links.append(url)
+                # First non-empty non-email non-url line is often the name
+                if not name:
+                    for line in raw.splitlines():
+                        clean = line.strip()
+                        if clean and not _EMAIL.search(clean) and not _URL.search(clean) and len(clean) < 60:
+                            name = clean
+                            break
+
+            # ── Profile / Summary ────────────────────────────────────────
+            elif stype in ("profile", "summary") or any(k in stitle for k in ("profile", "summary", "objective", "about")):
+                if not profile_summary:
+                    profile_summary = raw.strip()
+
+            # ── Experience ───────────────────────────────────────────────
+            elif stype == "experience" or "experience" in stitle or "work" in stitle:
+                bullets = _extract_bullets(raw)
+                metric_vault.extend(_extract_metrics(raw))
+
+                # Try to split into role blocks separated by ### headings or bold **Title**
+                role_blocks = _re.split(r"(?m)^#{2,3}\s+", raw)
+                if len(role_blocks) <= 1:
+                    role_blocks = _re.split(r"\n(?=\*\*[A-Z])", raw)
+
+                for block in role_blocks:
+                    if not block.strip():
+                        continue
+                    lines = [l.strip() for l in block.splitlines() if l.strip()]
+                    if not lines:
+                        continue
+                    title_line = lines[0].strip("*#").strip()
+                    block_bullets = _extract_bullets(block)
+                    experience.append({
+                        "title_line": title_line,
+                        "raw_block": block.strip(),
+                        "bullets": block_bullets,
+                    })
+
+            # ── Education ────────────────────────────────────────────────
+            elif stype == "education" or "education" in stitle or "academic" in stitle:
+                edu_lines = [l.strip() for l in raw.splitlines() if l.strip() and not l.strip().startswith("#")]
+                education.append({
+                    "raw": raw.strip(),
+                    "lines": edu_lines,
+                })
+
+            # ── Skills ───────────────────────────────────────────────────
+            elif stype in ("skills", "technical_skills") or any(k in stitle for k in ("skill", "technical", "tool", "stack")):
+                skill_bullets = _extract_bullets(raw)
+                if not skill_bullets:
+                    # comma/pipe-separated lists
+                    for line in raw.splitlines():
+                        parts = _re.split(r"[,|;]", line)
+                        skill_bullets.extend(p.strip() for p in parts if p.strip() and not p.strip().startswith("#"))
+                skills.extend(skill_bullets)
+
+        # Deduplicate metrics and cap at 30
+        seen: set = set()
+        deduped_metrics: list = []
+        for m in metric_vault:
+            key = m.strip().lower()
+            if key not in seen:
+                seen.add(key)
+                deduped_metrics.append(m.strip())
+        metric_vault = deduped_metrics[:30]
+
+        return {
+            "name": name,
+            "email": email,
+            "phone": phone,
+            "links": links,
+            "profile_summary": profile_summary,
+            "target_role_title": "",
+            "experience": experience,
+            "education": education,
+            "skills": skills,
+            "achievements": [],
+            "metric_vault": metric_vault,
+            "private_constraints": [],
+        }
+
     # ── Quality Report ─────────────────────────────────────────────────────
 
     @staticmethod
