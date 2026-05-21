@@ -183,10 +183,16 @@ Entry format:
 |------|---------|
 | `docs/product/PRD.md` | Master vision PRD — source of truth |
 | `docs/product/ROI_UX_PRODUCT_VISION.md` | ROI thesis, UX philosophy, metrics hierarchy, competitor map |
+| `docs/product/TECH_ROADMAP.md` | Phased MECE roadmap (Phase 1–8) with system %s and ownership |
+| `docs/product/DECISION_COMPRESSION_VISION.md` | CEO Phase 1.5 spec — triage, modes, tracks, daily brief |
 | `docs/tech-backlog/TRACKER.md` | Rolling session log + system status |
-| `docs/learnings/20_PART_ARCHITECTURAL_AUDIT.md` | Exhaustive breakdown of V3 vs Reality |
-| `docs/learnings/PROMPT_AUDIT.md` | Comprehensive prompt analysis |
-| `docs/tech-backlog/CAREERLOOP_REDESIGN_IMPLEMENTATION_PLAN.md` | V3 Redesign and Data Contracts |
+| `docs/tech-backlog/8-PIPELINE-CHECKLIST.md` | Stage-by-stage council pipeline checklist |
 | `docs/product/vision_v1.6_historical.md` | Original v1.6 vision (historical reference) |
-| `docs/engineering/breakdown-20-part.md` | 20-part architecture breakdown |
+| `docs/engineering/CANONICAL_ARCHITECTURE.md` | 11 locked architecture decisions |
+| `docs/engineering/resume-council-vision.md` | Resume Council 8-system spec |ership |
+| `docs/product/DECISION_COMPRESSION_VISION.md` | CEO Phase 1.5 spec — triage, modes, tracks, daily brief |
+| `docs/tech-backlog/TRACKER.md` | Rolling session log + system status |
+| `docs/tech-backlog/8-PIPELINE-CHECKLIST.md` | Stage-by-stage council pipeline checklist |
+| `docs/product/vision_v1.6_historical.md` | Original v1.6 vision (historical reference) |
+| `docs/engineering/CANONICAL_ARCHITECTURE.md` | 11 locked architecture decisions |
 | `docs/engineering/resume-council-vision.md` | Resume Council 8-system spec |
