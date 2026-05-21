@@ -847,7 +847,7 @@ def _parse_skills_from_bullets(body: str) -> List[SkillRow]:
                 continue
             flat_items.append(_sanitize_text(_strip_markdown_formatting(line)))
         if flat_items:
-            rows.append(SkillRow(label="Skills", items=flat_items))
+            rows.append(SkillRow(label="", items=flat_items))
 
     return rows
 
