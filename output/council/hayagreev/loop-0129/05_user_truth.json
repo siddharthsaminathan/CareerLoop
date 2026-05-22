@@ -1,66 +1,50 @@
 {
   "total_years_experience": 1.0,
-  "confirmed_skills": [
-    {
-      "skill": "Python",
-      "years": 1,
-      "evidence": "Built AI-driven Reddit outreach system and led data analytics for AI product"
-    },
-    {
-      "skill": "Docker",
-      "years": 1,
-      "evidence": "Listed in MLOps skills alongside Kubeflow; likely used in AI system deployment"
-    },
-    {
-      "skill": "Git",
-      "years": 1,
-      "evidence": "Standard tool listed in skills; likely used for version control in projects"
-    }
-  ],
+  "confirmed_skills": [],
   "weak_skills": [
-    "Kubernetes",
-    "CI/CD",
+    "Python",
+    "AI agent design",
+    "agentic frameworks (LangChain/CrewAI/AutoGen)",
     "RESTful APIs",
-    "microservices",
-    "LLMs/RAG/fine-tuning",
-    "cloud (AWS/GCP/Azure)"
+    "generative AI concepts (LLMs, RAG, fine-tuning)",
+    "Docker",
+    "Kubernetes",
+    "CI/CD pipelines",
+    "Git"
   ],
   "evidence_bank": {
-    "Python": [
-      "Built AI-driven Reddit outreach system automating 5,100+ DMs",
-      "Ran build-measure-learn cycles with data analytics for Emote",
-      "Used Python in MLOps and data engineering tasks per skills"
+    "Python": [],
+    "AI agent design": [],
+    "agentic frameworks": [],
+    "RESTful APIs": [],
+    "LLMs": [
+      "Co-developed RFP for AI-enabled data platform with LLM use cases"
     ],
     "Docker": [
-      "Listed in MLOps skills (Kubeflow, Docker, Azure ML)",
-      "Likely used for containerization in AI prototyping"
+      "Listed in skills"
     ],
-    "Git": [
-      "Included in skills list",
-      "Standard version control for code collaboration"
-    ],
-    "Kubernetes": [
-      "Kubeflow implies Kubernetes knowledge but no direct experience detailed"
-    ]
+    "Kubernetes": [],
+    "CI/CD": [],
+    "Git": []
   },
   "strongest_proof_points": [
-    "Shipped AI product Emote from 0 to 451 users in 7 months with rapid iteration",
-    "Designed emotionally intelligent AI system with memory and conversation flows",
-    "Led enterprise AI use case discovery across 80+ bank departments",
-    "Built automated Reddit outreach system acquiring 456 users at 9% conversion"
+    "Led AI product from zero to 451 users in 7 months",
+    "Scoped AI data platform across 80+ bank departments",
+    "Architected emotionally intelligent AI system with behavioral science grounding"
   ],
   "claims_allowed": [
-    "1 year of hands-on Python and AI product development",
-    "Experience with LLM-based AI system design and prompt engineering",
-    "Familiarity with Docker and MLOps tools",
-    "Strong cross-functional collaboration (product, engineering, stakeholders)",
-    "Autonomous problem-solving (co-founded startup, led product from zero)"
+    "AI product management",
+    "Enterprise data platform scoping",
+    "User acquisition system building",
+    "Behavioral science applied to AI",
+    "Consulting in financial transformation"
   ],
   "claims_not_allowed": [
-    "5 years of professional experience",
-    "Expertise in agentic frameworks (LangChain, CrewAI, AutoGen)",
-    "Production CI/CD for AI",
-    "Deep learning expert",
-    "Extensive cloud infrastructure experience"
+    "4+ years Python",
+    "AI agent design experience",
+    "LangChain/CrewAI/AutoGen expertise",
+    "Kubernetes hands-on",
+    "CI/CD pipeline experience",
+    "Production-scale AI deployment"
   ]
 }

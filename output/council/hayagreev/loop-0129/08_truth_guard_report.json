@@ -1,37 +1,47 @@
 {
-  "total_claims": 7,
+  "total_claims": 8,
   "verified": 0,
-  "weak": 2,
-  "unsupported": 5,
+  "weak": 0,
+  "unsupported": 8,
   "exaggerated": 0,
   "fabricated": 0,
   "claims": [
     {
-      "text": "Built a Go-To-Market strategy",
+      "text": "Led a team of 5",
       "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 0,
-      "end_pos": 29,
+      "start_pos": 287,
+      "end_pos": 302,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0
     },
     {
       "text": "Led a team of 5",
-      "risk_level": "WEAK",
-      "claim_type": "ownership",
-      "start_pos": 282,
-      "end_pos": 297,
-      "evidence_match": "Numbers present in evidence bank — claim likely grounded",
-      "repair_suggestion": null,
-      "confidence": 0.4
-    },
-    {
-      "text": "Led enterprise AI use case discovery",
       "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 313,
-      "end_pos": 349,
+      "start_pos": 495,
+      "end_pos": 510,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Led a team of 3 students",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 704,
+      "end_pos": 728,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Led enterprise requirement discovery",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 315,
+      "end_pos": 351,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0
@@ -40,8 +50,8 @@
       "text": "Architected an emotionally intelligent AI system grounded in behavioral science",
       "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 1803,
-      "end_pos": 1882,
+      "start_pos": 1888,
+      "end_pos": 1967,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0
@@ -50,8 +60,8 @@
       "text": "Led end-to-end product execution",
       "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 2351,
-      "end_pos": 2383,
+      "start_pos": 2387,
+      "end_pos": 2419,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0
@@ -60,21 +70,21 @@
       "text": "Built a feedback-driven product system",
       "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 2698,
-      "end_pos": 2736,
+      "start_pos": 2722,
+      "end_pos": 2760,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0
     },
     {
       "text": "Built an AI-driven Reddit outreach system",
-      "risk_level": "WEAK",
+      "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 2988,
-      "end_pos": 3029,
-      "evidence_match": "Partial evidence match in 'Python'",
+      "start_pos": 3013,
+      "end_pos": 3054,
+      "evidence_match": null,
       "repair_suggestion": null,
-      "confidence": 0.35
+      "confidence": 0.0
     }
   ]
 }

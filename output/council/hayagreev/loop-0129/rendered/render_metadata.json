@@ -1,81 +1,81 @@
 {
-  "input_resume_path": "output/council/hayagreev/loop-0129/10_final_resume.md",
-  "final_resume_markdown_path": "output/council/hayagreev/loop-0129/10_final_resume.md",
-  "normalized_resume_json_path": "output/council/hayagreev/loop-0129/rendered/08_normalized_resume.json",
-  "candidate": "Hayagreev",
-  "run_id": "latest",
+  "input_resume_path": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\10_final_resume.md",
+  "final_resume_markdown_path": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\10_final_resume.md",
+  "normalized_resume_json_path": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\08_normalized_resume.json",
+  "candidate": "hayagreev",
+  "run_id": "loop-0129",
   "renderer": "careerloop.rendering.render_all_templates.render_resume",
-  "output_dir": "output/council/hayagreev/loop-0129/rendered",
+  "output_dir": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered",
   "templates": [
     {
       "template": "classic-ats",
-      "pages": "2",
-      "html": "output/council/hayagreev/loop-0129/rendered/classic-ats.html",
-      "pdf": "output/council/hayagreev/loop-0129/rendered/classic-ats.pdf",
-      "pdf_status": "ok"
+      "pages": "skipped",
+      "html": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\classic-ats.html",
+      "pdf": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\classic-ats.pdf",
+      "pdf_status": "failed: [WinError 2] The system cannot find the file specified"
     },
     {
       "template": "modern-accent",
-      "pages": "3",
-      "html": "output/council/hayagreev/loop-0129/rendered/modern-accent.html",
-      "pdf": "output/council/hayagreev/loop-0129/rendered/modern-accent.pdf",
-      "pdf_status": "ok"
+      "pages": "skipped",
+      "html": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\modern-accent.html",
+      "pdf": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\modern-accent.pdf",
+      "pdf_status": "failed: [WinError 2] The system cannot find the file specified"
     },
     {
       "template": "executive-clean",
-      "pages": "3",
-      "html": "output/council/hayagreev/loop-0129/rendered/executive-clean.html",
-      "pdf": "output/council/hayagreev/loop-0129/rendered/executive-clean.pdf",
-      "pdf_status": "ok"
+      "pages": "skipped",
+      "html": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\executive-clean.html",
+      "pdf": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\executive-clean.pdf",
+      "pdf_status": "failed: [WinError 2] The system cannot find the file specified"
     },
     {
       "template": "compact-one-page",
-      "pages": "2",
-      "html": "output/council/hayagreev/loop-0129/rendered/compact-one-page.html",
-      "pdf": "output/council/hayagreev/loop-0129/rendered/compact-one-page.pdf",
-      "pdf_status": "ok"
+      "pages": "skipped",
+      "html": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\compact-one-page.html",
+      "pdf": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\compact-one-page.pdf",
+      "pdf_status": "failed: [WinError 2] The system cannot find the file specified"
     },
     {
       "template": "technical-two-column",
-      "pages": "2",
-      "html": "output/council/hayagreev/loop-0129/rendered/technical-two-column.html",
-      "pdf": "output/council/hayagreev/loop-0129/rendered/technical-two-column.pdf",
-      "pdf_status": "ok"
+      "pages": "skipped",
+      "html": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\technical-two-column.html",
+      "pdf": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\technical-two-column.pdf",
+      "pdf_status": "failed: [WinError 2] The system cannot find the file specified"
     },
     {
       "template": "product-engineer",
-      "pages": "3",
-      "html": "output/council/hayagreev/loop-0129/rendered/product-engineer.html",
-      "pdf": "output/council/hayagreev/loop-0129/rendered/product-engineer.pdf",
-      "pdf_status": "ok"
+      "pages": "skipped",
+      "html": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\product-engineer.html",
+      "pdf": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\product-engineer.pdf",
+      "pdf_status": "failed: [WinError 2] The system cannot find the file specified"
     },
     {
       "template": "founder-operator",
-      "pages": "3",
-      "html": "output/council/hayagreev/loop-0129/rendered/founder-operator.html",
-      "pdf": "output/council/hayagreev/loop-0129/rendered/founder-operator.pdf",
-      "pdf_status": "ok"
+      "pages": "skipped",
+      "html": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\founder-operator.html",
+      "pdf": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\founder-operator.pdf",
+      "pdf_status": "failed: [WinError 2] The system cannot find the file specified"
     },
     {
       "template": "compact-sidebar-premium",
-      "pages": "1",
-      "html": "output/council/hayagreev/loop-0129/rendered/compact-sidebar-premium.html",
-      "pdf": "output/council/hayagreev/loop-0129/rendered/compact-sidebar-premium.pdf",
-      "pdf_status": "ok"
+      "pages": "skipped",
+      "html": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\compact-sidebar-premium.html",
+      "pdf": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\compact-sidebar-premium.pdf",
+      "pdf_status": "failed: [WinError 2] The system cannot find the file specified"
     },
     {
       "template": "design-brand-compact",
-      "pages": "1",
-      "html": "output/council/hayagreev/loop-0129/rendered/design-brand-compact.html",
-      "pdf": "output/council/hayagreev/loop-0129/rendered/design-brand-compact.pdf",
-      "pdf_status": "ok"
+      "pages": "skipped",
+      "html": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\design-brand-compact.html",
+      "pdf": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\design-brand-compact.pdf",
+      "pdf_status": "failed: [WinError 2] The system cannot find the file specified"
     },
     {
       "template": "design-brand-compact-dark",
-      "pages": "1",
-      "html": "output/council/hayagreev/loop-0129/rendered/design-brand-compact-dark.html",
-      "pdf": "output/council/hayagreev/loop-0129/rendered/design-brand-compact-dark.pdf",
-      "pdf_status": "ok"
+      "pages": "skipped",
+      "html": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\design-brand-compact-dark.html",
+      "pdf": "C:\\Users\\Omnex\\Desktop\\CareerLoop-main\\output\\council\\hayagreev\\loop-0129\\rendered\\design-brand-compact-dark.pdf",
+      "pdf_status": "failed: [WinError 2] The system cannot find the file specified"
     }
   ]
 }

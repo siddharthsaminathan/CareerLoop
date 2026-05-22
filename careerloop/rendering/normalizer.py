@@ -663,21 +663,55 @@ def _url_to_display(url: str) -> str:
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def _parse_profile(classified: dict) -> str:
-    """Extract profile/summary text."""
+    """Extract profile/summary text.
+
+    Primary source: dedicated ## SUMMARY / ## PROFILE block.
+    Fallback: summary paragraph embedded in the contact/preamble block
+    (e.g. Hayagreev-style CVs where the summary sits right after the
+    contact line with no section heading).
+    """
     profile_block = classified.get("profile")
-    if not profile_block:
-        return ""
-    _, _, body = profile_block
-    # Remove standalone horizontal rules that sometimes leak from section joins.
-    cleaned_lines = []
-    for line in body.splitlines():
-        if re.match(r"^\s*[-*_]{3,}\s*$", line.strip()):
-            continue
-        cleaned_lines.append(line)
-    cleaned = "\n".join(cleaned_lines).strip()
-    # Return the body text with arrows and em dashes sanitized.
-    # **bold** markers are preserved — the renderer converts those to HTML.
-    return _sanitize_text(cleaned)
+    if profile_block:
+        _, _, body = profile_block
+        # Remove standalone horizontal rules that sometimes leak from section joins.
+        cleaned_lines = []
+        for line in body.splitlines():
+            if re.match(r"^\s*[-*_]{3,}\s*$", line.strip()):
+                continue
+            cleaned_lines.append(line)
+        cleaned = "\n".join(cleaned_lines).strip()
+        return _sanitize_text(cleaned)
+
+    # Fallback: look for a summary paragraph in the contact block.
+    # The preamble (before any ## heading) is stored as "contact".  For
+    # CVs that embed the summary directly after the contact line, it appears
+    # as a long paragraph that contains no phone/email/URL signals.
+    contact_block = classified.get("contact")
+    if contact_block:
+        _, _, body = contact_block
+        _contact_signal = re.compile(
+            r"(?:@|\+?\d[\d\s().-]{6,}\d|https?://|www\.|linkedin\.com|github\.com"
+            r"|T:\s*\+|E:\s*\w+@|Phone|Email|LinkedIn)",
+            re.IGNORECASE,
+        )
+        candidate_paras: list[str] = []
+        for para in re.split(r"\n{2,}", body):
+            para = para.strip()
+            if not para:
+                continue
+            # Skip paragraphs that are purely contact/link lines
+            lines = [l.strip() for l in para.splitlines() if l.strip()]
+            content_lines = [l for l in lines if not _contact_signal.search(l)]
+            if not content_lines:
+                continue
+            # Must be a real sentence (>60 chars, not a header-only line)
+            candidate = " ".join(content_lines).strip()
+            if len(candidate) > 60:
+                candidate_paras.append(candidate)
+        if candidate_paras:
+            return _sanitize_text(" ".join(candidate_paras))
+
+    return ""
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -1055,9 +1089,22 @@ def _split_loose_company_role_location(text: str) -> tuple[str, str, str]:
         location = location_match.group(1).strip()
         text = (text[:location_match.start()] + text[location_match.end():]).strip(" |,-")
 
+    # Handle "Role at Company" format (e.g. "Financial Transformation Consultant at Grant Thornton")
+    # Split on " at " where "at" is surrounded by spaces — not part of a word.
+    # Also strip trailing em-dash artefacts left after location/date removal.
+    text = re.sub(r"\s*[–—]\s*$", "", text).strip(" |,-\t")
+    at_match = re.search(r"\s+at\s+", text, re.IGNORECASE)
+    if at_match:
+        role_part = text[:at_match.start()].strip(" |,-")
+        company_part = text[at_match.end():].strip(" |,-")
+        if role_part and company_part:
+            return company_part, role_part, location
+
     role_keywords = [
         "Category Manager", "Assistant Fashion Manager", "Founder",
         "Merchandiser", "Buyer", "Manager", "Analyst", "Engineer",
+        "Consultant", "Developer", "Director", "Associate", "Executive",
+        "Specialist", "Coordinator", "Lead", "Head",
     ]
     for keyword in role_keywords:
         idx = text.lower().find(keyword.lower())

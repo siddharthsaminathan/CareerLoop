@@ -3,27 +3,25 @@
   "role_title": "Gen AI Python Developer",
   "source_urls": [],
   "grounding_status": "JD_ONLY",
-  "confidence": 0.35,
-  "generated_at": "2026-05-21T16:26:07.754810+00:00",
+  "confidence": 0.45,
+  "generated_at": "2026-05-22T07:08:07.227932+00:00",
   "cache_key": "d8065c0026063029",
   "ttl_days": 30,
-  "company_summary": "Deloitte. with focus on manufacturing, procurement.",
+  "company_summary": "Deloitte. with a focus on ai_ml, ai_ml, manufacturing.",
   "business_model": "",
   "revenue_model": "",
   "customer_segment": "",
-  "product_category": "ai_ml, ai_ml, ai_ml, api_platform, microservices",
-  "india_presence": "Likely (India role posting)",
+  "product_category": "",
+  "india_presence": "UNKNOWN",
   "company_maturity": "UNKNOWN",
   "growth_signals": [],
   "stability_signals": [],
   "hiring_urgency": "UNKNOWN",
-  "role_reason": "Hiring for Gen AI Python Developer — extract from JD context.",
+  "role_reason": "",
   "likely_success_criteria": [],
   "likely_failure_modes": [],
-  "culture_signals": [
-    "collaborative"
-  ],
-  "communication_style": "collaborative and cross-functional",
+  "culture_signals": [],
+  "communication_style": "",
   "founder_or_leadership_signals": "",
   "org_maturity": "UNKNOWN",
   "technical_maturity": "UNKNOWN",
@@ -36,105 +34,155 @@
   "recruiter_info": {},
   "positioning_implications": "",
   "language_to_use": [
-    "built",
-    "improved",
-    "delivered"
+    "agentic design patterns",
+    "multi-agent systems",
+    "LangChain",
+    "CrewAI",
+    "AutoGen",
+    "RAG",
+    "fine-tuning",
+    "CI/CD"
   ],
   "language_to_avoid": [
-    "agentic",
-    "multi-agent",
-    "autonomous",
-    "swarm",
-    "AI revolution",
-    "spearheaded",
-    "synergy",
-    "leverage"
+    "ninja",
+    "rockstar",
+    "guru",
+    "magic",
+    "crush it"
   ],
   "candidate_angles": [],
   "transferability_angles": [],
-  "risks_to_soften": [],
+  "risks_to_soften": [
+    "limited agentic framework experience",
+    "no production AI deployment"
+  ],
   "claims_to_avoid": [],
   "resume_strategy_hint": "",
   "outreach_strategy_hint": "",
   "interview_strategy_hint": "",
   "s6_positioning_context": {
-    "company_archetype": "collaborative and cross-functional",
+    "company_archetype": "Deloitte. with a focus on ai_ml, ai_ml, manufacturing.",
     "business_model": "",
     "company_maturity": "UNKNOWN",
-    "india_presence": "Likely (India role posting)",
-    "culture_signals": [
-      "collaborative"
-    ],
+    "india_presence": "UNKNOWN",
+    "culture_signals": [],
     "hiring_urgency": "UNKNOWN",
     "positioning_implications": "",
     "language_to_use": [
-      "built",
-      "improved",
-      "delivered"
+      "agentic design patterns",
+      "multi-agent systems",
+      "LangChain",
+      "CrewAI",
+      "AutoGen",
+      "RAG",
+      "fine-tuning",
+      "CI/CD"
     ],
     "language_to_avoid": [
-      "agentic",
-      "multi-agent",
-      "autonomous",
-      "swarm",
-      "AI revolution",
-      "spearheaded",
-      "synergy",
-      "leverage"
+      "ninja",
+      "rockstar",
+      "guru",
+      "magic",
+      "crush it"
     ],
-    "risks_to_soften": [],
+    "risks_to_soften": [
+      "limited agentic framework experience",
+      "no production AI deployment"
+    ],
     "claims_to_avoid": [],
     "candidate_angles": [],
     "red_flags": [],
     "grounding_status": "JD_ONLY",
-    "confidence": 0.35
+    "confidence": 0.0
   },
   "s7_rewrite_context": {
-    "company_archetype": "collaborative and cross-functional",
-    "company_tone": "collaborative and cross-functional",
-    "product_context": "ai_ml, ai_ml, ai_ml, api_platform, microservices",
-    "business_problem": "Hiring for Gen AI Python Developer — extract from JD context.",
+    "company_archetype": "Deloitte. with a focus on ai_ml, ai_ml, manufacturing.",
+    "company_tone": "professional and direct",
+    "product_context": "",
+    "business_problem": "",
     "role_success_criteria": [],
     "language_to_use": [
-      "built",
-      "improved",
-      "delivered"
+      "agentic design patterns",
+      "multi-agent systems",
+      "LangChain",
+      "CrewAI",
+      "AutoGen",
+      "RAG",
+      "fine-tuning",
+      "CI/CD"
     ],
     "language_to_avoid": [
-      "agentic",
-      "multi-agent",
-      "autonomous",
-      "swarm",
-      "AI revolution",
-      "spearheaded",
-      "synergy",
-      "leverage"
+      "ninja",
+      "rockstar",
+      "guru",
+      "magic",
+      "crush it"
     ],
     "proof_points_to_prefer": [
       "measurable outcomes with numbers",
       "specific, defensible achievements",
       "evidence of ownership and initiative"
     ],
-    "risks_to_soften": [],
+    "risks_to_soften": [
+      "limited agentic framework experience",
+      "no production AI deployment"
+    ],
     "avoid_overclaiming_about": [],
     "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact.",
-    "founder_context": "",
+    "founder_context": "UNKNOWN",
     "hiring_reason": "UNKNOWN",
-    "culture_fit_signals": [],
-    "interview_prep_hints": [],
-    "glassdoor_signal": "",
-    "reddit_signal": "",
+    "culture_fit_signals": [
+      "collaborative",
+      "innovative",
+      "technical",
+      "client-driven",
+      "continuous learning"
+    ],
+    "interview_prep_hints": [
+      "Describe an agentic system you built using LangChain or CrewAI.",
+      "How do you design multi-agent collaboration for complex tasks?",
+      "Explain your experience with CI/CD pipelines for AI models."
+    ],
+    "glassdoor_signal": "No data",
+    "reddit_signal": "No data",
     "recruiter_info": {}
   },
   "key_people": [],
-  "founder_background": "",
-  "hiring_manager_context": "",
-  "interview_questions_likely": [],
-  "culture_keywords": [],
-  "glassdoor_signal": "",
-  "reddit_signal": "",
+  "founder_background": "UNKNOWN",
+  "hiring_manager_context": "UNKNOWN",
+  "interview_questions_likely": [
+    "Describe an agentic system you built using LangChain or CrewAI.",
+    "How do you design multi-agent collaboration for complex tasks?",
+    "Explain your experience with CI/CD pipelines for AI models.",
+    "How do you handle API integration between AI models and existing platforms?",
+    "What are the key considerations for deploying generative AI in production?"
+  ],
+  "culture_keywords": [
+    "collaborative",
+    "innovative",
+    "technical",
+    "client-driven",
+    "continuous learning",
+    "quality",
+    "agile",
+    "professional",
+    "team-oriented",
+    "cutting-edge"
+  ],
+  "glassdoor_signal": "No data",
+  "reddit_signal": "No data",
   "sources_by_type": {},
   "unknowns": [
-    "No web research available for Deloitte."
+    "company_mission",
+    "recruiter_info",
+    "red_flags_detail",
+    "key_people",
+    "founder_background",
+    "hiring_manager_context",
+    "glassdoor_signal",
+    "reddit_signal",
+    "founder_context",
+    "company_website_details",
+    "market_funding_news"
   ]
 }

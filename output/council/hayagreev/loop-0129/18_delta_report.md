@@ -2,14 +2,14 @@
 
 ## Tailoring Delta
 - Sections changed: 3/3 (100.0%)
-- Average section delta: 46.03%
+- Average section delta: 14.14%
 
 ## Humanization Delta
-- Delta: 0.64%
-- Nonblank line changes: 6
+- Delta: 0.16%
+- Nonblank line changes: 8
 - Mostly whitespace: False
 
 ## Section Breakdown
-- education: 69.72% delta, similarity 0.3028, bullets 0->0
-- skills: 53.34% delta, similarity 0.4666, bullets 0->5
-- experience: 15.03% delta, similarity 0.8497, bullets 0->0
+- skills: 1.43% delta, similarity 0.9857, bullets 0->5
+- education: 33.7% delta, similarity 0.663, bullets 0->0
+- experience: 7.3% delta, similarity 0.927, bullets 0->9

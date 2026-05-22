@@ -4,4 +4,4 @@
 ## What Changed
 - Section 'EXPERIENCE' was rewritten (REWRITE)
 - Section 'EDUCATION' was rewritten (REWRITE)
-- Section 'SKILLS' was rewritten (REWRITE)
+- Section 'SKILLS' was rewritten (KEEP)

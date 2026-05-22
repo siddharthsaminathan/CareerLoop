@@ -3,24 +3,24 @@
   "n_rewritten": 3,
   "n_fallback": 0,
   "n_workers": 3,
-  "total_elapsed_s": 6.82,
+  "total_elapsed_s": 7.36,
   "sections": [
+    {
+      "section_id": "skills",
+      "status": "REWRITE",
+      "change_type": "KEEP",
+      "original_chars": 484,
+      "rewritten_chars": 498,
+      "elapsed_s": 2.75,
+      "model": "deepseek-chat"
+    },
     {
       "section_id": "education",
       "status": "REWRITE",
       "change_type": "REWRITE",
       "original_chars": 1146,
-      "rewritten_chars": 631,
-      "elapsed_s": 2.55,
-      "model": "deepseek-chat"
-    },
-    {
-      "section_id": "skills",
-      "status": "REWRITE",
-      "change_type": "REWRITE",
-      "original_chars": 484,
-      "rewritten_chars": 609,
-      "elapsed_s": 3.22,
+      "rewritten_chars": 875,
+      "elapsed_s": 3.64,
       "model": "deepseek-chat"
     },
     {
@@ -28,8 +28,8 @@
       "status": "REWRITE",
       "change_type": "REWRITE",
       "original_chars": 3531,
-      "rewritten_chars": 3354,
-      "elapsed_s": 6.81,
+      "rewritten_chars": 3347,
+      "elapsed_s": 7.36,
       "model": "deepseek-chat"
     }
   ],
@@ -38,12 +38,12 @@
     "LangChain",
     "CrewAI",
     "AutoGen",
-    "multi-agent",
-    "LLM",
     "RAG",
-    "fine-tuning",
+    "LLM",
+    "CI/CD",
+    "microservices",
+    "agentic",
     "Docker",
-    "Kubernetes",
-    "CI/CD"
+    "Kubernetes"
   ]
 }

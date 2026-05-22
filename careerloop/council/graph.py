@@ -481,6 +481,11 @@ def _payload_to_rewritten_text(payload: dict, original: str, normalized_type: st
         return "\n".join(result_lines)
 
     # ── Path 4: no bullets in original ────────────────────────────────────────
+    # For scaffold sections (experience / projects), always emit as bullets even
+    # when the original had no "- " markers (Hayagreev-style prose CVs).
+    # The normalizer and all renderers expect bullets in experience sections.
+    if normalized in _scaffold_sections:
+        return "\n".join(f"- {b}" for b in cleaned)
     return "\n\n".join(cleaned)
 
 

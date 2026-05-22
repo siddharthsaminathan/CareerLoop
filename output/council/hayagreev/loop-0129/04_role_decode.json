@@ -1,54 +1,51 @@
 {
-  "normalized_title": "Gen AI Python Developer",
+  "normalized_title": "Generative AI Python Developer",
   "seniority": "mid-senior",
   "must_haves": [
-    "Python",
-    "agentic frameworks (LangChain, CrewAI, AutoGen)",
-    "AI agent design",
-    "RESTful APIs",
-    "microservices",
-    "LLMs/RAG/fine-tuning",
-    "cloud (AWS/GCP/Azure)",
-    "Docker/Kubernetes",
-    "Git",
-    "CI/CD"
+    "Python (4+ years)",
+    "AI agent design and implementation",
+    "agentic frameworks (LangChain/CrewAI/AutoGen)",
+    "RESTful APIs and microservices",
+    "generative AI concepts (LLMs, RAG, fine-tuning)",
+    "cloud platform (AWS/GCP/Azure)",
+    "Docker and Kubernetes",
+    "CI/CD pipelines",
+    "Git"
   ],
   "nice_to_haves": [
     "production-scale AI deployment",
-    "asyncio",
-    "SQL/NoSQL databases",
-    "data security/privacy",
-    "portfolio of AI projects"
+    "asynchronous Python (asyncio)",
+    "SQL and NoSQL databases",
+    "data security and privacy best practices",
+    "portfolio of AI agent projects"
   ],
   "hidden_expectations": [
-    "strong cross-functional collaboration",
-    "autonomous problem-solving",
-    "production CI/CD for AI",
-    "ability to keep up with AI advancements"
+    "client-facing communication",
+    "business-outcome thinking",
+    "consulting/enterprise adaptability",
+    "cross-functional collaboration"
   ],
   "day_one_deliverables": [
-    "Deploy a working AI agent prototype integrated with existing APIs"
+    "functional multi-agent system prototype"
   ],
   "screening_keywords": [
     "LangChain",
     "CrewAI",
     "AutoGen",
-    "multi-agent",
-    "LLM",
     "RAG",
-    "fine-tuning",
-    "Docker",
-    "Kubernetes",
+    "LLM",
     "CI/CD",
     "microservices",
-    "API design",
-    "Python",
-    "agentic"
+    "agentic",
+    "Docker",
+    "Kubernetes"
   ],
   "disqualifiers": [
-    "no experience with agentic frameworks",
-    "no production Python experience",
-    "no cloud experience"
+    "no Python experience",
+    "no AI agent design experience",
+    "no agentic framework experience",
+    "no cloud platform experience",
+    "no containerization experience"
   ],
   "confidence": 0.9
 }

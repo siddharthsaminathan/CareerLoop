@@ -9,30 +9,34 @@
  
  ## EXPERIENCE
  
-@@ -28,8 +26,6 @@
+@@ -15,13 +13,11 @@
  
- Built an AI-driven Reddit outreach system to acquire users by identifying high-intent threads, generating personalized messages, and automating engagement; executed 5,100+ targeted DMs with ~17–21% reply rate (12–15 replies per ~70 DMs/day) and ~9% conversion (~456 users), establishing a scalable zero-cost acquisition channel aligned with product-market discovery.
- 
+ Co-Founder at Emote – Chennai, India			        					         May  2025 - Present
+ An AI system for emotional sense-making that helps users process experiences over time by tracking patterns, retaining context, and enabling deeper understanding across conversations.
+-- Architected an emotionally intelligent AI system grounded in behavioral science, defining the product’s core loop and translating it into system design across memory, conversation modes, and interaction flows.
++- Architected an emotionally intelligent AI system grounded in behavioral science, defining the product's core loop and translating it into system design across memory, conversation modes, and interaction flows.
+ - Ran rapid build–measure–learn cycles using live user data (451 users, 169 sessions, 1,313+ turns), leveraging observability and pattern analytics to identify a critical drop at Session 1 → Session 2 (24.1%) and redesign entry behavior to improve activation (76%) and early engagement.
+ - Led end-to-end product execution by defining vision, converting it into structured requirements (BRDs and system specifications using AI-assisted tools), collaborating with engineering on implementation, and iterating based on behavioral deltas; contributed to achieving 54.4% deep sessions (≥5 turns) and 7.8 avg turns per session.
+ - Built a feedback-driven product system by integrating cohort analysis, power-user segmentation, and observability, enabling continuous iteration and driving post-activation engagement (S2→S3 ~68%, WoW retention ~12.9%) with repeat usage patterns emerging across high-intent user segments.
+ - Built an AI-driven Reddit outreach system to acquire users by identifying high-intent threads, generating personalized messages, and automating engagement; executed 5,100+ targeted DMs with ~17–21% reply rate and ~9% conversion (~456 users), establishing a scalable zero-cost acquisition channel aligned with product-market discovery.
 -
 -
+ 
  ## EDUCATION
  
- Built a Go-To-Market strategy for Wint Wealth, validated by experts from IB and D2C industries, earning the Stoa Charter.
-@@ -40,14 +36,12 @@
+@@ -39,12 +35,10 @@
  
- Graduated top 15% of class with top scores in 3/6 modules in M.Sc. Computational Neuroscience and Neuroengineering.
+ Led a team of 3 students and a professor to secure ₹1 Lakh from IIT Madras for developing an innovative self-balancing guidebot, after surveying 120+ journal publications.
  
--Secured ₹1 Lakh from IIT Madras to develop an innovative self-balancing guidebot, after surveying 120+ journal publications on existing models.
 -
 -
-+Won ₹1 Lakh grant from IIT Madras to build a self-balancing guidebot, after reviewing 120+ journal publications on existing models.
- 
  ## SKILLS
  
- - Python, SQL (Postgres, Redshift), Apache Spark, Airflow — deployed for data pipelines and AI product development
--- PyTorch, TensorFlow, scikit‑learn, MLOps (Kubeflow, Docker, Azure ML), Prompt Engineering — built and iterated LLM-based AI systems
--- AWS (S3, EMR), Anaconda, Jupyter, Git, VS Code — used for cloud-based development and version control
-+- PyTorch, TensorFlow, scikit‑learn, MLOps (Kubeflow, Docker, Azure ML), Prompt Engineering — built and iterated LLM-based AI systems
-+- AWS (S3, EMR), Anaconda, Jupyter, Git, VS Code — used for cloud-based development and version control
- - ChatGPT, Claude, Gemini, Perplexity, Zapier, Make, Lovable — applied for rapid prototyping and automation
- - Project Management, Lean Management, Stakeholder Management, Client Relationships, GTM — drove cross-functional collaboration and product delivery
+ - Management & Consulting: Project Management, Lean Management, Stakeholder Management, Client Relationships, GTM
+-- Data Engineering & Analytics: Python, SQL (Postgres, Redshift), Apache Spark, Airflow, Power BI, Tableau
+-- ML & AI: PyTorch, TensorFlow, scikit‑learn, MLOps (Kubeflow, Docker, Azure ML), Prompt Engineering
+-- Tools & Platforms: AWS (S3, EMR), Anaconda, Jupyter, Git, MS Office (Excel, PowerPoint), VS Code
++- Data Engineering & Analytics: Python, SQL (Postgres, Redshift), Apache Spark, Airflow, Power BI, Tableau
++- ML & AI: PyTorch, TensorFlow, scikit‑learn, MLOps (Kubeflow, Docker, Azure ML), Prompt Engineering
++- Tools & Platforms: AWS (S3, EMR), Anaconda, Jupyter, Git, MS Office (Excel, PowerPoint), VS Code
+ - AI & Automation: ChatGPT, Claude, Gemini, Perplexity, Zapier, Make, Lovable

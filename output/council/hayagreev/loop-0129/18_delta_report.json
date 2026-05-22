@@ -3,50 +3,50 @@
     "sections_total": 3,
     "sections_changed": 3,
     "sections_changed_pct": 100.0,
-    "average_section_delta_pct": 46.03,
+    "average_section_delta_pct": 14.14,
     "sections": [
       {
-        "section_id": "education",
-        "change_type": "REWRITE",
-        "similarity": 0.3028,
-        "delta_pct": 69.72,
-        "original_chars": 1146,
-        "rewritten_chars": 631,
-        "original_bullets": 0,
-        "rewritten_bullets": 0,
-        "changed": true,
-        "change_reason": "Reframed education bullets to emphasize product-building, cross-functional leadership, and measurable outcomes, aligning with the collaborative and outcome-driven tone."
-      },
-      {
         "section_id": "skills",
-        "change_type": "REWRITE",
-        "similarity": 0.4666,
-        "delta_pct": 53.34,
+        "change_type": "KEEP",
+        "similarity": 0.9857,
+        "delta_pct": 1.43,
         "original_chars": 484,
-        "rewritten_chars": 609,
+        "rewritten_chars": 498,
         "original_bullets": 0,
         "rewritten_bullets": 5,
         "changed": true,
-        "change_reason": "Reordered skills to prioritize Python and AI/ML tools relevant to the role, grouped by relevance, and framed with outcome-oriented language."
+        "change_reason": "Skills section accurately reflects candidate's background; no reframing can bridge the gap to required agentic frameworks and 4+ years Python."
+      },
+      {
+        "section_id": "education",
+        "change_type": "REWRITE",
+        "similarity": 0.663,
+        "delta_pct": 33.7,
+        "original_chars": 1146,
+        "rewritten_chars": 875,
+        "original_bullets": 0,
+        "rewritten_bullets": 0,
+        "changed": true,
+        "change_reason": "Reframed education bullets to emphasize business strategy, cross-functional leadership, and technical innovation, aligning with consulting and AI product management narrative while downplaying the technical mismatch."
       },
       {
         "section_id": "experience",
         "change_type": "REWRITE",
-        "similarity": 0.8497,
-        "delta_pct": 15.03,
+        "similarity": 0.927,
+        "delta_pct": 7.3,
         "original_chars": 3531,
-        "rewritten_chars": 3354,
+        "rewritten_chars": 3347,
         "original_bullets": 0,
-        "rewritten_bullets": 0,
+        "rewritten_bullets": 9,
         "changed": true,
-        "change_reason": "Chunked rewrite (2 chunks, 3531 → 3354 chars)"
+        "change_reason": "Chunked rewrite (2 chunks, 3531 → 3347 chars)"
       }
     ]
   },
   "humanization_delta": {
-    "similarity": 0.9936,
-    "delta_pct": 0.64,
-    "nonblank_line_changes": 6,
+    "similarity": 0.9984,
+    "delta_pct": 0.16,
+    "nonblank_line_changes": 8,
     "mostly_whitespace": false
   },
   "cope_detection": {

@@ -8,93 +8,52 @@
   "profile": {
     "candidate": {
       "full_name": "Siddharth Saminathan",
-      "email": "siddharthsaminathan99@gmail.com",
-      "phone": "+91 7299707403",
-      "location": "Chennai, India",
-      "linkedin": "linkedin.com/in/siddharthsaminathan",
-      "portfolio_url": "https://emotenow.app/",
-      "github": "github.com/siddharthsaminathan"
+      "location": "Chennai",
+      "linkedin": "linkedin.com/in/siddharth-saminathan"
     },
     "target_roles": {
       "primary": [
-        "AI Product Engineer",
+        "AI Engineer",
         "Applied AI Engineer",
-        "Founding Engineer (AI)",
-        "Senior AI Engineer"
+        "ML Engineer"
       ],
       "archetypes": [
         {
+          "name": "AI/ML Engineer",
+          "level": "Senior",
+          "fit": "primary"
+        },
+        {
           "name": "AI Product Engineer",
-          "level": "Senior/Staff",
-          "fit": "primary"
-        },
-        {
-          "name": "Applied AI Engineer",
           "level": "Senior",
           "fit": "primary"
         },
         {
-          "name": "Founding Engineer",
-          "level": "Senior/Lead",
-          "fit": "primary"
-        },
-        {
-          "name": "Platform Engineer (AI/ML)",
+          "name": "LLM Engineer",
           "level": "Senior",
           "fit": "secondary"
-        },
-        {
-          "name": "Backend Engineer (AI systems)",
-          "level": "Senior",
-          "fit": "secondary"
-        },
-        {
-          "name": "Solutions Engineer (AI)",
-          "level": "Mid-Senior",
-          "fit": "adjacent"
         }
       ]
     },
     "narrative": {
-      "headline": "Manufacturing Enterprise Quality Digitalization — agentic AI for mission-critical production systems",
-      "exit_story": "Built Emote from zero to 450+ users (15x latency reduction, 50x cost reduction). Now building agentic AI for enterprise quality management at Omnex Systems — automating DFMEA, PFMEA, Control Plans, and 8D across global manufacturing supply chains.",
+      "headline": "Applied AI Engineer — LLMs, RAG, Agentic Pipelines",
       "superpowers": [
-        "Manufacturing enterprise quality digitalization (EQMS, APQP, DFMEA/PFMEA)",
-        "Agentic AI orchestration — multi-step quality workflows with full traceability",
-        "Taking AI from concept to production (0→1→iteration)",
-        "Performance optimization (latency 15s→3s, cost $1.20→$0.023)",
-        "Full-stack AI: architecture, backend, observability, iteration"
-      ],
-      "proof_points": [
-        {
-          "name": "Emote — Full AI Product",
-          "url": "https://emotenow.app/",
-          "hero_metric": "450+ users, 13-15% weekly retention, 15x latency reduction"
-        },
-        {
-          "name": "Omnex Agentic AI",
-          "url": "",
-          "hero_metric": "Production multi-agent system for quality workflows, 12.5s→8s"
-        },
-        {
-          "name": "Akkodis Data Migration",
-          "url": "",
-          "hero_metric": "Azure→PostgreSQL migration for Ericsson, 5% reporting accuracy improvement"
-        }
+        "Building LLM-powered products end-to-end",
+        "RAG pipelines and vector search",
+        "FastAPI, Python, PostgreSQL"
       ]
     },
     "compensation": {
       "target_range": "₹35L-60L",
       "currency": "INR",
       "minimum": "₹25L",
-      "location_flexibility": "Remote preferred. Chennai or Bangalore hybrid possible."
+      "location_flexibility": "Hybrid or Remote"
     },
     "location": {
       "country": "India",
       "city": "Chennai",
-      "timezone": "IST (UTC+5:30)",
-      "visa_status": "Indian citizen",
-      "onsite_availability": "Remote-first. Can do Chennai or Bangalore hybrid."
+      "timezone": "IST",
+      "visa_status": "Indian Citizen"
     }
   },
   "today": "May 2026",
