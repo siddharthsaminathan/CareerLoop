@@ -376,8 +376,29 @@ def _payload_to_rewritten_text(payload: dict, original: str, normalized_type: st
                 if re.match(r"^\s*[-*+]\s+\S", ln)
             ]
             if not items:
-                # LLM returned prose with no bullet markers — use directly as last resort.
-                return direct
+                # LLM returned prose paragraphs with no bullet markers (DeepSeek
+                # non-determinism).  Split on blank lines and treat each paragraph
+                # as a bullet, but skip structural lines (company header / date line /
+                # description preamble) — those are re-injected by the scaffold
+                # reconstruction below.
+                _date_hdr = re.compile(
+                    r'\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|Present|\d{4})\b',
+                    re.I,
+                )
+                raw_paragraphs = [p.strip() for p in re.split(r"\n{2,}", direct) if p.strip()]
+                items = []
+                for p in raw_paragraphs:
+                    # Skip if paragraph's FIRST LINE looks like a structural header
+                    # (contains a date pattern — job title / company / date line).
+                    first_line = p.splitlines()[0]
+                    if _date_hdr.search(first_line):
+                        continue
+                    # Skip very short paragraphs (description prose like "An AI system...")
+                    if len(p) < 60:
+                        continue
+                    items.append(p)
+                if not items:
+                    return direct
         # Fall through to the bullet-based paths below (tailored_bullets or extracted).
 
     if not isinstance(items, list):
