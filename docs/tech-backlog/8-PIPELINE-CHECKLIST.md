@@ -1,6 +1,6 @@
 # CareerLoop Resume Council — 8-Stage Pipeline Checklist
 
-**Last updated:** 2026-05-22  
+**Last updated:** 2026-05-22 (job-aware chunking)  
 **Purpose:** Stage-by-stage status map. Use this to diagnose which stage is broken before running the full graph.  
 **How to use:** Run each stage manually using the test commands. Fix failures before running the full pipeline.
 
@@ -229,10 +229,11 @@ With chunking, experience section = 3 chunks = 3 extra calls = ~75s more.
 | 7 | Chunked sections fell back due to `bullet_count_dropped` (LLM consolidation treated as structural damage) | ✅ Fixed (2026-05-22) — `bullet_count_dropped` excluded from chunk structure check; scaffold preserves headers |
 | 8 | `rewritten_text` path bypassed scaffold for experience sections (company header lost) | ✅ Fixed (2026-05-22) — bullets extracted from `rewritten_text` for scaffold sections; scaffold runs on them |
 | 9 | No-bullet intro chunk (SuperK) rewritten as prose without company name / role / date header | ✅ Fixed (2026-05-22) — structural preamble injected if missing from chunk output |
+| 10 | Paragraph-boundary chunking left all 3 employers in one flat block → cross-job bullet attribution | ✅ Fixed (2026-05-22) — job-aware chunking: one chunk per employer, role/date lines skipped via date-pattern check |
 
 **Remaining S7 gap:** Section type `summary` can produce verbose multi-paragraph output instead of a single punchy paragraph. This is a prompt quality issue, not a structural bug.
 
-**Known LLM quality issue (chunk 2 attribution):** When chunk 2 contains multiple jobs (Style Gram + Go Colors) in one undivided block, the LLM occasionally mis-attributes a bullet from job A to job B. Root cause: paragraph-boundary chunking leaves all bullets in one flat 3600-char block. Fix: job-aware chunking (split per employer, not per paragraph). Tracked as improvement item.
+**Job-aware chunking (2026-05-22 — DONE):** Cross-job bullet attribution eliminated. `_split_by_job_boundaries()` splits experience sections one chunk per employer (detected by: uppercase non-bullet line with no date in it, followed within 3 lines by a date/tenure pattern). Varsha's 4429-char experience → 3 chunks (SuperK / Style Gram / Go Colors). Zero cross-job leakage confirmed E2E. 42/42 tests pass.
 
 ---
 
@@ -365,5 +366,7 @@ With chunking, experience section = 3 chunks = 3 extra calls = ~75s more.
 | **`rewritten_text` scaffold bypass for experience sections** | `graph.py` | ✅ 2026-05-22 |
 | **Structural preamble injection (company + role/date) for no-bullet chunks** | `graph.py` | ✅ 2026-05-22 |
 | **37 regression tests (5 new: scaffold, flat-list, continuation, preamble extraction)** | `tests/test_stabilization.py` | ✅ 2026-05-22 |
+| **Job-aware chunking (`_split_by_job_boundaries`) — one chunk per employer** | `graph.py` | ✅ 2026-05-22 |
+| **42 regression tests (5 new: TestJobBoundaryChunking)** | `tests/test_stabilization.py` | ✅ 2026-05-22 |
 | **`document_extractor.py` (PDF/DOCX/MD/TXT input)** | `document_extractor.py` | ✅ 2026-05-21 |
 | **`--cv` CLI flag for CV override** | `run_council.py` | ✅ 2026-05-21 |

@@ -7,44 +7,40 @@
 
 ## Current Sprint Focus
 
-**Week of 2026-05-22 — Normalizer Hardening. Rendering stabilized across 3 user formats.**
+**Week of 2026-05-22 — S7 Final Quality: Job-Aware Chunking + DeepSeek Prose Fallback**
 
-7 normalizer bugs fixed: skills parsing (description-style bullets), header phone/location dedup, experience company+role separation (two-line headers), role preservation when second line is pure date, Go Colors restored (no bullets required), education multi-line pairing, automated pre-render validation. 3 councils (Siddharth/Hayagreev/Varsha) validated with 10 HTML+PDF per user. ROI_UX_PRODUCT_VISION created. Interview playbook system built.
+Council pipeline is at 93% — all structural bugs resolved. Job-aware chunking (`_split_by_job_boundaries`) ships one LLM call per employer, eliminating cross-job bullet attribution (confirmed on Hayagreev: GT + Emote split cleanly). DeepSeek prose-paragraph fallback handles non-deterministic output format. 42/42 tests pass.
 
-**Next sprint:** Decision Compression UX (B5, P2) + Education single-line format for Varsha-format schools
-
-MECE Company Intelligence fully live (D1-D5 vectors, 1,419 lines). CandidateGraph extraction wired into S1 — structured bullet arrays, metric_vault, contact fields. B9 cv_tenure_years computed from parsed CV (not S5 LLM). S7 chunked rewrite: 4/4 sections rewrite, company headers preserved. 37/37 stabilization, 22/22 integration pass. SuperK pipeline: 4 experience blocks correctly rewritten with scaffolds preserved.
-
-**Next sprint:** Decision Compression UX (B5, P2) + Humanizer UNSUPPORTED matching calibration
+**Next sprint:** New capability — NOT more fixing. Recruiter DM Generator (PRD §19) + Follow-Up Intelligence (PRD §13) + Multi-user onboarding flow.
 
 ---
 
 ## System Status (Live)
 
-> Updated 2026-05-22 — Council pipeline deep repair: chunked experience section now rewrites 4/4 sections; SuperK company header preserved; 37 regression tests pass.
+> Updated 2026-05-22 — Job-aware chunking + prose-paragraph fallback. Council at 93%. 42/42 tests pass.
 
 | System | % | Status | Blocking? | Notes |
 |--------|---|--------|-----------|-------|
 | India-first discovery | 75% | 🟡 | No | ATS adapter + Spire AI adapter; portal layer still ~0% for JS-heavy sites |
 | Verification & filtering | 60% | 🟡 | No | detect_ats_pass.py; Block G not hoisted |
 | Opportunity scoring (14-dim) | 55% | 🟡 | No | function_probability.py + metrics.py; needs calibration |
-| Decision compression / triage | 20% | 🔴 | No | modes/ofertas.md reusable; no UX |
+| Decision compression / triage | 20% | 🔴 | No | CEO owns. DECISION_COMPRESSION_VISION.md written. |
 | Career state system (modes) | 10% | 🔴 | No | Conceptual only |
-| Company intelligence | 75% | 🟢 | Yes | MECE vision implemented |
-| Positioning engine | 38% | 🟡 | No | S6 wired; tailoring delta now substantial post-S7 prompt fix |
-| Resume Council (v3) | 92% | 🟢 | Yes | 4/4 sections rewrite; CandidateGraph extracts structured bullets; company headers preserved; 37+22 tests pass; remaining: Humanizer UNSUPPORTED calibration |
-| Humanizer layer | 65% | 🟡 | No | Markdown safety gate; LLM rewrite active; structure validation pre/post; Truth Guard UNSUPPORTED matching too aggressive |
-| Resume rendering (templates) | 85% | 🟡 | No | 10 templates; hard fail on structure loss; normalizer now handles 3 user CV formats |
-| Validator / QA | 75% | 🟡 | No | 10/10 pass; automated pre-render validation wired; 3 user formats verified |
-| Application execution | 15% | 🔴 | No | modes/apply.md prototype; Chrome extension not started |
+| Company intelligence | 75% | 🟢 | No | MECE vision implemented; S3 cache working |
+| Positioning engine | 38% | 🟡 | No | S6 wired; tailoring delta substantial; narrative angle reaches S7 |
+| Resume Council (v3) | 93% | 🟢 | No | Job-aware chunking; prose fallback; 42 tests; ceiling hit — next is new capabilities |
+| Humanizer layer | 65% | 🟡 | No | LLM rewrite active; Truth Guard UNSUPPORTED matching still too aggressive |
+| Resume rendering (templates) | 85% | 🟡 | No | 10 templates; normalizer handles 3 user CV formats; automated validation |
+| Validator / QA | 75% | 🟡 | No | 42 stabilization + 22 integration pass; automated pre-render validation |
+| Application execution | 15% | 🔴 | No | modes/apply.md prototype; Chrome extension Phase 3 |
 | Chrome extension | 0% | ⚫ | No | Phase 3 |
-| Follow-up system | 25% | 🔴 | No | Ledger auto-schedules; UI missing |
-| Interview memory | 25% | 🟡 | No | interview-playbook skill (Claude + Gemini); auto-extracts from venting; patterns after 2+ interviews |
-| Persistent memory graph | 25% | 🟡 | No | Ledger + company_registry + SQLite schema |
+| Follow-up system | 25% | 🔴 | No | Ledger auto-schedules; no follow-up message generation |
+| Interview memory | 25% | 🟡 | No | interview-playbook skill; auto-extracts from venting; no rejection post-mortem yet |
+| Persistent memory graph | 25% | 🟡 | No | Ledger + company_registry + SQLite schema; not read back to improve positioning |
 | WhatsApp/transport UX | 15% | 🔴 | No | Concept only |
-| Monetization logic | 30% | 🟡 | No | Strategic understanding solid |
+| Monetization logic | 30% | 🟡 | No | Strategic understanding solid; no billing/paywall |
 
-**Overall product maturity: ~57-60% of vision.** Rendering 80→85%, Validator 70→75% (automated normalizer validation). 7 normalizer bugs fixed.
+**Overall product maturity: ~58-61% of vision.** Council ceiling hit (93%). Time to build new capabilities — recruiter DM, follow-up intelligence, multi-user onboarding.
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -133,9 +129,32 @@ All work on PRD §11 (Resume Council core quality). Assembly crash fixed. S7 exp
 **Deviations detected:** None.
 
 **Recommended next 3 actions:**
-1. **Job-aware chunking**: Replace paragraph-boundary split with employer-boundary split. One LLM call per job entry. Eliminates cross-job bullet attribution errors (PRD §11).
+1. **Job-aware chunking**: Replace paragraph-boundary split with employer-boundary split. One LLM call per job entry. Eliminates cross-job bullet attribution errors (PRD §11). ✅ DONE this session.
 2. **Truth Guard B1**: UNSUPPORTED confidence 0.0 for all legitimate ownership claims — evidence matching uses Jaccard similarity (too strict). Needs semantic fuzzy match (PRD §11).
+3. **Multi-user onboarding**: `add_person` CLI flow — CV upload → normalize → PERSON_CONFIG → first council run. Unblocks scaling beyond 3 hardcoded users.
+
 ## Session Log
+
+### 2026-05-22 — Session: S7 Final Quality — Job-Aware Chunking + DeepSeek Prose Fallback
+
+**What was done:**
+- **Job-aware chunking (`_split_by_job_boundaries()`)**: Detects employer boundaries by finding uppercase non-bullet lines without dates, followed within 3 lines by a date/tenure pattern. Splits experience sections into one chunk per employer. Fixed: role/date lines (e.g. "Category Manager – Fashion Nov 2025 – Present") were being falsely detected as job starts; added `_date_pat.search(stripped): continue` to skip them. Confirmed E2E: Varsha → 3 chunks (SuperK/Style Gram/Go Colors), Hayagreev → 2 chunks (GT/Emote). Zero cross-job bullet leakage.
+- **DeepSeek prose-paragraph fallback**: When `rewritten_text` returns prose paragraphs (no `- ` bullet markers), the old code fell through to `return direct` (raw prose). New code: splits on blank lines, skips structural header paragraphs (first line contains date pattern), skips short preamble lines (<60 chars), treats each remaining paragraph as a bullet. Makes bullet output consistent regardless of DeepSeek's output format for that run.
+- **5 new tests (`TestJobBoundaryChunking`)**: test_splits_into_one_chunk_per_employer, test_each_chunk_contains_its_own_company_name, test_no_cross_job_bullet_leakage, test_single_employer_returns_single_chunk, test_three_employers_splits_into_three_chunks. 42/42 total pass.
+- **Docs updated**: 8-PIPELINE-CHECKLIST.md (S7 bug #10 added as ✅ DONE), TRACKER.md, PRD §17.
+
+**E2E results:**
+- Varsha (H&M): 4/4 sections REWRITE, 3 chunks, 62.83% average tailoring delta, 19→17 bullets, OTB/sell-through vocabulary throughout.
+- Hayagreev (Deloitte): 3/3 sections REWRITE, 2 chunks (GT + Emote), cross-job attribution confirmed fixed.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED — PRD §11 (Resume Council). Council is now at the quality ceiling. Both structural bugs (job attribution) and LLM non-determinism (prose vs bullets) are handled.
+
+**Deviations detected:** None.
+
+**Recommended next 3 actions:**
+1. **Recruiter DM Generator** (PRD §19): Council already generates tailored cover notes + recruiter DMs. Extend to cold LinkedIn DM targeting a specific hiring manager at a target company — find the right person + personalize the message. HIGH ROI, LOW complexity delta.
+2. **Follow-Up Intelligence** (PRD §13/§15): Ledger already schedules follow-ups. Add message generation — 1-week post-application ping and 3-day post-interview follow-up. Zero new infra needed, just LLM call with context from ledger.
+3. **Multi-user onboarding** (unblocks monetization): `add_person` CLI — CV upload → parse → PERSON_CONFIG → first council run. Currently 3 hardcoded users. Need this to scale.
 
 ---
 

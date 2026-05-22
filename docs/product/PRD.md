@@ -357,30 +357,30 @@ The user should feel:
 
 ## 17. Product Engineering Tracker
 
-> Updated by the `careerloop-product-lead` skill. Last updated: 2026-05-20.
+> Updated by the `careerloop-product-lead` skill. Last updated: 2026-05-22.
 
 | System | Completion | Status | Notes |
 |--------|-----------|--------|-------|
 | India-first discovery | 75% | 🟡 Active | ATS adapter, portal scraper, on-demand search, role keywords shipped |
 | Verification & filtering | 60% | 🟡 Active | detect_ats_pass.py; Block G not hoisted |
 | Opportunity scoring (14-dim) | 55% | 🟡 Active | function_probability.py + metrics.py; needs calibration |
-| Decision compression / triage | 20% | 🔴 Gap | modes/ofertas.md reusable; no UX |
+| Decision compression / triage | 20% | 🔴 Gap | DECISION_COMPRESSION_VISION.md written. CEO owns UX build. |
 | Career state system (modes) | 10% | 🔴 Gap | Conceptual only |
-| Company intelligence | 75% | 🟢 | Yes | MECE vision implemented |
-| Positioning engine | 30% | 🟡 Active | S6 schema-validated; tailoring delta SUBSTANTIAL post-S7 fix |
-| Resume Council (v3) | 80% | 🟢 | Yes | Tailoring delta significant |
-| Humanizer layer | 65% | 🟡 Active | Markdown safety gate; structure validation pre/post; Truth Guard misses year inflation (B9) |
-| Resume rendering (templates) | 80% | 🟡 Active | 10 templates; hard fail on structure loss; PDF preamble + loose experience parsing |
-| Validator / QA | 70% | 🟡 Active | 10/10 pass; collapsed_bullet_marker fixed; possible_truncation de-fanged; 64 tests |
-| Application execution | 15% | 🔴 Gap | modes/apply.md prototype; Chrome extension not started |
+| Company intelligence | 75% | 🟢 Active | MECE D1-D5 vectors; S3 cache; JD_ONLY fallback |
+| Positioning engine | 38% | 🟡 Active | S6 wired; narrative angle, objection preempt, must_haves all reach S7 |
+| Resume Council (v3) | 93% | 🟢 Active | Job-aware chunking; prose fallback; 42 tests; ceiling hit |
+| Humanizer layer | 65% | 🟡 Active | LLM rewrite active; Truth Guard UNSUPPORTED matching too aggressive |
+| Resume rendering (templates) | 85% | 🟡 Active | 10 templates; normalizer handles 3 user CV formats; automated validation |
+| Validator / QA | 75% | 🟡 Active | 42 stabilization + 22 integration; automated pre-render validation |
+| Application execution | 15% | 🔴 Gap | modes/apply.md prototype; Chrome extension Phase 3 |
 | Chrome extension | 0% | ⚫ Not started | Phase 3 |
-| Follow-up system | 25% | 🔴 Gap | Ledger auto-schedules; UI missing |
-| Interview memory | 25% | 🟡 Active | interview-playbook skill auto-extracts learnings; modes/interview-playbook.md; interview-prep/interview-playbook.md with seed data |
-| Persistent memory graph | 25% | 🟡 Active | Ledger + company_registry + SQLite schema |
+| Follow-up system | 25% | 🔴 Gap | Ledger auto-schedules; no message generation yet |
+| Interview memory | 25% | 🟡 Active | interview-playbook skill; auto-extracts from venting; no rejection post-mortem |
+| Persistent memory graph | 25% | 🟡 Active | Ledger + company_registry + SQLite schema; not read back to improve positioning |
 | WhatsApp/transport UX | 15% | 🔴 Gap | Concept only |
-| Monetization logic | 30% | 🟡 Active | Strategic understanding solid |
+| Monetization logic | 30% | 🟡 Active | Strategic understanding solid; no billing/paywall |
 
-**Overall product maturity: ~50-53% of vision.** (+3% from S7 overhaul. Council 72→78%, Humanizer 55→60%, Positioning 25→30%, Rendering 75→78%, Validator 65→70%. Tailoring delta 3.6%→SUBSTANTIAL.)
+**Overall product maturity: ~58-61% of vision.** Council at quality ceiling (93%). Rendering stable (85%). Next phase: new capabilities — recruiter DM, follow-up intelligence, multi-user onboarding.
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
