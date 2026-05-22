@@ -377,10 +377,12 @@ The user should feel:
 | Follow-up system | 25% | 🔴 Gap | Ledger auto-schedules; no message generation yet |
 | Interview memory | 25% | 🟡 Active | interview-playbook skill; auto-extracts from venting; no rejection post-mortem |
 | Persistent memory graph | 25% | 🟡 Active | Ledger + company_registry + SQLite schema; not read back to improve positioning |
-| WhatsApp/transport UX | 15% | 🔴 Gap | Concept only |
+| WhatsApp/transport UX | 15% | 🔴 Gap | Message formatters exist (whatsapp_ux.py). NO transport. No webhook. No Twilio/Meta API. |
+| Gmail memory | 0% | ⚫ Not started | ROI Vision's #1 priority — never touched |
+| Multi-user onboarding | 0% | ⚫ Not started | 3 hardcoded PERSON_CONFIGs. No CV-upload-to-profile flow. |
 | Monetization logic | 30% | 🟡 Active | Strategic understanding solid; no billing/paywall |
 
-**Overall product maturity: ~58-61% of vision.** Council at quality ceiling (93%). Rendering stable (85%). Next phase: new capabilities — recruiter DM, follow-up intelligence, multi-user onboarding.
+**Overall product maturity: ~58-61% of vision.** Council at quality ceiling (93%). Critical gap: zero user-facing interface. WhatsApp transport, multi-user onboarding, and daily brief delivery are all 0% — these are the P0 blockers for the next sprint.
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 

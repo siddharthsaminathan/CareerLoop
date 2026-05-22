@@ -7,11 +7,16 @@
 
 ## Current Sprint Focus
 
-**Week of 2026-05-22 — S7 Final Quality: Job-Aware Chunking + DeepSeek Prose Fallback**
+**Week of 2026-05-22 — WhatsApp Transport + Multi-User Onboarding + Daily Brief Delivery**
 
-Council pipeline is at 93% — all structural bugs resolved. Job-aware chunking (`_split_by_job_boundaries`) ships one LLM call per employer, eliminating cross-job bullet attribution (confirmed on Hayagreev: GT + Emote split cleanly). DeepSeek prose-paragraph fallback handles non-deterministic output format. 42/42 tests pass.
+S8.5 completeness check shipped. Council is at quality ceiling (93%). System status review complete.
 
-**Next sprint:** New capability — NOT more fixing. Recruiter DM Generator (PRD §19) + Follow-Up Intelligence (PRD §13) + Multi-user onboarding flow.
+**Critical finding:** Zero user-facing interface exists. All backend systems (Council 93%, Discovery 75%, Company Intel 75%) are CLI-only. `whatsapp_ux.py` has message formatters but no transport. `daily_runner.py` outputs to console only. A user cannot interact with CareerLoop in any form today.
+
+**This sprint:** Ship the integration layer that connects the backend to users:
+1. **WhatsApp Transport** (P0) — Twilio/Meta webhook, session state, message router
+2. **Multi-User Onboarding** (P0) — CV upload → profile creation → user registry
+3. **Daily Brief Cron** (P1) — DailyRunner → WhatsApp delivery at 7AM IST per user
 
 ---
 
@@ -54,6 +59,10 @@ Council pipeline is at 93% — all structural bugs resolved. Job-aware chunking 
 | ~~B2~~ | Humanizer not implemented | Closed | ✅ 5-phase pipeline + LLM wired |
 | ~~B3~~ | cover_note/recruiter_message stubs | Closed | ✅ Improved prompts + richer context |
 | ~~B7~~ | LLM nodes lacked JSON schemas | Closed | ✅ All 6 prompts have JSON examples |
+| **B-TRANSPORT** | No WhatsApp transport layer — no webhook, no Twilio/Meta API, no message routing | User-facing | **P0** |
+| **B-ONBOARD** | No multi-user onboarding — 3 hardcoded PERSON_CONFIGs, no CV-upload-to-profile flow | User-facing | **P0** |
+| **B-SESSION** | No conversation state machine — no per-user session, no job→decision→council trigger | User-facing | **P0** |
+| **B-DELIVERY** | Council generates 10 PDFs per run but delivers them to nobody | User-facing | **P0** |
 | B4 | Company career pages invisible | Discovery | P2 |
 | B5 | Decision compression UX not built | Triage | P2 |
 | ~~B6~~ | Company Intelligence engine | Closed | ✅ 1,419-line MECE implementation — D1-D5 vectors, LinkedIn, Glassdoor, DDG |
@@ -398,6 +407,37 @@ CandidateGraph wiring (PRD §11), B9 closure (Truth Guard maturity), Landing pag
 1. **Structured S7 bullet migration** — use `candidate_graph.experience[].bullets` as structured input to `_rewrite_one_section()` for experience sections. Pass `original_bullets_structured` in the prompt JSON so LLM rewrites bullet-by-bullet rather than free-form markdown. (PRD §11 — escape Markdown Hell)
 2. **Decision Compression UX** — B5 is the P2 gap. Design and build the compression UI: 100 jobs → scored → compressed → 5 decisions. The CLI pipeline exists; the user-facing layer does not. (PRD §5)
 3. **Humanizer zero-delta audit** — last run: 0.21% delta. Audit execution path end-to-end. The 5 phases exist but the LLM rewrite call may be no-oping. Tune assertiveness or check if identity bypass is too aggressive. (PRD §12)
+
+---
+
+### 2026-05-22 — Session: Full Product Review — WhatsApp Gap Diagnosis
+
+**What was done:**
+- Full MODE B product/tech review: read PRD, TRACKER, ROI_UX_PRODUCT_VISION, TECH_ROADMAP, git log, module structure
+- Read `whatsapp_ux.py`, `daily_runner.py`, `approval.py`, `followup.py` to assess actual user-facing state
+- S8.5 Section Completeness Check shipped: achievements populated from CV, empty section guard, profile name fix, S7 education institution rule
+- 42/42 tests pass, all changes committed and pushed
+
+**Critical finding:**
+CareerLoop has 93% Council + 75% Discovery + 75% Company Intel — all working — but ZERO user-facing interface. `whatsapp_ux.py` has formatters (strings only), no transport. `daily_runner.py` outputs to console only (comment: "future: send via WhatsApp"). No webhook, no session state, no user registry, no PDF delivery. A user literally cannot interact with CareerLoop.
+
+**New blockers identified:**
+- B-TRANSPORT: WhatsApp transport layer (webhook, Twilio/Meta API) — P0
+- B-ONBOARD: Multi-user onboarding (only 3 hardcoded PERSON_CONFIGs) — P0
+- B-SESSION: Conversation state machine (session → job → decision → council trigger) — P0
+- B-DELIVERY: Council PDFs never delivered to any user — P0
+
+**Vision alignment verdict:** ⚠️ PARTIALLY ALIGNED — Backend is world-class. Delivery layer is 0%. ROI/UX Vision says "product should prove value inside 7 days." Currently proves value to zero users.
+
+**Deviations detected:**
+- Gmail Memory (ROI/UX Vision's #1 priority "holy shit" moment) = 0%. Has never been touched.
+- WhatsApp transport = 0% despite being the backbone of the entire UX vision.
+- All engineering effort went to Council quality — correct but now creates delivery debt.
+
+**Recommended next 3 actions:**
+1. **WhatsApp Transport Layer** — Twilio webhook + session state + message router. 2-3 days. Unlocks everything. (PRD Phase 8, §13)
+2. **Multi-User Onboarding** — CV upload → profile creation → user_registry.py. 2-3 days. Unblocks monetization. (PRD §3, Phase 8)
+3. **Daily Brief Cron** — DailyRunner → daily_brief() → WhatsApp send at 7AM IST. 1 day if transport exists. (PRD §7, Phase 1.5)
 
 ---
 
