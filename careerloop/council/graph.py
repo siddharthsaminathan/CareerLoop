@@ -1068,6 +1068,8 @@ REWRITING RULES — follow ALL of them:
 
 7. For SKILLS sections: reorder to put role-relevant skills first. Group by relevance to the target role.
 
+8. For EDUCATION sections: PRESERVE the institution name, degree title, and date range EXACTLY as written on the first line(s) of each entry. Do NOT remove, rename, or reorder school names (e.g. "Stoa School", "CentraleSupelec", "SSN College", "IIT Madras"). Only tailor the achievement bullets BELOW the degree/school header line. If there are no bullets, return the section UNCHANGED.
+
 HONESTY GUARDRAILS:
 - NEVER invent metrics, numbers, dates, or claims. Use ONLY what is in `section_text`.
 - Do NOT add claims from `claims_not_allowed`.

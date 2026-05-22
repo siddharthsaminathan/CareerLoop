@@ -694,6 +694,9 @@ def _parse_profile(classified: dict) -> str:
             r"|T:\s*\+|E:\s*\w+@|Phone|Email|LinkedIn)",
             re.IGNORECASE,
         )
+        # Pattern to detect all-caps name lines (e.g. "HAYAGREEV SIVAKUMAR", "JOHN DOE")
+        _name_line = re.compile(r"^[A-Z][A-Z\s\.'-]{2,39}$")
+
         candidate_paras: list[str] = []
         for para in re.split(r"\n{2,}", body):
             para = para.strip()
@@ -702,6 +705,13 @@ def _parse_profile(classified: dict) -> str:
             # Skip paragraphs that are purely contact/link lines
             lines = [l.strip() for l in para.splitlines() if l.strip()]
             content_lines = [l for l in lines if not _contact_signal.search(l)]
+            if not content_lines:
+                continue
+            # Strip leading all-caps name lines (e.g. "HAYAGREEV SIVAKUMAR")
+            content_lines = [
+                l for l in content_lines
+                if not _name_line.match(l)
+            ]
             if not content_lines:
                 continue
             # Must be a real sentence (>60 chars, not a header-only line)

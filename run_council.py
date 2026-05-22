@@ -572,7 +572,10 @@ def run_council(job_id: str, person: str = "siddharth", intent: str = "INTERESTE
                 candidate=person_label,
                 run_id=job_id,
                 out_dir=output_dir / "rendered",
-                generate_pdf=True
+                generate_pdf=True,
+                original_cv_text=cv_text,
+                role=job["title"],
+                company=job["company"],
             )
         except Exception as e:
             print(f"  !! Rendering failed: {e}")

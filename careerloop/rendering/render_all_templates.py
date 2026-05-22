@@ -201,7 +201,16 @@ def generate_comparison_report(out_dir, results):
         f.write(content)
 
 
-def render_resume(input_path, candidate: str, run_id: str = "latest", out_dir=None, generate_pdf: bool = True) -> dict:
+def render_resume(
+    input_path,
+    candidate: str,
+    run_id: str = "latest",
+    out_dir=None,
+    generate_pdf: bool = True,
+    original_cv_text: str = "",
+    role: str = "",
+    company: str = "",
+) -> dict:
     input_path = Path(input_path)
     if not input_path.exists():
         raise FileNotFoundError(f"{input_path} not found.")
@@ -219,6 +228,28 @@ def render_resume(input_path, candidate: str, run_id: str = "latest", out_dir=No
         "Renderer must consume NormalizedResume — normalizer returned wrong type"
 
     _validate_normalized_resume(resume, input_path)
+
+    # ── S8.5 Section Completeness Check ─────────────────────────────────
+    # Populate empty sections (achievements, projects) from original CV text
+    # if the LLM determines they are needed. Suppresses empty section headers.
+    if original_cv_text and (not resume.achievements or not resume.projects):
+        try:
+            from careerloop.council.section_completeness import check_and_complete_sections
+            resume, completeness_actions = check_and_complete_sections(
+                resume=resume,
+                original_cv_text=original_cv_text,
+                role=role or candidate,
+                company=company,
+            )
+            if completeness_actions:
+                actions_path = out_dir / "08b_completeness_actions.json"
+                import dataclasses
+                actions_path.write_text(
+                    json.dumps([dataclasses.asdict(a) for a in completeness_actions], indent=2),
+                    encoding="utf-8",
+                )
+        except Exception as ce:
+            print(f"  !! S8.5 completeness check error (non-fatal): {ce}")
 
     header = resume.header
 
@@ -407,6 +438,16 @@ def render_resume(input_path, candidate: str, run_id: str = "latest", out_dir=No
         for k, v in placeholders.items():
             tmpl_html = tmpl_html.replace(f"{{{{{k}}}}}", str(v))
         tmpl_html = _strip_dead_contact_links(tmpl_html)
+
+        # ── Remove empty section blocks (e.g. Key Achievements with no content) ──
+        # Matches: <div class="section"> ... <section-title>ANYTHING</section-title> \s* </div>
+        # where the only content after the title is whitespace/newlines.
+        tmpl_html = re.sub(
+            r'<div class="section">\s*<div class="section-title">[^<]+</div>\s*</div>',
+            "",
+            tmpl_html,
+            flags=re.DOTALL,
+        )
 
         out_html = out_dir / f"{tmpl_id}.html"
         out_html.write_text(tmpl_html, encoding="utf-8")

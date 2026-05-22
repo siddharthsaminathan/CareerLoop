@@ -278,6 +278,9 @@ class ResumeCouncilOrchestrator:
                         run_id=job_id or "council",
                         out_dir=html_out_dir,
                         generate_pdf=False,
+                        original_cv_text=state.get("master_cv", ""),
+                        role=state.get("job_title", ""),
+                        company=state.get("company", ""),
                     )
                     print(f"  → Rendered HTML artifacts in {html_out_dir}")
                     with open(os.path.join(output_dir, "11_render_metadata.json"), "w", encoding="utf-8") as f:
