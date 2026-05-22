@@ -252,13 +252,15 @@ Turn infrastructure into habit-forming UX.
 
 ## WHAT NOT TO BUILD RIGHT NOW
 
-- More orchestration rewrites
-- More LLM councils
-- More templates
-- Full autonomous apply
+- More Resume Council polish (93% is enough — ship it)
+- More resume templates (10 is enough)
+- More LLM orchestration rewrites
+- Full autonomous apply (user stays in control always)
 - Heavy dashboards
 - Enterprise admin systems
 - Graph visualization UIs
+- Chrome extension (Phase 5, needs user base first)
+- Gmail Memory (Phase 3, needs transport first)
 
 ---
 
@@ -272,19 +274,270 @@ That is the real CareerLoop architecture.
 
 ---
 
-## Current Overall Maturity: ~57-60%
+## PHASE 0 — Delivery Foundation (The Missing Layer)
+**Status: ~0% | Owner: CTO | Priority: P0 — blocks everything**
 
-| Phase | % | Owner |
-|-------|---|-------|
-| Phase 1: Discovery | 75% | CTO |
-| Phase 1.5: Decision Compression | 20% | CEO |
-| Phase 2: Positioning + Intelligence | 45% | CTO |
-| Phase 3: Career Memory | 10% | CTO |
-| Phase 4: Interview Intelligence | 25% | Shared |
-| Phase 5: Execution | 5% | CTO |
-| Phase 6: Career State Graph | 5% | CTO |
-| Phase 7: Adaptive Intelligence | 0% | Future |
-| Phase 8: Consumer Product | 20% | Shared |
+> Added 2026-05-22. The entire backend exists but reaches zero users.
+> This phase must ship before any other feature investment.
+
+The MVP operating loop:
+
+```
+User onboarded
+→ daily jobs discovered
+→ top jobs compressed
+→ user approves jobs
+→ application pack generated
+→ user reviews pack
+→ user applies via link
+→ ledger updates
+→ follow-ups scheduled
+→ interviews detected
+→ prep/debrief stored
+→ career memory improves
+```
+
+The product becomes real only when this loop works end-to-end for one user.
+
+### Sprint 0 — Transport Foundation
+**Goal:** Send and receive messages with one test user.
+
+| Build | File |
+|-------|------|
+| Transport abstraction | `careerloop/transport/base.py` |
+| Telegram adapter | `careerloop/transport/telegram.py` |
+| Session store | `careerloop/session/session_store.py` |
+| Message router | `careerloop/session/message_router.py` |
+| User registry | `careerloop/session/user_registry.py` |
+
+**Success criteria:**
+- User sends "hi" → CareerLoop replies
+- User sends "brief" → CareerLoop sends mock daily brief
+- User taps Apply → state changes to `AWAITING_JOB_DECISION`
+
+---
+
+### Sprint 1 — Multi-User Onboarding
+**Goal:** A fourth user can onboard without code changes.
+
+| Build | File |
+|-------|------|
+| Onboarding flow | `careerloop/onboarding/onboarding_flow.py` |
+| CV upload handler | `careerloop/onboarding/document_upload_handler.py` |
+| Profile questionnaire (5 questions) | `careerloop/onboarding/profile_questionnaire.py` |
+| Person config generator | `careerloop/onboarding/person_config_generator.py` |
+
+**5 onboarding questions:** role targets, location, salary floor, notice period, career mode (Hunt/Upgrade/Explore/Emergency)
+
+**Success criteria:**
+- New WhatsApp/Telegram user sends start → uploads CV → answers 5 questions → profile created → mock brief received
+- No code changes required for new user
+
+---
+
+### Sprint 2 — Daily Brief Delivery
+**Goal:** 7 AM IST daily brief reaches users automatically.
+
+| Build | File |
+|-------|------|
+| Daily brief scheduler | `careerloop/jobs/daily_brief_job.py` |
+| Scheduler cron | `careerloop/jobs/scheduler.py` |
+| Brief delivery adapter | `careerloop/jobs/brief_delivery.py` |
+| Decision router | `careerloop/session/decision_router.py` |
+
+**Success criteria:**
+- Cron fires at 7 AM IST per user
+- `DailyRunner.run()` → `daily_brief()` → `send_text()`
+- User replies 1/2/skip → session state updates correctly
+
+---
+
+### Sprint 3 — Application Pack Delivery
+**Goal:** User approves a job → receives tailored resume PDF on Telegram.
+
+| Build | File |
+|-------|------|
+| Pack orchestrator | `careerloop/packs/pack_orchestrator.py` |
+| Pack storage | `careerloop/packs/pack_storage.py` |
+| Pack delivery | `careerloop/packs/pack_delivery.py` |
+| PDF selector | `careerloop/packs/pdf_selector.py` |
+
+**Flow:**
+```
+User approves job
+→ pack_orchestrator triggers Council run
+→ PDF selected (classic-ats for ATS, product-engineer for PM)
+→ send_document(pdf) + summary text
+→ user reviews
+→ user opens apply link
+→ state = AWAITING_APPLICATION_CONFIRMATION
+```
+
+**Success criteria:**
+- User receives correct PDF on Telegram within 3 minutes of approval
+- Pack stored in `output/packs/{user_id}/{job_id}/`
+
+---
+
+### Sprint 4 — Resume Editor + ATS Validator
+**Goal:** User can request small edits without full Council rerun.
+
+| Build | File |
+|-------|------|
+| Resume editor | `careerloop/resume_editor/editor.py` |
+| Section locator | `careerloop/resume_editor/section_locator.py` |
+| Resume diff | `careerloop/resume_editor/resume_diff.py` |
+| ATS validator | `careerloop/ats_validator.py` |
+
+**Success criteria:**
+- User says "make profile less founder-heavy" → only profile section rewrites → before/after diff shown → PDF regenerated
+- ATS Health score shown with every pack delivery
+
+---
+
+### Sprint 5 — Follow-Up Engine
+**Goal:** Every applied job generates automatic follow-up drafts.
+
+| Build | File |
+|-------|------|
+| Follow-up scheduler | `careerloop/followup/followup_scheduler.py` |
+| Follow-up drafter | `careerloop/followup/followup_drafter.py` |
+| Follow-up delivery | `careerloop/followup/followup_delivery.py` |
+
+**Schedule:** Day 5 → Day 10 → Day 17 → Day 25 → mark likely ghosted.
+**Adapt based on:** company type, recruiter reply, interview stage, career mode.
+
+**Success criteria:**
+- User marks applied → 4 follow-up dates auto-scheduled
+- On day 5: message sent with drafted follow-up
+- User can send/edit/skip each follow-up
+
+---
+
+### Sprint 6 — Gmail + Calendar Integration
+**Goal:** CareerLoop knows about the user's existing applications and interviews.
+
+| Build | File |
+|-------|------|
+| Gmail connector | `careerloop/integrations/gmail_connector.py` |
+| Calendar connector | `careerloop/integrations/calendar_connector.py` |
+| Email classifier | `careerloop/integrations/email_classifier.py` |
+| Calendar event classifier | `careerloop/integrations/calendar_event_classifier.py` |
+
+**Gmail classify:** application confirmation · rejection · recruiter reply · interview invite · assessment invite · offer · ghosted thread
+
+**Calendar classify:** interview · recruiter call · assessment deadline · follow-up reminder · offer discussion
+
+**Success criteria:**
+- "You have an interview with Razorpay tomorrow" triggered by calendar
+- Rejection email → application marked REJECTED in ledger automatically
+
+---
+
+### Sprint 7 — Interview Memory
+**Goal:** Every interview becomes structured learning.
+
+| Build | File |
+|-------|------|
+| Interview memory | `careerloop/interview/interview_memory.py` |
+| Post-interview debrief | `careerloop/interview/interview_debrief.py` |
+| Interview prep generator | `careerloop/interview/interview_prep.py` |
+| Weakness tracker | `careerloop/interview/weakness_tracker.py` |
+
+**Flow:**
+- User vents after interview → extract questions asked, weak areas, recruiter signals → update profile → next prep improves
+- System learns: "You perform better at startups than enterprise." "Avoid SQL-heavy case rounds."
+
+---
+
+## 7-Day Build Plan (Sprint 0 + Sprint 1 start)
+
+| Day | Task | Success Signal |
+|-----|------|---------------|
+| Day 1 | Telegram bot + transport abstraction + session store | "hi" → reply works |
+| Day 2 | User registry + CV upload → profile creation | 4th user onboards without code change |
+| Day 3 | Session state machine + mock daily brief routing | User gets brief, taps apply, state changes |
+| Day 4 | Connect real DailyRunner output to brief delivery | Real jobs in the brief |
+| Day 5 | Apply button triggers Council run → pack generated | Pack stored in output/packs/ |
+| Day 6 | Send PDF + apply link + mark applied flow | User receives PDF on Telegram |
+| Day 7 | Follow-up scheduling + first live beta user | One real end-to-end loop |
+
+---
+
+## 30-Day Build Plan
+
+| Week | Focus | Output |
+|------|-------|--------|
+| Week 1 | Sprints 0–1: Telegram MVP + onboarding | First real user, end-to-end loop working |
+| Week 2 | Sprint 2–3: Daily brief delivery + pack generation | Daily habit established for beta users |
+| Week 3 | Sprint 4–5: Resume editor + ATS check + follow-ups | Quality control + pipeline management |
+| Week 4 | Sprint 6: Gmail/calendar + Sprint 7 start: interview memory | CareerLoop learns from user history |
+
+**End state at 30 days:** CareerLoop can onboard users, send daily briefs, generate tailored packs, track applications, schedule follow-ups, and learn from interviews. That is a real product.
+
+---
+
+## Background Job Architecture
+
+Two classes of background work:
+
+**Daily (per user, every morning):**
+- Discover jobs
+- Dedupe + score
+- Compress decisions
+- Prepare daily brief
+- Update follow-ups
+- Read Gmail
+- Read calendar
+- Detect stale applications
+
+**Per-job (only when user approves):**
+- Run Company Intelligence
+- Run Application Pack
+- Prepare recruiter DM + cover note + screening answers
+- Render resume
+- ATS validation
+
+Do not run per-job tasks speculatively. Only run when user signals intent. This prevents wasting compute on jobs the user will skip.
+
+---
+
+## Final Architecture Stack
+
+```
+Transport Layer (Telegram / WhatsApp)
+  └── Session Router + State Machine
+      └── User Registry + Onboarding
+          ├── Daily Brief Engine
+          │   └── DailyRunner → Discovery → Scoring → Compression
+          ├── Application Pack Orchestrator
+          │   └── Company Intel → Council → Render → ATS Check → Deliver
+          ├── Resume Editor (surgical, no full rerun)
+          ├── Follow-Up Engine
+          ├── Gmail + Calendar Connectors
+          ├── Interview Memory
+          └── Career State Graph
+                └── Adaptive Intelligence (Phase 7)
+```
+
+---
+
+## Current Overall Maturity: ~58-61%
+
+> Updated 2026-05-22. Phase 0 added. Delivery layer is the new P0.
+
+| Phase | % | Owner | Status |
+|-------|---|-------|--------|
+| Phase 0: Delivery Foundation | 0% | CTO | 🔴 NEW P0 |
+| Phase 1: Discovery | 75% | CTO | 🟡 |
+| Phase 1.5: Decision Compression | 20% | CEO | 🔴 |
+| Phase 2: Positioning + Intelligence | 45% | CTO | 🟡 |
+| Phase 3: Career Memory | 10% | CTO | 🔴 |
+| Phase 4: Interview Intelligence | 25% | Shared | 🟡 |
+| Phase 5: Execution (Chrome ext) | 5% | CTO | ⚫ |
+| Phase 6: Career State Graph | 5% | CTO | ⚫ |
+| Phase 7: Adaptive Intelligence | 0% | Future | ⚫ |
+| Phase 8: Consumer Product (UX) | 20% | Shared | 🔴 |
 
 ---
 

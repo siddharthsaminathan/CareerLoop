@@ -22,10 +22,15 @@ S8.5 completeness check shipped. Council is at quality ceiling (93%). System sta
 
 ## System Status (Live)
 
-> Updated 2026-05-22 — Job-aware chunking + prose-paragraph fallback. Council at 93%. 42/42 tests pass.
+> Updated 2026-05-22 — Phase 0 Delivery Foundation added as P0. Transport/onboarding/state machine are the new bottleneck. All backend systems are CLI-only.
 
 | System | % | Status | Blocking? | Notes |
 |--------|---|--------|-----------|-------|
+| **Transport abstraction layer** | **0%** | 🔴 | **YES** | TransportAdapter + TelegramAdapter. Blocks all user access. Sprint 0. |
+| **Multi-user onboarding** | **0%** | 🔴 | **YES** | CV upload → profile creation → user registry. Sprint 1. |
+| **Session state machine** | **0%** | 🔴 | **YES** | 15 states. Routes messages to correct handlers. Sprint 0. |
+| **Application pack delivery** | **0%** | 🔴 | **YES** | Pack → PDF → send_document(). Sprint 3. |
+| **Daily brief cron delivery** | **5%** | 🔴 | **YES** | DailyRunner exists. Transport missing. Sprint 2. |
 | India-first discovery | 75% | 🟡 | No | ATS adapter + Spire AI adapter; portal layer still ~0% for JS-heavy sites |
 | Verification & filtering | 60% | 🟡 | No | detect_ats_pass.py; Block G not hoisted |
 | Opportunity scoring (14-dim) | 55% | 🟡 | No | function_probability.py + metrics.py; needs calibration |
@@ -33,19 +38,24 @@ S8.5 completeness check shipped. Council is at quality ceiling (93%). System sta
 | Career state system (modes) | 10% | 🔴 | No | Conceptual only |
 | Company intelligence | 75% | 🟢 | No | MECE vision implemented; S3 cache working |
 | Positioning engine | 38% | 🟡 | No | S6 wired; tailoring delta substantial; narrative angle reaches S7 |
-| Resume Council (v3) | 93% | 🟢 | No | Job-aware chunking; prose fallback; 42 tests; ceiling hit — next is new capabilities |
+| Resume Council (v3) | 93% | 🟢 | No | Job-aware chunking; prose fallback; 42 tests; ceiling hit |
 | Humanizer layer | 65% | 🟡 | No | LLM rewrite active; Truth Guard UNSUPPORTED matching still too aggressive |
-| Resume rendering (templates) | 85% | 🟡 | No | 10 templates; normalizer handles 3 user CV formats; automated validation |
+| Resume rendering (templates) | 85% | 🟡 | No | 10 templates; normalizer handles 3 user CV formats; S8.5 completeness check |
+| ATS validator layer | 0% | ⚫ | No | Spec written (PRD §26). Sprint 4. |
+| Resume editing layer | 0% | ⚫ | No | Spec written (PRD §25). Surgical edits without full Council rerun. Sprint 4. |
 | Validator / QA | 75% | 🟡 | No | 42 stabilization + 22 integration pass; automated pre-render validation |
-| Application execution | 15% | 🔴 | No | modes/apply.md prototype; Chrome extension Phase 3 |
-| Chrome extension | 0% | ⚫ | No | Phase 3 |
-| Follow-up system | 25% | 🔴 | No | Ledger auto-schedules; no follow-up message generation |
-| Interview memory | 25% | 🟡 | No | interview-playbook skill; auto-extracts from venting; no rejection post-mortem yet |
-| Persistent memory graph | 25% | 🟡 | No | Ledger + company_registry + SQLite schema; not read back to improve positioning |
-| WhatsApp/transport UX | 15% | 🔴 | No | Concept only |
-| Monetization logic | 30% | 🟡 | No | Strategic understanding solid; no billing/paywall |
+| Application execution | 15% | 🔴 | No | modes/apply.md prototype; Chrome extension Phase 5 |
+| Chrome extension | 0% | ⚫ | No | Phase 5. Needs user base first. |
+| Follow-up engine (full) | 25% | 🔴 | No | Scheduling exists. Message generation + delivery = Sprint 5. |
+| Gmail integration | 0% | ⚫ | No | Sprint 6. Needs transport first. |
+| Calendar integration | 0% | ⚫ | No | Sprint 6. Needs transport first. |
+| Interview memory (full) | 25% | 🟡 | No | Vent parsing works. Debrief + weakness tracker = Sprint 7. |
+| Persistent memory graph | 25% | 🟡 | No | Ledger + SQLite schema; not read back to improve positioning |
+| Background job scheduler | 0% | ⚫ | No | Sprint 2. Daily + per-job two classes. |
+| WhatsApp / Meta Cloud API | 0% | ⚫ | No | After Telegram beta validates loop. |
+| Monetization / billing | 0% | 🔴 | No | Pricing tiers defined. No paywall yet. Needs onboarding first. |
 
-**Overall product maturity: ~58-61% of vision.** Council ceiling hit (93%). Time to build new capabilities — recruiter DM, follow-up intelligence, multi-user onboarding.
+**Overall product maturity: ~58-61% of vision.** Council ceiling hit (93%). Zero user-facing interface. Transport + onboarding + state machine are P0.
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 

@@ -603,3 +603,287 @@ The complete ROI thesis, 12-workflow deep-dives, competitor map, monetization st
 **→ `docs/product/ROI_UX_PRODUCT_VISION.md`**
 
 All engineering and agent work must align to both this PRD (what we build) and the ROI/UX Vision (why we build it, and how we measure success).
+
+---
+
+## 21. Transport Abstraction Layer (Addendum — 2026-05-22)
+
+> The delivery surface is the product. Intelligence without delivery is a CLI tool.
+
+### The Decision: Telegram-First, WhatsApp Later
+
+For internal beta (next 7–30 days): **Telegram.** Fast setup, no approval process, clean file/button support, stable webhooks. WhatsApp in production once the loop is validated.
+
+Do not hardcode business logic into any transport. Every product function must work through an abstract interface:
+
+```
+TransportAdapter (base)
+├── send_text(user_id, text)
+├── send_buttons(user_id, text, buttons[])
+├── send_document(user_id, file_path, caption)
+└── receive_message(webhook_payload) → Message
+
+Implementations:
+├── TelegramAdapter        — internal beta (Telegram Bot API)
+├── WhatsAppWebAdapter     — experimental (brittle, account risk)
+└── MetaWhatsAppAdapter    — production WhatsApp (later)
+```
+
+**Canonical path:** `careerloop/transport/`
+
+### Why This Matters
+
+If transport logic bleeds into business logic, switching from Telegram to WhatsApp requires touching every file. The adapter pattern means the product layer never knows which channel it's talking through.
+
+---
+
+## 22. Conversation State Machine (Addendum — 2026-05-22)
+
+Every user has exactly one current state. The state machine is P0 — without it, the product has no memory of what it was doing.
+
+### States
+
+```
+IDLE
+ONBOARDING_WAITING_CV
+ONBOARDING_PROFILE_QUESTIONS
+DAILY_BRIEF_SENT
+REVIEWING_JOB
+AWAITING_JOB_DECISION
+PACK_GENERATING
+PACK_READY
+AWAITING_RESUME_REVIEW
+AWAITING_APPLICATION_CONFIRMATION
+APPLIED
+FOLLOWUP_DUE
+INTERVIEW_SCHEDULED
+INTERVIEW_PREP_READY
+POST_INTERVIEW_DEBRIEF
+```
+
+### Example Flow
+
+```
+Daily brief sent
+→ user taps Apply
+→ state = PACK_GENERATING
+→ Council runs
+→ state = PACK_READY
+→ user taps Review Resume
+→ user requests edit
+→ Resume Editor runs
+→ user taps Apply Link
+→ state = AWAITING_APPLICATION_CONFIRMATION
+→ user says Done
+→ state = APPLIED
+→ follow-up scheduled
+→ state = FOLLOWUP_DUE (day 5)
+```
+
+### Implementation
+
+- `session_store.py` — per-user JSON/SQLite: `{user_id, state, current_job_id, current_pack_id, updated_at}`
+- `message_router.py` — routes incoming message to correct handler based on current state
+- State transitions are deterministic. Agents execute tasks within states. The machine decides what happens next.
+
+**Canonical path:** `careerloop/session/`
+
+---
+
+## 23. Agent Orchestration Layer (Addendum — 2026-05-22)
+
+**Do not build one big agent.** Use deterministic state machine + small focused agents.
+
+### The 7 Agents
+
+| Agent | Responsibility |
+|-------|---------------|
+| **Router Agent** | Classifies user intent: apply, skip, review, edit, follow-up, interview, mark-applied |
+| **Job Decision Agent** | Explains why a job is/isn't recommended; handles MAYBE |
+| **Application Pack Agent** | Runs Company Intel + Council + document assembly |
+| **Resume Edit Agent** | Surgical single-section edits without full Council rerun |
+| **Follow-Up Agent** | Schedules, drafts, and delivers follow-up messages |
+| **Interview Agent** | Prepares role-specific briefings; debriefs post-interview |
+| **Memory Agent** | Retrieves relevant context from past applications, rejections, and conversations |
+
+### Orchestration Principle
+
+> The state machine decides what should happen. Agents only complete specific tasks.
+
+Never chain agents autonomously. Every agent handoff goes through the state machine. This keeps the system predictable, debuggable, and safe to hand to a non-technical user.
+
+**Canonical path:** `careerloop/agents/`
+
+---
+
+## 24. Application Pack Definition (Addendum — 2026-05-22)
+
+An application pack is the complete bundle generated for one user × one job. It is assembled once, stored, and delivered in pieces as needed.
+
+### Pack Contents (11 items)
+
+| # | Item | Source |
+|---|------|--------|
+| 1 | Final resume PDF | Resume Council → renderer |
+| 2 | Final resume markdown | Resume Council |
+| 3 | Company intelligence summary | Company Intel (S3) |
+| 4 | Positioning summary | Positioning Engine (S6) |
+| 5 | Recruiter DM | Council application pack |
+| 6 | Cover note | Council application pack |
+| 7 | Screening answers | Council application pack |
+| 8 | Follow-up message | Follow-Up Agent |
+| 9 | Apply link | Ledger (source_url) |
+| 10 | Risks / user review notes | Truth Guard + positioning |
+| 11 | Ledger state | Application state engine |
+
+### User-Facing UX (WhatsApp/Telegram)
+
+The user sees a minimal summary, not all 11 items:
+
+```
+Application pack ready for Stripe.
+✅ Resume: ready
+✅ Cover note: ready
+✅ Recruiter DM: ready
+🔗 Apply link: ready
+
+Reply: review resume | apply now | edit | skip
+```
+
+The full pack stays in storage. Items are surfaced on demand.
+
+**Canonical path:** `output/packs/{user_id}/{job_id}/`
+
+---
+
+## 25. Resume Editing Layer (Addendum — 2026-05-22)
+
+Rerunning the full 8-system Council for every small edit is expensive and slow. A lightweight Resume Editor handles surgical changes without touching the pipeline.
+
+### Edit Types
+
+- Tone edit (less aggressive / more conservative)
+- Section edit (rewrite one section)
+- Bullet edit (change one bullet)
+- Remove claim
+- Make stronger / Make safer
+- Shorten to one page
+- Reframe for different role family
+
+### Flow
+
+```
+User: "Make the profile less founder-heavy"
+→ identify affected section
+→ edit only that section (single LLM call)
+→ validate claims (Truth Guard mini-check)
+→ re-render PDF
+→ show before/after diff
+→ user confirms or reverts
+```
+
+### Guardrails
+
+- Never edit unrelated sections
+- Never break markdown structure
+- Never remove existing links
+- Never add unsupported skills
+- Always produce a diff before confirming
+
+**Canonical path:** `careerloop/resume_editor/`
+
+---
+
+## 26. ATS Validator Layer (Addendum — 2026-05-22)
+
+Every generated resume gets a fast ATS health check before delivery. Not a compliance audit — a practical signal to the user.
+
+### MVP ATS Checks
+
+| Check | Pass Condition |
+|-------|---------------|
+| Text selectable in PDF | pdfminer can extract text |
+| Links preserved | All hyperlinks survive PDF render |
+| No images as text | No rasterized text blocks |
+| Standard section headings | Experience, Education, Skills present |
+| Keyword coverage | ≥60% of JD must-haves appear |
+| No tables in ATS template | classic-ats.html is table-free |
+| No multi-column layout in ATS template | Single-column confirmed |
+| Clean file name | No spaces, no special chars |
+| Page count | ≤2 pages for most roles |
+| Missing must-have keywords | Flagged individually |
+
+### Output to User
+
+```
+ATS Health: 86/100
+✅ Selectable text
+✅ Standard sections
+✅ Keyword coverage strong
+⚠️  Kubernetes in JD but not in resume
+⚠️  Resume is 2 pages
+```
+
+**Canonical path:** `careerloop/ats_validator.py`
+
+---
+
+## 27. Persistent Memory Architecture (Addendum — 2026-05-22)
+
+CareerLoop needs 5 distinct memory scopes. Use structured DB first. Use embeddings only for fuzzy retrieval.
+
+### The 5 Memory Scopes
+
+**A. User Memory** — who the user is
+```
+user_id, name, phone/telegram_id, email
+resume_path, profile_path, career_mode
+salary_floor, notice_period, locations
+target_roles, avoid_list
+```
+
+**B. Job Memory** — each discovered job
+```
+job_id, company, title, location
+source_url, apply_url, JD
+fit_score, status, discovered_at
+company_intelligence_id
+```
+
+**C. Application Memory** — one user × one job
+```
+application_id, user_id, job_id
+status, pack_id, resume_used
+applied_at, followup_due_at
+recruiter_contact, notes, outcome
+```
+
+**D. Interview Memory** — interview events
+```
+interview_id, application_id
+company, round, scheduled_time
+questions_asked, user_vent
+system_summary, weaknesses, strengths
+next_prep_plan, outcome
+```
+
+**E. Communication Memory** — conversations and reminders
+```
+message_id, user_id, channel
+intent, state_before, state_after
+timestamp, raw_text, parsed_action
+```
+
+### Storage Strategy
+
+| Layer | MVP | Production |
+|-------|-----|-----------|
+| Structured data | SQLite + JSON artifacts | Postgres |
+| Fuzzy retrieval (vents, convos, resume bullets) | Local file + string match | pgvector embeddings |
+| File storage | Local filesystem | Object storage (S3/GCS) |
+
+### MVP Tables
+
+`users` · `profiles` · `jobs` · `applications` · `application_packs` · `followups` · `interviews` · `messages` · `documents` · `calendar_events` · `gmail_events` · `memory_chunks`
+
+**Canonical path:** `careerloop/memory/`

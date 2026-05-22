@@ -790,5 +790,123 @@ The product should prove value inside **7 days**, not months.
 
 ---
 
-*Document source: Siddharth's CareerLoop ROI/UX/Product Vision paste.*  
+## 11. Transport Strategy and Delivery Architecture (Addendum — 2026-05-22)
+
+> Added after full product audit confirmed: zero users can access CareerLoop today despite 93% Council completion.
+
+### The Problem
+
+Intelligence without delivery is a CLI tool. The product's ROI is zero if it never reaches a user. All 12 workflows above require a delivery surface. That surface does not yet exist.
+
+### Transport Decision
+
+**Internal beta (next 7–30 days): Telegram.**
+
+| Criterion | Telegram | WhatsApp Web (unofficial) | Meta WhatsApp (official) |
+|-----------|----------|--------------------------|--------------------------|
+| Setup speed | Hours | Days | Weeks |
+| File/PDF delivery | Native | Limited | Template-gated |
+| Buttons | Native | Brittle | Supported |
+| Session stability | Stable | QR-break risk | Stable |
+| Account risk | None | Real | None |
+| India consumer familiarity | Lower | Highest | High |
+| Production readiness | Good | No | Yes |
+
+**Decision:** Start with Telegram to validate the operating loop. Add Meta WhatsApp Cloud API for production scale. Never use WhatsApp Web unofficial harness in production.
+
+### Transport Abstraction (non-negotiable)
+
+Do not hardcode product logic into any transport. Build a `TransportAdapter` interface first:
+
+```python
+class TransportAdapter:
+    def send_text(user_id, text): ...
+    def send_buttons(user_id, text, buttons): ...
+    def send_document(user_id, file_path, caption): ...
+    def receive_message(webhook_payload) -> Message: ...
+```
+
+Swap implementations without touching business logic.
+
+### ROI of the Transport Layer
+
+| User action | Without transport | With transport |
+|-------------|-------------------|----------------|
+| Get daily brief | Must run CLI manually | Arrives at 7 AM automatically |
+| Review job | Open code editor | Tap button in chat |
+| Receive resume PDF | Open file system | PDF arrives in chat |
+| Mark applied | Update JSON manually | Reply "done" |
+| Get follow-up reminder | Nothing | Message at day 5/10/17 |
+
+The transport layer's ROI is not a feature — it is the product.
+
+---
+
+## 12. Background Job Architecture (Addendum — 2026-05-22)
+
+CareerLoop's intelligence is most valuable when it runs without the user asking. Background jobs make the system feel proactive rather than reactive.
+
+### Two Classes of Work
+
+**Class A — Daily (per user, every morning):**
+
+| Job | What it does | When |
+|-----|-------------|------|
+| Job discovery | Scans 6+ sources | 5:00 AM IST |
+| Deduplication + scoring | India Fit Engine | 5:30 AM IST |
+| Decision compression | Top 5 from shortlist | 6:30 AM IST |
+| Daily brief generation | Format + queue | 6:45 AM IST |
+| Brief delivery | Send via transport | 7:00 AM IST |
+| Follow-up check | Surface due follow-ups | 7:00 AM IST (with brief) |
+| Gmail scan | Classify new emails | 6:00 AM + 6:00 PM |
+| Calendar scan | Detect new interviews | 6:00 AM |
+
+**Class B — Per-Job (only when user approves):**
+
+| Job | Trigger |
+|-----|---------|
+| Company Intelligence (S3) | User says "apply" |
+| Resume Council (S1–S8) | User says "apply" |
+| PDF render + ATS check | After Council |
+| PDF delivery | Pack complete |
+| Recruiter DM draft | Pack complete |
+| Follow-up schedule | User marks "applied" |
+
+**Rule:** Never run Class B speculatively. Only run when user signals intent. Compute is not wasted on jobs the user will skip.
+
+### ROI of Background Jobs
+
+> "CareerLoop should feel like it's always working for the user, even when the user isn't looking."
+
+The daily brief arriving at 7 AM without the user asking is the primary habit-formation mechanism. Without background jobs, the user must remember to open the product. With background jobs, the product interrupts productively.
+
+---
+
+## 13. Memory Architecture and ROI (Addendum — 2026-05-22)
+
+Every memory scope creates a compounding ROI effect. The longer a user stays, the smarter the system gets about them specifically.
+
+### Why Memory Matters for ROI
+
+| Without memory | With memory |
+|----------------|-------------|
+| Every brief looks the same | Brief adapts to revealed preferences (skipped startups, liked GCCs) |
+| Council uses only CV | Council also uses past rejections and interview patterns |
+| Follow-ups are generic | Follow-ups reference specific recruiter and round context |
+| Interview prep is generic | Prep targets the user's known weak areas |
+| User re-explains themselves | System remembers everything |
+
+### Memory Compounding Effect
+
+Week 1: System learns user's company type preferences from skip reasons.
+Week 2: System learns which JD signals predict good fit for this user.
+Week 4: System identifies that this user consistently underperforms on case-study rounds.
+Month 2: Resume bullets are refined based on which positioning led to interviews.
+Month 3: CareerLoop knows this user better than any recruiter does.
+
+**This is the real long-term moat.** Not the resume generator. Not the discovery engine. The accumulated user-specific intelligence that makes switching to any other tool a loss.
+
+---
+
+*Document source: Siddharth's CareerLoop ROI/UX/Product Vision paste. Amended 2026-05-22 with transport, background jobs, and memory architecture.*
 *Canonical path: `docs/product/ROI_UX_PRODUCT_VISION.md`*
