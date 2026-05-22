@@ -2,50 +2,52 @@
   "normalized_title": "Senior Merchandiser - Women's Wear (Jersey)",
   "seniority": "mid-senior",
   "must_haves": [
-    "4-6 years experience in fashion buying/merchandising/category management",
-    "OTB management and assortment planning",
-    "Advanced Excel (pivot tables, VLOOKUP, dashboards)",
-    "PO/PI coordination with multiple vendors",
-    "Womenswear trend knowledge, especially jersey/casualwear",
-    "Experience managing suppliers in India and Asia",
-    "Offline retail and e-commerce/omnichannel experience",
-    "Familiarity with SAP/ERP for PO and inventory",
-    "Cross-functional collaboration skills",
-    "Vendor negotiation skills"
+    "OTB management",
+    "assortment planning",
+    "advanced Excel (pivot tables, VLOOKUP, dashboards)",
+    "vendor and factory coordination (PO/PI)",
+    "womenswear trend knowledge, jersey/casualwear",
+    "multi-supplier management across India/Asia",
+    "offline retail & e-commerce/omnichannel experience",
+    "ERP proficiency (SAP or similar)",
+    "cross-functional collaboration",
+    "vendor negotiation and pricing improvement"
   ],
   "nice_to_haves": [
-    "NIFT/Pearl Academy degree",
-    "Fast-fashion/value retail experience (Zara, Zudio, etc.)",
-    "Category launch or new market entry projects",
-    "Experience with WIP trackers and production calendars",
-    "BI tools: Metabase / Power BI"
+    "NIFT/Pearl Academy qualification",
+    "fast-fashion/value retail experience (DMart, Zara, etc.)",
+    "category launch/new market entry projects",
+    "WIP tracker and production calendar experience",
+    "BI tools (Metabase, Power BI)"
   ],
   "hidden_expectations": [
-    "P&L ownership and commercial acumen",
-    "Ability to work under pressure in fast-paced fashion cycles",
-    "End-to-end product lifecycle management",
-    "Cross-cultural communication with regional teams",
-    "Data-driven decision-making on markdowns and replenishment"
+    "P&L ownership and profit-driven decision making",
+    "regional adaptation for India/SEA markets",
+    "range review leadership across design, marketing, VM",
+    "fast-paced, fast-fashion cycle adaptability"
   ],
   "day_one_deliverables": [
-    "Seasonal assortment strategy and OTB plan for women's jersey"
+    "Assume OTB control for women's jersey category",
+    "Analyze current sell-through and stock health",
+    "Initiate assortment planning for upcoming season"
   ],
   "screening_keywords": [
     "OTB",
     "assortment planning",
-    "merchandising",
-    "fashion buying",
-    "vendor management",
-    "PLM",
+    "jersey",
+    "womenswear",
+    "vendor negotiation",
+    "omnichannel",
+    "SAP",
     "sell-through",
-    "category management",
-    "WIP tracker"
+    "P&L",
+    "fast fashion"
   ],
   "disqualifiers": [
-    "No OTB management experience",
-    "No fashion/apparel industry background",
-    "No vendor or supplier management experience",
-    "No retail or omnichannel experience"
+    "no OTB management experience",
+    "no apparel/fashion merchandising background",
+    "no vendor management experience",
+    "no data analysis skills"
   ],
   "confidence": 0.9
 }

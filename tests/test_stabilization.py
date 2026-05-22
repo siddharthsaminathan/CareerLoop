@@ -26,7 +26,7 @@ sys.path.insert(0, str(ROOT))
 import pytest
 
 from careerloop.council.schemas import validate_payload, schema_instruction, NODE_SCHEMAS
-from careerloop.council.graph import _payload_to_rewritten_text
+from careerloop.council.graph import _payload_to_rewritten_text, _split_by_job_boundaries
 from careerloop.council.company_research import CompanyResearchAdapter, quality_score
 from careerloop.council.compiler import ResumeCompiler
 from careerloop.council.humanizer import Humanizer
@@ -300,6 +300,69 @@ class TestS7StructuredRewriteContract:
         # The two un-replaced originals must not appear
         assert "Bullet three original" not in text
         assert "Bullet four original" not in text
+
+
+class TestJobBoundaryChunking:
+    """_split_by_job_boundaries — one chunk per employer, eliminates cross-job attribution."""
+
+    _MULTI_JOB = (
+        "Acme Corp, Bangalore, India\n"
+        "Senior Engineer Jan 2023 – Present\n"
+        "Built the core platform for data pipelines.\n"
+        "- Shipped event streaming system handling 10M events/day.\n"
+        "- Reduced P99 latency from 800ms to 90ms.\n"
+        "- Led migration from monolith to microservices.\n"
+        "Beta Inc, Chennai, India\n"
+        "Software Engineer Jul 2021 – Dec 2022\n"
+        "Worked on e-commerce checkout and payments.\n"
+        "- Integrated 3 payment gateways.\n"
+        "- Improved conversion rate by 12%.\n"
+    )
+
+    def test_splits_into_one_chunk_per_employer(self):
+        chunks = _split_by_job_boundaries(self._MULTI_JOB)
+        assert len(chunks) == 2, f"Expected 2 chunks, got {len(chunks)}"
+
+    def test_each_chunk_contains_its_own_company_name(self):
+        chunks = _split_by_job_boundaries(self._MULTI_JOB)
+        assert "Acme Corp" in chunks[0]
+        assert "Beta Inc" in chunks[1]
+
+    def test_no_cross_job_bullet_leakage(self):
+        chunks = _split_by_job_boundaries(self._MULTI_JOB)
+        # Acme bullets must NOT appear in Beta chunk and vice versa
+        assert "10M events/day" in chunks[0]
+        assert "10M events/day" not in chunks[1]
+        assert "payment gateways" in chunks[1]
+        assert "payment gateways" not in chunks[0]
+
+    def test_single_employer_returns_single_chunk(self):
+        single_job = (
+            "Acme Corp, Bangalore\n"
+            "Engineer Jan 2023 – Present\n"
+            "- Did thing one.\n"
+            "- Did thing two.\n"
+        )
+        chunks = _split_by_job_boundaries(single_job)
+        assert len(chunks) == 1
+
+    def test_three_employers_splits_into_three_chunks(self):
+        three_jobs = (
+            "SuperK Bangalore, India\n"
+            "Category Manager – Fashion Nov 2025 – Present\n"
+            "- Expanded fashion assortment.\n"
+            "The Style Gram, Chennai, India\n"
+            "Founder Nov 2024 – Jun 2025\n"
+            "- Generated revenue.\n"
+            "Go Colors (Go Fashion India Ltd.) Chennai, India\n"
+            "Assistant Fashion Manager Sept 2020 – June 2023\n"
+            "- Managed PO/PI coordination.\n"
+        )
+        chunks = _split_by_job_boundaries(three_jobs)
+        assert len(chunks) == 3
+        assert "SuperK" in chunks[0]
+        assert "Style Gram" in chunks[1]
+        assert "Go Colors" in chunks[2]
 
 
 # ─── Normalizer bullet preservation tests ─────────────────────────────────────

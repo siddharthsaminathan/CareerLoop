@@ -1,80 +1,180 @@
 {
-  "total_claims": 7,
-  "verified": 0,
-  "weak": 4,
-  "unsupported": 2,
+  "total_claims": 17,
+  "verified": 1,
+  "weak": 2,
+  "unsupported": 14,
   "exaggerated": 0,
-  "fabricated": 1,
+  "fabricated": 0,
   "claims": [
     {
-      "text": "4 years of experience in fashion buying",
-      "risk_level": "FABRICATED",
+      "text": "4+ years of experience driving P&L",
+      "risk_level": "WEAK",
       "claim_type": "year_experience",
       "start_pos": 31,
-      "end_pos": 70,
-      "evidence_match": "Matches disallowed claim: '10 years fashion experience'",
+      "end_pos": 65,
+      "evidence_match": "Partially supported: verified_years = 4.1, claimed 4+",
       "repair_suggestion": null,
-      "confidence": 0.375
+      "confidence": 0.6
     },
     {
-      "text": "Built a women's casualwear category",
+      "text": "Built a fashion category",
       "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
       "start_pos": 141,
-      "end_pos": 176,
+      "end_pos": 165,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Expert in assortment planning",
+      "risk_level": "VERIFIED",
+      "claim_type": "skill_assertion",
+      "start_pos": 656,
+      "end_pos": 685,
+      "evidence_match": "Confirmed skill: assortment planning",
+      "repair_suggestion": null,
+      "confidence": 1.0
+    },
+    {
+      "text": "Built fashion category",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 29,
+      "end_pos": 51,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Proficient in pivot tables",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "skill_assertion",
+      "start_pos": 302,
+      "end_pos": 328,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Managed PO/PI",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 437,
+      "end_pos": 450,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0
     },
     {
       "text": "Built the fashion category",
-      "risk_level": "WEAK",
+      "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
       "start_pos": 70,
       "end_pos": 96,
-      "evidence_match": "Partial evidence match in 'Category Management'",
-      "repair_suggestion": null,
-      "confidence": 0.2333333333333333
-    },
-    {
-      "text": "Built a women's casualwear category",
-      "risk_level": "UNSUPPORTED",
-      "claim_type": "ownership",
-      "start_pos": 351,
-      "end_pos": 386,
       "evidence_match": null,
       "repair_suggestion": null,
       "confidence": 0.0
     },
     {
-      "text": "Managed 200+ SKUs",
-      "risk_level": "WEAK",
+      "text": "Owned P&L",
+      "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 1122,
-      "end_pos": 1139,
+      "start_pos": 350,
+      "end_pos": 359,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built and operated a lean fashion reselling brand focused",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 1392,
+      "end_pos": 1449,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Owned P&L",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 1610,
+      "end_pos": 1619,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "25% faster",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "percentage",
+      "start_pos": 1860,
+      "end_pos": 1870,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Managed end-to-end",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 1939,
+      "end_pos": 1957,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built a custom Excel WIP tracker",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 2088,
+      "end_pos": 2120,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Owned PO/PI coordination",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 2757,
+      "end_pos": 2781,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "15% improvement",
+      "risk_level": "WEAK",
+      "claim_type": "percentage",
+      "start_pos": 2942,
+      "end_pos": 2957,
       "evidence_match": "Numbers present in evidence bank — claim likely grounded",
       "repair_suggestion": null,
       "confidence": 0.4
     },
     {
-      "text": "Built Excel-based WIP trackers",
-      "risk_level": "WEAK",
+      "text": "Led sampling",
+      "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 1354,
-      "end_pos": 1384,
-      "evidence_match": "Partial evidence match in 'Advanced Excel'",
+      "start_pos": 3589,
+      "end_pos": 3601,
+      "evidence_match": null,
       "repair_suggestion": null,
-      "confidence": 0.35
+      "confidence": 0.0
     },
     {
-      "text": "Built and operated a lean fashion reselling brand focused",
-      "risk_level": "WEAK",
+      "text": "Built WIP trackers",
+      "risk_level": "UNSUPPORTED",
       "claim_type": "ownership",
-      "start_pos": 1623,
-      "end_pos": 1680,
-      "evidence_match": "Partial evidence match in 'Womenswear Trend Knowledge'",
+      "start_pos": 3790,
+      "end_pos": 3808,
+      "evidence_match": null,
       "repair_suggestion": null,
-      "confidence": 0.2333333333333333
+      "confidence": 0.0
     }
   ]
 }

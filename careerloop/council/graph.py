@@ -151,6 +151,73 @@ def _split_section_into_chunks(text: str, max_chunk_chars: int = 1500) -> list:
     return chunks if chunks else [text]
 
 
+def _split_by_job_boundaries(text: str) -> list[str]:
+    """Split an experience section into one chunk per employer entry.
+
+    Detects job-entry boundaries by finding lines that:
+      1. Start with an uppercase letter (company name / section header)
+      2. Are NOT bullet lines (no leading -, *, +)
+      3. Are followed within 3 lines by a date/tenure pattern (month, year,
+         "Present", or an en-dash date range)
+
+    This eliminates the cross-job bullet attribution error that occurs when
+    the LLM receives a 3000+ char flat block spanning multiple employers and
+    mis-assigns a bullet from job A to job B.
+
+    Returns [text] (single chunk = whole section) when fewer than 2 job
+    boundaries are detected — the caller falls back to paragraph chunking.
+    """
+    _date_pat = re.compile(
+        r'\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|Present|\d{4})\b',
+        re.I,
+    )
+    _bullet_pat = re.compile(r'^\s*[-*+]\s+')
+
+    lines = text.splitlines()
+    job_start_indices: list[int] = []
+
+    for i, line in enumerate(lines):
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if _bullet_pat.match(line):
+            continue  # bullets are never job headers
+        if not stripped[0].isupper():
+            continue  # lowercase-starting line = prose continuation
+        # Skip lines that contain a date themselves — those are role/date lines
+        # ("Category Manager – Fashion Nov 2025 – Present"), not company-name lines.
+        # Company-name lines like "Acme Corp, Bangalore, India" don't contain dates.
+        if _date_pat.search(stripped):
+            continue
+        # Check: does a date pattern appear within the next 3 non-blank lines?
+        # (The role/date line immediately follows the company-name line.)
+        nearby: list[str] = []
+        for j in range(i + 1, min(i + 5, len(lines))):
+            if lines[j].strip():
+                nearby.append(lines[j])
+            if len(nearby) == 3:
+                break
+        if any(_date_pat.search(nl) for nl in nearby):
+            job_start_indices.append(i)
+
+    if len(job_start_indices) < 2:
+        return [text]  # can't split meaningfully
+
+    chunks: list[str] = []
+    for idx, start in enumerate(job_start_indices):
+        end = job_start_indices[idx + 1] if idx + 1 < len(job_start_indices) else len(lines)
+        chunk_lines = lines[start:end]
+        # Strip leading/trailing blank lines from each chunk
+        while chunk_lines and not chunk_lines[0].strip():
+            chunk_lines.pop(0)
+        while chunk_lines and not chunk_lines[-1].strip():
+            chunk_lines.pop()
+        if chunk_lines:
+            chunks.append('\n'.join(chunk_lines))
+
+    return chunks if len(chunks) >= 2 else [text]
+
+
 def _count_markdown_bullets(text: str) -> int:
     return len(re.findall(r"(?m)^\s*[-*]\s+\S", text or ""))
 
@@ -425,9 +492,26 @@ def _rewrite_one_section(
         "experience", "work_experience", "professional_experience"
     }
 
-    # ── Chunked path for large experience sections ─────────────────────────
-    if is_experience and len(raw) > 1800:
+    # ── Chunked path for experience sections ──────────────────────────────
+    # For experience sections: ALWAYS attempt job-boundary splitting (one chunk
+    # per employer). This eliminates cross-job bullet attribution errors that
+    # arise when multiple employers live in one flat LLM call.
+    # Fall back to paragraph chunking only if job detection returns 1 chunk.
+    if is_experience:
+        chunks = _split_by_job_boundaries(raw)
+        if len(chunks) == 1 and len(raw) > 1800:
+            # Job-boundary detection failed — fall back to paragraph chunking.
+            chunks = _split_section_into_chunks(raw, max_chunk_chars=1400)
+        if len(chunks) == 1:
+            # Single employer or short section — use the normal (non-chunked) path.
+            chunks = None  # signal to fall through to single-section path
+    else:
+        chunks = None
+
+    if chunks is None and len(raw) > 1800 and not is_experience:
         chunks = _split_section_into_chunks(raw, max_chunk_chars=1400)
+
+    if chunks is not None and len(chunks) > 1:
         print(f"  → S7 chunked '{sid}' ({len(raw)} chars) → {len(chunks)} chunks")
         rewritten_chunks = []
         chunk_ok = True

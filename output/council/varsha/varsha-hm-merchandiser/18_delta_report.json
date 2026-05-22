@@ -3,61 +3,61 @@
     "sections_total": 4,
     "sections_changed": 4,
     "sections_changed_pct": 100.0,
-    "average_section_delta_pct": 51.6,
+    "average_section_delta_pct": 62.83,
     "sections": [
       {
         "section_id": "education",
         "change_type": "KEEP",
-        "similarity": 0.7667,
-        "delta_pct": 23.33,
+        "similarity": 0.7959,
+        "delta_pct": 20.41,
         "original_chars": 242,
-        "rewritten_chars": 251,
+        "rewritten_chars": 243,
         "original_bullets": 0,
         "rewritten_bullets": 0,
         "changed": true,
-        "change_reason": "Education entries are factual data; no rewriting needed."
+        "change_reason": "Education entries are factual and cannot be rewritten; they are kept as-is."
       },
       {
         "section_id": "summary",
         "change_type": "REWRITE",
-        "similarity": 0.113,
-        "delta_pct": 88.7,
+        "similarity": 0.0728,
+        "delta_pct": 92.72,
         "original_chars": 497,
-        "rewritten_chars": 936,
+        "rewritten_chars": 987,
         "original_bullets": 0,
         "rewritten_bullets": 0,
         "changed": true,
-        "change_reason": "Reframed summary to emphasize NIFT foundation, category-building proof points, and commercial acumen while implicitly addressing OTB as a learnable skill."
+        "change_reason": "Reframed summary to lead with commercial outcomes and vendor negotiation, inject OTB/sell-through language, and address jersey gap as a quick learning curve."
       },
       {
         "section_id": "skills",
         "change_type": "REWRITE",
-        "similarity": 0.6375,
-        "delta_pct": 36.25,
+        "similarity": 0.0557,
+        "delta_pct": 94.43,
         "original_chars": 536,
-        "rewritten_chars": 540,
+        "rewritten_chars": 720,
         "original_bullets": 18,
-        "rewritten_bullets": 3,
+        "rewritten_bullets": 5,
         "changed": true,
-        "change_reason": "Reordered skills to prioritize OTB and assortment planning, added OTB Management to core competencies, and kept all original content while aligning with role keywords."
+        "change_reason": "Reframed skills to lead with OTB, assortment planning, and vendor negotiation—core must-haves—while downplaying lack of jersey experience and emphasizing commercial outcomes and fast learning."
       },
       {
         "section_id": "professional_experience",
         "change_type": "REWRITE",
-        "similarity": 0.4187,
-        "delta_pct": 58.13,
+        "similarity": 0.5626,
+        "delta_pct": 43.74,
         "original_chars": 4429,
-        "rewritten_chars": 2401,
+        "rewritten_chars": 3932,
         "original_bullets": 19,
-        "rewritten_bullets": 7,
+        "rewritten_bullets": 17,
         "changed": true,
-        "change_reason": "Chunked rewrite (2 chunks, 4429 → 2401 chars)"
+        "change_reason": "Chunked rewrite (3 chunks, 4429 → 3932 chars)"
       }
     ]
   },
   "humanization_delta": {
-    "similarity": 0.9957,
-    "delta_pct": 0.43,
+    "similarity": 0.9969,
+    "delta_pct": 0.31,
     "nonblank_line_changes": 4,
     "mostly_whitespace": false
   },

@@ -3,15 +3,15 @@
   "n_rewritten": 4,
   "n_fallback": 0,
   "n_workers": 3,
-  "total_elapsed_s": 5.52,
+  "total_elapsed_s": 11.94,
   "sections": [
     {
       "section_id": "education",
       "status": "REWRITE",
       "change_type": "KEEP",
       "original_chars": 242,
-      "rewritten_chars": 251,
-      "elapsed_s": 1.59,
+      "rewritten_chars": 243,
+      "elapsed_s": 1.95,
       "model": "deepseek-chat"
     },
     {
@@ -19,8 +19,8 @@
       "status": "REWRITE",
       "change_type": "REWRITE",
       "original_chars": 497,
-      "rewritten_chars": 938,
-      "elapsed_s": 3.19,
+      "rewritten_chars": 987,
+      "elapsed_s": 4.3,
       "model": "deepseek-chat"
     },
     {
@@ -28,8 +28,8 @@
       "status": "REWRITE",
       "change_type": "REWRITE",
       "original_chars": 536,
-      "rewritten_chars": 540,
-      "elapsed_s": 3.7,
+      "rewritten_chars": 720,
+      "elapsed_s": 6.26,
       "model": "deepseek-chat"
     },
     {
@@ -37,8 +37,8 @@
       "status": "REWRITE",
       "change_type": "REWRITE",
       "original_chars": 4429,
-      "rewritten_chars": 2401,
-      "elapsed_s": 5.51,
+      "rewritten_chars": 3932,
+      "elapsed_s": 11.92,
       "model": "deepseek-chat"
     }
   ],
@@ -46,12 +46,13 @@
   "role_keywords_used": [
     "OTB",
     "assortment planning",
-    "merchandising",
-    "fashion buying",
-    "vendor management",
-    "PLM",
+    "jersey",
+    "womenswear",
+    "vendor negotiation",
+    "omnichannel",
+    "SAP",
     "sell-through",
-    "category management",
-    "WIP tracker"
+    "P&L",
+    "fast fashion"
   ]
 }

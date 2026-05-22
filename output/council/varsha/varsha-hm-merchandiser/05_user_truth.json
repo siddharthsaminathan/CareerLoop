@@ -1,133 +1,132 @@
 {
-  "total_years_experience": 4.0,
+  "total_years_experience": 4.1,
   "confirmed_skills": [
-    {
-      "skill": "Fashion Buying & Merchandising",
-      "years": 4,
-      "evidence": "3+ years explicit in summary; managed buying/merchandising at Go Colors, The Style Gram, SuperK"
-    },
     {
       "skill": "Assortment Planning",
       "years": 4,
-      "evidence": "Planned assortments for 200+ SKUs at Go Colors, expanded to 25+ subcategories at SuperK"
+      "evidence": "Planned and expanded assortments across roles, including launching sub-categories and rationalizing SKUs to improve margin."
+    },
+    {
+      "skill": "Vendor Negotiation",
+      "years": 4,
+      "evidence": "Negotiated pricing and terms with vendors, improving product margins from 22% to 35% and optimizing sourcing terms."
     },
     {
       "skill": "Advanced Excel",
       "years": 4,
-      "evidence": "Used Excel for dashboards, WIP trackers, inventory; skills include Pivot Tables, VLOOKUP"
+      "evidence": "Built WIP trackers, dashboards, and systems for pricing, merchandising, and inventory tracking across all roles."
     },
     {
-      "skill": "PO/PI Coordination",
-      "years": 2.75,
-      "evidence": "Managed PO/PI across 20+ suppliers at Go Colors with 95% on-time delivery"
+      "skill": "Vendor and Factory Coordination (PO/PI)",
+      "years": 3,
+      "evidence": "Managed PO/PI coordination for 20+ suppliers and 10+ factories, ensuring 95% on-time delivery."
     },
     {
-      "skill": "Vendor Management & Negotiation",
+      "skill": "Multi-Supplier Management (India/Asia)",
+      "years": 3,
+      "evidence": "Onboarded and coordinated 12+ regional vendors and multiple factories across India and Asia."
+    },
+    {
+      "skill": "Cross-Functional Collaboration",
       "years": 4,
-      "evidence": "Onboarded 12+ vendors, negotiated pricing/MOQs to improve margins at SuperK and Go Colors"
+      "evidence": "Collaborated with marketing, operations, supply chain, VM, and logistics for product launches and campaigns."
     },
     {
-      "skill": "Cross-functional Collaboration",
+      "skill": "Womenswear Buying & Trends",
       "years": 4,
-      "evidence": "Partnered with marketing, ops, supply chain, logistics across all roles"
+      "evidence": "Experience in women’s bottom-wear, casualwear, and accessories with trend-informed assortment planning."
     },
     {
       "skill": "P&L Management",
       "years": 1,
-      "evidence": "Owned category P&L at SuperK, improved margins from 22% to 35%; managed margins at The Style Gram"
+      "evidence": "Managed category P&L at SuperK, driving margin improvement and revenue generation."
     },
     {
-      "skill": "Category Management",
-      "years": 1,
-      "evidence": "Built fashion category from near zero at SuperK; launched sub-categories at Go Colors"
-    },
-    {
-      "skill": "Data-driven Decision-making",
+      "skill": "Inventory Management",
       "years": 4,
-      "evidence": "Analyzed sell-through, AOV to optimize assortments and reduce stock-outs at Go Colors and SuperK"
+      "evidence": "Tracked inventory, reduced stock-outs by 20%, and streamlined stock management using Excel and Metabase."
     },
     {
-      "skill": "Womenswear Trend Knowledge",
-      "years": 4,
-      "evidence": "Experience with women’s bottom-wear, casualwear; leggings/track pants (jersey) at Go Colors"
+      "skill": "BI Tools (Metabase)",
+      "years": 0.5,
+      "evidence": "Used Metabase dashboards for tracking sell-through, AOV, and margin performance at SuperK."
     }
   ],
   "weak_skills": [
     "OTB Management",
-    "SAP (Basic)",
-    "Forecasting"
+    "SAP Proficiency",
+    "Jersey/Casualwear Expertise"
   ],
   "evidence_bank": {
-    "Fashion Buying & Merchandising": [
-      "3+ years experience in buying and merchandising across retail and e-commerce",
-      "Managed end-to-end sourcing and merchandising at The Style Gram",
-      "Supported buying for women’s bottom-wear at Go Colors"
-    ],
     "Assortment Planning": [
       "Expanded fashion assortment from 5 to 25+ subcategories",
-      "Rationalized assortment improving category gross margin by 6%",
-      "Planned assortment for 200+ SKUs with sell-through optimization"
+      "Analyzed weekly sales data to optimize assortments, generating revenue",
+      "Recommended assortment adjustments improving sell-through by 15%",
+      "Launched 3+ sub-categories at Go Colors, boosting sales"
+    ],
+    "Vendor Negotiation": [
+      "Negotiated vendor pricing, improving margins from 22% to 35%",
+      "Negotiated MOQs and sourcing terms for better margins",
+      "Evaluated and engaged 5 supplier partners before finalizing primary vendor"
     ],
     "Advanced Excel": [
-      "Built Excel-based WIP trackers to manage 60+ SKUs",
-      "Used Excel and Metabase dashboards for tracking sell-through and margins",
-      "Skills include Pivot Tables, VLOOKUP, dashboards"
+      "Built Excel-based WIP trackers for 60+ SKUs, reducing catalog errors by 90%",
+      "Used Excel and Metabase dashboards for tracking sell-through, AOV, margin",
+      "Implemented Excel-based systems for pricing, merchandising, inventory tracking"
     ],
-    "PO/PI Coordination": [
-      "Managed PO/PI coordination across 20+ suppliers, 95% on-time delivery",
-      "Coordinated with vendors on production orders"
+    "Vendor and Factory Coordination (PO/PI)": [
+      "Managed PO/PI coordination for 20+ suppliers and 10+ factories",
+      "Ensured 95% on-time delivery for seasonal production orders"
     ],
-    "Vendor Management & Negotiation": [
-      "Onboarded 12+ regional vendors at SuperK",
-      "Negotiated vendor pricing, MOQs improving margins from 22% to 35%",
-      "Sourced 60+ SKUs through direct supplier negotiations with 45% margins"
+    "Multi-Supplier Management (India/Asia)": [
+      "Onboarded 12+ regional vendors for fashion category expansion",
+      "Coordinated with suppliers and factories across India and Asia"
     ],
-    "Cross-functional Collaboration": [
-      "Partnered with marketing, ops, supply chain to reduce stock-outs",
-      "Collaborated with logistics, VM, marketing for product launches"
+    "Cross-Functional Collaboration": [
+      "Partnered with marketing, operations, supply chain, VM, and logistics",
+      "Collaborated for product launches, campaigns, and stock availability"
+    ],
+    "Womenswear Buying & Trends": [
+      "Managed buying for women’s bottom-wear: leggings, track pants, formal pants, ethnic bottoms",
+      "Aligned assortment with trend insights, driving purchase rate lift"
     ],
     "P&L Management": [
-      "Owned category P&L at SuperK, improved margins",
-      "Achieved 45% gross margins at The Style Gram while scaling revenue"
+      "Managed category P&L at SuperK, improving gross margin by ~6%",
+      "Generated ₹3.5 lakh category revenue in two months"
     ],
-    "Category Management": [
-      "Built fashion category from near zero at SuperK",
-      "Launched 3+ new sub-categories at Go Colors including kidswear"
+    "Inventory Management": [
+      "Reduced stock-outs by ~20% across priority products",
+      "Managed 60+ SKUs with 100% order fulfillment and inventory tracking"
     ],
-    "Data-driven Decision-making": [
-      "Analyzed weekly sales performance to recommend replenishment",
-      "Used sell-through and AOV data to rationalize assortment and boost margins"
-    ],
-    "Womenswear Trend Knowledge": [
-      "Experience with leggings, track pants, formal pants, ethnic bottoms",
-      "Fashion reselling brand focused on women’s western-wear"
+    "BI Tools (Metabase)": [
+      "Utilized Metabase dashboards for sell-through, AOV, and margin performance tracking"
     ]
   },
   "strongest_proof_points": [
-    "Built a fashion category from near zero to ₹3.5 lakh revenue in 2 months at SuperK",
-    "Improved product margins from 22% to 35% through vendor negotiation",
-    "Managed 200+ SKUs and improved sell-through by 15% at Go Colors",
-    "Launched and operated a fashion brand generating ₹50,000 revenue in launch phase with zero returns",
-    "Expanded assortment from 5 to 25+ subcategories by onboarding 12+ vendors"
+    "Built fashion category from near zero, generating ₹3.5 lakh revenue in two months at SuperK.",
+    "Improved product margins from 22% to 35% through vendor negotiation and pricing strategy.",
+    "Managed PO/PI coordination for 20+ suppliers across India and Asia, achieving 95% on-time delivery at Go Colors.",
+    "Launched 3+ sub-categories including kids-wear, boosting category sales by 15% at Go Colors.",
+    "Reduced stock-outs by ~20% through cross-functional collaboration on inventory flow at SuperK."
   ],
   "claims_allowed": [
-    "4 years experience in fashion buying/merchandising",
-    "Assortment planning and category management",
-    "P&L management and margin optimization",
-    "PO/PI coordination with multiple vendors across India and Asia",
-    "Women's casualwear and bottom-wear expertise (including jersey fabrics)",
-    "Advanced Excel (pivot tables, dashboards, WIP trackers)",
-    "Cross-functional collaboration with marketing, ops, supply chain",
-    "Category launch experience (built from zero)",
-    "NIFT degree in Fashion Design",
-    "Experience in e-commerce and offline retail (omnichannel)",
-    "Vendor negotiation and sourcing optimization"
+    "4+ years of experience in fashion buying and merchandising across retail and e-commerce.",
+    "Proven ability to manage P&L and drive margin improvement.",
+    "Expert in assortment planning and vendor negotiation.",
+    "Strong analytical skills with advanced Excel and BI tools (Metabase).",
+    "Omnichannel experience with offline retail and online sales channels.",
+    "Multi-supplier management across India and Asia.",
+    "NIFT graduate with fashion design background.",
+    "Experience launching new categories and sub-categories.",
+    "Proficient in WIP tracking and production coordination.",
+    "Collaborated cross-functionally with marketing, operations, and supply chain."
   ],
   "claims_not_allowed": [
-    "10 years fashion experience",
-    "OTB management expert",
-    "Advanced SAP/ERP proficiency",
-    "Deep forecasting expertise",
-    "Specific fast-fashion brand experience (Zara, Zudio)"
+    "Experienced in OTB management.",
+    "Proficient in SAP for merchandising operations.",
+    "Deep expertise in jersey fabrics and casualwear.",
+    "Managed large teams of buyers and planners.",
+    "Over 6 years of professional experience.",
+    "Fast-fashion cycle leadership."
   ]
 }
