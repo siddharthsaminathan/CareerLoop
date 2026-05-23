@@ -124,13 +124,15 @@ class ResumeCouncilOrchestrator:
                 indent=2,
             )
 
-        # Invoke the LangGraph
+        # Invoke the LangGraph with checkpointing configuration
+        thread_id = f"{person_id}:{job_id}"
+        config = {"configurable": {"thread_id": thread_id}}
         print(
             f"--- Running Resume Council v3.0 for "
-            f"{initial_state['job_title']} at {initial_state['company']} ---"
+            f"{initial_state['job_title']} at {initial_state['company']} (Thread: {thread_id}) ---"
         )
         graph = get_council_graph()
-        final_state = graph.invoke(initial_state)
+        final_state = graph.invoke(initial_state, config=config)
 
         # Check for errors — write failure report if any node failed
         errors = final_state.get("errors", [])

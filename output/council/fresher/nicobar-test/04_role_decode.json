@@ -2,43 +2,47 @@
   "normalized_title": "AI Product Engineer",
   "seniority": "mid-senior",
   "must_haves": [
-    "IIT/BITS/NIT or equivalent engineering degree",
-    "3-5 years of experience",
-    "Built a real project with an LLM API (OpenAI, Claude, Gemini, etc.)",
-    "Proficiency in Python or NodeJS",
-    "SQL fluency",
-    "Frontend development skills with brand-appropriate design"
+    "Python/NodeJS",
+    "SQL",
+    "LLM API experience (real project)",
+    "frontend development (brand-conscious)",
+    "top-tier engineering degree (IIT/BITS/NIT equivalent)"
   ],
   "nice_to_haves": [
-    "Retail or e-commerce experience",
-    "Conversational AI or chatbot experience",
-    "Familiarity with business intelligence tools",
-    "Experience with Shopify, MoEngage, or Dynamics 365"
+    "retail/e-commerce experience",
+    "Shopify API experience",
+    "design/UI/UX sensibility"
   ],
   "hidden_expectations": [
-    "CEO-facing communication and strategic thinking",
-    "Ability to deliver business outcomes rapidly",
-    "Cross-functional collaboration with creatives and store teams",
-    "Owning end-to-end product development in an AI-first context"
+    "CEO-facing communication",
+    "business-outcome thinking",
+    "independent ownership",
+    "systems integration",
+    "AI-native mindset"
   ],
   "day_one_deliverables": [
     "Customer personalization intelligence layer",
     "Store clienteling tool",
-    "Conversational business intelligence replacement",
-    "Design workflow optimization"
+    "Conversational BI layer",
+    "Design workflow automation"
   ],
   "screening_keywords": [
     "AI-native",
     "clienteling",
     "business intelligence",
+    "personalization",
     "LLM",
     "Python",
-    "SQL"
+    "NodeJS",
+    "SQL",
+    "frontend",
+    "Shopify",
+    "IIT/BITS/NIT"
   ],
   "disqualifiers": [
-    "No hands-on LLM API project experience",
-    "No coding skills",
-    "No frontend development ability"
+    "no LLM experience",
+    "no coding skills (Python/NodeJS)",
+    "no frontend development ability"
   ],
   "confidence": 0.85
 }

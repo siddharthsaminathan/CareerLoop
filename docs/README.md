@@ -4,16 +4,19 @@ Welcome to the CareerLoop documentation portal. All product documents, engineeri
 
 ---
 
-## 📂 Product (`docs/product/`) — 7 documents
+## 📂 Product (`docs/product/`) — 10 documents
 
 > High-level strategy, target personas (ICP), feature lists, canonical vision documents, ROI/UX thesis, and competitive positioning. Read these when aligning on business objectives, user states, or product roadmap decisions.
 
 | Document | Purpose | When to Read |
 |----------|---------|--------------|
-| **[PRD.md](docs/product/PRD.md)** | Canonical Product Requirements Document v1.0 — 20-section single source of truth for the entire CareerLoop product. Covers the 16 core systems, Employer Discovery Engine (§18), Human Pipeline Layer (§19), and ROI & UX Architecture (§20). Updated by the `careerloop-product-lead` skill each session. | Starting any session. Understanding what to build and why. |
+| **[PRD.md](docs/product/PRD.md)** | Canonical Product Requirements Document v1.0 — single source of truth for CareerLoop. Covers the 16 core systems, Employer Discovery Engine (§18), Human Pipeline Layer (§19), ROI & UX Architecture (§20), and Delivery Orchestration addenda (§21-§23). Updated by the `careerloop-product-lead` skill each session. | Starting any session. Understanding what to build and why. |
 | **[ROI_UX_PRODUCT_VISION.md](docs/product/ROI_UX_PRODUCT_VISION.md)** | Complete ROI thesis, UX philosophy, 12-workflow ROI map, four user entry points, metric hierarchy, competitor map by workflow, monetization strategy, and brutal prioritization framework. Core principle: _Intelligence is the product. Automation is the UX._ | Making product decisions, prioritizing features, designing UX flows, evaluating monetization. |
+| **[TECH_ROADMAP.md](docs/product/TECH_ROADMAP.md)** | Phased MECE roadmap including Phase 0 Delivery Foundation, Decision Compression, Resume Council, execution, memory, and consumer UX. | Planning implementation order and sprint scope. |
+| **[DECISION_COMPRESSION_VISION.md](docs/product/DECISION_COMPRESSION_VISION.md)** | CEO Phase 1.5 spec for reducing job-search overload into daily choices, modes, tracks, and briefs. | Designing triage, daily brief, and decision UX. |
 | **[COMPANY_INTELLIGENCE_VISION.md](docs/product/COMPANY_INTELLIGENCE_VISION.md)** | Product vision for the Company Intelligence compiler block (System 3). Defines why deep signals matter more than generic internet summaries and how intelligence informs positioning. | Designing or modifying the company research pipeline. |
 | **[SEARCH_VISION.md](docs/product/SEARCH_VISION.md)** | Three-layer browser portal scraper architecture, Greenhouse/Ashby/Lever API integrations, sector-to-function scoring logic, and cross-source deduplication strategy. | Extending discovery capabilities, adding new job sources, modifying scoring heuristics. |
+| **[COMPETITIVE_POSITIONING.md](docs/product/COMPETITIVE_POSITIONING.md)** | Positioning and competitor framing for CareerLoop's market category. | Messaging, pricing, and external narrative work. |
 | **[MASTER_LANDING_PAGE_VISION.md](docs/product/MASTER_LANDING_PAGE_VISION.md)** | Vision for CareerLoop's public-facing landing page and onboarding flow. Covers positioning, messaging, and conversion funnel design. | Working on marketing, landing page, or user acquisition. |
 | **[vision_v1.6_historical.md](docs/product/vision_v1.6_historical.md)** | Historical CareerLoop vision v1.6 — retained purely for archival reference. | Historical context only. Do not use for active engineering requirements. |
 | **[README.md](docs/product/README.md)** | Subdirectory index for the product docs directory. | Quick navigation within product docs. |
@@ -37,13 +40,14 @@ Welcome to the CareerLoop documentation portal. All product documents, engineeri
 
 ---
 
-## 📂 Tech Backlog (`docs/tech-backlog/`) — 6 documents
+## 📂 Tech Backlog (`docs/tech-backlog/`) — 7 documents
 
 > Sprint logs, active engineering trackers, checklist metrics, blocker registers, redesign blueprints, and implementation planning artifacts. Read these when starting a new session, checking blockers, or planning work.
 
 | Document | Purpose | When to Read |
 |----------|---------|--------------|
-| **[TRACKER.md](docs/tech-backlog/TRACKER.md)** | Live Product Engineering Tracker. Contains current sprint focus, system status percentages for all 17+ systems, session logs, open blockers (B1-B8), and locked architecture decisions (A1-A11). Programmatically read and updated by the `careerloop-product-lead` skill. | Every session start. Checking what's blocked, what's current, what to work on next. |
+| **[TRACKER.md](docs/tech-backlog/TRACKER.md)** | Live Product Engineering Tracker. Contains current sprint focus, system status percentages, session logs, open blockers, and locked architecture decisions. Programmatically read and updated by the `careerloop-product-lead` skill. | Every session start. Checking what's blocked, what's current, what to work on next. |
+| **[DELIVERY_ORCHESTRATION_HANDOFF_2026-05-23.md](docs/tech-backlog/DELIVERY_ORCHESTRATION_HANDOFF_2026-05-23.md)** | Concrete next-agent handoff for the LangGraph Supervisor, transport abstraction, PostgresSaver, and assisted apply scaffold. | Continuing the May 23 delivery architecture work without reconstructing context from diffs. |
 | **[8-PIPELINE-CHECKLIST.md](docs/tech-backlog/8-PIPELINE-CHECKLIST.md)** | Structured, sequential verification checklist for the Resume Council compiler nodes. Step-by-step validation to ensure no bugs ship. | Before merging any Council pipeline changes. Run the checklist. |
 | **[COUNCIL_REDESIGN_PLAN.md](docs/tech-backlog/COUNCIL_REDESIGN_PLAN.md)** | Initial architectural redesign plan targeting markdown failures, formatting errors, and missing metrics discovered in early Council iterations. | Understanding the history of Council fixes and what was learned. |
 | **[CAREERLOOP_REDESIGN_IMPLEMENTATION_PLAN.md](docs/tech-backlog/CAREERLOOP_REDESIGN_IMPLEMENTATION_PLAN.md)** | Deep masterplan for the v3 orchestrator. Details LangGraph structures, NormalizedResume schemas, the 16-part data quality audit strategy, and data contracts. | Major refactoring of the orchestrator or schema layer. |
@@ -52,7 +56,7 @@ Welcome to the CareerLoop documentation portal. All product documents, engineeri
 
 ---
 
-## 📂 Learnings (`docs/learnings/`) — 14 documents
+## 📂 Learnings (`docs/learnings/`) — 13 documents + 5 dev-blog entries
 
 > Engineering memory: detailed code quality audits, daily dev blogs, retrospective fuckups, delta forensics, root-cause analyses, regression reports, and discovery pipeline status logs. Read these when conducting code reviews, investigating bugs, or understanding past design failures.
 
@@ -82,6 +86,7 @@ Daily chronicles documenting significant sessions and structural milestones:
 | **[2026-05-18-onboarding.md](docs/learnings/dev-blog/2026-05-18-onboarding.md)** | 2026-05-18 | Onboarding tasks, models.yml creation, and repository configuration |
 | **[2026-05-19-resume-council-structural-stabilization.md](docs/learnings/dev-blog/2026-05-19-resume-council-structural-stabilization.md)** | 2026-05-19 | Preprocessing, S7 loop stabilization, normalizer overrides |
 | **[2026-05-20-deep-delta-humanizer-renderer-fixes.md](docs/learnings/dev-blog/2026-05-20-deep-delta-humanizer-renderer-fixes.md)** | 2026-05-20 | Humanizer assertiveness adjustments, subtitle parsing fixes |
+| **[2026-05-23-delivery-orchestration-scaffold.md](docs/learnings/dev-blog/2026-05-23-delivery-orchestration-scaffold.md)** | 2026-05-23 | LangGraph Supervisor, transport, checkpointer, and assisted apply scaffold reconciliation |
 
 New dev-blog entries are created by the `careerloop-product-lead` skill for significant sessions using the format `YYYY-MM-DD-{slug}.md`.
 

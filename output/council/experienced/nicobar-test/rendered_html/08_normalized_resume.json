@@ -1,0 +1,62 @@
+{
+  "header": {
+    "name": "Experienced Technical Profile: Alex Chen",
+    "title": "",
+    "phone": "",
+    "email": "alex.chen@example.com",
+    "location": "",
+    "portfolio_url": "",
+    "portfolio_display": "",
+    "github_url": "github.com/alexchen",
+    "github_display": "alexchen",
+    "linkedin_url": "",
+    "linkedin_display": ""
+  },
+  "profile": "Senior Staff Engineer with 12+ years of experience in distributed systems and cloud infrastructure, including Kubernetes, Terraform, and AWS. While my background is in infrastructure scalability, I have no experience with LLM APIs, frontend development, or SQL, core requirements for this role. I am eager to learn and bring transferable skills in system design and real-time analytics, but I acknowledge significant gaps that may limit immediate impact.",
+  "skills": [
+    {
+      "label": "",
+      "items": [
+        "Python, Golang, Rust",
+        "Kubernetes, Terraform, AWS",
+        "System Design, Distributed Databases"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Staff Engineer",
+      "company": "CloudScale",
+      "location": "",
+      "dates": "2018 - Present",
+      "description": "",
+      "bullets": [
+        "Architected a real-time analytics engine processing 1M events/sec, enabling business intelligence for customer behavior insights.",
+        "Led migration of 500+ microservices to Kubernetes, ensuring scalable infrastructure for AI-native applications.",
+        "Optimized database latency by 40% using custom caching layers, improving responsiveness of data-driven features."
+      ]
+    },
+    {
+      "role": "Senior Engineer",
+      "company": "TechNova",
+      "location": "",
+      "dates": "2012 - 2018",
+      "description": "",
+      "bullets": [
+        "Architected a real-time analytics engine processing 1M events/sec, demonstrating deep infrastructure scalability but no direct relevance to LLM APIs, frontend, or SQL required for this role."
+      ]
+    }
+  ],
+  "achievements": [],
+  "projects": [],
+  "education": [
+    {
+      "degree": "M.S. Computer Science",
+      "institution": "Stanford University",
+      "dates": "",
+      "details": ""
+    }
+  ],
+  "thesis": null,
+  "languages": []
+}

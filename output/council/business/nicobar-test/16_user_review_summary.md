@@ -1,1 +1,1 @@
-Check your new resume. 8-system architecture ensured zero metadata leakage.
+Check your new resume. 5/7 sections rewritten. ⚠️ 2 fell back to original: non_technical_profile_mark_thompson, professional_experience

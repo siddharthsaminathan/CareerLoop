@@ -4,7 +4,9 @@
 
 ## About Me
 
-Customer-obsessed growth strategist with 10 years of experience scaling e-commerce brands through data-driven brand experiences and digital growth. Proven track record of driving measurable outcomes: increased organic traffic by 200% in 18 months, managed a $5M annual advertising budget, and scaled user base from 10k to 500k. Now focused on bridging business intelligence with AI-native personalization to build the next generation of conversational BI and clienteling tools.
+Marketing Director with 8 years of experience in brand strategy and digital growth, bringing deep consumer insight and customer journey expertise to complement AI implementation.
+
+While hands-on AI engineering skills (LLMs, Python, front-end) are absent from my background, I offer strategic marketing leadership that can bridge brand vision with technical execution.
 
 
 
@@ -14,26 +16,21 @@ Customer-obsessed growth strategist with 10 years of experience scaling e-commer
 
 ## Marketing Director — BrandGrowth (2020 - Present)
 
-- Drove a 200% increase in organic traffic within 18 months, directly expanding the customer base for AI-native personalization initiatives.
-- Owned a $5M annual advertising budget, optimizing spend to maximize brand experience and customer acquisition.
-- Scaled user base from 10k to 500k, building the audience intelligence layer needed for conversational BI and clienteling.
-- Partnered with product and engineering to align marketing metrics with business intelligence, ensuring every campaign fed into the customer personalization engine.
+- Drove 200% organic traffic growth in 18 months through data-driven content strategy and SEO optimization, demonstrating business-outcome thinking that can inform AI-powered personalization.
+- Managed a $5M annual advertising budget, allocating resources across channels to maximize ROI, a skill applicable to prioritizing AI investments for customer intelligence.
 
 
 
 ## Growth Manager — StartupX (2016 - 2020)
 
-- Drove user base growth from 10k to 500k by architecting a customer personalization intelligence layer that optimized acquisition and retention.
+- Drove user acquisition from 10k to 500k through brand strategy and content marketing, providing customer journey insights that could inform AI-driven personalization.
 
 
 
 ## Skills
 
-- Brand Strategy & Content Marketing: Drove 200% organic traffic growth through SEO and content-led brand experience
-- Business Intelligence & Customer Personalization: Scaled user base from 10k to 500k by deploying data-driven growth strategies
-- Budget Management: Owned $5M annual advertising budget, optimizing spend for measurable ROI
-- Team Leadership: Led cross-functional teams to deliver business outcomes in fast-paced environments
-- AI-Native Mindset: Actively learning to bridge business strategy with conversational BI and intelligence layer tools
+- Brand Strategy, Content Marketing, SEO
+- Team Leadership, Budget Management
 
 
 

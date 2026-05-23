@@ -3,45 +3,39 @@
   "seniority": "mid-senior",
   "must_haves": [
     "Python or NodeJS",
-    "LLM API experience (OpenAI, Claude, Gemini, etc.)",
+    "LLM API experience (OpenAI, Claude, Gemini)",
     "SQL",
-    "Frontend development skills"
+    "Frontend development skills",
+    "3-5 years experience",
+    "Engineering degree from premier institute (IIT/BITS/NIT or equivalent)"
   ],
   "nice_to_haves": [
-    "retail/e-commerce experience",
-    "IIT/BITS/NIT or equivalent",
-    "Experience with Shopify, MoEngage, or Dynamics 365"
+    "E-commerce/retail experience",
+    "Experience with personalization or recommendation systems"
   ],
   "hidden_expectations": [
-    "CEO-facing communication",
-    "business-outcome driven thinking",
-    "brand aesthetic sensibility",
-    "ownership mentality"
+    "CEO-facing communication and cross-functional collaboration",
+    "Business-outcome oriented thinking",
+    "Ability to connect disparate systems (APIs, webhooks, data pipelines)",
+    "Aesthetic sensibility for brand-aligned front-ends"
   ],
   "day_one_deliverables": [
-    "Customer personalization intelligence layer",
-    "Store clienteling tool",
-    "Conversational BI interface",
-    "Design workflow automation"
+    "Customer personalization intelligence layer MVP"
   ],
   "screening_keywords": [
-    "AI-native",
+    "LLM API",
     "clienteling",
     "business intelligence",
-    "LLM API",
+    "AI-native",
+    "personalization",
     "Python",
     "SQL",
-    "frontend",
-    "personalization",
-    "IIT",
-    "NIT",
-    "BITS"
+    "frontend"
   ],
   "disqualifiers": [
-    "no LLM API experience",
-    "no production coding experience",
-    "no frontend abilities",
-    "weak visual design sense"
+    "No LLM API experience",
+    "No hands-on coding experience",
+    "No frontend development experience"
   ],
-  "confidence": 0.85
+  "confidence": 0.9
 }

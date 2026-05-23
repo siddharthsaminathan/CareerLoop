@@ -1,24 +1,21 @@
 {
-  "one_line_positioning": "E-commerce growth leader who scaled user base from 10k to 500k and drove 200% organic traffic increase",
-  "narrative_angle": "Customer-obsessed growth strategist with deep e-commerce scaling experience, aiming to bridge business metrics with AI-driven personalization",
+  "one_line_positioning": "Marketing leader with no coding or AI engineering experience — not a fit for this technical role",
+  "narrative_angle": "While the candidate brings deep understanding of consumer brand strategy and customer journeys, the role demands hands-on AI engineering skills (LLMs, Python, front-end) that are absent from their background.",
   "lead_strengths": [
-    "Scaled user base from 10k to 500k",
-    "Drove 200% organic traffic growth in 18 months",
-    "Managed $5M annual advertising budget"
+    "8+ years marketing experience",
+    "Brand strategy",
+    "Content marketing",
+    "Team leadership"
   ],
-  "proof_points_to_emphasize": [
-    "Increased organic traffic by 200% in 18 months",
-    "Managed a $5M annual advertising budget",
-    "Scaled user base from 10k to 500k"
-  ],
+  "proof_points_to_emphasize": [],
   "things_to_downplay": [
-    "No software engineering or coding background",
-    "No LLM API or AI/ML experience",
-    "No SQL, frontend development, or Python/NodeJS skills",
-    "Lacks required engineering degree from IIT/BITS/NIT"
+    "No engineering degree",
+    "No coding skills (Python, NodeJS, SQL)",
+    "No LLM API experience",
+    "No front-end development ability"
   ],
-  "tone_guidance": "Business-strategic, outcome-focused, and transparent about technical skill gaps",
-  "recruiter_first_impression_target": "A growth marketer applying for an AI engineering role — significant skill gap",
+  "tone_guidance": "Be transparent: do not attempt to disguise lack of technical qualifications. If applying, clearly state how marketing insight could complement AI implementation, but fully acknowledge that no hands-on engineering is possible.",
+  "recruiter_first_impression_target": "Immediately sees candidate lacks required technical skills; no further reading needed.",
   "application_stance": "SKIP",
-  "reasoning": "Missing all core technical must-haves (LLM API, Python/NodeJS, SQL, frontend, engineering degree). Evidence only supports marketing/growth achievements, not AI product engineering. High risk of failure in a CEO’s office technical role."
+  "reasoning": "The candidate's background is entirely in marketing and brand strategy, with no coding or AI development experience. All must-have requirements are unmet. The role demands an AI Product Engineer capable of building with LLMs, Python, SQL, and front-ends. No amount of transferable marketing knowledge can compensate for this fundamental skill gap. Therefore, SKIP."
 }

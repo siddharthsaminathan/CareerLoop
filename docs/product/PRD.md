@@ -292,11 +292,11 @@ CareerLoop reduces application friction. The system prepares:
 - Interview prep
 
 Future execution:
-- Chrome extension for assisted autofill
+- Kimi K2 Webbridge / Hermes assisted execution layer ("Approve & Auto-Fill & Submit")
 - Application tracking
 - Recruiter outreach automation
 
-**The user remains in control of final submission — always.**
+**The user remains in control of final submission — always.** CareerLoop may fill forms and click submit only after the user has reviewed the generated application pack and given an explicit, per-job command. No scheduled, unattended, or bulk auto-submit flow is allowed.
 
 ---
 
@@ -357,7 +357,7 @@ The user should feel:
 
 ## 17. Product Engineering Tracker
 
-> Updated by the `careerloop-product-lead` skill. Last updated: 2026-05-22.
+> Updated by the `careerloop-product-lead` skill. Last updated: 2026-05-23.
 
 | System | Completion | Status | Notes |
 |--------|-----------|--------|-------|
@@ -365,24 +365,24 @@ The user should feel:
 | Verification & filtering | 60% | 🟡 Active | detect_ats_pass.py; Block G not hoisted |
 | Opportunity scoring (14-dim) | 55% | 🟡 Active | function_probability.py + metrics.py; needs calibration |
 | Decision compression / triage | 20% | 🔴 Gap | DECISION_COMPRESSION_VISION.md written. CEO owns UX build. |
-| Career state system (modes) | 10% | 🔴 Gap | Conceptual only |
+| Career state system (modes) | 15% | 🔴 Gap | `UserState` + LangGraph supervisor scaffold exists; router/state contract not yet functional |
 | Company intelligence | 75% | 🟢 Active | MECE D1-D5 vectors; S3 cache; JD_ONLY fallback |
 | Positioning engine | 38% | 🟡 Active | S6 wired; narrative angle, objection preempt, must_haves all reach S7 |
 | Resume Council (v3) | 93% | 🟢 Active | Job-aware chunking; prose fallback; 42 tests; ceiling hit |
 | Humanizer layer | 65% | 🟡 Active | LLM rewrite active; Truth Guard UNSUPPORTED matching too aggressive |
 | Resume rendering (templates) | 85% | 🟡 Active | 10 templates; normalizer handles 3 user CV formats; automated validation |
 | Validator / QA | 75% | 🟡 Active | 42 stabilization + 22 integration; automated pre-render validation |
-| Application execution | 15% | 🔴 Gap | modes/apply.md prototype; Chrome extension Phase 3 |
-| Chrome extension | 0% | ⚫ Not started | Phase 3 |
+| Application execution | 18% | 🔴 Gap | modes/apply.md prototype; Kimi bridge scaffold exists; real browser/Webbridge integration not verified |
+| Assisted apply bridge | 5% | ⚫ Scaffold | Kimi/Hermes executor mock only; no unattended submit |
 | Follow-up system | 25% | 🔴 Gap | Ledger auto-schedules; no message generation yet |
 | Interview memory | 25% | 🟡 Active | interview-playbook skill; auto-extracts from venting; no rejection post-mortem |
 | Persistent memory graph | 25% | 🟡 Active | Ledger + company_registry + SQLite schema; not read back to improve positioning |
-| WhatsApp/transport UX | 15% | 🔴 Gap | Message formatters exist (whatsapp_ux.py). NO transport. No webhook. No Twilio/Meta API. |
+| WhatsApp/transport UX | 18% | 🔴 Gap | TransportAdapter + Terminal/Telegram stubs exist. No production webhook, send_document, or tested graph handoff. |
 | Gmail memory | 0% | ⚫ Not started | ROI Vision's #1 priority — never touched |
 | Multi-user onboarding | 0% | ⚫ Not started | 3 hardcoded PERSON_CONFIGs. No CV-upload-to-profile flow. |
 | Monetization logic | 30% | 🟡 Active | Strategic understanding solid; no billing/paywall |
 
-**Overall product maturity: ~58-61% of vision.** Council at quality ceiling (93%). Critical gap: zero user-facing interface. WhatsApp transport, multi-user onboarding, and daily brief delivery are all 0% — these are the P0 blockers for the next sprint.
+**Overall product maturity: ~59-62% of vision.** Council at quality ceiling (93%). Critical gap: user-facing interface is scaffolded but not functional end-to-end. Transport, onboarding, graph routing, and daily brief delivery remain the P0 blockers.
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -614,22 +614,25 @@ All engineering and agent work must align to both this PRD (what we build) and t
 
 For internal beta (next 7–30 days): **Telegram.** Fast setup, no approval process, clean file/button support, stable webhooks. WhatsApp in production once the loop is validated.
 
-Do not hardcode business logic into any transport. Every product function must work through an abstract interface:
+Do not hardcode business logic into any transport. Every product function must work through an abstract interface managed by the LangGraph Supervisor:
 
 ```
 TransportAdapter (base)
-├── send_text(user_id, text)
-├── send_buttons(user_id, text, buttons[])
-├── send_document(user_id, file_path, caption)
-└── receive_message(webhook_payload) → Message
+├── converts payloads into a UserEvent schema
+├── maps UserEvent into ConversationState
+├── ChatbotGraph.invoke(ConversationState)
+└── returns AgentAction → TransportAdapter.send()
 
 Implementations:
 ├── TelegramAdapter        — internal beta (Telegram Bot API)
 ├── WhatsAppWebAdapter     — experimental (brittle, account risk)
-└── MetaWhatsAppAdapter    — production WhatsApp (later)
+├── MetaWhatsAppAdapter    — production WhatsApp (later)
+└── TerminalChatAdapter    — CLI interface re-wired to push events into the Supervisor
 ```
 
 **Canonical path:** `careerloop/transport/`
+
+**Current implementation status (2026-05-23):** scaffold only. `careerloop/transport/base.py`, `telegram.py`, and `terminal_chat.py` exist, but no production webhook or document delivery path is verified. The next implementation pass must make the adapter convert `UserEvent` into the supervisor graph's state contract before invoking the graph.
 
 ### Why This Matters
 
@@ -682,17 +685,25 @@ Daily brief sent
 
 ### Implementation
 
-- `session_store.py` — per-user JSON/SQLite: `{user_id, state, current_job_id, current_pack_id, updated_at}`
-- `message_router.py` — routes incoming message to correct handler based on current state
-- State transitions are deterministic. Agents execute tasks within states. The machine decides what happens next.
+- `careerloop/memory/checkpointer.py` — `PostgresSaver` backed by Supabase using `thread_id` (phone number/email) for persistence flawless across async webhook hits.
+- `careerloop/session/supervisor_graph.py` — LangGraph `StateGraph` maintaining `ConversationState` (`current_state`, `pending_job_id`, `user_id`).
+- An Intent Router node classifies free-form messages against the current state.
+- State transitions are deterministic. The Supervisor decides what happens next, routing to sub-graphs or wrapping legacy scripts (`scan.mjs`, `check-liveness.mjs`) as LangChain Tools.
 
 **Canonical path:** `careerloop/session/`
+
+**Current implementation status (2026-05-23):** first scaffold. The supervisor graph, tool wrappers, and checkpointer entry point exist, but routing logic is still placeholder-level. Before this can be treated as live, tests must prove:
+- `UserEvent` → `ConversationState` mapping works
+- `IDLE` + "scan"/"brief"/"apply" route to expected graph nodes
+- `PACK_GENERATING` invokes the Council subgraph with a complete `council_state`
+- interrupts pause and resume on a stable `thread_id`
+- failed subprocess tools return safe user-facing errors
 
 ---
 
 ## 23. Agent Orchestration Layer (Addendum — 2026-05-22)
 
-**Do not build one big agent.** Use deterministic state machine + small focused agents.
+**Do not build one big agent.** Use a Parent-Child Subgraph Architecture (LangGraph Supervisor) + small focused agents.
 
 ### The 7 Agents
 
@@ -700,7 +711,7 @@ Daily brief sent
 |-------|---------------|
 | **Router Agent** | Classifies user intent: apply, skip, review, edit, follow-up, interview, mark-applied |
 | **Job Decision Agent** | Explains why a job is/isn't recommended; handles MAYBE |
-| **Application Pack Agent** | Runs Company Intel + Council + document assembly |
+| **Application Pack Agent** | Runs Company Intel + Council subgraph + document assembly |
 | **Resume Edit Agent** | Surgical single-section edits without full Council rerun |
 | **Follow-Up Agent** | Schedules, drafts, and delivers follow-up messages |
 | **Interview Agent** | Prepares role-specific briefings; debriefs post-interview |
@@ -710,9 +721,24 @@ Daily brief sent
 
 > The state machine decides what should happen. Agents only complete specific tasks.
 
-Never chain agents autonomously. Every agent handoff goes through the state machine. This keeps the system predictable, debuggable, and safe to hand to a non-technical user.
+Never chain agents autonomously. Every agent handoff goes through the LangGraph Supervisor. The Supervisor routes to execution sub-graphs (e.g., the existing linear Resume Council graph converted into a callable Subgraph) or implements Human-in-the-Loop (HITL) checkpoints using `interrupt()`. This keeps the system predictable, debuggable, and safe to hand to a non-technical user.
 
-**Canonical path:** `careerloop/agents/`
+### Assisted Apply Safety Rule
+
+The execution layer is allowed to reduce form-filling friction, not remove judgment. The only compliant path is:
+
+```
+Pack generated
+→ user reviews resume, cover note, recruiter DM, screening answers
+→ user explicitly approves one job
+→ bridge fills the ATS form
+→ final submit occurs only within that approved job context
+→ ledger records the application
+```
+
+The bridge must never scan a queue and submit applications while the user is absent. "Apply while I sleep" is interpreted as "execute an already reviewed, explicitly approved job asynchronously," not as autonomous job selection or bulk submission.
+
+**Canonical path:** `careerloop/session/supervisor_graph.py`
 
 ---
 

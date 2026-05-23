@@ -1609,6 +1609,7 @@ def build_council_graph():
     g.add_edge("truth_guard", "assembly")
     g.add_edge("assembly", END)
 
+    # Removed local MemorySaver to allow Supervisor to act as the top-level orchestrator
     return g.compile()
 
 

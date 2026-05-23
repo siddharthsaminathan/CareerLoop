@@ -372,16 +372,14 @@ Write one TSV file per evaluation to `batch/tracker-additions/{num}-{company-slu
 <claude-mem-context>
 # Memory Context
 
-# [CareerLoop] recent context, 2026-05-20 11:17pm GMT+5:30
+# [CareerLoop] recent context, 2026-05-23 3:45pm GMT+5:30
 
 Legend: 🎯session 🔴bugfix 🟣feature 🔄refactor ✅change 🔵discovery ⚖️decision 🚨security_alert 🔐security_note
 Format: ID TIME TYPE TITLE
 Fetch details: get_observations([IDs]) | Search: mem-search skill
 
-Stats: 50 obs (21,322t read) | 1,772,777t work | 99% savings
+Stats: 50 obs (23,721t read) | 2,811,519t work | 99% savings
 
-### May 18, 2026
-S403 Deploy Nicobar AI Product Engineer showcase HTML to GitHub Pages so animated version is shareable (not raw HTML via Google Drive) (May 18 at 7:53 PM)
 ### May 19, 2026
 S404 Deploy Nicobar showcase HTML to GitHub Pages — hit UI issue where /public folder option doesn't appear (May 19 at 12:55 AM)
 S405 Fix GitHub Pages deployment — move showcase from /public to /docs folder so branch source selector works (May 19 at 1:00 AM)
@@ -389,60 +387,63 @@ S406 Deploy Nicobar showcase to GitHub Pages — session wrap-up with all output
 S407 Session wrap-up: codify Nicobar showcase design system into reusable showcase-builder skill (May 19 at 1:04 AM)
 S408 Update showcase-builder skill with final Nicobar HTML as canonical template + 5 named color variants (May 19 at 1:06 AM)
 S409 CareerLoop pipeline E2E fix: tailoring delta P0 fix, validator bug fixes, full pipeline run for nicobar-ai-pm job, and output quality review (May 19 at 2:02 AM)
-988 10:19p 🔵 Pre-existing Test Failure in test_company_intel: _extract_jd_signals Misses "retail" Business Term
-989 " 🔵 All 26 Stabilization Tests Pass After Validator Fix
-990 " 🔵 CouncilLLMClient Reads DEEPSEEK_API_KEY via os.getenv — No .env Loading in llm.py
-991 10:26p 🔵 Git History Confirms S7 Bug Was Introduced in Commit 93cda15 — "Wrong Model, Wrong max_tokens, Rate Limit, Garbage MD Output"
-992 10:27p 🔵 Pipeline Entry Points: test_council_v3.py Uses Fixture Files, orchestrator.py Has Special nicobar-test Case
-993 " 🔵 Correct Pipeline Invocation: orchestrator.py CLI with --job-id and --person-id Args
-994 " 🔵 Orchestrator Context Loading: CouncilContextLoader Reads from Job Ledger, Fixture Mode Is Separate Path
-995 " 🔵 ledger.json Does Not Exist — ApplicationLedger Cannot Find "nicobar-test" Job
-996 10:28p 🔴 CareerLoop S7 validator fix confirmed working — 9/10 sections rewritten
-997 " 🔵 skills section still fails possible_truncation after validator fix
-1014 11:36p 🟣 HeaderInfo.title field + _parse_header_title() extracts declared professional headline
-1015 " 🔴 _derive_role_subtitle now prefers HeaderInfo.title over first experience role
-1016 " 🔴 _contains_date_range now matches year-only ranges like "2025 - Present"
-1017 " 🔴 Sidebar education block now filters out thesis/detail entries, caps at 3 items
-1018 " ✅ design-brand-compact palette darkened for stronger contrast
-1019 " 🔵 Playwright PDF generation broken in this environment due to macOS Chromium permission denial
-1020 " ✅ IMPLEMENTATION_HANDOFF.md created documenting all rendering fixes for nicobar-ai-pm run
-1021 " 🟣 CareerLoop session handoff: 12-part Senior Engineer summary of today's 0-to-100 execution
 ### May 20, 2026
-998 3:32a 🔵 CareerLoop State of the Union 2026-05-20 — full system audit documented
-999 " 🔵 S7 prompt lacks prescriptive rewrite mandate — root cause of 3.6% tailoring delta
-1000 " 🔵 _rewrite_one_section signature and contact-section filter logic confirmed
-1001 " 🔵 change_type labels in JSON contradict runtime output — KEEP sections show 80-94% char delta
-1003 " 🔴 S7 prompt overhauled to mandate aggressive rewriting — fixes 3.6% tailoring delta
-1002 3:34a 🔵 LLM self-reported change_type is unreliable — KEEP sections show 88-94% char delta
-1004 " 🔴 S7 prompt overhaul applied and syntax-verified in careerloop/council/graph.py
-1005 " 🔴 Tailoring delta fixed: S7 now rewrites 9/9 sections with role-native language injection
-1006 3:39a 🟣 S3 Grounded Synthesis — Hallucination Inhibition in company_intel.py
-1007 " 🟣 S7 Per-Section Timing Debug + New Diagnostic Artifacts (09_s7_debug.json, 12_humanized_resume.md)
-1008 " ⚖️ Company Intel MECE First-Principles Design — New Sprint Direction
 S412 Implement all company intel phases (P1+P2+P3) with superpowers/sub-agents — full MECE multi-source research engine upgrade to company_intel.py (May 20 at 3:39 AM)
-1009 12:10p 🔵 company_intel.py Architecture Map — Current 3-Layer Design with DuckDuckGo + Playwright
-1010 12:11p 🔵 company_intel.py Grounding Status System + S7 Context Generation Architecture
 S410 Company Intel MECE first-principles design — audit current S3 engine, map all functional limitations, and produce phased implementation plan for 8-source structured intelligence system (May 20 at 12:11 PM)
 S411 Implement all company intel phases (P1+P2+P3) — multi-source research engine with targeted DDG queries, company website scraping, Reddit/Glassdoor/Twitter signals, people layer, and show final s7_rewrite_context output (May 20 at 12:11 PM)
-1011 12:27p 🔵 company_intel.py Full Code Audit Before Phase 1-3 Implementation
-1012 " 🟣 CompanyIntelligenceResult Schema Extended — Phase 2 People + Culture + Source Tracking Fields
-1013 12:28p 🟣 _gather_web_sources() Replaced with MECE 5-Query Parallel Engine + Company Website Scraper
-1022 11:11p 🔵 Critical S7 schema mismatch: prompt returns tailored_bullets but code reads rewritten_text
-1023 " 🟣 candidate_graph.py: new structured dataclass for canonical candidate identity
-1024 " 🔵 S3 company intelligence grounding upgraded to PARTIAL with 4 real sources for Nicobar run
-1025 " 🔵 S7 section rewrite quality audit: profile similarity 0.217, Emote experience similarity 0.999 (no actual rewrite)
-1026 " 🔵 Humanizer changed 77 lines, 2 slop flags detected, zero slop terms in final output
-1027 " 🔵 LinkedIn URL renders as href="#" in 8 of 10 templates — placeholder not resolved
-1028 11:13p ⚖️ Product-lead alignment audit agent dispatched to assess S7/S3/rendering work against PRD
-1029 " 🔵 CareerLoop PRD canonical vision — 16-part product structure confirmed
-1030 " 🔵 CareerLoop system offline at v1.8.0 — core config files all present
-1031 11:14p 🔵 CareerLoop product-lead alignment audit — current system status and open blockers
-1032 " 🔵 Uncommitted S7 schema migration: rewritten_text → tailored_bullets array in graph.py and schemas.py
-1033 " 🟣 CandidateGraph dataclass created as new untracked file — canonical structured identity for Resume Council
-1034 " 🔵 PRD-to-code alignment verdict: current S7/company-intel/rendering work is ALIGNED, with one structural risk
 1035 11:16p 🔵 S7 section rewrites node uses ThreadPoolExecutor with 3 workers — parallel execution architecture confirmed
 1036 " 🔵 Last 10 commits added 39,522 lines — company_intel.py rebuilt from scratch at 1,419 new lines
 1037 " 🔵 render_all_templates.py _derive_role_subtitle uses 4-level cascade — header title → recent job role → bolded profile term → profile first sentence
+### May 21, 2026
+1042 3:19a 🔵 CareerLoop PRD — Full Product Vision and Current Engineering Tracker State
+1043 " 🔵 CareerLoop Git History — 30 Commits Since May 18 Represent Intensive Multi-Agent Build Sprint
+1044 " 🟣 S7 Structured Bullet Contract — LLM Now Returns `tailored_bullets` Array Instead of Markdown String
+1045 " 🟣 Delta Report System Added to run_council.py — Quantifies Tailoring and Humanization Quality
+1046 " 🟣 CandidateGraph Dataclass Created — Canonical Structured Identity for Council Pipeline
+1047 " 🟣 P0/P1 Stabilization Test Suite Added — 70 Regression Tests Covering Critical Contract Points
+1048 " 🔵 Humanizer Zero-Delta Bug Confirmed — 0.21% Delta, 0 Nonblank Changes on Latest Nicobar Run
+1049 " 🟣 Interview Playbook Skill Created — Auto-Extracts Learnings from User Venting After Interviews
+1050 4:10a ⚖️ Master Career Vision MD File — Product Owner Handoff Initiated
+1052 " ⚖️ CareerLoop LLM Council — Member A Positioning Analysis
+1051 4:12a 🔵 CareerLoop — Full Document Corpus Read for Career Vision Synthesis
+1053 4:13a 🔵 CareerLoop PRD — Canonical Vision v1.0 Confirmed
+1054 " 🔵 CareerLoop Vision v1.6 — Original WhatsApp-First Architecture Documented
+1055 " 🔵 CareerLoop TRACKER.md — Live System Status as of 2026-05-20
+1056 4:16a 🔵 CareerLoop Origin — Fork of santifer/Career-Ops Open Source Pipeline
+1057 " 🔵 Resume Council v3.0 — 8-System Architecture Specification
+1058 " 🔵 CareerLoop PRD §18–19 — Employer Discovery Engine and Human Pipeline Layer
+1059 " ⚖️ CareerLoop LLM Council — Member B Positioning Analysis (Sonnet)
+1060 4:17a ⚖️ CareerLoop LLM Council — Member C Positioning Analysis (Opus)
+1061 " ⚖️ CareerLoop LLM Council — Peer Reviewer 1 Ranks All Three Positioning Analyses
+1062 " ⚖️ CareerLoop LLM Council — Peer Reviewer 2 Confirms C > B > A Ranking
+1063 " 🔵 CareerLoop TRACKER.md — Locked Architecture Decisions and MECE Company Intelligence Session Log
+1064 4:20a ⚖️ CareerLoop LLM Council — Peer Reviewer 3 (Opus) Confirms Unanimous C > B > A with PRD-Grounded Analysis
+S413 CareerLoop Master Landing Page Vision — Full LLM Council Positioning Exercise + Canonical Document Creation (May 21 at 4:20 AM)
+### May 23, 2026
+1066 3:07p ⚖️ LLM Council Architecture Audit for CareerLoop
+1067 " 🟣 LangGraph Supervisor StateGraph Replaces CLI State Machine
+1068 " 🟣 Transport-Agnostic Chat Architecture with UserEvent Schema
+1069 " 🟣 Kimi K2 Webbridge Headless Auto-Apply Engine Built
+1070 " ✅ CareerLoop PRD and TRACKER Updated to Reflect New Architecture
+1071 3:08p 🔵 New Architecture Files Untracked — Not Yet Committed to Git
+1072 " 🔵 careerloop-product-lead Skill — Canonical Document Registry
+1073 " ✅ PRD.md Amended — LangGraph Supervisor and Kimi Webbridge Canonicalized
+1074 " ✅ TRACKER.md Updated — Session Log Entry and System Table Amended
+1075 " 🔵 supervisor_graph.py Implemented — Working LangGraph StateGraph with Phase 1 Tool Wrappers
+1076 " 🔵 TransportAdapter Base Class Implemented — UserEvent Schema and Supervisor Wiring
+1077 " 🔵 kimi_bridge.py is a Mock Stub — Real Hermes Endpoint Not Wired
+1078 " 🔵 checkpointer.py — Thin PostgresSaver Wrapper, Requires DATABASE_URL Env Var
+1079 " 🔵 TECH_ROADMAP.md Not Updated — Chrome Extension Still Listed in Phase 5
+1080 " 🔵 CareerLoop Overall Product Maturity — 58-61% with Phase 0 Delivery as P0 Blocker
+1081 3:10p ✅ PRD.md Comprehensively Amended — Safety Rules, Status Percentages, and Implementation Notes Added
+1082 " ✅ TRACKER.md Session Log Rewritten and Two Architecture Decisions Locked
+1083 " ✅ TECH_ROADMAP.md Updated — Phase 5 Renamed, Phase 0 Percentages Corrected, Sprint 0 Files Updated
+1084 " ✅ CANONICAL_ARCHITECTURE.md Updated — New Modules, Two New Hard Rules, Phase 0 Added to Phase Map
+1085 " 🔵 docs/README.md Patch Failed — TECH_ROADMAP Table Row Not Found with Expected Format
+1086 3:11p ✅ All Documentation Indexes Updated — Six README Files Amended for 2026-05-23 Session
+1087 " 🟣 DELIVERY_ORCHESTRATION_HANDOFF_2026-05-23.md Created — Formal Next-Agent Handoff Document
+1088 " ✅ Dev Blog Entry Created for 2026-05-23 Session
+1089 " 🔵 MVP_SPRINT_PLAN.md Still References message_router.py and Chrome Extension — Not Updated This Session
 
-Access 1773k tokens of past work via get_observations([IDs]) or mem-search skill.
+Access 2812k tokens of past work via get_observations([IDs]) or mem-search skill.
 </claude-mem-context>

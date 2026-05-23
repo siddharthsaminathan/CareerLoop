@@ -1,0 +1,46 @@
+## Experienced Technical Profile: Alex Chen
+
+
+
+## Profile
+
+Senior Staff Engineer with 12+ years of experience in distributed systems and cloud infrastructure, including Kubernetes, Terraform, and AWS. While my background is in infrastructure scalability, I have no experience with LLM APIs, frontend development, or SQL—core requirements for this role. I am eager to learn and bring transferable skills in system design and real-time analytics, but I acknowledge significant gaps that may limit immediate impact.
+
+
+
+## Contact
+
+Email: alex.chen@example.com
+GitHub: [github.com/alexchen](https://github.com/alexchen)
+
+
+
+## Skills
+
+- Python, Golang, Rust
+- Kubernetes, Terraform, AWS
+- System Design, Distributed Databases
+
+
+
+## Work Experience
+
+
+
+## Staff Engineer — CloudScale (2018 - Present)
+
+- Architected a real-time analytics engine processing 1M events/sec, enabling business intelligence for customer behavior insights.
+- Led migration of 500+ microservices to Kubernetes, ensuring scalable infrastructure for AI-native applications.
+- Optimized database latency by 40% using custom caching layers, improving responsiveness of data-driven features.
+
+
+
+## Senior Engineer — TechNova (2012 - 2018)
+
+- Architected a real-time analytics engine processing 1M events/sec, demonstrating deep infrastructure scalability but no direct relevance to LLM APIs, frontend, or SQL required for this role.
+
+
+
+## Education
+
+M.S. Computer Science — Stanford University

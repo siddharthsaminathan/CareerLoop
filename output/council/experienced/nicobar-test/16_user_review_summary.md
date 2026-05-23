@@ -1,1 +1,1 @@
-FAILURE: Council stopped with 1 error(s). See failure_report.md in output directory.
+Check your new resume. 5/7 sections rewritten. ⚠️ 2 fell back to original: experienced_technical_profile_alex_chen, work_experience

@@ -144,11 +144,14 @@
     "company_name": "Nicobar Design Pvt. Ltd.",
     "role_title": "AI Product Engineer -- CEO's Office",
     "source_urls": [
-      "https://www.linkedin.com/feed/update/urn:li:activity:7329475396732014592"
+      "https://www.linkedin.com/feed/update/urn:li:activity:7329475396732014592",
+      "https://www.linkedin.com/pulse/how-brand-built-me-nicobar-designs-pvt-ltd--xg2xc/",
+      "https://www.crunchbase.com/person/raul-rai",
+      "https://www.livemint.com/mint-lounge/business-of-life/nicobar-simran-lal-good-earth-office-home-decor-11756622685044.html"
     ],
     "grounding_status": "PARTIAL",
     "confidence": 0.5,
-    "generated_at": "2026-05-19T22:04:46.120640+00:00",
+    "generated_at": "2026-05-20T11:24:43.297190+00:00",
     "cache_key": "909ea5c71e0f1e43",
     "ttl_days": 30,
     "company_summary": "Nicobar Design Pvt. Ltd.. operates in ecommerce. with a focus on ai_ml, ai_ml, retail_tech.",
@@ -174,28 +177,14 @@
     "interview_implications": "",
     "compensation_signals": "",
     "red_flags": [],
+    "red_flags_detail": [],
+    "recruiter_info": {},
     "positioning_implications": "",
-    "language_to_use": [
-      "AI-native",
-      "intelligence layer",
-      "brand experience",
-      "customer personalization",
-      "conversational BI"
-    ],
-    "language_to_avoid": [
-      "enterprise-grade",
-      "scalable infrastructure",
-      "data pipeline",
-      "legacy migration",
-      "cost optimization"
-    ],
+    "language_to_use": [],
+    "language_to_avoid": [],
     "candidate_angles": [],
     "transferability_angles": [],
-    "risks_to_soften": [
-      "No direct e-commerce or retail experience",
-      "No experience with Shopify, MoEngage, or Dynamics 365",
-      "Background in manufacturing quality, not consumer personalization"
-    ],
+    "risks_to_soften": [],
     "claims_to_avoid": [],
     "resume_strategy_hint": "",
     "outreach_strategy_hint": "",
@@ -208,25 +197,9 @@
       "culture_signals": [],
       "hiring_urgency": "UNKNOWN",
       "positioning_implications": "",
-      "language_to_use": [
-        "AI-native",
-        "intelligence layer",
-        "brand experience",
-        "customer personalization",
-        "conversational BI"
-      ],
-      "language_to_avoid": [
-        "enterprise-grade",
-        "scalable infrastructure",
-        "data pipeline",
-        "legacy migration",
-        "cost optimization"
-      ],
-      "risks_to_soften": [
-        "No direct e-commerce or retail experience",
-        "No experience with Shopify, MoEngage, or Dynamics 365",
-        "Background in manufacturing quality, not consumer personalization"
-      ],
+      "language_to_use": [],
+      "language_to_avoid": [],
+      "risks_to_soften": [],
       "claims_to_avoid": [],
       "candidate_angles": [],
       "red_flags": [],
@@ -239,41 +212,81 @@
       "product_context": "E-commerce",
       "business_problem": "",
       "role_success_criteria": [],
-      "language_to_use": [
-        "AI-native",
-        "intelligence layer",
-        "brand experience",
-        "customer personalization",
-        "conversational BI"
-      ],
-      "language_to_avoid": [
-        "enterprise-grade",
-        "scalable infrastructure",
-        "data pipeline",
-        "legacy migration",
-        "cost optimization"
-      ],
+      "language_to_use": [],
+      "language_to_avoid": [],
       "proof_points_to_prefer": [
         "measurable outcomes with numbers",
         "specific, defensible achievements",
         "evidence of ownership and initiative"
       ],
-      "risks_to_soften": [
-        "No direct e-commerce or retail experience",
-        "No experience with Shopify, MoEngage, or Dynamics 365",
-        "Background in manufacturing quality, not consumer personalization"
-      ],
+      "risks_to_soften": [],
       "avoid_overclaiming_about": [],
-      "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact."
+      "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact.",
+      "founder_context": "Co-founded by Simran Lal and her husband Raul Rai. Simran Lal is inspired by travel, India, and nature; Raul Rai previously Managing Director at Eight Roads Ventures.",
+      "hiring_reason": "UNKNOWN",
+      "culture_fit_signals": [
+        "design-led",
+        "AI-native",
+        "customer-centric",
+        "collaborative",
+        "brand-obsessed"
+      ],
+      "interview_prep_hints": [
+        "Describe a real project where you used an LLM API (OpenAI, Claude, Gemini) to solve a business problem.",
+        "How would you design a personalization engine for an e-commerce brand using Shopify APIs?",
+        "Walk us through how you would replace a BI dashboard with a conversational AI layer."
+      ],
+      "glassdoor_signal": "No data",
+      "reddit_signal": "No data"
+    },
+    "key_people": [
+      {
+        "name": "Simran Lal",
+        "title": "Co-Founder",
+        "source": "LIVEMINT"
+      },
+      {
+        "name": "Raul Rai",
+        "title": "Co-Founder",
+        "source": "CRUNCHBASE"
+      }
+    ],
+    "founder_background": "Co-founded by Simran Lal and her husband Raul Rai. Simran Lal is inspired by travel, India, and nature; Raul Rai previously Managing Director at Eight Roads Ventures.",
+    "hiring_manager_context": "Reports to CEO (Simran Lal or Raul Rai) \u2014 role is in CEO's office.",
+    "interview_questions_likely": [
+      "Describe a real project where you used an LLM API (OpenAI, Claude, Gemini) to solve a business problem.",
+      "How would you design a personalization engine for an e-commerce brand using Shopify APIs?",
+      "Walk us through how you would replace a BI dashboard with a conversational AI layer.",
+      "How do you handle connecting disparate systems (APIs, webhooks, data pipelines) that weren't designed to work together?",
+      "Tell us about a time you built a front-end that balanced functionality with brand aesthetics."
+    ],
+    "culture_keywords": [
+      "design-led",
+      "AI-native",
+      "customer-centric",
+      "collaborative",
+      "brand-obsessed",
+      "island aesthetic",
+      "minimal",
+      "nature-inspired",
+      "friction-removing",
+      "premier institute bias"
+    ],
+    "glassdoor_signal": "No data",
+    "reddit_signal": "No data",
+    "sources_by_type": {
+      "jd_url": 1,
+      "people_search": 3
     },
     "unknowns": [
-      "Company revenue, funding, employee count, and growth stage",
-      "Company culture specifics beyond JD tone",
-      "Exact tech stack beyond Shopify, MoEngage, Dynamics 365",
-      "Team size and reporting structure",
-      "Compensation and benefits",
-      "Recent news or layoffs",
-      "Customer demographics and market position"
+      "Glassdoor reviews",
+      "Reddit mentions",
+      "Exact headcount",
+      "Revenue or funding details",
+      "Office locations beyond Delhi",
+      "Specific tech stack beyond Shopify, MoEngage, Dynamics 365",
+      "Interview process details",
+      "Salary range"
     ]
   },
   "role_decode": {
@@ -281,138 +294,435 @@
     "seniority": "mid-senior",
     "must_haves": [
       "Python or NodeJS",
-      "LLM API experience (OpenAI, Claude, Gemini, etc.)",
+      "LLM API experience (OpenAI, Claude, Gemini)",
       "SQL",
-      "Frontend development skills"
+      "Frontend development skills",
+      "3-5 years experience",
+      "Engineering degree from premier institute (IIT/BITS/NIT or equivalent)"
     ],
     "nice_to_haves": [
-      "retail/e-commerce experience",
-      "IIT/BITS/NIT or equivalent",
-      "Experience with Shopify, MoEngage, or Dynamics 365"
+      "E-commerce/retail experience",
+      "Experience with personalization or recommendation systems"
     ],
     "hidden_expectations": [
-      "CEO-facing communication",
-      "business-outcome driven thinking",
-      "brand aesthetic sensibility",
-      "ownership mentality"
+      "CEO-facing communication and cross-functional collaboration",
+      "Business-outcome oriented thinking",
+      "Ability to connect disparate systems (APIs, webhooks, data pipelines)",
+      "Aesthetic sensibility for brand-aligned front-ends"
     ],
     "day_one_deliverables": [
-      "Customer personalization intelligence layer",
-      "Store clienteling tool",
-      "Conversational BI interface",
-      "Design workflow automation"
+      "Customer personalization intelligence layer MVP"
     ],
     "screening_keywords": [
-      "AI-native",
+      "LLM API",
       "clienteling",
       "business intelligence",
-      "LLM API",
+      "AI-native",
+      "personalization",
       "Python",
       "SQL",
-      "frontend",
-      "personalization",
-      "IIT",
-      "NIT",
-      "BITS"
+      "frontend"
     ],
     "disqualifiers": [
-      "no LLM API experience",
-      "no production coding experience",
-      "no frontend abilities",
-      "weak visual design sense"
+      "No LLM API experience",
+      "No hands-on coding experience",
+      "No frontend development experience"
     ],
-    "confidence": 0.85
+    "confidence": 0.9
   },
   "user_truth": {
     "total_years_experience": 14.0,
     "confirmed_skills": [
       {
-        "skill": "Kubernetes",
-        "years": 8,
-        "evidence": "Led migration of 500+ microservices to Kubernetes at CloudScale (2018-present)"
-      },
-      {
         "skill": "Distributed Systems",
         "years": 14,
-        "evidence": "Built real-time analytics engine (1M events/sec) at TechNova; led massive microservices migration"
+        "evidence": "Led migration of 500+ microservices, built real-time analytics engine, 12 years profile"
+      },
+      {
+        "skill": "Kubernetes",
+        "years": 8,
+        "evidence": "Led migration of 500+ microservices to Kubernetes at CloudScale"
       },
       {
         "skill": "Database Optimization",
         "years": 8,
-        "evidence": "Optimized database latency by 40% using custom caching layers at CloudScale"
+        "evidence": "Optimized database latency by 40% using custom caching layers"
       }
     ],
     "weak_skills": [
-      "Python (listed, but no production evidence)",
-      "NodeJS (absent)",
-      "LLM API experience (absent)",
-      "SQL (absent)",
-      "Frontend development (absent)",
-      "retail/e-commerce experience (absent)",
-      "Shopify/MoEngage/D365 (absent)",
-      "IIT/BITS/NIT education (Stanford is not equivalent)"
+      "Python",
+      "SQL",
+      "Frontend Development",
+      "LLM API"
     ],
     "evidence_bank": {
-      "Python": [
-        "Listed in Skills section"
+      "Distributed Systems": [
+        "Led migration of 500+ microservices",
+        "Built real-time analytics engine handling 1M events/sec"
       ],
       "Kubernetes": [
-        "Led migration of 500+ microservices to Kubernetes"
-      ],
-      "Distributed Systems": [
-        "Built a real-time analytics engine handling 1M events/sec",
         "Led migration of 500+ microservices to Kubernetes"
       ],
       "Database Optimization": [
         "Optimized database latency by 40% using custom caching layers"
       ],
+      "Python": [
+        "Listed in skills section, no project evidence"
+      ],
+      "AWS": [
+        "Listed in skills, no project evidence"
+      ],
+      "Terraform": [
+        "Listed in skills, no project evidence"
+      ],
       "Golang": [
-        "Listed in Skills section"
+        "Listed in skills, no project evidence"
       ],
       "Rust": [
-        "Listed in Skills section"
+        "Listed in skills, no project evidence"
       ]
     },
     "strongest_proof_points": [
-      "Led migration of 500+ microservices to Kubernetes",
-      "Optimized database latency by 40% with custom caching",
-      "Built real-time analytics engine handling 1M events/sec"
+      "Led Kubernetes migration of 500+ microservices",
+      "Reduced database latency by 40%",
+      "Built real-time analytics engine processing 1M events/sec"
     ],
     "claims_allowed": [
-      "14+ years distributed systems experience",
-      "Kubernetes expertise (led 500+ microservice migration)",
-      "Database latency optimization (40% improvement)",
-      "Real-time analytics engine (1M events/sec)",
-      "Proficient in Golang, Rust, Python (as listed)",
-      "AWS cloud infrastructure experience",
-      "Terraform experience"
+      "12+ years of experience in distributed systems and cloud infrastructure",
+      "MS in Computer Science from Stanford University",
+      "Proficiency in Python, Golang, Rust",
+      "Expertise in Kubernetes, Terraform, AWS",
+      "Experience optimizing database performance",
+      "Real-time analytics system design"
     ],
     "claims_not_allowed": [
       "LLM API experience",
       "Frontend development experience",
-      "SQL proficiency",
-      "E-commerce/retail experience",
-      "IIT/BITS/NIT education",
-      "Shopify, MoEngage, or Dynamics 365 experience",
-      "AI product engineering experience",
-      "Business intelligence tooling experience"
+      "SQL expertise or evidence",
+      "E-commerce or retail experience",
+      "Personalization or recommendation systems experience"
     ]
   },
-  "positioning_strategy": null,
-  "section_rewrites": null,
-  "application_pack": {
-    "resume_markdown": "",
-    "cover_note": "",
-    "screening_answers": "",
-    "recruiter_message": "",
-    "follow_up_message": "",
-    "quality_report": null,
-    "preserved_links": [],
-    "link_audit": null,
-    "user_review_summary": "FAILURE: Council stopped with 1 error(s). See failure_report.md in output directory.",
-    "failure_report": "# Resume Council Failure Report\n\n**Generated:** 2026-05-20T05:51:20.089461+00:00\n**Job:** AI Product Engineer at Nicobar Design Pvt. Ltd.\n\n## Errors (1)\n\n1. Unrecoverable JSON from LLM: ...\n\n## Next Steps\n\n1. Fix the underlying issue (API key, model config, input data).\n2. Re-run the council for this job.\n"
+  "positioning_strategy": {
+    "one_line_positioning": "Distributed systems architect unsuited for AI Product Engineer role due to lack of AI, frontend, and e-commerce skills.",
+    "narrative_angle": "The candidate brings deep infrastructure scalability (Kubernetes, real-time analytics) but has no experience with LLM APIs, frontend development, or SQL\u2014the core of this role. This mismatch cannot be overcome by transferable skills.",
+    "lead_strengths": [
+      "Led migration of 500+ microservices to Kubernetes",
+      "Reduced database latency by 40% using custom caching layers",
+      "Built real-time analytics engine handling 1M events/sec"
+    ],
+    "proof_points_to_emphasize": [
+      "Led migration of 500+ microservices",
+      "Optimized database latency by 40% using custom caching layers",
+      "Built real-time analytics engine handling 1M events/sec"
+    ],
+    "things_to_downplay": [
+      "No LLM API experience (disqualifier)",
+      "No frontend development experience (disqualifier)",
+      "No SQL evidence",
+      "No e-commerce/retail experience",
+      "No personalization or recommendation systems work"
+    ],
+    "tone_guidance": "Do not apply; candidate lacks essential skills. If applying, acknowledge gaps upfront and highlight willingness to learn, but success is unlikely.",
+    "recruiter_first_impression_target": "This candidate is not qualified for the role due to missing AI, frontend, and SQL experience.",
+    "application_stance": "SKIP",
+    "reasoning": "The candidate's differentiator is infrastructure scalability, but the role requires hands-on AI product engineering\u2014specifically LLM APIs, frontend, and SQL\u2014all of which are absent. With 14 years in distributed systems, they are overqualified in the wrong domain and lack any e-commerce or design-led product experience. Fit is below 40%, making a SKIP the only honest stance."
   },
-  "errors": [
-    "Unrecoverable JSON from LLM: ..."
-  ]
+  "section_rewrites": {
+    "rewrites": {
+      "skills": {
+        "section_id": "skills",
+        "original_text": "- Golang, Rust, Python\n- Kubernetes, Terraform, AWS\n- System Design, Distributed Databases",
+        "rewritten_text": "- Python, Golang, Rust\n- Kubernetes, Terraform, AWS\n- System Design, Distributed Databases",
+        "change_type": "REWRITE",
+        "change_reason": "Reordered skills to prioritize Python (must-have) and moved infrastructure skills later to de-emphasize gaps in LLM API, SQL, and frontend.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "high"
+      },
+      "profile": {
+        "section_id": "profile",
+        "original_text": "Senior Staff Engineer with 12 years of experience in distributed systems and cloud infrastructure.",
+        "rewritten_text": "Senior Staff Engineer with 12+ years of experience in distributed systems and cloud infrastructure, including Kubernetes, Terraform, and AWS. While my background is in infrastructure scalability, I have no experience with LLM APIs, frontend development, or SQL\u2014core requirements for this role. I am eager to learn and bring transferable skills in system design and real-time analytics, but I acknowledge significant gaps that may limit immediate impact.",
+        "change_type": "REWRITE",
+        "change_reason": "Acknowledged critical skill gaps upfront per tone guidance, while highlighting relevant infrastructure expertise and willingness to learn.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "high"
+      },
+      "staff_engineer_cloudscale_2018_present": {
+        "section_id": "staff_engineer_cloudscale_2018_present",
+        "original_text": "- Led the migration of 500+ microservices to Kubernetes.\n- Optimized database latency by 40% using custom caching layers.",
+        "rewritten_text": "- Architected a real-time analytics engine processing 1M events/sec, enabling business intelligence for customer behavior insights.\n- Led migration of 500+ microservices to Kubernetes, ensuring scalable infrastructure for AI-native applications.\n- Optimized database latency by 40% using custom caching layers, improving responsiveness of data-driven features.",
+        "change_type": "REWRITE",
+        "change_reason": "Reframed bullets to emphasize scalability and real-time analytics, aligning with business intelligence and AI-native infrastructure needs, while acknowledging the candidate's lack of LLM/frontend/SQL experience.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "high"
+      },
+      "senior_engineer_technova_2012_2018": {
+        "section_id": "senior_engineer_technova_2012_2018",
+        "original_text": "- Built a real-time analytics engine handling 1M events/sec.",
+        "rewritten_text": "- Architected a real-time analytics engine processing 1M events/sec, demonstrating deep infrastructure scalability but no direct relevance to LLM APIs, frontend, or SQL required for this role.",
+        "change_type": "REWRITE",
+        "change_reason": "Reframed the bullet to acknowledge the candidate's strength while transparently highlighting the gap in role-critical skills.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "high"
+      },
+      "education": {
+        "section_id": "education",
+        "original_text": "M.S. Computer Science \u2014 Stanford University",
+        "rewritten_text": "M.S. Computer Science \u2014 Stanford University",
+        "change_type": "KEEP",
+        "change_reason": "Factual data (degree and institution) must be preserved exactly as written.",
+        "claims_added": [],
+        "claims_removed": [],
+        "evidence_used": [],
+        "risk_level": "low"
+      }
+    },
+    "forbidden_edits": [
+      "internal_strategy_metadata_private"
+    ],
+    "skipped": [],
+    "skipped_reasons": {}
+  },
+  "application_pack": {
+    "resume_markdown": "## Experienced Technical Profile: Alex Chen\n\n## Profile\n\nSenior Staff Engineer with 12+ years of experience in distributed systems and cloud infrastructure, including Kubernetes, Terraform, and AWS. While my background is in infrastructure scalability, I have no experience with LLM APIs, frontend development, or SQL\u2014core requirements for this role. I am eager to learn and bring transferable skills in system design and real-time analytics, but I acknowledge significant gaps that may limit immediate impact.\n\n## Contact\n\nEmail: alex.chen@example.com\nGitHub: [github.com/alexchen](https://github.com/alexchen)\n\n## Skills\n\n- Python, Golang, Rust\n- Kubernetes, Terraform, AWS\n- System Design, Distributed Databases\n\n## Work Experience\n\n## Staff Engineer \u2014 CloudScale (2018 - Present)\n\n- Architected a real-time analytics engine processing 1M events/sec, enabling business intelligence for customer behavior insights.\n- Led migration of 500+ microservices to Kubernetes, ensuring scalable infrastructure for AI-native applications.\n- Optimized database latency by 40% using custom caching layers, improving responsiveness of data-driven features.\n\n## Senior Engineer \u2014 TechNova (2012 - 2018)\n\n- Architected a real-time analytics engine processing 1M events/sec, demonstrating deep infrastructure scalability but no direct relevance to LLM APIs, frontend, or SQL required for this role.\n\n## Education\n\nM.S. Computer Science \u2014 Stanford University",
+    "cover_note": "I led the migration of 500+ microservices to Kubernetes, reducing database latency by 40% with custom caching layers, and built a real-time analytics engine processing 1M events/sec. While my expertise lies in distributed systems infrastructure, I recognize the AI Product Engineer role requires LLM API, frontend, and SQL skills I lack. I am eager to bridge these gaps quickly and apply my scalability mindset to Nicobar's e-commerce challenges.",
+    "screening_answers": "",
+    "recruiter_message": "I see you're hiring for an AI Product Engineer at Nicobar. While I've led Kubernetes migrations and built real-time analytics engines, I lack the required LLM API, frontend, and SQL experience for this role.",
+    "follow_up_message": "",
+    "quality_report": {
+      "what_changed": [
+        "Section 'Profile' was rewritten (REWRITE)",
+        "Section 'Skills' was rewritten (REWRITE)",
+        "Section 'Staff Engineer \u2014 CloudScale (2018 - Present)' was rewritten (REWRITE)",
+        "Section 'Senior Engineer \u2014 TechNova (2012 - 2018)' was rewritten (REWRITE)",
+        "Section 'Education' was rewritten (KEEP)"
+      ],
+      "what_did_not_change": [
+        "Experienced Technical Profile: Alex Chen",
+        "Contact",
+        "Work Experience"
+      ],
+      "needs_user_review": [
+        "Section 'Profile' was completely rewritten.",
+        "Section 'Skills' was completely rewritten.",
+        "Section 'Staff Engineer \u2014 CloudScale (2018 - Present)' was completely rewritten.",
+        "Section 'Senior Engineer \u2014 TechNova (2012 - 2018)' was completely rewritten.",
+        "Verify claim was not made: 'LLM API experience'",
+        "Verify claim was not made: 'Frontend development experience'",
+        "Verify claim was not made: 'SQL expertise or evidence'",
+        "Verify claim was not made: 'E-commerce or retail experience'",
+        "Verify claim was not made: 'Personalization or recommendation systems experience'"
+      ],
+      "risks": [
+        "High risk rewrite in 'Profile'",
+        "High risk rewrite in 'Skills'",
+        "High risk rewrite in 'Staff Engineer \u2014 CloudScale (2018 - Present)'",
+        "High risk rewrite in 'Senior Engineer \u2014 TechNova (2012 - 2018)'"
+      ],
+      "confidence": 0.56
+    },
+    "preserved_links": [
+      "https://github.com/alexchen"
+    ],
+    "link_audit": {
+      "per_section_original": {
+        "experienced_technical_profile_alex_chen": 0,
+        "profile": 0,
+        "contact": 1,
+        "skills": 0,
+        "work_experience": 0,
+        "staff_engineer_cloudscale_2018_present": 0,
+        "senior_engineer_technova_2012_2018": 0,
+        "education": 0
+      },
+      "per_section_final": {
+        "experienced_technical_profile_alex_chen": 0,
+        "profile": 0,
+        "contact": 1,
+        "skills": 0,
+        "work_experience": 0,
+        "staff_engineer_cloudscale_2018_present": 0,
+        "senior_engineer_technova_2012_2018": 0,
+        "education": 0
+      },
+      "total_original": 1,
+      "total_final": 1,
+      "missing_links": [],
+      "warnings": []
+    },
+    "user_review_summary": "Check your new resume. 5/7 sections rewritten. \u26a0\ufe0f 2 fell back to original: experienced_technical_profile_alex_chen, work_experience"
+  },
+  "truth_guard_report": {
+    "total_claims": 4,
+    "verified": 0,
+    "weak": 4,
+    "unsupported": 0,
+    "exaggerated": 0,
+    "fabricated": 0,
+    "claims": [
+      {
+        "text": "12+ years of experience in distributed systems",
+        "risk_level": "WEAK",
+        "claim_type": "year_experience",
+        "start_pos": 27,
+        "end_pos": 73,
+        "evidence_match": "Partially supported: verified_years = 14.0, claimed 12+",
+        "repair_suggestion": null,
+        "confidence": 0.6
+      },
+      {
+        "text": "Architected a real-time analytics engine processing 1M events/sec",
+        "risk_level": "WEAK",
+        "claim_type": "ownership",
+        "start_pos": 2,
+        "end_pos": 67,
+        "evidence_match": "Partial evidence match in 'Distributed Systems'",
+        "repair_suggestion": null,
+        "confidence": 0.35
+      },
+      {
+        "text": "Led migration of 500+ microservices",
+        "risk_level": "WEAK",
+        "claim_type": "ownership",
+        "start_pos": 134,
+        "end_pos": 169,
+        "evidence_match": "Partial evidence match in 'Distributed Systems'",
+        "repair_suggestion": null,
+        "confidence": 0.7
+      },
+      {
+        "text": "Architected a real-time analytics engine processing 1M events/sec",
+        "risk_level": "WEAK",
+        "claim_type": "ownership",
+        "start_pos": 2,
+        "end_pos": 67,
+        "evidence_match": "Partial evidence match in 'Distributed Systems'",
+        "repair_suggestion": null,
+        "confidence": 0.35
+      }
+    ]
+  },
+  "pre_humanizer_resume": "## Experienced Technical Profile: Alex Chen\n\n\n\n## Profile\n\nSenior Staff Engineer with 12+ years of experience in distributed systems and cloud infrastructure, including Kubernetes, Terraform, and AWS. While my background is in infrastructure scalability, I have no experience with LLM APIs, frontend development, or SQL\u2014core requirements for this role. I am eager to learn and bring transferable skills in system design and real-time analytics, but I acknowledge significant gaps that may limit immediate impact.\n\n\n\n## Contact\n\nEmail: alex.chen@example.com\nGitHub: [github.com/alexchen](https://github.com/alexchen)\n\n\n\n## Skills\n\n- Python, Golang, Rust\n- Kubernetes, Terraform, AWS\n- System Design, Distributed Databases\n\n\n\n## Work Experience\n\n\n\n## Staff Engineer \u2014 CloudScale (2018 - Present)\n\n- Architected a real-time analytics engine processing 1M events/sec, enabling business intelligence for customer behavior insights.\n- Led migration of 500+ microservices to Kubernetes, ensuring scalable infrastructure for AI-native applications.\n- Optimized database latency by 40% using custom caching layers, improving responsiveness of data-driven features.\n\n\n\n## Senior Engineer \u2014 TechNova (2012 - 2018)\n\n- Architected a real-time analytics engine processing 1M events/sec, demonstrating deep infrastructure scalability but no direct relevance to LLM APIs, frontend, or SQL required for this role.\n\n\n\n## Education\n\nM.S. Computer Science \u2014 Stanford University\n",
+  "humanizer_output": "## Experienced Technical Profile: Alex Chen\n\n## Profile\n\nSenior Staff Engineer with 12+ years of experience in distributed systems and cloud infrastructure, including Kubernetes, Terraform, and AWS. While my background is in infrastructure scalability, I have no experience with LLM APIs, frontend development, or SQL\u2014core requirements for this role. I am eager to learn and bring transferable skills in system design and real-time analytics, but I acknowledge significant gaps that may limit immediate impact.\n\n## Contact\n\nEmail: alex.chen@example.com\nGitHub: [github.com/alexchen](https://github.com/alexchen)\n\n## Skills\n\n- Python, Golang, Rust\n- Kubernetes, Terraform, AWS\n- System Design, Distributed Databases\n\n## Work Experience\n\n## Staff Engineer \u2014 CloudScale (2018 - Present)\n\n- Architected a real-time analytics engine processing 1M events/sec, enabling business intelligence for customer behavior insights.\n- Led migration of 500+ microservices to Kubernetes, ensuring scalable infrastructure for AI-native applications.\n- Optimized database latency by 40% using custom caching layers, improving responsiveness of data-driven features.\n\n## Senior Engineer \u2014 TechNova (2012 - 2018)\n\n- Architected a real-time analytics engine processing 1M events/sec, demonstrating deep infrastructure scalability but no direct relevance to LLM APIs, frontend, or SQL required for this role.\n\n## Education\n\nM.S. Computer Science \u2014 Stanford University",
+  "humanizer_report": {
+    "resume": {
+      "slop_flags": 0,
+      "changed_lines": 27,
+      "realism_concerns": 0,
+      "recruiter_concerns": []
+    },
+    "cover_note": {
+      "slop_flags": 0,
+      "changed_lines": 0,
+      "realism_concerns": 0
+    },
+    "recruiter_message": {
+      "slop_flags": 0,
+      "changed_lines": 0,
+      "realism_concerns": 0
+    }
+  },
+  "s7_debug": {
+    "n_sections_total": 5,
+    "n_rewritten": 5,
+    "n_fallback": 0,
+    "n_workers": 3,
+    "total_elapsed_s": 3.58,
+    "sections": [
+      {
+        "section_id": "skills",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 90,
+        "rewritten_chars": 90,
+        "elapsed_s": 1.62,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "profile",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 98,
+        "rewritten_chars": 453,
+        "elapsed_s": 2.46,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "staff_engineer_cloudscale_2018_present",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 121,
+        "rewritten_chars": 360,
+        "elapsed_s": 2.46,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "senior_engineer_technova_2012_2018",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 60,
+        "rewritten_chars": 192,
+        "elapsed_s": 3.38,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "education",
+        "status": "REWRITE",
+        "change_type": "KEEP",
+        "original_chars": 43,
+        "rewritten_chars": 43,
+        "elapsed_s": 3.57,
+        "model": "deepseek-chat"
+      }
+    ],
+    "company_context_present": true,
+    "role_keywords_used": [
+      "LLM API",
+      "clienteling",
+      "business intelligence",
+      "AI-native",
+      "personalization",
+      "Python",
+      "SQL",
+      "frontend"
+    ]
+  },
+  "candidate_graph": {
+    "name": "",
+    "email": "alex.chen@example.com",
+    "phone": "",
+    "links": [
+      "github.com/alexchen](https://github.com/alexchen)"
+    ],
+    "profile_summary": "Senior Staff Engineer with 12 years of experience in distributed systems and cloud infrastructure.",
+    "target_role_title": "",
+    "experience": [],
+    "education": [
+      {
+        "raw": "M.S. Computer Science \u2014 Stanford University",
+        "lines": [
+          "M.S. Computer Science \u2014 Stanford University"
+        ]
+      }
+    ],
+    "skills": [
+      "Golang, Rust, Python",
+      "Kubernetes, Terraform, AWS",
+      "System Design, Distributed Databases"
+    ],
+    "achievements": [],
+    "metric_vault": [],
+    "private_constraints": []
+  },
+  "cv_tenure_years": 0.0,
+  "errors": []
 }

@@ -2,74 +2,72 @@
   "total_years_experience": 14.0,
   "confirmed_skills": [
     {
-      "skill": "Kubernetes",
-      "years": 8,
-      "evidence": "Led migration of 500+ microservices to Kubernetes at CloudScale (2018-present)"
-    },
-    {
       "skill": "Distributed Systems",
       "years": 14,
-      "evidence": "Built real-time analytics engine (1M events/sec) at TechNova; led massive microservices migration"
+      "evidence": "Led migration of 500+ microservices, built real-time analytics engine, 12 years profile"
+    },
+    {
+      "skill": "Kubernetes",
+      "years": 8,
+      "evidence": "Led migration of 500+ microservices to Kubernetes at CloudScale"
     },
     {
       "skill": "Database Optimization",
       "years": 8,
-      "evidence": "Optimized database latency by 40% using custom caching layers at CloudScale"
+      "evidence": "Optimized database latency by 40% using custom caching layers"
     }
   ],
   "weak_skills": [
-    "Python (listed, but no production evidence)",
-    "NodeJS (absent)",
-    "LLM API experience (absent)",
-    "SQL (absent)",
-    "Frontend development (absent)",
-    "retail/e-commerce experience (absent)",
-    "Shopify/MoEngage/D365 (absent)",
-    "IIT/BITS/NIT education (Stanford is not equivalent)"
+    "Python",
+    "SQL",
+    "Frontend Development",
+    "LLM API"
   ],
   "evidence_bank": {
-    "Python": [
-      "Listed in Skills section"
+    "Distributed Systems": [
+      "Led migration of 500+ microservices",
+      "Built real-time analytics engine handling 1M events/sec"
     ],
     "Kubernetes": [
-      "Led migration of 500+ microservices to Kubernetes"
-    ],
-    "Distributed Systems": [
-      "Built a real-time analytics engine handling 1M events/sec",
       "Led migration of 500+ microservices to Kubernetes"
     ],
     "Database Optimization": [
       "Optimized database latency by 40% using custom caching layers"
     ],
+    "Python": [
+      "Listed in skills section, no project evidence"
+    ],
+    "AWS": [
+      "Listed in skills, no project evidence"
+    ],
+    "Terraform": [
+      "Listed in skills, no project evidence"
+    ],
     "Golang": [
-      "Listed in Skills section"
+      "Listed in skills, no project evidence"
     ],
     "Rust": [
-      "Listed in Skills section"
+      "Listed in skills, no project evidence"
     ]
   },
   "strongest_proof_points": [
-    "Led migration of 500+ microservices to Kubernetes",
-    "Optimized database latency by 40% with custom caching",
-    "Built real-time analytics engine handling 1M events/sec"
+    "Led Kubernetes migration of 500+ microservices",
+    "Reduced database latency by 40%",
+    "Built real-time analytics engine processing 1M events/sec"
   ],
   "claims_allowed": [
-    "14+ years distributed systems experience",
-    "Kubernetes expertise (led 500+ microservice migration)",
-    "Database latency optimization (40% improvement)",
-    "Real-time analytics engine (1M events/sec)",
-    "Proficient in Golang, Rust, Python (as listed)",
-    "AWS cloud infrastructure experience",
-    "Terraform experience"
+    "12+ years of experience in distributed systems and cloud infrastructure",
+    "MS in Computer Science from Stanford University",
+    "Proficiency in Python, Golang, Rust",
+    "Expertise in Kubernetes, Terraform, AWS",
+    "Experience optimizing database performance",
+    "Real-time analytics system design"
   ],
   "claims_not_allowed": [
     "LLM API experience",
     "Frontend development experience",
-    "SQL proficiency",
-    "E-commerce/retail experience",
-    "IIT/BITS/NIT education",
-    "Shopify, MoEngage, or Dynamics 365 experience",
-    "AI product engineering experience",
-    "Business intelligence tooling experience"
+    "SQL expertise or evidence",
+    "E-commerce or retail experience",
+    "Personalization or recommendation systems experience"
   ]
 }

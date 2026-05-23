@@ -13,12 +13,8 @@
 - Section 'Sentiment Analysis Bot' was completely rewritten.
 - Section 'Portfolio Website' was completely rewritten.
 - Section 'Data Science Intern — Fintech Corp (Summer 2023)' was completely rewritten.
-- Verify claim was not made: '3-5 years of professional experience'
-- Verify claim was not made: 'Proven experience with LLM APIs like OpenAI, Claude, or Gemini'
-- Verify claim was not made: 'Retail or e-commerce experience'
-- Verify claim was not made: 'Conversational AI or chatbot development experience'
-- Verify claim was not made: 'Business intelligence tool proficiency'
-- Verify claim was not made: 'Shopify, MoEngage, or Dynamics 365 experience'
-- Verify claim was not made: 'CEO-facing communication skills'
-- Verify claim was not made: 'Proven ability to deliver business outcomes rapidly'
-- Verify claim was not made: 'Ownership of end-to-end AI product development'
+- Verify claim was not made: 'LLM API experience in a real project'
+- Verify claim was not made: 'Professional AI product engineering experience'
+- Verify claim was not made: 'Mid-senior level experience'
+- Verify claim was not made: 'Experience with Shopify API or e-commerce'
+- Verify claim was not made: 'CEO-facing communication or business outcome thinking demonstrated'

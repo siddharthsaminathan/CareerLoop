@@ -5,7 +5,10 @@ This directory is dedicated to tracking active work, sprint metrics, open blocke
 ## File Registry
 
 ### 📄 [TRACKER.md](file:///Users/siddharthsaminathan/Projects/CareerLoop/docs/tech-backlog/TRACKER.md)
-* **Purpose:** Live Product Engineering Tracker. Details current sprint focus, system status percentages, session logs, open blockers (e.g. B1-B8), and locked architecture decisions (A1-A11). This file is programmatically read/updated by the `/careerloop-product-lead` command.
+* **Purpose:** Live Product Engineering Tracker. Details current sprint focus, system status percentages, session logs, open blockers, and locked architecture decisions. This file is programmatically read/updated by the `/careerloop-product-lead` command.
+
+### 📄 [DELIVERY_ORCHESTRATION_HANDOFF_2026-05-23.md](file:///Users/siddharthsaminathan/Projects/CareerLoop/docs/tech-backlog/DELIVERY_ORCHESTRATION_HANDOFF_2026-05-23.md)
+* **Purpose:** Next-agent handoff for the May 23 LangGraph Supervisor / transport / PostgresSaver / assisted apply scaffold. Read this before continuing Phase 0 delivery work.
 
 ### 📄 [8-PIPELINE-CHECKLIST.md](file:///Users/siddharthsaminathan/Projects/CareerLoop/docs/tech-backlog/8-PIPELINE-CHECKLIST.md)
 * **Purpose:** A structured, sequential verification list for the Resume Council compiler nodes to ensure no bugs slip through.

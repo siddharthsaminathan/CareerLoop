@@ -45,6 +45,7 @@ This directory acts as our engineering memory. It stores detailed retrospectives
   * **[2026-05-18-onboarding.md](file:///Users/siddharthsaminathan/Projects/CareerLoop/docs/learnings/dev-blog/2026-05-18-onboarding.md):** Onboarding tasks, models yml creation, and repository configuration.
   * **[2026-05-19-resume-council-structural-stabilization.md](file:///Users/siddharthsaminathan/Projects/CareerLoop/docs/learnings/dev-blog/2026-05-19-resume-council-structural-stabilization.md):** Preprocessing, S7 loop stabilization, normalizer overrides.
   * **[2026-05-20-deep-delta-humanizer-renderer-fixes.md](file:///Users/siddharthsaminathan/Projects/CareerLoop/docs/learnings/dev-blog/2026-05-20-deep-delta-humanizer-renderer-fixes.md):** Humanizer assertiveness adjustments, subtitle parsing.
+  * **[2026-05-23-delivery-orchestration-scaffold.md](file:///Users/siddharthsaminathan/Projects/CareerLoop/docs/learnings/dev-blog/2026-05-23-delivery-orchestration-scaffold.md):** Delivery orchestration scaffold reconciliation: supervisor graph, transports, PostgresSaver, and assisted apply guardrails.
 
 ---
 > [!TIP]

@@ -5,7 +5,10 @@ This directory houses the technical specifications, locked system architectures,
 ## File Registry
 
 ### 📄 [CANONICAL_ARCHITECTURE.md](file:///Users/siddharthsaminathan/Projects/CareerLoop/docs/engineering/CANONICAL_ARCHITECTURE.md)
-* **Purpose:** The locked technical reference architecture for the 8-system Resume Council. Establishes programmatic data contracts, state variables, and execution rules.
+* **Purpose:** The locked technical reference architecture for the 8-system Resume Council plus the Phase 0 delivery layer. Establishes programmatic data contracts, state variables, execution rules, transport boundaries, supervisor orchestration, and assisted-apply safety constraints.
+
+### 📄 [MVP_SPRINT_PLAN.md](file:///Users/siddharthsaminathan/Projects/CareerLoop/docs/engineering/MVP_SPRINT_PLAN.md)
+* **Purpose:** Delivery Foundation implementation plan: transport abstraction, conversational state, onboarding, daily brief, pack delivery, resume editor, follow-ups, Gmail/calendar, and interview memory.
 
 ### 📄 [breakdown-20-part.md](file:///Users/siddharthsaminathan/Projects/CareerLoop/docs/engineering/breakdown-20-part.md)
 * **Purpose:** Detailed architectural breakdown covering the data flow from parsed plaintext CVs through LLM rewriting sections, up to post-render PDF generation.

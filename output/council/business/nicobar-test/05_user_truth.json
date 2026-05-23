@@ -5,27 +5,26 @@
     "Python",
     "NodeJS",
     "SQL",
-    "frontend development",
-    "LLM API experience"
+    "LLM API experience",
+    "Front-end development",
+    "Engineering degree"
   ],
   "evidence_bank": {},
-  "strongest_proof_points": [
-    "Increased organic traffic by 200% in 18 months",
-    "Managed a $5M annual advertising budget",
-    "Scaled user base from 10k to 500k"
-  ],
+  "strongest_proof_points": [],
   "claims_allowed": [
-    "10 years of professional experience",
-    "Proven track record of driving growth",
-    "Experience managing large budgets",
-    "Strong business-outcome thinking"
+    "8+ years marketing experience",
+    "Brand strategy",
+    "Content marketing",
+    "SEO",
+    "Team leadership",
+    "Budget management"
   ],
   "claims_not_allowed": [
-    "LLM API experience",
-    "Proficiency in Python or NodeJS",
+    "Engineering degree",
+    "LLM experience",
+    "Python coding",
     "SQL skills",
-    "Frontend development skills",
-    "Engineering degree from IIT/BITS/NIT",
-    "AI/ML engineering experience"
+    "Front-end development",
+    "AI product engineering experience"
   ]
 }

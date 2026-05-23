@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experienced Technical Profile: Alex Chen — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f172a;
+    --slate: #475569;
+    --muted: #94a3b8;
+    --rule: #e2e8f0;
+    --accent: #1d4ed8;
+    --bg-sidebar: #f8fafc;
+    --display: 'DM Serif Display', Georgia, serif;
+    --body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--body);
+    font-size: 10px;
+    line-height: 1.45;
+    color: var(--ink);
+    background: #fff;
+    max-width: 210mm;
+    margin: 0 auto;
+    padding: 28px 32px 24px 32px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Header ──────────────────────────── */
+  .header {
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid var(--rule);
+  }
+  .header h1 {
+    font-family: var(--display);
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 2px;
+  }
+  .header .subtitle {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--slate);
+    margin-bottom: 6px;
+  }
+  .header .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    font-size: 9px;
+    color: var(--slate);
+  }
+  .header .contact-row a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .header .contact-row .sep {
+    color: var(--muted);
+  }
+
+  /* ── Two-Column Layout ───────────────── */
+  .layout {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 0 24px;
+  }
+
+  /* ── Sidebar ─────────────────────────── */
+  .sidebar {
+    background: var(--bg-sidebar);
+    padding: 14px 16px;
+    font-size: 9px;
+    line-height: 1.4;
+  }
+  .sidebar .sblock {
+    margin-bottom: 14px;
+  }
+  .sidebar .sblock:last-child { margin-bottom: 0; }
+  .sidebar .stitle {
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    margin-bottom: 6px;
+    padding-bottom: 3px;
+    border-bottom: 0.75px solid var(--rule);
+  }
+  .sidebar a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .sidebar .edu-item {
+    margin-bottom: 6px;
+  }
+  .sidebar .edu-item .degree {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 9px;
+  }
+  .sidebar .edu-item .school {
+    color: var(--slate);
+    font-size: 8.5px;
+  }
+  .sidebar .skill-cat {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 9px;
+    margin-top: 5px;
+  }
+  .sidebar .skill-cat:first-child { margin-top: 0; }
+  .sidebar .skill-tags {
+    color: var(--slate);
+    font-size: 8.5px;
+    line-height: 1.35;
+    margin-bottom: 4px;
+  }
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  .sidebar li {
+    margin-bottom: 2px;
+    font-size: 9px;
+    color: var(--slate);
+  }
+
+  /* ── Main Content ────────────────────── */
+  .main { min-width: 0; }
+
+  .section {
+    margin-bottom: 12px;
+  }
+  .section:last-child { margin-bottom: 0; }
+
+  .section-title {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--ink);
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+    border-bottom: 0.75px solid var(--rule);
+  }
+
+  .profile-text {
+    font-size: 10px;
+    line-height: 1.45;
+    color: var(--slate);
+  }
+
+  /* ── Experience ──────────────────────── */
+  .exp-item {
+    margin-bottom: 10px;
+  }
+  .exp-item:last-child { margin-bottom: 0; }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+  .exp-header .role {
+    font-weight: 700;
+    font-size: 10.5px;
+    color: var(--ink);
+  }
+  .exp-header .meta,
+  .exp-header .exp-meta {
+    text-align: right;
+    font-size: 9px;
+    color: var(--slate);
+    flex-shrink: 0;
+  }
+  .exp-desc {
+    font-size: 9.5px;
+    color: var(--slate);
+    margin-bottom: 3px;
+    line-height: 1.4;
+  }
+  ul.bullets, .exp-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  ul.bullets li, .exp-item ul li {
+    position: relative;
+    padding-left: 10px;
+    margin-bottom: 1px;
+    font-size: 9.5px;
+    line-height: 1.4;
+    color: var(--slate);
+  }
+  ul.bullets li::before, .exp-item ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 8px;
+  }
+
+  /* ── Achievements ────────────────────── */
+  .achievements ul {
+    list-style: none;
+    padding: 0;
+  }
+  .achievements li {
+    font-size: 9.5px;
+    line-height: 1.4;
+    color: var(--slate);
+    margin-bottom: 2px;
+    padding-left: 10px;
+    position: relative;
+  }
+  .achievements li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: 8px;
+  }
+
+  /* ── Print ───────────────────────────── */
+  @media print {
+    body {
+      padding: 28px 32px 24px 32px;
+      background: #fff;
+    }
+    @page {
+      margin: 0;
+      size: A4;
+    }
+    .exp-item { break-inside: avoid; }
+    .section-title { break-after: avoid; }
+    .sidebar { background: #f8fafc; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header">
+  <h1>Experienced Technical Profile: Alex Chen</h1>
+  <div class="subtitle">Staff Engineer</div>
+  <div class="contact-row">
+    <span>alex.chen@example.com</span><span class="sep">|</span><a href="https://github.com/alexchen">GitHub</a>
+  </div>
+</header>
+
+<!-- ═══ TWO-COLUMN LAYOUT ═══ -->
+<div class="layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sblock"><div class="stitle">Contact</div><ul><li>alex.chen@example.com</li><li><a href="https://github.com/alexchen">GitHub</a></li></ul></div>
+    <div class="sblock"><div class="stitle">Education</div><div class="edu-item"><span class="degree">M.S. Computer Science</span>, <span class="school">Stanford University</span></div></div>
+    <div class="sblock"><div class="stitle">Skills</div><div class="skills-grid"><span class="cat"></span><span class="tags">Python, Golang, Rust · Kubernetes, Terraform, AWS · System Design, Distributed Databases</span></div></div>
+    
+    
+  </aside>
+
+  <!-- RIGHT MAIN -->
+  <main class="main">
+    <div class="section"><div class="section-title">Profile</div><div class="profile-text"><p>Senior Staff Engineer with 12+ years of experience in distributed systems and cloud infrastructure, including Kubernetes, Terraform, and AWS. While my background is in infrastructure scalability, I have no experience with LLM APIs, frontend development, or SQL, core requirements for this role. I am eager to learn and bring transferable skills in system design and real-time analytics, but I acknowledge significant gaps that may limit immediate impact.</p>
+</div></div>
+    <div class="section"><div class="section-title">Experience</div>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="role">Staff Engineer</span>
+                    <span class="exp-meta">
+                        <span class="company">CloudScale</span>
+                        <span class="dates">2018 - Present</span>
+                    </span>
+                </div>
+                
+                <ul class="bullets"><li>Architected a real-time analytics engine processing 1M events/sec, enabling business intelligence for customer behavior insights.</li><li>Led migration of 500+ microservices to Kubernetes, ensuring scalable infrastructure for AI-native applications.</li><li>Optimized database latency by 40% using custom caching layers, improving responsiveness of data-driven features.</li></ul>
+            </div>
+            
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="role">Senior Engineer</span>
+                    <span class="exp-meta">
+                        <span class="company">TechNova</span>
+                        <span class="dates">2012 - 2018</span>
+                    </span>
+                </div>
+                
+                <ul class="bullets"><li>Architected a real-time analytics engine processing 1M events/sec, demonstrating deep infrastructure scalability but no direct relevance to LLM APIs, frontend, or SQL required for this role.</li></ul>
+            </div>
+            </div>
+    
+  </main>
+
+</div>
+
+</body>
+</html>

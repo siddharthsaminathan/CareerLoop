@@ -1,23 +1,26 @@
 {
-  "one_line_positioning": "IIT Delhi CS graduate with ML project experience and a drive to build AI-native customer experiences",
-  "narrative_angle": "Recent graduate with a passion for AI product development, seeking to leverage ML skills and strong engineering foundation in a fast-paced retail AI environment",
+  "one_line_positioning": "Aspiring AI Product Engineer with IIT Delhi CS and React frontend skills, eager to build customer-facing AI tools for Nicobar's design-led e-commerce",
+  "narrative_angle": "Nicobar needs an AI-native builder who can craft polished customer experiences — this candidate stands out by pairing a top-tier IIT Delhi engineering education with hands-on frontend development and machine learning experimentation. While lacking production LLM experience, their rapid learning and foundation in NLP suggest they can quickly scale to Nicobar's personalization and conversational AI goals.",
   "lead_strengths": [
-    "Strong CS fundamentals (IIT Delhi, GPA 9.2)",
-    "Hands-on ML project experience (BERT-based sentiment analysis)",
-    "Python and React proficiency"
+    "B.Tech Computer Science from IIT Delhi with high GPA (9.2)",
+    "Built a sentiment analysis bot using BERT",
+    "Developed a portfolio website with React and Tailwind"
   ],
   "proof_points_to_emphasize": [
-    "IIT Delhi CS degree with high GPA",
-    "Built BERT-based sentiment analysis project",
-    "Data Science internship at Fintech Corp"
+    "B.Tech Computer Science from IIT Delhi with high GPA (9.2)",
+    "Built a sentiment analysis bot using BERT",
+    "Developed a portfolio website with React and Tailwind",
+    "Data science internship applying logistic regression to loan defaults"
   ],
   "things_to_downplay": [
-    "No professional work experience",
-    "No LLM API production experience",
-    "No e-commerce background"
+    "No professional full-time experience in AI product development",
+    "No demonstrated experience with LLM APIs (OpenAI, Claude, Gemini)",
+    "No e-commerce or retail domain knowledge",
+    "No Shopify API or systems integration experience",
+    "No evidence of CEO-level communication or business-outcome thinking"
   ],
-  "tone_guidance": "Eager, humble, and ready to learn; own the narrative of being a fast ramp-up",
-  "recruiter_first_impression_target": "Smart CS grad who can be trained quickly, but needs ramp-up time",
+  "tone_guidance": "Position as a fast-learning, design-aware engineer with elite academic foundations; acknowledge early career stage but emphasize raw intelligence and project initiative; use e-commerce and design vocabulary where natural, avoid overclaiming AI expertise.",
+  "recruiter_first_impression_target": "A sharp, design-sensitive engineer from IIT Delhi passionate about AI and frontend, but clearly needing mentorship and upskilling to hit the mid-senior bar of the role",
   "application_stance": "STRETCH",
-  "reasoning": "Strong CS foundation from IIT Delhi with ML project experience, but lacks required 3-5 years and LLM API production experience; role is a stretch for a fresh graduate"
+  "reasoning": "The candidate has an extremely strong academic background (IIT Delhi CS, high GPA) and demonstrates relevant technical building blocks (Python, NLP with BERT, React frontend), but lacks the deep LLM API experience, e-commerce context, and professional tenure required for the role. This is a stretch application; the differentiator is rare combination of top-tier engineering and design-oriented frontend skills, but the gap in AI product engineering experience is substantial. The stance is STRETCH, with a narrative that leans on transferable skills and learning potential."
 }

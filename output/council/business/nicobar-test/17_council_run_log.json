@@ -130,11 +130,14 @@
     "company_name": "Nicobar Design Pvt. Ltd.",
     "role_title": "AI Product Engineer -- CEO's Office",
     "source_urls": [
-      "https://www.linkedin.com/feed/update/urn:li:activity:7329475396732014592"
+      "https://www.linkedin.com/feed/update/urn:li:activity:7329475396732014592",
+      "https://www.linkedin.com/pulse/how-brand-built-me-nicobar-designs-pvt-ltd--xg2xc/",
+      "https://www.crunchbase.com/person/raul-rai",
+      "https://www.livemint.com/mint-lounge/business-of-life/nicobar-simran-lal-good-earth-office-home-decor-11756622685044.html"
     ],
     "grounding_status": "PARTIAL",
     "confidence": 0.5,
-    "generated_at": "2026-05-19T22:04:46.120640+00:00",
+    "generated_at": "2026-05-20T11:24:43.297190+00:00",
     "cache_key": "909ea5c71e0f1e43",
     "ttl_days": 30,
     "company_summary": "Nicobar Design Pvt. Ltd.. operates in ecommerce. with a focus on ai_ml, ai_ml, retail_tech.",
@@ -160,28 +163,14 @@
     "interview_implications": "",
     "compensation_signals": "",
     "red_flags": [],
+    "red_flags_detail": [],
+    "recruiter_info": {},
     "positioning_implications": "",
-    "language_to_use": [
-      "AI-native",
-      "intelligence layer",
-      "brand experience",
-      "customer personalization",
-      "conversational BI"
-    ],
-    "language_to_avoid": [
-      "enterprise-grade",
-      "scalable infrastructure",
-      "data pipeline",
-      "legacy migration",
-      "cost optimization"
-    ],
+    "language_to_use": [],
+    "language_to_avoid": [],
     "candidate_angles": [],
     "transferability_angles": [],
-    "risks_to_soften": [
-      "No direct e-commerce or retail experience",
-      "No experience with Shopify, MoEngage, or Dynamics 365",
-      "Background in manufacturing quality, not consumer personalization"
-    ],
+    "risks_to_soften": [],
     "claims_to_avoid": [],
     "resume_strategy_hint": "",
     "outreach_strategy_hint": "",
@@ -194,25 +183,9 @@
       "culture_signals": [],
       "hiring_urgency": "UNKNOWN",
       "positioning_implications": "",
-      "language_to_use": [
-        "AI-native",
-        "intelligence layer",
-        "brand experience",
-        "customer personalization",
-        "conversational BI"
-      ],
-      "language_to_avoid": [
-        "enterprise-grade",
-        "scalable infrastructure",
-        "data pipeline",
-        "legacy migration",
-        "cost optimization"
-      ],
-      "risks_to_soften": [
-        "No direct e-commerce or retail experience",
-        "No experience with Shopify, MoEngage, or Dynamics 365",
-        "Background in manufacturing quality, not consumer personalization"
-      ],
+      "language_to_use": [],
+      "language_to_avoid": [],
+      "risks_to_soften": [],
       "claims_to_avoid": [],
       "candidate_angles": [],
       "red_flags": [],
@@ -225,87 +198,112 @@
       "product_context": "E-commerce",
       "business_problem": "",
       "role_success_criteria": [],
-      "language_to_use": [
-        "AI-native",
-        "intelligence layer",
-        "brand experience",
-        "customer personalization",
-        "conversational BI"
-      ],
-      "language_to_avoid": [
-        "enterprise-grade",
-        "scalable infrastructure",
-        "data pipeline",
-        "legacy migration",
-        "cost optimization"
-      ],
+      "language_to_use": [],
+      "language_to_avoid": [],
       "proof_points_to_prefer": [
         "measurable outcomes with numbers",
         "specific, defensible achievements",
         "evidence of ownership and initiative"
       ],
-      "risks_to_soften": [
-        "No direct e-commerce or retail experience",
-        "No experience with Shopify, MoEngage, or Dynamics 365",
-        "Background in manufacturing quality, not consumer personalization"
-      ],
+      "risks_to_soften": [],
       "avoid_overclaiming_about": [],
-      "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact."
+      "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact.",
+      "founder_context": "Co-founded by Simran Lal and her husband Raul Rai. Simran Lal is inspired by travel, India, and nature; Raul Rai previously Managing Director at Eight Roads Ventures.",
+      "hiring_reason": "UNKNOWN",
+      "culture_fit_signals": [
+        "design-led",
+        "AI-native",
+        "customer-centric",
+        "collaborative",
+        "brand-obsessed"
+      ],
+      "interview_prep_hints": [
+        "Describe a real project where you used an LLM API (OpenAI, Claude, Gemini) to solve a business problem.",
+        "How would you design a personalization engine for an e-commerce brand using Shopify APIs?",
+        "Walk us through how you would replace a BI dashboard with a conversational AI layer."
+      ],
+      "glassdoor_signal": "No data",
+      "reddit_signal": "No data"
+    },
+    "key_people": [
+      {
+        "name": "Simran Lal",
+        "title": "Co-Founder",
+        "source": "LIVEMINT"
+      },
+      {
+        "name": "Raul Rai",
+        "title": "Co-Founder",
+        "source": "CRUNCHBASE"
+      }
+    ],
+    "founder_background": "Co-founded by Simran Lal and her husband Raul Rai. Simran Lal is inspired by travel, India, and nature; Raul Rai previously Managing Director at Eight Roads Ventures.",
+    "hiring_manager_context": "Reports to CEO (Simran Lal or Raul Rai) \u2014 role is in CEO's office.",
+    "interview_questions_likely": [
+      "Describe a real project where you used an LLM API (OpenAI, Claude, Gemini) to solve a business problem.",
+      "How would you design a personalization engine for an e-commerce brand using Shopify APIs?",
+      "Walk us through how you would replace a BI dashboard with a conversational AI layer.",
+      "How do you handle connecting disparate systems (APIs, webhooks, data pipelines) that weren't designed to work together?",
+      "Tell us about a time you built a front-end that balanced functionality with brand aesthetics."
+    ],
+    "culture_keywords": [
+      "design-led",
+      "AI-native",
+      "customer-centric",
+      "collaborative",
+      "brand-obsessed",
+      "island aesthetic",
+      "minimal",
+      "nature-inspired",
+      "friction-removing",
+      "premier institute bias"
+    ],
+    "glassdoor_signal": "No data",
+    "reddit_signal": "No data",
+    "sources_by_type": {
+      "jd_url": 1,
+      "people_search": 3
     },
     "unknowns": [
-      "Company revenue, funding, employee count, and growth stage",
-      "Company culture specifics beyond JD tone",
-      "Exact tech stack beyond Shopify, MoEngage, Dynamics 365",
-      "Team size and reporting structure",
-      "Compensation and benefits",
-      "Recent news or layoffs",
-      "Customer demographics and market position"
+      "Glassdoor reviews",
+      "Reddit mentions",
+      "Exact headcount",
+      "Revenue or funding details",
+      "Office locations beyond Delhi",
+      "Specific tech stack beyond Shopify, MoEngage, Dynamics 365",
+      "Interview process details",
+      "Salary range"
     ]
   },
   "role_decode": {
     "normalized_title": "AI Product Engineer",
     "seniority": "mid-senior",
     "must_haves": [
-      "Engineering degree from IIT/BITS/NIT or equivalent",
-      "LLM API experience (OpenAI, Claude, Gemini)",
-      "Python or NodeJS",
-      "SQL",
-      "frontend development skills",
-      "3-5 years of experience"
+      "Engineering degree from IIT, BITS, NIT or equivalent",
+      "Experience building with LLM API (OpenAI, Claude, Gemini, etc.)",
+      "Fluent in Python or NodeJS",
+      "Comfortable with SQL",
+      "Ability to build front-ends"
     ],
     "nice_to_haves": [
-      "retail/e-commerce experience",
-      "experience with Shopify, MoEngage, or Dynamics 365",
-      "business intelligence experience"
+      "Retail/e-commerce experience"
     ],
     "hidden_expectations": [
       "CEO-facing communication",
-      "business-outcome thinking",
-      "ownership of product outcomes",
-      "ability to work in a design-driven, fast-paced environment"
+      "Business-outcome thinking",
+      "Understanding of design workflows"
     ],
     "day_one_deliverables": [
-      "Customer personalization intelligence layer",
-      "Store clienteling tool prototype"
+      "Customer personalization intelligence layer"
     ],
     "screening_keywords": [
       "AI-native",
       "clienteling",
-      "business intelligence",
-      "conversational BI",
-      "customer personalization",
-      "intelligence layer",
-      "brand experience",
-      "LLM API",
-      "Python",
-      "NodeJS",
-      "SQL",
-      "frontend"
+      "business intelligence"
     ],
     "disqualifiers": [
-      "no LLM experience",
-      "no coding skills (Python/NodeJS)",
-      "no frontend development skills"
+      "No LLM experience",
+      "No coding skills"
     ],
     "confidence": 0.9
   },
@@ -316,105 +314,91 @@
       "Python",
       "NodeJS",
       "SQL",
-      "frontend development",
-      "LLM API experience"
+      "LLM API experience",
+      "Front-end development",
+      "Engineering degree"
     ],
     "evidence_bank": {},
-    "strongest_proof_points": [
-      "Increased organic traffic by 200% in 18 months",
-      "Managed a $5M annual advertising budget",
-      "Scaled user base from 10k to 500k"
-    ],
+    "strongest_proof_points": [],
     "claims_allowed": [
-      "10 years of professional experience",
-      "Proven track record of driving growth",
-      "Experience managing large budgets",
-      "Strong business-outcome thinking"
+      "8+ years marketing experience",
+      "Brand strategy",
+      "Content marketing",
+      "SEO",
+      "Team leadership",
+      "Budget management"
     ],
     "claims_not_allowed": [
-      "LLM API experience",
-      "Proficiency in Python or NodeJS",
+      "Engineering degree",
+      "LLM experience",
+      "Python coding",
       "SQL skills",
-      "Frontend development skills",
-      "Engineering degree from IIT/BITS/NIT",
-      "AI/ML engineering experience"
+      "Front-end development",
+      "AI product engineering experience"
     ]
   },
   "positioning_strategy": {
-    "one_line_positioning": "E-commerce growth leader who scaled user base from 10k to 500k and drove 200% organic traffic increase",
-    "narrative_angle": "Customer-obsessed growth strategist with deep e-commerce scaling experience, aiming to bridge business metrics with AI-driven personalization",
+    "one_line_positioning": "Marketing leader with no coding or AI engineering experience \u2014 not a fit for this technical role",
+    "narrative_angle": "While the candidate brings deep understanding of consumer brand strategy and customer journeys, the role demands hands-on AI engineering skills (LLMs, Python, front-end) that are absent from their background.",
     "lead_strengths": [
-      "Scaled user base from 10k to 500k",
-      "Drove 200% organic traffic growth in 18 months",
-      "Managed $5M annual advertising budget"
+      "8+ years marketing experience",
+      "Brand strategy",
+      "Content marketing",
+      "Team leadership"
     ],
-    "proof_points_to_emphasize": [
-      "Increased organic traffic by 200% in 18 months",
-      "Managed a $5M annual advertising budget",
-      "Scaled user base from 10k to 500k"
-    ],
+    "proof_points_to_emphasize": [],
     "things_to_downplay": [
-      "No software engineering or coding background",
-      "No LLM API or AI/ML experience",
-      "No SQL, frontend development, or Python/NodeJS skills",
-      "Lacks required engineering degree from IIT/BITS/NIT"
+      "No engineering degree",
+      "No coding skills (Python, NodeJS, SQL)",
+      "No LLM API experience",
+      "No front-end development ability"
     ],
-    "tone_guidance": "Business-strategic, outcome-focused, and transparent about technical skill gaps",
-    "recruiter_first_impression_target": "A growth marketer applying for an AI engineering role \u2014 significant skill gap",
+    "tone_guidance": "Be transparent: do not attempt to disguise lack of technical qualifications. If applying, clearly state how marketing insight could complement AI implementation, but fully acknowledge that no hands-on engineering is possible.",
+    "recruiter_first_impression_target": "Immediately sees candidate lacks required technical skills; no further reading needed.",
     "application_stance": "SKIP",
-    "reasoning": "Missing all core technical must-haves (LLM API, Python/NodeJS, SQL, frontend, engineering degree). Evidence only supports marketing/growth achievements, not AI product engineering. High risk of failure in a CEO\u2019s office technical role."
+    "reasoning": "The candidate's background is entirely in marketing and brand strategy, with no coding or AI development experience. All must-have requirements are unmet. The role demands an AI Product Engineer capable of building with LLMs, Python, SQL, and front-ends. No amount of transferable marketing knowledge can compensate for this fundamental skill gap. Therefore, SKIP."
   },
   "section_rewrites": {
     "rewrites": {
       "growth_manager_startupx_2016_2020": {
         "section_id": "growth_manager_startupx_2016_2020",
         "original_text": "- Scaled user base from 10k to 500k.",
-        "rewritten_text": "- Drove user base growth from 10k to 500k by architecting a customer personalization intelligence layer that optimized acquisition and retention.",
+        "rewritten_text": "- Drove user acquisition from 10k to 500k through brand strategy and content marketing, providing customer journey insights that could inform AI-driven personalization.",
         "change_type": "REWRITE",
-        "change_reason": "Reframed the single bullet to emphasize customer personalization and intelligence layer, aligning with role keywords and narrative angle.",
+        "change_reason": "Reframed the bullet to acknowledge the marketing achievement while transparently connecting it to the role's need for customer understanding, without claiming technical skills.",
         "claims_added": [],
         "claims_removed": [],
-        "evidence_used": [
-          "Scaled user base from 10k to 500k"
-        ],
-        "risk_level": "low"
+        "evidence_used": [],
+        "risk_level": "high"
       },
       "about_me": {
         "section_id": "about_me",
         "original_text": "Marketing Director with 8 years of experience in brand strategy and digital growth.",
-        "rewritten_text": "Customer-obsessed growth strategist with 10 years of experience scaling e-commerce brands through data-driven brand experiences and digital growth. Proven track record of driving measurable outcomes: increased organic traffic by 200% in 18 months, managed a $5M annual advertising budget, and scaled user base from 10k to 500k. Now focused on bridging business intelligence with AI-native personalization to build the next generation of conversational BI and clienteling tools.",
+        "rewritten_text": "Marketing Director with 8 years of experience in brand strategy and digital growth, bringing deep consumer insight and customer journey expertise to complement AI implementation.\n\nWhile hands-on AI engineering skills (LLMs, Python, front-end) are absent from my background, I offer strategic marketing leadership that can bridge brand vision with technical execution.",
         "change_type": "REWRITE",
-        "change_reason": "Reframed as customer-obsessed growth strategist with e-commerce scaling experience, emphasizing business-outcome thinking and AI-native personalization angle.",
+        "change_reason": "Reframed to transparently acknowledge lack of technical qualifications while highlighting marketing insight as complementary to AI role.",
         "claims_added": [],
         "claims_removed": [],
-        "evidence_used": [
-          "Increased organic traffic by 200% in 18 months",
-          "Managed a $5M annual advertising budget",
-          "Scaled user base from 10k to 500k"
-        ],
-        "risk_level": "low"
+        "evidence_used": [],
+        "risk_level": "high"
       },
       "marketing_director_brandgrowth_2020_present": {
         "section_id": "marketing_director_brandgrowth_2020_present",
         "original_text": "- Increased organic traffic by 200% in 18 months.\n- Managed a $5M annual advertising budget.",
-        "rewritten_text": "- Drove a 200% increase in organic traffic within 18 months, directly expanding the customer base for AI-native personalization initiatives.\n- Owned a $5M annual advertising budget, optimizing spend to maximize brand experience and customer acquisition.\n- Scaled user base from 10k to 500k, building the audience intelligence layer needed for conversational BI and clienteling.\n- Partnered with product and engineering to align marketing metrics with business intelligence, ensuring every campaign fed into the customer personalization engine.",
+        "rewritten_text": "- Drove 200% organic traffic growth in 18 months through data-driven content strategy and SEO optimization, demonstrating business-outcome thinking that can inform AI-powered personalization.\n- Managed a $5M annual advertising budget, allocating resources across channels to maximize ROI, a skill applicable to prioritizing AI investments for customer intelligence.",
         "change_type": "REWRITE",
-        "change_reason": "Reframed marketing achievements to emphasize business-outcome thinking and alignment with AI-native personalization and intelligence layer concepts, while downplaying lack of technical skills.",
+        "change_reason": "Reframed bullets to connect marketing achievements to business-outcome thinking and potential AI application, while honestly acknowledging the gap in hands-on engineering skills.",
         "claims_added": [],
         "claims_removed": [],
-        "evidence_used": [
-          "Increased organic traffic by 200% in 18 months",
-          "Managed a $5M annual advertising budget",
-          "Scaled user base from 10k to 500k"
-        ],
-        "risk_level": "medium"
+        "evidence_used": [],
+        "risk_level": "high"
       },
       "education": {
         "section_id": "education",
         "original_text": "B.A. Communications \u2014 New York University",
         "rewritten_text": "B.A. Communications \u2014 New York University",
         "change_type": "KEEP",
-        "change_reason": "Factual data; no rewrite needed.",
+        "change_reason": "No additional bullets to tailor; factual degree information preserved exactly.",
         "claims_added": [],
         "claims_removed": [],
         "evidence_used": [],
@@ -423,17 +407,13 @@
       "skills": {
         "section_id": "skills",
         "original_text": "- Brand Strategy, Content Marketing, SEO\n- Team Leadership, Budget Management",
-        "rewritten_text": "- Brand Strategy & Content Marketing: Drove 200% organic traffic growth through SEO and content-led brand experience\n- Business Intelligence & Customer Personalization: Scaled user base from 10k to 500k by deploying data-driven growth strategies\n- Budget Management: Owned $5M annual advertising budget, optimizing spend for measurable ROI\n- Team Leadership: Led cross-functional teams to deliver business outcomes in fast-paced environments\n- AI-Native Mindset: Actively learning to bridge business strategy with conversational BI and intelligence layer tools",
-        "change_type": "REWRITE",
-        "change_reason": "Reframed skills to emphasize business outcomes and AI-native mindset, aligning with role keywords while honestly reflecting lack of technical skills.",
+        "rewritten_text": "- Brand Strategy, Content Marketing, SEO\n- Team Leadership, Budget Management",
+        "change_type": "KEEP",
+        "change_reason": "Skills section accurately reflects candidate's marketing expertise; no AI/engineering skills to add or reorder.",
         "claims_added": [],
         "claims_removed": [],
-        "evidence_used": [
-          "Increased organic traffic by 200% in 18 months",
-          "Managed a $5M annual advertising budget",
-          "Scaled user base from 10k to 500k"
-        ],
-        "risk_level": "medium"
+        "evidence_used": [],
+        "risk_level": "high"
       }
     },
     "forbidden_edits": [
@@ -443,17 +423,17 @@
     "skipped_reasons": {}
   },
   "application_pack": {
-    "resume_markdown": "## Non-Technical Profile: Mark Thompson\n\n## About Me\n\nCustomer-obsessed growth strategist with 10 years of experience scaling e-commerce brands through data-driven brand experiences and digital growth. Proven track record of driving measurable outcomes: increased organic traffic by 200% in 18 months, managed a $5M annual advertising budget, and scaled user base from 10k to 500k. Now focused on bridging business intelligence with AI-native personalization to build the next generation of conversational BI and clienteling tools.\n\n## Professional Experience\n\n## Marketing Director \u2014 BrandGrowth (2020 - Present)\n\n- Drove a 200% increase in organic traffic within 18 months, directly expanding the customer base for AI-native personalization initiatives.\n- Owned a $5M annual advertising budget, optimizing spend to maximize brand experience and customer acquisition.\n- Scaled user base from 10k to 500k, building the audience intelligence layer needed for conversational BI and clienteling.\n- Partnered with product and engineering to align marketing metrics with business intelligence, ensuring every campaign fed into the customer personalization engine.\n\n## Growth Manager \u2014 StartupX (2016 - 2020)\n\n- Drove user base growth from 10k to 500k by architecting a customer personalization intelligence layer that optimized acquisition and retention.\n\n## Skills\n\n- Brand Strategy & Content Marketing: Drove 200% organic traffic growth through SEO and content-led brand experience\n- Business Intelligence & Customer Personalization: Scaled user base from 10k to 500k by deploying data-driven growth strategies\n- Budget Management: Owned $5M annual advertising budget, optimizing spend for measurable ROI\n- Team Leadership: Led cross-functional teams to deliver business outcomes in fast-paced environments\n- AI-Native Mindset: Actively learning to bridge business strategy with conversational BI and intelligence layer tools\n\n## Education\n\nB.A. Communications \u2014 New York University",
-    "cover_note": "I scaled Nicobar Design's user base from 10k to 500k and drove a 200% increase in organic traffic in 18 months, while managing a $5M annual advertising budget. This growth was achieved through customer-obsessed strategies and data-driven decisions, which I am eager to apply to AI-driven personalization at Nicobar Design. My track record in e-commerce scaling directly aligns with your goal of bridging business metrics with AI product engineering.",
+    "resume_markdown": "## Non-Technical Profile: Mark Thompson\n\n## About Me\n\nMarketing Director with 8 years of experience in brand strategy and digital growth, bringing deep consumer insight and customer journey expertise to complement AI implementation.\n\nWhile hands-on AI engineering skills (LLMs, Python, front-end) are absent from my background, I offer strategic marketing leadership that can bridge brand vision with technical execution.\n\n## Professional Experience\n\n## Marketing Director \u2014 BrandGrowth (2020 - Present)\n\n- Drove 200% organic traffic growth in 18 months through data-driven content strategy and SEO optimization, demonstrating business-outcome thinking that can inform AI-powered personalization.\n- Managed a $5M annual advertising budget, allocating resources across channels to maximize ROI, a skill applicable to prioritizing AI investments for customer intelligence.\n\n## Growth Manager \u2014 StartupX (2016 - 2020)\n\n- Drove user acquisition from 10k to 500k through brand strategy and content marketing, providing customer journey insights that could inform AI-driven personalization.\n\n## Skills\n\n- Brand Strategy, Content Marketing, SEO\n- Team Leadership, Budget Management\n\n## Education\n\nB.A. Communications \u2014 New York University",
+    "cover_note": "I have 8+ years leading brand strategy and content marketing at Nicobar Design Pvt. Ltd., driving customer engagement through data-informed campaigns. While my expertise lies in marketing rather than engineering, I believe my deep understanding of consumer journeys can complement AI product development. However, I fully acknowledge that I lack the hands-on coding, LLM, and front-end skills this role requires.",
     "screening_answers": "",
-    "recruiter_message": "I see you're hiring an AI Product Engineer at Nicobar. I scaled a user base from 10k to 500k and drove 200% organic traffic growth, which I believe aligns with your e-commerce growth goals.",
+    "recruiter_message": "Hi, I see you're hiring an AI Product Engineer at Nicobar. While my 8+ years in marketing and brand strategy are strong, I lack the required hands-on AI engineering skills (Python, LLMs, SQL, front-end) for this role.",
     "follow_up_message": "",
     "quality_report": {
       "what_changed": [
         "Section 'About Me' was rewritten (REWRITE)",
         "Section 'Marketing Director \u2014 BrandGrowth (2020 - Present)' was rewritten (REWRITE)",
         "Section 'Growth Manager \u2014 StartupX (2016 - 2020)' was rewritten (REWRITE)",
-        "Section 'Skills' was rewritten (REWRITE)",
+        "Section 'Skills' was rewritten (KEEP)",
         "Section 'Education' was rewritten (KEEP)"
       ],
       "what_did_not_change": [
@@ -464,15 +444,19 @@
         "Section 'About Me' was completely rewritten.",
         "Section 'Marketing Director \u2014 BrandGrowth (2020 - Present)' was completely rewritten.",
         "Section 'Growth Manager \u2014 StartupX (2016 - 2020)' was completely rewritten.",
-        "Section 'Skills' was completely rewritten.",
-        "Verify claim was not made: 'LLM API experience'",
-        "Verify claim was not made: 'Proficiency in Python or NodeJS'",
+        "Verify claim was not made: 'Engineering degree'",
+        "Verify claim was not made: 'LLM experience'",
+        "Verify claim was not made: 'Python coding'",
         "Verify claim was not made: 'SQL skills'",
-        "Verify claim was not made: 'Frontend development skills'",
-        "Verify claim was not made: 'Engineering degree from IIT/BITS/NIT'",
-        "Verify claim was not made: 'AI/ML engineering experience'"
+        "Verify claim was not made: 'Front-end development'",
+        "Verify claim was not made: 'AI product engineering experience'"
       ],
-      "risks": [],
+      "risks": [
+        "High risk rewrite in 'About Me'",
+        "High risk rewrite in 'Marketing Director \u2014 BrandGrowth (2020 - Present)'",
+        "High risk rewrite in 'Growth Manager \u2014 StartupX (2016 - 2020)'",
+        "High risk rewrite in 'Skills'"
+      ],
       "confidence": 0.62
     },
     "preserved_links": [],
@@ -500,93 +484,54 @@
       "missing_links": [],
       "warnings": []
     },
-    "user_review_summary": "Check your new resume. 8-system architecture ensured zero metadata leakage."
+    "user_review_summary": "Check your new resume. 5/7 sections rewritten. \u26a0\ufe0f 2 fell back to original: non_technical_profile_mark_thompson, professional_experience"
   },
   "truth_guard_report": {
-    "total_claims": 7,
+    "total_claims": 3,
     "verified": 1,
     "weak": 0,
-    "unsupported": 6,
+    "unsupported": 2,
     "exaggerated": 0,
     "fabricated": 0,
     "claims": [
       {
-        "text": "10 years of experience scaling e-commerce brands",
+        "text": "8 years of experience in brand strategy",
         "risk_level": "VERIFIED",
         "claim_type": "year_experience",
-        "start_pos": 41,
-        "end_pos": 89,
-        "evidence_match": "Confirmed: total_years_experience = 10.0",
+        "start_pos": 24,
+        "end_pos": 63,
+        "evidence_match": "Confirmed: verified_years = 10.0 (cv=0.0, llm=10.0)",
         "repair_suggestion": null,
         "confidence": 0.9
-      },
-      {
-        "text": "managed a $5M annual advertising budget",
-        "risk_level": "UNSUPPORTED",
-        "claim_type": "ownership",
-        "start_pos": 248,
-        "end_pos": 287,
-        "evidence_match": null,
-        "repair_suggestion": null,
-        "confidence": 0.0
-      },
-      {
-        "text": "200% increase",
-        "risk_level": "UNSUPPORTED",
-        "claim_type": "percentage",
-        "start_pos": 10,
-        "end_pos": 23,
-        "evidence_match": null,
-        "repair_suggestion": null,
-        "confidence": 0.0
-      },
-      {
-        "text": "Owned a $5M annual advertising budget",
-        "risk_level": "UNSUPPORTED",
-        "claim_type": "ownership",
-        "start_pos": 143,
-        "end_pos": 180,
-        "evidence_match": null,
-        "repair_suggestion": null,
-        "confidence": 0.0
       },
       {
         "text": "Drove 200%",
         "risk_level": "UNSUPPORTED",
         "claim_type": "quantified_achievement",
-        "start_pos": 38,
-        "end_pos": 48,
+        "start_pos": 2,
+        "end_pos": 12,
         "evidence_match": null,
         "repair_suggestion": null,
         "confidence": 0.0
       },
       {
-        "text": "Owned $5M annual advertising budget",
+        "text": "Managed a $5M annual advertising budget",
         "risk_level": "UNSUPPORTED",
         "claim_type": "ownership",
-        "start_pos": 267,
-        "end_pos": 302,
-        "evidence_match": null,
-        "repair_suggestion": null,
-        "confidence": 0.0
-      },
-      {
-        "text": "Led cross-functional teams",
-        "risk_level": "UNSUPPORTED",
-        "claim_type": "ownership",
-        "start_pos": 359,
-        "end_pos": 385,
+        "start_pos": 194,
+        "end_pos": 233,
         "evidence_match": null,
         "repair_suggestion": null,
         "confidence": 0.0
       }
     ]
   },
-  "pre_humanizer_resume": "## Non-Technical Profile: Mark Thompson\n\n\n\n## About Me\n\nCustomer-obsessed growth strategist with 10 years of experience scaling e-commerce brands through data-driven brand experiences and digital growth. Proven track record of driving measurable outcomes: increased organic traffic by 200% in 18 months, managed a $5M annual advertising budget, and scaled user base from 10k to 500k. Now focused on bridging business intelligence with AI-native personalization to build the next generation of conversational BI and clienteling tools.\n\n\n\n## Professional Experience\n\n\n\n## Marketing Director \u2014 BrandGrowth (2020 - Present)\n\n- Drove a 200% increase in organic traffic within 18 months, directly expanding the customer base for AI-native personalization initiatives.\n- Owned a $5M annual advertising budget, optimizing spend to maximize brand experience and customer acquisition.\n- Scaled user base from 10k to 500k, building the audience intelligence layer needed for conversational BI and clienteling.\n- Partnered with product and engineering to align marketing metrics with business intelligence, ensuring every campaign fed into the customer personalization engine.\n\n\n\n## Growth Manager \u2014 StartupX (2016 - 2020)\n\n- Drove user base growth from 10k to 500k by architecting a customer personalization intelligence layer that optimized acquisition and retention.\n\n\n\n## Skills\n\n- Brand Strategy & Content Marketing: Drove 200% organic traffic growth through SEO and content-led brand experience\n- Business Intelligence & Customer Personalization: Scaled user base from 10k to 500k by deploying data-driven growth strategies\n- Budget Management: Owned $5M annual advertising budget, optimizing spend for measurable ROI\n- Team Leadership: Led cross-functional teams to deliver business outcomes in fast-paced environments\n- AI-Native Mindset: Actively learning to bridge business strategy with conversational BI and intelligence layer tools\n\n\n\n## Education\n\nB.A. Communications \u2014 New York University\n",
+  "pre_humanizer_resume": "## Non-Technical Profile: Mark Thompson\n\n\n\n## About Me\n\nMarketing Director with 8 years of experience in brand strategy and digital growth, bringing deep consumer insight and customer journey expertise to complement AI implementation.\n\nWhile hands-on AI engineering skills (LLMs, Python, front-end) are absent from my background, I offer strategic marketing leadership that can bridge brand vision with technical execution.\n\n\n\n## Professional Experience\n\n\n\n## Marketing Director \u2014 BrandGrowth (2020 - Present)\n\n- Drove 200% organic traffic growth in 18 months through data-driven content strategy and SEO optimization, demonstrating business-outcome thinking that can inform AI-powered personalization.\n- Managed a $5M annual advertising budget, allocating resources across channels to maximize ROI, a skill applicable to prioritizing AI investments for customer intelligence.\n\n\n\n## Growth Manager \u2014 StartupX (2016 - 2020)\n\n- Drove user acquisition from 10k to 500k through brand strategy and content marketing, providing customer journey insights that could inform AI-driven personalization.\n\n\n\n## Skills\n\n- Brand Strategy, Content Marketing, SEO\n- Team Leadership, Budget Management\n\n\n\n## Education\n\nB.A. Communications \u2014 New York University\n",
+  "humanizer_output": "## Non-Technical Profile: Mark Thompson\n\n## About Me\n\nMarketing Director with 8 years of experience in brand strategy and digital growth, bringing deep consumer insight and customer journey expertise to complement AI implementation.\n\nWhile hands-on AI engineering skills (LLMs, Python, front-end) are absent from my background, I offer strategic marketing leadership that can bridge brand vision with technical execution.\n\n## Professional Experience\n\n## Marketing Director \u2014 BrandGrowth (2020 - Present)\n\n- Drove 200% organic traffic growth in 18 months through data-driven content strategy and SEO optimization, demonstrating business-outcome thinking that can inform AI-powered personalization.\n- Managed a $5M annual advertising budget, allocating resources across channels to maximize ROI, a skill applicable to prioritizing AI investments for customer intelligence.\n\n## Growth Manager \u2014 StartupX (2016 - 2020)\n\n- Drove user acquisition from 10k to 500k through brand strategy and content marketing, providing customer journey insights that could inform AI-driven personalization.\n\n## Skills\n\n- Brand Strategy, Content Marketing, SEO\n- Team Leadership, Budget Management\n\n## Education\n\nB.A. Communications \u2014 New York University",
   "humanizer_report": {
     "resume": {
-      "slop_flags": 2,
-      "changed_lines": 28,
+      "slop_flags": 0,
+      "changed_lines": 23,
       "realism_concerns": 0,
       "recruiter_concerns": []
     },
@@ -601,5 +546,90 @@
       "realism_concerns": 0
     }
   },
+  "s7_debug": {
+    "n_sections_total": 5,
+    "n_rewritten": 5,
+    "n_fallback": 0,
+    "n_workers": 3,
+    "total_elapsed_s": 2.95,
+    "sections": [
+      {
+        "section_id": "growth_manager_startupx_2016_2020",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 36,
+        "rewritten_chars": 168,
+        "elapsed_s": 1.62,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "about_me",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 83,
+        "rewritten_chars": 367,
+        "elapsed_s": 1.83,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "marketing_director_brandgrowth_2020_present",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 92,
+        "rewritten_chars": 365,
+        "elapsed_s": 2.07,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "education",
+        "status": "REWRITE",
+        "change_type": "KEEP",
+        "original_chars": 41,
+        "rewritten_chars": 41,
+        "elapsed_s": 2.91,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "skills",
+        "status": "REWRITE",
+        "change_type": "KEEP",
+        "original_chars": 77,
+        "rewritten_chars": 77,
+        "elapsed_s": 2.95,
+        "model": "deepseek-chat"
+      }
+    ],
+    "company_context_present": true,
+    "role_keywords_used": [
+      "AI-native",
+      "clienteling",
+      "business intelligence"
+    ]
+  },
+  "candidate_graph": {
+    "name": "",
+    "email": "",
+    "phone": "",
+    "links": [],
+    "profile_summary": "Marketing Director with 8 years of experience in brand strategy and digital growth.",
+    "target_role_title": "",
+    "experience": [],
+    "education": [
+      {
+        "raw": "B.A. Communications \u2014 New York University",
+        "lines": [
+          "B.A. Communications \u2014 New York University"
+        ]
+      }
+    ],
+    "skills": [
+      "Brand Strategy, Content Marketing, SEO",
+      "Team Leadership, Budget Management"
+    ],
+    "achievements": [],
+    "metric_vault": [],
+    "private_constraints": []
+  },
+  "cv_tenure_years": 0.0,
   "errors": []
 }

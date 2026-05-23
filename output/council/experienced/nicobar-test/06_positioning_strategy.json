@@ -1,0 +1,25 @@
+{
+  "one_line_positioning": "Distributed systems architect unsuited for AI Product Engineer role due to lack of AI, frontend, and e-commerce skills.",
+  "narrative_angle": "The candidate brings deep infrastructure scalability (Kubernetes, real-time analytics) but has no experience with LLM APIs, frontend development, or SQL—the core of this role. This mismatch cannot be overcome by transferable skills.",
+  "lead_strengths": [
+    "Led migration of 500+ microservices to Kubernetes",
+    "Reduced database latency by 40% using custom caching layers",
+    "Built real-time analytics engine handling 1M events/sec"
+  ],
+  "proof_points_to_emphasize": [
+    "Led migration of 500+ microservices",
+    "Optimized database latency by 40% using custom caching layers",
+    "Built real-time analytics engine handling 1M events/sec"
+  ],
+  "things_to_downplay": [
+    "No LLM API experience (disqualifier)",
+    "No frontend development experience (disqualifier)",
+    "No SQL evidence",
+    "No e-commerce/retail experience",
+    "No personalization or recommendation systems work"
+  ],
+  "tone_guidance": "Do not apply; candidate lacks essential skills. If applying, acknowledge gaps upfront and highlight willingness to learn, but success is unlikely.",
+  "recruiter_first_impression_target": "This candidate is not qualified for the role due to missing AI, frontend, and SQL experience.",
+  "application_stance": "SKIP",
+  "reasoning": "The candidate's differentiator is infrastructure scalability, but the role requires hands-on AI product engineering—specifically LLM APIs, frontend, and SQL—all of which are absent. With 14 years in distributed systems, they are overqualified in the wrong domain and lack any e-commerce or design-led product experience. Fit is below 40%, making a SKIP the only honest stance."
+}

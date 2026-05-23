@@ -1,8 +1,8 @@
 # CareerLoop — Canonical Architecture v1.0
 
-**Status:** FINAL — all architecture decisions locked  
-**Date:** 2026-05-21  
-**Supersedes:** All prior architecture documents  
+**Status:** FINAL — all architecture decisions locked
+**Date:** 2026-05-23
+**Supersedes:** All prior architecture documents
 **Based on:** PRD.md v1.0 + CAREERLOOP_REUSE_AUDIT.md + CAREERLOOP_COUNCIL_AUDIT.md
 
 ---
@@ -57,6 +57,8 @@ No independent CV generator. Council owns all content generation. Renderer owns 
 | Profile Manager | `careerloop/profile_manager.py` | 50% |
 | Resume Council | `careerloop/council/` (10 files) | 82% |
 | Memory Layer | `careerloop/memory/` (4 files) | 10% |
+| Delivery Orchestration | `careerloop/session/`, `careerloop/transport/` | 12% 🔴 SCAFFOLD — supervisor/transport exist, contract unverified |
+| Assisted Apply Bridge | `careerloop/execution/kimi_bridge.py` | 5% ⚫ MOCK — no real Webbridge/Hermes execution yet |
 | Company Intelligence | `careerloop/company_intel.py` | 75% ✅ LIVE — MECE D1-D5 vectors, LinkedIn PortalScraper, Glassdoor ScrapeGraph, DDG web enrichment |
 | Humanizer | `careerloop/council/humanizer.py` | 65% ✅ LIVE — 5-phase pipeline, 29 regression tests, aggressive rewrite prompt |
 | Product Lead Skill | `.claude/skills/careerloop-product-lead/` | 100% |
@@ -173,8 +175,9 @@ Apply Assist
     │
     ├── modes/apply.md workflow (wrapped)
     ├── Fill form fields, draft answers
-    ├── User reviews and submits manually
-    └── Future: Chrome extension with native DOM hooks
+    ├── User reviews every application pack
+    ├── Optional assisted execution only after explicit per-job approval
+    └── Future: Kimi/Hermes bridge or Chrome extension with native DOM hooks
     │
     ▼
 Track + Follow Up
@@ -292,7 +295,7 @@ ACTIVE STATES:    All non-terminal, non-dormant
 
 | File | Action | Replacement |
 |------|--------|-------------|
-| `modes/apply.md` | Deprecate Playwright-based flow. Keep as spec reference. | Chrome extension (native DOM) |
+| `modes/apply.md` | Deprecate as primary execution engine. Keep as spec/reference. | Assisted apply bridge (Kimi/Hermes or Chrome extension) |
 | `modes/pdf.md` (content part) | Deprecate content generation. Keep renderer invocation. | Council owns content; pdf.md becomes renderer trigger only. |
 
 ---
@@ -317,7 +320,19 @@ ACTIVE STATES:    All non-terminal, non-dormant
 │   ├── shortlist_formatter.py            ✅ WhatsApp-style output
 │   ├── daily_runner.py                   ✅ Daily pipeline orchestrator
 │   ├── company_intel.py                  ✅ LIVE — 1,419 lines, full MECE implementation
+│   ├── chat_cli.py                       🔴 Phase 0 scaffold — Terminal entry point
 │   ├── learning.py                       🔴 Phase 2 — pattern analysis (port of analyze-patterns.mjs)
+│   ├── transport/                        🔴 Phase 0 scaffold — adapters normalize platform payloads
+│   │   ├── base.py                       🔴 TransportAdapter + UserEvent; needs graph-state mapping fix
+│   │   ├── terminal_chat.py              🔴 Local test adapter
+│   │   └── telegram.py                   🔴 Telegram stub
+│   ├── session/                          🔴 Phase 0 scaffold — conversational state + supervisor
+│   │   ├── supervisor_graph.py           🔴 LangGraph parent graph; router placeholder
+│   │   ├── states.py                     🔴 UserState enum
+│   │   ├── session_store.py              🔴 fallback store
+│   │   └── user_registry.py              🔴 user registry
+│   ├── execution/                        ⚫ Phase 5 mock — assisted apply bridge
+│   │   └── kimi_bridge.py                ⚫ Kimi/Hermes concept; no real browser integration yet
 │   ├── council/                          ✅ Resume Council
 │   │   ├── graph.py                      ✅ LangGraph state machine (S1-S8 + Truth Guard); CouncilState: candidate_graph + cv_tenure_years wired
 │   │   ├── orchestrator.py               ✅ One-job runner
@@ -328,9 +343,11 @@ ACTIVE STATES:    All non-terminal, non-dormant
 │   │   ├── llm.py                        ✅ DeepSeek client
 │   │   ├── truth_guard.py               ✅ Semantic claim validation + CV-tenure year-inflation guard
 │   │   └── humanizer.py                 ✅ LIVE — 5-phase Cope-Killer pipeline (29 tests)
-│   ├── memory/                           ✅ SQLite persistence
+│   ├── memory/                           🟡 Persistence
 │   │   ├── models.py                     ✅ SQLAlchemy models (6 entities)
 │   │   ├── connection.py                 ✅ SQLite connection
+│   │   ├── checkpointer.py               🔴 LangGraph PostgresSaver wrapper; needs Supabase connection test
+│   │   ├── supabase_schema.sql           🔴 Supabase schema scaffold
 │   │   ├── repository.py                 ✅ CRUD
 │   │   └── retrieval.py                  ✅ Query layer
 │   ├── sources/                          ✅ Discovery adapters
@@ -379,6 +396,8 @@ ACTIVE STATES:    All non-terminal, non-dormant
 
 4. **No auto-submit.** Every application, every message, every form requires manual user review and confirmation before sending.
 
+4a. **Assisted apply is single-job and approval-gated.** A bridge may fill and submit only after the user has reviewed one application pack and issued an explicit per-job approval. It may not process a queue, choose jobs, or submit unattended bulk applications.
+
 5. **Humanizer runs on every user-facing text output.** No exception for cover notes, recruiter messages, resume text, or follow-ups.
 
 6. **Company intelligence is structured, not narrative.** Output is a populated dataclass with confidence scores and source attribution. It is cached in `company_memory`. It answers "should THIS user want THIS company."
@@ -387,16 +406,19 @@ ACTIVE STATES:    All non-terminal, non-dormant
 
 8. **Council never invents content.** Every claimed skill, achievement, and metric must trace back to `cv.md` or `article-digest.md`. Truth Guard enforces this mechanically.
 
+9. **Transports do not own business logic.** CLI, Telegram, WhatsApp, or future UI channels must normalize into `UserEvent`, map into `ConversationState`, and invoke the LangGraph Supervisor with a stable `thread_id`.
+
 ---
 
 ## 8. Phase Map (Post-Consolidation)
 
 | Phase | Systems | % of Vision | Est. Completion |
 |-------|---------|-------------|-----------------|
+| **Phase 0** (Delivery Foundation) | Transport, Supervisor, Checkpointer, Onboarding | ~10% | 12% scaffolded |
 | **Phase 1** (Discovery + Pre-filter) | Discovery, Verification, India Fit Engine, Ledger | ~25% | 70% built |
 | **Phase 1.5** (Decision + Memory) | Triage UX, Career State Modes, A-G wrapper, Ledger migration | ~20% | 25% built |
 | **Phase 2** (Intelligence + Positioning) | Company Intel, Humanizer, Council hardening, Positioning engine | ~25% | 50% built (Company Intel + Humanizer live) |
-| **Phase 3** (Execution) | Application assist, Chrome extension, Follow-up surface, Outreach | ~20% | 5% built |
+| **Phase 3** (Execution) | Application assist, Kimi/Hermes bridge, Chrome extension fallback, Follow-up surface, Outreach | ~20% | 8% built |
 | **Phase 4** (Learning Loop) | Interview memory, Pattern learning, Profile auto-tuning, Monetization | ~10% | 2% built |
 
 ---

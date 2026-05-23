@@ -7,35 +7,37 @@
 
 ## Current Sprint Focus
 
-**Week of 2026-05-22 — WhatsApp Transport + Multi-User Onboarding + Daily Brief Delivery**
+**Week of 2026-05-23 — Delivery Foundation Scaffolding + Supervisor Graph Hardening**
 
 S8.5 completeness check shipped. Council is at quality ceiling (93%). System status review complete.
 
-**Critical finding:** Zero user-facing interface exists. All backend systems (Council 93%, Discovery 75%, Company Intel 75%) are CLI-only. `whatsapp_ux.py` has message formatters but no transport. `daily_runner.py` outputs to console only. A user cannot interact with CareerLoop in any form today.
+**Critical finding:** The user-facing interface is now scaffolded but not functional end-to-end. All strong backend systems (Council 93%, Discovery 75%, Company Intel 75%) still need a verified transport → supervisor graph → delivery loop. `TransportAdapter`, `TerminalChatAdapter`, `supervisor_graph.py`, `PostgresSaver`, and `kimi_bridge.py` exist as first-pass code, but graph state mapping, real routing, delivery, and safe assisted apply are not yet production-ready.
 
 **This sprint:** Ship the integration layer that connects the backend to users:
-1. **WhatsApp Transport** (P0) — Twilio/Meta webhook, session state, message router
-2. **Multi-User Onboarding** (P0) — CV upload → profile creation → user registry
-3. **Daily Brief Cron** (P1) — DailyRunner → WhatsApp delivery at 7AM IST per user
+1. **Supervisor contract repair** (P0) — `UserEvent` → `ConversationState`, tested graph routing, stable `thread_id`
+2. **Terminal/Telegram beta loop** (P0) — message in → graph → response out; document delivery path
+3. **Multi-User Onboarding** (P0) — CV upload → profile creation → user registry
+4. **Daily Brief Cron** (P1) — DailyRunner → transport delivery at 7AM IST per user
 
 ---
 
 ## System Status (Live)
 
-> Updated 2026-05-22 — Phase 0 Delivery Foundation added as P0. Transport/onboarding/state machine are the new bottleneck. All backend systems are CLI-only.
+> Updated 2026-05-23 — Phase 0 Delivery Foundation has first-pass scaffolds. The bottleneck is now contract correctness and end-to-end verification, not file creation.
 
 | System | % | Status | Blocking? | Notes |
 |--------|---|--------|-----------|-------|
-| **Transport abstraction layer** | **0%** | 🔴 | **YES** | TransportAdapter + TelegramAdapter. Blocks all user access. Sprint 0. |
+| **Transport abstraction layer** | **18%** | 🔴 | **YES** | Base + Terminal/Telegram stubs exist. Graph handoff and document delivery unverified. Sprint 0. |
 | **Multi-user onboarding** | **0%** | 🔴 | **YES** | CV upload → profile creation → user registry. Sprint 1. |
-| **Session state machine** | **0%** | 🔴 | **YES** | 15 states. Routes messages to correct handlers. Sprint 0. |
+| **LangGraph Chatbot Orchestrator** | **12%** | 🔴 | **YES** | Supervisor graph scaffold exists. Intent router placeholder; `UserEvent`/state mismatch must be fixed. Sprint 0. |
+| **PostgresSaver Checkpointer** | **15%** | 🔴 | **YES** | Supabase checkpointer wrapper + schema scaffold exist. Needs connection test + interrupt/resume proof. Sprint 0. |
 | **Application pack delivery** | **0%** | 🔴 | **YES** | Pack → PDF → send_document(). Sprint 3. |
 | **Daily brief cron delivery** | **5%** | 🔴 | **YES** | DailyRunner exists. Transport missing. Sprint 2. |
 | India-first discovery | 75% | 🟡 | No | ATS adapter + Spire AI adapter; portal layer still ~0% for JS-heavy sites |
 | Verification & filtering | 60% | 🟡 | No | detect_ats_pass.py; Block G not hoisted |
 | Opportunity scoring (14-dim) | 55% | 🟡 | No | function_probability.py + metrics.py; needs calibration |
 | Decision compression / triage | 20% | 🔴 | No | CEO owns. DECISION_COMPRESSION_VISION.md written. |
-| Career state system (modes) | 10% | 🔴 | No | Conceptual only |
+| Career state system (modes) | 15% | 🔴 | No | `UserState` + supervisor scaffold; no proven routing yet |
 | Company intelligence | 75% | 🟢 | No | MECE vision implemented; S3 cache working |
 | Positioning engine | 38% | 🟡 | No | S6 wired; tailoring delta substantial; narrative angle reaches S7 |
 | Resume Council (v3) | 93% | 🟢 | No | Job-aware chunking; prose fallback; 42 tests; ceiling hit |
@@ -44,8 +46,8 @@ S8.5 completeness check shipped. Council is at quality ceiling (93%). System sta
 | ATS validator layer | 0% | ⚫ | No | Spec written (PRD §26). Sprint 4. |
 | Resume editing layer | 0% | ⚫ | No | Spec written (PRD §25). Surgical edits without full Council rerun. Sprint 4. |
 | Validator / QA | 75% | 🟡 | No | 42 stabilization + 22 integration pass; automated pre-render validation |
-| Application execution | 15% | 🔴 | No | modes/apply.md prototype; Chrome extension Phase 5 |
-| Chrome extension | 0% | ⚫ | No | Phase 5. Needs user base first. |
+| Application execution | 18% | 🔴 | No | modes/apply.md prototype; Kimi bridge scaffold. Real Webbridge/Hermes integration not verified. |
+| Assisted apply bridge | 5% | ⚫ | No | `kimi_bridge.py` mock only. Must never run queue-based or unattended submission. |
 | Follow-up engine (full) | 25% | 🔴 | No | Scheduling exists. Message generation + delivery = Sprint 5. |
 | Gmail integration | 0% | ⚫ | No | Sprint 6. Needs transport first. |
 | Calendar integration | 0% | ⚫ | No | Sprint 6. Needs transport first. |
@@ -55,7 +57,7 @@ S8.5 completeness check shipped. Council is at quality ceiling (93%). System sta
 | WhatsApp / Meta Cloud API | 0% | ⚫ | No | After Telegram beta validates loop. |
 | Monetization / billing | 0% | 🔴 | No | Pricing tiers defined. No paywall yet. Needs onboarding first. |
 
-**Overall product maturity: ~58-61% of vision.** Council ceiling hit (93%). Zero user-facing interface. Transport + onboarding + state machine are P0.
+**Overall product maturity: ~59-62% of vision.** Council ceiling hit (93%). User-facing interface is scaffolded but not live. Transport + supervisor graph + onboarding remain P0.
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -69,9 +71,9 @@ S8.5 completeness check shipped. Council is at quality ceiling (93%). System sta
 | ~~B2~~ | Humanizer not implemented | Closed | ✅ 5-phase pipeline + LLM wired |
 | ~~B3~~ | cover_note/recruiter_message stubs | Closed | ✅ Improved prompts + richer context |
 | ~~B7~~ | LLM nodes lacked JSON schemas | Closed | ✅ All 6 prompts have JSON examples |
-| **B-TRANSPORT** | No WhatsApp transport layer — no webhook, no Twilio/Meta API, no message routing | User-facing | **P0** |
+| **B-TRANSPORT** | Transport stubs exist, but no verified webhook/document delivery/graph response loop | User-facing | **P0** |
 | **B-ONBOARD** | No multi-user onboarding — 3 hardcoded PERSON_CONFIGs, no CV-upload-to-profile flow | User-facing | **P0** |
-| **B-SESSION** | No conversation state machine — no per-user session, no job→decision→council trigger | User-facing | **P0** |
+| **B-SUPERVISOR** | LangGraph scaffold exists, but state contract/routing/resume interrupts are not verified | User-facing | **P0** |
 | **B-DELIVERY** | Council generates 10 PDFs per run but delivers them to nobody | User-facing | **P0** |
 | B4 | Company career pages invisible | Discovery | P2 |
 | B5 | Decision compression UX not built | Triage | P2 |
@@ -97,6 +99,8 @@ S8.5 completeness check shipped. Council is at quality ceiling (93%). System sta
 | A9 | Strategy: `deepseek-v4-pro`, Writer: `deepseek-chat` | 2026-05-18 |
 | A10 | NormalizedResume = single data contract for ALL renderers | 2026-05-18 |
 | A11 | Post-render validation FAILS HARD on `**`, `—`, `→` | 2026-05-18 |
+| A12 | Delivery orchestration uses LangGraph Supervisor; transports adapt into `ConversationState`, not business logic | 2026-05-23 |
+| A13 | Assisted apply may execute only one explicitly reviewed and approved job; no unattended queue/bulk submit | 2026-05-23 |
 
 ---
 
@@ -448,6 +452,28 @@ CareerLoop has 93% Council + 75% Discovery + 75% Company Intel — all working �
 1. **WhatsApp Transport Layer** — Twilio webhook + session state + message router. 2-3 days. Unlocks everything. (PRD Phase 8, §13)
 2. **Multi-User Onboarding** — CV upload → profile creation → user_registry.py. 2-3 days. Unblocks monetization. (PRD §3, Phase 8)
 3. **Daily Brief Cron** — DailyRunner → daily_brief() → WhatsApp send at 7AM IST. 1 day if transport exists. (PRD §7, Phase 1.5)
+
+---
+
+### 2026-05-23 — Session: Delivery Orchestration Scaffold + Documentation Reconciliation
+
+**What was done:**
+- **LangGraph Supervisor scaffold:** `careerloop/session/supervisor_graph.py` added with a parent graph, basic router node, Resume Council subgraph call, and HITL interrupt checkpoint.
+- **Legacy Phase 1 wrappers:** `scan.mjs` and `check-liveness.mjs` exposed as LangChain tools, confirming the right integration direction for CEO-built discovery/evaluation assets.
+- **Transport abstraction scaffold:** `TransportAdapter`, `UserEvent`, `TerminalChatAdapter`, and Telegram stubs added so CLI/Telegram/WhatsApp can normalize input into one event shape.
+- **Persistence scaffold:** `careerloop/memory/checkpointer.py` and Supabase schema scaffold added for LangGraph `PostgresSaver` persistence.
+- **Assisted apply scaffold:** `careerloop/execution/kimi_bridge.py` added as a Kimi/Hermes bridge concept, but currently mock-only and not verified against a browser/Webbridge.
+- **Docs reconciled:** PRD, Technology Roadmap, Canonical Architecture, Tracker, docs indexes, dev-blog, and next-agent handoff updated to reflect scaffold status and safety constraints.
+
+**Vision alignment verdict:** ✅ ALIGNED, BUT NOT COMPLETE
+The direction directly advances PRD §21-§23 and the Phase 0 Delivery Foundation. The implementation should be treated as a first scaffold, not a completed migration, because the transport-to-graph state contract is not yet proven and the Kimi bridge is only a mock.
+
+**Deviations detected:** The phrase "apply while you sleep" can conflict with A7. Canonical interpretation is now: execute one already reviewed and explicitly approved job asynchronously; never autonomous selection, queue processing, or bulk submit.
+
+**Recommended next 3 actions:**
+1. Fix and test `UserEvent` → `ConversationState` mapping in `TransportAdapter` and `supervisor_graph.py` (PRD §21-§22).
+2. Add graph tests for IDLE, brief, scan, pack generation, HITL interrupt/resume, and subprocess-tool failure handling (PRD §22-§23).
+3. Change `kimi_bridge.py` from "submit" mock language to an explicit approved-job execution contract with dry-run and final confirmation modes (A7/A13).
 
 ---
 

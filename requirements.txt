@@ -16,6 +16,15 @@ mistune>=3.0
 python-dotenv>=1.0
 PyYAML>=6.0
 
+# Database + orchestration runtime
+psycopg2-binary>=2.9
+langgraph>=0.2
+langchain-core>=0.3
+
+# CLI UX
+prompt_toolkit>=3.0
+rich>=13.0
+
 # Multi-board job search (optional — requires C compiler to build on Windows)
 # pip install python-jobspy
 # python-jobspy>=1.1

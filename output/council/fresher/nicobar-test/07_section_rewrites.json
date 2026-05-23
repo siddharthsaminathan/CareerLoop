@@ -3,69 +3,56 @@
     "skills": {
       "section_id": "skills",
       "original_text": "- Python, R, SQL\n- TensorFlow, PyTorch\n- Data Visualization (Tableau)",
-      "rewritten_text": "- Python, SQL\n- TensorFlow, PyTorch\n- Data Visualization (Tableau)",
+      "rewritten_text": "- Python, SQL, NodeJS\n- TensorFlow, PyTorch, BERT (NLP)\n- React, Tailwind CSS (frontend)\n- Data Visualization (Tableau)",
       "change_type": "REWRITE",
-      "change_reason": "Reordered skills to prioritize Python and SQL as must-haves, moved R to de-emphasize, and kept TensorFlow/PyTorch for ML relevance.",
+      "change_reason": "Reordered skills to prioritize role-relevant technologies (Python, SQL, NodeJS) and added NLP/frontend context to align with Nicobar's AI-native and brand-conscious needs.",
       "claims_added": [],
-      "claims_removed": [
-        "R"
-      ],
+      "claims_removed": [],
       "evidence_used": [],
       "risk_level": "low"
     },
     "sentiment_analysis_bot": {
       "section_id": "sentiment_analysis_bot",
       "original_text": "- Built a Twitter sentiment analyzer using BERT. [Source Code](https://github.com/priya/bert-bot)",
-      "rewritten_text": "- Shipped an AI-native sentiment analysis engine using BERT, demonstrating ability to rapidly build and deploy ML models that extract business intelligence from social data. [Source Code](https://github.com/priya/bert-bot)",
+      "rewritten_text": "- Shipped a BERT-powered Twitter sentiment analyzer that classifies customer sentiment in real time, demonstrating NLP proficiency applicable to personalization and conversational AI. [Source Code](https://github.com/priya/bert-bot)",
       "change_type": "REWRITE",
-      "change_reason": "Reframed the project as an AI-native intelligence layer to align with role keywords and narrative angle, while strengthening the verb and emphasizing rapid delivery.",
+      "change_reason": "Reframed the bullet to emphasize NLP and real-time classification, connecting it to Nicobar's personalization and conversational AI goals while using 'Shipped' for ownership.",
       "claims_added": [],
       "claims_removed": [],
-      "evidence_used": [
-        "Built a Twitter sentiment analyzer using BERT",
-        "Source Code link"
-      ],
+      "evidence_used": [],
       "risk_level": "low"
     },
     "profile": {
       "section_id": "profile",
       "original_text": "Recent Computer Science graduate with a passion for Machine Learning and Data Science.",
-      "rewritten_text": "Recent IIT Delhi Computer Science graduate (GPA 9.2) with a strong engineering foundation and a passion for building AI-native products. Eager to apply Python and ML skills to create intelligence layers that drive customer personalization and conversational BI in a fast-paced retail environment. Proven ability to rapidly ramp up on new technologies and deliver outcomes, as demonstrated by a BERT-based sentiment analysis project and a data science internship. Ready to own end-to-end development of AI-first solutions that elevate brand experience.",
+      "rewritten_text": "AI-native builder with a top-tier IIT Delhi engineering foundation, combining hands-on frontend development (React, Tailwind) with machine learning experimentation (NLP, BERT) to craft polished customer experiences.\n\nProficient in Python, SQL, and data analysis, with a rapid learning curve and project initiative that enables quick scaling to personalization and conversational AI goals in e-commerce.\n\nEarly-career engineer with elite academic credentials (IIT Delhi CS, GPA 9.2) and a demonstrated ability to independently own projects from concept to deployment.",
       "change_type": "REWRITE",
-      "change_reason": "Reframed the profile to emphasize AI-native product development, customer personalization, and conversational BI, aligning with the target role's language and narrative angle.",
+      "change_reason": "Reframed the profile to emphasize AI-native mindset, IIT Delhi pedigree, and frontend/ML skills relevant to Nicobar's personalization and conversational AI needs, while acknowledging early career stage.",
       "claims_added": [],
       "claims_removed": [],
-      "evidence_used": [
-        "IIT Delhi graduate with strong CS foundation (GPA 9.2)",
-        "Built ML project using BERT for sentiment analysis",
-        "Internship applying data science to finance"
-      ],
-      "risk_level": "low"
+      "evidence_used": [],
+      "risk_level": "medium"
     },
     "portfolio_website": {
       "section_id": "portfolio_website",
       "original_text": "- Designed a personal portfolio using React and Tailwind. [Live Demo](https://priya.dev)",
-      "rewritten_text": "- Shipped an AI-native portfolio site using React and Tailwind to showcase ML projects and brand experience. [Live Demo](https://priya.dev)",
+      "rewritten_text": "- Architected a brand-conscious portfolio website using React and Tailwind, demonstrating frontend skills aligned with Nicobar's design-led customer experiences. [Live Demo](https://priya.dev)",
       "change_type": "REWRITE",
-      "change_reason": "Reframed personal portfolio as AI-native and brand-focused to align with target role's language and narrative angle.",
+      "change_reason": "Reframed the portfolio bullet to emphasize design-conscious frontend development, connecting to Nicobar's brand-obsessed and customer-centric culture.",
       "claims_added": [],
       "claims_removed": [],
-      "evidence_used": [
-        "Designed a personal portfolio using React and Tailwind"
-      ],
+      "evidence_used": [],
       "risk_level": "low"
     },
     "data_science_intern_fintech_corp_summer_2023": {
       "section_id": "data_science_intern_fintech_corp_summer_2023",
       "original_text": "- Analyzed loan default patterns using logistic regression.",
-      "rewritten_text": "- Built a logistic regression model to predict loan default patterns, demonstrating ability to deliver business intelligence from raw data.",
+      "rewritten_text": "- Built a loan default prediction model using logistic regression, delivering business intelligence that informed risk assessment decisions.",
       "change_type": "REWRITE",
-      "change_reason": "Reframed the bullet to emphasize ownership and business intelligence, aligning with the target role's need for outcome-driven analytics.",
+      "change_reason": "Reframed the bullet to emphasize business intelligence outcome and ownership, aligning with role's need for data-driven decision-making.",
       "claims_added": [],
       "claims_removed": [],
-      "evidence_used": [
-        "Analyzed loan default patterns using logistic regression"
-      ],
+      "evidence_used": [],
       "risk_level": "low"
     }
   },

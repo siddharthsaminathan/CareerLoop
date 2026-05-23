@@ -1,0 +1,64 @@
+{
+  "rewrites": {
+    "skills": {
+      "section_id": "skills",
+      "original_text": "- Golang, Rust, Python\n- Kubernetes, Terraform, AWS\n- System Design, Distributed Databases",
+      "rewritten_text": "- Python, Golang, Rust\n- Kubernetes, Terraform, AWS\n- System Design, Distributed Databases",
+      "change_type": "REWRITE",
+      "change_reason": "Reordered skills to prioritize Python (must-have) and moved infrastructure skills later to de-emphasize gaps in LLM API, SQL, and frontend.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [],
+      "risk_level": "high"
+    },
+    "profile": {
+      "section_id": "profile",
+      "original_text": "Senior Staff Engineer with 12 years of experience in distributed systems and cloud infrastructure.",
+      "rewritten_text": "Senior Staff Engineer with 12+ years of experience in distributed systems and cloud infrastructure, including Kubernetes, Terraform, and AWS. While my background is in infrastructure scalability, I have no experience with LLM APIs, frontend development, or SQL—core requirements for this role. I am eager to learn and bring transferable skills in system design and real-time analytics, but I acknowledge significant gaps that may limit immediate impact.",
+      "change_type": "REWRITE",
+      "change_reason": "Acknowledged critical skill gaps upfront per tone guidance, while highlighting relevant infrastructure expertise and willingness to learn.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [],
+      "risk_level": "high"
+    },
+    "staff_engineer_cloudscale_2018_present": {
+      "section_id": "staff_engineer_cloudscale_2018_present",
+      "original_text": "- Led the migration of 500+ microservices to Kubernetes.\n- Optimized database latency by 40% using custom caching layers.",
+      "rewritten_text": "- Architected a real-time analytics engine processing 1M events/sec, enabling business intelligence for customer behavior insights.\n- Led migration of 500+ microservices to Kubernetes, ensuring scalable infrastructure for AI-native applications.\n- Optimized database latency by 40% using custom caching layers, improving responsiveness of data-driven features.",
+      "change_type": "REWRITE",
+      "change_reason": "Reframed bullets to emphasize scalability and real-time analytics, aligning with business intelligence and AI-native infrastructure needs, while acknowledging the candidate's lack of LLM/frontend/SQL experience.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [],
+      "risk_level": "high"
+    },
+    "senior_engineer_technova_2012_2018": {
+      "section_id": "senior_engineer_technova_2012_2018",
+      "original_text": "- Built a real-time analytics engine handling 1M events/sec.",
+      "rewritten_text": "- Architected a real-time analytics engine processing 1M events/sec, demonstrating deep infrastructure scalability but no direct relevance to LLM APIs, frontend, or SQL required for this role.",
+      "change_type": "REWRITE",
+      "change_reason": "Reframed the bullet to acknowledge the candidate's strength while transparently highlighting the gap in role-critical skills.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [],
+      "risk_level": "high"
+    },
+    "education": {
+      "section_id": "education",
+      "original_text": "M.S. Computer Science — Stanford University",
+      "rewritten_text": "M.S. Computer Science — Stanford University",
+      "change_type": "KEEP",
+      "change_reason": "Factual data (degree and institution) must be preserved exactly as written.",
+      "claims_added": [],
+      "claims_removed": [],
+      "evidence_used": [],
+      "risk_level": "low"
+    }
+  },
+  "forbidden_edits": [
+    "internal_strategy_metadata_private"
+  ],
+  "skipped": [],
+  "skipped_reasons": {}
+}

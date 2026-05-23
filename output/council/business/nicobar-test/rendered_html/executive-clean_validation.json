@@ -43,8 +43,8 @@
     "ZERO_BULLETS": {
       "severity": "ERROR",
       "passed": true,
-      "details": "Found 5 bullet item(s) in Work Experience section",
-      "count": 5,
+      "details": "Found 3 bullet item(s) in Work Experience section",
+      "count": 3,
       "locations": []
     },
     "INLINE_BULLETS": {

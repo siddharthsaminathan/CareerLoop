@@ -1,0 +1,10 @@
+career_mode: UPGRADE
+expected_ctc_lakhs: 32
+locations:
+- Bangalore
+- Noida
+notice_period_days: 30
+salary_floor_lakhs: 25
+target_functions:
+- Python Platform Engineer
+- AI PM

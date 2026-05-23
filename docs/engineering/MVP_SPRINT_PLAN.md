@@ -2,7 +2,7 @@
 ## Delivery Foundation: Phase 0
 
 > **Author:** Product Engineering Lead
-> **Date:** 2026-05-22
+> **Date:** 2026-05-23
 > **Status:** Active — this is the current engineering mandate
 > **Source:** CEO/CTO product session handoff
 
@@ -60,15 +60,17 @@ Never use WhatsApp Web unofficial harness (session breaks, account risk, not pro
 ```
 careerloop/transport/
 ├── base.py                 TransportAdapter (abstract)
+│   ├── parse_payload(payload) → UserEvent
+│   ├── map UserEvent → ConversationState
 │   ├── send_text(user_id, text)
 │   ├── send_buttons(user_id, text, buttons[])
-│   ├── send_document(user_id, file_path, caption)
-│   └── receive_message(payload) → Message
+│   └── send_document(user_id, file_path, caption)
 ├── telegram.py             TelegramAdapter
+├── terminal_chat.py        Local smoke-test adapter
 └── whatsapp_meta.py        MetaWhatsAppAdapter (later)
 ```
 
-Product logic never imports from `telegram.py` or `whatsapp_meta.py` directly. Always through `TransportAdapter`. This means swapping from Telegram to WhatsApp touches zero business logic files.
+Product logic never imports from `telegram.py`, `terminal_chat.py`, or `whatsapp_meta.py` directly. Always through `TransportAdapter` into the LangGraph Supervisor. This means swapping from Telegram to WhatsApp touches zero business logic files.
 
 ---
 
@@ -82,8 +84,11 @@ Product logic never imports from `telegram.py` or `whatsapp_meta.py` directly. A
 |------|---------------|
 | `careerloop/transport/base.py` | Abstract TransportAdapter interface |
 | `careerloop/transport/telegram.py` | Telegram Bot API implementation |
+| `careerloop/transport/terminal_chat.py` | Local CLI smoke-test adapter |
+| `careerloop/session/supervisor_graph.py` | LangGraph Supervisor, intent router, HITL checkpoints |
+| `careerloop/memory/checkpointer.py` | `PostgresSaver` wrapper for persistent graph state |
 | `careerloop/session/session_store.py` | Per-user state: `{user_id, state, current_job_id, updated_at}` |
-| `careerloop/session/message_router.py` | Routes message to handler based on user state |
+| `careerloop/session/message_router.py` | Legacy fallback; do not expand unless needed |
 | `careerloop/session/user_registry.py` | Maps `telegram_id / whatsapp_number → person_id → cv_path` |
 
 ### Conversation State Machine
@@ -421,9 +426,9 @@ Stop touching Resume Council. Start here:
 
 ```
 1. Stop touching Resume Council
-2. Build TransportAdapter + TelegramAdapter
+2. Build TransportAdapter + TerminalChatAdapter
 3. Build user_registry.py
-4. Build session state machine
+4. Build LangGraph Supervisor state contract and tests
 5. Send daily brief to one real user
 6. Let user approve one job
 7. Generate and send one PDF
@@ -442,14 +447,14 @@ That is the product now.
 |-------------|-----|
 | More Council improvements | At 93% — diminishing returns |
 | Additional resume templates | 10 is enough |
-| Chrome extension | Phase 5, needs user base |
+| Chrome extension | Phase 5 fallback; Kimi/Hermes assisted bridge is current experiment |
 | Gmail Memory (Sprint 6) | Before Sprints 0-3 are done |
 | Decision Compression dashboard | CEO owns |
-| Full autonomous apply | User must control final submission |
+| Full autonomous apply | User must control final submission; only explicit per-job assisted execution is allowed |
 | Enterprise admin | No users to administer yet |
 
 ---
 
 *Owner: CTO*
 *Synced with: `docs/product/TECH_ROADMAP.md`, `docs/product/PRD.md §21–27`, `docs/tech-backlog/TRACKER.md`*
-*Last updated: 2026-05-22*
+*Last updated: 2026-05-23*

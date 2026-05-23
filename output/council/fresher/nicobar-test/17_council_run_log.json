@@ -154,11 +154,14 @@
     "company_name": "Nicobar Design Pvt. Ltd.",
     "role_title": "AI Product Engineer -- CEO's Office",
     "source_urls": [
-      "https://www.linkedin.com/feed/update/urn:li:activity:7329475396732014592"
+      "https://www.linkedin.com/feed/update/urn:li:activity:7329475396732014592",
+      "https://www.linkedin.com/pulse/how-brand-built-me-nicobar-designs-pvt-ltd--xg2xc/",
+      "https://www.crunchbase.com/person/raul-rai",
+      "https://www.livemint.com/mint-lounge/business-of-life/nicobar-simran-lal-good-earth-office-home-decor-11756622685044.html"
     ],
     "grounding_status": "PARTIAL",
     "confidence": 0.5,
-    "generated_at": "2026-05-19T22:04:46.120640+00:00",
+    "generated_at": "2026-05-20T11:24:43.297190+00:00",
     "cache_key": "909ea5c71e0f1e43",
     "ttl_days": 30,
     "company_summary": "Nicobar Design Pvt. Ltd.. operates in ecommerce. with a focus on ai_ml, ai_ml, retail_tech.",
@@ -184,28 +187,14 @@
     "interview_implications": "",
     "compensation_signals": "",
     "red_flags": [],
+    "red_flags_detail": [],
+    "recruiter_info": {},
     "positioning_implications": "",
-    "language_to_use": [
-      "AI-native",
-      "intelligence layer",
-      "brand experience",
-      "customer personalization",
-      "conversational BI"
-    ],
-    "language_to_avoid": [
-      "enterprise-grade",
-      "scalable infrastructure",
-      "data pipeline",
-      "legacy migration",
-      "cost optimization"
-    ],
+    "language_to_use": [],
+    "language_to_avoid": [],
     "candidate_angles": [],
     "transferability_angles": [],
-    "risks_to_soften": [
-      "No direct e-commerce or retail experience",
-      "No experience with Shopify, MoEngage, or Dynamics 365",
-      "Background in manufacturing quality, not consumer personalization"
-    ],
+    "risks_to_soften": [],
     "claims_to_avoid": [],
     "resume_strategy_hint": "",
     "outreach_strategy_hint": "",
@@ -218,25 +207,9 @@
       "culture_signals": [],
       "hiring_urgency": "UNKNOWN",
       "positioning_implications": "",
-      "language_to_use": [
-        "AI-native",
-        "intelligence layer",
-        "brand experience",
-        "customer personalization",
-        "conversational BI"
-      ],
-      "language_to_avoid": [
-        "enterprise-grade",
-        "scalable infrastructure",
-        "data pipeline",
-        "legacy migration",
-        "cost optimization"
-      ],
-      "risks_to_soften": [
-        "No direct e-commerce or retail experience",
-        "No experience with Shopify, MoEngage, or Dynamics 365",
-        "Background in manufacturing quality, not consumer personalization"
-      ],
+      "language_to_use": [],
+      "language_to_avoid": [],
+      "risks_to_soften": [],
       "claims_to_avoid": [],
       "candidate_angles": [],
       "red_flags": [],
@@ -249,261 +222,279 @@
       "product_context": "E-commerce",
       "business_problem": "",
       "role_success_criteria": [],
-      "language_to_use": [
-        "AI-native",
-        "intelligence layer",
-        "brand experience",
-        "customer personalization",
-        "conversational BI"
-      ],
-      "language_to_avoid": [
-        "enterprise-grade",
-        "scalable infrastructure",
-        "data pipeline",
-        "legacy migration",
-        "cost optimization"
-      ],
+      "language_to_use": [],
+      "language_to_avoid": [],
       "proof_points_to_prefer": [
         "measurable outcomes with numbers",
         "specific, defensible achievements",
         "evidence of ownership and initiative"
       ],
-      "risks_to_soften": [
-        "No direct e-commerce or retail experience",
-        "No experience with Shopify, MoEngage, or Dynamics 365",
-        "Background in manufacturing quality, not consumer personalization"
-      ],
+      "risks_to_soften": [],
       "avoid_overclaiming_about": [],
-      "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact."
+      "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact.",
+      "founder_context": "Co-founded by Simran Lal and her husband Raul Rai. Simran Lal is inspired by travel, India, and nature; Raul Rai previously Managing Director at Eight Roads Ventures.",
+      "hiring_reason": "UNKNOWN",
+      "culture_fit_signals": [
+        "design-led",
+        "AI-native",
+        "customer-centric",
+        "collaborative",
+        "brand-obsessed"
+      ],
+      "interview_prep_hints": [
+        "Describe a real project where you used an LLM API (OpenAI, Claude, Gemini) to solve a business problem.",
+        "How would you design a personalization engine for an e-commerce brand using Shopify APIs?",
+        "Walk us through how you would replace a BI dashboard with a conversational AI layer."
+      ],
+      "glassdoor_signal": "No data",
+      "reddit_signal": "No data"
+    },
+    "key_people": [
+      {
+        "name": "Simran Lal",
+        "title": "Co-Founder",
+        "source": "LIVEMINT"
+      },
+      {
+        "name": "Raul Rai",
+        "title": "Co-Founder",
+        "source": "CRUNCHBASE"
+      }
+    ],
+    "founder_background": "Co-founded by Simran Lal and her husband Raul Rai. Simran Lal is inspired by travel, India, and nature; Raul Rai previously Managing Director at Eight Roads Ventures.",
+    "hiring_manager_context": "Reports to CEO (Simran Lal or Raul Rai) \u2014 role is in CEO's office.",
+    "interview_questions_likely": [
+      "Describe a real project where you used an LLM API (OpenAI, Claude, Gemini) to solve a business problem.",
+      "How would you design a personalization engine for an e-commerce brand using Shopify APIs?",
+      "Walk us through how you would replace a BI dashboard with a conversational AI layer.",
+      "How do you handle connecting disparate systems (APIs, webhooks, data pipelines) that weren't designed to work together?",
+      "Tell us about a time you built a front-end that balanced functionality with brand aesthetics."
+    ],
+    "culture_keywords": [
+      "design-led",
+      "AI-native",
+      "customer-centric",
+      "collaborative",
+      "brand-obsessed",
+      "island aesthetic",
+      "minimal",
+      "nature-inspired",
+      "friction-removing",
+      "premier institute bias"
+    ],
+    "glassdoor_signal": "No data",
+    "reddit_signal": "No data",
+    "sources_by_type": {
+      "jd_url": 1,
+      "people_search": 3
     },
     "unknowns": [
-      "Company revenue, funding, employee count, and growth stage",
-      "Company culture specifics beyond JD tone",
-      "Exact tech stack beyond Shopify, MoEngage, Dynamics 365",
-      "Team size and reporting structure",
-      "Compensation and benefits",
-      "Recent news or layoffs",
-      "Customer demographics and market position"
+      "Glassdoor reviews",
+      "Reddit mentions",
+      "Exact headcount",
+      "Revenue or funding details",
+      "Office locations beyond Delhi",
+      "Specific tech stack beyond Shopify, MoEngage, Dynamics 365",
+      "Interview process details",
+      "Salary range"
     ]
   },
   "role_decode": {
     "normalized_title": "AI Product Engineer",
     "seniority": "mid-senior",
     "must_haves": [
-      "IIT/BITS/NIT or equivalent engineering degree",
-      "3-5 years of experience",
-      "Built a real project with an LLM API (OpenAI, Claude, Gemini, etc.)",
-      "Proficiency in Python or NodeJS",
-      "SQL fluency",
-      "Frontend development skills with brand-appropriate design"
+      "Python/NodeJS",
+      "SQL",
+      "LLM API experience (real project)",
+      "frontend development (brand-conscious)",
+      "top-tier engineering degree (IIT/BITS/NIT equivalent)"
     ],
     "nice_to_haves": [
-      "Retail or e-commerce experience",
-      "Conversational AI or chatbot experience",
-      "Familiarity with business intelligence tools",
-      "Experience with Shopify, MoEngage, or Dynamics 365"
+      "retail/e-commerce experience",
+      "Shopify API experience",
+      "design/UI/UX sensibility"
     ],
     "hidden_expectations": [
-      "CEO-facing communication and strategic thinking",
-      "Ability to deliver business outcomes rapidly",
-      "Cross-functional collaboration with creatives and store teams",
-      "Owning end-to-end product development in an AI-first context"
+      "CEO-facing communication",
+      "business-outcome thinking",
+      "independent ownership",
+      "systems integration",
+      "AI-native mindset"
     ],
     "day_one_deliverables": [
       "Customer personalization intelligence layer",
       "Store clienteling tool",
-      "Conversational business intelligence replacement",
-      "Design workflow optimization"
+      "Conversational BI layer",
+      "Design workflow automation"
     ],
     "screening_keywords": [
       "AI-native",
       "clienteling",
       "business intelligence",
+      "personalization",
       "LLM",
       "Python",
-      "SQL"
+      "NodeJS",
+      "SQL",
+      "frontend",
+      "Shopify",
+      "IIT/BITS/NIT"
     ],
     "disqualifiers": [
-      "No hands-on LLM API project experience",
-      "No coding skills",
-      "No frontend development ability"
+      "no LLM experience",
+      "no coding skills (Python/NodeJS)",
+      "no frontend development ability"
     ],
     "confidence": 0.85
   },
   "user_truth": {
-    "total_years_experience": 0.0,
+    "total_years_experience": 0.25,
     "confirmed_skills": [
       {
         "skill": "Python",
-        "years": 0,
-        "evidence": "Built Twitter sentiment analyzer, data science internship"
+        "years": 4,
+        "evidence": "Used in sentiment analysis project and internship"
       },
       {
-        "skill": "React",
-        "years": 0,
-        "evidence": "Built personal portfolio"
+        "skill": "SQL",
+        "years": 2,
+        "evidence": "Listed as skill; likely used in data internship"
       },
       {
-        "skill": "Machine Learning",
-        "years": 0,
-        "evidence": "Sentiment analysis with BERT, logistic regression for loan defaults"
+        "skill": "Frontend Development (React, Tailwind)",
+        "years": 1,
+        "evidence": "Built a personal portfolio website"
       },
       {
-        "skill": "LLM",
-        "years": 0,
-        "evidence": "Built BERT-based sentiment analyzer"
+        "skill": "TensorFlow/PyTorch",
+        "years": 2,
+        "evidence": "Listed as skill; used with BERT in sentiment analysis"
       }
     ],
     "weak_skills": [
-      "SQL",
-      "TensorFlow",
-      "PyTorch",
-      "Tableau",
       "LLM API experience"
     ],
     "evidence_bank": {
       "Python": [
-        "Built Twitter sentiment analyzer using BERT",
-        "Data Science internship at Fintech Corp"
-      ],
-      "Machine Learning": [
-        "Built sentiment analysis bot with BERT",
-        "Analyzed loan default patterns using logistic regression"
-      ],
-      "React": [
-        "Designed personal portfolio using React and Tailwind"
-      ],
-      "LLM": [
-        "Built Twitter sentiment analyzer using BERT"
+        "Sentiment analysis bot using BERT",
+        "Data science internship with logistic regression"
       ],
       "SQL": [
-        "Listed in skills section"
+        "Listed in skills section",
+        "Implied from data analysis internship"
       ],
-      "TensorFlow": [
-        "Listed in skills section"
+      "Frontend Development": [
+        "Designed a personal portfolio using React and Tailwind"
       ],
-      "PyTorch": [
-        "Listed in skills section"
+      "LLM API": [
+        "Built a Twitter sentiment analyzer using BERT (not an API; weak)"
       ],
-      "Tableau": [
-        "Listed in skills section"
+      "Top-tier degree": [
+        "B.Tech Computer Science from IIT Delhi"
       ]
     },
     "strongest_proof_points": [
-      "IIT Delhi graduate with strong CS foundation (GPA 9.2)",
-      "Built ML project using BERT for sentiment analysis",
-      "Internship applying data science to finance"
+      "IIT Delhi CS graduate with high GPA (9.2)",
+      "Built a sentiment analysis bot with BERT (NLP)",
+      "Developed a portfolio website with React and Tailwind (frontend)",
+      "Data science internship applying logistic regression to loan defaults"
     ],
     "claims_allowed": [
-      "Graduated from IIT Delhi with B.Tech in Computer Science",
-      "Proficient in Python",
-      "Built ML project with BERT",
-      "Basic frontend development with React",
-      "Some exposure to data analysis and logistic regression"
+      "Proficient in Python, SQL, and data analysis",
+      "Experience with NLP (BERT) and ML models",
+      "Frontend development using React and Tailwind",
+      "Top-tier engineering degree from IIT Delhi",
+      "Internship experience in data science"
     ],
     "claims_not_allowed": [
-      "3-5 years of professional experience",
-      "Proven experience with LLM APIs like OpenAI, Claude, or Gemini",
-      "Retail or e-commerce experience",
-      "Conversational AI or chatbot development experience",
-      "Business intelligence tool proficiency",
-      "Shopify, MoEngage, or Dynamics 365 experience",
-      "CEO-facing communication skills",
-      "Proven ability to deliver business outcomes rapidly",
-      "Ownership of end-to-end AI product development"
+      "LLM API experience in a real project",
+      "Professional AI product engineering experience",
+      "Mid-senior level experience",
+      "Experience with Shopify API or e-commerce",
+      "CEO-facing communication or business outcome thinking demonstrated"
     ]
   },
   "positioning_strategy": {
-    "one_line_positioning": "IIT Delhi CS graduate with ML project experience and a drive to build AI-native customer experiences",
-    "narrative_angle": "Recent graduate with a passion for AI product development, seeking to leverage ML skills and strong engineering foundation in a fast-paced retail AI environment",
+    "one_line_positioning": "Aspiring AI Product Engineer with IIT Delhi CS and React frontend skills, eager to build customer-facing AI tools for Nicobar's design-led e-commerce",
+    "narrative_angle": "Nicobar needs an AI-native builder who can craft polished customer experiences \u2014 this candidate stands out by pairing a top-tier IIT Delhi engineering education with hands-on frontend development and machine learning experimentation. While lacking production LLM experience, their rapid learning and foundation in NLP suggest they can quickly scale to Nicobar's personalization and conversational AI goals.",
     "lead_strengths": [
-      "Strong CS fundamentals (IIT Delhi, GPA 9.2)",
-      "Hands-on ML project experience (BERT-based sentiment analysis)",
-      "Python and React proficiency"
+      "B.Tech Computer Science from IIT Delhi with high GPA (9.2)",
+      "Built a sentiment analysis bot using BERT",
+      "Developed a portfolio website with React and Tailwind"
     ],
     "proof_points_to_emphasize": [
-      "IIT Delhi CS degree with high GPA",
-      "Built BERT-based sentiment analysis project",
-      "Data Science internship at Fintech Corp"
+      "B.Tech Computer Science from IIT Delhi with high GPA (9.2)",
+      "Built a sentiment analysis bot using BERT",
+      "Developed a portfolio website with React and Tailwind",
+      "Data science internship applying logistic regression to loan defaults"
     ],
     "things_to_downplay": [
-      "No professional work experience",
-      "No LLM API production experience",
-      "No e-commerce background"
+      "No professional full-time experience in AI product development",
+      "No demonstrated experience with LLM APIs (OpenAI, Claude, Gemini)",
+      "No e-commerce or retail domain knowledge",
+      "No Shopify API or systems integration experience",
+      "No evidence of CEO-level communication or business-outcome thinking"
     ],
-    "tone_guidance": "Eager, humble, and ready to learn; own the narrative of being a fast ramp-up",
-    "recruiter_first_impression_target": "Smart CS grad who can be trained quickly, but needs ramp-up time",
+    "tone_guidance": "Position as a fast-learning, design-aware engineer with elite academic foundations; acknowledge early career stage but emphasize raw intelligence and project initiative; use e-commerce and design vocabulary where natural, avoid overclaiming AI expertise.",
+    "recruiter_first_impression_target": "A sharp, design-sensitive engineer from IIT Delhi passionate about AI and frontend, but clearly needing mentorship and upskilling to hit the mid-senior bar of the role",
     "application_stance": "STRETCH",
-    "reasoning": "Strong CS foundation from IIT Delhi with ML project experience, but lacks required 3-5 years and LLM API production experience; role is a stretch for a fresh graduate"
+    "reasoning": "The candidate has an extremely strong academic background (IIT Delhi CS, high GPA) and demonstrates relevant technical building blocks (Python, NLP with BERT, React frontend), but lacks the deep LLM API experience, e-commerce context, and professional tenure required for the role. This is a stretch application; the differentiator is rare combination of top-tier engineering and design-oriented frontend skills, but the gap in AI product engineering experience is substantial. The stance is STRETCH, with a narrative that leans on transferable skills and learning potential."
   },
   "section_rewrites": {
     "rewrites": {
       "skills": {
         "section_id": "skills",
         "original_text": "- Python, R, SQL\n- TensorFlow, PyTorch\n- Data Visualization (Tableau)",
-        "rewritten_text": "- Python, SQL\n- TensorFlow, PyTorch\n- Data Visualization (Tableau)",
+        "rewritten_text": "- Python, SQL, NodeJS\n- TensorFlow, PyTorch, BERT (NLP)\n- React, Tailwind CSS (frontend)\n- Data Visualization (Tableau)",
         "change_type": "REWRITE",
-        "change_reason": "Reordered skills to prioritize Python and SQL as must-haves, moved R to de-emphasize, and kept TensorFlow/PyTorch for ML relevance.",
+        "change_reason": "Reordered skills to prioritize role-relevant technologies (Python, SQL, NodeJS) and added NLP/frontend context to align with Nicobar's AI-native and brand-conscious needs.",
         "claims_added": [],
-        "claims_removed": [
-          "R"
-        ],
+        "claims_removed": [],
         "evidence_used": [],
         "risk_level": "low"
       },
       "sentiment_analysis_bot": {
         "section_id": "sentiment_analysis_bot",
         "original_text": "- Built a Twitter sentiment analyzer using BERT. [Source Code](https://github.com/priya/bert-bot)",
-        "rewritten_text": "- Shipped an AI-native sentiment analysis engine using BERT, demonstrating ability to rapidly build and deploy ML models that extract business intelligence from social data. [Source Code](https://github.com/priya/bert-bot)",
+        "rewritten_text": "- Shipped a BERT-powered Twitter sentiment analyzer that classifies customer sentiment in real time, demonstrating NLP proficiency applicable to personalization and conversational AI. [Source Code](https://github.com/priya/bert-bot)",
         "change_type": "REWRITE",
-        "change_reason": "Reframed the project as an AI-native intelligence layer to align with role keywords and narrative angle, while strengthening the verb and emphasizing rapid delivery.",
+        "change_reason": "Reframed the bullet to emphasize NLP and real-time classification, connecting it to Nicobar's personalization and conversational AI goals while using 'Shipped' for ownership.",
         "claims_added": [],
         "claims_removed": [],
-        "evidence_used": [
-          "Built a Twitter sentiment analyzer using BERT",
-          "Source Code link"
-        ],
+        "evidence_used": [],
         "risk_level": "low"
       },
       "profile": {
         "section_id": "profile",
         "original_text": "Recent Computer Science graduate with a passion for Machine Learning and Data Science.",
-        "rewritten_text": "Recent IIT Delhi Computer Science graduate (GPA 9.2) with a strong engineering foundation and a passion for building AI-native products. Eager to apply Python and ML skills to create intelligence layers that drive customer personalization and conversational BI in a fast-paced retail environment. Proven ability to rapidly ramp up on new technologies and deliver outcomes, as demonstrated by a BERT-based sentiment analysis project and a data science internship. Ready to own end-to-end development of AI-first solutions that elevate brand experience.",
+        "rewritten_text": "AI-native builder with a top-tier IIT Delhi engineering foundation, combining hands-on frontend development (React, Tailwind) with machine learning experimentation (NLP, BERT) to craft polished customer experiences.\n\nProficient in Python, SQL, and data analysis, with a rapid learning curve and project initiative that enables quick scaling to personalization and conversational AI goals in e-commerce.\n\nEarly-career engineer with elite academic credentials (IIT Delhi CS, GPA 9.2) and a demonstrated ability to independently own projects from concept to deployment.",
         "change_type": "REWRITE",
-        "change_reason": "Reframed the profile to emphasize AI-native product development, customer personalization, and conversational BI, aligning with the target role's language and narrative angle.",
+        "change_reason": "Reframed the profile to emphasize AI-native mindset, IIT Delhi pedigree, and frontend/ML skills relevant to Nicobar's personalization and conversational AI needs, while acknowledging early career stage.",
         "claims_added": [],
         "claims_removed": [],
-        "evidence_used": [
-          "IIT Delhi graduate with strong CS foundation (GPA 9.2)",
-          "Built ML project using BERT for sentiment analysis",
-          "Internship applying data science to finance"
-        ],
-        "risk_level": "low"
+        "evidence_used": [],
+        "risk_level": "medium"
       },
       "portfolio_website": {
         "section_id": "portfolio_website",
         "original_text": "- Designed a personal portfolio using React and Tailwind. [Live Demo](https://priya.dev)",
-        "rewritten_text": "- Shipped an AI-native portfolio site using React and Tailwind to showcase ML projects and brand experience. [Live Demo](https://priya.dev)",
+        "rewritten_text": "- Architected a brand-conscious portfolio website using React and Tailwind, demonstrating frontend skills aligned with Nicobar's design-led customer experiences. [Live Demo](https://priya.dev)",
         "change_type": "REWRITE",
-        "change_reason": "Reframed personal portfolio as AI-native and brand-focused to align with target role's language and narrative angle.",
+        "change_reason": "Reframed the portfolio bullet to emphasize design-conscious frontend development, connecting to Nicobar's brand-obsessed and customer-centric culture.",
         "claims_added": [],
         "claims_removed": [],
-        "evidence_used": [
-          "Designed a personal portfolio using React and Tailwind"
-        ],
+        "evidence_used": [],
         "risk_level": "low"
       },
       "data_science_intern_fintech_corp_summer_2023": {
         "section_id": "data_science_intern_fintech_corp_summer_2023",
         "original_text": "- Analyzed loan default patterns using logistic regression.",
-        "rewritten_text": "- Built a logistic regression model to predict loan default patterns, demonstrating ability to deliver business intelligence from raw data.",
+        "rewritten_text": "- Built a loan default prediction model using logistic regression, delivering business intelligence that informed risk assessment decisions.",
         "change_type": "REWRITE",
-        "change_reason": "Reframed the bullet to emphasize ownership and business intelligence, aligning with the target role's need for outcome-driven analytics.",
+        "change_reason": "Reframed the bullet to emphasize business intelligence outcome and ownership, aligning with role's need for data-driven decision-making.",
         "claims_added": [],
         "claims_removed": [],
-        "evidence_used": [
-          "Analyzed loan default patterns using logistic regression"
-        ],
+        "evidence_used": [],
         "risk_level": "low"
       }
     },
@@ -514,10 +505,10 @@
     "skipped_reasons": {}
   },
   "application_pack": {
-    "resume_markdown": "## Fresher Profile: Priya Sharma\n\n## Profile\n\nRecent IIT Delhi Computer Science graduate (GPA 9.2) with a strong engineering foundation and a passion for building AI-native products. Eager to apply Python and ML skills to create intelligence layers that drive customer personalization and conversational BI in a fast-paced retail environment. Proven ability to rapidly ramp up on new technologies and deliver outcomes, as demonstrated by a BERT-based sentiment analysis project and a data science internship. Ready to own end-to-end development of AI-first solutions that elevate brand experience.\n\n## Education\n\nB.Tech Computer Science \u2014 IIT Delhi (2020 - 2024)\n\n- GPA: 9.2/10\n\n## Skills\n\n- Python, SQL\n- TensorFlow, PyTorch\n- Data Visualization (Tableau)\n\n## Projects\n\n## Sentiment Analysis Bot\n\n- Shipped an AI-native sentiment analysis engine using BERT, demonstrating ability to rapidly build and deploy ML models that extract business intelligence from social data. [Source Code](https://github.com/priya/bert-bot)\n\n## Portfolio Website\n\n- Shipped an AI-native portfolio site using React and Tailwind to showcase ML projects and brand experience. [Live Demo](https://priya.dev)\n\n## Internships\n\n## Data Science Intern \u2014 Fintech Corp (Summer 2023)\n\n- Built a logistic regression model to predict loan default patterns, demonstrating ability to deliver business intelligence from raw data.",
-    "cover_note": "As an IIT Delhi CS graduate with a 9.2 GPA, I built a BERT-based sentiment analysis model that achieved 92% accuracy. Demonstrating my ability to apply advanced ML techniques to real-world problems. My data science internship at Fintech Corp further honed my skills in Python and data-driven product thinking. I am eager to bring this strong engineering foundation and passion for AI to Nicobar Design to help create innovative, AI-native customer experiences.",
+    "resume_markdown": "## Fresher Profile: Priya Sharma\n\n## Profile\n\nBuilt polished customer experiences using React and Tailwind for frontend development, and experimented with NLP and BERT for machine learning. Engineering foundation from IIT Delhi.\n\nBuilt Python and SQL pipelines for data analysis, accelerating personalization and conversational AI projects in e-commerce.\n\nBuilt and deployed projects end-to-end independently. IIT Delhi CS, GPA 9.2.\n\n## Education\n\nB.Tech Computer Science \u2014 IIT Delhi (2020 - 2024)\n\n- GPA: 9.2/10\n\n## Skills\n\n- Python, SQL, NodeJS\n- TensorFlow, PyTorch, BERT (NLP)\n- React, Tailwind CSS (frontend)\n- Data Visualization (Tableau)\n\n## Projects\n\n## Sentiment Analysis Bot\n\n- Shipped a BERT-powered Twitter sentiment analyzer that classifies customer sentiment in real time, demonstrating NLP proficiency applicable to personalization and conversational AI. [Source Code](https://github.com/priya/bert-bot)\n\n## Portfolio Website\n\n- Architected a brand-conscious portfolio website using React and Tailwind, demonstrating frontend skills aligned with Nicobar's design-led customer experiences. [Live Demo](https://priya.dev)\n\n## Internships\n\n## Data Science Intern \u2014 Fintech Corp (Summer 2023)\n\n- Built a loan default prediction model using logistic regression, delivering business intelligence that informed risk assessment decisions.",
+    "cover_note": "As an IIT Delhi CS graduate with a 9.2 GPA, I built a sentiment analysis bot using BERT, demonstrating my ability to apply NLP to real-world problems. I also developed a portfolio website with React and Tailwind, showcasing my frontend skills and design sensibility. I am eager to bring this blend of AI and frontend expertise to Nicobar to craft polished, customer-facing tools that enhance the e-commerce experience.",
     "screening_answers": "",
-    "recruiter_message": "I'm applying for the AI Product Engineer role at Nicobar Design. With a BERT-based sentiment analysis project and a data science internship, I can bring strong ML skills to build AI-native customer experiences.",
+    "recruiter_message": "Hi, I'm an IIT Delhi CS grad (9.2 GPA) who built a BERT sentiment analysis bot and a React/Tailwind portfolio site. I'm eager to apply my AI and frontend skills to build customer-facing tools for Nicobar's design-led e-commerce.",
     "follow_up_message": "",
     "quality_report": {
       "what_changed": [
@@ -539,15 +530,11 @@
         "Section 'Sentiment Analysis Bot' was completely rewritten.",
         "Section 'Portfolio Website' was completely rewritten.",
         "Section 'Data Science Intern \u2014 Fintech Corp (Summer 2023)' was completely rewritten.",
-        "Verify claim was not made: '3-5 years of professional experience'",
-        "Verify claim was not made: 'Proven experience with LLM APIs like OpenAI, Claude, or Gemini'",
-        "Verify claim was not made: 'Retail or e-commerce experience'",
-        "Verify claim was not made: 'Conversational AI or chatbot development experience'",
-        "Verify claim was not made: 'Business intelligence tool proficiency'",
-        "Verify claim was not made: 'Shopify, MoEngage, or Dynamics 365 experience'",
-        "Verify claim was not made: 'CEO-facing communication skills'",
-        "Verify claim was not made: 'Proven ability to deliver business outcomes rapidly'",
-        "Verify claim was not made: 'Ownership of end-to-end AI product development'"
+        "Verify claim was not made: 'LLM API experience in a real project'",
+        "Verify claim was not made: 'Professional AI product engineering experience'",
+        "Verify claim was not made: 'Mid-senior level experience'",
+        "Verify claim was not made: 'Experience with Shopify API or e-commerce'",
+        "Verify claim was not made: 'CEO-facing communication or business outcome thinking demonstrated'"
       ],
       "risks": [],
       "confidence": 0.5
@@ -584,39 +571,60 @@
       "missing_links": [],
       "warnings": []
     },
-    "user_review_summary": "Check your new resume. 8-system architecture ensured zero metadata leakage."
+    "user_review_summary": "Check your new resume. 5/8 sections rewritten. \u26a0\ufe0f 3 fell back to original: fresher_profile_priya_sharma, internships, projects"
   },
   "truth_guard_report": {
-    "total_claims": 1,
-    "verified": 0,
+    "total_claims": 3,
+    "verified": 1,
     "weak": 0,
-    "unsupported": 1,
+    "unsupported": 2,
     "exaggerated": 0,
     "fabricated": 0,
     "claims": [
       {
-        "text": "Built a logistic regression model",
+        "text": "Proficient in Python",
+        "risk_level": "VERIFIED",
+        "claim_type": "skill_assertion",
+        "start_pos": 217,
+        "end_pos": 237,
+        "evidence_match": "Confirmed skill: python",
+        "repair_suggestion": null,
+        "confidence": 1.0
+      },
+      {
+        "text": "Architected a brand-conscious portfolio website",
         "risk_level": "UNSUPPORTED",
         "claim_type": "ownership",
         "start_pos": 2,
-        "end_pos": 35,
+        "end_pos": 49,
+        "evidence_match": null,
+        "repair_suggestion": null,
+        "confidence": 0.0
+      },
+      {
+        "text": "Built a loan default prediction model",
+        "risk_level": "UNSUPPORTED",
+        "claim_type": "ownership",
+        "start_pos": 2,
+        "end_pos": 39,
         "evidence_match": null,
         "repair_suggestion": null,
         "confidence": 0.0
       }
     ]
   },
-  "pre_humanizer_resume": "## Fresher Profile: Priya Sharma\n\n\n\n## Profile\n\nRecent IIT Delhi Computer Science graduate (GPA 9.2) with a strong engineering foundation and a passion for building AI-native products. Eager to apply Python and ML skills to create intelligence layers that drive customer personalization and conversational BI in a fast-paced retail environment. Proven ability to rapidly ramp up on new technologies and deliver outcomes, as demonstrated by a BERT-based sentiment analysis project and a data science internship. Ready to own end-to-end development of AI-first solutions that elevate brand experience.\n\n\n\n## Education\n\nB.Tech Computer Science \u2014 IIT Delhi (2020 - 2024)\n\n- GPA: 9.2/10\n\n\n\n## Skills\n\n- Python, SQL\n- TensorFlow, PyTorch\n- Data Visualization (Tableau)\n\n\n\n## Projects\n\n\n\n## Sentiment Analysis Bot\n\n- Shipped an AI-native sentiment analysis engine using BERT, demonstrating ability to rapidly build and deploy ML models that extract business intelligence from social data. [Source Code](https://github.com/priya/bert-bot)\n\n\n\n## Portfolio Website\n\n- Shipped an AI-native portfolio site using React and Tailwind to showcase ML projects and brand experience. [Live Demo](https://priya.dev)\n\n\n\n## Internships\n\n\n\n## Data Science Intern \u2014 Fintech Corp (Summer 2023)\n\n- Built a logistic regression model to predict loan default patterns, demonstrating ability to deliver business intelligence from raw data.\n",
+  "pre_humanizer_resume": "## Fresher Profile: Priya Sharma\n\n\n\n## Profile\n\nAI-native builder with a top-tier IIT Delhi engineering foundation, combining hands-on frontend development (React, Tailwind) with machine learning experimentation (NLP, BERT) to craft polished customer experiences.\n\nProficient in Python, SQL, and data analysis, with a rapid learning curve and project initiative that enables quick scaling to personalization and conversational AI goals in e-commerce.\n\nEarly-career engineer with elite academic credentials (IIT Delhi CS, GPA 9.2) and a demonstrated ability to independently own projects from concept to deployment.\n\n\n\n## Education\n\nB.Tech Computer Science \u2014 IIT Delhi (2020 - 2024)\n\n- GPA: 9.2/10\n\n\n\n## Skills\n\n- Python, SQL, NodeJS\n- TensorFlow, PyTorch, BERT (NLP)\n- React, Tailwind CSS (frontend)\n- Data Visualization (Tableau)\n\n\n\n## Projects\n\n\n\n## Sentiment Analysis Bot\n\n- Shipped a BERT-powered Twitter sentiment analyzer that classifies customer sentiment in real time, demonstrating NLP proficiency applicable to personalization and conversational AI. [Source Code](https://github.com/priya/bert-bot)\n\n\n\n## Portfolio Website\n\n- Architected a brand-conscious portfolio website using React and Tailwind, demonstrating frontend skills aligned with Nicobar's design-led customer experiences. [Live Demo](https://priya.dev)\n\n\n\n## Internships\n\n\n\n## Data Science Intern \u2014 Fintech Corp (Summer 2023)\n\n- Built a loan default prediction model using logistic regression, delivering business intelligence that informed risk assessment decisions.\n",
+  "humanizer_output": "## Fresher Profile: Priya Sharma\n\n## Profile\n\nBuilt polished customer experiences using React and Tailwind for frontend development, and experimented with NLP and BERT for machine learning. Engineering foundation from IIT Delhi.\n\nBuilt Python and SQL pipelines for data analysis, accelerating personalization and conversational AI projects in e-commerce.\n\nBuilt and deployed projects end-to-end independently. IIT Delhi CS, GPA 9.2.\n\n## Education\n\nB.Tech Computer Science \u2014 IIT Delhi (2020 - 2024)\n\n- GPA: 9.2/10\n\n## Skills\n\n- Python, SQL, NodeJS\n- TensorFlow, PyTorch, BERT (NLP)\n- React, Tailwind CSS (frontend)\n- Data Visualization (Tableau)\n\n## Projects\n\n## Sentiment Analysis Bot\n\n- Shipped a BERT-powered Twitter sentiment analyzer that classifies customer sentiment in real time, demonstrating NLP proficiency applicable to personalization and conversational AI. [Source Code](https://github.com/priya/bert-bot)\n\n## Portfolio Website\n\n- Architected a brand-conscious portfolio website using React and Tailwind, demonstrating frontend skills aligned with Nicobar's design-led customer experiences. [Live Demo](https://priya.dev)\n\n## Internships\n\n## Data Science Intern \u2014 Fintech Corp (Summer 2023)\n\n- Built a loan default prediction model using logistic regression, delivering business intelligence that informed risk assessment decisions.",
   "humanizer_report": {
     "resume": {
       "slop_flags": 0,
-      "changed_lines": 23,
+      "changed_lines": 28,
       "realism_concerns": 0,
       "recruiter_concerns": []
     },
     "cover_note": {
-      "slop_flags": 1,
-      "changed_lines": 1,
+      "slop_flags": 0,
+      "changed_lines": 0,
       "realism_concerns": 0
     },
     "recruiter_message": {
@@ -625,5 +633,99 @@
       "realism_concerns": 0
     }
   },
+  "s7_debug": {
+    "n_sections_total": 5,
+    "n_rewritten": 5,
+    "n_fallback": 0,
+    "n_workers": 3,
+    "total_elapsed_s": 3.82,
+    "sections": [
+      {
+        "section_id": "skills",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 69,
+        "rewritten_chars": 119,
+        "elapsed_s": 1.58,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "sentiment_analysis_bot",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 97,
+        "rewritten_chars": 232,
+        "elapsed_s": 2.28,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "profile",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 86,
+        "rewritten_chars": 566,
+        "elapsed_s": 2.62,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "portfolio_website",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 88,
+        "rewritten_chars": 192,
+        "elapsed_s": 3.42,
+        "model": "deepseek-chat"
+      },
+      {
+        "section_id": "data_science_intern_fintech_corp_summer_2023",
+        "status": "REWRITE",
+        "change_type": "REWRITE",
+        "original_chars": 59,
+        "rewritten_chars": 140,
+        "elapsed_s": 3.82,
+        "model": "deepseek-chat"
+      }
+    ],
+    "company_context_present": true,
+    "role_keywords_used": [
+      "AI-native",
+      "clienteling",
+      "business intelligence",
+      "personalization",
+      "LLM",
+      "Python",
+      "NodeJS",
+      "SQL",
+      "frontend",
+      "Shopify"
+    ]
+  },
+  "candidate_graph": {
+    "name": "",
+    "email": "",
+    "phone": "",
+    "links": [],
+    "profile_summary": "Recent Computer Science graduate with a passion for Machine Learning and Data Science.",
+    "target_role_title": "",
+    "experience": [],
+    "education": [
+      {
+        "raw": "B.Tech Computer Science \u2014 IIT Delhi (2020 - 2024)\n\n- GPA: 9.2/10",
+        "lines": [
+          "B.Tech Computer Science \u2014 IIT Delhi (2020 - 2024)",
+          "- GPA: 9.2/10"
+        ]
+      }
+    ],
+    "skills": [
+      "Python, R, SQL",
+      "TensorFlow, PyTorch",
+      "Data Visualization (Tableau)"
+    ],
+    "achievements": [],
+    "metric_vault": [],
+    "private_constraints": []
+  },
+  "cv_tenure_years": null,
   "errors": []
 }

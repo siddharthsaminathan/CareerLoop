@@ -170,22 +170,24 @@ Convert interviews into learning systems.
 ---
 
 ## PHASE 5 — Execution Layer
-**Status: ~5% | Owner: CTO**
+**Status: ~8% | Owner: CTO**
 
 Reduce application execution friction.
 
-### 5A — Chrome Extension
+### 5A — Assisted Apply Bridge
 
 | System | % | Status |
 |--------|---|--------|
-| Autofill | 0% | ⚫ |
-| Application-pack injection | 0% | ⚫ |
+| Kimi/Hermes bridge scaffold | 5% | ⚫ |
+| Autofill / form mapping | 0% | ⚫ |
+| Application-pack injection | 5% | ⚫ |
 | Smart answer suggestions | 0% | ⚫ |
 | Resume auto-selection | 0% | ⚫ |
 | Screening-question support | 0% | ⚫ |
 | Application logging | 0% | ⚫ |
+| Chrome extension fallback | 0% | ⚫ |
 
-**IMPORTANT:** This is NOT blind auto-apply. This is assisted execution. User stays in control.
+**IMPORTANT:** This is NOT blind auto-apply. This is assisted execution. User stays in control. The only allowed execution path is one reviewed pack + one explicit approval + one job. No unattended queue, no bulk submit, no autonomous job selection.
 
 **Exit criteria:** User can apply 5–10x faster without losing control.
 
@@ -255,11 +257,11 @@ Turn infrastructure into habit-forming UX.
 - More Resume Council polish (93% is enough — ship it)
 - More resume templates (10 is enough)
 - More LLM orchestration rewrites
-- Full autonomous apply (user stays in control always)
+- Full autonomous apply (user stays in control always; assisted apply requires explicit per-job approval)
 - Heavy dashboards
 - Enterprise admin systems
 - Graph visualization UIs
-- Chrome extension (Phase 5, needs user base first)
+- Chrome extension (Phase 5 fallback; Kimi/Hermes bridge is the current assisted-apply experiment)
 - Gmail Memory (Phase 3, needs transport first)
 
 ---
@@ -275,10 +277,10 @@ That is the real CareerLoop architecture.
 ---
 
 ## PHASE 0 — Delivery Foundation (The Missing Layer)
-**Status: ~0% | Owner: CTO | Priority: P0 — blocks everything**
+**Status: ~12% | Owner: CTO | Priority: P0 — blocks everything**
 
-> Added 2026-05-22. The entire backend exists but reaches zero users.
-> This phase must ship before any other feature investment.
+> Added 2026-05-22. Updated 2026-05-23 after first scaffolds.
+> The entire backend exists, and the delivery layer now has initial files, but no verified end-to-end user loop. This phase must ship before any other feature investment.
 
 The MVP operating loop:
 
@@ -306,14 +308,18 @@ The product becomes real only when this loop works end-to-end for one user.
 |-------|------|
 | Transport abstraction | `careerloop/transport/base.py` |
 | Telegram adapter | `careerloop/transport/telegram.py` |
-| Session store | `careerloop/session/session_store.py` |
-| Message router | `careerloop/session/message_router.py` |
+| Terminal adapter | `careerloop/transport/terminal_chat.py` |
+| LangGraph supervisor | `careerloop/session/supervisor_graph.py` |
+| Postgres checkpointer | `careerloop/memory/checkpointer.py` |
+| Session store fallback | `careerloop/session/session_store.py` |
 | User registry | `careerloop/session/user_registry.py` |
 
 **Success criteria:**
 - User sends "hi" → CareerLoop replies
 - User sends "brief" → CareerLoop sends mock daily brief
 - User taps Apply → state changes to `AWAITING_JOB_DECISION`
+- `UserEvent` maps into `ConversationState` without type mismatch
+- `thread_id` persists state through one interrupt/resume cycle
 
 ---
 
@@ -369,7 +375,7 @@ User approves job
 → PDF selected (classic-ats for ATS, product-engineer for PM)
 → send_document(pdf) + summary text
 → user reviews
-→ user opens apply link
+→ user opens apply link or approves assisted form-fill
 → state = AWAITING_APPLICATION_CONFIRMATION
 ```
 
@@ -506,13 +512,15 @@ Do not run per-job tasks speculatively. Only run when user signals intent. This 
 
 ```
 Transport Layer (Telegram / WhatsApp)
-  └── Session Router + State Machine
+  └── TransportAdapter → UserEvent → ConversationState
+      └── LangGraph Supervisor + PostgresSaver
       └── User Registry + Onboarding
           ├── Daily Brief Engine
           │   └── DailyRunner → Discovery → Scoring → Compression
           ├── Application Pack Orchestrator
           │   └── Company Intel → Council → Render → ATS Check → Deliver
           ├── Resume Editor (surgical, no full rerun)
+          ├── Assisted Apply Bridge (explicit approval only)
           ├── Follow-Up Engine
           ├── Gmail + Calendar Connectors
           ├── Interview Memory
@@ -522,23 +530,23 @@ Transport Layer (Telegram / WhatsApp)
 
 ---
 
-## Current Overall Maturity: ~58-61%
+## Current Overall Maturity: ~59-62%
 
-> Updated 2026-05-22. Phase 0 added. Delivery layer is the new P0.
+> Updated 2026-05-23. Phase 0 has scaffolds; contract correctness and E2E verification are the new P0.
 
 | Phase | % | Owner | Status |
 |-------|---|-------|--------|
-| Phase 0: Delivery Foundation | 0% | CTO | 🔴 NEW P0 |
+| Phase 0: Delivery Foundation | 12% | CTO | 🔴 P0 |
 | Phase 1: Discovery | 75% | CTO | 🟡 |
 | Phase 1.5: Decision Compression | 20% | CEO | 🔴 |
 | Phase 2: Positioning + Intelligence | 45% | CTO | 🟡 |
 | Phase 3: Career Memory | 10% | CTO | 🔴 |
 | Phase 4: Interview Intelligence | 25% | Shared | 🟡 |
-| Phase 5: Execution (Chrome ext) | 5% | CTO | ⚫ |
+| Phase 5: Execution (assisted apply) | 8% | CTO | ⚫ |
 | Phase 6: Career State Graph | 5% | CTO | ⚫ |
 | Phase 7: Adaptive Intelligence | 0% | Future | ⚫ |
 | Phase 8: Consumer Product (UX) | 20% | Shared | 🔴 |
 
 ---
 
-*Synced with `docs/tech-backlog/TRACKER.md` and `docs/product/PRD.md` — May 22, 2026.*
+*Synced with `docs/tech-backlog/TRACKER.md` and `docs/product/PRD.md` — May 23, 2026.*

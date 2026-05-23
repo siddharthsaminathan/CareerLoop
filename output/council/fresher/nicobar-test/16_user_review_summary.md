@@ -1,1 +1,1 @@
-Check your new resume. 8-system architecture ensured zero metadata leakage.
+Check your new resume. 5/8 sections rewritten. ⚠️ 3 fell back to original: fresher_profile_priya_sharma, internships, projects

@@ -2,7 +2,11 @@
 
 ## Profile
 
-Recent IIT Delhi Computer Science graduate (GPA 9.2) with a strong engineering foundation and a passion for building AI-native products. Eager to apply Python and ML skills to create intelligence layers that drive customer personalization and conversational BI in a fast-paced retail environment. Proven ability to rapidly ramp up on new technologies and deliver outcomes, as demonstrated by a BERT-based sentiment analysis project and a data science internship. Ready to own end-to-end development of AI-first solutions that elevate brand experience.
+Built polished customer experiences using React and Tailwind for frontend development, and experimented with NLP and BERT for machine learning. Engineering foundation from IIT Delhi.
+
+Built Python and SQL pipelines for data analysis, accelerating personalization and conversational AI projects in e-commerce.
+
+Built and deployed projects end-to-end independently. IIT Delhi CS, GPA 9.2.
 
 ## Education
 
@@ -12,22 +16,23 @@ B.Tech Computer Science — IIT Delhi (2020 - 2024)
 
 ## Skills
 
-- Python, SQL
-- TensorFlow, PyTorch
+- Python, SQL, NodeJS
+- TensorFlow, PyTorch, BERT (NLP)
+- React, Tailwind CSS (frontend)
 - Data Visualization (Tableau)
 
 ## Projects
 
 ## Sentiment Analysis Bot
 
-- Shipped an AI-native sentiment analysis engine using BERT, demonstrating ability to rapidly build and deploy ML models that extract business intelligence from social data. [Source Code](https://github.com/priya/bert-bot)
+- Shipped a BERT-powered Twitter sentiment analyzer that classifies customer sentiment in real time, demonstrating NLP proficiency applicable to personalization and conversational AI. [Source Code](https://github.com/priya/bert-bot)
 
 ## Portfolio Website
 
-- Shipped an AI-native portfolio site using React and Tailwind to showcase ML projects and brand experience. [Live Demo](https://priya.dev)
+- Architected a brand-conscious portfolio website using React and Tailwind, demonstrating frontend skills aligned with Nicobar's design-led customer experiences. [Live Demo](https://priya.dev)
 
 ## Internships
 
 ## Data Science Intern — Fintech Corp (Summer 2023)
 
-- Built a logistic regression model to predict loan default patterns, demonstrating ability to deliver business intelligence from raw data.
+- Built a loan default prediction model using logistic regression, delivering business intelligence that informed risk assessment decisions.

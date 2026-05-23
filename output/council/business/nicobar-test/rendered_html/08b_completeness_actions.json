@@ -1,0 +1,14 @@
+[
+  {
+    "section_id": "achievements",
+    "decision": "suppressed",
+    "reason": "No notable achievements buried in education or experience beyond what is already listed in the experience bullets.",
+    "items_added": 0
+  },
+  {
+    "section_id": "projects",
+    "decision": "suppressed",
+    "reason": "No projects mentioned in the CV.",
+    "items_added": 0
+  }
+]

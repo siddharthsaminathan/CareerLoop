@@ -2,11 +2,14 @@
   "company_name": "Nicobar Design Pvt. Ltd.",
   "role_title": "AI Product Engineer -- CEO's Office",
   "source_urls": [
-    "https://www.linkedin.com/feed/update/urn:li:activity:7329475396732014592"
+    "https://www.linkedin.com/feed/update/urn:li:activity:7329475396732014592",
+    "https://www.linkedin.com/pulse/how-brand-built-me-nicobar-designs-pvt-ltd--xg2xc/",
+    "https://www.crunchbase.com/person/raul-rai",
+    "https://www.livemint.com/mint-lounge/business-of-life/nicobar-simran-lal-good-earth-office-home-decor-11756622685044.html"
   ],
   "grounding_status": "PARTIAL",
   "confidence": 0.5,
-  "generated_at": "2026-05-19T22:04:46.120640+00:00",
+  "generated_at": "2026-05-20T11:24:43.297190+00:00",
   "cache_key": "909ea5c71e0f1e43",
   "ttl_days": 30,
   "company_summary": "Nicobar Design Pvt. Ltd.. operates in ecommerce. with a focus on ai_ml, ai_ml, retail_tech.",
@@ -32,28 +35,14 @@
   "interview_implications": "",
   "compensation_signals": "",
   "red_flags": [],
+  "red_flags_detail": [],
+  "recruiter_info": {},
   "positioning_implications": "",
-  "language_to_use": [
-    "AI-native",
-    "intelligence layer",
-    "brand experience",
-    "customer personalization",
-    "conversational BI"
-  ],
-  "language_to_avoid": [
-    "enterprise-grade",
-    "scalable infrastructure",
-    "data pipeline",
-    "legacy migration",
-    "cost optimization"
-  ],
+  "language_to_use": [],
+  "language_to_avoid": [],
   "candidate_angles": [],
   "transferability_angles": [],
-  "risks_to_soften": [
-    "No direct e-commerce or retail experience",
-    "No experience with Shopify, MoEngage, or Dynamics 365",
-    "Background in manufacturing quality, not consumer personalization"
-  ],
+  "risks_to_soften": [],
   "claims_to_avoid": [],
   "resume_strategy_hint": "",
   "outreach_strategy_hint": "",
@@ -66,25 +55,9 @@
     "culture_signals": [],
     "hiring_urgency": "UNKNOWN",
     "positioning_implications": "",
-    "language_to_use": [
-      "AI-native",
-      "intelligence layer",
-      "brand experience",
-      "customer personalization",
-      "conversational BI"
-    ],
-    "language_to_avoid": [
-      "enterprise-grade",
-      "scalable infrastructure",
-      "data pipeline",
-      "legacy migration",
-      "cost optimization"
-    ],
-    "risks_to_soften": [
-      "No direct e-commerce or retail experience",
-      "No experience with Shopify, MoEngage, or Dynamics 365",
-      "Background in manufacturing quality, not consumer personalization"
-    ],
+    "language_to_use": [],
+    "language_to_avoid": [],
+    "risks_to_soften": [],
     "claims_to_avoid": [],
     "candidate_angles": [],
     "red_flags": [],
@@ -97,40 +70,80 @@
     "product_context": "E-commerce",
     "business_problem": "",
     "role_success_criteria": [],
-    "language_to_use": [
-      "AI-native",
-      "intelligence layer",
-      "brand experience",
-      "customer personalization",
-      "conversational BI"
-    ],
-    "language_to_avoid": [
-      "enterprise-grade",
-      "scalable infrastructure",
-      "data pipeline",
-      "legacy migration",
-      "cost optimization"
-    ],
+    "language_to_use": [],
+    "language_to_avoid": [],
     "proof_points_to_prefer": [
       "measurable outcomes with numbers",
       "specific, defensible achievements",
       "evidence of ownership and initiative"
     ],
-    "risks_to_soften": [
-      "No direct e-commerce or retail experience",
-      "No experience with Shopify, MoEngage, or Dynamics 365",
-      "Background in manufacturing quality, not consumer personalization"
-    ],
+    "risks_to_soften": [],
     "avoid_overclaiming_about": [],
-    "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact."
+    "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact.",
+    "founder_context": "Co-founded by Simran Lal and her husband Raul Rai. Simran Lal is inspired by travel, India, and nature; Raul Rai previously Managing Director at Eight Roads Ventures.",
+    "hiring_reason": "UNKNOWN",
+    "culture_fit_signals": [
+      "design-led",
+      "AI-native",
+      "customer-centric",
+      "collaborative",
+      "brand-obsessed"
+    ],
+    "interview_prep_hints": [
+      "Describe a real project where you used an LLM API (OpenAI, Claude, Gemini) to solve a business problem.",
+      "How would you design a personalization engine for an e-commerce brand using Shopify APIs?",
+      "Walk us through how you would replace a BI dashboard with a conversational AI layer."
+    ],
+    "glassdoor_signal": "No data",
+    "reddit_signal": "No data"
+  },
+  "key_people": [
+    {
+      "name": "Simran Lal",
+      "title": "Co-Founder",
+      "source": "LIVEMINT"
+    },
+    {
+      "name": "Raul Rai",
+      "title": "Co-Founder",
+      "source": "CRUNCHBASE"
+    }
+  ],
+  "founder_background": "Co-founded by Simran Lal and her husband Raul Rai. Simran Lal is inspired by travel, India, and nature; Raul Rai previously Managing Director at Eight Roads Ventures.",
+  "hiring_manager_context": "Reports to CEO (Simran Lal or Raul Rai) — role is in CEO's office.",
+  "interview_questions_likely": [
+    "Describe a real project where you used an LLM API (OpenAI, Claude, Gemini) to solve a business problem.",
+    "How would you design a personalization engine for an e-commerce brand using Shopify APIs?",
+    "Walk us through how you would replace a BI dashboard with a conversational AI layer.",
+    "How do you handle connecting disparate systems (APIs, webhooks, data pipelines) that weren't designed to work together?",
+    "Tell us about a time you built a front-end that balanced functionality with brand aesthetics."
+  ],
+  "culture_keywords": [
+    "design-led",
+    "AI-native",
+    "customer-centric",
+    "collaborative",
+    "brand-obsessed",
+    "island aesthetic",
+    "minimal",
+    "nature-inspired",
+    "friction-removing",
+    "premier institute bias"
+  ],
+  "glassdoor_signal": "No data",
+  "reddit_signal": "No data",
+  "sources_by_type": {
+    "jd_url": 1,
+    "people_search": 3
   },
   "unknowns": [
-    "Company revenue, funding, employee count, and growth stage",
-    "Company culture specifics beyond JD tone",
-    "Exact tech stack beyond Shopify, MoEngage, Dynamics 365",
-    "Team size and reporting structure",
-    "Compensation and benefits",
-    "Recent news or layoffs",
-    "Customer demographics and market position"
+    "Glassdoor reviews",
+    "Reddit mentions",
+    "Exact headcount",
+    "Revenue or funding details",
+    "Office locations beyond Delhi",
+    "Specific tech stack beyond Shopify, MoEngage, Dynamics 365",
+    "Interview process details",
+    "Salary range"
   ]
 }
