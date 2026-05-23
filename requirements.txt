@@ -5,9 +5,11 @@
 requests>=2.32
 beautifulsoup4>=4.14
 lxml>=6.0
+playwright>=1.40
 
 # Search
 duckduckgo-search>=8.1
+ddgs>=0.1
 
 # Markdown parsing (AST-based, used by Resume Council compiler)
 mistune>=3.0

@@ -62,16 +62,17 @@ class CompanyTargeting:
         function: str,
         city: str = "",
         sector: str = "",
-        n: int = 30,
+        n: int = 0,
         offset: int = 0,
         min_function_probability: float = 0.4,
+        min_score: float = 50.0,
     ) -> list[RankedCompany]:
-        """Return top-N companies in city/sector ranked by likelihood of hiring `function`."""
-        # Pull a wide candidate pool (4x N) so ranking has signal to work with
+        """Return all companies above min_score threshold (n=0 means no cap).
+        Sorted descending by score."""
         candidates = self.registry.list_by_city_sector(
             city=city, sector=sector,
             crawl_status=["pending", "active", "warm"],
-            limit=max(n * 4, 100),
+            limit=2000,
         )
 
         ranked: list[RankedCompany] = []
@@ -120,6 +121,11 @@ class CompanyTargeting:
             ))
 
         ranked.sort(key=lambda r: r.score, reverse=True)
+        # Filter by min_score threshold
+        ranked = [r for r in ranked if r.score >= min_score]
+        # n=0 means no cap — return everything above threshold
+        if n == 0:
+            return ranked[offset:]
         return ranked[offset:offset + n]
 
     def expand(self, function: str, city: str, current_count: int, batch: int = 30, **kwargs) -> list[RankedCompany]:

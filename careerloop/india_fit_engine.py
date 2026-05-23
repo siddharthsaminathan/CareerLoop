@@ -562,11 +562,19 @@ class IndiaFitEngine:
         return 2.0
 
     def _score_response_likelihood(self, job: dict, ctx: dict) -> float:
-        """Estimate hiring velocity from ATS provider + posting recency."""
+        """Estimate hiring velocity from ATS provider + posting recency + source quality."""
         base = 5.0
-        source = (job.get("source") or "").lower()
-        if any(s in source for s in ["greenhouse", "lever", "ashby", "company_portal"]):
-            base += 2.0  # structured ATS = real, monitored
+        source = (job.get("_source_type") or job.get("source") or "").lower()
+        # Direct ATS/portal sources = verified live job, higher response rate
+        if any(s in source for s in ["greenhouse", "lever", "ashby", "workday", "company_portal"]):
+            base += 3.0
+        elif any(s in source for s in ["scrapegraph", "naukri", "foundit", "instahyre", "cutshort"]):
+            base += 1.5
+        elif any(s in source for s in ["jobspy", "linkedin"]):
+            base += 1.0
+        # search/generic sources have lowest signal — snippet only, may be stale
+        elif any(s in source for s in ["search", "generic_http", "glassdoor", "google_jobs"]):
+            base += 0.0
 
         posted = job.get("posted_date") or job.get("posted_at") or job.get("source_date") or ""
         if posted:

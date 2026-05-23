@@ -315,7 +315,7 @@ class PortalScraper:
 
         try:
             with sync_playwright() as p:
-                browser = p.chromium.launch(headless=True)
+                browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
                 context = browser.new_context(
                     user_agent=(
                         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -536,6 +536,45 @@ class PortalScraper:
                 prev_height = new_height
         except Exception as e:
             logger.debug(f"[PortalScraper] L3 scroll error: {e}")
+
+        # 3a2. FIX 9: Hover nav menus / expand dropdowns that hide careers links
+        # Covers enterprise sites (fashion brands, large cos) with nested nav
+        try:
+            NAV_HOVER_SELECTORS = [
+                "nav a:has-text('Company')", "nav a:has-text('About')",
+                "nav a:has-text('Who We Are')", "nav a:has-text('Teams')",
+                "nav a:has-text('Life at')", "nav button:has-text('Company')",
+                "[class*='nav'] a:has-text('Company')", "[class*='menu'] a:has-text('About')",
+                "header a:has-text('Company')", "header a:has-text('About Us')",
+            ]
+            for nav_sel in NAV_HOVER_SELECTORS:
+                try:
+                    el = page.locator(nav_sel).first
+                    if el.count() > 0 and el.is_visible(timeout=1500):
+                        el.hover()
+                        page.wait_for_timeout(800)
+                        # After hover, look for careers link in expanded dropdown
+                        for careers_sel in ["a:has-text('Careers')", "a:has-text('Jobs')",
+                                            "a[href*='careers']", "a[href*='/jobs']"]:
+                            try:
+                                link = page.locator(careers_sel).first
+                                if link.is_visible(timeout=1000):
+                                    href = link.get_attribute("href")
+                                    if href:
+                                        from urllib.parse import urljoin
+                                        target = urljoin(base_url, href)
+                                        page.goto(target, timeout=TIMEOUT_MS, wait_until="domcontentloaded")
+                                        page.wait_for_timeout(2000)
+                                        fresh = _snapshot_jobs("l3_nav_careers")
+                                        jobs.extend(fresh)
+                                        break
+                            except Exception:
+                                continue
+                        break
+                except Exception:
+                    continue
+        except Exception as e:
+            logger.debug(f"[PortalScraper] L3 nav hover error: {e}")
 
         # 3b. Click 'Load More' / 'Show More' buttons up to MAX_LOAD_MORE_CLICKS times
         for _ in range(MAX_LOAD_MORE_CLICKS):

@@ -334,13 +334,16 @@ class AshbyAdapter:
         self.session.headers["User-Agent"] = "Mozilla/5.0 (compatible; CareerLoopBot/1.0)"
 
     def _slug_from_url(self, ats_url: str) -> Optional[str]:
-        # subdomain form: {slug}.ashbyhq.com
-        m = re.search(r"([a-z0-9_-]+)\.ashbyhq\.com", ats_url, re.IGNORECASE)
-        if m:
-            return m.group(1)
-        # posting-api form: api.ashbyhq.com/posting-api/job-board/{slug}
+        # Path-based form first: api.ashbyhq.com/posting-api/job-board/{slug}
+        # MUST check before subdomain regex — otherwise "api" gets extracted as slug
         m2 = re.search(r"job-board/([a-z0-9_-]+)", ats_url, re.IGNORECASE)
-        return m2.group(1) if m2 else None
+        if m2:
+            return m2.group(1)
+        # Subdomain form: {slug}.ashbyhq.com (exclude "api" — that's the API host)
+        m = re.search(r"([a-z0-9_-]+)\.ashbyhq\.com", ats_url, re.IGNORECASE)
+        if m and m.group(1) != "api":
+            return m.group(1)
+        return None
 
     def _board_url(self, slug: str) -> str:
         """Try posting-api first (public), fall back to non-user-facing."""
@@ -522,7 +525,7 @@ class WorkdayAdapter:
 
         try:
             with sync_playwright() as pw:
-                browser = pw.chromium.launch(headless=True)
+                browser = pw.chromium.launch(headless=True, args=["--no-sandbox"])
                 page = browser.new_page()
                 page.on("response", handle_response)
                 page.goto(board_url, timeout=20000, wait_until="networkidle")
@@ -754,6 +757,11 @@ class ATSAdapter:
     Unified adapter — routes to correct ATS based on company ats_provider field.
     Returns list[ATSJob] regardless of source.
     P3: In-session result cache prevents re-fetching the same company in one run.
+
+    Supported platforms (14 total):
+      P0: greenhouse, lever, ashby, workday, smartrecruiters, successfactors, taleo, icims, talentrecruit
+      P1: darwinbox, workable, teamtailor
+      P2: recruitee, bamboohr
     """
 
     def __init__(self):
@@ -762,14 +770,41 @@ class ATSAdapter:
         self._ashby = AshbyAdapter()
         self._workday = WorkdayAdapter()
         self._scraper = CareerPageScraperAdapter()
-        self._session_cache: dict[str, list[ATSJob]] = {}  # P3: company_id → jobs
+        self._session_cache: dict[str, list] = {}  # P3: company_id → jobs
+
+        # Extended adapters (lazy-loaded)
+        self._ext: dict = {}
+
+    def _get_ext(self, name: str):
+        """Lazy-load extended adapter by name."""
+        if name not in self._ext:
+            from careerloop.sources.ats_extended import (
+                SmartRecruitersAdapter, SuccessFactorsAdapter, TaleoAdapter,
+                ICIMSAdapter, TalentRecruitAdapter, DarwinboxAdapter,
+                WorkableAdapter, TeamtailorAdapter, RecruiteeAdapter, BambooHRAdapter,
+            )
+            registry = {
+                "smartrecruiters": SmartRecruitersAdapter,
+                "successfactors": SuccessFactorsAdapter,
+                "taleo": TaleoAdapter,
+                "icims": ICIMSAdapter,
+                "talentrecruit": TalentRecruitAdapter,
+                "darwinbox": DarwinboxAdapter,
+                "workable": WorkableAdapter,
+                "teamtailor": TeamtailorAdapter,
+                "recruitee": RecruiteeAdapter,
+                "bamboohr": BambooHRAdapter,
+            }
+            if name in registry:
+                self._ext[name] = registry[name]()
+        return self._ext.get(name)
 
     def fetch_jobs(self, company_id: str, company_name: str,
-                   ats_provider: str, ats_url: str) -> list[ATSJob]:
+                   ats_provider: str, ats_url: str) -> list:
         """
         Fetch jobs for a company from its ATS.
+        Returns list of dicts (extended adapters) or ATSJob objects (core adapters).
         P3: Returns cached result if same company_id already fetched this session.
-        Returns empty list on any failure — never raises.
         """
         if not ats_url:
             return []
@@ -780,6 +815,7 @@ class ATSAdapter:
             return self._session_cache[cache_key]
 
         try:
+            # Core adapters (ATSJob objects)
             if ats_provider == "greenhouse":
                 result = self._greenhouse.fetch(company_id, company_name, ats_url)
             elif ats_provider == "lever":
@@ -788,10 +824,19 @@ class ATSAdapter:
                 result = self._ashby.fetch(company_id, company_name, ats_url)
             elif ats_provider == "workday":
                 result = self._workday.fetch(company_id, company_name, ats_url)
-            elif ats_provider in ("successfactors", "icims"):
-                result = self._scraper.fetch(company_id, company_name, ats_url,
-                                             source_label=ats_provider)
-            elif ats_provider in ("taleo", "none", "custom"):
+
+            # Extended adapters — return plain dicts
+            elif ats_provider in ("smartrecruiters", "successfactors", "taleo", "icims",
+                                   "talentrecruit", "darwinbox", "workable", "teamtailor",
+                                   "recruitee", "bamboohr"):
+                adapter = self._get_ext(ats_provider)
+                if adapter:
+                    result = adapter.fetch(company_id, company_name, ats_url)
+                else:
+                    logger.debug(f"[ATS] Extended adapter not available: {ats_provider}")
+                    return []
+
+            elif ats_provider in ("none", "custom", "unknown"):
                 return []
             else:
                 logger.debug(f"[ATS] Unknown provider '{ats_provider}' for {company_name}")
@@ -803,27 +848,47 @@ class ATSAdapter:
             logger.warning(f"[ATS] Unexpected error for {company_name} ({ats_provider}): {e}")
             return []
 
-    def detect_ats(self, domain: str) -> tuple[str, str]:
+    def detect_ats(self, domain: str, career_url: str = "", html: str = "") -> tuple[str, str]:
         """
-        Probe common ATS endpoints for a domain.
+        Detect ATS for a domain. Priority:
+          1. URL/HTML fingerprint (free, instant)
+          2. REST probe of known public endpoints
         Returns (ats_provider, ats_url) or ("none", "") if nothing found.
         """
+        from careerloop.sources.ats_extended import fingerprint_ats, build_ats_url
+
+        # 1. Fingerprint from URL or HTML
+        if career_url or html:
+            detected = fingerprint_ats(career_url or "", html)
+            if detected:
+                slug = re.sub(r"\.(com|in|io|co|net|org|ai)$", "", domain.lower())
+                ats_url = build_ats_url(detected, slug, career_url)
+                logger.info(f"[ATS detect] {domain} → {detected} (fingerprint)")
+                return detected, ats_url
+
+        # 2. Probe REST endpoints
         slug = re.sub(r"\.(com|in|io|co|net|org|ai)$", "", domain.lower())
-        candidates = [
-            ("greenhouse", f"https://boards.greenhouse.io/embed/job_board/jobs?for={slug}"),
+        probe_candidates = [
+            ("greenhouse", f"https://boards-api.greenhouse.io/v1/boards/{slug}/jobs"),
             ("lever", f"https://api.lever.co/v0/postings/{slug}?mode=json"),
-            ("ashby", f"https://{slug}.ashbyhq.com/api/non-user-facing/job-board"),
+            ("ashby", f"https://api.ashbyhq.com/posting-api/job-board/{slug}"),
+            ("smartrecruiters", f"https://api.smartrecruiters.com/v1/companies/{slug}/postings?limit=1"),
+            ("workable", f"https://apply.workable.com/api/v1/widget/accounts/{slug}/jobs"),
+            ("teamtailor", f"https://{slug}.teamtailor.com/api/v1/jobs"),
+            ("recruitee", f"https://{slug}.recruitee.com/api/offers"),
+            ("bamboohr", f"https://{slug}.bamboohr.com/careers/list"),
         ]
 
         session = requests.Session()
         session.headers["User-Agent"] = "Mozilla/5.0 (compatible; CareerLoopBot/1.0)"
 
-        for provider, url in candidates:
+        for provider, url in probe_candidates:
             try:
-                resp = session.head(url, timeout=8, allow_redirects=True)
-                if resp.status_code == 200:
-                    logger.info(f"[ATS detect] {domain} → {provider} ({url})")
-                    return provider, url
+                resp = session.head(url, timeout=6, allow_redirects=True)
+                if resp.status_code in (200, 201):
+                    canonical = build_ats_url(provider, slug, url)
+                    logger.info(f"[ATS detect] {domain} → {provider} (REST probe)")
+                    return provider, canonical
             except Exception:
                 continue
 

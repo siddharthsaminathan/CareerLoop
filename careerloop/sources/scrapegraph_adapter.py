@@ -123,7 +123,7 @@ class ScrapeGraphAdapter:
         try:
             from playwright.sync_api import sync_playwright
             with sync_playwright() as pw:
-                browser = pw.chromium.launch(headless=True)
+                browser = pw.chromium.launch(headless=True, args=["--no-sandbox"])
                 page = browser.new_page()
                 page.set_extra_http_headers({
                     "User-Agent": (

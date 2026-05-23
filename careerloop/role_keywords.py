@@ -42,7 +42,7 @@ _FALLBACK_BY_TOKEN = {
     "consultant": ["consulting", "advisory", "client", "engagement"],
     "scientist": ["research", "modeling", "experimentation", "statistics"],
     "operations": ["ops", "operations", "process", "execution"],
-    "product": ["product", "roadmap", "pm", "user research", "strategy"],
+    "product": ["product", "roadmap", "user research", "strategy"],  # engineer context overrides this
 }
 
 
@@ -54,14 +54,12 @@ class RoleKeywordCache:
         self._llm = None
 
     def _get_llm(self):
-        if self._llm is None:
-            try:
-                from careerloop.council.llm import CouncilLLMClient
-                self._llm = CouncilLLMClient("keywords")
-            except Exception as e:
-                logger.warning(f"[RoleKeywords] LLM unavailable: {e}")
-                self._llm = False
-        return self._llm
+        # Kept for API compatibility — returns self since we do the HTTP call directly
+        return self if self._api_key() else False
+
+    def _api_key(self) -> str:
+        import os
+        return os.getenv("DEEPSEEK_API_KEY", "")
 
     # ── Public API ────────────────────────────────────────────────────
 
@@ -168,11 +166,27 @@ Rules:
 - Output only the JSON object. No markdown fences."""
 
         try:
-            response = llm.call(system, prompt)
-            json_match = re.search(r"\{.*\}", response, re.DOTALL)
-            if not json_match:
-                return {}
-            data = json.loads(json_match.group())
+            import os, requests as _req
+            api_key = os.getenv("DEEPSEEK_API_KEY", "")
+            base_url = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com/v1")
+            resp = _req.post(
+                f"{base_url}/chat/completions",
+                headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+                json={
+                    "model": "deepseek-chat",
+                    "messages": [
+                        {"role": "system", "content": system},
+                        {"role": "user", "content": prompt},
+                    ],
+                    "max_tokens": 400,
+                    "temperature": 0,
+                    "response_format": {"type": "json_object"},
+                },
+                timeout=15,
+            )
+            resp.raise_for_status()
+            content = resp.json()["choices"][0]["message"]["content"]
+            data = json.loads(content)
             return {
                 "keywords": list(data.get("keywords", []))[:20],
                 "search_queries": list(data.get("search_queries", []))[:10],
@@ -185,10 +199,16 @@ Rules:
     def _fallback(self, role: str) -> dict:
         """Token-based fallback when LLM unavailable. Better than hardcoded AI bias."""
         tokens = role.split()
+        is_engineering_role = any(t in tokens for t in ("engineer", "engineering", "developer", "architect", "programmer"))
         keywords = [role] + tokens
         for token in tokens:
-            if token in _FALLBACK_BY_TOKEN:
-                keywords.extend(_FALLBACK_BY_TOKEN[token])
+            if token not in _FALLBACK_BY_TOKEN:
+                continue
+            expansions = _FALLBACK_BY_TOKEN[token]
+            # Don't add PM-domain terms when the role is technical
+            if is_engineering_role and token == "product":
+                expansions = [e for e in expansions if e not in ("roadmap", "pm", "user research", "strategy")]
+            keywords.extend(expansions)
         # Dedupe preserving order
         seen = set()
         deduped = []

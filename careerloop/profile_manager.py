@@ -54,10 +54,11 @@ class ProfileManager:
     2. CareerLoop India-specific fields (extended)
     """
 
-    def __init__(self, career_ops_root: str, profile_path: str = None):
+    def __init__(self, career_ops_root: str, profile_path: str = None,
+                 extended_profile_path: str = None):
         self.root = career_ops_root
         self.profile_path = profile_path or os.path.join(career_ops_root, "config", "profile.yml")
-        self.extended_path = os.path.join(career_ops_root, "careerloop", "profile_extended.yml")
+        self.extended_path = extended_profile_path or os.path.join(career_ops_root, "careerloop", "profile_extended.yml")
 
         # Load base profile
         with open(self.profile_path) as f:

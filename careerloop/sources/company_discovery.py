@@ -265,7 +265,7 @@ class WellfoundDiscovery:
         try:
             from playwright.sync_api import sync_playwright
             with sync_playwright() as p:
-                browser = p.chromium.launch(headless=True)
+                browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
                 page = browser.new_page()
                 page.goto(url, wait_until="networkidle", timeout=25000)
                 time.sleep(3)
@@ -602,7 +602,7 @@ class CompanyDiscoveryEngine:
     def discover(
         self,
         city: str,
-        sector: str,
+        sector: str = "Technology & Software",
         function_hint: str = "",
         max_companies: int = 100,
     ) -> list[CompanyRecord]:
@@ -612,13 +612,9 @@ class CompanyDiscoveryEngine:
         """
         logger.info(f"[Discovery] Starting: city={city}, sector={sector}, function={function_hint}")
 
-        # Check existing registry first
-        existing = self.registry.list_by_city_sector(city, sector, limit=max_companies)
-        if len(existing) >= max_companies // 2:
-            logger.info(f"[Discovery] Registry cache hit: {len(existing)} companies already known")
-            return self._rank(existing)[:max_companies]
-
-        # Multi-source discovery
+        # Always search the internet — no early return from DB cache.
+        # DB stores previously discovered companies so they get enriched/updated,
+        # but it never replaces a live search.
         raw_companies: list[RawCompany] = []
 
         raw_companies += self.google.search(city, sector, function_hint)

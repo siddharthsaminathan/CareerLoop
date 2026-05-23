@@ -1,0 +1,134 @@
+notice_period_days: 30
+current_ctc_lakhs: null
+expected_ctc_lakhs: 22
+ctc_currency: INR
+salary_floor_lakhs: 20
+salary_ceiling_lakhs: 30
+equity_required: false
+esops_min_percent: null
+benefits_must_have: []
+
+target_functions:
+  - "AI/ML Engineering"
+  - "Product Engineering"
+  - "Backend Engineering"
+  - "Full Stack Engineering"
+  - "Platform Engineering"
+
+sector_preferences:
+  - "Technology & Software"
+  - "AI & Machine Learning"
+  - "SaaS"
+  - "Developer Tools"
+  - "Fintech"
+  - "HealthTech"
+
+sector_rejections:
+  - "Government & Public Sector"
+  - "Traditional Manufacturing (non-AI)"
+  - "IT Services & Outsourcing"
+
+startup_tolerance: 9
+min_company_size: null
+max_company_size: null
+
+preferred_company_types:
+  - "startup"
+  - "saas"
+  - "ai-native"
+  - "product"
+  - "fintech"
+
+rejected_company_types:
+  - "it_outsourcing"
+  - "body_shop"
+  - "consulting"
+  - "mass_recruiter"
+
+max_commute_minutes: 60
+willing_to_relocate: true
+relocation_cities:
+  - "Bangalore"
+  - "Mumbai"
+  - "Delhi"
+  - "Remote"
+
+assignment_burden_tolerance: 3
+
+confirmed_skills:
+  - "Python"
+  - "FastAPI"
+  - "LangChain"
+  - "LangGraph"
+  - "RAG pipelines"
+  - "Multi-agent systems"
+  - "Redis"
+  - "PostgreSQL"
+  - "Docker"
+  - "AWS"
+  - "LLM APIs"
+  - "Prompt engineering"
+  - "WebSockets"
+  - "Tool-driven architectures"
+  - "Memory systems"
+  - "Context modeling"
+  - "Async pipelines"
+  - "ETL"
+
+weak_skills:
+  - "React"
+  - "TypeScript"
+  - "Kubernetes"
+
+rejected_roles:
+  - "Frontend Engineer"
+  - "Data Scientist"
+  - "Data Analyst"
+  - "QA Engineer"
+  - "Support Engineer"
+  - "SAP Consultant"
+  - "Java Developer"
+  - "PHP Developer"
+  - "Sales Manager"
+  - "Account Executive"
+  - "Account Director"
+  - "Business Development"
+  - "GTM Lead"
+  - "Sales Operations"
+  - "Client Onboarding Director"
+  - "Talent Acquisition"
+  - "Recruiter"
+  - "HR"
+  - "Product Analyst"
+  - "Business Analyst"
+  - "Scrum Master"
+  - "Project Manager"
+  - "Delivery Manager"
+  - "Solutions Consultant"
+  - "Product Manager"
+  - "Engineering Manager"
+  - "Mechanical Engineer"
+  - "Mechanical Product Engineer"
+  - "Hardware Engineer"
+  - "HVAC Engineer"
+  - "NPD Engineer"
+  - "Manufacturing Engineer"
+  - "Defence Engineer"
+  - "Intern"
+  - "Internship"
+
+adjacent_roles:
+  - "Platform Engineer"
+  - "ML Engineer"
+  - "Backend Engineer"
+
+preferred_sources:
+  - "linkedin"
+  - "naukri"
+  - "wellfound"
+  - "company_portals"
+
+resume_tone: "confident"
+
+interview_weaknesses: []
+rejection_learnings: []

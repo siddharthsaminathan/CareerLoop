@@ -1,0 +1,66 @@
+candidate:
+  full_name: "Siddharth Saminathan"
+  email: "siddharthsaminathan99@gmail.com"
+  phone: "+91 7299707403"
+  location: "Chennai, India"
+  linkedin: "linkedin.com/in/siddharthsaminathan"
+  portfolio_url: "https://emotenow.app/"
+  github: "https://github.com/siddharthsaminathan"
+
+target_roles:
+  primary:
+    - "AI Product Engineer"
+    - "AI Systems Architect"
+    - "Full Stack AI Engineer"
+    - "Applied AI Engineer"
+    - "Founding AI Engineer"
+  archetypes:
+    - name: "AI Product Engineer"
+      level: "Mid-Senior"
+      fit: "primary"
+    - name: "AI Systems Architect"
+      level: "Mid-Senior"
+      fit: "primary"
+    - name: "Full Stack AI Engineer"
+      level: "Mid-Senior"
+      fit: "primary"
+    - name: "Senior Backend Engineer (AI)"
+      level: "Senior"
+      fit: "secondary"
+    - name: "Founding Engineer"
+      level: "Lead"
+      fit: "secondary"
+
+narrative:
+  headline: "AI Product Engineer — multi-agent systems, production AI, 0-to-1 builder"
+  exit_story: "4+ years shipping production AI: built Emote from zero (450+ users, 13-15% retention), built enterprise agentic quality management at Omnex. I ship fast and optimize relentlessly."
+  superpowers:
+    - "Multi-agent orchestration (LangGraph, tool-driven architectures)"
+    - "Production AI at scale — latency from 15s→3s, cost $1.20→$0.023"
+    - "0-to-1 product builder — concept to prod, then iterate on real user data"
+    - "Full backend + AI stack (FastAPI, Redis, PostgreSQL, async pipelines)"
+    - "Stateful AI systems with memory and context modeling"
+  proof_points:
+    - name: "Emote — AI companion app"
+      url: "https://emotenow.app/"
+      hero_metric: "450+ users, 75% activation, 13-15% weekly retention"
+    - name: "Omnex Agentic Quality System"
+      url: ""
+      hero_metric: "Automates DFMEA/PFMEA/8D for global manufacturing, 12.5s→8s latency"
+
+compensation:
+  minimum: "₹20L"
+  target_range: "₹20L-25L"
+  currency: "INR"
+
+location:
+  city: "Chennai"
+  willing_to_relocate: true
+  relocation_cities:
+    - "Bangalore"
+    - "Mumbai"
+    - "Delhi"
+    - "Remote"
+
+experience_years: 4
+notice_period: "30 days"

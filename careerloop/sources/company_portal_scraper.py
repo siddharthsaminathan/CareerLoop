@@ -153,7 +153,7 @@ class CareerPageCrawler:
         homepage = f"https://{domain}"
         try:
             with sync_playwright() as pw:
-                browser = pw.chromium.launch(headless=True)
+                browser = pw.chromium.launch(headless=True, args=["--no-sandbox"])
                 page = browser.new_page()
                 page.set_extra_http_headers({"User-Agent": (
                     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -311,7 +311,7 @@ class CareerPageCrawler:
         found = set()
         try:
             with sync_playwright() as p:
-                browser = p.chromium.launch(headless=True)
+                browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
                 page = browser.new_page()
                 page.set_extra_http_headers({"User-Agent": self.session.headers["User-Agent"]})
                 page.goto(url, wait_until="networkidle", timeout=20000)
@@ -437,7 +437,7 @@ class JDSectionExtractor:
         try:
             from playwright.sync_api import sync_playwright
             with sync_playwright() as p:
-                browser = p.chromium.launch(headless=True)
+                browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
                 page = browser.new_page()
                 page.goto(url, wait_until="networkidle", timeout=20000)
                 time.sleep(1)
