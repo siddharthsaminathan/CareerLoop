@@ -106,6 +106,26 @@ S8.5 completeness check shipped. Council is at quality ceiling (93%). System sta
 
 ## Session Log
 
+### 2026-05-23 — Session: CLI Stabilization & Ledger Safety (Part 2)
+
+**What was done:**
+- **CLI Boot Crash Fix:** Removed the `@tool` decorator from `sync_profile_data` so it functions purely as a Python method. This completely stopped the LangGraph Pydantic schema validation crashes on startup.
+- **Persistent Local Auth:** Caches the user's login email into `~/.careerloop_session`. The CLI now remembers the user immediately, eliminating the annoying email prompt on every boot.
+- **Ledger JSON Repair:** Found and repaired the broken `ledger.json` which abruptly ended at line 20,775 due to a mid-save kill command in the previous session.
+- **Atomic Ledger Saves:** Re-wrote the `_save()` method in `application_ledger.py` to write `ledger.json.tmp` and `os.replace()` it atomically, completely preventing future file corruption on crash/kill.
+
+**Vision alignment verdict:** ✅ ALIGNED
+Directly stabilizes the CLI transport layer. A user interface that immediately crashes and drops a user back to bash is unusable; now the CLI reliably resumes `DAILY_BRIEF_SENT` and handles multi-line inputs properly.
+
+**Deviations detected:** None. Pure stability and reliability hardening.
+
+**Recommended next 3 actions:**
+1. Deep-dive into `DailyRunner` scoring step to find out why deduplication says "1151 duplicates skipped" and then India Fit Engine dies or hangs. It seems the data ingested from `scan.mjs` may not map effectively to the LLM.
+2. Build WhatsApp transport adapter pointing to `supervisor_graph.py`.
+3. Harden the `kimi_bridge.py` headless layer with real ATS navigation endpoints instead of the current mock.
+
+---
+
 ### 2026-05-23 — Session: LangGraph Chatbot Orchestrator & Webbridge Scaffold
 
 **What was done:**
