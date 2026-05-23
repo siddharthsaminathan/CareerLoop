@@ -1,0 +1,2791 @@
+{
+  "search": {
+    "role": "AI Product Engineer",
+    "city": "Bangalore"
+  },
+  "stats": {
+    "candidate_count": 138,
+    "after_dedup": 90,
+    "ranked": 25,
+    "elapsed_s": 327.6,
+    "keywords": [
+      "ai product engineer",
+      "ai",
+      "product",
+      "engineer",
+      "roadmap",
+      "pm",
+      "user research",
+      "strategy",
+      "engineering",
+      "software"
+    ],
+    "companies_targeted": [
+      "BrowserStack",
+      "Sarvam AI",
+      "Microsoft India",
+      "Airtel",
+      "Google India",
+      "Swiggy",
+      "Ola Cabs",
+      "Paytm",
+      "LeadSquared",
+      "Darwinbox",
+      "Postman",
+      "CRED",
+      "Krutrim",
+      "Hasura",
+      "Meesho"
+    ],
+    "notes": [
+      "Phase A: running live employer discovery",
+      "role filter: 113 \u2192 92 relevant (21 rejected)"
+    ]
+  },
+  "jobs": [
+    {
+      "job": {
+        "title": "AI/ML Engineer (LLMs, RAG Agent Systems)",
+        "company": "IAI solution",
+        "location": "Bengaluru (Bangalore), India",
+        "url": "https://cutshort.io/job/AI-ML-Engineer-LLMs-RAG-Agent-Systems-Bengaluru-Bangalore-IAI-solution--j4j8nNso",
+        "apply_url": "",
+        "url_type": "INDIVIDUAL_JOB",
+        "description": "As an AI/ML Engineer, you\u2019ll be part of a small, fast-moving team focused on developing LLM-powered agentic systems that drive our next generation of AI products. You\u2019ll work on designing, implementing, and optimizing pipelines involving retrieval-augmented generation (RAG), multi-agent coordination, and tool-using AI systems. Responsibilities Design and implement components for LLM-based systems (retrievers, planners, memory, evaluators). Build and maintain RAG pipelines using vector databases and embedding models. Experiment with reasoning frameworks like ReAct, Tree of Thought, and Reflexion. Collaborate with backend and infra teams to deploy and optimize agentic applications. Research and experiment with open-source LLM frameworks to identify best-fit architectures. Contribute to internal tools for evaluation, benchmarking, and scaling AI agents. Required Skills Strong foundation in ML/DL theory and implementation (PyTorch preferred). Understanding of transformer architectures, embeddings, and LLM mechanics. Practical exposure to prompt engineering, tool calling, and structured output design. Experience in Python, Git/GitHub, and data processing pipelines. Familiarity with RAG systems, vector databases, and API-based model inference. Ability to write clean, modular, and reproducible code. Preferred Skills Experience with LangChain, LangGraph, Autogen, or CrewAI. Hands-on with Hugging Face ecosystem (transformers, datasets, etc.). Working knowledge of Redis, PostgreSQL, or MongoDB. Experience with Docker and deployment workflows. Familiarity with OpenAI, Anthropic, vLLM, or Ollama inference APIs. Exposure to MLOps concepts like CI/CD, model versioning, or cloud (AWS/GCP/Azure). What We Value Deep understanding of core principles over surface-level familiarity with tools. Ability to think like a researcher and execute like an engineer. Collaborative mindset, building together, learning together.",
+        "skills": [
+          "Large Language Models (LLM)",
+          "LangChain",
+          "MongoDB",
+          "Docker"
+        ],
+        "salary": "\u20b95L - \u20b96L / yr",
+        "work_mode": "onsite",
+        "_source_type": "scrapegraph",
+        "_india_filter": "India-specific job board URL",
+        "_canonical_fp": "ef66d58196038b79",
+        "canonical": true,
+        "canonical_id": "ef66d58196038b79",
+        "apply_route": {
+          "best_apply_route": "cutshort",
+          "apply_url": "https://cutshort.io/job/AI-ML-Engineer-LLMs-RAG-Agent-Systems-Bengaluru-Bangalore-IAI-solution--j4j8nNso",
+          "backup_urls": [],
+          "reason": "best route: cutshort (priority 4)",
+          "risk": "medium"
+        }
+      },
+      "score": 69.7,
+      "breakdown": {
+        "role_fit": {
+          "raw": 8.0,
+          "weight": 14,
+          "weighted": 11.2
+        },
+        "skill_fit": {
+          "raw": 7.3,
+          "weight": 14,
+          "weighted": 10.2
+        },
+        "salary_fit": {
+          "raw": 1.2,
+          "weight": 10,
+          "weighted": 1.2
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 7.0,
+          "weight": 8,
+          "weighted": 5.6
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 6.0,
+          "weight": 6,
+          "weighted": 3.6
+        },
+        "company_stability": {
+          "raw": 5.0,
+          "weight": 7,
+          "weighted": 3.5
+        },
+        "startup_risk": {
+          "raw": 8.6,
+          "weight": 5,
+          "weighted": 4.3
+        },
+        "brand_value": {
+          "raw": 4.0,
+          "weight": 6,
+          "weighted": 2.4
+        },
+        "commute_risk": {
+          "raw": 8.0,
+          "weight": 4,
+          "weighted": 3.2
+        },
+        "response_likelihood": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "career_trajectory": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "Engineering Manager -Backend",
+        "company": "Meesho",
+        "company_id": "meesho",
+        "source": "lever",
+        "source_url": "https://jobs.lever.co/meesho/cb16706c-296f-4567-a41f-86206a54ee29",
+        "url": "https://jobs.lever.co/meesho/cb16706c-296f-4567-a41f-86206a54ee29",
+        "location": "Bangalore, Karnataka",
+        "description": "About Meesho\u00a0\n\u00a0\nMission and Vision\u00a0\n\u00a0\nMeesho is India\u2019s fastest-growing internet commerce company, driven by the mission to democratize internet commerce for everyone (DICE). Our vision is to enable 100 million small businesses and entrepreneurs in India to succeed online, making online commerce accessible to all. This core purpose guides us in empowering sellers across the country and bringing a diverse range of products to first-time internet shoppers. By leveraging technology and a unique zero commission model, Meesho has opened the doors of e-commerce to millions who were previously underserved. \n\u00a0\nTechnological Scale & Innovation\n\u00a0\n\u00a0At Meesho, technology is at the heart of our success. We have invested in a scalable infrastructure and innovative solutions to meet the demands of a vast user base and complex marketplace. Some key highlights include:\u00a0\n\u00a0\nMassive Scale: Our backend systems handle millions of orders per day from across India, reaching about 5% of all Indian households, all with near-zero downtime to date. Achieving this level of reliability and performance in a hyper-growth environment is a testament to our engineering excellence.\u00a0\n\u00a0\n\u00a0Marketplace Reach: Over 1.75 million sellers are registered on Meesho\u2019s platform, supported by our state-of-the-art tech infrastructure and pan-India logistics network. This wide reach \u2014 covering virtually every serviceable pin code in the country \u2014 presents unique engineering challenges in areas like search, personalization, and payments at scale.\n\u00a0\n\u00a0Scalable Architecture: We continually innovate our architecture for growth.. Our quest to serve a billion Indian users has helped us evolve our technologies from a monolith to microservices to now a high scale federated architecture. This evolution allows us to build and deploy features rapidly while maintaining stability for a fast-growing user base.\u00a0\n\u00a0\nCutting-edge Tech Stack: Our platform is built using modern, open-source technologies on the cloud while ensuring high efficiency. We strategically choose proven tools (for example, Java and Golang for services, Kafka for messaging, Dragonfly and Redis for caching, ScyllaDB, MySQL and Mongo for Data) and leverage GCP infrastructure to ensure high performance, reliability, and flexibility. By focusing on the right tools for the right problems, we innovate pragmatically rather than chasing every new tech hype, which helps us solve real-world problems effectively.\u00a0\n\u00a0\nEngineering Culture & Challenges\u00a0\n\u00a0\nEngineering at Meesho is driven by a bold and inclusive culture that values innovation, ownership, and continuous improvement. We believe that building great products goes hand-in-hand with building a great team. Key aspects of our engineering culture include:\u00a0\n\u00a0\nLong Term Thinking: We believe in thinking for tomorrow while building for today, this approach has helped us not only to handle and evolve for scale but also focus on extensibility and stability by investing in the platform\n\u00a0\nLightspeed: We prioritize rapid iteration and delivery. Engineers are encouraged to ship fast and refine continuously, as we value in order to learn and adapt quickly.\u00a0\n\u00a0\nContinuous Improvement: We view failures and bugs as opportunities to improve. A blameless post-mortem culture ensures that mistakes become lessons, fostering an environment where learning from failure drives resilience and innovation.\n\u00a0\n Ownership Mindset: Every engineer is empowered to act like an owner. We instill a \u201cFounder\u2019s Mindset,\u201d encouraging engineers to take end-to-end ownership of projects and drive them with an entrepreneurial spirit. This means our teams proactively identify problems and champion solutions, just as a founder would for their own product.\u00a0\n\u00a0\nEngineering at Meesho is more than just writing code \u2013 it's about solving complex, impactful problems at an unprecedented scale. Our engineers tackle challenging use cases (from enabling real-time logistics across India to optimizing a vast product catalog for the next billion users), making a tangible impact on millions of entrepreneurs and customers. We maintain a\nprofessional, yet passionate work environment where the drive to innovate is balanced with a pragmatic approach to problem-solving. About the Role\n\u00a0\nWe are looking for Engineering Manager well-versed with emerging technologies to join our team.\n\u00a0As an Engineering Manager, you will ensure consistency and quality by shaping the right strategies. You will keep an eye on all engineering projects and ensure all duties are fulfilled . You will analyse other employees\u2019 tasks and carry on collaborations effectively. You will also transform newbies into experts and build reports on the progress of all projects.",
+        "role_summary": "About Meesho\u00a0\n\u00a0\nMission and Vision\u00a0\n\u00a0\nMeesho is India\u2019s fastest-growing internet commerce company, driven by the mission to democratize internet commerce for everyone (DICE). Our vision is to enable 100 million small businesses and entrepreneurs in India to succeed online, making online commerce accessible to all. This core purpose guides us in empowering sellers across the country and bringing a diverse range of products to first-time internet shoppers. By leveraging technology and a unique zero commission model, Meesho has opened the doors of e-commerce to millions who were previously underserved. \n\u00a0\nTechnological Scale & Innovation\n\u00a0\n\u00a0At Meesho, technology is at the heart of our success. We have invested in a scalable infrastructure and innovative solutions to meet the demands of a vast user base and complex marketplace. Some key highlights include:\u00a0\n\u00a0\nMassive Scale: Our backend systems handle millions of orders per day from across India, reaching about 5% of all Indian households, all with near-zero downtime to date. Achieving this level of reliability and performance in a hyper-growth environment is a testament to our engineering excellence.\u00a0\n\u00a0\n\u00a0Marketplace Reach: Over 1.75 million sellers are registered on Meesho\u2019s platform, supported by our state-of-the-art tech infrastructure and pan-India logistics network. This wide reach \u2014 covering virtually every serviceable pin code in the country \u2014 presents unique engineering challenges in areas like search, personalization, and payments at scale.\n\u00a0\n\u00a0Scalable Architecture: We continually innovate our architecture for growth.. Our quest to serve a billion Indian users has helped us evolve our technologies from a monolith to microservices to now a high scale federated architecture. This evolution allows us to build and deploy features rapidly while maintaining stability for a fast-growing user base.\u00a0\n\u00a0\nCutting-edge Tech Stack: Our platform is built using modern, open-source technologies on the cloud while ensuring high efficiency. We strategically choose proven tools (for example, Java and Golang for services, Kafka for messaging, Dragonfly and Redis for caching, ScyllaDB, MySQL and Mongo for Data) and leverage GCP infrastructure to ensure high performance, reliability, and flexibility. By focusing on the right tools for the right problems, we innovate pragmatically rather than chasing every new tech hype, which helps us solve real-world problems effectively.\u00a0\n\u00a0\nEngineering Culture & Challenges\u00a0\n\u00a0\nEngineering at Meesho is driven by a bold and inclusive culture that values innovation, ownership, and continuous improvement. We believe that building great products goes hand-in-hand with building a great team. Key aspects of our engineering culture include:\u00a0\n\u00a0\nLong Term Thinking: We believe in thinking for tomorrow while building for today, this approach has helped us not only to handle and evolve for scale but also focus on extensibility and stability by investing in the platform\n\u00a0\nLightspeed: We prioritize rapid iteration and delivery. Engineers are encouraged to ship fast and refine continuously, as we value in order to learn and adapt quickly.\u00a0\n\u00a0\nContinuous Improvement: We view failures and bugs as opportunities to improve. A blameless post-mortem culture ensures that mistakes become lessons, fostering an environment where learning from failure drives resilience and innovation.\n\u00a0\n Ownership Mindset: Every engineer is empowered to act like an owner. We instill a \u201cFounder\u2019s Mindset,\u201d encouraging engineers to take end-to-end ownership of projects and drive them with an entrepreneurial spirit. This means our teams proactively identify problems and champion solutions, just as a founder would for their own product.\u00a0\n\u00a0\nEngineering at Meesho is more than just writing code \u2013 it's about solving complex, impactful problems at an unprecedented scale. Our engineers tackle challenging use cases (from enabling real-time logistics across India to optimizing a vast product catalog for the next billion users), making a tangible impact on millions of entrepreneurs and customers. We maintain a\nprofessional, yet passionate work environment where the drive to innovate is balanced with a pragmatic approach to problem-solving.",
+        "responsibilities": "About the Role\n\u00a0\nWe are looking for Engineering Manager well-versed with emerging technologies to join our team.\n\u00a0As an Engineering Manager, you will ensure consistency and quality by shaping the right strategies. You will keep an eye on all engineering projects and ensure all duties are fulfilled . You will analyse other employees\u2019 tasks and carry on collaborations effectively. You will also transform newbies into experts and build reports on the progress of all projects.",
+        "requirements": "",
+        "benefits": "",
+        "jd_confidence": 1.0,
+        "posted_at": "1714389863416",
+        "job_id_ats": "cb16706c-296f-4567-a41f-86206a54ee29",
+        "scraped_at": "2026-05-23T09:36:07.091637+00:00",
+        "from_company_portal": true,
+        "_source_type": "lever",
+        "_india_filter": "location contains bangalore",
+        "_canonical_fp": "ed616abb896ea8c1",
+        "canonical": true,
+        "canonical_id": "ed616abb896ea8c1",
+        "apply_route": {
+          "best_apply_route": "lever",
+          "apply_url": "https://jobs.lever.co/meesho/cb16706c-296f-4567-a41f-86206a54ee29",
+          "backup_urls": [],
+          "reason": "best route: lever (priority 2)",
+          "risk": "low"
+        }
+      },
+      "score": 69.2,
+      "breakdown": {
+        "role_fit": {
+          "raw": 8.0,
+          "weight": 14,
+          "weighted": 11.2
+        },
+        "skill_fit": {
+          "raw": 2.4,
+          "weight": 14,
+          "weighted": 3.4
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 4.0,
+          "weight": 6,
+          "weighted": 2.4
+        },
+        "company_stability": {
+          "raw": 8.0,
+          "weight": 7,
+          "weighted": 5.6
+        },
+        "startup_risk": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "brand_value": {
+          "raw": 6.5,
+          "weight": 6,
+          "weighted": 3.9
+        },
+        "commute_risk": {
+          "raw": 8.0,
+          "weight": 4,
+          "weighted": 3.2
+        },
+        "response_likelihood": {
+          "raw": 7.0,
+          "weight": 4,
+          "weighted": 2.8
+        },
+        "career_trajectory": {
+          "raw": 5.5,
+          "weight": 4,
+          "weighted": 2.2
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "Engineering Manager- Infrastructure platform",
+        "company": "Meesho",
+        "company_id": "meesho",
+        "source": "lever",
+        "source_url": "https://jobs.lever.co/meesho/fcebd937-47fd-4efe-b1de-1ad8ba571e32",
+        "url": "https://jobs.lever.co/meesho/fcebd937-47fd-4efe-b1de-1ad8ba571e32",
+        "location": "Bangalore, Karnataka",
+        "description": "About Meesho\n\u00a0\nMission and Vision\n\u00a0\nMeesho is India\u2019s fastest-growing internet commerce company, driven by the mission todemocratize e-commerce for everyone. Our vision is to enable 100 million small businessesand entrepreneurs in India to succeed online, making online commerce accessible to all. Thiscore purpose guides us in empowering sellers across the country and bringing a diverse rangeof products to first-time internet shoppers. By leveraging technology and a uniquesocial-commerce model, Meesho has opened the doors of e-commerce to millions who werepreviously underserved.\n\u00a0\nTechnological Scale & Innovation\n\u00a0\nAt Meesho, technology is at the heart of our success. We have invested in a scalableinfrastructure and innovative solutions to meet the demands of a vast user base and complexmarketplace. Some key highlights include:\n\u25cf Massive Scale: Our backend systems handle millions of orders per day from acrossIndia, reaching about 5% of all Indian households, all with near-zero downtime to date.Achieving this level of reliability and performance in a hyper-growth environment is atestament to our engineering excellence.\n\u25cf Scale converted to Infrastructure: Our production systems in its peak handle a cumulative 14 M RPS, powered by\u00a0 over 1000+ microservices spawning over 450K cores running on public cloud. Every service is containerised and runs on multiple Kubernetes clusters with inter and intra cluster traffic doing pod-to-pod direct communication.\n\u25cf Marketplace Reach: Over 1.75 million sellers are registered on Meesho\u2019s platform,supported by our state-of-the-art tech infrastructure and pan-India logistics network.This wide reach \u2014 covering virtually every serviceable pin code in the country \u2014presents unique engineering challenges in areas like search, personalization, andpayments at scale.\n\u25cf Scalable Architecture: We continually innovate our architecture for growth. Meeshobegan with a monolithic codebase but quickly evolved to a microservices-drivenarchitecture, re-architecting critical systems to seamlessly handle current and futurescale. This evolution allows us to build and deploy features rapidly while maintainingstability for a fast-growing user base.\n\u25cf Cutting-edge Tech Stack: Our platform is built using modern, open-source technologieson the cloud. We strategically choose proven tools (example, Kubernetes for containerisation, Java and Golang forservices, Kafka, Redis, ScyllaDB, mysql etc) and leverage GCP cloudinfrastructure to ensure high performance, reliability, and flexibility. By focusing on theright tools for the right problems, we innovate pragmatically rather than chasing everynew tech hype, which helps us solve real-world problems effectively.\n\u00a0\nEngineering Culture & Challenges\n\u00a0\nEngineering at Meesho is driven by a bold and inclusive culture that values innovation,ownership, and continuous improvement. We believe that building great products goeshand-in-hand with building a great team. Key aspects of our engineering cultureinclude:\n\u25cf Speed Over Perfection: We prioritize rapid iteration and delivery. Engineers areencouraged to ship fast and refine continuously, as we value speed over perfection inorder to learn and adapt quickly.\n\u25cf Continuous Improvement: We view failures and bugs as opportunities to improve. Ablameless post-mortem culture ensures that mistakes become lessons, fostering anenvironment where learning from failure drives resilience and innovation.\n\u25cf Ownership Mindset: Every engineer is empowered to act like an owner. We instill a\u201cFounder\u2019s Mindset,\u201d encouraging engineers to take end-to-end ownership of projectsand drive them with an entrepreneurial spirit. This means our teams proactively identifyproblems and champion solutions, just as a founder would for their own product.\n\u00a0\nEngineering at Meesho is more than just writing code \u2013 it's about solving complex, impactfulproblems at an unprecedented scale. Our engineers tackle challenging use cases (from enabling real-time logistics across India to optimizing a vast product catalog for the next billionusers), making a tangible impact on millions of entrepreneurs and customers. We maintain aprofessional, yet passionate work environment where the drive to innovate is balanced with apragmatic approach to problem-solving. About the role\n\u00a0\nWe are looking for an technically driven Engineering Manager well-versed with emerging technologies to join our team.As an Engineering Manager, you will ensure consistency and quality by shaping the rightstrategies. You will keep an eye on all engineering projects and ensure all duties are fulfilled. You will analyse other employees\u2019 tasks and carry on collaborations effectively. You will also transform newbies into experts and build reports on the progress of all projects.",
+        "role_summary": "About Meesho\n\u00a0\nMission and Vision\n\u00a0\nMeesho is India\u2019s fastest-growing internet commerce company, driven by the mission todemocratize e-commerce for everyone. Our vision is to enable 100 million small businessesand entrepreneurs in India to succeed online, making online commerce accessible to all. Thiscore purpose guides us in empowering sellers across the country and bringing a diverse rangeof products to first-time internet shoppers. By leveraging technology and a uniquesocial-commerce model, Meesho has opened the doors of e-commerce to millions who werepreviously underserved.\n\u00a0\nTechnological Scale & Innovation\n\u00a0\nAt Meesho, technology is at the heart of our success. We have invested in a scalableinfrastructure and innovative solutions to meet the demands of a vast user base and complexmarketplace. Some key highlights include:\n\u25cf Massive Scale: Our backend systems handle millions of orders per day from acrossIndia, reaching about 5% of all Indian households, all with near-zero downtime to date.Achieving this level of reliability and performance in a hyper-growth environment is atestament to our engineering excellence.\n\u25cf Scale converted to Infrastructure: Our production systems in its peak handle a cumulative 14 M RPS, powered by\u00a0 over 1000+ microservices spawning over 450K cores running on public cloud. Every service is containerised and runs on multiple Kubernetes clusters with inter and intra cluster traffic doing pod-to-pod direct communication.\n\u25cf Marketplace Reach: Over 1.75 million sellers are registered on Meesho\u2019s platform,supported by our state-of-the-art tech infrastructure and pan-India logistics network.This wide reach \u2014 covering virtually every serviceable pin code in the country \u2014presents unique engineering challenges in areas like search, personalization, andpayments at scale.\n\u25cf Scalable Architecture: We continually innovate our architecture for growth. Meeshobegan with a monolithic codebase but quickly evolved to a microservices-drivenarchitecture, re-architecting critical systems to seamlessly handle current and futurescale. This evolution allows us to build and deploy features rapidly while maintainingstability for a fast-growing user base.\n\u25cf Cutting-edge Tech Stack: Our platform is built using modern, open-source technologieson the cloud. We strategically choose proven tools (example, Kubernetes for containerisation, Java and Golang forservices, Kafka, Redis, ScyllaDB, mysql etc) and leverage GCP cloudinfrastructure to ensure high performance, reliability, and flexibility. By focusing on theright tools for the right problems, we innovate pragmatically rather than chasing everynew tech hype, which helps us solve real-world problems effectively.\n\u00a0\nEngineering Culture & Challenges\n\u00a0\nEngineering at Meesho is driven by a bold and inclusive culture that values innovation,ownership, and continuous improvement. We believe that building great products goeshand-in-hand with building a great team. Key aspects of our engineering cultureinclude:\n\u25cf Speed Over Perfection: We prioritize rapid iteration and delivery. Engineers areencouraged to ship fast and refine continuously, as we value speed over perfection inorder to learn and adapt quickly.\n\u25cf Continuous Improvement: We view failures and bugs as opportunities to improve. Ablameless post-mortem culture ensures that mistakes become lessons, fostering anenvironment where learning from failure drives resilience and innovation.\n\u25cf Ownership Mindset: Every engineer is empowered to act like an owner. We instill a\u201cFounder\u2019s Mindset,\u201d encouraging engineers to take end-to-end ownership of projectsand drive them with an entrepreneurial spirit. This means our teams proactively identifyproblems and champion solutions, just as a founder would for their own product.\n\u00a0\nEngineering at Meesho is more than just writing code \u2013 it's about solving complex, impactfulproblems at an unprecedented scale. Our engineers tackle challenging use cases (from enabling real-time logistics across India to optimizing a vast product catalog for the next billionusers), making a tangible impact on millions of entrepreneurs and customers. We maintain aprofessional, yet passionate work environment where the drive to innovate is balanced with apragmatic approach to problem-solving.",
+        "responsibilities": "About the role\n\u00a0\nWe are looking for an technically driven Engineering Manager well-versed with emerging technologies to join our team.As an Engineering Manager, you will ensure consistency and quality by shaping the rightstrategies. You will keep an eye on all engineering projects and ensure all duties are fulfilled. You will analyse other employees\u2019 tasks and carry on collaborations effectively. You will also transform newbies into experts and build reports on the progress of all projects.",
+        "requirements": "",
+        "benefits": "",
+        "jd_confidence": 1.0,
+        "posted_at": "1772778178844",
+        "job_id_ats": "fcebd937-47fd-4efe-b1de-1ad8ba571e32",
+        "scraped_at": "2026-05-23T09:36:07.093903+00:00",
+        "from_company_portal": true,
+        "_source_type": "lever",
+        "_india_filter": "location contains bangalore",
+        "_canonical_fp": "24635bfd132b33d4",
+        "canonical": true,
+        "canonical_id": "24635bfd132b33d4",
+        "apply_route": {
+          "best_apply_route": "lever",
+          "apply_url": "https://jobs.lever.co/meesho/fcebd937-47fd-4efe-b1de-1ad8ba571e32",
+          "backup_urls": [],
+          "reason": "best route: lever (priority 2)",
+          "risk": "low"
+        }
+      },
+      "score": 68.5,
+      "breakdown": {
+        "role_fit": {
+          "raw": 8.0,
+          "weight": 14,
+          "weighted": 11.2
+        },
+        "skill_fit": {
+          "raw": 1.9,
+          "weight": 14,
+          "weighted": 2.7
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 4.0,
+          "weight": 6,
+          "weighted": 2.4
+        },
+        "company_stability": {
+          "raw": 8.0,
+          "weight": 7,
+          "weighted": 5.6
+        },
+        "startup_risk": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "brand_value": {
+          "raw": 6.5,
+          "weight": 6,
+          "weighted": 3.9
+        },
+        "commute_risk": {
+          "raw": 8.0,
+          "weight": 4,
+          "weighted": 3.2
+        },
+        "response_likelihood": {
+          "raw": 7.0,
+          "weight": 4,
+          "weighted": 2.8
+        },
+        "career_trajectory": {
+          "raw": 5.5,
+          "weight": 4,
+          "weighted": 2.2
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "machine learning engineer",
+        "company": "CRED",
+        "company_id": "cred",
+        "source": "lever",
+        "source_url": "https://jobs.lever.co/cred/7e4d512e-fc89-40fd-9a30-46c5459bbea5",
+        "url": "https://jobs.lever.co/cred/7e4d512e-fc89-40fd-9a30-46c5459bbea5",
+        "location": "hyderabad",
+        "description": "Prefr (a brand under Dreamplug Technologies Pvt. Ltd.) is a tech-first fintech platform reshaping how India\u2019s digital-first generation experiences credit. we currently offer instant personal loans from \u20b950,000 to \u20b95,00,000 through a seamless, end-to-end digital journey \u2014 serving India\u2019s creditworthy yet underserved segments, in partnership with RBI-approved top-tier financial institutions. our mission to become the largest platform for delivering fast, transparent and trusted credit for the millions - by bringing together distribution depth, AI-driven intelligence & multi-lender access.",
+        "role_summary": "Prefr (a brand under Dreamplug Technologies Pvt. Ltd.) is a tech-first fintech platform reshaping how India\u2019s digital-first generation experiences credit. we currently offer instant personal loans from \u20b950,000 to \u20b95,00,000 through a seamless, end-to-end digital journey \u2014 serving India\u2019s creditworthy yet underserved segments, in partnership with RBI-approved top-tier financial institutions. our mission to become the largest platform for delivering fast, transparent and trusted credit for the millions - by bringing together distribution depth, AI-driven intelligence & multi-lender access.",
+        "responsibilities": "",
+        "requirements": "",
+        "benefits": "",
+        "jd_confidence": 1.0,
+        "posted_at": "1766039073908",
+        "job_id_ats": "7e4d512e-fc89-40fd-9a30-46c5459bbea5",
+        "scraped_at": "2026-05-23T09:35:54.372418+00:00",
+        "from_company_portal": true,
+        "_source_type": "lever",
+        "_india_filter": "location contains hyderabad",
+        "_canonical_fp": "14ec596d2fda44fe",
+        "canonical": true,
+        "canonical_id": "14ec596d2fda44fe",
+        "apply_route": {
+          "best_apply_route": "lever",
+          "apply_url": "https://jobs.lever.co/cred/7e4d512e-fc89-40fd-9a30-46c5459bbea5",
+          "backup_urls": [],
+          "reason": "best route: lever (priority 2)",
+          "risk": "low"
+        }
+      },
+      "score": 68.2,
+      "breakdown": {
+        "role_fit": {
+          "raw": 6.0,
+          "weight": 14,
+          "weighted": 8.4
+        },
+        "skill_fit": {
+          "raw": 2.0,
+          "weight": 14,
+          "weighted": 2.8
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 10.0,
+          "weight": 6,
+          "weighted": 6.0
+        },
+        "company_stability": {
+          "raw": 8.0,
+          "weight": 7,
+          "weighted": 5.6
+        },
+        "startup_risk": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "brand_value": {
+          "raw": 6.5,
+          "weight": 6,
+          "weighted": 3.9
+        },
+        "commute_risk": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "response_likelihood": {
+          "raw": 7.0,
+          "weight": 4,
+          "weighted": 2.8
+        },
+        "career_trajectory": {
+          "raw": 5.5,
+          "weight": 4,
+          "weighted": 2.2
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "Applied AI Engineer - AI / ML",
+        "company": "BukuWarung",
+        "location": "Hyderabad",
+        "url": "https://www.instahyre.com/job-373324-applied-ai-engineer-ai-ml-at-bukuwarung-hyderabad/",
+        "apply_url": "",
+        "url_type": "INDIVIDUAL_JOB",
+        "description": "Function: Data Science and Analysis \u2192 Data Science / Machine Learning Python Generative AI NLP NLTK Chatbots Responsibilities: Applied AI Development Model Training Develop and deploy ML models for use cases such as: Transaction categorization. OCR for document extraction (invoices, bank statements, IDs). Entity recognition and financial data extraction. Fraud detection and user behavior analysis. Train and fine-tune transformer-based models or classical ML algorithms for classification, segmentation, and scoring. Implement real-time and batch inference pipelines for production systems. Automate KYB/KYC checks using computer vision and NLP models. Integrate with backend services via REST APIs, FastAPI, and Docker. Data Engineering and Tooling Design and maintain robust data pipelines (ETL/ELT) for training and inference. Work with structured and unstructured data, including bank statements, voice/text, and document scans. Support analytics tooling using SQL, Metabase, or Tableau for business stakeholders. Ensure traceability, observability, and reproducibility in AI workflows. Productization and Experimentation Work with product and engineering teams to embed AI models into scalable apps and internal tools. Prototype and test AI assistants and LLM-powered features (using LangChain, llama.cpp, etc. ). Continuously experiment, monitor model drift, and improve performance through iterative feedback loops. Support chatbot and assistant development to improve the merchant experience and reduce manual operations. Requirements: Bachelor's degree in Computer Science, Engineering, Mathematics, or a related technical field. 2+ years of experience in applied AI/ML or data science roles. Strong experience with Python and frameworks like Pandas, Scikit-learn, TensorFlow, or PyTorch. Experience with NLP libraries: Spacy, NLTK, HuggingFace Transformers. Familiarity with OCR, financial document parsing, or KYB/KYC automation. Proficient in SQL and working with large datasets. Experience with LLM integration using LangChain, LlamaIndex, or llama.cpp is a plus. Exposure to FastAPI, Docker is an advantage. Solid understanding of model deployment best practices and performance monitoring. Benefits at BukuWarung 0 && (!isOpenedInMobile || showSections.benefits) --> Work From Anywhere (Remote-first) \u2022 Generous Leave Policy (Maternity \u2022 Paternity \u2022 Childcare \u2022 Menstrual \u2022 Wellbeing) \u2022 BukuFlex (Ergonomic \u2022 Physical and Mental Well Being Classes etc) 0 && (!isOpenedInMobile || showSections.benefits) --> BukuWarung's Tech Stack 0 && (!isOpenedInMobile || showSections.techStack) --> iOS Android 0 && (!isOpenedInMobile || showSections.techStack) --> Job posted by Kshitija K Talent Acquisition Specialist at People Impact",
+        "skills": [
+          "Python",
+          "Generative AI",
+          "NLP",
+          "NLTK",
+          "Chatbots",
+          "Pandas",
+          "Scikit-learn",
+          "TensorFlow",
+          "PyTorch",
+          "Spacy",
+          "HuggingFace Transformers",
+          "OCR",
+          "SQL",
+          "LangChain",
+          "LlamaIndex",
+          "llama.cpp",
+          "FastAPI",
+          "Docker"
+        ],
+        "salary": "",
+        "work_mode": "remote",
+        "_source_type": "scrapegraph",
+        "_india_filter": "India-specific job board URL",
+        "_canonical_fp": "81447e3d26c547ca",
+        "canonical": true,
+        "canonical_id": "81447e3d26c547ca",
+        "apply_route": {
+          "best_apply_route": "instahyre",
+          "apply_url": "https://www.instahyre.com/job-373324-applied-ai-engineer-ai-ml-at-bukuwarung-hyderabad/",
+          "backup_urls": [],
+          "reason": "best route: instahyre (priority 3)",
+          "risk": "low"
+        }
+      },
+      "score": 66.7,
+      "breakdown": {
+        "role_fit": {
+          "raw": 6.0,
+          "weight": 14,
+          "weighted": 8.4
+        },
+        "skill_fit": {
+          "raw": 4.7,
+          "weight": 14,
+          "weighted": 6.6
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 8.0,
+          "weight": 8,
+          "weighted": 6.4
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 6.0,
+          "weight": 6,
+          "weighted": 3.6
+        },
+        "company_stability": {
+          "raw": 5.0,
+          "weight": 7,
+          "weighted": 3.5
+        },
+        "startup_risk": {
+          "raw": 8.6,
+          "weight": 5,
+          "weighted": 4.3
+        },
+        "brand_value": {
+          "raw": 4.0,
+          "weight": 6,
+          "weighted": 2.4
+        },
+        "commute_risk": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "response_likelihood": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "career_trajectory": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "Engineering Manager - DBA",
+        "company": "Paytm",
+        "company_id": "paytm",
+        "source": "lever",
+        "source_url": "https://jobs.lever.co/paytm/da537fb6-3458-4eef-a32d-a1d591d4d190",
+        "url": "https://jobs.lever.co/paytm/da537fb6-3458-4eef-a32d-a1d591d4d190",
+        "location": "Noida, Uttar Pradesh",
+        "description": "Position: Engineering Manager - Database\nJob Location: Noida\n\nRole Overview\nWe are seeking a Database Engineering Manager (Individual Contributor) with deep  expertise in MySQL and strong working knowledge of MongoDB, PostgreSQL, and Cassandra.  This role combines hands-on database administration and optimization with strategic  ownership of database reliability, automation, and cloud adoption. The candidate will lead  by example\u2014driving technical excellence, influencing best practices, and partnering  cross-functionally with DevOps, SRE, and product engineering teams to deliver highly  available, secure, and scalable database platforms. Key Responsibilities\n1. End-to-End Ownership of MySQL databases in production & staging\u2014availability,  performance, and reliability.  \n2. Architect, manage, and support MongoDB, PostgreSQL, and Cassandra clusters for  scale and resilience.  \n3. Define and enforce backup, recovery, HA, and DR strategies across all critical  database platforms.  \n4. Drive database performance engineering\u2014tuning queries, optimizing schemas,  indexing, and partitioning for high-volume workloads.  \n5. Own replication, clustering, and failover architectures ensuring business continuity. \n6. Champion automation & AI-driven operations\u2014design self-healing scripts, predictive  scaling, and proactive monitoring solutions.  Collaborate with Cloud/DevOps teams on AWS database services (RDS, Aurora,  DynamoDB, EC2, S3) to optimize cost, security, and performance.  \n7. Establish monitoring dashboards & alerting mechanisms for slow queries, replication  lag, deadlocks, and capacity planning.  Ensure compliance & security standards\u2014encryption, auditing, and regulatory requirements.  \n8. Lead incident management & on-call rotations, ensuring rapid response and minimal  MTTR.  \n9. Act as a strategic technical partner, contributing to database roadmaps, automation  strategy, and adoption of AI-driven DBA practices.  \n\nRequired Skills & Experience\n1. 6\u201310 years of proven DBA experience with primary expertise in MySQL (InnoDB,  replication, clustering).  \n2. Strong working experience in MongoDB, PostgreSQL, and Cassandra administration.  \n3. Demonstrated expertise in database performance tuning, schema design, and query  optimization.  \n4. Deep exposure to AWS cloud database stack (RDS, Aurora, DynamoDB, S3,  Backup/Restore frameworks).  \n5. Solid skills in Linux administration, shell scripting, and automation frameworks.  \n6. Familiarity with AI/ML tools for database monitoring and operational efficiency.  \n7. Proven ability to manage large-scale, high-availability OLTP/OLAP workloads.  \n8. Strong understanding of database security, encryption, and compliance frameworks.  \n9. Excellent problem-solving, cross-team collaboration, and communication skills.  \n10. Leadership mindset with the ability to mentor peers, define standards, and influence  technical strategy while staying hands-on",
+        "role_summary": "Position: Engineering Manager - Database\nJob Location: Noida\n\nRole Overview\nWe are seeking a Database Engineering Manager (Individual Contributor) with deep  expertise in MySQL and strong working knowledge of MongoDB, PostgreSQL, and Cassandra.  This role combines hands-on database administration and optimization with strategic  ownership of database reliability, automation, and cloud adoption. The candidate will lead  by example\u2014driving technical excellence, influencing best practices, and partnering  cross-functionally with DevOps, SRE, and product engineering teams to deliver highly  available, secure, and scalable database platforms.",
+        "responsibilities": "Key Responsibilities\n1. End-to-End Ownership of MySQL databases in production & staging\u2014availability,  performance, and reliability.  \n2. Architect, manage, and support MongoDB, PostgreSQL, and Cassandra clusters for  scale and resilience.  \n3. Define and enforce backup, recovery, HA, and DR strategies across all critical  database platforms.  \n4. Drive database performance engineering\u2014tuning queries, optimizing schemas,  indexing, and partitioning for high-volume workloads.  \n5. Own replication, clustering, and failover architectures ensuring business continuity. \n6. Champion automation & AI-driven operations\u2014design self-healing scripts, predictive  scaling, and proactive monitoring solutions.  Collaborate with Cloud/DevOps teams on AWS database services (RDS, Aurora,  DynamoDB, EC2, S3) to optimize cost, security, and performance.  \n7. Establish monitoring dashboards & alerting mechanisms for slow queries, replication  lag, deadlocks, and capacity planning.  Ensure compliance & security standards\u2014encryption, auditing, and regulatory",
+        "requirements": "requirements.  \n8. Lead incident management & on-call rotations, ensuring rapid response and minimal  MTTR.  \n9. Act as a strategic technical partner, contributing to database roadmaps, automation  strategy, and adoption of AI-driven DBA practices.  \n\nRequired Skills & Experience\n1. 6\u201310 years of proven DBA experience with primary expertise in MySQL (InnoDB,  replication, clustering).  \n2. Strong working experience in MongoDB, PostgreSQL, and Cassandra administration.  \n3. Demonstrated expertise in database performance tuning, schema design, and query  optimization.  \n4. Deep exposure to AWS cloud database stack (RDS, Aurora, DynamoDB, S3,  Backup/Restore frameworks).  \n5. Solid skills in Linux administration, shell scripting, and automation frameworks.  \n6. Familiarity with AI/ML tools for database monitoring and operational efficiency.  \n7. Proven ability to manage large-scale, high-availability OLTP/OLAP workloads.  \n8. Strong understanding of database security, encryption, and compliance frameworks.  \n9. Excellent problem-solving, cross-team collaboration, and communication skills.  \n10. Leadership mindset with the ability to mentor peers, define standards, and influence  technical strategy while staying hands-on",
+        "benefits": "",
+        "jd_confidence": 1.0,
+        "posted_at": "1776666374463",
+        "job_id_ats": "da537fb6-3458-4eef-a32d-a1d591d4d190",
+        "scraped_at": "2026-05-23T09:35:45.013101+00:00",
+        "from_company_portal": true,
+        "_source_type": "lever",
+        "_india_filter": "location contains noida",
+        "_canonical_fp": "90c784e0411dda9c",
+        "canonical": true,
+        "canonical_id": "90c784e0411dda9c",
+        "apply_route": {
+          "best_apply_route": "lever",
+          "apply_url": "https://jobs.lever.co/paytm/da537fb6-3458-4eef-a32d-a1d591d4d190",
+          "backup_urls": [],
+          "reason": "best route: lever (priority 2)",
+          "risk": "low"
+        }
+      },
+      "score": 65.7,
+      "breakdown": {
+        "role_fit": {
+          "raw": 2.0,
+          "weight": 14,
+          "weighted": 2.8
+        },
+        "skill_fit": {
+          "raw": 3.3,
+          "weight": 14,
+          "weighted": 4.6
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 10.0,
+          "weight": 6,
+          "weighted": 6.0
+        },
+        "company_stability": {
+          "raw": 8.0,
+          "weight": 7,
+          "weighted": 5.6
+        },
+        "startup_risk": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "brand_value": {
+          "raw": 8.0,
+          "weight": 6,
+          "weighted": 4.8
+        },
+        "commute_risk": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "response_likelihood": {
+          "raw": 7.0,
+          "weight": 4,
+          "weighted": 2.8
+        },
+        "career_trajectory": {
+          "raw": 6.5,
+          "weight": 4,
+          "weighted": 2.6
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "Generative AI Platform Infrastructure Engineer",
+        "company": "Cargill Business Services",
+        "location": "Bengaluru (Bangalore), India",
+        "url": "https://cutshort.io/job/Generative-AI-Platform-Infrastructure-Engineer-Bengaluru-Bangalore-Cargill-Business-Services-kt8gHw5t",
+        "apply_url": "",
+        "url_type": "INDIVIDUAL_JOB",
+        "description": "Job Purpose and Impact: The Sr. Generative AI Engineer will architect, design and develop new and existing GenAI solutions for the organization. As a Generative AI Engineer, you will be responsible for developing and implementing products using cutting-edge generative AI and RAG to solve complex problems and drive innovation across our organization. You will work closely with data scientists, software engineers, and product managers to design, build, and deploy AI-powered solutions that enhance our products and services in Cargill. You will bring order to ambiguous scenarios and apply in depth and broad knowledge of architectural, engineering and security practices to ensure your solutions are scalable, resilient and robust and will share knowledge on modern practices and technologies to the shared engineering community. Key Accountabilities: \u2022 Apply software and AI engineering patterns and principles to design, develop, test, integrate, maintain and troubleshoot complex and varied Generative AI software solutions and incorporate security practices in newly developed and maintained applications. \u2022 Collaborate with cross-functional teams to define AI project requirements and objectives, ensuring alignment with overall business goals. \u2022 Conduct research to stay up-to-date with the latest advancements in generative AI, machine learning, and deep learning techniques and identify opportunities to integrate them into our products and services, optimizing existing generative AI models and RAG for improved performance, scalability, and efficiency, developing and maintaining pipelines and RAG solutions including data preprocessing, prompt engineering, benchmarking and fine-tuning. \u2022 Develop clear and concise documentation, including technical specifications, user guides and presentations, to communicate complex AI concepts to both technical and non-technical stakeholders. \u2022 Participate in the engineering community by maintaining and sharing relevant technical approaches and modern skills in AI. \u2022 Contribute to the establishment of best practices and standards for generative AI development within the organization. \u2022 Independently handle complex issues with minimal supervision, while escalating only the most complex issues to appropriate staff. Minimum Qualifications: \u2022 Bachelor\u2019s degree in a related field or equivalent experience \u2022 Minimum of five years of related work experience \u2022 You are proficient in Python and have experience with machine learning libraries and frameworks \u2022 Have deep understanding of industry leading Foundation Model capabilities and its application. \u2022 You are familiar with cloud-based Generative AI platforms and services \u2022 Full stack software engineering experience to build products using Foundation Models \u2022 Confirmed experience architecting applications, databases, services or integrations. Read more",
+        "skills": [
+          "Python",
+          "Natural Language Processing (NLP)",
+          "Generative AI",
+          "ChatGPT",
+          "Azure",
+          "Gemini",
+          "Machine Learning (ML)"
+        ],
+        "salary": "Best in industry",
+        "work_mode": "onsite",
+        "_source_type": "scrapegraph",
+        "_india_filter": "India-specific job board URL",
+        "_canonical_fp": "3d90c20d2fe4c500",
+        "canonical": true,
+        "canonical_id": "3d90c20d2fe4c500",
+        "apply_route": {
+          "best_apply_route": "cutshort",
+          "apply_url": "https://cutshort.io/job/Generative-AI-Platform-Infrastructure-Engineer-Bengaluru-Bangalore-Cargill-Business-Services-kt8gHw5t",
+          "backup_urls": [],
+          "reason": "best route: cutshort (priority 4)",
+          "risk": "medium"
+        }
+      },
+      "score": 65.1,
+      "breakdown": {
+        "role_fit": {
+          "raw": 6.0,
+          "weight": 14,
+          "weighted": 8.4
+        },
+        "skill_fit": {
+          "raw": 3.3,
+          "weight": 14,
+          "weighted": 4.6
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 7.0,
+          "weight": 8,
+          "weighted": 5.6
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 6.0,
+          "weight": 6,
+          "weighted": 3.6
+        },
+        "company_stability": {
+          "raw": 5.0,
+          "weight": 7,
+          "weighted": 3.5
+        },
+        "startup_risk": {
+          "raw": 8.6,
+          "weight": 5,
+          "weighted": 4.3
+        },
+        "brand_value": {
+          "raw": 4.0,
+          "weight": 6,
+          "weighted": 2.4
+        },
+        "commute_risk": {
+          "raw": 8.0,
+          "weight": 4,
+          "weighted": 3.2
+        },
+        "response_likelihood": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "career_trajectory": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "Generative AI- Machine Learning Engineer",
+        "company": "",
+        "location": "",
+        "url": "https://cutshort.io/job/Generative-AI-Engineer-Bengaluru-Bangalore-Quantiphi-hja2EdHo",
+        "apply_url": "https://cutshort.io/job/Generative-AI-Engineer-Bengaluru-Bangalore-Quantiphi-hja2EdHo",
+        "url_type": "INDIVIDUAL_JOB",
+        "description": "Generative AI- Machine Learning Engineer\nat\nQuantiphi\nApply to this job\nGenerative AI- Machine Learning Engineer\nQuantiphi\nCompany\nHome\nGenerative AI- Machine Learning Engineer\nat\nQuantiphi\nPosted by\nNikita Sinha\nApply to this job\n3\n- 12 yrs\nBest in industry\nBengaluru (Bangalore)\nSkills\nLarge Language Models (LLM)\nRetrieval Augmented Generation (RAG)\nGenerative AI (GenAI)\nWe are looking for a\nhands-on Generative AI Engineer\nto design, build, and deploy\nenterprise-grade GenAI platform capabilities\nacross multiple business units.\nThis role focuses on developing\nscalable, reusable AI components\nacross the full stack\u2014covering\nRAG systems, agent orchestration, LLM infrastructure, and GenAIOps\n\u2014on\nGCP (primary) and Azure\n.\nThis is a\ncore engineering role\n, not a research or client-facing position.\nKey Responsibilities\nDesign and build\nproduction-ready GenAI systems\nand platform components\nDevelop and deploy\nRAG pipelines\n(data ingestion, embeddings, retrieval, APIs)\nImplement\nagent-based architectures\n(orchestration, routing, memory, workflows)\nBuild and manage\nLLM infrastructure\n(model routing, caching, rate limiting, observability)\nDevelop\nscalable APIs and services\nfor AI capabilities\nImplement\nGenAIOps/MLOps practices\n(prompt management, evaluation, monitoring, deployment)\nWork with\nGCP services\n(Vertex AI, BigQuery, Cloud Run, GKE, Pub/Sub) to deploy solutions\nEnsure\nAI safety, governance, and compliance\n(PII protection, guardrails, auditability)\nCollaborate with cross-functional teams to deliver reusable, enterprise-grade solutions\nRequired Skills & Experience\nStrong hands-on experience in\nGenerative AI and RAG systems (production level)\nExperience building\nmulti-agent or agentic AI systems\nProficiency in\nPython\nand backend/API development\nHands-on experience with\nGCP AI/ML ecosystem\n(Vertex AI, BigQuery, etc.)\nSolid understanding of\nLLM infrastructure and orchestration layers\nExperience with\nCI/CD pipelines\nand\nInfrastructure as Code (Terraform)\nKnowledge of\nGenAIOps/MLOps practices\nand model lifecycle management\nUnderstanding of\nAI safety, governance, and compliance\nNice to Have\nExperience with\nLangChain, LlamaIndex\n, or similar frameworks\nFamiliarity with\nRAG evaluation tools\n(RAGAS, DeepEval)\nKnowledge of\nKnowledge Graphs with RAG\nExperience in\nmulti-cloud environments (GCP + Azure)\nExposure to\nBFSI/regulated domains\nWhat We\u2019re Looking For\nEngineers who have built and deployed\nreal-world GenAI systems at scale\nStrong\nbackend and systems-thinking mindset\nAbility to work in\nfast-paced, enterprise environments\nRead more\nUsers love Cutshort\nRead about what our users have to say about finding their next opportunity on Cutshort.\nPrevious\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulo",
+        "skills": [],
+        "salary": "",
+        "work_mode": "",
+        "_source_type": "generic_http",
+        "_india_filter": "India-specific job board URL",
+        "_canonical_fp": "77a0af50a6fcaf88",
+        "canonical": true,
+        "canonical_id": "77a0af50a6fcaf88",
+        "apply_route": {
+          "best_apply_route": "cutshort",
+          "apply_url": "https://cutshort.io/job/Generative-AI-Engineer-Bengaluru-Bangalore-Quantiphi-hja2EdHo",
+          "backup_urls": [],
+          "reason": "best route: cutshort (priority 4)",
+          "risk": "medium"
+        }
+      },
+      "score": 64.8,
+      "breakdown": {
+        "role_fit": {
+          "raw": 6.0,
+          "weight": 14,
+          "weighted": 8.4
+        },
+        "skill_fit": {
+          "raw": 5.1,
+          "weight": 14,
+          "weighted": 7.1
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 6.0,
+          "weight": 6,
+          "weighted": 3.6
+        },
+        "company_stability": {
+          "raw": 5.0,
+          "weight": 7,
+          "weighted": 3.5
+        },
+        "startup_risk": {
+          "raw": 8.6,
+          "weight": 5,
+          "weighted": 4.3
+        },
+        "brand_value": {
+          "raw": 4.0,
+          "weight": 6,
+          "weighted": 2.4
+        },
+        "commute_risk": {
+          "raw": 10.0,
+          "weight": 4,
+          "weighted": 4.0
+        },
+        "response_likelihood": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "career_trajectory": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "AI Product Engineer",
+        "company": "BukuWarung",
+        "location": "Hyderabad",
+        "url": "https://www.instahyre.com/job-373325-ai-product-engineer-at-bukuwarung-hyderabad/",
+        "apply_url": "",
+        "url_type": "INDIVIDUAL_JOB",
+        "description": "Function: Software Engineering \u2192 Backend Development LLMs FastAPI GTM NLP Python Responsibilities: AI-Powered Automation Operational Scaling Lead the development and integration of cost-effective AI systems, leveraging LLMs and AI agents to optimize business operations, automate workflows, and improve customer support processes. Implement AI-based self-serve tools to reduce operational dependencies. Collaborate with product and engineering teams to integrate AI-driven automation into products, customer support, and internal operations. Identify and implement AI tools to enhance team productivity, GTM strategies, and business scalability. AI Systems Architecture Development Set up evaluation frameworks for AI systems drive experimentations to optimize performance. Lead the development and integration of AI agents for business automation (e. g., customer support, operations, GTM workflows). Rapidly prototype with AI tools, iterating from proof-of-concept (POC) to full-scale production deployment, aiming to minimize software development costs and maximize ROI. Technical Leadership Strategy Assist in developing AI roadmaps and strategies to drive innovation and long-term efficiency. Ensure AI solutions align with business objectives, compliance standards, and scalability needs. Establish best practices for AI governance and continuously drive learning within the team. Requirements: Experience in natural language processing (NLP) and conversational AI development. Familiarity with cloud platforms AWS / GCP / Azure. Strong problem-solving and analytical skills with a focus on performance optimization. Excellent communication skills to collaborate with cross-functional teams effectively. Experience with machine learning frameworks and tools. B. S. or M. S. in Computer Science or 6+ years of software development experience. Benefits at BukuWarung 0 && (!isOpenedInMobile || showSections.benefits) --> Work From Anywhere (Remote-first) \u2022 Generous Leave Policy (Maternity \u2022 Paternity \u2022 Childcare \u2022 Menstrual \u2022 Wellbeing) \u2022 BukuFlex (Ergonomic \u2022 Physical and Mental Well Being Classes etc) 0 && (!isOpenedInMobile || showSections.benefits) --> BukuWarung's Tech Stack 0 && (!isOpenedInMobile || showSections.techStack) --> iOS Android 0 && (!isOpenedInMobile || showSections.techStack) --> Job posted by Kshitija K Talent Acquisition Specialist at People Impact",
+        "skills": [
+          "LLMs",
+          "FastAPI",
+          "GTM",
+          "NLP",
+          "Python",
+          "AWS",
+          "GCP",
+          "Azure",
+          "machine learning frameworks"
+        ],
+        "salary": "",
+        "work_mode": "remote",
+        "_source_type": "scrapegraph",
+        "_india_filter": "India-specific job board URL",
+        "_canonical_fp": "61ab0245fff9d481",
+        "canonical": true,
+        "canonical_id": "61ab0245fff9d481",
+        "apply_route": {
+          "best_apply_route": "instahyre",
+          "apply_url": "https://www.instahyre.com/job-373325-ai-product-engineer-at-bukuwarung-hyderabad/",
+          "backup_urls": [],
+          "reason": "best route: instahyre (priority 3)",
+          "risk": "low"
+        }
+      },
+      "score": 64.7,
+      "breakdown": {
+        "role_fit": {
+          "raw": 6.0,
+          "weight": 14,
+          "weighted": 8.4
+        },
+        "skill_fit": {
+          "raw": 3.3,
+          "weight": 14,
+          "weighted": 4.6
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 8.0,
+          "weight": 8,
+          "weighted": 6.4
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 6.0,
+          "weight": 6,
+          "weighted": 3.6
+        },
+        "company_stability": {
+          "raw": 5.0,
+          "weight": 7,
+          "weighted": 3.5
+        },
+        "startup_risk": {
+          "raw": 8.6,
+          "weight": 5,
+          "weighted": 4.3
+        },
+        "brand_value": {
+          "raw": 4.0,
+          "weight": 6,
+          "weighted": 2.4
+        },
+        "commute_risk": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "response_likelihood": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "career_trajectory": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "AI/ML Engineer \u2013 Voice (2\u20133 Years)",
+        "company": "",
+        "location": "",
+        "url": "https://cutshort.io/job/AI-ML-Engineer-Voice-2-3-Years-Bengaluru-Bangalore-Impacto-Digifin-Technologies--etGqEkwc",
+        "apply_url": "https://cutshort.io/job/AI-ML-Engineer-Voice-2-3-Years-Bengaluru-Bangalore-Impacto-Digifin-Technologies--etGqEkwc",
+        "url_type": "INDIVIDUAL_JOB",
+        "description": "AI/ML Engineer \u2013 Voice (2\u20133 Years)\nat\nImpacto Digifin Technologies\nApply to this job\nAI/ML Engineer \u2013 Voice (2\u20133 Years)\nImpacto Digifin Technologies\nCompany\nHome\nAI/ML Engineer \u2013 Voice (2\u20133 Years)\nat\nImpacto Digifin Technologies\nPosted by\nNavitha Reddy\nApply to this job\n2\n- 3 yrs\n\u20b96L - \u20b98L / yr\nBengaluru (Bangalore)\nSkills\nMachine Learning (ML)\nDeep Learning\nNatural Language Processing (NLP)\nVoice Over IP (VoIP)\nArtificial Intelligence (AI)\nVoice AI\nGenerative AI\nVoice processing\nRetrieval Augmented Generation (RAG)\nJob Title: AI/ML Engineer \u2013 Voice (2\u20133 Years)\nLocation: Bengaluru (On-site)\nEmployment Type: Full-time\nAbout Impacto Digifin Technologies\nImpacto Digifin Technologies enables enterprises to adopt digital transformation through intelligent, AI-powered solutions. Our platforms reduce manual work, improve accuracy, automate complex workflows, and ensure compliance\u2014empowering organizations to operate with speed, clarity, and confidence.\nWe combine automation where it\u2019s fastest with human oversight where it matters most. This hybrid approach ensures trust, reliability, and measurable efficiency across fintech and enterprise operations.\nRole Overview\nWe are looking for an\nAI Engineer Voice\nwith strong applied experience in\nmachine learning, deep learning, NLP, GenAI, and full-stack voice AI systems\n.\nThis role requires someone who can design, build, deploy, and optimize\nend-to-end voice AI pipelines\n, including speech-to-text, text-to-speech, real-time streaming voice interactions, voice-enabled AI applications, and voice-to-LLM integrations.\nYou will work across core ML/DL systems, voice models, predictive analytics, banking-domain AI applications, and emerging AGI-aligned frameworks. The ideal candidate is an\napplied engineer\nwith strong fundamentals, the ability to prototype quickly, and the maturity to contribute to R&D when needed.\nThis role is collaborative, cross-functional, and hands-on.\nKey Responsibilities\nVoice AI Engineering\nBuild end-to-end\nvoice AI systems\n, including STT, TTS, VAD, audio processing, and conversational voice pipelines.\nImplement real-time voice pipelines involving\nstreaming interactions with LLMs and AI agents\n.\nDesign and integrate\nvoice calling workflows\n, bi-directional audio streaming, and voice-based user interactions.\nDevelop\nvoice-enabled applications\n, voice chat systems, and voice-to-AI integrations for enterprise workflows.\nBuild and optimize\naudio preprocessing layers\n(noise reduction, segmentation, normalization)\nImplement\nvoice understanding modules\n, speech intent extraction, and context tracking.\nMachine Learning & Deep Learning\nBuild, deploy, and optimize ML and DL models for prediction, classification, and automation use cases.\nTrain and fine-tune neural networks for text, speech, and multimodal tasks.\nBuild traditional ML systems where needed (statistical, rule-based, hybrid systems).\nPerform feature engineering, model evaluation, retraining, and continuous learning cycles.\nNLP, LLMs & GenAI\nImplement NLP pipelines including tokenization, NER, intent, embeddings, and semantic classification.\nWork with LLM architectures for text + voice workflows\nBuild GenAI-based workflows and integrate models into production systems.\nImplement RAG pipelines and agent-based systems for complex automation.\nFintech & Banking AI\nWork on AI-driven features related to banking, financial risk, compliance automation, fraud patterns, and customer intelligence.\nUnderstand fintech data structures and constraints while designing AI models.\nEngineering, Deployment & Collaboration\nDeploy models on cloud or on-prem (AWS / Azure / GCP / internal infra).\nBuild robust APIs and services for voice and ML-based functionalities.\nCollaborate with data engineers, backend developers, and business teams to deliver end-to-end AI solutions.\nDocument systems and contribute to internal knowledge bases and R&D.\nSecurity & Compliance\nFollow fundamental best practices for AI security, access control, and safe data handli",
+        "skills": [],
+        "salary": "",
+        "work_mode": "",
+        "_source_type": "generic_http",
+        "_india_filter": "India-specific job board URL",
+        "_canonical_fp": "5d7fc81125a6cf1a",
+        "canonical": true,
+        "canonical_id": "5d7fc81125a6cf1a",
+        "apply_route": {
+          "best_apply_route": "cutshort",
+          "apply_url": "https://cutshort.io/job/AI-ML-Engineer-Voice-2-3-Years-Bengaluru-Bangalore-Impacto-Digifin-Technologies--etGqEkwc",
+          "backup_urls": [],
+          "reason": "best route: cutshort (priority 4)",
+          "risk": "medium"
+        }
+      },
+      "score": 63.6,
+      "breakdown": {
+        "role_fit": {
+          "raw": 6.0,
+          "weight": 14,
+          "weighted": 8.4
+        },
+        "skill_fit": {
+          "raw": 4.2,
+          "weight": 14,
+          "weighted": 5.9
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 6.0,
+          "weight": 6,
+          "weighted": 3.6
+        },
+        "company_stability": {
+          "raw": 5.0,
+          "weight": 7,
+          "weighted": 3.5
+        },
+        "startup_risk": {
+          "raw": 8.6,
+          "weight": 5,
+          "weighted": 4.3
+        },
+        "brand_value": {
+          "raw": 4.0,
+          "weight": 6,
+          "weighted": 2.4
+        },
+        "commute_risk": {
+          "raw": 10.0,
+          "weight": 4,
+          "weighted": 4.0
+        },
+        "response_likelihood": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "career_trajectory": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "Product Management - Senior Product Manager - Agent & Merchant",
+        "company": "Paytm",
+        "company_id": "paytm",
+        "source": "lever",
+        "source_url": "https://jobs.lever.co/paytm/b909105c-269c-4726-b0af-f07ff2b2dd36",
+        "url": "https://jobs.lever.co/paytm/b909105c-269c-4726-b0af-f07ff2b2dd36",
+        "location": "Bangalore, Karnataka",
+        "description": "About Paytm Group:\n\nPaytm is India's leading mobile payments and financial services distribution company. Pioneer of the mobile QR payments revolution in India, Paytm builds technologies that help small businesses with payments and commerce. Paytm\u2019s mission is to serve half a billion Indians and bring them to the mainstream economy with the help of technology.\n\nSkills that will help you succeed in this role\n\n- 3\u20136 years of core Product Management experience, specifically within high-growth consumer or partner-facing product charters.\n-\u00a0Proven track record in scaling products and owning KPI outcomes, preferably at new-age internet leaders (e.g., Zomato, Swiggy, Flipkart, Amazon, MMT or equivalent).\n-\u00a0Strong preference for candidates with platform-thinking capabilities - those who can look beyond the immediate sprint to architect 1-year scalable roadmaps across multiple business verticals.\n- Must possess a 'data-first' mindset, with the ability to move beyond basic reporting to derive actionable insights\n-\u00a0Hands-on experience with product analytics suites (e.g., Amplitude, Mixpanel, Google Analytics or Clevertap) and prevalent visualization tools\n- Candidates with hands-on experience of building Data Science, Machine Learning, AI native products to be preferred.\n- Hands-on experience in using AI tools or Agentic AI for wireframing, workflows, prototyping, documentation, data analysis & generating insights.   Why join us\n\nA collaborative output driven program that brings cohesiveness across businesses through technology Improve the average revenue per use by increasing the cross-sell opportunities solid 360 feedback from your peer teams on your support of their goals respect, that is earned, not demanded from your peers and manager.\n\nCompensation:\n\nIf you are the right fit, we believe in creating wealth for you with enviable 500 mn+ registered users, 21 mn+ merchants and depth of data in our ecosystem, we are in a unique position to democratize credit for deserving consumers & merchants \u2013 and we are committed to to it. India\u2019s largest digital lending story is brewing here. It\u2019s your opportunity to be a part of the story",
+        "role_summary": "About Paytm Group:\n\nPaytm is India's leading mobile payments and financial services distribution company. Pioneer of the mobile QR payments revolution in India, Paytm builds technologies that help small businesses with payments and commerce. Paytm\u2019s mission is to serve half a billion Indians and bring them to the mainstream economy with the help of technology.\n\nSkills that will help you succeed in this role\n\n- 3\u20136 years of core Product Management experience, specifically within high-growth consumer or partner-facing product charters.\n-\u00a0Proven track record in scaling products and owning KPI outcomes, preferably at new-age internet leaders (e.g., Zomato, Swiggy, Flipkart, Amazon, MMT or equivalent).\n-\u00a0Strong preference for candidates with platform-thinking capabilities - those who can look beyond the immediate sprint to architect 1-year scalable roadmaps across multiple business verticals.\n- Must possess a 'data-first' mindset, with the ability to move beyond basic reporting to derive actionable insights\n-\u00a0Hands-on experience with product analytics suites (e.g., Amplitude, Mixpanel, Google Analytics or Clevertap) and prevalent visualization tools\n- Candidates with hands-on experience of building Data Science, Machine Learning, AI native products to be preferred.\n- Hands-on experience in using AI tools or Agentic AI for wireframing, workflows, prototyping, documentation, data analysis & generating insights.",
+        "responsibilities": "",
+        "requirements": "",
+        "benefits": "Why join us\n\nA collaborative output driven program that brings cohesiveness across businesses through technology Improve the average revenue per use by increasing the cross-sell opportunities solid 360 feedback from your peer teams on your support of their goals respect, that is earned, not demanded from your peers and manager.\n\nCompensation:\n\nIf you are the right fit, we believe in creating wealth for you with enviable 500 mn+ registered users, 21 mn+ merchants and depth of data in our ecosystem, we are in a unique position to democratize credit for deserving consumers & merchants \u2013 and we are committed to to it. India\u2019s largest digital lending story is brewing here. It\u2019s your opportunity to be a part of the story",
+        "jd_confidence": 1.0,
+        "posted_at": "1775815365401",
+        "job_id_ats": "b909105c-269c-4726-b0af-f07ff2b2dd36",
+        "scraped_at": "2026-05-23T09:35:45.041928+00:00",
+        "from_company_portal": true,
+        "_source_type": "lever",
+        "_india_filter": "location contains bangalore",
+        "_canonical_fp": "e123c328b4fa75fc",
+        "canonical": true,
+        "canonical_id": "e123c328b4fa75fc",
+        "apply_route": {
+          "best_apply_route": "lever",
+          "apply_url": "https://jobs.lever.co/paytm/b909105c-269c-4726-b0af-f07ff2b2dd36",
+          "backup_urls": [],
+          "reason": "best route: lever (priority 2)",
+          "risk": "low"
+        }
+      },
+      "score": 63.2,
+      "breakdown": {
+        "role_fit": {
+          "raw": 4.0,
+          "weight": 14,
+          "weighted": 5.6
+        },
+        "skill_fit": {
+          "raw": 2.0,
+          "weight": 14,
+          "weighted": 2.8
+        },
+        "salary_fit": {
+          "raw": 0.0,
+          "weight": 10,
+          "weighted": 0.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 10.0,
+          "weight": 6,
+          "weighted": 6.0
+        },
+        "company_stability": {
+          "raw": 8.0,
+          "weight": 7,
+          "weighted": 5.6
+        },
+        "startup_risk": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "brand_value": {
+          "raw": 8.0,
+          "weight": 6,
+          "weighted": 4.8
+        },
+        "commute_risk": {
+          "raw": 8.0,
+          "weight": 4,
+          "weighted": 3.2
+        },
+        "response_likelihood": {
+          "raw": 7.0,
+          "weight": 4,
+          "weighted": 2.8
+        },
+        "career_trajectory": {
+          "raw": 7.2,
+          "weight": 4,
+          "weighted": 2.9
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "Software Development Engineer III Data",
+        "company": "Meesho",
+        "company_id": "meesho",
+        "source": "lever",
+        "source_url": "https://jobs.lever.co/meesho/7bb1de7e-8756-412b-8c71-0ba40863edc8",
+        "url": "https://jobs.lever.co/meesho/7bb1de7e-8756-412b-8c71-0ba40863edc8",
+        "location": "Bangalore, Karnataka",
+        "description": "When 5% of Indian households shop with us, it\u2019s important to build data-backed, resilient systems to manage millions of orders every day. We\u2019ve done this \u2013 with zero downtime! \ud83d\ude0e\u00a0 Sounds impossible? Well, that\u2019s the kind of Engineering muscle that has helped Meesho become the e-commerce giant that it is today. We value speed over perfection, and see failures as opportunities to become better. We\u2019ve taken steps to inculcate a strong \u2018Founder\u2019s Mindset\u2019 across our engineering teams, making us grow and move fast. We place special emphasis on the continuous growth of each team member - and we do this with regular 1-1s and open communication.\u00a0\n\u00a0\nTech Culture\n\u00a0\nWe have a unique tech culture where engineers are seen as problem solvers. The engineering org is divided into multiple pods and each pod is aligned to a particular business theme. It is a culture driven by logical debates & arguments rather than authority.\n\u00a0\nAt Meesho, you get to solve hard technical problems at scale as well as have a significant impact on the lives of millions of entrepreneurs. You are expected to contribute to the Solutioning of product problems as well as challenge existing solutions.\n\u00a0\nMeesho\u2019s user base has grown 4x in the last 1 year and we have more than 50 million downloads of our app. Here are a few projects we have completed last year to scale oursystems for this growth:\n\u00a0\n\u25cf We have developed API gateway aggregators using frameworks like Hystrix and spring-cloud-gateway for circuit breaking and parallel processing.\n\u25cf Our serving microservices handle more than 15K RPS on normal days and during saledays this can go to 30K RPS. Being a consumer app, these systems have SLAs of ~10ms\n\u25cf Our distributed scheduler tracks more than 50 million shipments periodically fromdifferent partners and does async processing involving RDBMS.\n\u25cf We use an in-house video streaming platform to support a wide variety of devices and networks.",
+        "role_summary": "When 5% of Indian households shop with us, it\u2019s important to build data-backed, resilient systems to manage millions of orders every day. We\u2019ve done this \u2013 with zero downtime! \ud83d\ude0e\u00a0 Sounds impossible? Well, that\u2019s the kind of Engineering muscle that has helped Meesho become the e-commerce giant that it is today. We value speed over perfection, and see failures as opportunities to become better. We\u2019ve taken steps to inculcate a strong \u2018Founder\u2019s Mindset\u2019 across our engineering teams, making us grow and move fast. We place special emphasis on the continuous growth of each team member - and we do this with regular 1-1s and open communication.\u00a0\n\u00a0\nTech Culture\n\u00a0\nWe have a unique tech culture where engineers are seen as problem solvers. The engineering org is divided into multiple pods and each pod is aligned to a particular business theme. It is a culture driven by logical debates & arguments rather than authority.\n\u00a0\nAt Meesho, you get to solve hard technical problems at scale as well as have a significant impact on the lives of millions of entrepreneurs. You are expected to contribute to the Solutioning of product problems as well as challenge existing solutions.\n\u00a0\nMeesho\u2019s user base has grown 4x in the last 1 year and we have more than 50 million downloads of our app. Here are a few projects we have completed last year to scale oursystems for this growth:\n\u00a0\n\u25cf We have developed API gateway aggregators using frameworks like Hystrix and spring-cloud-gateway for circuit breaking and parallel processing.\n\u25cf Our serving microservices handle more than 15K RPS on normal days and during saledays this can go to 30K RPS. Being a consumer app, these systems have SLAs of ~10ms\n\u25cf Our distributed scheduler tracks more than 50 million shipments periodically fromdifferent partners and does async processing involving RDBMS.\n\u25cf We use an in-house video streaming platform to support a wide variety of devices and networks.",
+        "responsibilities": "",
+        "requirements": "",
+        "benefits": "",
+        "jd_confidence": 1.0,
+        "posted_at": "1754295107866",
+        "job_id_ats": "7bb1de7e-8756-412b-8c71-0ba40863edc8",
+        "scraped_at": "2026-05-23T09:36:07.104496+00:00",
+        "from_company_portal": true,
+        "_source_type": "lever",
+        "_india_filter": "location contains bangalore",
+        "_canonical_fp": "d5b52dcfc88021ac",
+        "canonical": true,
+        "canonical_id": "d5b52dcfc88021ac",
+        "apply_route": {
+          "best_apply_route": "lever",
+          "apply_url": "https://jobs.lever.co/meesho/7bb1de7e-8756-412b-8c71-0ba40863edc8",
+          "backup_urls": [],
+          "reason": "best route: lever (priority 2)",
+          "risk": "low"
+        }
+      },
+      "score": 63.0,
+      "breakdown": {
+        "role_fit": {
+          "raw": 4.0,
+          "weight": 14,
+          "weighted": 5.6
+        },
+        "skill_fit": {
+          "raw": 2.0,
+          "weight": 14,
+          "weighted": 2.8
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 4.0,
+          "weight": 6,
+          "weighted": 2.4
+        },
+        "company_stability": {
+          "raw": 8.0,
+          "weight": 7,
+          "weighted": 5.6
+        },
+        "startup_risk": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "brand_value": {
+          "raw": 6.5,
+          "weight": 6,
+          "weighted": 3.9
+        },
+        "commute_risk": {
+          "raw": 8.0,
+          "weight": 4,
+          "weighted": 3.2
+        },
+        "response_likelihood": {
+          "raw": 7.0,
+          "weight": 4,
+          "weighted": 2.8
+        },
+        "career_trajectory": {
+          "raw": 5.5,
+          "weight": 4,
+          "weighted": 2.2
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "AI Product Engineer",
+        "company": "Out of the Blue",
+        "location": "Pune",
+        "url": "https://www.instahyre.com/job-421793-ai-product-engineer-at-out-of-the-blue-pune/",
+        "apply_url": "",
+        "url_type": "INDIVIDUAL_JOB",
+        "description": "Function: Data Science and Analysis \u2192 Data Science / Machine Learning LLMs As an AI Product Engineer, you will design, build, and ship intelligent systems that drive business-critical insights for high-growth DTC brands and agencies. You will work across the full lifecycle from data pipelines and ML models to LLM integrations and agent deployments, combining engineering, applied AI, and product thinking. Responsibilities: Design and deploy AI agents to diagnose funnel issues and trigger automated actions. Build and optimize ML models for forecasting, anomaly detection, and root-cause analysis. Integrate LLMs, prompt workflows, and semantic search into product features. Contribute to end-to-end product development (data, backend APIs, frontend components). Own ML workflows end-to-end (data prep, training, deployment, monitoring). Translate complex data into scalable, actionable insights. Requirements: 3-6 years of experience in ML / Applied AI (preferably in product/startups). Strong programming skills in Python. Experience building production-grade ML systems. Understanding of full-stack systems (Node.js backend, React frontend). Strong foundation in statistics, A/B testing, and impact measurement. Familiarity with GenAI, vector databases, and agent-based systems. Ability to work independently in fast-paced environments. Good to Have: Experience with PyTorch, TensorFlow, or MLOps tools (Vertex AI, SageMaker). Exposure to marketing analytics, attribution, or funnel optimization. Knowledge of Bayesian methods, reinforcement learning, or bandits. Experience with cloud platforms (GCP/AWS) and Kubernetes. Why Explore a Career at Out of the Blue We believe diversity and perspective drives innovation and we're building a culture where you drive meaningful action and difference is valued. As a member of the team you'll have the opportunity to build this culture with us. The founding engineering team will shape this entire architecture from scratch backed by a strong product design aesthetic. This is as early ideation and creation phase of a startup as it gets - as autonomous as it gets - as FUN as it gets - if you thrive on the energy of creating something out of nothing! Career at Out of the Blue Why Explore a Career at Out of the Blue Save Changes Cancel Job posted by Vijayalakshmi Nayak Technical Recruiter at Success Pact",
+        "skills": [
+          "Python",
+          "Node.js",
+          "React",
+          "PyTorch",
+          "TensorFlow",
+          "Vertex AI",
+          "SageMaker",
+          "GCP",
+          "AWS",
+          "Kubernetes"
+        ],
+        "salary": "",
+        "work_mode": "",
+        "_source_type": "scrapegraph",
+        "_india_filter": "India-specific job board URL",
+        "_canonical_fp": "a433ee4d5d60d623",
+        "canonical": true,
+        "canonical_id": "a433ee4d5d60d623",
+        "apply_route": {
+          "best_apply_route": "instahyre",
+          "apply_url": "https://www.instahyre.com/job-421793-ai-product-engineer-at-out-of-the-blue-pune/",
+          "backup_urls": [],
+          "reason": "best route: instahyre (priority 3)",
+          "risk": "low"
+        }
+      },
+      "score": 62.2,
+      "breakdown": {
+        "role_fit": {
+          "raw": 6.0,
+          "weight": 14,
+          "weighted": 8.4
+        },
+        "skill_fit": {
+          "raw": 3.2,
+          "weight": 14,
+          "weighted": 4.5
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 6.0,
+          "weight": 6,
+          "weighted": 3.6
+        },
+        "company_stability": {
+          "raw": 5.0,
+          "weight": 7,
+          "weighted": 3.5
+        },
+        "startup_risk": {
+          "raw": 8.6,
+          "weight": 5,
+          "weighted": 4.3
+        },
+        "brand_value": {
+          "raw": 4.0,
+          "weight": 6,
+          "weighted": 2.4
+        },
+        "commute_risk": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "response_likelihood": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "career_trajectory": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "Product Management - Senior Product Manager - Lending Platform",
+        "company": "Paytm",
+        "company_id": "paytm",
+        "source": "lever",
+        "source_url": "https://jobs.lever.co/paytm/75992181-c0d0-44e7-805a-6dddfd0fe23b",
+        "url": "https://jobs.lever.co/paytm/75992181-c0d0-44e7-805a-6dddfd0fe23b",
+        "location": "Noida, Uttar Pradesh",
+        "description": "About Us:\n\nPaytm is India's leading mobile payments and financial services distribution company. Pioneer of the mobile QR payments revolution in India, Paytm builds technologies that help small businesses with payments and commerce. Paytm\u2019s mission is to serve half a billion Indians and bring them to the mainstream economy with the help of technology.\n\n\nExpectation:\n\n\u2022 Working closely with vertical product managers/ business leads to understand product use cases, customer journeys, business applicability and impact of each use case.\n\u2022 Ability to understand different technology platforms, their features and be able to work with solution architects/engineering leads and write detailed product requirement documents, manage future roadmaps and deliverables\n\u2022 Make sure that clear, simple, and technically sound decisions are made\n\u2022 With your strong domain knowledge of lending platforms, we expect you to provide your subject matter expertise in  requirements solutioning\n\u2022 Ability to work with multiple stakeholders / senior management / cross-functional teams to influence them for quicker decisions, manage sudden technical roadblocks and be able to clear them\n\u2022 Lead product team processes (Agile/Scrum) and manage expectations and track roadmap regularly\n\u2022 Be involved in what your team is building - Run edge cases, test products proactively and its features to provide feedback early in the cycle, make sure entire journeys are covered, and that product reporting exists to track KPIs for the product and its success (data-driven product management).\n\nSuperpowers that will help you succeed in this role:\n\n\u2022 Bachelor\u2019s degree in engineering, computer science and/or related field\n\u2022 Professional experience in a product management or analytical role with hands on experience in banking processes\n\u2022 Having deep understanding of Lending and LMS (Loan Management System) Platform(s) in Product Management role building credit platform products Knowledge of Fintech/ BFSI/ Lending domain\n\u2022 Exp should be in between 3 - 8 years, out of which minimum 3 years in product management.\n\u2022 Solutions orientated within a high-energy and fast-paced work environment\n\u2022 Exceptional customer experience intuition; demonstrated success in creating innovative and user-friendly products and customer-facing features\n\u2022 Possess excellent oral, written, verbal and interpersonal communication skills Why join us:\n\n\u2022 A collaborative output driven program that brings cohesiveness across businesses through technology.\n\u2022 Improve the average revenue per use by increasing the cross-sell opportunities.\n\u2022 A solid 360 feedback from your peer teams on your support of their goals.\nRespect that is earned, not demanded from your peers and manager.\n\u00a0\nCompensation:\n\nIf you are the right fit, we believe in creating wealth for you with enviable 500 mn+ registered users, 25 mn+ merchants and depth of data in our ecosystem, we are in a unique position to democratize credit for deserving consumers & merchants \u2013 and we are committed to it. India\u2019s largest digital lending story is brewing here.\nIt\u2019s your opportunity to be a part of the story!",
+        "role_summary": "About Us:\n\nPaytm is India's leading mobile payments and financial services distribution company. Pioneer of the mobile QR payments revolution in India, Paytm builds technologies that help small businesses with payments and commerce. Paytm\u2019s mission is to serve half a billion Indians and bring them to the mainstream economy with the help of technology.\n\n\nExpectation:\n\n\u2022 Working closely with vertical product managers/ business leads to understand product use cases, customer journeys, business applicability and impact of each use case.\n\u2022 Ability to understand different technology platforms, their features and be able to work with solution architects/engineering leads and write detailed product requirement documents, manage future roadmaps and deliverables\n\u2022 Make sure that clear, simple, and technically sound decisions are made\n\u2022 With your strong domain knowledge of lending platforms, we expect you to provide your subject matter expertise in",
+        "responsibilities": "",
+        "requirements": "requirements solutioning\n\u2022 Ability to work with multiple stakeholders / senior management / cross-functional teams to influence them for quicker decisions, manage sudden technical roadblocks and be able to clear them\n\u2022 Lead product team processes (Agile/Scrum) and manage expectations and track roadmap regularly\n\u2022 Be involved in what your team is building - Run edge cases, test products proactively and its features to provide feedback early in the cycle, make sure entire journeys are covered, and that product reporting exists to track KPIs for the product and its success (data-driven product management).\n\nSuperpowers that will help you succeed in this role:\n\n\u2022 Bachelor\u2019s degree in engineering, computer science and/or related field\n\u2022 Professional experience in a product management or analytical role with hands on experience in banking processes\n\u2022 Having deep understanding of Lending and LMS (Loan Management System) Platform(s) in Product Management role building credit platform products Knowledge of Fintech/ BFSI/ Lending domain\n\u2022 Exp should be in between 3 - 8 years, out of which minimum 3 years in product management.\n\u2022 Solutions orientated within a high-energy and fast-paced work environment\n\u2022 Exceptional customer experience intuition; demonstrated success in creating innovative and user-friendly products and customer-facing features\n\u2022 Possess excellent oral, written, verbal and interpersonal communication skills",
+        "benefits": "Why join us:\n\n\u2022 A collaborative output driven program that brings cohesiveness across businesses through technology.\n\u2022 Improve the average revenue per use by increasing the cross-sell opportunities.\n\u2022 A solid 360 feedback from your peer teams on your support of their goals.\nRespect that is earned, not demanded from your peers and manager.\n\u00a0\nCompensation:\n\nIf you are the right fit, we believe in creating wealth for you with enviable 500 mn+ registered users, 25 mn+ merchants and depth of data in our ecosystem, we are in a unique position to democratize credit for deserving consumers & merchants \u2013 and we are committed to it. India\u2019s largest digital lending story is brewing here.\nIt\u2019s your opportunity to be a part of the story!",
+        "jd_confidence": 1.0,
+        "posted_at": "1775310271842",
+        "job_id_ats": "75992181-c0d0-44e7-805a-6dddfd0fe23b",
+        "scraped_at": "2026-05-23T09:35:45.042561+00:00",
+        "from_company_portal": true,
+        "_source_type": "lever",
+        "_india_filter": "location contains noida",
+        "_canonical_fp": "310bfb6e8a612f7b",
+        "canonical": true,
+        "canonical_id": "310bfb6e8a612f7b",
+        "alternate_sources": [
+          "https://jobs.lever.co/paytm/ea9ecdbe-b68e-4238-9e51-4f36e711344b"
+        ],
+        "apply_route": {
+          "best_apply_route": "lever",
+          "apply_url": "https://jobs.lever.co/paytm/75992181-c0d0-44e7-805a-6dddfd0fe23b",
+          "backup_urls": [
+            "https://jobs.lever.co/paytm/ea9ecdbe-b68e-4238-9e51-4f36e711344b"
+          ],
+          "reason": "best route: lever (priority 2)",
+          "risk": "low"
+        }
+      },
+      "score": 62.0,
+      "breakdown": {
+        "role_fit": {
+          "raw": 4.0,
+          "weight": 14,
+          "weighted": 5.6
+        },
+        "skill_fit": {
+          "raw": 2.0,
+          "weight": 14,
+          "weighted": 2.8
+        },
+        "salary_fit": {
+          "raw": 0.0,
+          "weight": 10,
+          "weighted": 0.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 10.0,
+          "weight": 6,
+          "weighted": 6.0
+        },
+        "company_stability": {
+          "raw": 8.0,
+          "weight": 7,
+          "weighted": 5.6
+        },
+        "startup_risk": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "brand_value": {
+          "raw": 8.0,
+          "weight": 6,
+          "weighted": 4.8
+        },
+        "commute_risk": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "response_likelihood": {
+          "raw": 7.0,
+          "weight": 4,
+          "weighted": 2.8
+        },
+        "career_trajectory": {
+          "raw": 7.2,
+          "weight": 4,
+          "weighted": 2.9
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "Engineering Lead/Principle Engineer - DevOps",
+        "company": "Paytm",
+        "company_id": "paytm",
+        "source": "lever",
+        "source_url": "https://jobs.lever.co/paytm/96aab63c-bfd8-498e-a3fd-658d0dbf5d4e",
+        "url": "https://jobs.lever.co/paytm/96aab63c-bfd8-498e-a3fd-658d0dbf5d4e",
+        "location": "Noida, Uttar Pradesh",
+        "description": "About Us:\n\u00a0\nPaytm is India's leading mobile payments and financial services distribution company. Pioneer of the mobile QR payments revolution in India, Paytm builds technologies that help small businesses with payments and commerce. Paytm\u2019s mission is to serve half a billion Indians and bring them to the mainstream economy with the help of technology.\n\u00a0\nAbout the team:\u00a0Paytm solves some of the most complex DevOps issues across the globe. Some of our DNA fingerprints are:\nCloud-First\u00a0Paytm is a cloud-first company where we work on some of the largest cloud (AWS) workloads.\nScalability\u00a0We tame scale. Our definition of scale is -- PBs of\u00a0data, millions of requests per minute, few thousand microservices hosted on a few hundred thousand cores.\nInnovation\u00a0is our blood. Automation is our key Mantra. We work smartly -- We have designed one of the world's\u00a0largest CI platforms, our own\u00a0AWS cost management platform,\u00a0EBS autoscale (Yes we downscale EBS without even an ms of outage), and so on.\nObservability\u00a0One of the best in-house designed observability systems processing a few 10s of millions of events per second and many more.  Requirements:\nHe/She/They should have 10+ years of experience in DevOps Engineering\nHands on Experience in any of BD (Hadoop, Kafka, EMRs, Ranger, Spark, Hive, Starburst, Looker, TigerGraph, Neo4j) will be a big plus\nStrong practical knowledge of managing AWS Infrastructure specially EC2, Load Balancers, Cloud Front, Elastic Cache, EBS, S3, IAM, Cloud Watch, Auto Scaling, Lambda, etc.\nUnderstanding of open source server software (such as tomcat, hbase, Kafka, MYSQL, Redis, Elasticsearch)\nVery good Experience in Infra automation (Ansible, Terraform, could formation or others)\nHands-on Experience in Kubernetes / EKS / Docker / ECS etc\nHands-on experience in writing automation using Shell, Python, PowerShell.\nStrong experience in Jenkins / Maven / Gradle etc\nExperience in DevOps and CI/CD pipeline using JIRA, Confluence, Jenkins, Git, Maven, Nexus, docker.\nHands-on in CI/CD automation for EC2 / ASG / EKS / ECS using helm / jenkins and other tools\nExperience in Configuration Management / DevOps / CI:CD / Agile\nVery good knowledge in administer and troubleshoot Linux based systems like centos / ubuntu etc\nGood problem solving and troubleshooting skills\nGood experience in security compliance fixing on Systems like OS upgrade / Patching / Kernel optimization etc. Understanding of security in cloud solutions (API security, HTTPS, TLS, etc).\nUnderstanding network topologies and common network protocols and services (DNS, HTTP(S), SSH, FTP, SMTP).\nKnowledge of SQL Queries will be added advantage\n\nPreferred Qualification\u00a0: Bachelor's/Master's Degree in Computer Science or equivalent\n\nSkills that will help you succeed in this role:\nTech Stack: Lang: Java, DB: RDBMS, Messaging: Kafka/RabbitMQ, Caching: Redis/Aerospike, Micro services, AWS\nStrong experience in scaling, performance tuning & optimization at both API and storage layers\nHands-on leader, and problem solver with a passion for excellence. Why join us:\nBecause you get an opportunity to make a difference, and have a great time doing that\nYou are challenged and encouraged here to do stuff that is meaningful for you and for those we serve\nYou should work with us if you think seriously about what technology can do for people\nWe are successful, and our successes are rooted in our people's collective energy and unwavering focus on the customer, and that's how it will always be.\nLearn more about the exciting work we do in Tech by reading our\u00a0Engineering blogs\n\nCompensation:\nIf you are the right fit, we believe in creating wealth for you.\nWith enviable 500 mn+ registered users, 21 mn+ merchants and depth of data in our ecosystem, we are in a unique position to democratize credit for deserving consumers &amp; merchants \u2013 and we are committed to it.\nIndia\u2019s largest digital lending story is brewing here. It\u2019s your opportunity to be a part of the story!",
+        "role_summary": "About Us:\n\u00a0\nPaytm is India's leading mobile payments and financial services distribution company. Pioneer of the mobile QR payments revolution in India, Paytm builds technologies that help small businesses with payments and commerce. Paytm\u2019s mission is to serve half a billion Indians and bring them to the mainstream economy with the help of technology.\n\u00a0\nAbout the team:\u00a0Paytm solves some of the most complex DevOps issues across the globe. Some of our DNA fingerprints are:\nCloud-First\u00a0Paytm is a cloud-first company where we work on some of the largest cloud (AWS) workloads.\nScalability\u00a0We tame scale. Our definition of scale is -- PBs of\u00a0data, millions of requests per minute, few thousand microservices hosted on a few hundred thousand cores.\nInnovation\u00a0is our blood. Automation is our key Mantra. We work smartly -- We have designed one of the world's\u00a0largest CI platforms, our own\u00a0AWS cost management platform,\u00a0EBS autoscale (Yes we downscale EBS without even an ms of outage), and so on.\nObservability\u00a0One of the best in-house designed observability systems processing a few 10s of millions of events per second and many more.",
+        "responsibilities": "",
+        "requirements": "Requirements:\nHe/She/They should have 10+ years of experience in DevOps Engineering\nHands on Experience in any of BD (Hadoop, Kafka, EMRs, Ranger, Spark, Hive, Starburst, Looker, TigerGraph, Neo4j) will be a big plus\nStrong practical knowledge of managing AWS Infrastructure specially EC2, Load Balancers, Cloud Front, Elastic Cache, EBS, S3, IAM, Cloud Watch, Auto Scaling, Lambda, etc.\nUnderstanding of open source server software (such as tomcat, hbase, Kafka, MYSQL, Redis, Elasticsearch)\nVery good Experience in Infra automation (Ansible, Terraform, could formation or others)\nHands-on Experience in Kubernetes / EKS / Docker / ECS etc\nHands-on experience in writing automation using Shell, Python, PowerShell.\nStrong experience in Jenkins / Maven / Gradle etc\nExperience in DevOps and CI/CD pipeline using JIRA, Confluence, Jenkins, Git, Maven, Nexus, docker.\nHands-on in CI/CD automation for EC2 / ASG / EKS / ECS using helm / jenkins and other tools\nExperience in Configuration Management / DevOps / CI:CD / Agile\nVery good knowledge in administer and troubleshoot Linux based systems like centos / ubuntu etc\nGood problem solving and troubleshooting skills\nGood experience in security compliance fixing on Systems like OS upgrade / Patching / Kernel optimization etc. Understanding of security in cloud solutions (API security, HTTPS, TLS, etc).\nUnderstanding network topologies and common network protocols and services (DNS, HTTP(S), SSH, FTP, SMTP).\nKnowledge of SQL Queries will be added advantage\n\nPreferred Qualification\u00a0: Bachelor's/Master's Degree in Computer Science or equivalent\n\nSkills that will help you succeed in this role:\nTech Stack: Lang: Java, DB: RDBMS, Messaging: Kafka/RabbitMQ, Caching: Redis/Aerospike, Micro services, AWS\nStrong experience in scaling, performance tuning & optimization at both API and storage layers\nHands-on leader, and problem solver with a passion for excellence.",
+        "benefits": "Why join us:\nBecause you get an opportunity to make a difference, and have a great time doing that\nYou are challenged and encouraged here to do stuff that is meaningful for you and for those we serve\nYou should work with us if you think seriously about what technology can do for people\nWe are successful, and our successes are rooted in our people's collective energy and unwavering focus on the customer, and that's how it will always be.\nLearn more about the exciting work we do in Tech by reading our\u00a0Engineering blogs\n\nCompensation:\nIf you are the right fit, we believe in creating wealth for you.\nWith enviable 500 mn+ registered users, 21 mn+ merchants and depth of data in our ecosystem, we are in a unique position to democratize credit for deserving consumers &amp; merchants \u2013 and we are committed to it.\nIndia\u2019s largest digital lending story is brewing here. It\u2019s your opportunity to be a part of the story!",
+        "jd_confidence": 1.0,
+        "posted_at": "1776666797746",
+        "job_id_ats": "96aab63c-bfd8-498e-a3fd-658d0dbf5d4e",
+        "scraped_at": "2026-05-23T09:35:45.012620+00:00",
+        "from_company_portal": true,
+        "_source_type": "lever",
+        "_india_filter": "location contains noida",
+        "_canonical_fp": "8a438cfc37ac3291",
+        "canonical": true,
+        "canonical_id": "8a438cfc37ac3291",
+        "apply_route": {
+          "best_apply_route": "lever",
+          "apply_url": "https://jobs.lever.co/paytm/96aab63c-bfd8-498e-a3fd-658d0dbf5d4e",
+          "backup_urls": [],
+          "reason": "best route: lever (priority 2)",
+          "risk": "low"
+        }
+      },
+      "score": 61.8,
+      "breakdown": {
+        "role_fit": {
+          "raw": 2.0,
+          "weight": 14,
+          "weighted": 2.8
+        },
+        "skill_fit": {
+          "raw": 3.3,
+          "weight": 14,
+          "weighted": 4.6
+        },
+        "salary_fit": {
+          "raw": 0.0,
+          "weight": 10,
+          "weighted": 0.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 10.0,
+          "weight": 6,
+          "weighted": 6.0
+        },
+        "company_stability": {
+          "raw": 8.0,
+          "weight": 7,
+          "weighted": 5.6
+        },
+        "startup_risk": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "brand_value": {
+          "raw": 8.0,
+          "weight": 6,
+          "weighted": 4.8
+        },
+        "commute_risk": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "response_likelihood": {
+          "raw": 7.0,
+          "weight": 4,
+          "weighted": 2.8
+        },
+        "career_trajectory": {
+          "raw": 9.3,
+          "weight": 4,
+          "weighted": 3.7
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "Senior Product Engineers",
+        "company": "Cognizant",
+        "location": "Bangalore Urban, Karnataka, India",
+        "url": "https://www.linkedin.com/jobs/view/4407640352",
+        "apply_url": "https://www.linkedin.com/jobs/view/4407640352",
+        "url_type": "INDIVIDUAL_JOB",
+        "description": "nan",
+        "_source_type": "jobspy",
+        "_india_filter": "location contains bangalore",
+        "_canonical_fp": "538a54fc465c3e49",
+        "canonical": true,
+        "canonical_id": "538a54fc465c3e49",
+        "apply_route": {
+          "best_apply_route": "linkedin",
+          "apply_url": "https://www.linkedin.com/jobs/view/4407640352",
+          "backup_urls": [],
+          "reason": "best route: linkedin (priority 5)",
+          "risk": "medium"
+        }
+      },
+      "score": 61.8,
+      "breakdown": {
+        "role_fit": {
+          "raw": 0.0,
+          "weight": 14,
+          "weighted": 0.0
+        },
+        "skill_fit": {
+          "raw": 2.0,
+          "weight": 14,
+          "weighted": 2.8
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 10.0,
+          "weight": 6,
+          "weighted": 6.0
+        },
+        "company_stability": {
+          "raw": 8.0,
+          "weight": 7,
+          "weighted": 5.6
+        },
+        "startup_risk": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "brand_value": {
+          "raw": 8.0,
+          "weight": 6,
+          "weighted": 4.8
+        },
+        "commute_risk": {
+          "raw": 8.0,
+          "weight": 4,
+          "weighted": 3.2
+        },
+        "response_likelihood": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "career_trajectory": {
+          "raw": 7.2,
+          "weight": 4,
+          "weighted": 2.9
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "Engineering Manager- Data Devops",
+        "company": "Paytm",
+        "company_id": "paytm",
+        "source": "lever",
+        "source_url": "https://jobs.lever.co/paytm/d028d30f-1746-4dbd-a9f2-bd1ca2b84ded",
+        "url": "https://jobs.lever.co/paytm/d028d30f-1746-4dbd-a9f2-bd1ca2b84ded",
+        "location": "Noida, Uttar Pradesh",
+        "description": "Position: Principal Engineer\u2013Data DevOps\nJob Location: Noida\n\nJob Overview:\nWe are seeking an experienced Principal Engineer (Data DevOps) to lead our Data DevOps  team in building, managing, and optimizing high-scale, secure, and reliable big data platforms.  The ideal candidate will combine strong technical expertise with proven leadership skills, driving  best practices in cloud infrastructure, automation, CI/CD, and big data technologies. This role  involves managing cross-functional priorities, mentoring engineers, and ensuring delivery of  high-quality, scalable data solutions. Key Responsibilities:\n\u25cf Lead, mentor, and grow a high-performing Data DevOps team, fostering technical  excellence and ownership.  \n\u25cf Drive architecture, design, and implementation of large-scale cloud and data  infrastructure, ensuring scalability, performance, and security.  \n\u25cf Collaborate closely with Data Engineering, Data Science, Analytics, and Product teams  to deliver efficient and reliable data platforms.  \n\u25cf Oversee operations and optimization of AWS-based infrastructure, including VPC,  EC2, S3, EMR, EKS, SageMaker, Lambda, CloudFront, CloudWatch, and IAM.  \n\u25cf Manage and scale big data platforms leveraging Kafka, Hive HMS, Apache Ranger,  Apache Airflow, EMR, Spark, Trino, Looker, and Jupyter Notebooks.  \n\u25cf Implement and maintain CI/CD pipelines and infrastructure automation using Terraform,  Ansible, and CloudFormation.  \n\u25cf Ensure system observability, proactive incident management, and SLA adherence.  \n\u25cf Champion cloud security best practices, including API security, TLS/HTTPS, and access  control policies.  \n\u25cf Partner with stakeholders to prioritize initiatives, manage budgets, and optimize cloud  and operational costs.  \n\nRequired Qualifications:\n\u25cf Experience: 8+ years in DevOps/Data DevOps or related fields, including at least 4+  years in a leadership role.  \n\u25cf Proven track record in managing high-scale big data infrastructure and leading  engineering teams.  \n\u25cf Strong hands-on experience with AWS services and infrastructure automation tools  (Terraform, Ansible, CloudFormation).  \n\u25cf Deep knowledge and hands-on experience with Kafka, Hive HMS, Apache Ranger,  Apache Airflow, EMR, Spark, Trino, Jupyter Notebooks, and Looker.  \n\u25cf Proficiency in Kubernetes/EKS, Docker, ECS, and CI/CD tools.  \n\u25cf Strong understanding of networking, cloud security, and compliance requirements.  \n\u25cf Excellent communication, stakeholder management, and decision-making skills.  \n\u25cf Exposure to SQL and data query optimization is an advantage.",
+        "role_summary": "Position: Principal Engineer\u2013Data DevOps\nJob Location: Noida\n\nJob Overview:\nWe are seeking an experienced Principal Engineer (Data DevOps) to lead our Data DevOps  team in building, managing, and optimizing high-scale, secure, and reliable big data platforms.  The ideal candidate will combine strong technical expertise with proven leadership skills, driving  best practices in cloud infrastructure, automation, CI/CD, and big data technologies. This role  involves managing cross-functional priorities, mentoring engineers, and ensuring delivery of  high-quality, scalable data solutions.",
+        "responsibilities": "Key Responsibilities:\n\u25cf Lead, mentor, and grow a high-performing Data DevOps team, fostering technical  excellence and ownership.  \n\u25cf Drive architecture, design, and implementation of large-scale cloud and data  infrastructure, ensuring scalability, performance, and security.  \n\u25cf Collaborate closely with Data Engineering, Data Science, Analytics, and Product teams  to deliver efficient and reliable data platforms.  \n\u25cf Oversee operations and optimization of AWS-based infrastructure, including VPC,  EC2, S3, EMR, EKS, SageMaker, Lambda, CloudFront, CloudWatch, and IAM.  \n\u25cf Manage and scale big data platforms leveraging Kafka, Hive HMS, Apache Ranger,  Apache Airflow, EMR, Spark, Trino, Looker, and Jupyter Notebooks.  \n\u25cf Implement and maintain CI/CD pipelines and infrastructure automation using Terraform,  Ansible, and CloudFormation.  \n\u25cf Ensure system observability, proactive incident management, and SLA adherence.  \n\u25cf Champion cloud security best practices, including API security, TLS/HTTPS, and access  control policies.  \n\u25cf Partner with stakeholders to prioritize initiatives, manage budgets, and optimize cloud  and operational costs.  \n\nRequired",
+        "requirements": "Qualifications:\n\u25cf Experience: 8+ years in DevOps/Data DevOps or related fields, including at least 4+  years in a leadership role.  \n\u25cf Proven track record in managing high-scale big data infrastructure and leading  engineering teams.  \n\u25cf Strong hands-on experience with AWS services and infrastructure automation tools  (Terraform, Ansible, CloudFormation).  \n\u25cf Deep knowledge and hands-on experience with Kafka, Hive HMS, Apache Ranger,  Apache Airflow, EMR, Spark, Trino, Jupyter Notebooks, and Looker.  \n\u25cf Proficiency in Kubernetes/EKS, Docker, ECS, and CI/CD tools.  \n\u25cf Strong understanding of networking, cloud security, and compliance requirements.  \n\u25cf Excellent communication, stakeholder management, and decision-making skills.  \n\u25cf Exposure to SQL and data query optimization is an advantage.",
+        "benefits": "",
+        "jd_confidence": 1.0,
+        "posted_at": "1776666665271",
+        "job_id_ats": "d028d30f-1746-4dbd-a9f2-bd1ca2b84ded",
+        "scraped_at": "2026-05-23T09:35:45.013547+00:00",
+        "from_company_portal": true,
+        "_source_type": "lever",
+        "_india_filter": "location contains noida",
+        "_canonical_fp": "62dfc41f356ca348",
+        "canonical": true,
+        "canonical_id": "62dfc41f356ca348",
+        "apply_route": {
+          "best_apply_route": "lever",
+          "apply_url": "https://jobs.lever.co/paytm/d028d30f-1746-4dbd-a9f2-bd1ca2b84ded",
+          "backup_urls": [],
+          "reason": "best route: lever (priority 2)",
+          "risk": "low"
+        }
+      },
+      "score": 61.7,
+      "breakdown": {
+        "role_fit": {
+          "raw": 0.0,
+          "weight": 14,
+          "weighted": 0.0
+        },
+        "skill_fit": {
+          "raw": 2.4,
+          "weight": 14,
+          "weighted": 3.4
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 10.0,
+          "weight": 6,
+          "weighted": 6.0
+        },
+        "company_stability": {
+          "raw": 8.0,
+          "weight": 7,
+          "weighted": 5.6
+        },
+        "startup_risk": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "brand_value": {
+          "raw": 8.0,
+          "weight": 6,
+          "weighted": 4.8
+        },
+        "commute_risk": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "response_likelihood": {
+          "raw": 7.0,
+          "weight": 4,
+          "weighted": 2.8
+        },
+        "career_trajectory": {
+          "raw": 6.5,
+          "weight": 4,
+          "weighted": 2.6
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "Product Management - Product Growth Manager - Agent",
+        "company": "Paytm",
+        "company_id": "paytm",
+        "source": "lever",
+        "source_url": "https://jobs.lever.co/paytm/3db438be-5917-4f31-96ca-f8e26f0ff5bc",
+        "url": "https://jobs.lever.co/paytm/3db438be-5917-4f31-96ca-f8e26f0ff5bc",
+        "location": "Bengaluru, Karnataka",
+        "description": "About Paytm:\u00a0\n\nPaytm is India's leading mobile payments and financial services distribution company. Pioneer of the mobile QR payments revolution in India, Paytm builds technologies that help small businesses with payments and commerce. Paytm\u2019s mission is to serve half a billion Indians and bring them to the mainstream economy with the help of technology.\n\nSkills that will help you succeed in this role\n\n- 3\u20136 years of core Product Management experience, specifically within high-growth consumer or partner-facing product charters.\n-\u00a0Proven track record in scaling products and owning KPI outcomes, preferably at new-age internet leaders (e.g., Zomato, Swiggy, Flipkart, Amazon, MMT or equivalent).\n-\u00a0Strong preference for candidates with platform-thinking capabilities - those who can look beyond the immediate sprint to architect 1-year scalable roadmaps across multiple business verticals.\n- Must possess a 'data-first' mindset, with the ability to move beyond basic reporting to derive actionable insights\n-\u00a0Hands-on experience with product analytics suites (e.g., Amplitude, Mixpanel, Google Analytics or Clevertap) and prevalent visualization tools\n- Candidates with hands-on experience of building Data Science, Machine Learning, AI native products to be preferred.\n- Hands-on experience in using AI tools or Agentic AI for wireframing, workflows, prototyping, documentation, data analysis & generating insights.   Why join us\n\nA collaborative output driven program that brings cohesiveness across businesses through technology Improve the average revenue per use by increasing the cross-sell opportunities solid 360 feedback from your peer teams on your support of their goals respect, that is earned, not demanded from your peers and manager.\n\nCompensation:\n\nIf you are the right fit, we believe in creating wealth for you with enviable 500 mn+ registered users, 21 mn+ merchants and depth of data in our ecosystem, we are in a unique position to democratize credit for deserving consumers & merchants \u2013 and we are committed to to it. India\u2019s largest digital lending story is brewing here. It\u2019s your opportunity to be a part of the story",
+        "role_summary": "About Paytm:\u00a0\n\nPaytm is India's leading mobile payments and financial services distribution company. Pioneer of the mobile QR payments revolution in India, Paytm builds technologies that help small businesses with payments and commerce. Paytm\u2019s mission is to serve half a billion Indians and bring them to the mainstream economy with the help of technology.\n\nSkills that will help you succeed in this role\n\n- 3\u20136 years of core Product Management experience, specifically within high-growth consumer or partner-facing product charters.\n-\u00a0Proven track record in scaling products and owning KPI outcomes, preferably at new-age internet leaders (e.g., Zomato, Swiggy, Flipkart, Amazon, MMT or equivalent).\n-\u00a0Strong preference for candidates with platform-thinking capabilities - those who can look beyond the immediate sprint to architect 1-year scalable roadmaps across multiple business verticals.\n- Must possess a 'data-first' mindset, with the ability to move beyond basic reporting to derive actionable insights\n-\u00a0Hands-on experience with product analytics suites (e.g., Amplitude, Mixpanel, Google Analytics or Clevertap) and prevalent visualization tools\n- Candidates with hands-on experience of building Data Science, Machine Learning, AI native products to be preferred.\n- Hands-on experience in using AI tools or Agentic AI for wireframing, workflows, prototyping, documentation, data analysis & generating insights.",
+        "responsibilities": "",
+        "requirements": "",
+        "benefits": "Why join us\n\nA collaborative output driven program that brings cohesiveness across businesses through technology Improve the average revenue per use by increasing the cross-sell opportunities solid 360 feedback from your peer teams on your support of their goals respect, that is earned, not demanded from your peers and manager.\n\nCompensation:\n\nIf you are the right fit, we believe in creating wealth for you with enviable 500 mn+ registered users, 21 mn+ merchants and depth of data in our ecosystem, we are in a unique position to democratize credit for deserving consumers & merchants \u2013 and we are committed to to it. India\u2019s largest digital lending story is brewing here. It\u2019s your opportunity to be a part of the story",
+        "jd_confidence": 1.0,
+        "posted_at": "1767090159638",
+        "job_id_ats": "3db438be-5917-4f31-96ca-f8e26f0ff5bc",
+        "scraped_at": "2026-05-23T09:35:45.039562+00:00",
+        "from_company_portal": true,
+        "_source_type": "lever",
+        "_india_filter": "location contains bengaluru",
+        "_canonical_fp": "3b29bac9700bdeaa",
+        "canonical": true,
+        "canonical_id": "3b29bac9700bdeaa",
+        "apply_route": {
+          "best_apply_route": "lever",
+          "apply_url": "https://jobs.lever.co/paytm/3db438be-5917-4f31-96ca-f8e26f0ff5bc",
+          "backup_urls": [],
+          "reason": "best route: lever (priority 2)",
+          "risk": "low"
+        }
+      },
+      "score": 61.7,
+      "breakdown": {
+        "role_fit": {
+          "raw": 4.0,
+          "weight": 14,
+          "weighted": 5.6
+        },
+        "skill_fit": {
+          "raw": 2.0,
+          "weight": 14,
+          "weighted": 2.8
+        },
+        "salary_fit": {
+          "raw": 0.0,
+          "weight": 10,
+          "weighted": 0.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 10.0,
+          "weight": 6,
+          "weighted": 6.0
+        },
+        "company_stability": {
+          "raw": 8.0,
+          "weight": 7,
+          "weighted": 5.6
+        },
+        "startup_risk": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "brand_value": {
+          "raw": 8.0,
+          "weight": 6,
+          "weighted": 4.8
+        },
+        "commute_risk": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "response_likelihood": {
+          "raw": 7.0,
+          "weight": 4,
+          "weighted": 2.8
+        },
+        "career_trajectory": {
+          "raw": 6.5,
+          "weight": 4,
+          "weighted": 2.6
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "Product Management - Product Manager - Lending Platform",
+        "company": "Paytm",
+        "company_id": "paytm",
+        "source": "lever",
+        "source_url": "https://jobs.lever.co/paytm/bcd1320b-72a8-47e1-a062-15241381fdb3",
+        "url": "https://jobs.lever.co/paytm/bcd1320b-72a8-47e1-a062-15241381fdb3",
+        "location": "Noida, Uttar Pradesh",
+        "description": "About Us:\n\nPaytm is India's leading mobile payments and financial services distribution company. Pioneer of the mobile QR payments revolution in India, Paytm builds technologies that help small businesses with payments and commerce. Paytm\u2019s mission is to serve half a billion Indians and bring them to the mainstream economy with the help of technology.\n\n\nExpectation:\n\n\u2022 Working closely with vertical product managers/ business leads to understand product use cases, customer journeys, business applicability and impact of each use case.\n\u2022 Ability to understand different technology platforms, their features and be able to work with solution architects/engineering leads and write detailed product requirement documents, manage future roadmaps and deliverables\n\u2022 Make sure that clear, simple, and technically sound decisions are made\n\u2022 With your strong domain knowledge of lending platforms, we expect you to provide your subject matter expertise in  requirements solutioning\n\u2022 Ability to work with multiple stakeholders / senior management / cross-functional teams to influence them for quicker decisions, manage sudden technical roadblocks and be able to clear them\n\u2022 Lead product team processes (Agile/Scrum) and manage expectations and track roadmap regularly\n\u2022 Be involved in what your team is building - Run edge cases, test products proactively and its features to provide feedback early in the cycle, make sure entire journeys are covered, and that product reporting exists to track KPIs for the product and its success (data-driven product management).\n\nSuperpowers that will help you succeed in this role:\n\n\u2022 Bachelor\u2019s degree in engineering, computer science and/or related field\n\u2022 Professional experience in a product management or analytical role with hands on experience in banking processes\n\u2022 Having deep understanding of Lending and LMS (Loan Management System) Platform(s) in Product Management role building credit platform products Knowledge of Fintech/ BFSI/ Lending domain\n\u2022 Exp should be in between 3 - 8 years, out of which minimum 3 years in product management.\n\u2022 Solutions orientated within a high-energy and fast-paced work environment\n\u2022 Exceptional customer experience intuition; demonstrated success in creating innovative and user-friendly products and customer-facing features\n\u2022 Possess excellent oral, written, verbal and interpersonal communication skills Why join us:\n\n\u2022 A collaborative output driven program that brings cohesiveness across businesses through technology.\n\u2022 Improve the average revenue per use by increasing the cross-sell opportunities.\n\u2022 A solid 360 feedback from your peer teams on your support of their goals.\nRespect that is earned, not demanded from your peers and manager.\n\u00a0\nCompensation:\n\nIf you are the right fit, we believe in creating wealth for you with enviable 500 mn+ registered users, 25 mn+ merchants and depth of data in our ecosystem, we are in a unique position to democratize credit for deserving consumers & merchants \u2013 and we are committed to it. India\u2019s largest digital lending story is brewing here.\nIt\u2019s your opportunity to be a part of the story!",
+        "role_summary": "About Us:\n\nPaytm is India's leading mobile payments and financial services distribution company. Pioneer of the mobile QR payments revolution in India, Paytm builds technologies that help small businesses with payments and commerce. Paytm\u2019s mission is to serve half a billion Indians and bring them to the mainstream economy with the help of technology.\n\n\nExpectation:\n\n\u2022 Working closely with vertical product managers/ business leads to understand product use cases, customer journeys, business applicability and impact of each use case.\n\u2022 Ability to understand different technology platforms, their features and be able to work with solution architects/engineering leads and write detailed product requirement documents, manage future roadmaps and deliverables\n\u2022 Make sure that clear, simple, and technically sound decisions are made\n\u2022 With your strong domain knowledge of lending platforms, we expect you to provide your subject matter expertise in",
+        "responsibilities": "",
+        "requirements": "requirements solutioning\n\u2022 Ability to work with multiple stakeholders / senior management / cross-functional teams to influence them for quicker decisions, manage sudden technical roadblocks and be able to clear them\n\u2022 Lead product team processes (Agile/Scrum) and manage expectations and track roadmap regularly\n\u2022 Be involved in what your team is building - Run edge cases, test products proactively and its features to provide feedback early in the cycle, make sure entire journeys are covered, and that product reporting exists to track KPIs for the product and its success (data-driven product management).\n\nSuperpowers that will help you succeed in this role:\n\n\u2022 Bachelor\u2019s degree in engineering, computer science and/or related field\n\u2022 Professional experience in a product management or analytical role with hands on experience in banking processes\n\u2022 Having deep understanding of Lending and LMS (Loan Management System) Platform(s) in Product Management role building credit platform products Knowledge of Fintech/ BFSI/ Lending domain\n\u2022 Exp should be in between 3 - 8 years, out of which minimum 3 years in product management.\n\u2022 Solutions orientated within a high-energy and fast-paced work environment\n\u2022 Exceptional customer experience intuition; demonstrated success in creating innovative and user-friendly products and customer-facing features\n\u2022 Possess excellent oral, written, verbal and interpersonal communication skills",
+        "benefits": "Why join us:\n\n\u2022 A collaborative output driven program that brings cohesiveness across businesses through technology.\n\u2022 Improve the average revenue per use by increasing the cross-sell opportunities.\n\u2022 A solid 360 feedback from your peer teams on your support of their goals.\nRespect that is earned, not demanded from your peers and manager.\n\u00a0\nCompensation:\n\nIf you are the right fit, we believe in creating wealth for you with enviable 500 mn+ registered users, 25 mn+ merchants and depth of data in our ecosystem, we are in a unique position to democratize credit for deserving consumers & merchants \u2013 and we are committed to it. India\u2019s largest digital lending story is brewing here.\nIt\u2019s your opportunity to be a part of the story!",
+        "jd_confidence": 1.0,
+        "posted_at": "1776410246575",
+        "job_id_ats": "bcd1320b-72a8-47e1-a062-15241381fdb3",
+        "scraped_at": "2026-05-23T09:35:45.040191+00:00",
+        "from_company_portal": true,
+        "_source_type": "lever",
+        "_india_filter": "location contains noida",
+        "_canonical_fp": "d7e19e07ba14a1f7",
+        "canonical": true,
+        "canonical_id": "d7e19e07ba14a1f7",
+        "apply_route": {
+          "best_apply_route": "lever",
+          "apply_url": "https://jobs.lever.co/paytm/bcd1320b-72a8-47e1-a062-15241381fdb3",
+          "backup_urls": [],
+          "reason": "best route: lever (priority 2)",
+          "risk": "low"
+        }
+      },
+      "score": 61.7,
+      "breakdown": {
+        "role_fit": {
+          "raw": 4.0,
+          "weight": 14,
+          "weighted": 5.6
+        },
+        "skill_fit": {
+          "raw": 2.0,
+          "weight": 14,
+          "weighted": 2.8
+        },
+        "salary_fit": {
+          "raw": 0.0,
+          "weight": 10,
+          "weighted": 0.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 10.0,
+          "weight": 6,
+          "weighted": 6.0
+        },
+        "company_stability": {
+          "raw": 8.0,
+          "weight": 7,
+          "weighted": 5.6
+        },
+        "startup_risk": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "brand_value": {
+          "raw": 8.0,
+          "weight": 6,
+          "weighted": 4.8
+        },
+        "commute_risk": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "response_likelihood": {
+          "raw": 7.0,
+          "weight": 4,
+          "weighted": 2.8
+        },
+        "career_trajectory": {
+          "raw": 6.5,
+          "weight": 4,
+          "weighted": 2.6
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "Product Management- Associate Product Manager- Lending",
+        "company": "Paytm",
+        "company_id": "paytm",
+        "source": "lever",
+        "source_url": "https://jobs.lever.co/paytm/255aa024-39ae-4f74-a62b-b062ec12db97",
+        "url": "https://jobs.lever.co/paytm/255aa024-39ae-4f74-a62b-b062ec12db97",
+        "location": "Noida, Uttar Pradesh",
+        "description": "Title- Product Management - Lending\n\nAbout Us:\n\nPaytm is India's leading mobile payments and financial services distribution company. Pioneer of the mobile QR payments revolution in India, Paytm builds technologies that help small businesses with payments and commerce. Paytm\u2019s mission is to serve half a billion Indians and bring them to the mainstream economy with the help of technology.\n\nExpectation:\n\n- Working closely with business, growth, design & cross-functional teams to understand product use cases, customer journeys, business applicability and impact of each use case.\n- Ability to understand different technology platforms, their features and be able to work with solution architects/engineering leads and write detailed product requirement documents, manage future roadmaps and deliverables\n- Own end-to-end product lifecycle for lending journeys \u2013 onboarding, credit decisioning, disbursement, repayment, and closure.\n- Define and optimize funnels to drive adoption, reduce drop-offs, and improve approval/disbursement rates.\n- Use data to identify bottlenecks, define hypotheses, run experiments (A/B), and track impact.\n- Be involved in what your team is building - Run edge cases, test products proactively and its features to provide feedback early in the cycle, make sure entire journeys are covered, and that product reporting exists to track KPIs for the product and its success (data-driven product management).\n- Use SQL or comparable query languages/excel etc to access, analyze, and validate data independently\n- Track key product and data metrics (OKRs and KPIs), adjusting strategies as needed for product optimization\n- Stay updated with RBI regulations, compliance norms, best industry practices and credit bureau practices.\n\nSuperpowers that will help you succeed in this role:\n- Bachelor\u2019s degree in engineering, computer science and/or related field with MBA from Top Tier colleges\n- Professional experience of 3-5 years in product management\u00a0\n- Having deep understanding of Lending in Product Management role building credit platform products. Knowledge of Fintech/ BFSI/ Lending domain \n- Solutions orientated within a high-energy and fast-paced work environment\n- Exceptional customer experience intuition; demonstrated success in creating innovative and user-friendly products and customer-facing features\n- Possess excellent oral, written, verbal and interpersonal communication skills   Why join us?\nA collaborative output driven program that brings cohesiveness across businesses through technology\nImprove the average revenue per use by increasing the cross-sell opportunities\nA solid 360 feedback from your peer teams on your support of their goals\nRespect, that is earned, not demanded from your peers and manager\n\nCompensation:\nIf you are the right fit, we believe in creating wealth for you with enviable 500 mn+ registered users, 25 mn+ merchants and depth of data in our ecosystem, we are in a unique position to democratize credit for deserving consumers & merchants \u2013 and we are committed to it. India\u2019s largest digital lending story is brewing here.\nIt\u2019s your opportunity to be a part of the story!",
+        "role_summary": "Title- Product Management - Lending\n\nAbout Us:\n\nPaytm is India's leading mobile payments and financial services distribution company. Pioneer of the mobile QR payments revolution in India, Paytm builds technologies that help small businesses with payments and commerce. Paytm\u2019s mission is to serve half a billion Indians and bring them to the mainstream economy with the help of technology.\n\nExpectation:\n\n- Working closely with business, growth, design & cross-functional teams to understand product use cases, customer journeys, business applicability and impact of each use case.\n- Ability to understand different technology platforms, their features and be able to work with solution architects/engineering leads and write detailed product requirement documents, manage future roadmaps and deliverables\n- Own end-to-end product lifecycle for lending journeys \u2013 onboarding, credit decisioning, disbursement, repayment, and closure.\n- Define and optimize funnels to drive adoption, reduce drop-offs, and improve approval/disbursement rates.\n- Use data to identify bottlenecks, define hypotheses, run experiments (A/B), and track impact.\n- Be involved in what your team is building - Run edge cases, test products proactively and its features to provide feedback early in the cycle, make sure entire journeys are covered, and that product reporting exists to track KPIs for the product and its success (data-driven product management).\n- Use SQL or comparable query languages/excel etc to access, analyze, and validate data independently\n- Track key product and data metrics (OKRs and KPIs), adjusting strategies as needed for product optimization\n- Stay updated with RBI regulations, compliance norms, best industry practices and credit bureau practices.\n\nSuperpowers that will help you succeed in this role:\n- Bachelor\u2019s degree in engineering, computer science and/or related field with MBA from Top Tier colleges\n- Professional experience of 3-5 years in product management\u00a0\n- Having deep understanding of Lending in Product Management role building credit platform products. Knowledge of Fintech/ BFSI/ Lending domain \n- Solutions orientated within a high-energy and fast-paced work environment\n- Exceptional customer experience intuition; demonstrated success in creating innovative and user-friendly products and customer-facing features\n- Possess excellent oral, written, verbal and interpersonal communication skills",
+        "responsibilities": "",
+        "requirements": "",
+        "benefits": "Why join us?\nA collaborative output driven program that brings cohesiveness across businesses through technology\nImprove the average revenue per use by increasing the cross-sell opportunities\nA solid 360 feedback from your peer teams on your support of their goals\nRespect, that is earned, not demanded from your peers and manager\n\nCompensation:\nIf you are the right fit, we believe in creating wealth for you with enviable 500 mn+ registered users, 25 mn+ merchants and depth of data in our ecosystem, we are in a unique position to democratize credit for deserving consumers & merchants \u2013 and we are committed to it. India\u2019s largest digital lending story is brewing here.\nIt\u2019s your opportunity to be a part of the story!",
+        "jd_confidence": 1.0,
+        "posted_at": "1754059472150",
+        "job_id_ats": "255aa024-39ae-4f74-a62b-b062ec12db97",
+        "scraped_at": "2026-05-23T09:35:45.044022+00:00",
+        "from_company_portal": true,
+        "_source_type": "lever",
+        "_india_filter": "location contains noida",
+        "_canonical_fp": "57431356da0598fe",
+        "canonical": true,
+        "canonical_id": "57431356da0598fe",
+        "apply_route": {
+          "best_apply_route": "lever",
+          "apply_url": "https://jobs.lever.co/paytm/255aa024-39ae-4f74-a62b-b062ec12db97",
+          "backup_urls": [],
+          "reason": "best route: lever (priority 2)",
+          "risk": "low"
+        }
+      },
+      "score": 61.7,
+      "breakdown": {
+        "role_fit": {
+          "raw": 4.0,
+          "weight": 14,
+          "weighted": 5.6
+        },
+        "skill_fit": {
+          "raw": 2.0,
+          "weight": 14,
+          "weighted": 2.8
+        },
+        "salary_fit": {
+          "raw": 0.0,
+          "weight": 10,
+          "weighted": 0.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 10.0,
+          "weight": 6,
+          "weighted": 6.0
+        },
+        "company_stability": {
+          "raw": 8.0,
+          "weight": 7,
+          "weighted": 5.6
+        },
+        "startup_risk": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "brand_value": {
+          "raw": 8.0,
+          "weight": 6,
+          "weighted": 4.8
+        },
+        "commute_risk": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "response_likelihood": {
+          "raw": 7.0,
+          "weight": 4,
+          "weighted": 2.8
+        },
+        "career_trajectory": {
+          "raw": 6.5,
+          "weight": 4,
+          "weighted": 2.6
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "Technical Operations",
+        "company": "Paytm",
+        "company_id": "paytm",
+        "source": "lever",
+        "source_url": "https://jobs.lever.co/paytm/4618eb38-cd2e-4803-96c7-0d43d9ecf750",
+        "url": "https://jobs.lever.co/paytm/4618eb38-cd2e-4803-96c7-0d43d9ecf750",
+        "location": "Noida, Uttar Pradesh",
+        "description": "About Paytm Group: Paytm is India's leading mobile payments and financial services distribution company. Pioneer of the mobile QR payments revolution in India, Paytm builds technologies that help small businesses with payments and commerce. Paytm's mission is to serve half a billion Indians and bring them to the mainstream economy with the help of technology.\n\nOVERALL ROLE: The Technical Manager will (lead a team to) manage the day-to-day M&E Operations and activities for the assigned  property/facility, and be the on-site key point of contact for key location stakeholders. The role will assume overall  responsibility for site budgets, accounting and finance, maintenance and operations, contract services, purchasing of  material, equipment & supplies, occupancy services and helpdesk.  \n\nMAJOR RESPONSIBILITIES\u00a0\n\u25aa Operations Management:\n\u25cf Establish Engineering & Operational procedures and roll out the same for site staff  \n\u25cf Establish contacts with local authorities on the facility related issues and maintain the relationship. Responsible  for all legal & authorities related compliances pertaining to facility & engineering systems  \n\u25cf Plan and manage the budgets for Engineering & Operational contracts  \n\u25cf Carry out Technical Audits for all installations at periodical intervals  \n\u25cf Review the maintenance/service practices of M&E Contractors to deliver quality work practices in line with the  manufacturer recommendations  \n\u25cf Plan & take responsibility for smooth operations of all Mechanical, Electrical, Plumbing installations and Civil  works pertaining to the facility \n \u25cf Responsible for planning a critical spares list for all installations as per manufacturer's recommendations and  inventory  \n\u25cf Responsible for development of all maintenance related schedules and shutdowns in consultation with Clients  / OEMs \n \u25cf Periodically inspect the logbooks, checklists and PPM schedules for a better management of Engineering  systems  \n\u25cf Work towards the 'ZERO' down time and set up the practices to ensure the delivery of seamless service  \n\u25cf Responsible for ensuring all statutory obligations such as Fire, Lift, Explosives and stability certificate etc.  \n\u25cf Responsible for setting up the maintenance contracts to ensure the risk mitigation  \n\u25cf Implement the Energy management programs to reduce the cost on utilities  \n\u25cf Handle small renovation projects from initiation to completion. Basic knowledge of Projects management is  essential  \n\u25cf Responsible for weekly & monthly reports on M&E, covering the maintenance contracts, spare parts  consumption, Incident reports, Improvement projects etc  \u25cf Ensure energy management, saving opportunities, risk management & engineering systems audits.  \n\u25cf Recommend continuous quality improvement practices and implement Industry Best Practice operations  \n\u25cf Review existing operations regularly to reduce costs and improve operational standards  \n\u25cf 24/7 emergency call support and site attendance is required  \n\u25cf Develop and implement a facility management program including preventative maintenance and life-cycle requirements   \n\u25cf Supervise maintenance and repair of facilities and equipment. Timely maintenance of Generator, UPS, Elevator,  Air conditioners and other critical equipment   \n\u25cf Plan and monitor appropriate facility management staffing levels & ensure efficient utilization of facility  maintenance staff   \n\u25cf Develop and implement innovation programs and processes that reduce utility costs, increase productivity and  savings and share learnings with within department   \n\u25cf Continuous optimization of processes, tools and documentation  \n\n\u25aa Stakeholder Management:\n \u25cf Develop and sustain a high-quality well motivated team  \n\u25cf Ensure that engineering staff is qualified and trained to perform the duties they are expected to carry out  \n\u25cf Manage and coach team  \n\u25cf Provide technical advice and guidance for site delivery team  \n\u25cf Ensure high staff morale, trust and work ethics  \n\u25cf Build and maintain an environment that supports teamwork, co-operation and performance excellence within  team  \n\n\u25aa Contracts Management: \n \u25cf Plan and manage all contracts to ensure that they are professionally delivered at the right costs  \n\u25cf Ensure expiry of contracts are well-monitored and re validations are initiated if needed  \n\u25cf Ensure contracts are continually assessed to deliver best value  \n\u25cf Calculate and compare costs for goods and services to maximize cost-effectiveness   \n\u25cf Manage contractor and vendor relationships   \n\n\u25aa Procurement & Vendor Management:\n \u25cf Ensure vendors are well-managed, delivering services on time and within budget  \n\u25cf Review the maintenance/service practices of M&E contractors to deliver quality work practices in line with the  manufacturer recommendations, established processes, tools and documentation  \n\u25cf Plan and manage budgets for Engineering & Operational contracts  \n\u25cf Ensure that vendor procurement processes comply with agreed procurement guidelines as well as One97 /  Paytm best practices \n\u00a0\n\u25aa Finance Management  \n\u25cf Verify payment and invoicing match contract pricing   \n\u25cf Prepare and track facility budget   \n\u25cf Monitor expenses and payments   \n\u25cf Generate and present regular reports and reviews of facility-related budgets, finances, contracts, expenditures  and purchases for the location   \n\u25cf Develop and implement cost reduction initiatives   \n\u25cf Actively work to ensure that the site\u2019s financial operations are meeting or exceeding targets and control  requirements including One97 / Paytm best practices  \n\u25cf Ensure financial processes are followed at all times  \n\n\u25aa Health & Safety Management  \n\u25cf Ensure the provision of a safe working environment  \n\u25cf Advise on and monitor energy efficiency   \n\u25cf Oversee environmental health and safety practices & implement changes for safe work environment  \n\u25cf Respond to facility and equipment alarms and system failures   \n\u25cf Ensure compliance with statutory regulations on fire, health and safety standards  \n\nCANDIDATE SPECIFICATION:  \nKEY SELECTION CRITERIA \nIdeal Experience :\n\u25cf Graduate / Postgraduate in Electrical Engineering  \n\u25cf 10-12 years\u2019 experience in managing Conventional / Multi-tenant Facility  \n\u25cf Has background and experience working in service industry   \n\u25cf Knowledge of local occupational health and safety requirements  \n\u25cf Knowledge of critical facilities  \n\u25cf Knowledge of vendor management for specialized services  \n\u25cf Excellent understanding of technical aspects of property and its utilities (Data center, generators,  Air-conditioning, Chiller system, Fire Protection system, Mechanical & Electrical system, UPS, BMS system)  \n\u25cf Strong budget management and financial analysis skills  \n\nOther Personal Characteristics: \n\u25cf Strong communicator \u2013 Good presentation skills and possesses strong verbal & written communication skills  (English & Hindi),  also an active listener  \n\u25cf Passion for quality \u2013 has an eye for detail to make sure the best delivery of services  \n\u25cf Self-motivated; confident & energetic  \n\u25cf Ability to effectively deal with stressful situations  \n\u25cf Flexible \u2013 able to adapt to rapidly changing situations  \n\u25cf Strongly goal-oriented \u2013 able to focus on meeting all performance targets  \n\u25cf Is a team player \u2013 able to cooperate and work well with others to meet targets  \u25cf Proven ability to initiate and follow through with improvement initiatives  \n\u25cf Exhibits honesty & trustworthiness",
+        "role_summary": "About Paytm Group: Paytm is India's leading mobile payments and financial services distribution company. Pioneer of the mobile QR payments revolution in India, Paytm builds technologies that help small businesses with payments and commerce. Paytm's mission is to serve half a billion Indians and bring them to the mainstream economy with the help of technology.\n\nOVERALL ROLE: The Technical Manager will (lead a team to) manage the day-to-day M&E Operations and activities for the assigned  property/facility, and be the on-site key point of contact for key location stakeholders.",
+        "responsibilities": "The role will assume overall  responsibility for site budgets, accounting and finance, maintenance and operations, contract services, purchasing of  material, equipment & supplies, occupancy services and helpdesk.  \n\nMAJOR RESPONSIBILITIES\u00a0\n\u25aa Operations Management:\n\u25cf Establish Engineering & Operational procedures and roll out the same for site staff  \n\u25cf Establish contacts with local authorities on the facility related issues and maintain the relationship. Responsible  for all legal & authorities related compliances pertaining to facility & engineering systems  \n\u25cf Plan and manage the budgets for Engineering & Operational contracts  \n\u25cf Carry out Technical Audits for all installations at periodical intervals  \n\u25cf Review the maintenance/service practices of M&E Contractors to deliver quality work practices in line with the  manufacturer recommendations  \n\u25cf Plan & take responsibility for smooth operations of all Mechanical, Electrical, Plumbing installations and Civil  works pertaining to the facility \n \u25cf Responsible for planning a critical spares list for all installations as per manufacturer's recommendations and  inventory  \n\u25cf Responsible for development of all maintenance related schedules and shutdowns in consultation with Clients  / OEMs \n \u25cf Periodically inspect the logbooks, checklists and PPM schedules for a better management of Engineering  systems  \n\u25cf Work towards the 'ZERO' down time and set up the practices to ensure the delivery of seamless service  \n\u25cf Responsible for ensuring all statutory obligations such as Fire, Lift, Explosives and stability certificate etc.  \n\u25cf Responsible for setting up the maintenance contracts to ensure the risk mitigation  \n\u25cf Implement the Energy management programs to reduce the cost on utilities  \n\u25cf Handle small renovation projects from initiation to completion. Basic knowledge of Projects management is  essential  \n\u25cf Responsible for weekly & monthly reports on M&E, covering the maintenance contracts, spare parts  consumption, Incident reports, Improvement projects etc  \u25cf Ensure energy management, saving opportunities, risk management & engineering systems audits.  \n\u25cf Recommend continuous quality improvement practices and implement Industry Best Practice operations  \n\u25cf Review existing operations regularly to reduce costs and improve operational standards  \n\u25cf 24/7 emergency call support and site attendance is required  \n\u25cf Develop and implement a facility management program including preventative maintenance and life-cycle",
+        "requirements": "requirements   \n\u25cf Supervise maintenance and repair of facilities and equipment. Timely maintenance of Generator, UPS, Elevator,  Air conditioners and other critical equipment   \n\u25cf Plan and monitor appropriate facility management staffing levels & ensure efficient utilization of facility  maintenance staff   \n\u25cf Develop and implement innovation programs and processes that reduce utility costs, increase productivity and  savings and share learnings with within department   \n\u25cf Continuous optimization of processes, tools and documentation  \n\n\u25aa Stakeholder Management:\n \u25cf Develop and sustain a high-quality well motivated team  \n\u25cf Ensure that engineering staff is qualified and trained to perform the duties they are expected to carry out  \n\u25cf Manage and coach team  \n\u25cf Provide technical advice and guidance for site delivery team  \n\u25cf Ensure high staff morale, trust and work ethics  \n\u25cf Build and maintain an environment that supports teamwork, co-operation and performance excellence within  team  \n\n\u25aa Contracts Management: \n \u25cf Plan and manage all contracts to ensure that they are professionally delivered at the right costs  \n\u25cf Ensure expiry of contracts are well-monitored and re validations are initiated if needed  \n\u25cf Ensure contracts are continually assessed to deliver best value  \n\u25cf Calculate and compare costs for goods and services to maximize cost-effectiveness   \n\u25cf Manage contractor and vendor relationships   \n\n\u25aa Procurement & Vendor Management:\n \u25cf Ensure vendors are well-managed, delivering services on time and within budget  \n\u25cf Review the maintenance/service practices of M&E contractors to deliver quality work practices in line with the  manufacturer recommendations, established processes, tools and documentation  \n\u25cf Plan and manage budgets for Engineering & Operational contracts  \n\u25cf Ensure that vendor procurement processes comply with agreed procurement guidelines as well as One97 /  Paytm best practices \n\u00a0\n\u25aa Finance Management  \n\u25cf Verify payment and invoicing match contract pricing   \n\u25cf Prepare and track facility budget   \n\u25cf Monitor expenses and payments   \n\u25cf Generate and present regular reports and reviews of facility-related budgets, finances, contracts, expenditures  and purchases for the location   \n\u25cf Develop and implement cost reduction initiatives   \n\u25cf Actively work to ensure that the site\u2019s financial operations are meeting or exceeding targets and control  requirements including One97 / Paytm best practices  \n\u25cf Ensure financial processes are followed at all times  \n\n\u25aa Health & Safety Management  \n\u25cf Ensure the provision of a safe working environment  \n\u25cf Advise on and monitor energy efficiency   \n\u25cf Oversee environmental health and safety practices & implement changes for safe work environment  \n\u25cf Respond to facility and equipment alarms and system failures   \n\u25cf Ensure compliance with statutory regulations on fire, health and safety standards  \n\nCANDIDATE SPECIFICATION:  \nKEY SELECTION CRITERIA \nIdeal Experience :\n\u25cf Graduate / Postgraduate in Electrical Engineering  \n\u25cf 10-12 years\u2019 experience in managing Conventional / Multi-tenant Facility  \n\u25cf Has background and experience working in service industry   \n\u25cf Knowledge of local occupational health and safety requirements  \n\u25cf Knowledge of critical facilities  \n\u25cf Knowledge of vendor management for specialized services  \n\u25cf Excellent understanding of technical aspects of property and its utilities (Data center, generators,  Air-conditioning, Chiller system, Fire Protection system, Mechanical & Electrical system, UPS, BMS system)  \n\u25cf Strong budget management and financial analysis skills  \n\nOther Personal Characteristics: \n\u25cf Strong communicator \u2013 Good presentation skills and possesses strong verbal & written communication skills  (English & Hindi),  also an active listener  \n\u25cf Passion for quality \u2013 has an eye for detail to make sure the best delivery of services  \n\u25cf Self-motivated; confident & energetic  \n\u25cf Ability to effectively deal with stressful situations  \n\u25cf Flexible \u2013 able to adapt to rapidly changing situations  \n\u25cf Strongly goal-oriented \u2013 able to focus on meeting all performance targets  \n\u25cf Is a team player \u2013 able to cooperate and work well with others to meet targets  \u25cf Proven ability to initiate and follow through with improvement initiatives  \n\u25cf Exhibits honesty & trustworthiness",
+        "benefits": "",
+        "jd_confidence": 1.0,
+        "posted_at": "1776235423853",
+        "job_id_ats": "4618eb38-cd2e-4803-96c7-0d43d9ecf750",
+        "scraped_at": "2026-05-23T09:35:45.057354+00:00",
+        "from_company_portal": true,
+        "_source_type": "lever",
+        "_india_filter": "location contains noida",
+        "_canonical_fp": "ff3d75fdda0cb9ad",
+        "canonical": true,
+        "canonical_id": "ff3d75fdda0cb9ad",
+        "apply_route": {
+          "best_apply_route": "lever",
+          "apply_url": "https://jobs.lever.co/paytm/4618eb38-cd2e-4803-96c7-0d43d9ecf750",
+          "backup_urls": [],
+          "reason": "best route: lever (priority 2)",
+          "risk": "low"
+        }
+      },
+      "score": 61.7,
+      "breakdown": {
+        "role_fit": {
+          "raw": 0.0,
+          "weight": 14,
+          "weighted": 0.0
+        },
+        "skill_fit": {
+          "raw": 2.4,
+          "weight": 14,
+          "weighted": 3.4
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 10.0,
+          "weight": 6,
+          "weighted": 6.0
+        },
+        "company_stability": {
+          "raw": 8.0,
+          "weight": 7,
+          "weighted": 5.6
+        },
+        "startup_risk": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "brand_value": {
+          "raw": 8.0,
+          "weight": 6,
+          "weighted": 4.8
+        },
+        "commute_risk": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "response_likelihood": {
+          "raw": 7.0,
+          "weight": 4,
+          "weighted": 2.8
+        },
+        "career_trajectory": {
+          "raw": 6.5,
+          "weight": 4,
+          "weighted": 2.6
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "AI/ML Engineer in Bangalore",
+        "company": "",
+        "location": "",
+        "url": "https://cutshort.io/job/AI-ML-Engineer-in-Bangalore-Bengaluru-Bangalore-Trinity-consulting-NPH3hKHc",
+        "apply_url": "https://cutshort.io/job/AI-ML-Engineer-in-Bangalore-Bengaluru-Bangalore-Trinity-consulting-NPH3hKHc",
+        "url_type": "INDIVIDUAL_JOB",
+        "description": "AI/ML Engineer in Bangalore\nProduct company\nApply to this job\nAI/ML Engineer in Bangalore\nTrinity consulting\nCompany\nHome\nAI/ML Engineer in Bangalore\nat\nProduct company\nAgency job\nvia\nTrinity consulting\nApply to this job\n3\n- 7 yrs\n\u20b94L - \u20b98L / yr\nRemote, Bengaluru (Bangalore)\nSkills\nArtificial Intelligence (AI)\nMachine Learning (ML)\nRetrieval Augmented Generation (RAG)\nDocker\nKubernetes\nPython\nExperience\n: 3+ years\nResponsibilities:\nBuild, train and fine tune ML models\nDevelop features to improve model accuracy and outcomes.\nDeploy models into production using Docker, kubernetes and cloud services.\nProficiency in Python, MLops, expertise in data processing and large scale data set.\nHands on experience in Cloud AI/ML services.\nExposure in RAG Architecture\nRead more\nUsers love Cutshort\nRead about what our users have to say about finding their next opportunity on Cutshort.\nPrevious\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nNext\n1\n2\n3\n4\nCompanies hiring on Cutshort\nFind your dream job\nSimilar jobs\nTalent Acquisition Associate / Partner\nat\nQrata\n7\nrecruiters\nPosted by\nPrajakta Kulkarni\nApply now\nBengaluru (Bangalore)\n0\n- 3 yrs\n\u20b92L - \u20b95L / yr\nTechnical recruiter\nIT Recruiter\nTechnical recruitment\nIT Recruitment\nTech recruiter\n+6 more\nAt Qrata, we match top talent with highly competitive career opportunities with leading startups in India and globally and address hiring challenges ,recruitment brand marketing, with innovative and collaborative strategic consulting. We ",
+        "skills": [],
+        "salary": "",
+        "work_mode": "",
+        "_source_type": "generic_http",
+        "_india_filter": "India-specific job board URL",
+        "_canonical_fp": "556b4a31e9f92a79",
+        "canonical": true,
+        "canonical_id": "556b4a31e9f92a79",
+        "apply_route": {
+          "best_apply_route": "cutshort",
+          "apply_url": "https://cutshort.io/job/AI-ML-Engineer-in-Bangalore-Bengaluru-Bangalore-Trinity-consulting-NPH3hKHc",
+          "backup_urls": [],
+          "reason": "best route: cutshort (priority 4)",
+          "risk": "medium"
+        }
+      },
+      "score": 61.1,
+      "breakdown": {
+        "role_fit": {
+          "raw": 6.0,
+          "weight": 14,
+          "weighted": 8.4
+        },
+        "skill_fit": {
+          "raw": 2.4,
+          "weight": 14,
+          "weighted": 3.4
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 6.0,
+          "weight": 6,
+          "weighted": 3.6
+        },
+        "company_stability": {
+          "raw": 5.0,
+          "weight": 7,
+          "weighted": 3.5
+        },
+        "startup_risk": {
+          "raw": 8.6,
+          "weight": 5,
+          "weighted": 4.3
+        },
+        "brand_value": {
+          "raw": 4.0,
+          "weight": 6,
+          "weighted": 2.4
+        },
+        "commute_risk": {
+          "raw": 10.0,
+          "weight": 4,
+          "weighted": 4.0
+        },
+        "response_likelihood": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "career_trajectory": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "AI/ML Software Engineer",
+        "company": "TopGrep Tech Private Limited",
+        "location": "Bengaluru (Bangalore)",
+        "url": "https://cutshort.io/job/AI-ML-Software-Engineer-Bengaluru-Bangalore-TopGrep-Tech-Private-Limited-mmBr5gfA",
+        "apply_url": "",
+        "url_type": "INDIVIDUAL_JOB",
+        "description": "We are looking for a passionate AI/ML Software Engineer to join our product team and help build intelligent, scalable, and production-ready machine learning solutions. You will work closely with product managers, designers, and backend engineers to integrate AI capabilities into core product features and drive data-driven innovation. Key Responsibilities Design, develop, and deploy machine learning models into production environments Build and maintain scalable ML pipelines for data processing, training, and inference Collaborate with cross-functional teams to identify AI-driven product opportunities Translate business requirements into ML solutions and technical implementations Optimize model performance, accuracy, and latency for real-time applications Integrate AI/ML models with APIs and backend systems Monitor model performance and implement continuous improvement strategies Ensure best practices in data handling, model versioning, and reproducibility Stay updated with the latest advancements in AI/ML and apply them to product innovation Required Skills Qualifications Bachelor\u2019s engineering degree in Computer Science, AI, Data Science, or related field Strong programming skills in Python (experience with Java/Go is a plus) Hands-on experience with ML frameworks such as TensorFlow, PyTorch, or Scikit-learn Solid understanding of machine learning algorithms and statistical concepts Experience in building and deploying ML models in production Familiarity with REST APIs, microservices architecture, and cloud platforms (AWS/GCP/Azure) Experience with data processing tools (Pandas, NumPy, Spark, etc.) Knowledge of version control systems like Git Read more",
+        "skills": [
+          "Artificial Intelligence (AI)",
+          "Data Science",
+          "Machine Learning (ML)",
+          "MERN Stack"
+        ],
+        "salary": "\u20b93.5L - \u20b97L / yr",
+        "work_mode": "onsite",
+        "_source_type": "scrapegraph",
+        "_india_filter": "India-specific job board URL",
+        "_canonical_fp": "81a54ddbb819a6d0",
+        "canonical": true,
+        "canonical_id": "81a54ddbb819a6d0",
+        "apply_route": {
+          "best_apply_route": "cutshort",
+          "apply_url": "https://cutshort.io/job/AI-ML-Software-Engineer-Bengaluru-Bangalore-TopGrep-Tech-Private-Limited-mmBr5gfA",
+          "backup_urls": [],
+          "reason": "best route: cutshort (priority 4)",
+          "risk": "medium"
+        }
+      },
+      "score": 61.0,
+      "breakdown": {
+        "role_fit": {
+          "raw": 6.0,
+          "weight": 14,
+          "weighted": 8.4
+        },
+        "skill_fit": {
+          "raw": 2.9,
+          "weight": 14,
+          "weighted": 4.1
+        },
+        "salary_fit": {
+          "raw": 1.4,
+          "weight": 10,
+          "weighted": 1.4
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 7.0,
+          "weight": 8,
+          "weighted": 5.6
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 6.0,
+          "weight": 6,
+          "weighted": 3.6
+        },
+        "company_stability": {
+          "raw": 5.0,
+          "weight": 7,
+          "weighted": 3.5
+        },
+        "startup_risk": {
+          "raw": 8.6,
+          "weight": 5,
+          "weighted": 4.3
+        },
+        "brand_value": {
+          "raw": 4.0,
+          "weight": 6,
+          "weighted": 2.4
+        },
+        "commute_risk": {
+          "raw": 8.0,
+          "weight": 4,
+          "weighted": 3.2
+        },
+        "response_likelihood": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "career_trajectory": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "HireGenie | Finance Recruitment Expert hiring AI Product Engineer in ...",
+        "company": "",
+        "location": "",
+        "url": "https://www.linkedin.com/jobs/view/4411958265/",
+        "url_type": "INDIVIDUAL_JOB",
+        "description": "Posted 5:14:35 AM. AI Product Engineer (Full Stack) - Remote (India) About the role:A leading AI technology\u2026See this and similar jobs on LinkedIn.",
+        "_source_type": "search",
+        "_india_filter": "matches remote India pattern",
+        "_canonical_fp": "b0ec128a4c71a829",
+        "canonical": true,
+        "canonical_id": "b0ec128a4c71a829",
+        "apply_route": {
+          "best_apply_route": "linkedin",
+          "apply_url": "https://www.linkedin.com/jobs/view/4411958265/",
+          "backup_urls": [],
+          "reason": "best route: linkedin (priority 5)",
+          "risk": "medium"
+        }
+      },
+      "score": 60.5,
+      "breakdown": {
+        "role_fit": {
+          "raw": 6.0,
+          "weight": 14,
+          "weighted": 8.4
+        },
+        "skill_fit": {
+          "raw": 2.0,
+          "weight": 14,
+          "weighted": 2.8
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 6.0,
+          "weight": 6,
+          "weighted": 3.6
+        },
+        "company_stability": {
+          "raw": 5.0,
+          "weight": 7,
+          "weighted": 3.5
+        },
+        "startup_risk": {
+          "raw": 8.6,
+          "weight": 5,
+          "weighted": 4.3
+        },
+        "brand_value": {
+          "raw": 4.0,
+          "weight": 6,
+          "weighted": 2.4
+        },
+        "commute_risk": {
+          "raw": 10.0,
+          "weight": 4,
+          "weighted": 4.0
+        },
+        "response_likelihood": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "career_trajectory": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        }
+      }
+    },
+    {
+      "job": {
+        "title": "AI Applications Engineer",
+        "company": "Oleria",
+        "location": "Bengaluru, Karnataka, India",
+        "url": "https://www.linkedin.com/jobs/view/4416227798",
+        "apply_url": "https://www.linkedin.com/jobs/view/4416227798",
+        "url_type": "INDIVIDUAL_JOB",
+        "description": "nan",
+        "_source_type": "jobspy",
+        "_india_filter": "location contains bengaluru",
+        "_canonical_fp": "e9f03873bfc69ed8",
+        "canonical": true,
+        "canonical_id": "e9f03873bfc69ed8",
+        "apply_route": {
+          "best_apply_route": "linkedin",
+          "apply_url": "https://www.linkedin.com/jobs/view/4416227798",
+          "backup_urls": [],
+          "reason": "best route: linkedin (priority 5)",
+          "risk": "medium"
+        }
+      },
+      "score": 60.5,
+      "breakdown": {
+        "role_fit": {
+          "raw": 6.0,
+          "weight": 14,
+          "weighted": 8.4
+        },
+        "skill_fit": {
+          "raw": 2.0,
+          "weight": 14,
+          "weighted": 2.8
+        },
+        "salary_fit": {
+          "raw": 5.0,
+          "weight": 10,
+          "weighted": 5.0
+        },
+        "equity_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "benefits_fit": {
+          "raw": 10.0,
+          "weight": 5,
+          "weighted": 5.0
+        },
+        "location_fit": {
+          "raw": 7.0,
+          "weight": 10,
+          "weighted": 7.0
+        },
+        "work_mode_fit": {
+          "raw": 5.0,
+          "weight": 8,
+          "weighted": 4.0
+        },
+        "notice_period_fit": {
+          "raw": 7.0,
+          "weight": 5,
+          "weighted": 3.5
+        },
+        "sector_fit": {
+          "raw": 6.0,
+          "weight": 6,
+          "weighted": 3.6
+        },
+        "company_stability": {
+          "raw": 5.0,
+          "weight": 7,
+          "weighted": 3.5
+        },
+        "startup_risk": {
+          "raw": 8.6,
+          "weight": 5,
+          "weighted": 4.3
+        },
+        "brand_value": {
+          "raw": 4.0,
+          "weight": 6,
+          "weighted": 2.4
+        },
+        "commute_risk": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "response_likelihood": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        },
+        "career_trajectory": {
+          "raw": 5.0,
+          "weight": 4,
+          "weighted": 2.0
+        }
+      }
+    }
+  ]
+}

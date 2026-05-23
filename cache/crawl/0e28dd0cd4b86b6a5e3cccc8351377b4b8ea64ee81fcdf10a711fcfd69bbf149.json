@@ -1,0 +1,403 @@
+{
+  "role": "full stack ai engineer",
+  "city": "bangalore",
+  "cached_at": 1779540183.834913,
+  "expires_at": 1779568983.834913,
+  "job_count": 17,
+  "jobs": [
+    {
+      "title": "Full Stack Python Django Developer",
+      "company": "Study Reach",
+      "location": "Gurugram, Chennai",
+      "url": "https://cutshort.io/job/Full-Stack-Python-Django-Developer-Gurugram-Chennai-Study-Reach-sfoM7G8t",
+      "apply_url": "",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "We are looking for a full-stack Python Django developer to work on the latest technologies for global education. You’ll be part of a cross-functional team responsible for the entire software development life cycle, from conception to deployment. As a Full Stack Developer, you should be comfortable around both front-end and back-end coding languages, development frameworks, and third-party libraries. With problem-solving approaches and rigorous thinking abilities, we are looking for a learner who may not know all the answers but are obsessive about finding them and know exactly where to look for them. “If you’re also familiar with Agile methodologies, we’d like to meet you.\" Why you should work with us: Culture: - Fun and learning environment - Interact with stakeholders and clients from day one on a project - Work with professionals across the globe from marketing, to technology, and learn problem-solving from their experiences. Technology exposure: - Exposure to the latest technologies like AWS Cloud Platform, Python Programming, and DevOps Processes. - Opportunity to work in Cloud-based Data Integration Solutions and Products. - Building our products and solutions on the latest technologies like Python, Django, AWS Google Cloud, and Microservices. - Serverless services like AWS Lambda, SQS, SNS, DynamoDB, etc. - Container-based applications i.e. Microservices built on Dockers, we also use AI for data analytics and reporting. - Work with agile methodology. Benefits: - 5-day working week - No location constraints - Competitive salary - Stable work environment You are suitable if, you: - Have 2+ yrs of Python experience. - Have 2 yrs of experience in Django-powered web/mobile apps. - Extensive experience in Full-Stack application design and development using Python. - Have hands-on experience in HTML, JS, Bootstrap, Angular, and server-side APIs integration. - Have worked on Agile projects - Have a learning attitude, and excellent communication interpersonal skills. - Have the ability to work both in teams and individually.",
+      "skills": [
+        "Django",
+        "Python",
+        "Javascript",
+        "React.js",
+        "Angular (2+)",
+        "AngularJS (1.x)",
+        "Vue.js",
+        "Flask",
+        "MySQL",
+        "PostgreSQL"
+      ],
+      "salary": "₹8L - ₹15L / yr",
+      "work_mode": "",
+      "_source_type": "scrapegraph",
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "226f2d944da2dfc0",
+      "canonical": true,
+      "canonical_id": "226f2d944da2dfc0",
+      "apply_route": {
+        "best_apply_route": "cutshort",
+        "apply_url": "https://cutshort.io/job/Full-Stack-Python-Django-Developer-Gurugram-Chennai-Study-Reach-sfoM7G8t",
+        "backup_urls": [],
+        "reason": "best route: cutshort (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Full-stack Python Architect / Lead",
+      "company": "LogIQ Labs Pvt.Ltd.",
+      "location": "",
+      "url": "https://cutshort.io/job/Full-stack-Python-Architect-Lead-LogIQ-Labs-Pvt-Ltd-sDzJdEsm",
+      "apply_url": "",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "Plan, architect, integrate, and develop back-end and database driven features using the Python language and frameworks (Flask/ Falcon, MongoDB ). Create decoupled, interactive web UIs using JavaScript (Angular, jQuery) Aid in the development and ongoing maintenance of our DevOps platform (Ansible) Provide technical advice and recommendations for language and software choices. Develop code that is cross-browser and cross-platform friendly Collaborate with project stakeholders to ensure all requirements are met Evaluate technologies and manage technical planning Support and ongoing development for existing projects Provide clean code and proper documentation for each project Fix bugs and resolve ongoing issues",
+      "skills": [
+        "Python",
+        "Flask",
+        "MongoDB",
+        "Javascript",
+        "DevOps",
+        "Angular (2+)",
+        "jQuery"
+      ],
+      "salary": "₹8L - ₹15L / yr",
+      "work_mode": "remote",
+      "_source_type": "scrapegraph",
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "166d10e80f4cbf3e",
+      "canonical": true,
+      "canonical_id": "166d10e80f4cbf3e",
+      "apply_route": {
+        "best_apply_route": "cutshort",
+        "apply_url": "https://cutshort.io/job/Full-stack-Python-Architect-Lead-LogIQ-Labs-Pvt-Ltd-sDzJdEsm",
+        "backup_urls": [],
+        "reason": "best route: cutshort (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Fullstack AI Engineer",
+      "company": "GoComet",
+      "location": "Bangalore, Noida",
+      "url": "https://www.instahyre.com/job-422266-fullstack-ai-engineer-at-gocomet-3-bangalore-noida/",
+      "apply_url": "",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "Function: Data Science and Analysis → Data Science / Machine Learning , Software Engineering → Full-Stack Development JavaScript Python Node.js React.js Generative AI Java +2 more LLMs Golang Responsibilities: Build real things. You'll write production code across the full stack. React frontends, Python/Node backends, ClickHouse queries, Kafka event pipelines, LangGraph agent workflows, and YAML-driven process definitions. Not prototypes. Not demos. Stuff that runs in production for real companies moving real cargo across real oceans. Talk to enterprise clients. You'll sit across from logistics managers, freight forwarders, and operations leads. You'll listen to their messy, exception-filled processes: 6 approval levels, 4 document types and 3 systems that don't talk to each other and turn that chaos into structured workflows they can actually use. This isn't optional. It's the job. Think AI-first. Every problem you encounter, your first question should be the following: Can an agent handle this? Don't let me build a CRUD app. You'll design agents that extract fields from Bills of Lading, validate invoices against purchase orders, auto-route approvals based on business rules, and flag exceptions before humans even notice them. You'll work with LLMs, RAG pipelines, document parsers, and agent orchestration frameworks daily. Own problems end-to-end. You won't hand off a spec and wait. You'll identify the problem, design the solution, build it, configure it for the client, deploy it, watch it in production, and fix what breaks. The FDE model means you own outcomes, not tasks. Requirements: Frontend: React, React Flow (node-based graph editors). Backend: Python, Node.js, FastAPI. Data: ClickHouse, Kafka (event streaming), Debezium (CDC). AI/ML: LangGraph (agent orchestration), LLMs (prompt engineering, RAG, tool use), DPT-2 (document extraction), PageIndex (long-document reasoning), and Weaviate (vector search). Permissions: OpenFGA (Zanzibar-based relationship access control). Observability: Langfuse (LLM tracing), OpenTelemetry. Cost control: LiteLLM (gateway + budgets), Orkestra (model routing). Infrastructure: dbt (semantic layer / MetricFlow), Temporal (scheduling), and DataHub / OpenMetadata (catalogue).",
+      "skills": [
+        "JavaScript",
+        "Python",
+        "Node.js",
+        "React.js",
+        "Generative AI",
+        "Java",
+        "LLMs",
+        "Golang"
+      ],
+      "salary": "",
+      "work_mode": "",
+      "_source_type": "scrapegraph",
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "248385ef4a93a044",
+      "canonical": true,
+      "canonical_id": "248385ef4a93a044",
+      "apply_route": {
+        "best_apply_route": "instahyre",
+        "apply_url": "https://www.instahyre.com/job-422266-fullstack-ai-engineer-at-gocomet-3-bangalore-noida/",
+        "backup_urls": [],
+        "reason": "best route: instahyre (priority 3)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Applied AI and ML Engineer",
+      "company": "Google",
+      "location": "KA, IN",
+      "url": "https://in.indeed.com/viewjob?jk=9fb248f243d49bf6",
+      "apply_url": "https://in.indeed.com/viewjob?jk=9fb248f243d49bf6",
+      "url_type": "UNKNOWN",
+      "description": "### **Minimum qualifications:**\n\n* Master's degree in a quantitative discipline such as Statistics, Engineering, Sciences, or equivalent practical experience.\n* 3 years of experience using analytics to solve product or business problems, coding (e.g., Python, R, SQL), querying databases or statistical analysis, or a relevant PhD degree.\n\n  \n\n### **Preferred qualifications:**\n\n* Experience working in a financial, audit, or highly regulated domain where deterministic accuracy and auditability are ",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "8f2ba8e8c5ab25c6",
+      "canonical": true,
+      "canonical_id": "8f2ba8e8c5ab25c6",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=9fb248f243d49bf6",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Associate, Engineering",
+      "company": "Future Standard",
+      "location": "KA, IN",
+      "url": "https://in.indeed.com/viewjob?jk=281b553adb271fa8",
+      "apply_url": "https://in.indeed.com/viewjob?jk=281b553adb271fa8",
+      "url_type": "UNKNOWN",
+      "description": "Future Standard is seeking a software development engineer to provide support to the Global Engineering team. The Analyst, Software Development Engineer will work with the Global Engineering to contribute to strategic decision\\-making and fostering a collaborative and educational environment while actively participating in hands\\-on technical enhancements and design.\n\n\n**About the Role**\n\n\n\nWe are looking for a **Full Stack Data Engineer** to build and scale modern data and AI\\-driven applicatio",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "5fad47c7a6083bed",
+      "canonical": true,
+      "canonical_id": "5fad47c7a6083bed",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=281b553adb271fa8",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Full Stack Engineer (Java + React)",
+      "company": "Splenta Systems",
+      "location": "KA, IN",
+      "url": "https://in.indeed.com/viewjob?jk=301f690720a42d71",
+      "apply_url": "https://in.indeed.com/viewjob?jk=301f690720a42d71",
+      "url_type": "UNKNOWN",
+      "description": "**Full Stack Engineer (Java \\+ React) – AI\\-Assisted Development**\n\n**About the Role**\n\nWe are looking for a Full Stack Engineer with 2–3 years of experience in Java and React to build and deliver scalable web applications.\n\nThis role focuses on **AI\\-assisted development**, where tools such as OpenAI Codex and Claude are used to accelerate development, improve productivity, and enhance code quality.\n\nYou will be responsible for building end\\-to\\-end features across backend and frontend systems,",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "176ef0781eee9bd3",
+      "canonical": true,
+      "canonical_id": "176ef0781eee9bd3",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=301f690720a42d71",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Engineering — Full Stack AI Engineer",
+      "company": "Sarvam",
+      "location": "Bengaluru, Karnataka, India",
+      "url": "https://www.linkedin.com/jobs/view/4417096823",
+      "apply_url": "https://www.linkedin.com/jobs/view/4417096823",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains bengaluru",
+      "_canonical_fp": "bebf5b8bfbca61e9",
+      "canonical": true,
+      "canonical_id": "bebf5b8bfbca61e9",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4417096823",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Full Stack AI Engineer",
+      "company": "Relanto",
+      "location": "Bengaluru, Karnataka, India",
+      "url": "https://www.linkedin.com/jobs/view/4416166583",
+      "apply_url": "https://www.linkedin.com/jobs/view/4416166583",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains bengaluru",
+      "_canonical_fp": "17472a3ae2efc75b",
+      "canonical": true,
+      "canonical_id": "17472a3ae2efc75b",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4416166583",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Full Stack Engineer",
+      "company": "MyGyan",
+      "location": "Bengaluru, Karnataka, India",
+      "url": "https://www.linkedin.com/jobs/view/4416219858",
+      "apply_url": "https://www.linkedin.com/jobs/view/4416219858",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains bengaluru",
+      "_canonical_fp": "8b4217d2b8aa50d9",
+      "canonical": true,
+      "canonical_id": "8b4217d2b8aa50d9",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4416219858",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Full Stack AI Engineer - 8+ years in Python/Devops/Cloud",
+      "company": "Thomson Reuters",
+      "location": "Bengaluru, Karnataka, India",
+      "url": "https://www.linkedin.com/jobs/view/4373014542",
+      "apply_url": "https://www.linkedin.com/jobs/view/4373014542",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains bengaluru",
+      "_canonical_fp": "9e97a977173ce87b",
+      "canonical": true,
+      "canonical_id": "9e97a977173ce87b",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4373014542",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "AI Engineer - Full Stack Developer",
+      "company": "Infineon Technologies",
+      "location": "Bengaluru East, Karnataka, India",
+      "url": "https://www.linkedin.com/jobs/view/4404804257",
+      "apply_url": "https://www.linkedin.com/jobs/view/4404804257",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains bengaluru",
+      "_canonical_fp": "acd2664a0ac838c7",
+      "canonical": true,
+      "canonical_id": "acd2664a0ac838c7",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4404804257",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "AI Engineer - Full-Stack & Applied UI",
+      "company": "Reltio",
+      "location": "Bengaluru, Karnataka, India",
+      "url": "https://www.linkedin.com/jobs/view/4395566648",
+      "apply_url": "https://www.linkedin.com/jobs/view/4395566648",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains bengaluru",
+      "_canonical_fp": "5216617fbb68a7f9",
+      "canonical": true,
+      "canonical_id": "5216617fbb68a7f9",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4395566648",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Tech Lead - AI & Platform Engineering",
+      "company": "Newron",
+      "location": "Bengaluru, Karnataka, India",
+      "url": "https://www.linkedin.com/jobs/view/4406874143",
+      "apply_url": "https://www.linkedin.com/jobs/view/4406874143",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains bengaluru",
+      "_canonical_fp": "3670b40c8fc53bf5",
+      "canonical": true,
+      "canonical_id": "3670b40c8fc53bf5",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4406874143",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "AI Engineer",
+      "company": "Zoca",
+      "location": "Bengaluru, Karnataka, India",
+      "url": "https://www.linkedin.com/jobs/view/4401442207",
+      "apply_url": "https://www.linkedin.com/jobs/view/4401442207",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains bengaluru",
+      "_canonical_fp": "02ab6fcf0b7e0aaa",
+      "canonical": true,
+      "canonical_id": "02ab6fcf0b7e0aaa",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4401442207",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "AI Engineer (Full Stack Development)",
+      "company": "Maker Lab",
+      "location": "Bengaluru, Karnataka, India",
+      "url": "https://www.linkedin.com/jobs/view/4404718573",
+      "apply_url": "https://www.linkedin.com/jobs/view/4404718573",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains bengaluru",
+      "_canonical_fp": "17018f2ba7ebc6f2",
+      "canonical": true,
+      "canonical_id": "17018f2ba7ebc6f2",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4404718573",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Full Stack Developer – AI Native Product Builder",
+      "company": "Whitecarrot.ai",
+      "location": "Bengaluru, Karnataka, India",
+      "url": "https://www.linkedin.com/jobs/view/4344275707",
+      "apply_url": "https://www.linkedin.com/jobs/view/4344275707",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains bengaluru",
+      "_canonical_fp": "de72bdfbfc215e44",
+      "canonical": true,
+      "canonical_id": "de72bdfbfc215e44",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4344275707",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "AI Full Stack developer",
+      "company": "powersmy.biz",
+      "location": "Bengaluru, Karnataka, India",
+      "url": "https://www.linkedin.com/jobs/view/4417154589",
+      "apply_url": "https://www.linkedin.com/jobs/view/4417154589",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains bengaluru",
+      "_canonical_fp": "22e17fe50423ac0d",
+      "canonical": true,
+      "canonical_id": "22e17fe50423ac0d",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4417154589",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    }
+  ]
+}

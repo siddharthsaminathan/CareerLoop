@@ -1,0 +1,5076 @@
+[
+  {
+    "role": "AI Product Engineer",
+    "city": "Bangalore",
+    "stats": {
+      "candidates": 99,
+      "after_dedup": 29,
+      "ranked": 24,
+      "elapsed_s": 855.78,
+      "keywords": [
+        "ai product engineer",
+        "ai",
+        "product",
+        "engineer",
+        "engineering",
+        "software",
+        "developer",
+        "programming",
+        "technical"
+      ],
+      "companies_targeted": [
+        "BrowserStack",
+        "Sarvam AI",
+        "Microsoft India",
+        "Airtel",
+        "Google India",
+        "Swiggy",
+        "Ola Cabs",
+        "Paytm",
+        "LeadSquared",
+        "Darwinbox",
+        "Postman",
+        "CRED",
+        "Krutrim",
+        "Hasura",
+        "43 Top Tech Companies in Bangalore",
+        "Top 20+ IT Companies in Bangalore (2026) - TechBehemoths",
+        "IT Companies in Bangalore List | PDF | Computers - Scribd",
+        "Top Tech Startups in Bangalore Urban, India in 2026 - Wellfound",
+        "IT Companies in Bangalore: Jobs, Salaries & Benefits",
+        "Top 11+ AI Development Companies In Bangalore"
+      ],
+      "notes": [
+        "Phase A: live discovery OK \u2014 20 companies",
+        "company-type filter: dropped 1 rejected-type companies",
+        "role filter: 69 \u2192 30 relevant (39 rejected)",
+        "city filter (Bangalore): 29 \u2192 24 (5 off-city removed)"
+      ]
+    },
+    "ranked_jobs": [
+      {
+        "job": {
+          "title": "AI Product Engineer",
+          "company": "BukuWarung",
+          "location": "Bangalore, Hyderabad, Pune",
+          "url": "https://www.instahyre.com/job-395791-ai-product-engineer-at-bukuwarung-bangalore-hyderabad-pune/",
+          "apply_url": "",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Function: Software Engineering \u2192 Other Software Development Generative AI Python DevOps LLMs Machine Learning Java +3 more MLOps MCP Deployment We are looking for a highly skilled AI Productivity Engineer to lead the development and integration of AI-driven solutions, driving automation and efficiency across multiple business functions. In this role, you will play a crucial part in building scalable tools and workflows, optimizing internal processes, and fostering continuous productivity improvements. Your expertise will directly contribute to accelerating our GTM strategy, enhancing operational scalability, and shaping the future of AI adoption within our company. The role, in our view, is split across three core areas of responsibility. The core responsibilities for the job include the following: AI-Powered Automation and Operational Scaling: Lead the development and integration of cost-effective AI systems, leveraging LLMs and AI agents to optimize business operations, automate workflows, and improve customer support processes. Implement AI-based self-serve tools to reduce operational dependencies. Collaborate with product and engineering teams to integrate AI-driven automation into products, customer support, and internal operations. Identify and implement AI tools to enhance team productivity, GTM strategies, and business scalability. AI Systems Architecture and Development: Set up evaluation frameworks for AI systems and drive experimentations to optimize performance. Lead the development and integration of AI agents for business automation (e. g., customer support, operations, GTM workflows). Rapidly prototype with AI tools, iterating from proof-of-concept (POC) to full-scale production deployment, aiming to minimize software development costs and maximize ROI. Technical Leadership and Strategy: Assist in developing AI roadmaps and strategies to drive innovation and long-term efficiency. Ensure AI solutions align with business objectives, compliance standards, and scalability needs. Establish best practices for AI governance and continuously drive learning within the team. Requirements: Experience in natural language processing (NLP) and conversational AI development. Familiarity with cloud platforms AWS / GCP / Azure. Strong problem-solving and analytical skills with a focus on performance optimization. Excellent communication skills to collaborate with cross-functional teams effectively. Experience with machine learning frameworks and tools. B. S. or M. S. in Computer Science or 6+ years of software development experience. Benefits at BukuWarung 0 && (!isOpenedInMobile || showSections.benefits) --> Work From Anywhere (Remote-first) \u2022 Generous Leave Policy (Maternity \u2022 Paternity \u2022 Childcare \u2022 Menstrual \u2022 Wellbeing) \u2022 BukuFlex (Ergonomic \u2022 Physical and Mental Well Being Classes etc) 0 && (!isOpenedInMobile || showSections.benefits) --> BukuWarung's Tech Stack 0 && (!isOpenedInMobile || showSections.techStack) --> iOS Android 0 && (!isOpenedInMobile || showSections.techStack) -->",
+          "skills": [
+            "Generative AI",
+            "Python",
+            "DevOps",
+            "LLMs",
+            "Machine Learning",
+            "Java",
+            "MLOps",
+            "MCP",
+            "Deployment"
+          ],
+          "salary": "",
+          "work_mode": "remote",
+          "_source_type": "scrapegraph",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "dcd1f4b237829143",
+          "canonical": true,
+          "canonical_id": "dcd1f4b237829143",
+          "apply_route": {
+            "best_apply_route": "instahyre",
+            "apply_url": "https://www.instahyre.com/job-395791-ai-product-engineer-at-bukuwarung-bangalore-hyderabad-pune/",
+            "backup_urls": [],
+            "reason": "best route: instahyre (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 65.4,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 14,
+            "weighted": 8.4
+          },
+          "skill_fit": {
+            "raw": 2.9,
+            "weight": 14,
+            "weighted": 4.1
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 8.0,
+            "weight": 8,
+            "weighted": 6.4
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 4,
+            "weighted": 3.2
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Generative AI Platform Infrastructure Engineer",
+          "company": "Cargill Business Services",
+          "location": "Bengaluru (Bangalore), India",
+          "url": "https://cutshort.io/job/Generative-AI-Platform-Infrastructure-Engineer-Bengaluru-Bangalore-Cargill-Business-Services-kt8gHw5t",
+          "apply_url": "",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Job Purpose and Impact: The Sr. Generative AI Engineer will architect, design and develop new and existing GenAI solutions for the organization. As a Generative AI Engineer, you will be responsible for developing and implementing products using cutting-edge generative AI and RAG to solve complex problems and drive innovation across our organization. You will work closely with data scientists, software engineers, and product managers to design, build, and deploy AI-powered solutions that enhance our products and services in Cargill. You will bring order to ambiguous scenarios and apply in depth and broad knowledge of architectural, engineering and security practices to ensure your solutions are scalable, resilient and robust and will share knowledge on modern practices and technologies to the shared engineering community. Key Accountabilities: \u2022 Apply software and AI engineering patterns and principles to design, develop, test, integrate, maintain and troubleshoot complex and varied Generative AI software solutions and incorporate security practices in newly developed and maintained applications. \u2022 Collaborate with cross-functional teams to define AI project requirements and objectives, ensuring alignment with overall business goals. \u2022 Conduct research to stay up-to-date with the latest advancements in generative AI, machine learning, and deep learning techniques and identify opportunities to integrate them into our products and services, optimizing existing generative AI models and RAG for improved performance, scalability, and efficiency, developing and maintaining pipelines and RAG solutions including data preprocessing, prompt engineering, benchmarking and fine-tuning. \u2022 Develop clear and concise documentation, including technical specifications, user guides and presentations, to communicate complex AI concepts to both technical and non-technical stakeholders. \u2022 Participate in the engineering community by maintaining and sharing relevant technical approaches and modern skills in AI. \u2022 Contribute to the establishment of best practices and standards for generative AI development within the organization. \u2022 Independently handle complex issues with minimal supervision, while escalating only the most complex issues to appropriate staff. Minimum Qualifications: \u2022 Bachelor\u2019s degree in a related field or equivalent experience \u2022 Minimum of five years of related work experience \u2022 You are proficient in Python and have experience with machine learning libraries and frameworks \u2022 Have deep understanding of industry leading Foundation Model capabilities and its application. \u2022 You are familiar with cloud-based Generative AI platforms and services \u2022 Full stack software engineering experience to build products using Foundation Models \u2022 Confirmed experience architecting applications, databases, services or integrations.",
+          "skills": [
+            "Python",
+            "Natural Language Processing (NLP)",
+            "Generative AI",
+            "ChatGPT",
+            "Azure",
+            "Gemini",
+            "Machine Learning (ML)"
+          ],
+          "salary": "Best in industry",
+          "work_mode": "onsite",
+          "_source_type": "scrapegraph",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "3d90c20d2fe4c500",
+          "canonical": true,
+          "canonical_id": "3d90c20d2fe4c500",
+          "apply_route": {
+            "best_apply_route": "cutshort",
+            "apply_url": "https://cutshort.io/job/Generative-AI-Platform-Infrastructure-Engineer-Bengaluru-Bangalore-Cargill-Business-Services-kt8gHw5t",
+            "backup_urls": [],
+            "reason": "best route: cutshort (priority 4)",
+            "risk": "medium"
+          }
+        },
+        "score": 65.1,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 14,
+            "weighted": 8.4
+          },
+          "skill_fit": {
+            "raw": 3.3,
+            "weight": 14,
+            "weighted": 4.6
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 7.0,
+            "weight": 8,
+            "weighted": 5.6
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 4,
+            "weighted": 3.2
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Generative AI- Machine Learning Engineer",
+          "company": "",
+          "location": "",
+          "url": "https://cutshort.io/job/Generative-AI-Engineer-Bengaluru-Bangalore-Quantiphi-hja2EdHo",
+          "apply_url": "https://cutshort.io/job/Generative-AI-Engineer-Bengaluru-Bangalore-Quantiphi-hja2EdHo",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Generative AI- Machine Learning Engineer\nat\nQuantiphi\nApply to this job\nGenerative AI- Machine Learning Engineer\nQuantiphi\nCompany\nHome\nGenerative AI- Machine Learning Engineer\nat\nQuantiphi\nPosted by\nNikita Sinha\nApply to this job\n3\n- 12 yrs\nBest in industry\nBengaluru (Bangalore)\nSkills\nLarge Language Models (LLM)\nRetrieval Augmented Generation (RAG)\nGenerative AI (GenAI)\nWe are looking for a\nhands-on Generative AI Engineer\nto design, build, and deploy\nenterprise-grade GenAI platform capabilities\nacross multiple business units.\nThis role focuses on developing\nscalable, reusable AI components\nacross the full stack\u2014covering\nRAG systems, agent orchestration, LLM infrastructure, and GenAIOps\n\u2014on\nGCP (primary) and Azure\n.\nThis is a\ncore engineering role\n, not a research or client-facing position.\nKey Responsibilities\nDesign and build\nproduction-ready GenAI systems\nand platform components\nDevelop and deploy\nRAG pipelines\n(data ingestion, embeddings, retrieval, APIs)\nImplement\nagent-based architectures\n(orchestration, routing, memory, workflows)\nBuild and manage\nLLM infrastructure\n(model routing, caching, rate limiting, observability)\nDevelop\nscalable APIs and services\nfor AI capabilities\nImplement\nGenAIOps/MLOps practices\n(prompt management, evaluation, monitoring, deployment)\nWork with\nGCP services\n(Vertex AI, BigQuery, Cloud Run, GKE, Pub/Sub) to deploy solutions\nEnsure\nAI safety, governance, and compliance\n(PII protection, guardrails, auditability)\nCollaborate with cross-functional teams to deliver reusable, enterprise-grade solutions\nRequired Skills & Experience\nStrong hands-on experience in\nGenerative AI and RAG systems (production level)\nExperience building\nmulti-agent or agentic AI systems\nProficiency in\nPython\nand backend/API development\nHands-on experience with\nGCP AI/ML ecosystem\n(Vertex AI, BigQuery, etc.)\nSolid understanding of\nLLM infrastructure and orchestration layers\nExperience with\nCI/CD pipelines\nand\nInfrastructure as Code (Terraform)\nKnowledge of\nGenAIOps/MLOps practices\nand model lifecycle management\nUnderstanding of\nAI safety, governance, and compliance\nNice to Have\nExperience with\nLangChain, LlamaIndex\n, or similar frameworks\nFamiliarity with\nRAG evaluation tools\n(RAGAS, DeepEval)\nKnowledge of\nKnowledge Graphs with RAG\nExperience in\nmulti-cloud environments (GCP + Azure)\nExposure to\nBFSI/regulated domains\nWhat We\u2019re Looking For\nEngineers who have built and deployed\nreal-world GenAI systems at scale\nStrong\nbackend and systems-thinking mindset\nAbility to work in\nfast-paced, enterprise environments\nRead more\nUsers love Cutshort\nRead about what our users have to say about finding their next opportunity on Cutshort.\nPrevious\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulo",
+          "skills": [],
+          "salary": "",
+          "work_mode": "",
+          "_source_type": "generic_http",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "77a0af50a6fcaf88",
+          "canonical": true,
+          "canonical_id": "77a0af50a6fcaf88",
+          "apply_route": {
+            "best_apply_route": "cutshort",
+            "apply_url": "https://cutshort.io/job/Generative-AI-Engineer-Bengaluru-Bangalore-Quantiphi-hja2EdHo",
+            "backup_urls": [],
+            "reason": "best route: cutshort (priority 4)",
+            "risk": "medium"
+          }
+        },
+        "score": 64.8,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 14,
+            "weighted": 8.4
+          },
+          "skill_fit": {
+            "raw": 5.1,
+            "weight": 14,
+            "weighted": 7.1
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Product Engineer",
+          "company": "DISCO",
+          "location": "",
+          "url": "https://www.instahyre.com/job-421516-ai-product-engineer-at-disco-work-from-home/",
+          "apply_url": "",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Function: Data Science and Analysis \u2192 Data Science / Machine Learning , Product / Project Management \u2192 Product Management , Software Engineering \u2192 Backend Development LLMs Machine Learning Claude Computer Vision Gemini +5 more Generative AI NLP Product Lifecycle Management Product Management Python We're looking for someone who shows up with three working prototypes when we asked for one idea. Someone who thinks Claude Code + a weekend is a completely reasonable project plan. Someone who gets genuinely, maybe even annoyingly, excited about what happens when you point frontier models at a billion-dollar commerce media network. Responsibilities: AI-generated, per-shopper ad creative that rewrites itself in milliseconds before checkout renders. Agentic advertiser onboarding: Describe your product in one sentence live, targeted campaign in 90 seconds. Models that ingest a publisher's full catalogue + shopper graph and decide what to show before a human ever configures anything. Internal agents that replace half the dashboards we currently rely on. Whatever you propose in week two that we haven't thought of yet. Requirements: You build fast. And you've done it enough that \"fast\" doesn't mean \"sloppy\". You're comfortable working directly with LLMs, agents, APIs, and whatever new model dropped last week. You've probably hacked together products using tools like Claude, GPT, open-source models, or weird combinations of all three. You default to prototypes over discussions. You're allergic to unnecessary process, but you know when structure actually matters. You care about outcomes, not just whether something works, but also whether it moves a.",
+          "skills": [
+            "LLMs",
+            "Machine Learning",
+            "Claude",
+            "Computer Vision",
+            "Gemini",
+            "Generative AI",
+            "NLP",
+            "Product Lifecycle Management",
+            "Product Management",
+            "Python"
+          ],
+          "salary": "",
+          "work_mode": "remote",
+          "_source_type": "scrapegraph",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "69d941b7a70d1d06",
+          "canonical": true,
+          "canonical_id": "69d941b7a70d1d06",
+          "apply_route": {
+            "best_apply_route": "instahyre",
+            "apply_url": "https://www.instahyre.com/job-421516-ai-product-engineer-at-disco-work-from-home/",
+            "backup_urls": [],
+            "reason": "best route: instahyre (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 63.5,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 14,
+            "weighted": 8.4
+          },
+          "skill_fit": {
+            "raw": 2.4,
+            "weight": 14,
+            "weighted": 3.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 8.0,
+            "weight": 8,
+            "weighted": 6.4
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Product Engineer",
+          "company": "Nurix",
+          "location": "Bangalore",
+          "url": "https://www.instahyre.com/job-405427-ai-product-engineer-at-nurix-bangalore/",
+          "apply_url": "",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Function: Product / Project Management \u2192 Product Management , Software Engineering \u2192 Engineering Management LLMs Product Management UX Design Machine Learning Responsibilities: Work directly with enterprise customers to understand workflows, pain points, and success metrics. Define AI agent use cases and map customer requirements to platform capabilities. Own end-to-end product delivery, including configuration, launch, and post-launch optimization. Collaborate with Engineering, ML, UX, and Customer Success teams to deliver scalable AI solutions. Track adoption, performance, and business impact metrics and drive continuous improvement. Identify reusable patterns across customer deployments and influence platform roadmap decisions. Agent Product Manager-Nurix. Requirements: Product Management experience in AI, SaaS, or enterprise platforms. Strong understanding of AI and LLM-based systems, conversational agents, and automation workflows. Technical fluency with APIs, data integrations, and AI/ML workflows. Customer-facing and stakeholder management skills. Experience with enterprise product delivery, roadmap planning, and prioritization. Ability to work in ambiguous, fast-paced environments and drive outcomes.",
+          "skills": [
+            "LLMs",
+            "Product Management",
+            "UX Design",
+            "Machine Learning",
+            "React.js",
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Next.js",
+            "Jest",
+            "Mocha",
+            "Cypress",
+            "Bootstrap",
+            "Tailwind CSS"
+          ],
+          "salary": "",
+          "work_mode": "",
+          "_source_type": "scrapegraph",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "826a6c6e0c5c4da2",
+          "canonical": true,
+          "canonical_id": "826a6c6e0c5c4da2",
+          "apply_route": {
+            "best_apply_route": "instahyre",
+            "apply_url": "https://www.instahyre.com/job-405427-ai-product-engineer-at-nurix-bangalore/",
+            "backup_urls": [],
+            "reason": "best route: instahyre (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 63.0,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 14,
+            "weighted": 8.4
+          },
+          "skill_fit": {
+            "raw": 2.9,
+            "weight": 14,
+            "weighted": 4.1
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 4,
+            "weighted": 3.2
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI/ML Engineer in Bangalore",
+          "company": "",
+          "location": "",
+          "url": "https://cutshort.io/job/AI-ML-Engineer-in-Bangalore-Bengaluru-Bangalore-Trinity-consulting-NPH3hKHc",
+          "apply_url": "https://cutshort.io/job/AI-ML-Engineer-in-Bangalore-Bengaluru-Bangalore-Trinity-consulting-NPH3hKHc",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "AI/ML Engineer in Bangalore\nProduct company\nApply to this job\nAI/ML Engineer in Bangalore\nTrinity consulting\nCompany\nHome\nAI/ML Engineer in Bangalore\nat\nProduct company\nAgency job\nvia\nTrinity consulting\nApply to this job\n3\n- 7 yrs\n\u20b94L - \u20b98L / yr\nRemote, Bengaluru (Bangalore)\nSkills\nArtificial Intelligence (AI)\nMachine Learning (ML)\nRetrieval Augmented Generation (RAG)\nDocker\nKubernetes\nPython\nExperience\n: 3+ years\nResponsibilities:\nBuild, train and fine tune ML models\nDevelop features to improve model accuracy and outcomes.\nDeploy models into production using Docker, kubernetes and cloud services.\nProficiency in Python, MLops, expertise in data processing and large scale data set.\nHands on experience in Cloud AI/ML services.\nExposure in RAG Architecture\nRead more\nUsers love Cutshort\nRead about what our users have to say about finding their next opportunity on Cutshort.\nPrevious\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nNext\n1\n2\n3\n4\nCompanies hiring on Cutshort\nFind your dream job\nSimilar jobs\nTalent Acquisition Associate / Partner\nat\nQrata\n7\nrecruiters\nPosted by\nPrajakta Kulkarni\nApply now\nBengaluru (Bangalore)\n0\n- 3 yrs\n\u20b92L - \u20b95L / yr\nTechnical recruiter\nIT Recruiter\nTechnical recruitment\nIT Recruitment\nTech recruiter\n+6 more\nAt Qrata, we match top talent with highly competitive career opportunities with leading startups in India and globally and address hiring challenges ,recruitment brand marketing, with innovative and collaborative strategic consulting. We ",
+          "skills": [],
+          "salary": "",
+          "work_mode": "",
+          "_source_type": "generic_http",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "556b4a31e9f92a79",
+          "canonical": true,
+          "canonical_id": "556b4a31e9f92a79",
+          "apply_route": {
+            "best_apply_route": "cutshort",
+            "apply_url": "https://cutshort.io/job/AI-ML-Engineer-in-Bangalore-Bengaluru-Bangalore-Trinity-consulting-NPH3hKHc",
+            "backup_urls": [],
+            "reason": "best route: cutshort (priority 4)",
+            "risk": "medium"
+          }
+        },
+        "score": 61.1,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 14,
+            "weighted": 8.4
+          },
+          "skill_fit": {
+            "raw": 2.4,
+            "weight": 14,
+            "weighted": 3.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI/ML Software Engineer",
+          "company": "TopGrep Tech Private Limited",
+          "location": "Bengaluru (Bangalore), India",
+          "url": "https://cutshort.io/job/AI-ML-Software-Engineer-Bengaluru-Bangalore-TopGrep-Tech-Private-Limited-mmBr5gfA",
+          "apply_url": "",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "We are looking for a passionate AI/ML Software Engineer to join our product team and help build intelligent, scalable, and production-ready machine learning solutions. You will work closely with product managers, designers, and backend engineers to integrate AI capabilities into core product features and drive data-driven innovation. Key Responsibilities Design, develop, and deploy machine learning models into production environments Build and maintain scalable ML pipelines for data processing, training, and inference Collaborate with cross-functional teams to identify AI-driven product opportunities Translate business requirements into ML solutions and technical implementations Optimize model performance, accuracy, and latency for real-time applications Integrate AI/ML models with APIs and backend systems Monitor model performance and implement continuous improvement strategies Ensure best practices in data handling, model versioning, and reproducibility Stay updated with the latest advancements in AI/ML and apply them to product innovation Required Skills Qualifications Bachelor\u2019s engineering degree in Computer Science, AI, Data Science, or related field Strong programming skills in Python (experience with Java/Go is a plus) Hands-on experience with ML frameworks such as TensorFlow, PyTorch, or Scikit-learn Solid understanding of machine learning algorithms and statistical concepts Experience in building and deploying ML models in production Familiarity with REST APIs, microservices architecture, and cloud platforms (AWS/GCP/Azure) Experience with data processing tools (Pandas, NumPy, Spark, etc.) Knowledge of version control systems like Git Read more",
+          "skills": [
+            "Artificial Intelligence (AI)",
+            "Data Science",
+            "Machine Learning (ML)",
+            "MERN Stack"
+          ],
+          "salary": "\u20b93.5L - \u20b97L / yr",
+          "work_mode": "onsite",
+          "_source_type": "scrapegraph",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "81a54ddbb819a6d0",
+          "canonical": true,
+          "canonical_id": "81a54ddbb819a6d0",
+          "apply_route": {
+            "best_apply_route": "cutshort",
+            "apply_url": "https://cutshort.io/job/AI-ML-Software-Engineer-Bengaluru-Bangalore-TopGrep-Tech-Private-Limited-mmBr5gfA",
+            "backup_urls": [],
+            "reason": "best route: cutshort (priority 4)",
+            "risk": "medium"
+          }
+        },
+        "score": 61.0,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 14,
+            "weighted": 8.4
+          },
+          "skill_fit": {
+            "raw": 2.9,
+            "weight": 14,
+            "weighted": 4.1
+          },
+          "salary_fit": {
+            "raw": 1.4,
+            "weight": 10,
+            "weighted": 1.4
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 7.0,
+            "weight": 8,
+            "weighted": 5.6
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 4,
+            "weighted": 3.2
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Applications Engineer",
+          "company": "Oleria",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4416227798",
+          "apply_url": "https://www.linkedin.com/jobs/view/4416227798",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "e9f03873bfc69ed8",
+          "canonical": true,
+          "canonical_id": "e9f03873bfc69ed8",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4416227798",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 60.5,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 14,
+            "weighted": 8.4
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI System Engineer",
+          "company": "Zinier",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4416082908",
+          "apply_url": "https://www.linkedin.com/jobs/view/4416082908",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "0959d0451a18d913",
+          "canonical": true,
+          "canonical_id": "0959d0451a18d913",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4416082908",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 60.5,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 14,
+            "weighted": 8.4
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Engineer - Product and Growth",
+          "company": "Vola Finance",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4413537899",
+          "apply_url": "https://www.linkedin.com/jobs/view/4413537899",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "1b573a0118c5a875",
+          "canonical": true,
+          "canonical_id": "1b573a0118c5a875",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4413537899",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 60.5,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 14,
+            "weighted": 8.4
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Engineer",
+          "company": "Fermi AI",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4408018800",
+          "apply_url": "https://www.linkedin.com/jobs/view/4408018800",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "69ecc1dd9d0a3270",
+          "canonical": true,
+          "canonical_id": "69ecc1dd9d0a3270",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4408018800",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 60.5,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 14,
+            "weighted": 8.4
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Engineer",
+          "company": "Zoca",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4401442207",
+          "apply_url": "https://www.linkedin.com/jobs/view/4401442207",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "02ab6fcf0b7e0aaa",
+          "canonical": true,
+          "canonical_id": "02ab6fcf0b7e0aaa",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4401442207",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 60.5,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 14,
+            "weighted": 8.4
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Software Engineer - AI Platform (India)",
+          "company": "Genios AI",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4369349181",
+          "apply_url": "https://www.linkedin.com/jobs/view/4369349181",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "9dcf884c0ee3bdb8",
+          "canonical": true,
+          "canonical_id": "9dcf884c0ee3bdb8",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4369349181",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 60.5,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 14,
+            "weighted": 8.4
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Platform Engineering Specialist",
+          "company": "Emergent",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4415330792",
+          "apply_url": "https://www.linkedin.com/jobs/view/4415330792",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "f2aa29079a6d96f8",
+          "canonical": true,
+          "canonical_id": "f2aa29079a6d96f8",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4415330792",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 57.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 4.0,
+            "weight": 14,
+            "weighted": 5.6
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Product Engineer \u2013 Compressor Engineering (NPD)",
+          "company": "SWITS DIGITAL Private Limited",
+          "location": "Bangalore Urban, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4414079337",
+          "apply_url": "https://www.linkedin.com/jobs/view/4414079337",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bangalore",
+          "_canonical_fp": "7e281f0ad986e0b5",
+          "canonical": true,
+          "canonical_id": "7e281f0ad986e0b5",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4414079337",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 56.1,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 4,
+            "weighted": 3.2
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Product Engineer \u2013 HVAC/ NPD",
+          "company": "SWITS DIGITAL Private Limited",
+          "location": "Bangalore Urban, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4412760928",
+          "apply_url": "https://www.linkedin.com/jobs/view/4412760928",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bangalore",
+          "_canonical_fp": "93d8e125f55d0b51",
+          "canonical": true,
+          "canonical_id": "93d8e125f55d0b51",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4412760928",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 56.1,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 4,
+            "weighted": 3.2
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Product Engineer",
+          "company": "CONCERTO.AI",
+          "location": "Bengaluru (Bangalore)",
+          "url": "https://cutshort.io/job/Product-Engineer-Bengaluru-Bangalore-CONCERTO-AI-eEMutBMd",
+          "apply_url": "",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "This person will be responsible for implementing several modules of the product, following the specifications from the system architect. Education: Bachelors or Masters in Computer Science. Proficiency in Java Experience: Minimum three years experience developing products or product components of moderate to high complexity.",
+          "skills": [
+            "Java",
+            "Python",
+            "Implementation"
+          ],
+          "salary": "\u20b910L - \u20b913L / yr",
+          "work_mode": "onsite",
+          "_source_type": "scrapegraph",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "bf797d2605c48ae8",
+          "canonical": true,
+          "canonical_id": "bf797d2605c48ae8",
+          "apply_route": {
+            "best_apply_route": "cutshort",
+            "apply_url": "https://cutshort.io/job/Product-Engineer-Bengaluru-Bangalore-CONCERTO-AI-eEMutBMd",
+            "backup_urls": [],
+            "reason": "best route: cutshort (priority 4)",
+            "risk": "medium"
+          }
+        },
+        "score": 55.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 2.6,
+            "weight": 10,
+            "weighted": 2.6
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 7.0,
+            "weight": 8,
+            "weighted": 5.6
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 4,
+            "weighted": 3.2
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Product Development Intern",
+          "company": "Optimo Capital (Nipun Projects and Finance Pvt. Ltd.)",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://cutshort.io/job/AI-Product-Development-Intern-Bengaluru-Bangalore-Optimo-Capital-FRdYtajZ",
+          "apply_url": "",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Job Title: AI Product Engineering Intern Company: Optimo Capital (Nipun Projects and Finance Pvt. Ltd.) Location: Bengaluru, Karnataka (On-site / Hybrid) Duration: 4\u20136 months | Immediate / Rolling start Stipend: Based on profile About Optimo Capital Optimo Capital is an RBI-registered NBFC and India's first phygital Loan Against Property lender. We serve MSME business owners across 5 states, offering loans of \u20b910L\u2013\u20b92Cr with 4-day disbursal. Our tech team is actively building AI systems that redefine how lending operations work \u2014 from smart underwriting to autonomous calling agents to document intelligence and real-time property valuation. What You'll Work On You will be embedded in an early-stage fintech team working hands-on to make AI systems actually work in the real world \u2014 not in theory, not in demos, but in production. This means getting deep into existing projects \u2014 an autonomous AI calling system, an intelligent document extraction pipeline, and agentic AI frameworks \u2014 running experiments, figuring out what works and what doesn't, and iterating fast until it does. Expect a lot of trial and error. Expect to think from first principles. Expect to question assumptions and find creative solutions to problems that don't have a textbook answer. The job is as much about curiosity and persistence as it is about technical skill. Beyond the engineering, you will also be expected to think like a product person \u2014 understanding the business impact of what you build, owning parts of the product, and connecting the dots between what the AI does and why it matters to the business. What We're Looking For Person with fundamental thinking in problem solving Currently pursuing or recently completed a degree in Computer Science, Mathematics, Statistics, or Engineering Solid programming fundamentals \u2014 Python, NodeJS etc and ability to learn new language if required Has shipped something: Internship, a project, a GitHub repo, a hackathon submission, or a research prototype that demonstrates end-to-end thinking Understands software systems beyond just writing code \u2014 APIs, data flows, system design at a basic level Can articulate the product reason behind technical decisions \u2014 not just \"how\" but \"why\" Comfortable working in ambiguity and taking ownership of open-ended problems What Makes a Great Fit We're looking for someone who reads about AI systems on weekends not because they have to, but because they're genuinely curious. You should be the kind of person who, when given a problem, immediately starts thinking about the product experience and the architecture simultaneously \u2014 and can hold both in your head at once. If you've built an LLM-powered tool, integrated a voice API, parsed messy documents, or simply gone deep on understanding how modern AI systems work under the hood \u2014 we'd love to talk.",
+          "skills": [
+            "Product development",
+            "Artificial Intelligence (AI)",
+            "Machine Learning (ML)",
+            "Software Development",
+            "Data engineering",
+            "Software engineering",
+            "Product design"
+          ],
+          "salary": "\u20b910000 - \u20b925000 / mo",
+          "work_mode": "hybrid",
+          "_source_type": "scrapegraph",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "f7bf1d471838a69f",
+          "canonical": true,
+          "canonical_id": "f7bf1d471838a69f",
+          "apply_route": {
+            "best_apply_route": "cutshort",
+            "apply_url": "https://cutshort.io/job/AI-Product-Development-Intern-Bengaluru-Bangalore-Optimo-Capital-FRdYtajZ",
+            "backup_urls": [],
+            "reason": "best route: cutshort (priority 4)",
+            "risk": "medium"
+          }
+        },
+        "score": 55.2,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.9,
+            "weight": 14,
+            "weighted": 4.1
+          },
+          "salary_fit": {
+            "raw": 0.0,
+            "weight": 10,
+            "weighted": 0.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 10.0,
+            "weight": 8,
+            "weighted": 8.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Mechanical Product Engineer",
+          "company": "Aditi Consulting",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4418104053",
+          "apply_url": "https://www.linkedin.com/jobs/view/4418104053",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "eb1b42518edcfc50",
+          "canonical": true,
+          "canonical_id": "eb1b42518edcfc50",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4418104053",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 54.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Product Engineer",
+          "company": "Leap",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4416089051",
+          "apply_url": "https://www.linkedin.com/jobs/view/4416089051",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "c6951013dd1727fe",
+          "canonical": true,
+          "canonical_id": "c6951013dd1727fe",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4416089051",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 54.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Solution Engineer (Product Demo, ETL engineer)",
+          "company": "Precisely",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4404448283",
+          "apply_url": "https://www.linkedin.com/jobs/view/4404448283",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "a034b43d6a994c9d",
+          "canonical": true,
+          "canonical_id": "a034b43d6a994c9d",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4404448283",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 54.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "New Product Development Engineer",
+          "company": "MagickHome India",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4412704337",
+          "apply_url": "https://www.linkedin.com/jobs/view/4412704337",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "c11028c5d5b23567",
+          "canonical": true,
+          "canonical_id": "c11028c5d5b23567",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4412704337",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 54.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Product Engineer",
+          "company": "AVIRATA DEFENCE SYSTEMS",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4407595534",
+          "apply_url": "https://www.linkedin.com/jobs/view/4407595534",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "2511d1a14b5a11c4",
+          "canonical": true,
+          "canonical_id": "2511d1a14b5a11c4",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4407595534",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 54.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Product Engineer",
+          "company": "Allica Bank",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4305751440",
+          "apply_url": "https://www.linkedin.com/jobs/view/4305751440",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "44251e78ca6afc63",
+          "canonical": true,
+          "canonical_id": "44251e78ca6afc63",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4305751440",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 54.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "AI Systems Architect",
+    "city": "Bangalore",
+    "stats": {
+      "candidates": 317,
+      "after_dedup": 12,
+      "ranked": 10,
+      "elapsed_s": 674.69,
+      "keywords": [
+        "ai systems architect",
+        "ai",
+        "systems",
+        "architect"
+      ],
+      "companies_targeted": [
+        "Paytm",
+        "CRED",
+        "BrowserStack",
+        "Sarvam AI",
+        "Amazon India",
+        "Flipkart",
+        "Walmart Global Tech",
+        "Microsoft India",
+        "Airtel",
+        "Google India",
+        "Swiggy",
+        "Ola Cabs",
+        "PhonePe",
+        "Razorpay",
+        "Zepto",
+        "Ninjacart",
+        "Limeroad",
+        "Global Desi",
+        "Max Fashion",
+        "Shoppers Stop"
+      ],
+      "notes": [
+        "Phase A: live discovery OK \u2014 20 companies",
+        "company-type filter: dropped 14 rejected-type companies",
+        "role filter: 91 \u2192 12 relevant (79 rejected)",
+        "city filter (Bangalore): 12 \u2192 10 (2 off-city removed)"
+      ]
+    },
+    "ranked_jobs": [
+      {
+        "job": {
+          "title": "AI Architect",
+          "company": "UsefulBI",
+          "location": "Bangalore, Pune",
+          "url": "https://www.instahyre.com/job-421821-ai-architect-at-usefulbi-bangalore-pune/",
+          "apply_url": "",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Function: IT Operations and Support \u2192 DevOps / Cloud CI / CD Cloud Computing Containers DevOps Monitoring +8 more AWS Azure Docker GitHub Actions GitLab Helm Kubernetes Terraform We are looking for an experienced AI Architect to design and lead scalable AI/ML and Generative AI solutions. The role involves defining architecture, selecting the right tools and frameworks, and guiding teams to build production-ready AI systems aligned with business goals. Responsibilities: Design end-to-end AI/ML and Generative AI architectures. Define scalable, secure, and cost-efficient AI solutions. Lead design of data pipelines, model lifecycle, and deployment strategies. Collaborate with data scientists, engineers, and stakeholders. Evaluate and select appropriate models, tools, and frameworks. Ensure governance, monitoring, and performance optimization of AI systems. Drive best practices for MLOps and AI deployment. Mentor teams and provide technical leadership. Requirements: Bachelor's/Master's in Computer Science, AI, or a related field. Proven experience in architecting large-scale AI systems. Strong leadership and stakeholder management skills. Core Technical Skills: Strong experience in Python and ML frameworks (TensorFlow / PyTorch). Expertise in ML lifecycle and model deployment. Hands-on experience with cloud platforms like Amazon Web Services, Microsoft Azure, or Google Cloud Platform. Experience with data platforms and big data tools (Spark, Databricks). Strong understanding of APIs, microservices, and system design. Generative AI and LLM Expertise (Must-Have / Strong Preference): Experience with LLMs like GPT, LLaMA, or similar. Hands-on with frameworks like LangChain and LlamaIndex. Strong understanding of RAG (Retrieval-Augmented Generation) architectures. Experience with vector databases and embeddings. Prompt engineering, evaluation, and fine-tuning techniques. Designing scalable GenAI applications (chatbots, copilots, automation systems). MLOps and Deployment: Experience with CI/CD and MLOps pipelines. Knowledge of containerization using Docker. Experience with orchestration tools like Kubernetes. Familiarity with model monitoring and observability tools. Good to Have: Experience with Amazon EKS or similar managed Kubernetes services. Exposure to Responsible AI, governance, and compliance frameworks. Experience in multi-cloud or hybrid architecture.",
+          "skills": [
+            "Python",
+            "TensorFlow",
+            "PyTorch",
+            "AWS",
+            "Azure",
+            "Google Cloud Platform",
+            "Spark",
+            "Databricks",
+            "LangChain",
+            "LlamaIndex",
+            "Docker",
+            "Kubernetes",
+            "CI/CD",
+            "MLOps",
+            "GitHub Actions",
+            "GitLab",
+            "Helm",
+            "Terraform"
+          ],
+          "salary": "",
+          "work_mode": "onsite",
+          "_source_type": "scrapegraph",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "ea355e2a0840cb3a",
+          "canonical": true,
+          "canonical_id": "ea355e2a0840cb3a",
+          "apply_route": {
+            "best_apply_route": "instahyre",
+            "apply_url": "https://www.instahyre.com/job-421821-ai-architect-at-usefulbi-bangalore-pune/",
+            "backup_urls": [],
+            "reason": "best route: instahyre (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 62.0,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 5.1,
+            "weight": 14,
+            "weighted": 7.1
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 7.0,
+            "weight": 8,
+            "weighted": 5.6
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 4,
+            "weighted": 3.2
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Senior AI Architect - Data Science",
+          "company": "Actualy",
+          "location": "Bangalore",
+          "url": "https://www.instahyre.com/job-422659-senior-ai-architect-data-science-at-actualy-bangalore/",
+          "apply_url": "",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Function: Data Science and Analysis \u2192 Data Science / Machine Learning Machine Learning Python PyTorch We're seeking a Senior AI Architect to design enterprise-scale AI/ML platforms that bridge business needs with production reality. You'll define how models are deployed, monitored, and scaled, focusing on architecture, reliability, and operationalization rather than model development itself. This role sits at the intersection of AI strategy, platform engineering, and technical leadership, ensuring AI capabilities scale efficiently for the products. The core responsibilities for the job include the following: AI Platform Architecture and Design: Design end-to-end AI platform covering data pipelines, feature engineering, model training, deployment, serving, and monitoring. Define reference architectures for key use cases: real-time inference, batch predictions, recommendation systems, and NLP/CV pipelines. Make technology stack decisions balancing model accuracy, latency, cost, and maintainability. Design cloud-native, scalable architectures using Kubernetes, microservices, and event-driven patterns. Production ML and Model Serving: Architect high-throughput, low-latency model serving infrastructure with HA requirements. Establish deployment patterns: A/B testing, canary releases, shadow deployments, rollback strategies. Guide model optimization: quantization, pruning, distillation, ONNX/TensorRT compilation. Design comprehensive model validation frameworks with offline/online metrics and quality gates. MLOps and Platform Engineering: Build end-to-end MLOps: automated pipelines, model versioning, artifact management, CI/CD. Design model registries with metadata management and promotion workflows (dev, staging, prod). Architect feature stores ensuring consistency between training/serving and low-latency access. Establish standards for reproducibility: environment management, data versioning, and experiment tracking. Observability and Production Support: Design ML observability: track latency, throughput, prediction distribution, feature/output drift. Implement automated alerting for accuracy drops, latency spikes, and data quality issues. Build stakeholder dashboards showing model performance, system health, and business impact. Technical Leadership and Strategy: Conduct design reviews, provide architectural guidance, and make final technical decisions. Mentor data scientists and engineers on production best practices and system design. Design and Code Review AL/ML Model and Algorithm code. Define platform standards: coding practices, documentation, architectural decision records. Evaluate emerging technologies (LLMs, RAG, multimodal models) and assess organizational fit. Partner with product, engineering, and compliance teams on AI governance and strategy. Requirements: 12+ years in software engineering with 6+ years in AI/ML architecture and production deployment. Proven track record architecting ML platforms serving enterprise-scale production workloads. Strong foundation in both data science principles and production engineering practices. Core Technical Skills: Python expertise: ML workflows, PyTorch/TensorFlow, scikit-learn, pandas, FastAPI/Flask. Container orchestration: Kubernetes, Docker, Helm; model serving: TorchServe, Triton, Seldon, KServe. MLOps tools: MLflow, Kubeflow, Airflow, DVC, W B (or equivalent platforms). Distributed systems: microservices, event-driven architecture, REST/gRPC APIs, Kafka, Redis. Data infrastructure: PostgreSQL/MongoDB, StarRocks, feature stores (Feast/Tecton). Cloud platforms: Deep expertise in AWS/GCP/Azure (compute, storage, networking, ML services). Observability: Prometheus, Grafana, Loki stack, and cloud-native monitoring solutions. AI Architecture Knowledge: Strong grasp of ML fundamentals, model lifecycle, and evaluatio",
+          "skills": [
+            "Machine Learning",
+            "Python",
+            "PyTorch"
+          ],
+          "salary": "",
+          "work_mode": "",
+          "_source_type": "scrapegraph",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "87730c13e48dba86",
+          "canonical": true,
+          "canonical_id": "87730c13e48dba86",
+          "apply_route": {
+            "best_apply_route": "instahyre",
+            "apply_url": "https://www.instahyre.com/job-422659-senior-ai-architect-data-science-at-actualy-bangalore/",
+            "backup_urls": [],
+            "reason": "best route: instahyre (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 60.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 5.1,
+            "weight": 14,
+            "weighted": 7.1
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 4,
+            "weighted": 3.2
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.7,
+            "weight": 4,
+            "weighted": 2.3
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Architect",
+          "company": "Tekion",
+          "location": "Bangalore",
+          "url": "https://www.instahyre.com/job-424434-ai-architect-at-tekion-bangalore/",
+          "apply_url": "",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Function: Software Engineering \u2192 Backend Development Agentic AI Generative AI Hibernate J2EE Java Spring Struts Requirements: 12+ years of software engineering experience, with at least 1 year in AI/Gen AI-focused roles. Currently writing production code. 3+ years of experience in solutions, architecture and engineering, with a proven track record of inheriting and scaling engineering teams. Deep hands-on experience with LLMs in production: RAG architectures, prompt engineering at scale, agentic tool-calling, evaluation and observability. Strong software engineering fundamentals: system design, API design, distributed systems, CI/CD, and production operations. Track record of personally architecting and shipping AI-powered features in a product company (not just overseeing others who did). Excellent hiring instincts: ability to source, evaluate, and close strong AI/ML talent in a competitive market. Strong cross-functional collaboration skills: experience partnering closely with Product, Design, and Data teams. Nice to Have: Experience in automotive, ERP, or complex vertical SaaS domains with messy real-world data. Familiarity with cloud-native, microservices-based architectures at scale. Contributions to open-source AI/ML projects or published research in applied AI. Experience with ML platforms/infra: model serving, feature stores, experiment tracking, and A/B testing frameworks. Understanding of responsible AI practices: bias detection, hallucination mitigation, data privacy and auditability.",
+          "skills": [
+            "Agentic AI",
+            "Generative AI",
+            "Hibernate",
+            "J2EE",
+            "Java",
+            "Spring",
+            "Struts"
+          ],
+          "salary": "",
+          "work_mode": "onsite",
+          "_source_type": "scrapegraph",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "a4e71acbca28b850",
+          "canonical": true,
+          "canonical_id": "a4e71acbca28b850",
+          "apply_route": {
+            "best_apply_route": "instahyre",
+            "apply_url": "https://www.instahyre.com/job-424434-ai-architect-at-tekion-bangalore/",
+            "backup_urls": [],
+            "reason": "best route: instahyre (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 59.0,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.9,
+            "weight": 14,
+            "weighted": 4.1
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 7.0,
+            "weight": 8,
+            "weighted": 5.6
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 4,
+            "weighted": 3.2
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Architect",
+          "company": "Amazon",
+          "location": "Bangalore",
+          "url": "https://www.instahyre.com/job-421024-ai-architect-at-amazon-bangalore/",
+          "apply_url": "",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Function: Data Science and Analysis \u2192 Data Science / Machine Learning GenAI Generative AI LLMs NLP RAG AWS Data Scientist +5 more Hugging Face LangChain Machine Learning MLOps OpenAI Requirements: 9-15 years of overall experience in software engineering / AI/ML. Minimum 3 years of hands-on experience with GenAI, RAG, and LLMs. Strong proficiency in Python and ML/AI frameworks. Experience with LLM ecosystems such as OpenAI, Hugging Face, LangChain, and LlamaIndex. Hands-on experience with vector databases (e. g., Pinecone, FAISS, Weaviate, and Chroma). Knowledge of prompt engineering, embeddings, and model evaluation techniques. Experience with cloud platforms (AWS / GCP / Azure). Familiarity with MLOps practices, CI/CD, and model deployment. Strong problem-solving and system design skills.",
+          "skills": [
+            "GenAI",
+            "Generative AI",
+            "LLMs",
+            "NLP",
+            "RAG",
+            "AWS",
+            "Data Scientist",
+            "Hugging Face",
+            "LangChain",
+            "Machine Learning",
+            "MLOps",
+            "OpenAI",
+            "Python",
+            "Pinecone",
+            "FAISS",
+            "Weaviate",
+            "Chroma",
+            "prompt engineering",
+            "embeddings",
+            "model evaluation",
+            "cloud platforms",
+            "CI/CD",
+            "system design"
+          ],
+          "salary": "",
+          "work_mode": "",
+          "_source_type": "scrapegraph",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "511cbec6562c190a",
+          "canonical": true,
+          "canonical_id": "511cbec6562c190a",
+          "apply_route": {
+            "best_apply_route": "instahyre",
+            "apply_url": "https://www.instahyre.com/job-421024-ai-architect-at-amazon-bangalore/",
+            "backup_urls": [],
+            "reason": "best route: instahyre (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 58.6,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 3.8,
+            "weight": 14,
+            "weighted": 5.3
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 4,
+            "weighted": 3.2
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Tech Lead / AI Architect",
+          "company": "NTT DATA North America",
+          "location": "Bangalore Urban, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4411611619",
+          "apply_url": "https://www.linkedin.com/jobs/view/4411611619",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bangalore",
+          "_canonical_fp": "25ad7d066274f8ec",
+          "canonical": true,
+          "canonical_id": "25ad7d066274f8ec",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4411611619",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 57.2,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 4,
+            "weighted": 3.2
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 7.8,
+            "weight": 4,
+            "weighted": 3.1
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Staff Architect - AI Platform",
+          "company": "Teradata",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4410453411",
+          "apply_url": "https://www.linkedin.com/jobs/view/4410453411",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "3dd8e451caa2d350",
+          "canonical": true,
+          "canonical_id": "3dd8e451caa2d350",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4410453411",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 55.5,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 6.4,
+            "weight": 4,
+            "weighted": 2.6
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Architect",
+          "company": "Avahi",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4386307562",
+          "apply_url": "https://www.linkedin.com/jobs/view/4386307562",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "e9e56a3f631583f6",
+          "canonical": true,
+          "canonical_id": "e9e56a3f631583f6",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4386307562",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 54.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Advanced AI Solution Architect",
+          "company": "Kimberly-Clark",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4410365971",
+          "apply_url": "https://www.linkedin.com/jobs/view/4410365971",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "6885270785c496bd",
+          "canonical": true,
+          "canonical_id": "6885270785c496bd",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4410365971",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 54.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "VuNet Systems - Architect - Generative AI/Agentic AI",
+          "company": "VuNet Systems",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4407562238",
+          "apply_url": "https://www.linkedin.com/jobs/view/4407562238",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "4292e7663b3560c5",
+          "canonical": true,
+          "canonical_id": "4292e7663b3560c5",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4407562238",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 54.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Solution Architect",
+          "company": "BioQuest Solutions",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4339795534",
+          "apply_url": "https://www.linkedin.com/jobs/view/4339795534",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "50bb5c0cdec4bb37",
+          "canonical": true,
+          "canonical_id": "50bb5c0cdec4bb37",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4339795534",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 54.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "Full Stack AI Engineer",
+    "city": "Bangalore",
+    "stats": {
+      "candidates": 80,
+      "after_dedup": 17,
+      "ranked": 13,
+      "elapsed_s": 866.68,
+      "keywords": [
+        "full stack ai engineer",
+        "full",
+        "stack",
+        "ai",
+        "engineer",
+        "engineering",
+        "software",
+        "developer",
+        "programming",
+        "technical"
+      ],
+      "companies_targeted": [
+        "BrowserStack",
+        "Sarvam AI",
+        "Microsoft India",
+        "Airtel",
+        "Google India",
+        "Swiggy",
+        "Ola Cabs",
+        "Paytm",
+        "LeadSquared",
+        "Darwinbox",
+        "Postman",
+        "Razorpay",
+        "CRED",
+        "Krutrim",
+        "Hasura",
+        "43 Top Tech Companies in Bangalore",
+        "Top 20+ IT Companies in Bangalore (2026) - TechBehemoths",
+        "IT Companies in Bangalore List | PDF | Computers - Scribd",
+        "Best Tech Companies and Startups in Bengaluru, India 2026",
+        "IT Companies in Bangalore: Jobs, Salaries & Benefits"
+      ],
+      "notes": [
+        "Phase A: live discovery OK \u2014 20 companies",
+        "company-type filter: dropped 5 rejected-type companies",
+        "role filter: 51 \u2192 17 relevant (34 rejected)",
+        "city filter (Bangalore): 17 \u2192 13 (4 off-city removed)"
+      ]
+    },
+    "ranked_jobs": [
+      {
+        "job": {
+          "title": "Fullstack AI Engineer",
+          "company": "GoComet",
+          "location": "Bangalore, Noida",
+          "url": "https://www.instahyre.com/job-422266-fullstack-ai-engineer-at-gocomet-3-bangalore-noida/",
+          "apply_url": "",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Function: Data Science and Analysis \u2192 Data Science / Machine Learning , Software Engineering \u2192 Full-Stack Development JavaScript Python Node.js React.js Generative AI Java +2 more LLMs Golang Responsibilities: Build real things. You'll write production code across the full stack. React frontends, Python/Node backends, ClickHouse queries, Kafka event pipelines, LangGraph agent workflows, and YAML-driven process definitions. Not prototypes. Not demos. Stuff that runs in production for real companies moving real cargo across real oceans. Talk to enterprise clients. You'll sit across from logistics managers, freight forwarders, and operations leads. You'll listen to their messy, exception-filled processes: 6 approval levels, 4 document types and 3 systems that don't talk to each other and turn that chaos into structured workflows they can actually use. This isn't optional. It's the job. Think AI-first. Every problem you encounter, your first question should be the following: Can an agent handle this? Don't let me build a CRUD app. You'll design agents that extract fields from Bills of Lading, validate invoices against purchase orders, auto-route approvals based on business rules, and flag exceptions before humans even notice them. You'll work with LLMs, RAG pipelines, document parsers, and agent orchestration frameworks daily. Own problems end-to-end. You won't hand off a spec and wait. You'll identify the problem, design the solution, build it, configure it for the client, deploy it, watch it in production, and fix what breaks. The FDE model means you own outcomes, not tasks. Requirements: Frontend: React, React Flow (node-based graph editors). Backend: Python, Node.js, FastAPI. Data: ClickHouse, Kafka (event streaming), Debezium (CDC). AI/ML: LangGraph (agent orchestration), LLMs (prompt engineering, RAG, tool use), DPT-2 (document extraction), PageIndex (long-document reasoning), and Weaviate (vector search). Permissions: OpenFGA (Zanzibar-based relationship access control). Observability: Langfuse (LLM tracing), OpenTelemetry. Cost control: LiteLLM (gateway + budgets), Orkestra (model routing). Infrastructure: dbt (semantic layer / MetricFlow), Temporal (scheduling), and DataHub / OpenMetadata (catalogue).",
+          "skills": [
+            "JavaScript",
+            "Python",
+            "Node.js",
+            "React.js",
+            "Generative AI",
+            "Java",
+            "LLMs",
+            "Golang"
+          ],
+          "salary": "",
+          "work_mode": "",
+          "_source_type": "scrapegraph",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "248385ef4a93a044",
+          "canonical": true,
+          "canonical_id": "248385ef4a93a044",
+          "apply_route": {
+            "best_apply_route": "instahyre",
+            "apply_url": "https://www.instahyre.com/job-422266-fullstack-ai-engineer-at-gocomet-3-bangalore-noida/",
+            "backup_urls": [],
+            "reason": "best route: instahyre (priority 3)",
+            "risk": "low"
+          }
+        },
+        "score": 65.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 14,
+            "weighted": 8.4
+          },
+          "skill_fit": {
+            "raw": 4.6,
+            "weight": 14,
+            "weighted": 6.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 4,
+            "weighted": 3.2
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Engineering \u2014 Full Stack AI Engineer",
+          "company": "Sarvam",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4417096823",
+          "apply_url": "https://www.linkedin.com/jobs/view/4417096823",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "bebf5b8bfbca61e9",
+          "canonical": true,
+          "canonical_id": "bebf5b8bfbca61e9",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4417096823",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 63.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Full Stack AI Engineer",
+          "company": "Relanto",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4416166583",
+          "apply_url": "https://www.linkedin.com/jobs/view/4416166583",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "17472a3ae2efc75b",
+          "canonical": true,
+          "canonical_id": "17472a3ae2efc75b",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4416166583",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 63.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Full Stack AI Engineer - 8+ years in Python/Devops/Cloud",
+          "company": "Thomson Reuters",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4373014542",
+          "apply_url": "https://www.linkedin.com/jobs/view/4373014542",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "9e97a977173ce87b",
+          "canonical": true,
+          "canonical_id": "9e97a977173ce87b",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4373014542",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 63.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Engineer - Full Stack Developer",
+          "company": "Infineon Technologies",
+          "location": "Bengaluru East, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4404804257",
+          "apply_url": "https://www.linkedin.com/jobs/view/4404804257",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "acd2664a0ac838c7",
+          "canonical": true,
+          "canonical_id": "acd2664a0ac838c7",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4404804257",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 63.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Engineer - Full-Stack & Applied UI",
+          "company": "Reltio",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4395566648",
+          "apply_url": "https://www.linkedin.com/jobs/view/4395566648",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "5216617fbb68a7f9",
+          "canonical": true,
+          "canonical_id": "5216617fbb68a7f9",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4395566648",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 63.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Engineer (Full Stack Development)",
+          "company": "Maker Lab",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4404718573",
+          "apply_url": "https://www.linkedin.com/jobs/view/4404718573",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "17018f2ba7ebc6f2",
+          "canonical": true,
+          "canonical_id": "17018f2ba7ebc6f2",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4404718573",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 63.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 14,
+            "weighted": 11.2
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Engineer",
+          "company": "Zoca",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4401442207",
+          "apply_url": "https://www.linkedin.com/jobs/view/4401442207",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "02ab6fcf0b7e0aaa",
+          "canonical": true,
+          "canonical_id": "02ab6fcf0b7e0aaa",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4401442207",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 60.5,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 14,
+            "weighted": 8.4
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Tech Lead - AI & Platform Engineering",
+          "company": "Newron",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4406874143",
+          "apply_url": "https://www.linkedin.com/jobs/view/4406874143",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "3670b40c8fc53bf5",
+          "canonical": true,
+          "canonical_id": "3670b40c8fc53bf5",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4406874143",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 58.8,
+        "breakdown": {
+          "role_fit": {
+            "raw": 4.0,
+            "weight": 14,
+            "weighted": 5.6
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 7.8,
+            "weight": 4,
+            "weighted": 3.1
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Full Stack Developer \u2013 AI Native Product Builder",
+          "company": "Whitecarrot.ai",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4344275707",
+          "apply_url": "https://www.linkedin.com/jobs/view/4344275707",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "de72bdfbfc215e44",
+          "canonical": true,
+          "canonical_id": "de72bdfbfc215e44",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4344275707",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 57.7,
+        "breakdown": {
+          "role_fit": {
+            "raw": 4.0,
+            "weight": 14,
+            "weighted": 5.6
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Full-stack Python Architect / Lead",
+          "company": "LogIQ Labs Pvt.Ltd.",
+          "location": "",
+          "url": "https://cutshort.io/job/Full-stack-Python-Architect-Lead-LogIQ-Labs-Pvt-Ltd-sDzJdEsm",
+          "apply_url": "",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Plan, architect, integrate, and develop back-end and database driven features using the Python language and frameworks (Flask/ Falcon, MongoDB ). Create decoupled, interactive web UIs using JavaScript (Angular, jQuery) Aid in the development and ongoing maintenance of our DevOps platform (Ansible) Provide technical advice and recommendations for language and software choices. Develop code that is cross-browser and cross-platform friendly Collaborate with project stakeholders to ensure all requirements are met Evaluate technologies and manage technical planning Support and ongoing development for existing projects Provide clean code and proper documentation for each project Fix bugs and resolve ongoing issues",
+          "skills": [
+            "Python",
+            "Flask",
+            "MongoDB",
+            "Javascript",
+            "DevOps",
+            "Angular (2+)",
+            "jQuery"
+          ],
+          "salary": "\u20b98L - \u20b915L / yr",
+          "work_mode": "remote",
+          "_source_type": "scrapegraph",
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "166d10e80f4cbf3e",
+          "canonical": true,
+          "canonical_id": "166d10e80f4cbf3e",
+          "apply_route": {
+            "best_apply_route": "cutshort",
+            "apply_url": "https://cutshort.io/job/Full-stack-Python-Architect-Lead-LogIQ-Labs-Pvt-Ltd-sDzJdEsm",
+            "backup_urls": [],
+            "reason": "best route: cutshort (priority 4)",
+            "risk": "medium"
+          }
+        },
+        "score": 57.0,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.4,
+            "weight": 14,
+            "weighted": 3.4
+          },
+          "salary_fit": {
+            "raw": 3.0,
+            "weight": 10,
+            "weighted": 3.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 8.0,
+            "weight": 8,
+            "weighted": 6.4
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 7.8,
+            "weight": 4,
+            "weighted": 3.1
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Full Stack Engineer",
+          "company": "MyGyan",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4416219858",
+          "apply_url": "https://www.linkedin.com/jobs/view/4416219858",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "8b4217d2b8aa50d9",
+          "canonical": true,
+          "canonical_id": "8b4217d2b8aa50d9",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4416219858",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 54.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Full Stack developer",
+          "company": "powersmy.biz",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://www.linkedin.com/jobs/view/4417154589",
+          "apply_url": "https://www.linkedin.com/jobs/view/4417154589",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "nan",
+          "_source_type": "jobspy",
+          "_india_filter": "location contains bengaluru",
+          "_canonical_fp": "22e17fe50423ac0d",
+          "canonical": true,
+          "canonical_id": "22e17fe50423ac0d",
+          "apply_route": {
+            "best_apply_route": "linkedin",
+            "apply_url": "https://www.linkedin.com/jobs/view/4417154589",
+            "backup_urls": [],
+            "reason": "best route: linkedin (priority 5)",
+            "risk": "medium"
+          }
+        },
+        "score": 54.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 14,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 5,
+            "weighted": 5.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 8,
+            "weighted": 4.0
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 5,
+            "weighted": 3.5
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 5,
+            "weighted": 4.3
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 6,
+            "weighted": 2.4
+          },
+          "commute_risk": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 4,
+            "weighted": 2.0
+          }
+        }
+      }
+    ]
+  }
+]
