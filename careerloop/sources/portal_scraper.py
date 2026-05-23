@@ -116,8 +116,8 @@ INDIA_KEYWORDS = [
 WAIT_MS = 6000
 NETWORKIDLE_TIMEOUT = 15000
 TIMEOUT_MS = 30000
-MAX_LOAD_MORE_CLICKS = 5
-MIN_JOBS_THRESHOLD = 3   # Layer 3 only triggers if Layer 2 finds fewer than this
+MAX_LOAD_MORE_CLICKS = 8
+MIN_JOBS_THRESHOLD = 20   # L3 fires unless L2 already found 20+ jobs (catches infinite-scroll boards)
 
 
 # ── Result types ──────────────────────────────────────────────────────────────
@@ -515,11 +515,25 @@ class PortalScraper:
                 return []
 
         # 3a. Scroll down to trigger lazy-loading / infinite scroll
+        # Wait for network response after each scroll — not a fixed sleep
         try:
-            for _ in range(4):
+            prev_height = page.evaluate("document.body.scrollHeight")
+            for scroll_round in range(6):
                 page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-                page.wait_for_timeout(1500)
-            jobs.extend(_snapshot_jobs("l3_scroll"))
+                # Wait for new content: either network goes idle or height changes
+                try:
+                    page.wait_for_function(
+                        f"document.body.scrollHeight > {prev_height}",
+                        timeout=3000,
+                    )
+                except Exception:
+                    page.wait_for_timeout(1500)  # fallback: fixed wait
+                new_height = page.evaluate("document.body.scrollHeight")
+                fresh = _snapshot_jobs(f"l3_scroll_{scroll_round}")
+                jobs.extend(fresh)
+                if new_height == prev_height and not fresh:
+                    break  # no new content loaded — stop scrolling
+                prev_height = new_height
         except Exception as e:
             logger.debug(f"[PortalScraper] L3 scroll error: {e}")
 

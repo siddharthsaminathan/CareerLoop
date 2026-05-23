@@ -496,21 +496,64 @@ class WorkdayAdapter:
         except Exception:
             return []
 
+    def _try_playwright_public(self, slug: str, wd_sub: str, company_name: str) -> list[dict]:
+        """
+        Navigate Workday public job board via Playwright and intercept the XHR job feed.
+        Public URL: https://{slug}.{wd_sub}.myworkdayjobs.com/en-US/{slug}
+        Workday fires a POST to /wday/cxs/{slug}/{slug}/jobs when the page loads.
+        """
+        try:
+            from playwright.sync_api import sync_playwright
+        except ImportError:
+            return []
+
+        board_url = f"https://{slug}.{wd_sub}.myworkdayjobs.com/en-US/{slug}"
+        intercepted: list[dict] = []
+
+        def handle_response(response):
+            if "/jobs" in response.url and "myworkdayjobs" in response.url:
+                try:
+                    data = response.json()
+                    postings = data.get("jobPostings", [])
+                    if postings:
+                        intercepted.extend(postings)
+                except Exception:
+                    pass
+
+        try:
+            with sync_playwright() as pw:
+                browser = pw.chromium.launch(headless=True)
+                page = browser.new_page()
+                page.on("response", handle_response)
+                page.goto(board_url, timeout=20000, wait_until="networkidle")
+                page.wait_for_timeout(3000)
+                browser.close()
+        except Exception as e:
+            logger.debug(f"[Workday] Playwright scrape failed for {company_name}: {e}")
+
+        logger.info(f"[Workday] {company_name}: {len(intercepted)} raw jobs via Playwright")
+        return intercepted
+
     def fetch(self, company_id: str, company_name: str, ats_url: str) -> list[ATSJob]:
         slug, wd_sub = self._parse_url(ats_url)
         if not slug or not wd_sub:
             logger.warning(f"[Workday] Could not parse URL: {ats_url}")
             return []
 
-        # Try POST API first, then GET
+        # Try REST APIs first (fast, no browser)
         raw_jobs = self._try_post_api(slug, wd_sub)
         api_used = "post"
         if not raw_jobs:
             raw_jobs = self._try_rest_api(slug, wd_sub)
             api_used = "get"
 
+        # Fallback: Playwright interception of public job board XHR
         if not raw_jobs:
-            logger.warning(f"[Workday] {company_name}: both APIs returned no jobs")
+            raw_jobs = self._try_playwright_public(slug, wd_sub, company_name)
+            api_used = "playwright"
+
+        if not raw_jobs:
+            logger.warning(f"[Workday] {company_name}: all methods returned no jobs")
             return []
 
         results = []
@@ -710,6 +753,7 @@ class ATSAdapter:
     """
     Unified adapter — routes to correct ATS based on company ats_provider field.
     Returns list[ATSJob] regardless of source.
+    P3: In-session result cache prevents re-fetching the same company in one run.
     """
 
     def __init__(self):
@@ -718,34 +762,43 @@ class ATSAdapter:
         self._ashby = AshbyAdapter()
         self._workday = WorkdayAdapter()
         self._scraper = CareerPageScraperAdapter()
+        self._session_cache: dict[str, list[ATSJob]] = {}  # P3: company_id → jobs
 
     def fetch_jobs(self, company_id: str, company_name: str,
                    ats_provider: str, ats_url: str) -> list[ATSJob]:
         """
         Fetch jobs for a company from its ATS.
+        P3: Returns cached result if same company_id already fetched this session.
         Returns empty list on any failure — never raises.
         """
         if not ats_url:
             return []
 
+        cache_key = f"{company_id}:{ats_provider}"
+        if cache_key in self._session_cache:
+            logger.debug(f"[ATS] cache hit for {company_name} ({ats_provider})")
+            return self._session_cache[cache_key]
+
         try:
             if ats_provider == "greenhouse":
-                return self._greenhouse.fetch(company_id, company_name, ats_url)
+                result = self._greenhouse.fetch(company_id, company_name, ats_url)
             elif ats_provider == "lever":
-                return self._lever.fetch(company_id, company_name, ats_url)
+                result = self._lever.fetch(company_id, company_name, ats_url)
             elif ats_provider == "ashby":
-                return self._ashby.fetch(company_id, company_name, ats_url)
+                result = self._ashby.fetch(company_id, company_name, ats_url)
             elif ats_provider == "workday":
-                return self._workday.fetch(company_id, company_name, ats_url)
+                result = self._workday.fetch(company_id, company_name, ats_url)
             elif ats_provider in ("successfactors", "icims"):
-                return self._scraper.fetch(company_id, company_name, ats_url,
-                                           source_label=ats_provider)
+                result = self._scraper.fetch(company_id, company_name, ats_url,
+                                             source_label=ats_provider)
             elif ats_provider in ("taleo", "none", "custom"):
-                # taleo requires auth; custom/none have no known endpoint
                 return []
             else:
                 logger.debug(f"[ATS] Unknown provider '{ats_provider}' for {company_name}")
                 return []
+
+            self._session_cache[cache_key] = result
+            return result
         except Exception as e:
             logger.warning(f"[ATS] Unexpected error for {company_name} ({ats_provider}): {e}")
             return []

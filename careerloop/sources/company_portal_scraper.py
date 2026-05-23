@@ -117,19 +117,129 @@ class CareerPageCrawler:
 
     def find_career_page(self, domain: str) -> Optional[str]:
         """
-        Probe common career page paths. Returns the first URL that resolves.
+        Find careers URL: Playwright click-nav first (handles JS sites),
+        static HEAD probing as fallback.
         """
+        # Try Playwright click-nav — renders JS homepage and finds careers link
+        result = self._find_via_playwright(domain)
+        if result:
+            return result
+
+        # Fallback: static HEAD probing for static sites
         base = f"https://{domain}"
         for path in CAREER_PAGE_PATHS:
             url = base + path
             try:
                 resp = self.session.head(url, timeout=8, allow_redirects=True)
                 if resp.status_code == 200:
-                    logger.info(f"[CareerPage] Found: {url}")
+                    logger.info(f"[CareerPage] Found (static): {url}")
                     return url
             except Exception:
                 continue
         return None
+
+    def _find_via_playwright(self, domain: str) -> Optional[str]:
+        """
+        Open company homepage with Playwright, score all candidate career links,
+        return highest-scoring match (not first match).
+        """
+        try:
+            from playwright.sync_api import sync_playwright
+        except ImportError:
+            return None
+
+        SOCIAL = frozenset(["linkedin.com", "twitter.com", "facebook.com",
+                            "instagram.com", "youtube.com", "glassdoor.com"])
+        homepage = f"https://{domain}"
+        try:
+            with sync_playwright() as pw:
+                browser = pw.chromium.launch(headless=True)
+                page = browser.new_page()
+                page.set_extra_http_headers({"User-Agent": (
+                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                    "AppleWebKit/537.36 Chrome/122.0.0.0 Safari/537.36"
+                )})
+                page.goto(homepage, timeout=15000, wait_until="domcontentloaded")
+                page.wait_for_timeout(2000)
+
+                candidates: list[tuple[int, str]] = []  # (score, url)
+
+                links = page.query_selector_all("a[href]")
+                for link in links:
+                    try:
+                        text = (link.inner_text() or "").strip().lower()
+                        href = link.get_attribute("href") or ""
+                        href_lower = href.lower()
+                        full = urljoin(homepage, href)
+
+                        # Skip: social, off-domain, anchors, mailto
+                        if any(s in full for s in SOCIAL):
+                            continue
+                        if not full.startswith("http"):
+                            continue
+                        if domain not in full:
+                            continue
+
+                        score = self._score_career_link(text, href_lower)
+                        if score > 0:
+                            candidates.append((score, full))
+                    except Exception:
+                        continue
+
+                browser.close()
+
+                if not candidates:
+                    return None
+
+                # Return highest-scoring link
+                candidates.sort(key=lambda x: x[0], reverse=True)
+                best_score, best_url = candidates[0]
+                logger.info(f"[CareerPage] Found via Playwright (score={best_score}): {best_url}")
+                return best_url
+
+        except Exception as e:
+            logger.debug(f"[CareerPage] Playwright find_career_page failed for {domain}: {e}")
+        return None
+
+    @staticmethod
+    def _score_career_link(text: str, href_lower: str) -> int:
+        """
+        Score a candidate career link. Higher = more likely to be the careers page.
+        Returns 0 if not a career link at all.
+        """
+        score = 0
+
+        # Exact path matches (highest confidence)
+        if "/careers" in href_lower:
+            score += 10
+        elif "/jobs" in href_lower:
+            score += 9
+        elif "/work-with-us" in href_lower or "/work_with_us" in href_lower:
+            score += 8
+        elif "/join-us" in href_lower or "/join_us" in href_lower:
+            score += 7
+        elif "/hiring" in href_lower:
+            score += 7
+        elif "/openings" in href_lower:
+            score += 7
+        elif "/open-positions" in href_lower or "/open_positions" in href_lower:
+            score += 8
+        elif "/opportunities" in href_lower:
+            score += 6
+
+        # Text label matches
+        if text in ("careers", "jobs"):
+            score += 5
+        elif "careers" in text or "join us" in text:
+            score += 4
+        elif "open positions" in text or "open roles" in text:
+            score += 4
+        elif "work with us" in text or "we're hiring" in text:
+            score += 3
+        elif "jobs" in text or "hiring" in text or "openings" in text:
+            score += 2
+
+        return score
 
     def crawl(self, career_page_url: str) -> list[str]:
         """

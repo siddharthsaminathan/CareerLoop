@@ -51,9 +51,9 @@ class OnDemandResult:
 class OnDemandSearch:
     """Run a synchronous targeted discovery for one (role, city)."""
 
-    def __init__(self, career_ops_root: str):
+    def __init__(self, career_ops_root: str, profile_path: str = None):
         self.root = career_ops_root
-        self.profile = ProfileManager(career_ops_root)
+        self.profile = ProfileManager(career_ops_root, profile_path=profile_path)
         self.fit_engine = IndiaFitEngine(self.profile)
         self.keywords = RoleKeywordCache(career_ops_root)
         self.targeting = CompanyTargeting(career_ops_root)
@@ -95,7 +95,25 @@ class OnDemandSearch:
         import time
         t0 = time.time()
         city = city or self.profile.location_city
+        self._current_role = role  # used by post-ATS filter
         result = OnDemandResult(role=role, city=city)
+
+        # Check shared crawl cache first
+        try:
+            from careerloop.sources.crawl_cache import CrawlCache
+            _cache = CrawlCache(self.root)
+            cached = _cache.get(role, city)
+            if cached is not None:
+                result.notes.append(f"crawl cache hit: {len(cached)} jobs (skipping pipeline)")
+                result.candidate_count = len(cached)
+                deduped = cached
+                scored = self.fit_engine.score_jobs_batch(deduped)
+                result.ranked_jobs = scored[:max_results]
+                result.after_dedup_count = len(deduped)
+                result.elapsed_seconds = round(time.time() - t0, 2)
+                return result
+        except Exception:
+            _cache = None
 
         # 1. Dynamic keywords for this role
         kw_data = self.keywords.get(role, city)
@@ -104,17 +122,17 @@ class OnDemandSearch:
 
         all_jobs: list[dict] = []
 
-        # 2. Phase A — Employer discovery + portal scrape
+        # 2. Phase A — Employer discovery (primary) + portal scrape
         try:
-            ranked_companies = self.targeting.top_n(
-                function=role, city=city,
-                n=portal_companies,
-                min_function_probability=0.35,
-            )
-            # Phase A fallback: if DB has < 5 candidates, run live discovery
-            if len(ranked_companies) < 5:
-                result.notes.append("Phase A: sparse DB — running live employer discovery")
-                ranked_companies = self._discover_and_rank(role, city, portal_companies)
+            # P0.4: Run live discovery first, then top_n from enriched DB
+            result.notes.append("Phase A: running live employer discovery")
+            ranked_companies = self._discover_and_rank(role, city, portal_companies)
+            if not ranked_companies:
+                ranked_companies = self.targeting.top_n(
+                    function=role, city=city,
+                    n=portal_companies,
+                    min_function_probability=0.35,
+                )
             result.targeted_companies = [rc.company.name for rc in ranked_companies]
             portal_jobs = self._scrape_targeted_companies(ranked_companies)
             all_jobs.extend(portal_jobs)
@@ -154,75 +172,87 @@ class OnDemandSearch:
         # 6. Score with IndiaFitEngine
         scored = self.fit_engine.score_jobs_batch(deduped)
 
-        # 7. Trim to max_results
+        # 7. Save to crawl cache for future reuse
+        try:
+            if _cache is not None:
+                _cache.set(role, city, deduped)
+        except Exception:
+            pass
+
+        # 8. Trim to max_results
         result.ranked_jobs = scored[:max_results]
         result.elapsed_seconds = round(time.time() - t0, 2)
         return result
 
     # ── Internals ─────────────────────────────────────────────────────
 
+    _PORTAL_WORKERS = 6  # P2: concurrent browser sessions
+
     def _scrape_targeted_companies(self, ranked) -> list[dict]:
+        """P2: Parallel company scraping — 6 concurrent workers."""
+        from concurrent.futures import ThreadPoolExecutor, as_completed
         from careerloop.sources.spireai_adapter import discover_workspace_id, fetch_jobs as spire_fetch
+
         ats = self._get_ats()
         crawler, extractor = self._get_portal()
-        jobs: list[dict] = []
-        for rc in ranked:
+
+        def _scrape_one(rc) -> list[dict]:
             company = rc.company
             try:
                 if company.ats_provider not in ("unknown", "none", ""):
-                    # Phase D — extract via known ATS adapter
                     ats_jobs = ats.fetch_jobs(
                         company.id, company.name,
                         company.ats_provider, company.ats_url,
                     )
-                    for aj in ats_jobs:
-                        d = aj.to_dict()
-                        d["_source_type"] = aj.source
-                        jobs.append(d)
+                    source_tag = company.ats_provider
+                    raw_dicts = [aj.to_dict() for aj in ats_jobs]
+                    for d in raw_dicts:
+                        d.setdefault("_source_type", source_tag)
+                    filtered, rejected = self._role_filter.filter_jobs(
+                        raw_dicts,
+                        target_role=self._current_role,
+                        target_functions=self.profile.target_functions or [],
+                        rejected_roles=self.profile.rejected_roles or [],
+                    )
+                    logger.info(f"[OnDemand] {company.name} ATS: {len(raw_dicts)} raw → {len(filtered)} after role filter ({rejected} rejected)")
+                    return filtered
+
                 elif company.career_page_url:
-                    # Phase B — find/confirm career page URL
                     career_url = company.career_page_url
 
-                    # Try Spire AI first (fast, no Playwright)
                     ws_id = discover_workspace_id(career_url)
                     if ws_id:
                         spire_jobs = spire_fetch(ws_id, company.name, career_url)
-                        jobs.extend(spire_jobs)
                         logger.info(f"[OnDemand] {company.name}: {len(spire_jobs)} via SpireAI")
-                        continue
+                        return spire_jobs
 
-                    # Phases C+D — 3-layer portal scraper (single browser session)
                     portal_result = self._portal_scraper.scrape(career_url)
 
-                    # Layer 1: structured API interception
                     if portal_result.intercepted_apis:
                         discovered = self._resolve_intercepted_apis(portal_result, company, ats)
                         if discovered:
-                            jobs.extend(discovered)
                             platform = portal_result.intercepted_apis[0].platform
                             logger.info(f"[OnDemand] {company.name}: {len(discovered)} via L1 API ({platform})")
-                            continue
+                            return discovered
 
-                    # Layer 2+3: DOM + agentive jobs
                     if portal_result.has_jobs:
                         all_dom = portal_result.all_jobs
                         for j in all_dom:
                             j.setdefault("company", company.name)
-                        jobs.extend(all_dom)
                         logger.info(
                             f"[OnDemand] {company.name}: {len(all_dom)} via "
-                            f"L{'2+3' if portal_result.agentive_jobs else '2'} DOM "
-                            f"(layers={portal_result.layers_used})"
+                            f"L{'2+3' if portal_result.agentive_jobs else '2'} DOM"
                         )
-                        continue
+                        return all_dom
 
-                    # Phase D final fallback — static HTML crawl (rarely needed now)
+                    # Static HTML fallback
+                    result = []
                     urls = crawler.crawl(career_url)
                     for url in urls[:10]:
                         try:
                             jd = extractor.extract(url)
                             if jd.extraction_confidence >= 0.6:
-                                jobs.append({
+                                result.append({
                                     "title": jd.job_title,
                                     "company": company.name,
                                     "location": jd.location,
@@ -239,8 +269,20 @@ class OnDemandSearch:
                                 })
                         except Exception:
                             pass
+                    return result
             except Exception as e:
                 logger.debug(f"[OnDemand] {company.name}: {e}")
+            return []
+
+        jobs: list[dict] = []
+        with ThreadPoolExecutor(max_workers=self._PORTAL_WORKERS) as pool:
+            futures = {pool.submit(_scrape_one, rc): rc for rc in ranked}
+            for fut in as_completed(futures):
+                try:
+                    jobs.extend(fut.result())
+                except Exception as e:
+                    rc = futures[fut]
+                    logger.debug(f"[OnDemand] worker error {rc.company.name}: {e}")
         return jobs
 
     def _resolve_intercepted_apis(self, interception, company, ats) -> list[dict]:
@@ -360,6 +402,118 @@ class OnDemandSearch:
             logger.warning(f"[OnDemand] Phase A discovery failed: {e}")
             return []
 
+    _GENERIC_JD_SKIP_DOMAINS = frozenset([
+        "linkedin.com", "glassdoor.com", "timesjobs.com",
+        "shine.com", "monster.com", "foundit.in",
+    ])
+
+    def _extract_generic_jd(
+        self,
+        url: str,
+        fallback_title: str = "",
+        fallback_snippet: str = "",
+    ) -> Optional[dict]:
+        """
+        P1.3: Generic HTTP + BeautifulSoup JD extraction for URLs not covered
+        by ScrapeGraph or IndeedScraper. Gives scoring engine real JD text
+        instead of a 20-word snippet, breaking the 47-67 score compression.
+        """
+        import re
+        import requests
+        from urllib.parse import urlparse
+
+        if not url:
+            return None
+
+        domain = urlparse(url).netloc.lower().lstrip("www.")
+        if any(skip in domain for skip in self._GENERIC_JD_SKIP_DOMAINS):
+            return None
+
+        try:
+            resp = requests.get(
+                url,
+                timeout=10,
+                headers={"User-Agent": "Mozilla/5.0 (compatible; CareerLoopBot/1.0)"},
+                allow_redirects=True,
+            )
+            if not resp.ok or "text/html" not in resp.headers.get("content-type", ""):
+                return None
+        except Exception:
+            return None
+
+        try:
+            from bs4 import BeautifulSoup
+            soup = BeautifulSoup(resp.text, "html.parser")
+
+            # Remove boilerplate elements
+            for tag in soup(["script", "style", "nav", "header", "footer",
+                              "aside", "noscript", "iframe"]):
+                tag.decompose()
+
+            # JD container heuristics — ordered by specificity
+            CONTAINER_SELECTORS = [
+                {"id": re.compile(r"job.?desc|jobDesc|description|content", re.I)},
+                {"class": re.compile(r"job.?desc|jobDesc|job.?content|job.?detail", re.I)},
+                {"class": re.compile(r"description|content.?body|main.?content", re.I)},
+            ]
+            text = ""
+            for sel in CONTAINER_SELECTORS:
+                el = soup.find(attrs=sel)
+                if el:
+                    candidate = el.get_text("\n", strip=True)
+                    if len(candidate) > 200:
+                        text = candidate
+                        break
+
+            # Fallback: <main> or <article>
+            if not text:
+                for tag in ("main", "article"):
+                    el = soup.find(tag)
+                    if el:
+                        candidate = el.get_text("\n", strip=True)
+                        if len(candidate) > 200:
+                            text = candidate
+                            break
+
+            # Last resort: largest block
+            if not text:
+                best = ""
+                for el in soup.find_all(["div", "section"]):
+                    t = el.get_text("\n", strip=True)
+                    if len(t) > len(best) and len(t) > 300:
+                        best = t
+                text = best
+
+            if not text or len(text) < 150:
+                return None
+
+            # Trim to 4000 chars to avoid bloating scorer context
+            text = text[:4000]
+
+            # Heuristic title extraction from <h1>
+            title = fallback_title
+            h1 = soup.find("h1")
+            if h1:
+                h1_text = h1.get_text(" ", strip=True)
+                if 3 < len(h1_text) < 120:
+                    title = h1_text
+
+            return {
+                "title": title,
+                "company": "",
+                "location": "",
+                "apply_url": url,
+                "description": text,
+                "skills": [],
+                "salary": "",
+                "work_mode": "",
+                "_extraction_method": "generic_http",
+                "_source_url": url,
+            }
+        except Exception as e:
+            logger.debug(f"[OnDemand] generic JD extract failed for {url}: {e}")
+            return None
+
     def _board_search(self, queries: list[str], role: str = "", city: str = "") -> list[dict]:
         # Reuse SearchAdapter's queries interface
         search_results = self.search.search_queries(queries) if hasattr(self.search, "search_queries") else self.search.search_all(
@@ -373,13 +527,20 @@ class OnDemandSearch:
             url_type = classify_url_type(url).value
             if url_type != URLType.INDIVIDUAL_JOB.value:
                 continue
-            # Try deep extraction: ScrapeGraph first, then Indeed for Indeed URLs
+            # Try deep extraction: ScrapeGraph → Indeed → generic HTTP fetch
             data = self.scraper.extract(url) if self.scraper.available else None
             if not data and self._indeed.can_handle(url):
                 data = self._indeed.extract(url)
+            if not data:
+                data = self._extract_generic_jd(url, fallback_title=r.get("title", ""), fallback_snippet=r.get("snippet", ""))
             if data:
                 extraction_method = data.get("_extraction_method", "scrapegraph")
-                source_type = "scrapegraph" if extraction_method == "scrapegraphai" else "indeed_direct"
+                if extraction_method == "scrapegraphai":
+                    source_type = "scrapegraph"
+                elif extraction_method == "indeed_direct":
+                    source_type = "indeed_direct"
+                else:
+                    source_type = "generic_http"
                 jobs.append({
                     "title": data.get("title", r.get("title", "")),
                     "company": data.get("company", ""),
@@ -422,6 +583,15 @@ class OnDemandSearch:
                 })
         except Exception as e:
             logger.debug(f"[OnDemand] JobSpy: {e}")
+
+        # P0.2: Naukri — India's largest board
+        try:
+            from careerloop.sources.naukri_adapter import search_naukri
+            naukri_results = search_naukri(role, city, max_results=50)
+            jobs.extend(naukri_results)
+            logger.info(f"[OnDemand] Naukri: {len(naukri_results)} jobs")
+        except Exception as e:
+            logger.debug(f"[OnDemand] Naukri: {e}")
 
         return jobs
 
