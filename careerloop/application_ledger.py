@@ -66,8 +66,10 @@ class ApplicationLedger:
 
     def _save(self):
         os.makedirs(os.path.dirname(self.path), exist_ok=True)
-        with open(self.path, "w") as f:
+        tmp_path = self.path + ".tmp"
+        with open(tmp_path, "w") as f:
             json.dump(self.entries, f, indent=2, default=str)
+        os.replace(tmp_path, self.path)
 
     # ── CRUD ─────────────────────────────────────────────────────────
 

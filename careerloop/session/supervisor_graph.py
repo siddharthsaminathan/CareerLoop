@@ -67,6 +67,7 @@ class ConversationState(TypedDict):
     # State used to invoke the council graph
     council_state: Optional[dict]
     assistant_response: Optional[str]
+    temp_profile_data: Optional[dict]
 
 # ── Nodes ──
 
@@ -77,30 +78,51 @@ def intent_router(state: ConversationState) -> dict:
         return {}
 
     last_message = (
-        messages[-1].content.lower() if hasattr(messages[-1], "content") else str(messages[-1]).lower()
+        messages[-1].content if hasattr(messages[-1], "content") else str(messages[-1])
     )
     current_state = state.get("current_state", UserState.IDLE)
 
-    if current_state == UserState.IDLE:
-        if "scan" in last_message:
-            return {
-                "current_state": UserState.DAILY_BRIEF_SENT,
-                "assistant_response": "Scanning for jobs now. I will summarize results once complete.",
-            }
-        if "pack" in last_message or "apply" in last_message:
-            return {
-                "current_state": UserState.PACK_GENERATING,
-                "assistant_response": "Preparing your application pack.",
-            }
+    if current_state == UserState.IDLE or current_state.name.startswith("ONBOARDING_"):
+        import os
+        from careerloop.session.session_store import SessionStore, Session
+        from careerloop.memory.connection import DatabaseManager
+        from careerloop.onboarding.onboarding_flow import OnboardingFlow
+        
+        db = DatabaseManager(os.getenv("DATABASE_URL"))
+        store = SessionStore(db)
+        
+        # Ensure user exists before using SessionStore
+        user_id = state.get("user_id", "unknown")
+        try:
+            with db.get_connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute("INSERT INTO public.users (id, email) VALUES (%s, %s) ON CONFLICT (id) DO NOTHING", (user_id, f"{user_id}@example.com"))
+                conn.commit()
+        except Exception:
+            pass
+            
+        # Fetch the actual session from the Postgres database
+        session = store.get_session(user_id)
+        
+        # Override the state if it was explicitly passed via LangGraph metadata
+        if current_state != UserState.IDLE:
+            session.state = current_state
+            
+        # Ensure we capture any new temp profile data passed from LangGraph
+        graph_temp_data = state.get("temp_profile_data", {})
+        if graph_temp_data:
+            session.temp_profile_data = graph_temp_data
+        
+        flow = OnboardingFlow(store)
+        reply, next_state = flow.handle_message(session, last_message)
         return {
-            "current_state": UserState.ONBOARDING_WAITING_CV,
-            "assistant_response": (
-                "Welcome to CareerLoop. Please paste your CV text first, then I will guide your setup."
-            ),
+            "current_state": next_state,
+            "assistant_response": reply,
+            "temp_profile_data": session.temp_profile_data,
         }
 
     if current_state == UserState.PACK_READY:
-        normalized = last_message.strip()
+        normalized = last_message.strip().lower()
         if normalized == "approve & auto-apply":
             return {
                 "current_state": UserState.AWAITING_APPLICATION_CONFIRMATION,
@@ -113,6 +135,33 @@ def intent_router(state: ConversationState) -> dict:
             "assistant_response": (
                 "I did not receive approval. I kept you in review mode. Type exactly 'Approve & Auto-Apply' to continue."
             ),
+        }
+
+    # For other states like DAILY_BRIEF_SENT, use Intent Agent or pass through
+    if current_state == UserState.DAILY_BRIEF_SENT:
+        from careerloop.llm_chat import ChatIntentAgent
+        from careerloop.daily_runner import DailyRunner
+        import os
+        agent = ChatIntentAgent()
+        profile_data = state.get("temp_profile_data", {})
+        intent, reply = agent.process(last_message, profile_data)
+        
+        if intent == "SCAN_JOBS":
+            from careerloop.tools.sync_profile import sync_profile_data
+            sync_res = sync_profile_data(profile_data)
+            
+            reply += "\nTriggering job scan via DailyRunner..."
+            root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+            try:
+                runner = DailyRunner(root)
+                result = runner.run(do_scan=True)
+                reply += f"\nScan complete! Found {result['new_jobs_found']} new raw jobs, {result['unique_added']} unique added, {result['scored']} scored."
+            except Exception as e:
+                reply += f"\nError running scan: {e}"
+        
+        return {
+            "current_state": current_state,
+            "assistant_response": reply
         }
 
     return {"current_state": current_state}

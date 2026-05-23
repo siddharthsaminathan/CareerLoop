@@ -1,6 +1,7 @@
 import os
 from contextlib import contextmanager
 from langgraph.checkpoint.postgres import PostgresSaver
+from psycopg_pool import ConnectionPool
 
 @contextmanager
 def get_checkpointer():
@@ -13,12 +14,17 @@ def get_checkpointer():
     if not db_url:
         raise ValueError("DATABASE_URL environment variable is required")
         
-    with PostgresSaver.from_conn_string(db_url) as checkpointer:
+    connection_kwargs = {
+        "autocommit": True,
+        "prepare_threshold": None,
+    }
+    
+    with ConnectionPool(conninfo=db_url, kwargs=connection_kwargs) as pool:
+        checkpointer = PostgresSaver(pool)
         try:
             checkpointer.setup()
         except Exception as e:
             msg = str(e).lower()
-            # Some environments can throw on repeated setup/prepared statements.
             if "already exists" not in msg:
                 raise
         yield checkpointer

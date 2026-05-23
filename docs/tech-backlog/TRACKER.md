@@ -106,6 +106,26 @@ S8.5 completeness check shipped. Council is at quality ceiling (93%). System sta
 
 ## Session Log
 
+### 2026-05-23 — Session: LangGraph Chatbot Orchestrator & Webbridge Scaffold
+
+**What was done:**
+- **Supervisor Graph:** Deprecated rigid state machine and scaffolded `careerloop/session/supervisor_graph.py` to wrap Phase 1 execution scripts (`scan.mjs`, etc.) into LangChain tools.
+- **Kimi Webbridge:** Built `kimi_bridge.py` scaffold for headless ATS navigation via an explicitly authorized "Approve & Auto-Apply" user loop.
+- **Transport Abstraction:** Reworked `base.py` and `terminal_chat.py` to decouple the UI from the routing logic. Inputs map to `UserEvent` payloads hitting the LangGraph Supervisor.
+- **Persistence:** Implemented `checkpointer.py` using `PostgresSaver` via Supabase to track conversations seamlessly across multiple transport connections (CLI, WhatsApp, Telegram).
+
+**Vision alignment verdict:** ✅ ALIGNED
+Directly advances the delivery abstraction (PRD §21-23). The legacy codebase (Phase 1 scripts and Council graph) is now fully integrated into a modern agentic control flow.
+
+**Deviations detected:** The Kimi webbridge auto-submit command operates purely on an "Approve & Auto-Apply" flow to adhere to A7 ("No auto-submit; manual review required"). Unattended execution is forbidden.
+
+**Recommended next 3 actions:**
+1. E2E state verification: Fully test the `UserEvent` to `ConversationState` transition through the CLI loop.
+2. Build WhatsApp transport adapter pointing to `supervisor_graph.py`.
+3. Harden the `kimi_bridge.py` headless layer with real ATS navigation endpoints instead of the current mock.
+
+---
+
 ### 2026-05-21 — Session: Pipeline End-to-End Repair (S6, S7, S8)
 
 **What was done:**

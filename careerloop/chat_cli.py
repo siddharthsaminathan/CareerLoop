@@ -1,10 +1,14 @@
 import os
 import sys
 import uuid
+import logging
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 # Support running as script (python careerloop/chat_cli.py) and module (-m careerloop.chat_cli)
 if __package__ is None or __package__ == "":
@@ -24,13 +28,26 @@ def authenticate_cli_user() -> str:
     In a full implementation, this uses supabase.auth.sign_in_with_password()
     and retrieves the user's UUID from the JWT.
     """
-    console.print("[bold green]Welcome to CareerLoop Terminal Chat.[/bold green]")
-    console.print("Please enter your email to login or sign up:")
-    email = input("> ").strip()
+    session_file = os.path.join(os.path.expanduser("~"), ".careerloop_session")
     
-    if not email:
-        console.print("[bold red]Email is required.[/bold red]")
-        sys.exit(1)
+    if os.path.exists(session_file):
+        with open(session_file, 'r') as f:
+            email = f.read().strip()
+        console.print(f"[bold green]Welcome back to CareerLoop![/bold green] (Auto-logged in as: {email})")
+    else:
+        console.print("[bold green]Welcome to CareerLoop Terminal Chat.[/bold green]")
+        console.print("Please enter your email to login or sign up:")
+        email = input("> ").strip()
+        
+        if not email:
+            console.print("[bold red]Email is required.[/bold red]")
+            sys.exit(1)
+            
+        try:
+            with open(session_file, 'w') as f:
+                f.write(email)
+        except Exception:
+            pass
         
     # Generate a consistent UUID for this email to simulate Supabase auth
     NAMESPACE_CAREERLOOP = uuid.UUID('12345678-1234-5678-1234-567812345678')
@@ -88,6 +105,8 @@ def main():
                     "text": user_input,
                     "metadata": {"current_state": session.state},
                 }
+                logger.info("User payload received from input.")
+                logger.info(f"Passing payload to transport: {payload}")
                 try:
                     response = transport.receive(payload)
                 except Exception as e:
@@ -96,6 +115,7 @@ def main():
                         console.print(
                             "[bold yellow]Warning:[/bold yellow] Checkpointed invoke failed; switching to non-checkpointed supervisor for this session."
                         )
+                        logger.warning("Checkpointed invoke failed with prepared statement error. Falling back to non-checkpointed graph.")
                         supervisor = get_supervisor_graph(checkpointer=None)
                         transport.supervisor_graph = supervisor
                         using_checkpointer = False
@@ -107,6 +127,8 @@ def main():
                 if response and isinstance(response, dict):
                     next_state = response.get("current_state")
                     if isinstance(next_state, UserState):
+                        if session.state != next_state:
+                            logger.info(f"State updated: {session.state} -> {next_state}")
                         session.state = next_state
                         session_store.save_session(session)
     except KeyboardInterrupt:

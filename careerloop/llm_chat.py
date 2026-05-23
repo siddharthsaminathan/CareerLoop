@@ -24,7 +24,7 @@ class LLMChatAgent:
                         {"role": "user", "content": user_prompt},
                     ],
                     "temperature": 0.3,
-                    "max_tokens": 1500,
+                    "max_tokens": 4096,
                 },
                 timeout=30,
             )
@@ -37,17 +37,24 @@ class LLMChatAgent:
             return f'{{"reply": "Exception: {str(e)}"}}'
 
     def _parse_json(self, text: str) -> dict:
+        import re
         content = text.strip()
-        if content.startswith("```"):
-            content = content.split("\n", 1)[-1]
-            if content.endswith("```"):
-                content = content[:-3]
-            content = content.strip()
-            if content.startswith("json"):
-                content = content[4:].strip()
+        
+        # Try to find JSON block wrapped in markdown
+        match = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', content, re.DOTALL)
+        if match:
+            content = match.group(1)
+        else:
+            # Fallback: extract anything that looks like a JSON object
+            match = re.search(r'(\{.*\})', content, re.DOTALL)
+            if match:
+                content = match.group(1)
+                
         try:
             return json.loads(content)
-        except Exception:
+        except Exception as e:
+            print(f"DEBUG: Failed to parse JSON. Error: {e}")
+            print(f"DEBUG: Raw content was: {content[:500]}...")
             return {}
 
 class OnboardingAgent(LLMChatAgent):
@@ -75,7 +82,11 @@ Return ONLY valid JSON in the following format:
   "reply": "Your message to the user here. Acknowledge what was provided, ask for what is missing.",
   "is_complete": false
 }
-Note: Ensure you include all previously collected fields in "extracted_fields" if they are still valid, updating them if the user provided new info."""
+
+CRITICAL JSON RULES:
+- You MUST properly escape all newlines as \\n and double quotes as \\" inside cv_content.
+- NEVER include literal unescaped newlines inside the JSON string values.
+- Ensure you include all previously collected fields in "extracted_fields" if they are still valid, updating them if the user provided new info."""
 
     def process(self, user_message: str, current_data: Dict[str, Any]) -> Tuple[Dict[str, Any], str, bool]:
         prompt = f"""Current Data: {json.dumps(current_data)}
