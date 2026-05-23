@@ -274,12 +274,20 @@ class SerpAPIDiscovery:
 
     def _build_queries(self, city: str, sector: str, function_hint: str) -> list[str]:
         sector_short = sector.split("&")[0].strip().lower()
-        queries = [
-            f"{sector_short} companies in {city} India",
-            f"top {sector_short} startups {city} hiring",
-        ]
+        city_lc = city.lower()
+
+        # Max 2 SerpAPI calls per search — one broad company discovery, one role-specific
         if function_hint:
-            queries.append(f"companies hiring {function_hint} in {city} India")
+            queries = [
+                f"well-funded AI startup {city} India hiring \"{function_hint}\" 2025",
+                f"top {sector_short} product company {city} Series A B careers engineer",
+            ]
+        else:
+            queries = [
+                f"well-funded {sector_short} startup {city} India hiring engineer 2025",
+                f"top {sector_short} product company {city} Series A B funded careers",
+            ]
+
         return queries
 
     def _search_one(self, query: str, city: str, sector: str) -> list[RawCompany]:

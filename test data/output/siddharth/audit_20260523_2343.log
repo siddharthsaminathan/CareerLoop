@@ -1,0 +1,1323 @@
+
+============================================================
+  CAREERLOOP SIDDHARTH FULL RUN — v5
+============================================================
+  Started : 2026-05-23 23:43:55
+  Roles   : AI Product Engineer, Full Stack AI Engineer, Applied AI Engineer, Founding AI Engineer
+  Cities  : Bangalore, Mumbai, Remote
+  Max/role: 60
+  Audit   : /Users/hayagreev13/Projects/career-loop/CareerLoop/test data/output/siddharth/audit_20260523_2343.log
+  SerpAPI : ✅ ACTIVE
+  DeepSeek: ✅ ACTIVE
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 0: IMPORTS + INIT
+────────────────────────────────────────────────────────────
+  ✓ on_demand.OnDemandSearch imported
+  ✓ OnDemandSearch ready — profile: profile.yml
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: AI Product Engineer @ Bangalore
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Bangalore | AI Product Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Phase A] discovering companies for 'AI Product Engineer' in Bangalore...
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+    internet discovery done — querying DB for top companies...
+  [Phase A] found 242 companies. scraping portals...
+  [Phase A] portal scrape done — 150 jobs
+  [Phase B] searching job boards (parallel)...
+  [Phase B] boards done — 158 jobs
+
+────────────────────────────────────────────────────────────
+  RESULTS: AI Product Engineer @ Bangalore
+────────────────────────────────────────────────────────────
+  Keywords   : ai product engineer, ai, product, engineer, engineering, software, developer, programming, technical
+  Candidates : 308
+  After dedup: 110
+  Ranked     : 38
+  Elapsed    : 519.4s
+  · Phase A: live discovery OK — 242 companies
+  · board health: ddg:23 | glassdoor:12 | google_jobs:30 | jobspy:40 | monster:33 | naukri:20
+  · company-type filter: dropped 4 rejected-type companies
+  · role filter: 163 → 116 relevant (47 rejected)
+  · city filter (Bangalore): 100 → 75 (25 off-city removed)
+  · company cap (max 3): 75 → 38
+
+    #   SCORE  TITLE                                          COMPANY                         SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ───────────────
+    1    73.1  Forward Deployed Software Engineer | 2-5 year  Sarvam AI                       ashby
+         → https://jobs.ashbyhq.com/sarvam/ac2b835e-375c-48d8-a174-8c2935f408b2/application
+    2    73.0  Backend Engineer, API Team                     Sarvam AI                       ashby
+         → https://jobs.ashbyhq.com/sarvam/f46a00ea-a25b-478d-92b9-7a2deb129f5b/application
+    3    71.8  Backend Engineer, Chanakya                     Sarvam AI                       ashby
+         → https://jobs.ashbyhq.com/sarvam/86ae80f8-b7eb-43a4-afde-fef58e77e23e/application
+    4    70.7  Applied AI Principal/Staff Engineer (Agentic   Best Tech Jobs & Startup Jobs   greenhouse
+         → https://job-boards.greenhouse.io/builtin/jobs/7855050
+    5    66.3  Lead Software Development Engineer             Razorpay                        greenhouse
+         → https://job-boards.greenhouse.io/razorpaysoftwareprivatelimited/jobs/4684256005
+    6    65.6  Principal Engineer I                           Razorpay                        greenhouse
+         → https://job-boards.greenhouse.io/razorpaysoftwareprivatelimited/jobs/4681618005
+    7    64.8  AI Evangelist                                  Razorpay                        greenhouse
+         → https://job-boards.greenhouse.io/razorpaysoftwareprivatelimited/jobs/4680760005
+    8    63.4  Lead AI Engineer with 8                        ?                               foundit
+         → https://www.foundit.in/job/lead-ai-engineer-appit-software-inc-bengaluru-bangalore-39931276
+    9    62.9  Staff AI Engineer with 10                      ?                               foundit
+         → https://www.foundit.in/job/staff-ai-engineer-flipkart-leap-bengaluru-bangalore-52027470
+   10    62.9  AI Engineer with 3                             ?                               foundit
+         → https://www.foundit.in/job/ai-engineer-cyble-bengaluru-bangalore-48104142
+   11    62.3  AI/ML & Prompt Engineer LLM, RAG & Voice Agen  QuantumLoopAI                   google_jobs
+         → https://apply.workable.com/quantumloopai/j/B7F8DA3F6C/
+   12    62.0  Senior Product Engineer (AI) @ Plain           Plain                           google_jobs
+         → https://jobs.ashbyhq.com/plain/438ce6d9-d80b-4f25-b998-fdb79e13a767/
+   13    61.7  AI Product Engineer (New Grad) @ Codeium       Codeium                         google_jobs
+         → https://jobs.ashbyhq.com/Codeium/558657be-5082-4e97-8509-d49f5c25bf5b/application
+   14    61.7  AI Product Engineer @ Brain Co.                Brainco                         google_jobs
+         → https://jobs.ashbyhq.com/brainco/4866bc74-52fa-4819-a9d0-3a5e73c31951
+   15    61.7  AI Engineer                                    Agentic AI & Automation         google_jobs
+         → https://apply.workable.com/luxasia/j/CFF16F4372/
+   16    61.7  AI Product Engineer                            Mathspace                       google_jobs
+         → https://apply.workable.com/mathspace/j/115A926E81
+   17    60.9  AI Applications Engineer                       Oleria                          jobspy
+         → https://www.linkedin.com/jobs/view/4416227798
+   18    60.9  Software Engineer — AI Products                Tipstat®                        jobspy
+         → https://www.linkedin.com/jobs/view/4404599688
+   19    60.9  AI Engineer                                    Osfin.ai                        jobspy
+         → https://www.linkedin.com/jobs/view/4381308207
+   20    59.4  Software Engineer, Low-Latency Systems         Redtring                        scrapegraph
+         → https://cutshort.io/job/AI-Product-Engineer-Contlo-5LPgdjsM
+   21    56.5  Product Engineer – Compressor Engineering (NP  SWITS DIGITAL Private Limited   jobspy
+         → https://www.linkedin.com/jobs/view/4414079337
+   22    56.5  Product Engineer – HVAC/ NPD                   SWITS DIGITAL Private Limited   jobspy
+         → https://www.linkedin.com/jobs/view/4412760928
+   23    56.5  Product Engineer – Refrigeration Testing & Va  SWITS DIGITAL Private Limited   jobspy
+         → https://www.linkedin.com/jobs/view/4409694626
+   24    56.1  Product Engineer (Bangalore) @ Bespoke Labs    Bespokelabs                     google_jobs
+         → https://jobs.ashbyhq.com/bespokelabs/3751a4cb-bb4d-4113-afe6-9c87341f6739
+   25    55.3  Product Engineer                               Talent Linked Consultancy       jobspy
+         → https://www.linkedin.com/jobs/view/4414341232
+   26    55.3  Product Engineer                               Tessolve                        jobspy
+         → https://www.linkedin.com/jobs/view/4416396089
+   27    55.3  Product Engineer                               Leap                            jobspy
+         → https://www.linkedin.com/jobs/view/4416089051
+   28    55.3  Product Solutions Engineer, Search, Tech Cent  Google                          jobspy
+         → https://www.linkedin.com/jobs/view/4415101665
+   29    55.3  Solution Engineer (Product Demo, ETL engineer  Precisely                       jobspy
+         → https://www.linkedin.com/jobs/view/4404448283
+   30    55.3  New Product Development Engineer               MagickHome India                jobspy
+         → https://www.linkedin.com/jobs/view/4412704337
+   31    55.3  Product Engineer                               AVIRATA DEFENCE SYSTEMS         jobspy
+         → https://www.linkedin.com/jobs/view/4407595534
+   32    55.3  Product Engineer                               Global Software Solutions Grou  jobspy
+         → https://www.linkedin.com/jobs/view/4400502827
+   33    53.3  Job Application for Software Engineer, Machin  Gleanwork                       google_jobs
+         → https://boards.greenhouse.io/gleanwork/jobs/4012745005
+   34    53.3  Job Application for Software Engineer, Fronte  Glean                           google_jobs
+         → https://boards.greenhouse.io/gleanwork/jobs/4012744005
+   35    53.3  Weekday AI                                     Current Openings                google_jobs
+         → https://apply.workable.com/weekday-1/j/0B17C0879F/
+   36    52.5  AI Solution Owner                              InRhythm                        jobspy
+         → https://www.linkedin.com/jobs/view/4410483211
+   37    52.5  Artificial Intelligence Engineer               Meraki Labs                     jobspy
+         → https://www.linkedin.com/jobs/view/4406538462
+   38     0.0  Product Engineer                               JIFFY.ai                        scrapegraph
+         → https://www.freshersworld.com/jobs/product-engineer-jobs-in-bangalore-jiffy-ai-1183371
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: AI Product Engineer @ Mumbai
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Mumbai | AI Product Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Phase A] discovering companies for 'AI Product Engineer' in Mumbai...
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+    internet discovery done — querying DB for top companies...
+  [Phase A] found 56 companies. scraping portals...
+  [Phase A] portal scrape done — 0 jobs
+  [Phase B] searching job boards (parallel)...
+  [Phase B] boards done — 123 jobs
+
+────────────────────────────────────────────────────────────
+  RESULTS: AI Product Engineer @ Mumbai
+────────────────────────────────────────────────────────────
+  Keywords   : ai product engineer, ai, product, engineer, engineering, software, developer, programming, technical
+  Candidates : 123
+  After dedup: 54
+  Ranked     : 18
+  Elapsed    : 411.4s
+  · Phase A: live discovery OK — 56 companies
+  · board health: ddg:25 | glassdoor:11 | google_jobs:14 | jobspy:40 | monster:13 | naukri:20
+  · company-type filter: dropped 1 rejected-type companies
+  · role filter: 75 → 55 relevant (20 rejected)
+  · city filter (Mumbai): 28 → 18 (10 off-city removed)
+
+    #   SCORE  TITLE                                          COMPANY                         SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ───────────────
+    1    69.6  AI Engineer - RAG LLM Systems                  TalentXO                        scrapegraph
+         → https://cutshort.io/job/AI-Engineer-RAG-LLM-Systems-Mumbai-TalentXO-thgACenO
+    2    69.5  AI Engineer                                    eClerx                          scrapegraph
+         → https://www.instahyre.com/job-419473-ai-engineer-at-eclerx-mumbai-pune/
+    3    68.5  AI Engineer                                    Arohi Asset Management          scrapegraph
+         → https://www.instahyre.com/job-424137-ai-engineer-at-arohi-asset-management-mumbai/
+    4    65.0  AI Engineer                                    Jio Tesseract                   scrapegraph
+         → https://www.instahyre.com/job-359574-ai-engineer-at-jio-tesseract-mumbai/
+    5    64.1  AI Product Engineer                            DISCO                           scrapegraph
+         → https://www.instahyre.com/job-421516-ai-product-engineer-at-disco-work-from-home/
+    6    62.9  AI Engineer                                    Kodo                            scrapegraph
+         → https://www.instahyre.com/job-420459-ai-engineer-at-kodo-mumbai/
+    7    62.1  AI Native Software Engineer                    Billeasy                        jobspy
+         → https://www.linkedin.com/jobs/view/4396647722
+    8    61.7  Job Application for Product AI Engineer        xAI                             google_jobs
+         → https://boards.greenhouse.io/xai/jobs/4379597007
+    9    61.7  AI Product Engineer @ OnHires                  Onhires                         google_jobs
+         → https://jobs.ashbyhq.com/onhires/63ba3cb3-514c-48b1-9d29-0d32d483a8f6
+   10    61.7  AI Product Engineer @ PostHog                  Posthog                         google_jobs
+         → https://jobs.ashbyhq.com/posthog/bd597451-e465-46f6-857f-befe28366f20/
+   11    61.7  AI Product Engineer (New Grad) @ Codeium       Codeium                         google_jobs
+         → https://jobs.ashbyhq.com/Codeium/558657be-5082-4e97-8509-d49f5c25bf5b/application
+   12    61.7  AI Product Engineer @ Speak                    Speak                           google_jobs
+         → https://jobs.ashbyhq.com/speak/e91eb4bc-93bf-4e3a-b7c9-4a2f506df43f
+   13    61.7  AI Engineer                                    AHOY                            google_jobs
+         → https://apply.workable.com/ahoy/j/35AE8F2A9A
+   14    61.7  AI Product Engineer                            Mathspace                       google_jobs
+         → https://apply.workable.com/mathspace/j/115A926E81
+   15    54.1  Machine Learning Engineer                      Quantiphi Inc.                  scrapegraph
+         → https://cutshort.io/job/Machine-Learning-Engineer-Mumbai-Quantiphi-Inc--3aj84Cgk
+   16    53.7  Artificial Intelligence Engineer               Pixeldust Technologies          jobspy
+         → https://www.linkedin.com/jobs/view/4411166837
+   17    53.3  Job Application for Software Engineer, Machin  Gleanwork                       google_jobs
+         → https://boards.greenhouse.io/gleanwork/jobs/4012745005
+   18    53.3  Join Aporia and help us shape the future of A  Aporia                          google_jobs
+         → https://apply.workable.com/aporia/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: AI Product Engineer @ Remote
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Remote | AI Product Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Phase A] discovering companies for 'AI Product Engineer' in Remote...
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+    internet discovery done — querying DB for top companies...
+  [Phase A] found 57 companies. scraping portals...
+  [Phase A] portal scrape done — 13 jobs
+  [Phase B] searching job boards (parallel)...
+  [Phase B] boards done — 129 jobs
+
+────────────────────────────────────────────────────────────
+  RESULTS: AI Product Engineer @ Remote
+────────────────────────────────────────────────────────────
+  Keywords   : ai product engineer, ai, product, engineer, engineering, software, developer, programming, technical
+  Candidates : 142
+  After dedup: 23
+  Ranked     : 8
+  Elapsed    : 398.8s
+  · Phase A: live discovery OK — 57 companies
+  · board health: ddg:21 | glassdoor:26 | google_jobs:19 | jobspy:40 | monster:10 | naukri:13
+  · role filter: 42 → 23 relevant (19 rejected)
+  · city filter (Remote): 13 → 12 (1 off-city removed)
+  · company cap (max 3): 12 → 8
+
+    #   SCORE  TITLE                                          COMPANY                         SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ───────────────
+    1    73.7  Principal AI Engineer - Frontier Data          70+ Remote Generative AI Engin  greenhouse
+         → https://job-boards.greenhouse.io/turing/jobs/5809205004
+    2    71.1  Principal Forward Deployed AI Engineer         70+ Remote Generative AI Engin  greenhouse
+         → https://job-boards.greenhouse.io/turing/jobs/5688729004
+    3    69.7  Staff Gen AI Engineer                          70+ Remote Generative AI Engin  greenhouse
+         → https://job-boards.greenhouse.io/turing/jobs/5480607004
+    4    68.3  Applied AI Principal/Staff Engineer (Agentic   Best Tech Jobs & Startup Jobs   greenhouse
+         → https://job-boards.greenhouse.io/builtin/jobs/7855050
+    5    67.2  Senior AI/ML Engineer (India/Remote) @ Articu  Articul8                        google_jobs
+         → https://jobs.ashbyhq.com/articul8/79043f8a-765c-4bd3-8c47-bc6897d83c53
+    6    66.9  Nexifyr hiring AI Engineer –BIM Geometry Auto  ?                               glassdoor
+         → https://www.glassdoor.com/job-listing/ai-engineer-–bim-geometry-automation-nexifyr-consulting-p
+    7     0.0  51781 Ai Product Jobs in India: Latest Ai Pro  ?                               foundit
+         → https://www.foundit.in/search/ai-product-jobs-in-india
+    8     0.0  0 Ai Enabled Product Management Jobs in India  ?                               foundit
+         → https://www.foundit.in/search/ai-enabled-product-management-jobs
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: Full Stack AI Engineer @ Bangalore
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Bangalore | Full Stack AI Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Phase A] discovering companies for 'Full Stack AI Engineer' in Bangalore...
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+    internet discovery done — querying DB for top companies...
+  [Phase A] found 240 companies. scraping portals...
+  [Phase A] portal scrape done — 149 jobs
+  [Phase B] searching job boards (parallel)...
+  [Phase B] boards done — 127 jobs
+
+────────────────────────────────────────────────────────────
+  RESULTS: Full Stack AI Engineer @ Bangalore
+────────────────────────────────────────────────────────────
+  Keywords   : full stack ai engineer, full, stack, ai, engineer, engineering, software, developer, programming, technical
+  Candidates : 276
+  After dedup: 97
+  Ranked     : 45
+  Elapsed    : 436.9s
+  · Phase A: live discovery OK — 240 companies
+  · board health: ddg:14 | glassdoor:11 | google_jobs:29 | jobspy:40 | monster:13 | naukri:20
+  · company-type filter: dropped 4 rejected-type companies
+  · role filter: 136 → 104 relevant (32 rejected)
+  · city filter (Bangalore): 87 → 64 (23 off-city removed)
+  · company cap (max 3): 64 → 45
+
+    #   SCORE  TITLE                                          COMPANY                         SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ───────────────
+    1    73.1  Forward Deployed Software Engineer | 2-5 year  Sarvam AI                       ashby
+         → https://jobs.ashbyhq.com/sarvam/ac2b835e-375c-48d8-a174-8c2935f408b2/application
+    2    73.0  Backend Engineer, API Team                     Sarvam AI                       ashby
+         → https://jobs.ashbyhq.com/sarvam/f46a00ea-a25b-478d-92b9-7a2deb129f5b/application
+    3    71.8  Backend Engineer, Chanakya                     Sarvam AI                       ashby
+         → https://jobs.ashbyhq.com/sarvam/86ae80f8-b7eb-43a4-afde-fef58e77e23e/application
+    4    70.7  Applied AI Principal/Staff Engineer (Agentic   Best Tech Jobs & Startup Jobs   greenhouse
+         → https://job-boards.greenhouse.io/builtin/jobs/7855050
+    5    66.4  Full-Stack AI Engineer (Prompt Engineering ..  ?                               foundit
+         → https://www.foundit.in/job/full-stack-ai-engineer-prompt-engineering-agentic-systems-python-azu
+    6    66.3  Lead Software Development Engineer             Razorpay                        greenhouse
+         → https://job-boards.greenhouse.io/razorpaysoftwareprivatelimited/jobs/4684256005
+    7    66.2  Full Stack AI Engineer Position with 0         3 Years of ...                  foundit
+         → https://www.foundit.in/job/full-stack-ai-engineer-position-icube-consulting-services-india-priv
+    8    65.9  Fullstack AI Engineer                          GoComet                         scrapegraph
+         → https://www.instahyre.com/job-422266-fullstack-ai-engineer-at-gocomet-3-bangalore-noida/
+    9    65.8  Full Stack Gen AI Engineer                     Tiger Analytics Inc.            google_jobs
+         → https://apply.workable.com/tiger-analytics/j/F734EDCF49/
+   10    65.6  Principal Engineer I                           Razorpay                        greenhouse
+         → https://job-boards.greenhouse.io/razorpaysoftwareprivatelimited/jobs/4681618005
+   11    65.6  Lead Full-Stack AI Engineer                    Reveal Health Tech              google_jobs
+         → https://apply.workable.com/reveal-health-tech/j/484A888106/
+   12    65.1  Full stack AI Engineer Remote with 0           ?                               foundit
+         → https://www.foundit.in/job/full-stack-ai-engineer-remote-m0851-india-48751973
+   13    65.1  Full Stack AI Engineer (Agentic AI Orchestrat  ?                               foundit
+         → https://www.foundit.in/job/full-stack-ai-engineer-agentic-ai-orchestration-alphanome-ai-india-4
+   14    65.1  Full Stack AI Engineer with 2                  4 Years of ...                  foundit
+         → https://www.foundit.in/job/full-stack-ai-engineer-cube-bengaluru-bangalore-46839125
+   15    64.8  AI/ML Senior Full-Stack Engineer               AND Digital                     google_jobs
+         → https://apply.workable.com/and-digital/j/253C452021
+   16    64.6  Principal Full Stack Engineer @ Hippocratic A  Hippocratic+Ai                  google_jobs
+         → https://jobs.ashbyhq.com/Hippocratic+AI/47086b02-7f6b-4ddf-8681-665f48e1c47e
+   17    64.5  Job Application for Full Stack Engineer - AI   ...Jobs at Pure StorageJobs at  google_jobs
+         → https://boards.greenhouse.io/greynoiseintelligence/jobs/4499206005?gh_jid=4499206005
+   18    63.7  Full Stack AI Engineer                         Relanto                         jobspy
+         → https://www.linkedin.com/jobs/view/4416166583
+   19    63.7  Full Stack AI Engineer  - eCommerce            GE HealthCare                   jobspy
+         → https://www.linkedin.com/jobs/view/4407854411
+   20    63.7  Full Stack AI Engineer                         Cube                            jobspy
+         → https://www.linkedin.com/jobs/view/4415788684
+   21    63.7  Full Stack AI Engineer - 8+ years in Python/D  Thomson Reuters                 jobspy
+         → https://www.linkedin.com/jobs/view/4373014542
+   22    63.7  AI Engineer - Full Stack Developer             Infineon Technologies           jobspy
+         → https://www.linkedin.com/jobs/view/4404804257
+   23    63.7  AI Engineer - Full-Stack & Applied UI          Reltio                          jobspy
+         → https://www.linkedin.com/jobs/view/4395566648
+   24    62.0  Senior AI Engineer                             ProgressSoft                    google_jobs
+         → https://apply.workable.com/progressoft/j/3F69A5651F/
+   25    61.7  Software Engineer (AI)                         Python/React                    google_jobs
+         → https://apply.workable.com/acoladgroup/j/B2ABBEAB90/
+   26    60.7  Fullstack AI Engineer                          Aeos Labs                       scrapegraph
+         → https://cutshort.io/job/Fullstack-AI-Engineer-Bengaluru-Bangalore-Aeos-Labs-Mqxr9XL4
+   27    59.2  Tech Lead - AI & Platform Engineering          Newron                          jobspy
+         → https://www.linkedin.com/jobs/view/4406874143
+   28    57.6  Full-stack Python Architect / Lead             LogIQ Labs Pvt.Ltd.             scrapegraph
+         → https://cutshort.io/job/Full-stack-Python-Architect-Lead-LogIQ-Labs-Pvt-Ltd-sDzJdEsm
+   29    56.4  Senior Software Engineer (Full Stack)          AI/ML Products & Services...    google_jobs
+         → https://apply.workable.com/4most/j/38BB1D9C49/
+   30    56.4  Senior Full-Stack Engineer                     Akur8                           google_jobs
+         → https://apply.workable.com/akur8/j/3E5A379075/apply?ref=getin.ai
+   31    56.1  Product Engineer (Bangalore) @ Bespoke Labs    Bespokelabs                     google_jobs
+         → https://jobs.ashbyhq.com/bespokelabs/3751a4cb-bb4d-4113-afe6-9c87341f6739
+   32    56.1  Full Stack Developer (AI Tools)                Teamified                       google_jobs
+         → https://apply.workable.com/teamified/j/C7B4F37F39
+   33    55.6  Senior Full Stack Engineer                     TANUH                           jobspy
+         → https://www.linkedin.com/jobs/view/4415619768
+   34    55.3  Full Stack Engineer                            MyGyan                          jobspy
+         → https://www.linkedin.com/jobs/view/4416219858
+   35    55.3  Full Stack Engineer                            8byte                           jobspy
+         → https://www.linkedin.com/jobs/view/4370010473
+   36    53.3  Job Application for Software Engineer, Backen  Glean                           google_jobs
+         → https://boards.greenhouse.io/gleanwork/jobs/4006731005?source=LinkedIn&urlHash=LeTj&trk=public_
+   37    53.3  Job Application for Software Engineer, Machin  Gleanwork                       google_jobs
+         → https://boards.greenhouse.io/gleanwork/jobs/4012745005
+   38    53.3  Software Engineer (Machine learning & Recomme  Mercari India                   google_jobs
+         → https://apply.workable.com/mercari-india/j/97614CA2D4/
+   39    53.3  Weekday AI                                     Current Openings                google_jobs
+         → https://apply.workable.com/weekday-1/
+   40    53.3  V4C.ai                                         Current Openings                google_jobs
+         → https://apply.workable.com/v4c/
+   41    53.1  Staff Software Engineer                        Commonwealth Bank               jobspy
+         → https://www.linkedin.com/jobs/view/4382249910
+   42    52.8  Senior Machine Learning Engineer - 1           Parspec                         jobspy
+         → https://www.linkedin.com/jobs/view/4318520132
+   43    52.5  Software Engr II                               Honeywell                       jobspy
+         → https://www.linkedin.com/jobs/view/4394395807
+   44    52.5  Software Engineer - Sr.Consultant Level - Pyt  Visa                            jobspy
+         → https://www.linkedin.com/jobs/view/4405400012
+   45    52.5  Artificial Intelligence Engineer               SourcingXPress                  jobspy
+         → https://www.linkedin.com/jobs/view/4407122784
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: Full Stack AI Engineer @ Mumbai
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Mumbai | Full Stack AI Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Phase A] discovering companies for 'Full Stack AI Engineer' in Mumbai...
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+    internet discovery done — querying DB for top companies...
+  [Phase A] found 66 companies. scraping portals...
+  [Phase A] portal scrape done — 0 jobs
+  [Phase B] searching job boards (parallel)...
+  [Phase B] boards done — 99 jobs
+
+────────────────────────────────────────────────────────────
+  RESULTS: Full Stack AI Engineer @ Mumbai
+────────────────────────────────────────────────────────────
+  Keywords   : full stack ai engineer, full, stack, ai, engineer, engineering, software, developer, programming, technical
+  Candidates : 99
+  After dedup: 38
+  Ranked     : 15
+  Elapsed    : 308.8s
+  · Phase A: live discovery OK — 66 companies
+  · board health: ddg:11 | glassdoor:5 | google_jobs:18 | jobspy:40 | monster:6 | naukri:19
+  · company-type filter: dropped 9 rejected-type companies
+  · role filter: 58 → 39 relevant (19 rejected)
+  · city filter (Mumbai): 20 → 16 (4 off-city removed)
+  · company cap (max 3): 16 → 15
+
+    #   SCORE  TITLE                                          COMPANY                         SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ───────────────
+    1    65.6  Lead Full-Stack AI Engineer                    Reveal Health Tech              google_jobs
+         → https://apply.workable.com/reveal-health-tech/j/484A888106/
+    2    65.1  Full Stack AI Engineer with 0                  ?                               foundit
+         → https://www.foundit.in/job/full-stack-ai-engineer-shapoorji-pallonji-finance-private-limited-mu
+    3    65.1  Full stack AI Engineer Remote with 0           ?                               foundit
+         → https://www.foundit.in/job/full-stack-ai-engineer-remote-m0851-india-48751973
+    4    64.8  AI/ML Senior Full-Stack Engineer               AND Digital                     google_jobs
+         → https://apply.workable.com/and-digital/j/253C452021
+    5    64.6  Principal Full Stack Engineer @ Hippocratic A  Hippocratic+Ai                  google_jobs
+         → https://jobs.ashbyhq.com/Hippocratic+AI/47086b02-7f6b-4ddf-8681-665f48e1c47e
+    6    64.5  Full Stack AI Engineer @ Luma AI               Luma Ai                         google_jobs
+         → https://jobs.ashbyhq.com/luma-ai/edca8ab1-12ee-49c0-b746-b82aeb71abea/application
+    7    61.7  Applied AI Engineer @ Tandem                   Tandem                          google_jobs
+         → https://jobs.ashbyhq.com/tandem/09564102-1713-4941-bbd5-77eaac9ca88e
+    8    61.7  AI Engineer                                    AHOY                            google_jobs
+         → https://apply.workable.com/ahoy/j/35AE8F2A9A
+    9    61.7  Software Engineer (AI)                         Python/React                    google_jobs
+         → https://apply.workable.com/acoladgroup/j/B2ABBEAB90/
+   10    56.4  Job Application for Senior Full-Stack Enginee  Typeface                        google_jobs
+         → https://boards.greenhouse.io/typeface/jobs/4065834007
+   11    56.4  Senior Full-Stack Engineer                     Akur8                           google_jobs
+         → https://apply.workable.com/akur8/j/3E5A379075/apply?ref=getin.ai
+   12    56.1  Job Application for Full stack developer-Stud  Vonage                          google_jobs
+         → https://boards.greenhouse.io/vonage/jobs/7253350002
+   13    53.3  HighLevel                                      Full Stack Builder (Team of On  google_jobs
+         → https://jobs.lever.co/gohighlevel/ce928065-f2cf-4412-a5e7-32677e6f4e4b/apply
+   14    53.3  Job Application for Software Engineer, Machin  Gleanwork                       google_jobs
+         → https://boards.greenhouse.io/gleanwork/jobs/4012745005
+   15     0.0  4211 Ai Engineer Jobs in India: Latest Ai Eng  ?                               foundit
+         → https://www.foundit.in/search/ai-engineer-jobs-in-india
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: Full Stack AI Engineer @ Remote
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Remote | Full Stack AI Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Phase A] discovering companies for 'Full Stack AI Engineer' in Remote...
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+    internet discovery done — querying DB for top companies...
+  [Phase A] found 70 companies. scraping portals...
+  [Phase A] portal scrape done — 15 jobs
+  [Phase B] searching job boards (parallel)...
+  [Phase B] boards done — 126 jobs
+
+────────────────────────────────────────────────────────────
+  RESULTS: Full Stack AI Engineer @ Remote
+────────────────────────────────────────────────────────────
+  Keywords   : full stack ai engineer, full, stack, ai, engineer, engineering, software, developer, programming, technical
+  Candidates : 141
+  After dedup: 25
+  Ranked     : 12
+  Elapsed    : 412.4s
+  · Phase A: live discovery OK — 70 companies
+  · board health: ddg:24 | glassdoor:6 | google_jobs:30 | jobspy:40 | monster:6 | naukri:20
+  · role filter: 37 → 26 relevant (11 rejected)
+  · city filter (Remote): 19 → 17 (2 off-city removed)
+  · company cap (max 3): 17 → 12
+
+    #   SCORE  TITLE                                          COMPANY                         SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ───────────────
+    1    73.7  Principal AI Engineer - Frontier Data          70+ Remote Generative AI Engin  greenhouse
+         → https://job-boards.greenhouse.io/turing/jobs/5809205004
+    2    71.1  Principal Forward Deployed AI Engineer         70+ Remote Generative AI Engin  greenhouse
+         → https://job-boards.greenhouse.io/turing/jobs/5688729004
+    3    70.3  Full stack AI Engineer Remote with 0           ?                               foundit
+         → https://www.foundit.in/job/full-stack-ai-engineer-remote-m0851-india-48751973
+    4    70.3  Remote Full-Stack AI Engineer                  ?                               foundit
+         → https://www.foundit.in/job/remote-full-stack-ai-engineer-17853-turing-chennai-35974271
+    5    70.3  Full Stack AI Engineer with 6                  ?                               foundit
+         → https://www.foundit.in/job/full-stack-ai-engineer-persistent-systems-pune-50054342
+    6    70.1  Full-Stack AI Engineer                         Beroe Inc.                      jobspy
+         → https://in.indeed.com/viewjob?jk=664eaec2743606b2
+    7    69.7  Staff Gen AI Engineer                          70+ Remote Generative AI Engin  greenhouse
+         → https://job-boards.greenhouse.io/turing/jobs/5480607004
+    8    69.7  Full-Stack AI Engineer                         Pavago                          google_jobs
+         → https://apply.workable.com/pavago/j/4CD14CCEB4
+    9    68.3  Applied AI Principal/Staff Engineer (Agentic   Best Tech Jobs & Startup Jobs   greenhouse
+         → https://job-boards.greenhouse.io/builtin/jobs/7855050
+   10    67.2  Senior AI Engineer (Remote                     India)                          google_jobs
+         → https://apply.workable.com/jobgether/j/3C20C1D2E1/
+   11    61.6  Senior Software Engineer (Full Stack)          AI/ML Products & Services...    google_jobs
+         → https://apply.workable.com/4most/j/38BB1D9C49/
+   12    55.3  Full-Stack Engineer (React, Vite & TanStack E  EXL                             jobspy
+         → https://www.linkedin.com/jobs/view/4414339472
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: Applied AI Engineer @ Bangalore
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Bangalore | Applied AI Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Phase A] discovering companies for 'Applied AI Engineer' in Bangalore...
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+    internet discovery done — querying DB for top companies...
+  [Phase A] found 241 companies. scraping portals...
+  [Phase A] portal scrape done — 155 jobs
+  [Phase B] searching job boards (parallel)...
+  [Phase B] boards done — 116 jobs
+
+────────────────────────────────────────────────────────────
+  RESULTS: Applied AI Engineer @ Bangalore
+────────────────────────────────────────────────────────────
+  Keywords   : applied AI engineer, applied machine learning engineer, AI engineer, machine learning engineer, deep learning engineer, AI/ML engineer, applied scientist, AI researcher, ML engineer, AI developer
+  Candidates : 271
+  After dedup: 85
+  Ranked     : 31
+  Elapsed    : 480.8s
+  · Phase A: live discovery OK — 241 companies
+  · board health: ddg:19 | glassdoor:11 | google_jobs:20 | jobspy:40 | monster:6 | naukri:20
+  · company-type filter: dropped 12 rejected-type companies
+  · role filter: 121 → 90 relevant (31 rejected)
+  · city filter (Bangalore): 59 → 39 (20 off-city removed)
+  · company cap (max 3): 39 → 31
+
+    #   SCORE  TITLE                                          COMPANY                         SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ───────────────
+    1    73.1  Forward Deployed Software Engineer | 2-5 year  Sarvam AI                       ashby
+         → https://jobs.ashbyhq.com/sarvam/ac2b835e-375c-48d8-a174-8c2935f408b2/application
+    2    70.7  Applied AI Principal/Staff Engineer (Agentic   Best Tech Jobs & Startup Jobs   greenhouse
+         → https://job-boards.greenhouse.io/builtin/jobs/7855050
+    3    68.8  ML Engineer (Data), Foundational Models        Sarvam AI                       ashby
+         → https://jobs.ashbyhq.com/sarvam/2d72a541-c805-4bd9-81cd-ac2db98611fa/application
+    4    68.1  Engineering — Full Stack AI Engineer           Sarvam AI                       ashby
+         → https://jobs.ashbyhq.com/sarvam/325c7d1b-963d-42a8-b2b8-a4c5c6705c54/application
+    5    65.6  Tech Lead (Platform Architect + Applied AI En  Shae Group                      google_jobs
+         → https://apply.workable.com/shae-group/j/116BEEDFE9
+    6    64.5  Applied AI Engineer                            CheQ                            scrapegraph
+         → https://www.instahyre.com/job-336694-applied-ai-engineer-at-cheq-2-bangalore/
+    7    63.7  Applied AI Engineer - MERN Stack               ?                               generic_http
+         → https://cutshort.io/job/Applied-AI-Engineer-MERN-Stack-Procedure-osZhIuIE
+    8    63.3  Applied AI Engineer (AI/ML LLM Deployment)     NeoGenCode Technologies Pvt Lt  scrapegraph
+         → https://cutshort.io/job/Applied-AI-Engineer-AI-ML-LLM-Deployment-NeoGenCode-Technologies-Pvt-Lt
+    9    62.8  Lead Machine Learning Research Engineer, Appl  Zaizi                           google_jobs
+         → https://apply.workable.com/zaizi/j/97990F0249
+   10    62.5  Applied AI Engineer (India)                    Mercor                          scrapegraph
+         → https://work.mercor.com/jobs/list_AAABl8xmZuOP0EACJhdHmZRp/applied-ai-engineer-india
+   11    62.3  Applied AI Engineer with 1                     ?                               foundit
+         → https://www.foundit.in/job/applied-ai-engineer-i2e-consulting-private-limited-remote-47165204
+   12    61.7  Applied AI Engineer @ Salient                  Salient                         google_jobs
+         → https://jobs.ashbyhq.com/salient/5bef27e7-17b3-4ad0-93e0-9e430409acd4
+   13    61.7  Applied AI Engineer @ Tandem                   Tandem                          google_jobs
+         → https://jobs.ashbyhq.com/tandem/09564102-1713-4941-bbd5-77eaac9ca88e
+   14    61.7  Applied AI Engineer                            Fuse Energy                     google_jobs
+         → https://apply.workable.com/fuseenergy/j/64F3A20A10
+   15    61.7  Applied AI Engineer                            Air                             google_jobs
+         → https://apply.workable.com/air/j/EB172BBC35
+   16    60.9  AI/ML Engineer                                 CG-VAK Software & Exports Ltd.  jobspy
+         → https://www.linkedin.com/jobs/view/4417145458
+   17    60.9  AI/ML Engineer (Python, ML, PySpark)           HGS                             jobspy
+         → https://www.linkedin.com/jobs/view/4416272849
+   18    60.9  AI Software Engineer                           Cisco                           jobspy
+         → https://www.linkedin.com/jobs/view/4416096671
+   19    60.9  Search Engineer - AI/ML                        Apple                           jobspy
+         → https://www.linkedin.com/jobs/view/4414161574
+   20    60.9  AI/Machine Learning Engineer                   Apple                           jobspy
+         → https://www.linkedin.com/jobs/view/4414150953
+   21    60.9  Associate Engineer - AI/ML with Python         HARMAN India                    jobspy
+         → https://www.linkedin.com/jobs/view/4412930013
+   22    60.9  Software Engineer, AI/ML                       Google                          jobspy
+         → https://www.linkedin.com/jobs/view/4390913792
+   23    56.1  Product Engineer (Bangalore) @ Bespoke Labs    Bespokelabs                     google_jobs
+         → https://jobs.ashbyhq.com/bespokelabs/3751a4cb-bb4d-4113-afe6-9c87341f6739
+   24    53.6  Senior Software Engineer                       AI & Cloud System               google_jobs
+         → https://apply.workable.com/aryng/j/1410ECEB72/apply/
+   25    53.3  Job Application for Software Engineer, Machin  Gleanwork                       google_jobs
+         → https://boards.greenhouse.io/gleanwork/jobs/4012745005
+   26    53.3  Job Application for Software Engineer, Backen  Glean                           google_jobs
+         → https://boards.greenhouse.io/gleanwork/jobs/4006731005
+   27    53.3  Job Application for Software Engineer, Fronte  Glean                           google_jobs
+         → https://boards.greenhouse.io/gleanwork/jobs/4012744005
+   28    53.3  Job Application for Quality Assurance Enginee  Glean                           google_jobs
+         → https://boards.greenhouse.io/gleanwork/jobs/4012824005
+   29    52.5  Machine Learning Engineer                      SAP                             jobspy
+         → https://www.linkedin.com/jobs/view/4416576437
+   30    52.5  Software Engineer, ML Systems                  eBay                            jobspy
+         → https://www.linkedin.com/jobs/view/4267435259
+   31     0.0  10250 Applied Ai Systems Jobs in Bengaluru /   ?                               foundit
+         → https://www.foundit.in/search/applied-ai-systems-jobs-in-bengaluru-bangalore
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: Applied AI Engineer @ Mumbai
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Mumbai | Applied AI Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Phase A] discovering companies for 'Applied AI Engineer' in Mumbai...
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+    internet discovery done — querying DB for top companies...
+  [Phase A] found 90 companies. scraping portals...
+  [Phase A] portal scrape done — 0 jobs
+  [Phase B] searching job boards (parallel)...
+  [Phase B] boards done — 138 jobs
+
+────────────────────────────────────────────────────────────
+  RESULTS: Applied AI Engineer @ Mumbai
+────────────────────────────────────────────────────────────
+  Keywords   : applied AI engineer, applied machine learning engineer, AI engineer, machine learning engineer, deep learning engineer, AI/ML engineer, applied scientist, AI researcher, ML engineer, AI developer
+  Candidates : 138
+  After dedup: 49
+  Ranked     : 18
+  Elapsed    : 406.1s
+  · Phase A: live discovery OK — 90 companies
+  · board health: ddg:25 | glassdoor:14 | google_jobs:28 | jobspy:40 | monster:11 | naukri:20
+  · company-type filter: dropped 8 rejected-type companies
+  · role filter: 74 → 50 relevant (24 rejected)
+  · city filter (Mumbai): 28 → 19 (9 off-city removed)
+  · company cap (max 3): 19 → 18
+
+    #   SCORE  TITLE                                          COMPANY                         SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ───────────────
+    1    69.1  Applied AI Engineer - AI Labs                  i2e Consulting                  scrapegraph
+         → https://www.instahyre.com/job-413194-applied-ai-engineer-ai-labs-at-i2e-consulting-work-from-ho
+    2    67.3  Applied AI Engineer (AI/ML LLM Deployment)     NeoGenCode Technologies Pvt Lt  scrapegraph
+         → https://cutshort.io/job/Applied-AI-Engineer-AI-ML-LLM-Deployment-NeoGenCode-Technologies-Pvt-Lt
+    3    66.1  Applied AI Engineer                            Capital                         scrapegraph
+         → https://www.instahyre.com/job-414944-applied-ai-engineer-at-capital-mumbai/
+    4    65.6  Tech Lead (Platform Architect + Applied AI En  Shae Group                      google_jobs
+         → https://apply.workable.com/shae-group/j/116BEEDFE9
+    5    63.7  Applied AI Engineer - MERN Stack               ?                               generic_http
+         → https://cutshort.io/job/Applied-AI-Engineer-MERN-Stack-Procedure-osZhIuIE
+    6    63.6  Applied AI Engineer with 2                     ?                               foundit
+         → https://www.foundit.in/job/applied-ai-engineer-weekday-yc-w21-mumbai-44424959
+    7    62.8  Lead Machine Learning Research Engineer, Appl  Zaizi                           google_jobs
+         → https://apply.workable.com/zaizi/j/97990F0249
+    8    62.3  Applied AI Engineer with 1                     ?                               foundit
+         → https://www.foundit.in/job/applied-ai-engineer-i2e-consulting-private-limited-remote-47165204
+    9    62.0  Senior Software Engineer, Applied AI @ Vanta   Vanta                           google_jobs
+         → https://jobs.ashbyhq.com/vanta/2381d292-48b1-4638-a735-fd23802f6ca4?locationId=20d2e6c0-4649-4f
+   10    61.7  Job Application for AI Engineer & Researcher   xAI                             google_jobs
+         → https://boards.greenhouse.io/xai/jobs/4378347007
+   11    61.7  Applied AI Engineer @ Tandem                   Tandem                          google_jobs
+         → https://jobs.ashbyhq.com/tandem/09564102-1713-4941-bbd5-77eaac9ca88e
+   12    61.7  Applied AI Engineer @ Salient                  Salient                         google_jobs
+         → https://jobs.ashbyhq.com/salient/5bef27e7-17b3-4ad0-93e0-9e430409acd4
+   13    61.7  Applied AI Engineer @ Slash Financial          Slash Financial                 google_jobs
+         → https://jobs.ashbyhq.com/slash-financial/3a0b7c7b-2cb5-4914-baa8-d89e17c11bf9
+   14    61.7  Applied AI Engineer @ Paraform                 Paraform                        google_jobs
+         → https://jobs.ashbyhq.com/paraform/ed192d51-74e9-4712-89a6-4503967c4184
+   15    61.7  Applied AI Engineer                            Fuse Energy                     google_jobs
+         → https://apply.workable.com/fuseenergy/j/64F3A20A10
+   16    61.7  Applied AI Engineer                            Air                             google_jobs
+         → https://apply.workable.com/air/j/EB172BBC35
+   17    53.3  Mistral AI                                     Applied AI, Evaluation Enginee  google_jobs
+         → https://jobs.lever.co/mistral/e0db3860-0a80-47a8-958a-f8e62f3bb59c
+   18    53.3  Job Application for Software Engineer, Machin  Gleanwork                       google_jobs
+         → https://boards.greenhouse.io/gleanwork/jobs/4012745005
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: Applied AI Engineer @ Remote
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Remote | Applied AI Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Phase A] discovering companies for 'Applied AI Engineer' in Remote...
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+    internet discovery done — querying DB for top companies...
+  [Phase A] found 78 companies. scraping portals...
+  [Phase A] portal scrape done — 16 jobs
+  [Phase B] searching job boards (parallel)...
+  [Phase B] boards done — 128 jobs
+
+────────────────────────────────────────────────────────────
+  RESULTS: Applied AI Engineer @ Remote
+────────────────────────────────────────────────────────────
+  Keywords   : applied AI engineer, applied machine learning engineer, AI engineer, machine learning engineer, deep learning engineer, AI/ML engineer, applied scientist, AI researcher, ML engineer, AI developer
+  Candidates : 144
+  After dedup: 30
+  Ranked     : 14
+  Elapsed    : 410.4s
+  · Phase A: live discovery OK — 78 companies
+  · board health: ddg:19 | glassdoor:15 | google_jobs:28 | jobspy:40 | monster:6 | naukri:20
+  · company-type filter: dropped 4 rejected-type companies
+  · role filter: 36 → 31 relevant (5 rejected)
+  · city filter (Remote): 24 → 19 (5 off-city removed)
+  · company cap (max 3): 19 → 14
+
+    #   SCORE  TITLE                                          COMPANY                         SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ───────────────
+    1    73.7  Principal AI Engineer - Frontier Data          70+ Remote Generative AI Engin  greenhouse
+         → https://job-boards.greenhouse.io/turing/jobs/5809205004
+    2    71.1  Principal Forward Deployed AI Engineer         70+ Remote Generative AI Engin  greenhouse
+         → https://job-boards.greenhouse.io/turing/jobs/5688729004
+    3    69.7  Staff Gen AI Engineer                          70+ Remote Generative AI Engin  greenhouse
+         → https://job-boards.greenhouse.io/turing/jobs/5480607004
+    4    68.8  Applied AI Engineer with 2                     ?                               foundit
+         → https://www.foundit.in/job/applied-ai-engineer-weekday-yc-w21-mumbai-44424959
+    5    68.3  Applied AI Principal/Staff Engineer (Agentic   Best Tech Jobs & Startup Jobs   greenhouse
+         → https://job-boards.greenhouse.io/builtin/jobs/7855050
+    6    67.5  Applied AI Engineer with 1                     ?                               foundit
+         → https://www.foundit.in/job/applied-ai-engineer-i2e-consulting-private-limited-remote-47165204
+    7    67.3  Applied AI Engineer                            Ameotech Informatics            jobspy
+         → https://in.indeed.com/viewjob?jk=e944a7dce1bec7f6
+    8    67.3  Applied AI Engineer (AI/ML LLM Deployment)     NeoGenCode Technologies Pvt Lt  scrapegraph
+         → https://cutshort.io/job/Applied-AI-Engineer-AI-ML-LLM-Deployment-NeoGenCode-Technologies-Pvt-Lt
+    9    67.2  Senior AI/ML Engineer (India/Remote) @ Articu  Articul8                        google_jobs
+         → https://jobs.ashbyhq.com/articul8/79043f8a-765c-4bd3-8c47-bc6897d83c53
+   10    67.2  Senior AI Engineer (Remote                     India)                          google_jobs
+         → https://apply.workable.com/jobgether/j/3C20C1D2E1/
+   11    63.7  Applied AI Engineer - MERN Stack               ?                               generic_http
+         → https://cutshort.io/job/Applied-AI-Engineer-MERN-Stack-Procedure-osZhIuIE
+   12    60.9  Software Engineer, AI/ML                       Google                          jobspy
+         → https://www.linkedin.com/jobs/view/4390913792
+   13    58.5  Job Application for Software Engineer, Machin  Gleanwork                       google_jobs
+         → https://boards.greenhouse.io/gleanwork/jobs/4012745005
+   14    58.5  GenAI Software Engineer (Remote                India)                          google_jobs
+         → https://apply.workable.com/jobgether/j/E6AC48354E/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: Founding AI Engineer @ Bangalore
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Bangalore | Founding AI Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Phase A] discovering companies for 'Founding AI Engineer' in Bangalore...
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+    internet discovery done — querying DB for top companies...
+  [Phase A] found 244 companies. scraping portals...
+  [Phase A] portal scrape done — 152 jobs
+  [Phase B] searching job boards (parallel)...
+  [Phase B] boards done — 122 jobs
+
+────────────────────────────────────────────────────────────
+  RESULTS: Founding AI Engineer @ Bangalore
+────────────────────────────────────────────────────────────
+  Keywords   : founding ai engineer, founding machine learning engineer, founding ml engineer, ai engineer, machine learning engineer, ml engineer, senior ai engineer, lead ai engineer, ai architect, deep learning engineer
+  Candidates : 274
+  After dedup: 85
+  Ranked     : 28
+  Elapsed    : 473.4s
+  · Phase A: live discovery OK — 244 companies
+  · board health: ddg:12 | glassdoor:14 | google_jobs:23 | jobspy:40 | monster:13 | naukri:20
+  · company-type filter: dropped 8 rejected-type companies
+  · role filter: 122 → 93 relevant (29 rejected)
+  · city filter (Bangalore): 64 → 43 (21 off-city removed)
+  · company cap (max 3): 43 → 28
+
+    #   SCORE  TITLE                                          COMPANY                         SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ───────────────
+    1    73.1  Forward Deployed Software Engineer | 2-5 year  Sarvam AI                       ashby
+         → https://jobs.ashbyhq.com/sarvam/ac2b835e-375c-48d8-a174-8c2935f408b2/application
+    2    73.0  Backend Engineer, API Team                     Sarvam AI                       ashby
+         → https://jobs.ashbyhq.com/sarvam/f46a00ea-a25b-478d-92b9-7a2deb129f5b/application
+    3    71.8  Backend Engineer, Chanakya                     Sarvam AI                       ashby
+         → https://jobs.ashbyhq.com/sarvam/86ae80f8-b7eb-43a4-afde-fef58e77e23e/application
+    4    70.7  Applied AI Principal/Staff Engineer (Agentic   Best Tech Jobs & Startup Jobs   greenhouse
+         → https://job-boards.greenhouse.io/builtin/jobs/7855050
+    5    70.3  AI/ML Engineer (LLMs, RAG Agent Systems)       IAI solution                    scrapegraph
+         → https://cutshort.io/job/AI-ML-Engineer-LLMs-RAG-Agent-Systems-Bengaluru-Bangalore-IAI-solution-
+    6    65.9  Founding AI Engineer with 2                    ?                               foundit
+         → https://www.foundit.in/job/founding-ai-engineer-uplers-india-49042029
+    7    65.4  AI Founding Engineer with 5                    ?                               foundit
+         → https://www.foundit.in/job/ai-founding-engineer-intervue-io-bengaluru-bangalore-35531315
+    8    65.4  Founding AI Engineer with 0                    ?                               foundit
+         → https://www.foundit.in/job/founding-ai-engineer-knowl-bengaluru-bangalore-41414332
+    9    64.8  Founding Generative AI Engineer                India @ Altimate.ai             google_jobs
+         → https://jobs.ashbyhq.com/altimate/d5509b48-a2a0-4602-9fd1-aab5666411c8/application
+   10    64.8  Founding AI Engineer                           VirtuHire                       google_jobs
+         → https://apply.workable.com/virtuhire/j/13E29907D8/
+   11    64.5  AI Engineer (Solutions Architect + Applied AI  Human ...                       google_jobs
+         → https://apply.workable.com/humanintelligence/j/F790BFAA40/
+   12    61.7  AI Automation Engineer                         Valsoft Corporation             google_jobs
+         → https://apply.workable.com/valsoft-corp/j/AD34015558/
+   13    60.9  AI/ML Engineer (Python, ML, PySpark)           HGS                             jobspy
+         → https://www.linkedin.com/jobs/view/4416272849
+   14    60.9  Search Engineer - AI/ML                        Apple                           jobspy
+         → https://www.linkedin.com/jobs/view/4414161574
+   15    60.9  AI/Machine Learning Engineer                   Apple                           jobspy
+         → https://www.linkedin.com/jobs/view/4414150953
+   16    60.9  Associate Engineer - AI/ML with Python         HARMAN India                    jobspy
+         → https://www.linkedin.com/jobs/view/4412930013
+   17    60.9  Software Engineer, AI/ML                       Google                          jobspy
+         → https://www.linkedin.com/jobs/view/4390913792
+   18    59.2  Founding Engineer                              AI/ML (Speech & Cognitive Asse  google_jobs
+         → https://apply.workable.com/futuresight/j/2BA5D70AB6/
+   19    59.2  Founding Engineer                              FutureSight                     google_jobs
+         → https://apply.workable.com/futuresight/j/2CB59DA368
+   20    53.3  Job Application for Software Engineer, Machin  Gleanwork                       google_jobs
+         → https://boards.greenhouse.io/gleanwork/jobs/4012745005
+   21    53.3  Job Application for Software Engineer, Backen  Glean                           google_jobs
+         → https://boards.greenhouse.io/gleanwork/jobs/4006731005
+   22    53.3  Job Application for Software Engineer, Fronte  Glean                           google_jobs
+         → https://boards.greenhouse.io/gleanwork/jobs/4012744005
+   23    53.3  Freelance Machine Learning Engineer (Python)   Mindrift                        google_jobs
+         → https://apply.workable.com/toloka-ai/j/C29002A51F/
+   24    53.3  Weekday AI                                     Current Openings                google_jobs
+         → https://apply.workable.com/weekday-1/
+   25    53.3  V4C.ai                                         Current Openings                google_jobs
+         → https://apply.workable.com/v4c/
+   26    52.5  Machine Learning Engineer                      SAP                             jobspy
+         → https://www.linkedin.com/jobs/view/4416576437
+   27    52.5  Machine Learning Engineer - Apple Store Onlin  Apple                           jobspy
+         → https://www.linkedin.com/jobs/view/4415146770
+   28    52.5  Software Engineer, ML Systems                  eBay                            jobspy
+         → https://www.linkedin.com/jobs/view/4267435259
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: Founding AI Engineer @ Mumbai
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Mumbai | Founding AI Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Phase A] discovering companies for 'Founding AI Engineer' in Mumbai...
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+    internet discovery done — querying DB for top companies...
+  [Phase A] found 103 companies. scraping portals...
+  [Phase A] portal scrape done — 0 jobs
+  [Phase B] searching job boards (parallel)...
+  [Phase B] boards done — 111 jobs
+
+────────────────────────────────────────────────────────────
+  RESULTS: Founding AI Engineer @ Mumbai
+────────────────────────────────────────────────────────────
+  Keywords   : founding ai engineer, founding machine learning engineer, founding ml engineer, ai engineer, machine learning engineer, ml engineer, senior ai engineer, lead ai engineer, ai architect, deep learning engineer
+  Candidates : 111
+  After dedup: 22
+  Ranked     : 12
+  Elapsed    : 416.7s
+  · Phase A: live discovery OK — 103 companies
+  · board health: ddg:18 | glassdoor:17 | google_jobs:21 | jobspy:30 | monster:6 | naukri:19
+  · company-type filter: dropped 3 rejected-type companies
+  · role filter: 48 → 28 relevant (20 rejected)
+
+    #   SCORE  TITLE                                          COMPANY                         SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ───────────────
+    1    70.3  AI/ML Engineer (LLMs, RAG Agent Systems)       IAI solution                    scrapegraph
+         → https://cutshort.io/job/AI-ML-Engineer-LLMs-RAG-Agent-Systems-Bengaluru-Bangalore-IAI-solution-
+    2    65.9  Founding AI Engineer with 2                    ?                               foundit
+         → https://www.foundit.in/job/founding-ai-engineer-uplers-indore-49041548
+    3    65.4  Founding AI Engineer (Logistics Domain) with   ?                               foundit
+         → https://www.foundit.in/job/founding-ai-engineer-logistics-domain-olive-green-consulting-pune-46
+    4    64.8  Founding Generative AI Engineer                India @ Altimate.ai             google_jobs
+         → https://jobs.ashbyhq.com/altimate/d5509b48-a2a0-4602-9fd1-aab5666411c8?utm_source_platform=work
+    5    64.8  Founding AI Engineer @ Bjak                    Bjakcareer                      google_jobs
+         → https://jobs.ashbyhq.com/bjakcareer/3bf52980-fe46-41cf-8caa-14b10eb6efec?departmentId=ba500c94-
+    6    64.8  Founding AI/ML Research Engineer @ Bjak        Bjakcareer                      google_jobs
+         → https://jobs.ashbyhq.com/bjakcareer/3a2f68fb-6cf8-4a2e-856e-5cc2a3e7ea66?departmentId=ba500c94-
+    7    64.8  Founding AI Engineer                           VirtuHire                       google_jobs
+         → https://apply.workable.com/virtuhire/j/13E29907D8/
+    8    63.6  Founding AI Engineer at Six Degrees Consultin  ?                               search
+         → https://wellfound.com/jobs/4053508-founding-ai-engineer
+    9    61.7  Job Application for AI Engineer & Researcher   xAI                             google_jobs
+         → https://boards.greenhouse.io/xai/jobs/4378347007
+   10    59.2  Founding Engineer                              AI/ML (Speech & Cognitive Asse  google_jobs
+         → https://apply.workable.com/futuresight/j/2BA5D70AB6/
+   11    53.3  Job Application for Distributed ML Systems En  Togetherai                      google_jobs
+         → https://boards.greenhouse.io/togetherai/jobs/4385547007
+   12    53.3  Job Application for Software Engineer, Machin  Gleanwork                       google_jobs
+         → https://boards.greenhouse.io/gleanwork/jobs/4012745005
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: Founding AI Engineer @ Remote
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Remote | Founding AI Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Phase A] discovering companies for 'Founding AI Engineer' in Remote...
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+    internet discovery done — querying DB for top companies...
+  [Phase A] found 84 companies. scraping portals...
+  [Phase A] portal scrape done — 15 jobs
+  [Phase B] searching job boards (parallel)...

@@ -1,0 +1,488 @@
+{
+  "role": "founding ai engineer",
+  "city": "mumbai",
+  "cached_at": 1779564708.709345,
+  "expires_at": 1779593508.709345,
+  "job_count": 22,
+  "jobs": [
+    {
+      "title": "Head of Machine Learning",
+      "company": "Prodigal",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=276737c7a4e483e6",
+      "apply_url": "https://in.indeed.com/viewjob?jk=276737c7a4e483e6",
+      "url_type": "UNKNOWN",
+      "description": "At Prodigal, we are building AI Agents for loan servicing and collections. Founded in 2018 by IITB alumni, our journey began with one bold mission: to eradicate the inefficiencies and confusion that have plagued the lending and collections industry for decades. We are backed by Y Combinator, Accel and Menlo Ventures.\n\n\n\nToday, we stand at the forefront of a seismic shift in the industry, building Agentic AI applications for consumer finance. Powered by our cutting\\-edge platform, Prodigal’s Inte",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "158aa03913bbf006",
+      "canonical": true,
+      "canonical_id": "158aa03913bbf006",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=276737c7a4e483e6",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Senior Machine Learning Engineer",
+      "company": "REAL Broker, LLC",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=c8338bdf29876b6d",
+      "apply_url": "https://in.indeed.com/viewjob?jk=c8338bdf29876b6d",
+      "url_type": "UNKNOWN",
+      "description": "Real (Nasdaq: REAX) is a publicly traded, fast\\-growing global real estate brokerage powered by technology and driven by people. Since our founding in 2014, we’ve been reimagining the residential real estate experience. With operations across the U.S., Canada, India, and the District of Columbia, we’re leading the industry with our cutting\\-edge platform that empowers agents, simplifies the buying and selling journey, and unlocks greater financial opportunities.\n\n\nAt Real, we believe in pairing ",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "3175c1fb789ab7c9",
+      "canonical": true,
+      "canonical_id": "3175c1fb789ab7c9",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=c8338bdf29876b6d",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Automation Engineer",
+      "company": "REAL Broker, LLC",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=1663089a9d4ab656",
+      "apply_url": "https://in.indeed.com/viewjob?jk=1663089a9d4ab656",
+      "url_type": "UNKNOWN",
+      "description": "Real (Nasdaq: REAX) is a publicly traded, fast\\-growing global real estate brokerage powered by technology and driven by people. Since our founding in 2014, we’ve been reimagining the residential real estate experience. With operations across the U.S., Canada, India, and the District of Columbia, we’re leading the industry with our cutting\\-edge platform that empowers agents, simplifies the buying and selling journey, and unlocks greater financial opportunities.\n\n\nAt Real, we believe in pairing ",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "3736c9e439147e37",
+      "canonical": true,
+      "canonical_id": "3736c9e439147e37",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=1663089a9d4ab656",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Software Engineer",
+      "company": "nan",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=c8b7952d7d8fb94d",
+      "apply_url": "https://in.indeed.com/viewjob?jk=c8b7952d7d8fb94d",
+      "url_type": "UNKNOWN",
+      "description": "Position: Software Engineer\n\n\nLocation: Mumbai\n\n\nWorking Days: Monday to Friday\n\n\nExperience Required: 4\\+ years\n\n\nClient: Largest women's care brand in India\n\n\n**Responsibilities:**\n---------------------\n\n\n* Scale up our platform to serve 1 Million users without a glitch.\n* Build a first\\-of\\-its\\-kind medical AI that is designed specifically for women's healthcare.\n* Work across products and technologies, including backend microservices and customer facing apps on web and mobile.\n* Design and ",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "ebb9911a4cd2f027",
+      "canonical": true,
+      "canonical_id": "ebb9911a4cd2f027",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=c8b7952d7d8fb94d",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Senior Full Stack Developer",
+      "company": "GAMMA MARINE PVT LTD",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=6c15e5e901785d2f",
+      "apply_url": "https://in.indeed.com/viewjob?jk=6c15e5e901785d2f",
+      "url_type": "UNKNOWN",
+      "description": "**Role Overview**\n\nDesign, develop, and scale secure, high\\-performance web applications that power next\\-generation maritime learning and assessment systems, delivering seamless end\\-to\\-end digital experiences. Working alongside the Co\\-Founders and AI/Prompt Engineer, you will translate complex maritime training requirements into a robust, scalable, and user\\-friendly digital product.\n\nThis is a rare opportunity to define the technical direction of an early\\-stage EdTech company with strong i",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "fa3c6cd0d2ba6e15",
+      "canonical": true,
+      "canonical_id": "fa3c6cd0d2ba6e15",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=6c15e5e901785d2f",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "QA Software Engineer 790",
+      "company": "Protegrity",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=d9f20ce91b9cc2bd",
+      "apply_url": "https://in.indeed.com/viewjob?jk=d9f20ce91b9cc2bd",
+      "url_type": "UNKNOWN",
+      "description": "At Protegrity, we lead innovation by using AI and quantum\\-resistant cryptography to transform data protection across cloud\\-native, hybrid, on\\-premises, and open source environments. We leverage advanced cryptographic methods such as tokenization, format\\-preserving encryption, and quantum\\-resilient techniques to protect sensitive data. As a global leader in data security, our mission is to ensure that data isn’t just valuable but also usable, trusted, and safe.\nProtegrity offers the opportun",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "790d38e300d34224",
+      "canonical": true,
+      "canonical_id": "790d38e300d34224",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=d9f20ce91b9cc2bd",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Robotics AI Engineer (Freelancer)",
+      "company": "Deccan AI Experts",
+      "location": "Mumbai, Maharashtra, India",
+      "url": "https://www.linkedin.com/jobs/view/4416484720",
+      "apply_url": "https://www.linkedin.com/jobs/view/4416484720",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "a26cf697effb849f",
+      "canonical": true,
+      "canonical_id": "a26cf697effb849f",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4416484720",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "AI/ML Junior Developer",
+      "company": "BNP Paribas",
+      "location": "Mumbai, Maharashtra, India",
+      "url": "https://www.linkedin.com/jobs/view/4373914724",
+      "apply_url": "https://www.linkedin.com/jobs/view/4373914724",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "6df784478ac1c693",
+      "canonical": true,
+      "canonical_id": "6df784478ac1c693",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4373914724",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "AI/ML Engineer",
+      "company": "ADR Group International",
+      "location": "Mumbai, Maharashtra, India",
+      "url": "https://www.linkedin.com/jobs/view/4250332696",
+      "apply_url": "https://www.linkedin.com/jobs/view/4250332696",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "4945e9c9dac99fb7",
+      "canonical": true,
+      "canonical_id": "4945e9c9dac99fb7",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4250332696",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Founding AI Engineer with 2",
+      "company": "",
+      "location": "Mumbai",
+      "url": "https://www.foundit.in/job/founding-ai-engineer-uplers-indore-49041548",
+      "apply_url": "https://www.foundit.in/job/founding-ai-engineer-uplers-indore-49041548",
+      "description": "Check out similar active Founding AI Engineer jobs at Foundit.AI/ML – Collaborate on training, prompt engineering, fine-tuning and deploying models. Product Ownership – Take ideas from spec to production and work closely with founders.",
+      "_source_type": "foundit",
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "359e168f2d64bbf6",
+      "canonical": true,
+      "canonical_id": "359e168f2d64bbf6",
+      "alternate_sources": [
+        "https://www.foundit.in/job/founding-ai-engineer-uplers-india-49042029",
+        "https://www.foundit.in/job/founding-ai-engineer-uplers-cuttack-49041559",
+        "https://www.foundit.in/job/founding-ai-engineer-uplers-amritsar-49041544"
+      ],
+      "apply_route": {
+        "best_apply_route": "foundit",
+        "apply_url": "https://www.foundit.in/job/founding-ai-engineer-uplers-indore-49041548",
+        "backup_urls": [
+          "https://www.foundit.in/job/founding-ai-engineer-uplers-india-49042029",
+          "https://www.foundit.in/job/founding-ai-engineer-uplers-cuttack-49041559",
+          "https://www.foundit.in/job/founding-ai-engineer-uplers-amritsar-49041544"
+        ],
+        "reason": "best route: foundit (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Founding AI Engineer (Logistics Domain) with 5",
+      "company": "",
+      "location": "Mumbai",
+      "url": "https://www.foundit.in/job/founding-ai-engineer-logistics-domain-olive-green-consulting-pune-46485888",
+      "apply_url": "https://www.foundit.in/job/founding-ai-engineer-logistics-domain-olive-green-consulting-pune-46485888",
+      "description": "Job Description. Founding AI Architect – Frontier Logistics AI Model. Location: Pune, India (On-site). Type: Full-Time | Founding Team Position. Experience & Mandatory Skillset. Experience: 5+ years building and deploying AI/ML systems in production.",
+      "_source_type": "foundit",
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "9e20ed1fa08121cd",
+      "canonical": true,
+      "canonical_id": "9e20ed1fa08121cd",
+      "apply_route": {
+        "best_apply_route": "foundit",
+        "apply_url": "https://www.foundit.in/job/founding-ai-engineer-logistics-domain-olive-green-consulting-pune-46485888",
+        "backup_urls": [],
+        "reason": "best route: foundit (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Job Application for Founding Engineer (Full Stack)",
+      "company": "Breadboard",
+      "location": "Mumbai",
+      "url": "https://boards.greenhouse.io/applytobreadboard/jobs/4379970004",
+      "apply_url": "https://boards.greenhouse.io/applytobreadboard/jobs/4379970004",
+      "description": "You will have the opportunity to help define the engineering culture, grow the team and hire other talented engineers. You will be involved in all aspects of the software development process, architectural decisions, recruiting and building the organization in general.",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "74e83d5e70d79bfb",
+      "canonical": true,
+      "canonical_id": "74e83d5e70d79bfb",
+      "apply_route": {
+        "best_apply_route": "greenhouse",
+        "apply_url": "https://boards.greenhouse.io/applytobreadboard/jobs/4379970004",
+        "backup_urls": [],
+        "reason": "best route: greenhouse (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Job Application for Distributed ML Systems Engineer ...",
+      "company": "Togetherai",
+      "location": "Mumbai",
+      "url": "https://boards.greenhouse.io/togetherai/jobs/4385547007",
+      "apply_url": "https://boards.greenhouse.io/togetherai/jobs/4385547007",
+      "description": "Together AI is seeking a Distributed ML Systems Engineer to design and build scalable machine learning systems that power our accelerated AI initiatives. This role involves developing large-scale, fault-tolerant distributed systems that handle high-load and high-performance requirements.",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "2b12836aebef2c23",
+      "canonical": true,
+      "canonical_id": "2b12836aebef2c23",
+      "apply_route": {
+        "best_apply_route": "greenhouse",
+        "apply_url": "https://boards.greenhouse.io/togetherai/jobs/4385547007",
+        "backup_urls": [],
+        "reason": "best route: greenhouse (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Job Application for AI Engineer & Researcher - Multimodal",
+      "company": "xAI",
+      "location": "Mumbai",
+      "url": "https://boards.greenhouse.io/xai/jobs/4378347007",
+      "apply_url": "https://boards.greenhouse.io/xai/jobs/4378347007",
+      "description": "xAI’s mission is to create AI systems that can accurately understand the universe and aid humanity in its pursuit of knowledge. Our team is small, highly motivated, and focused on engineering excellence.",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "3710642df7953be9",
+      "canonical": true,
+      "canonical_id": "3710642df7953be9",
+      "apply_route": {
+        "best_apply_route": "greenhouse",
+        "apply_url": "https://boards.greenhouse.io/xai/jobs/4378347007",
+        "backup_urls": [],
+        "reason": "best route: greenhouse (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Job Application for Software Engineer, Machine Learning (India) at...",
+      "company": "Gleanwork",
+      "location": "Mumbai",
+      "url": "https://boards.greenhouse.io/gleanwork/jobs/4012745005",
+      "apply_url": "https://boards.greenhouse.io/gleanwork/jobs/4012745005",
+      "description": "We believe that AI will fundamentally transform how people work. In the future, everyone will work in tandem with expert AI assistants who find knowledge, create and synthesize information, and execute work.",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "7573e26e1f4d57af",
+      "canonical": true,
+      "canonical_id": "7573e26e1f4d57af",
+      "apply_route": {
+        "best_apply_route": "greenhouse",
+        "apply_url": "https://boards.greenhouse.io/gleanwork/jobs/4012745005",
+        "backup_urls": [],
+        "reason": "best route: greenhouse (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Founding Generative AI Engineer",
+      "company": "India @ Altimate.ai",
+      "location": "Mumbai",
+      "url": "https://jobs.ashbyhq.com/altimate/d5509b48-a2a0-4602-9fd1-aab5666411c8?utm_source_platform=workoutsideoffice.com",
+      "apply_url": "https://jobs.ashbyhq.com/altimate/d5509b48-a2a0-4602-9fd1-aab5666411c8?utm_source_platform=workoutsideoffice.com",
+      "description": "We're in search of a Senior Generative AI Engineer who brings deep expertise in building and deploying large language models and AI systems at scale. This role is for those with extensive experience in developing production-grade AI solutions...",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "17dcb54ed164e7ac",
+      "canonical": true,
+      "canonical_id": "17dcb54ed164e7ac",
+      "alternate_sources": [
+        "https://jobs.ashbyhq.com/altimate/d5509b48-a2a0-4602-9fd1-aab5666411c8/application",
+        "https://jobs.ashbyhq.com/altimate/d5509b48-a2a0-4602-9fd1-aab5666411c8"
+      ],
+      "apply_route": {
+        "best_apply_route": "ashby",
+        "apply_url": "https://jobs.ashbyhq.com/altimate/d5509b48-a2a0-4602-9fd1-aab5666411c8?utm_source_platform=workoutsideoffice.com",
+        "backup_urls": [
+          "https://jobs.ashbyhq.com/altimate/d5509b48-a2a0-4602-9fd1-aab5666411c8/application",
+          "https://jobs.ashbyhq.com/altimate/d5509b48-a2a0-4602-9fd1-aab5666411c8"
+        ],
+        "reason": "best route: ashby (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Founding AI Engineer @ Bjak",
+      "company": "Bjakcareer",
+      "location": "Mumbai",
+      "url": "https://jobs.ashbyhq.com/bjakcareer/3bf52980-fe46-41cf-8caa-14b10eb6efec?departmentId=ba500c94-9903-45f1-9cb9-af43a18ea552&embed=js",
+      "apply_url": "https://jobs.ashbyhq.com/bjakcareer/3bf52980-fe46-41cf-8caa-14b10eb6efec?departmentId=ba500c94-9903-45f1-9cb9-af43a18ea552&embed=js",
+      "description": "A1 is a self-funded AI group, operating in full stealth. We’re building a new global consumer AI application focused on an important but underexplored use case.",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "79f0b848dbd51201",
+      "canonical": true,
+      "canonical_id": "79f0b848dbd51201",
+      "apply_route": {
+        "best_apply_route": "ashby",
+        "apply_url": "https://jobs.ashbyhq.com/bjakcareer/3bf52980-fe46-41cf-8caa-14b10eb6efec?departmentId=ba500c94-9903-45f1-9cb9-af43a18ea552&embed=js",
+        "backup_urls": [],
+        "reason": "best route: ashby (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Founding AI/ML Research Engineer @ Bjak",
+      "company": "Bjakcareer",
+      "location": "Mumbai",
+      "url": "https://jobs.ashbyhq.com/bjakcareer/3a2f68fb-6cf8-4a2e-856e-5cc2a3e7ea66?departmentId=ba500c94-9903-45f1-9cb9-af43a18ea552&embed=js",
+      "apply_url": "https://jobs.ashbyhq.com/bjakcareer/3a2f68fb-6cf8-4a2e-856e-5cc2a3e7ea66?departmentId=ba500c94-9903-45f1-9cb9-af43a18ea552&embed=js",
+      "description": "A1 is a self-funded AI group, operating in full stealth. We’re building a new global consumer AI application focused on an important but underexplored use case.",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "a88e67386befd93e",
+      "canonical": true,
+      "canonical_id": "a88e67386befd93e",
+      "apply_route": {
+        "best_apply_route": "ashby",
+        "apply_url": "https://jobs.ashbyhq.com/bjakcareer/3a2f68fb-6cf8-4a2e-856e-5cc2a3e7ea66?departmentId=ba500c94-9903-45f1-9cb9-af43a18ea552&embed=js",
+        "backup_urls": [],
+        "reason": "best route: ashby (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Founding AI Engineer",
+      "company": "VirtuHire",
+      "location": "Mumbai",
+      "url": "https://apply.workable.com/virtuhire/j/13E29907D8/",
+      "apply_url": "https://apply.workable.com/virtuhire/j/13E29907D8/",
+      "description": "BenefitsFounding engineer at an AI startup disrupting auditsWork with MIT founders on agentic AI systems",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "345c3fe9b1f9f446",
+      "canonical": true,
+      "canonical_id": "345c3fe9b1f9f446",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://apply.workable.com/virtuhire/j/13E29907D8/",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
+    },
+    {
+      "title": "Founding Engineer",
+      "company": "AI/ML (Speech & Cognitive Assessment Focus)...",
+      "location": "Mumbai",
+      "url": "https://apply.workable.com/futuresight/j/2BA5D70AB6/",
+      "apply_url": "https://apply.workable.com/futuresight/j/2BA5D70AB6/",
+      "description": "About UsWe are a mission-driven AI healthcare startup developing innovative solutions to improve cognitive health and care coordination. Founded by an experienced entrepreneur with a decade of dedication to solving challenges in dementia care, our goal...",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "61d0425639fcc153",
+      "canonical": true,
+      "canonical_id": "61d0425639fcc153",
+      "alternate_sources": [
+        "https://apply.workable.com/futuresight/j/F1061AD39C"
+      ],
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://apply.workable.com/futuresight/j/2BA5D70AB6/",
+        "backup_urls": [
+          "https://apply.workable.com/futuresight/j/F1061AD39C"
+        ],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
+    },
+    {
+      "title": "AI/ML Engineer (LLMs, RAG Agent Systems)",
+      "company": "IAI solution",
+      "location": "Bengaluru (Bangalore), India",
+      "url": "https://cutshort.io/job/AI-ML-Engineer-LLMs-RAG-Agent-Systems-Bengaluru-Bangalore-IAI-solution--j4j8nNso",
+      "apply_url": "",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "As an AI/ML Engineer, you’ll be part of a small, fast-moving team focused on developing LLM-powered agentic systems that drive our next generation of AI products. You’ll work on designing, implementing, and optimizing pipelines involving retrieval-augmented generation (RAG), multi-agent coordination, and tool-using AI systems. Responsibilities Design and implement components for LLM-based systems (retrievers, planners, memory, evaluators). Build and maintain RAG pipelines using vector databases and embedding models. Experiment with reasoning frameworks like ReAct, Tree of Thought, and Reflexion. Collaborate with backend and infra teams to deploy and optimize agentic applications. Research and experiment with open-source LLM frameworks to identify best-fit architectures. Contribute to internal tools for evaluation, benchmarking, and scaling AI agents. Required Skills Strong foundation in ML/DL theory and implementation (PyTorch preferred). Understanding of transformer architectures, embeddings, and LLM mechanics. Practical exposure to prompt engineering, tool calling, and structured output design. Experience in Python, Git/GitHub, and data processing pipelines. Familiarity with RAG systems, vector databases, and API-based model inference. Ability to write clean, modular, and reproducible code. Preferred Skills Experience with LangChain, LangGraph, Autogen, or CrewAI. Hands-on with Hugging Face ecosystem (transformers, datasets, etc.). Working knowledge of Redis, PostgreSQL, or MongoDB. Experience with Docker and deployment workflows. Familiarity with OpenAI, Anthropic, vLLM, or Ollama inference APIs. Exposure to MLOps concepts like CI/CD, model versioning, or cloud (AWS/GCP/Azure). What We Value Deep understanding of core principles over surface-level familiarity with tools. Ability to think like a researcher and execute like an engineer. Collaborative mindset, building together, learning together.",
+      "skills": [
+        "Large Language Models (LLM)",
+        "LangChain",
+        "MongoDB",
+        "Docker"
+      ],
+      "salary": "₹5L - ₹6L / yr",
+      "work_mode": "onsite",
+      "_source_type": "scrapegraph",
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "ef66d58196038b79",
+      "canonical": true,
+      "canonical_id": "ef66d58196038b79",
+      "apply_route": {
+        "best_apply_route": "cutshort",
+        "apply_url": "https://cutshort.io/job/AI-ML-Engineer-LLMs-RAG-Agent-Systems-Bengaluru-Bangalore-IAI-solution--j4j8nNso",
+        "backup_urls": [],
+        "reason": "best route: cutshort (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Founding AI Engineer at Six Degrees Consulting • Bengaluru ...",
+      "company": "",
+      "location": "",
+      "url": "https://wellfound.com/jobs/4053508-founding-ai-engineer",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "Founding AI Engineer ₹20L – ₹40L • 0.2% – 1.0% | Remote ( India • Bengaluru + 23) | 3 years of exp | Full Time",
+      "_source_type": "search",
+      "_india_filter": "matches remote India pattern",
+      "_canonical_fp": "aff3a5fd85b4595c",
+      "canonical": true,
+      "canonical_id": "aff3a5fd85b4595c",
+      "apply_route": {
+        "best_apply_route": "wellfound",
+        "apply_url": "https://wellfound.com/jobs/4053508-founding-ai-engineer",
+        "backup_urls": [],
+        "reason": "best route: wellfound (priority 5)",
+        "risk": "medium"
+      }
+    }
+  ]
+}

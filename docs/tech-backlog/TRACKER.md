@@ -23,7 +23,7 @@ S8.5 completeness check shipped. Council is at quality ceiling (93%). System sta
 
 ## System Status (Live)
 
-> Updated 2026-05-23 — Phase 0 Delivery Foundation has first-pass scaffolds. The bottleneck is now contract correctness and end-to-end verification, not file creation.
+> Updated 2026-05-24 — SerpAPI wired as Phase A primary (India-first discovery 88%→90%). Score compression bug identified (JobSpy clusters 60-64). Mumbai/Remote ATS coverage gap found. Transport/Supervisor/Onboarding remain P0 blockers.
 
 | System | % | Status | Blocking? | Notes |
 |--------|---|--------|-----------|-------|
@@ -33,7 +33,7 @@ S8.5 completeness check shipped. Council is at quality ceiling (93%). System sta
 | **PostgresSaver Checkpointer** | **15%** | 🔴 | **YES** | Supabase checkpointer wrapper + schema scaffold exist. Needs connection test + interrupt/resume proof. Sprint 0. |
 | **Application pack delivery** | **0%** | 🔴 | **YES** | Pack → PDF → send_document(). Sprint 3. |
 | **Daily brief cron delivery** | **5%** | 🔴 | **YES** | DailyRunner exists. Transport missing. Sprint 2. |
-| India-first discovery | 88% | 🟢 | No | 14 ATS adapters (was 4) + fingerprint engine (13/13); 6 parallel board sources (DDG/JobSpy/Naukri/Monster/Glassdoor/Google Jobs); board search ~3-4 min (was ~14 min); source-aware weighting in fit engine |
+| India-first discovery | 90% | 🟢 | No | SerpAPI primary (2-call cap, intent-based queries, funded AI companies filter); 14 ATS adapters; 6 parallel board sources; SQLite dual-mode DB unblocks local runs; score compression bug identified (JobSpy snippets cluster 60-64) |
 | Verification & filtering | 60% | 🟡 | No | detect_ats_pass.py; Block G not hoisted |
 | Opportunity scoring (14-dim) | 55% | 🟡 | No | function_probability.py + metrics.py; needs calibration |
 | Decision compression / triage | 20% | 🔴 | No | CEO owns. DECISION_COMPRESSION_VISION.md written. |
@@ -105,6 +105,30 @@ S8.5 completeness check shipped. Council is at quality ceiling (93%). System sta
 ---
 
 ## Session Log
+
+### 2026-05-24 — Session: SerpAPI Integration + Siddharth Full Pipeline Run
+
+**What was done:**
+- **SerpAPI wired as Phase A primary**: `SerpAPIDiscovery` class added to `company_discovery.py`. Reads `SERPAPI_KEY` from env, constructs 2 intent-based queries per search (role-aware, funding-aware, anti-body-shop), graceful DDG fallback when key absent.
+- **2-call cap enforced**: `_build_queries` hard-capped to 2 queries per search (was 4-6 → would have burned 48-72 SerpAPI calls per full run).
+- **SQLite dual-mode DB**: Rewrote `careerloop/memory/connection.py` — PostgreSQL when `DATABASE_URL` set, SQLite fallback at `careerloop/careerloop.db` when absent. Unblocks local dev runs without Supabase creds.
+- **`force_refresh` param**: Added to `OnDemandSearch.run()` to bypass crawl cache. Required for repeatable test runs.
+- **`run_siddharth.py` rewrite**: `TeeOutput` (stdout+log), phase banners, 4 roles × 3 cities × 60 max, audit log saved per run.
+- **Siddharth v4 run**: 4 roles × Bangalore → 114 ranked jobs. Top: Sarvam AI (73.1), Glean (Greenhouse), Altimate.ai (Ashby). 4 bad jobs (HVAC/Mech/Intern) leaking at score bottom.
+- **Score compression identified**: JobSpy returns 500-char snippets → scorer has no signal → all cluster 60-64. Full JD fetch needed before scoring.
+- **Mumbai/Remote ATS gap identified**: Company DB not seeded for those cities → 0 ATS portal coverage, board-only.
+
+**Vision alignment verdict:** ✅ ALIGNED
+Advances PRD §5 (Discovery Engine) — SerpAPI integration moves Phase A from generic DDG queries to real funded-AI-company targeting. SQLite fallback was a genuine local-run blocker. Score compression is the next honest bottleneck.
+
+**Deviations detected:** Mumbai/Remote cities ran with 0 ATS coverage — company DB not seeded. Scoring quality bottleneck (JobSpy clustering) identified but not fixed.
+
+**Recommended next 3 actions:**
+1. Fix score compression: fetch full JD for JobSpy URLs before scoring → spreads the scoring range from 60-64 cluster to 0-100 (PRD §6)
+2. Seed Mumbai/Remote company DB: Phase A-only run targeting those cities so next Siddharth run gets ATS portals (PRD §5)
+3. Strengthen bad-job title blocklist at filter level: kill HVAC/Mechanical/Intern/Hardware before scoring, not after (PRD §5)
+
+---
 
 ### 2026-05-23 — Session: CLI Stabilization & Ledger Safety (Part 2)
 

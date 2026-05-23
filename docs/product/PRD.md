@@ -357,11 +357,11 @@ The user should feel:
 
 ## 17. Product Engineering Tracker
 
-> Updated by the `careerloop-product-lead` skill. Last updated: 2026-05-23.
+> Updated by the `careerloop-product-lead` skill. Last updated: 2026-05-24.
 
 | System | Completion | Status | Notes |
 |--------|-----------|--------|-------|
-| India-first discovery | 75% | 🟡 Active | ATS adapter, portal scraper, on-demand search, role keywords shipped |
+| India-first discovery | 90% | 🟢 Active | SerpAPI primary (intent-based, 2-call cap); 14 ATS adapters; 6 parallel board sources; SQLite dual-mode unblocks local runs; score compression bug open (JobSpy 60-64 cluster) |
 | Verification & filtering | 60% | 🟡 Active | detect_ats_pass.py; Block G not hoisted |
 | Opportunity scoring (14-dim) | 55% | 🟡 Active | function_probability.py + metrics.py; needs calibration |
 | Decision compression / triage | 20% | 🔴 Gap | DECISION_COMPRESSION_VISION.md written. CEO owns UX build. |

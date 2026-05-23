@@ -1,0 +1,821 @@
+{
+  "role": "full stack ai engineer",
+  "city": "mumbai",
+  "cached_at": 1779562107.875252,
+  "expires_at": 1779590907.875252,
+  "job_count": 38,
+  "jobs": [
+    {
+      "title": "Architect - Software Development",
+      "company": "Quantiphi",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=743e2cce25b0894b",
+      "apply_url": "https://in.indeed.com/viewjob?jk=743e2cce25b0894b",
+      "url_type": "UNKNOWN",
+      "description": "While technology is the heart of our business, a global and diverse culture is the heart of our success. We love our people and we take pride in catering them to a culture built on transparency, diversity, integrity, learning and growth.  \n\n  \n\nIf working in an environment that encourages you to innovate and excel, not just in professional but personal life, interests you\\- you would enjoy your career with Quantiphi!\n\n **Role:** **Technical Architect – Agentic AI \\& Software Development**\n\n**Exp",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "823fd630d9ce3fc6",
+      "canonical": true,
+      "canonical_id": "823fd630d9ce3fc6",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=743e2cce25b0894b",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Software Engineer",
+      "company": "COLLINSON",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=fd9ef0814358a806",
+      "apply_url": "https://in.indeed.com/viewjob?jk=fd9ef0814358a806",
+      "url_type": "UNKNOWN",
+      "description": "Collinson is a global loyalty and benefits company.\n\n\nWe use our expertise and products to craft customer experiences which enable some of the world’s\n\n\nbest\\-known brands to acquire, engage and retain the most demanding and choice\\-rich customers. Our\n\n\nunique expertise and insight into high earning, frequent travellers allow us to create products and\n\n\nsolutions for our clients that inspire greater customer engagement to drive more profitable relationships,\n\n\nenrich their travel experiences, p",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "49d14425f4de4499",
+      "canonical": true,
+      "canonical_id": "49d14425f4de4499",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=fd9ef0814358a806",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Lead Full Stack Software Engineer (807)",
+      "company": "Protegrity",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=a2be5c332ce54e75",
+      "apply_url": "https://in.indeed.com/viewjob?jk=a2be5c332ce54e75",
+      "url_type": "UNKNOWN",
+      "description": "At Protegrity, we lead innovation by using AI and quantum\\-resistant cryptography to transform data protection across cloud\\-native, hybrid, on\\-premises, and open source environments. We leverage advanced cryptographic methods such as tokenization, format\\-preserving encryption, and quantum\\-resilient techniques to protect sensitive data. As a global leader in data security, our mission is to ensure that data isn’t just valuable but also usable, trusted, and safe.\nProtegrity offers the opportun",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "b7094ee4cd081f0d",
+      "canonical": true,
+      "canonical_id": "b7094ee4cd081f0d",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=a2be5c332ce54e75",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Software Engineer III - Python Data Full Stack",
+      "company": "JPMorganChase",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=ae630b31a617ae18",
+      "apply_url": "https://in.indeed.com/viewjob?jk=ae630b31a617ae18",
+      "url_type": "UNKNOWN",
+      "description": "**JOB DESCRIPTION**  \n\nWe have an exciting and rewarding opportunity for you to take your software engineering career to the next level.\n\n\nAs a Software Engineer III at JPMorgan Chase within the Asset \\& Wealth Management, you serve as a seasoned member of an agile team to design and deliver trusted market\\-leading technology products in a secure, stable, and scalable way. You are responsible for carrying out critical technology solutions across multiple technical areas within various business f",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "e00698de69dd95e0",
+      "canonical": true,
+      "canonical_id": "e00698de69dd95e0",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=ae630b31a617ae18",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Test Automation Engineer",
+      "company": "Luxoft",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=783c518b0abd76ea",
+      "apply_url": "https://in.indeed.com/viewjob?jk=783c518b0abd76ea",
+      "url_type": "UNKNOWN",
+      "description": "##### **Project description**\n\nThis role focuses on test automation and full\\-stack development for enterprise applications. The candidate will design and develop automated test cases using modern frameworks like Playwright or Selenium, and leverage LLMs and AI agents to interact with application UIs, ingest training documents, and generate automation code. Additionally, the role requires moderate experience in UI frameworks and CI/CD pipelines for continuous delivery.\n\n\n##### **Responsibilities",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "e72ef525aff0e306",
+      "canonical": true,
+      "canonical_id": "e72ef525aff0e306",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=783c518b0abd76ea",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Staff Software Engineer",
+      "company": "NIUM",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=71e4bc7f28062269",
+      "apply_url": "https://in.indeed.com/viewjob?jk=71e4bc7f28062269",
+      "url_type": "UNKNOWN",
+      "description": "**Nium, the Leader in Real\\-Time Global Payments**\n\nNium, the leading global infrastructure for real\\-time cross\\-border payments, was founded on the mission to deliver the global payments infrastructure of tomorrow, today. With the onset of the global economy, its payments infrastructure is shaping how banks, fintechs, and businesses everywhere collect, convert, and disburse funds instantly across borders. Its payout network supports 100 currencies and spans 190\\+ countries, 100 of which in rea",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "0ce4e0160baf1751",
+      "canonical": true,
+      "canonical_id": "0ce4e0160baf1751",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=71e4bc7f28062269",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Sr SDE - Full Stack",
+      "company": "NIUM",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=76663d467d3d1da8",
+      "apply_url": "https://in.indeed.com/viewjob?jk=76663d467d3d1da8",
+      "url_type": "UNKNOWN",
+      "description": "**Nium, the Leader in Real\\-Time Global Payments**\n\nNium, the leading global infrastructure for real\\-time cross\\-border payments, was founded on the mission to deliver the global payments infrastructure of tomorrow, today. With the onset of the global economy, its payments infrastructure is shaping how banks, fintechs, and businesses everywhere collect, convert, and disburse funds instantly across borders. Its payout network supports 100 currencies and spans 190\\+ countries, 100 of which in rea",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "860e30584178a6a8",
+      "canonical": true,
+      "canonical_id": "860e30584178a6a8",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=76663d467d3d1da8",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Software Engineer",
+      "company": "MOMENTUS",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=e6f0fe623d065937",
+      "apply_url": "https://in.indeed.com/viewjob?jk=e6f0fe623d065937",
+      "url_type": "UNKNOWN",
+      "description": "Description:\n\nMomentus Technologies is hiring a Full Stack Software Engineer who is experienced in C\\#, .NET technologies, and modern web technologies (Angular, Aurelia). The expectation for this role is to work across the full stack \\- from UI to database — while designing, building, and launching cutting\\-edge SaaS solutions for the event space.  \n\n  \n\nJoin our collaborative team where our core values – Passion, Speed, Focus, Innovate, and Humility – guide how we work and interact every day, m",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "13f63102e41a3aa1",
+      "canonical": true,
+      "canonical_id": "13f63102e41a3aa1",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=e6f0fe623d065937",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Lead Software Engineer",
+      "company": "Morningstar",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=5a6b472f5f464313",
+      "apply_url": "https://in.indeed.com/viewjob?jk=5a6b472f5f464313",
+      "url_type": "UNKNOWN",
+      "description": "**Lead Software Engineer (****Full Stack, Java, AWS****)**\n\n**Location: Vashi, Navi Mumbai**\n\n  \n\nThe Role:\n\n\nAt Morningstar, helping investors is what brings us together and drives our work. We are looking for a Lead Software Engineer who combines deep technical expertise with strong ownership and leadership. This role is critical in driving high\\-quality, scalable solutions, while leading a squad to deliver business impact with speed, clarity, and accountability.\n\n\nYou will operate at the inte",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "c49717d7e9e5377a",
+      "canonical": true,
+      "canonical_id": "c49717d7e9e5377a",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=5a6b472f5f464313",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Principal Consultant - Full stack developer",
+      "company": "Genpact",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=13dbe5dda4240561",
+      "apply_url": "https://in.indeed.com/viewjob?jk=13dbe5dda4240561",
+      "url_type": "UNKNOWN",
+      "description": "Lead Data Engineer**Ready to turn bold ideas into real\\-world impact?**  \n\n At Genpact, we don’t just adapt to change, we lead it. AI and digital innovation are transforming the way businesses work, and we’re at the forefront of it. Genpact’s AI Gigafactory, our industry\\-first accelerator, exemplifies how we scale advanced technology solutions to help global enterprises work smarter, grow faster, and transform at scale. Whether tackling complex challenges through large\\-scale models or agentic ",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "941029c74221f5ab",
+      "canonical": true,
+      "canonical_id": "941029c74221f5ab",
+      "alternate_sources": [
+        "https://in.indeed.com/viewjob?jk=150b33f215aaf570"
+      ],
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=13dbe5dda4240561",
+        "backup_urls": [
+          "https://in.indeed.com/viewjob?jk=150b33f215aaf570"
+        ],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Sr. UI/UX Developer",
+      "company": "Goodtech Mind",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=a6dedbecfc6165aa",
+      "apply_url": "https://in.indeed.com/viewjob?jk=a6dedbecfc6165aa",
+      "url_type": "UNKNOWN",
+      "description": "UI/UX Developer\n\nFull\\-time • Hybrid/Remote Options • 8\\-10 Years Experience\n\nRole Overview\n\nWe are seeking a highly skilled UI/UX Engineer to design and build intuitive, scalable, and\n\naccessible user experiences. This role is a unique hybrid, ideal for a professional who combines\n\ndeep UX fundamentals with strong frontend engineering capabilities.\n\nIn this position, you will leverage hands\\-on experience with AI\\-powered design tools to accelerate\n\nworkflows and improve usability outcomes. You",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "4cdba5e32aec9c67",
+      "canonical": true,
+      "canonical_id": "4cdba5e32aec9c67",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=a6dedbecfc6165aa",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Senior DevOps Engineer",
+      "company": "PivotRoots",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=a2d06b4cb58f3864",
+      "apply_url": "https://in.indeed.com/viewjob?jk=a2d06b4cb58f3864",
+      "url_type": "UNKNOWN",
+      "description": "**Key Responsibility:**\n\n***Cloud \\& Infrastructure***\n\n* Design, deploy, and manage scalable infrastructure on **AWS and Azure**\n* Implement **high availability, fault tolerance, and disaster recovery** strategies\n* Manage cloud resources using **Infrastructure as Code (IaC)** tools like **Terraform CloudFormation**\n* Optimize cloud costs using **FinOps best practices**\n\n***CI/CD \\& Automation***\n\n* Build and maintain **CI/CD pipelines** using tools such as:\n* Azure DevOps\n* GitHub Actions\n* Gi",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "ee25791a75e26237",
+      "canonical": true,
+      "canonical_id": "ee25791a75e26237",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=a2d06b4cb58f3864",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Lead Software Engineer (Backend Focused) - Mumbai",
+      "company": "ClanX",
+      "location": "MH, IN",
+      "url": "https://in.indeed.com/viewjob?jk=c2bd745563acded3",
+      "apply_url": "https://in.indeed.com/viewjob?jk=c2bd745563acded3",
+      "url_type": "UNKNOWN",
+      "description": "Lead Fullstack Engineer role focused on building scalable tools and workflows powering Hudl’s global sports analytics products and operations.\n\n**Company Details**  \n\nHudl is a global sports technology company helping teams capture, analyze, and learn from performance data. Its platforms including Hudl Assist, Wyscout, InStat, and Volleymetrics are used by teams worldwide across multiple sports.\n\n\nWebsite: https://www.hudl.com/\n\n**Requirements**  \n\n* Minimum 8 years of experience in full\\-stack ",
+      "_source_type": "jobspy",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "ac81658e3129c15b",
+      "canonical": true,
+      "canonical_id": "ac81658e3129c15b",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=c2bd745563acded3",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Sr. Manager, AI Engineer",
+      "company": "Pfizer",
+      "location": "Mumbai, Maharashtra, India",
+      "url": "https://www.linkedin.com/jobs/view/4413996388",
+      "apply_url": "https://www.linkedin.com/jobs/view/4413996388",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "43b25227dfaf358a",
+      "canonical": true,
+      "canonical_id": "43b25227dfaf358a",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4413996388",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "System Engineer L2- Linux Systems & Storage",
+      "company": "Neysa",
+      "location": "Thane, Maharashtra, India",
+      "url": "https://www.linkedin.com/jobs/view/4405309884",
+      "apply_url": "https://www.linkedin.com/jobs/view/4405309884",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains India",
+      "_canonical_fp": "15560521ccc4d06d",
+      "canonical": true,
+      "canonical_id": "15560521ccc4d06d",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4405309884",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "System Engineer L3 - Linux Systems & Storage",
+      "company": "Neysa",
+      "location": "Thane, Maharashtra, India",
+      "url": "https://www.linkedin.com/jobs/view/4405306943",
+      "apply_url": "https://www.linkedin.com/jobs/view/4405306943",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains India",
+      "_canonical_fp": "7dcbece94d591886",
+      "canonical": true,
+      "canonical_id": "7dcbece94d591886",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4405306943",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Devops Engineer - 2",
+      "company": "Haptik",
+      "location": "Mumbai, Maharashtra, India",
+      "url": "https://www.linkedin.com/jobs/view/4398720267",
+      "apply_url": "https://www.linkedin.com/jobs/view/4398720267",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "e3844b0b083ebb98",
+      "canonical": true,
+      "canonical_id": "e3844b0b083ebb98",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4398720267",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Security Engineer",
+      "company": "WebEngage",
+      "location": "Mumbai, Maharashtra, India",
+      "url": "https://www.linkedin.com/jobs/view/4399849515",
+      "apply_url": "https://www.linkedin.com/jobs/view/4399849515",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "9955e80357e75af8",
+      "canonical": true,
+      "canonical_id": "9955e80357e75af8",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4399849515",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Data Engineer",
+      "company": "WebEngage",
+      "location": "Mumbai, Maharashtra, India",
+      "url": "https://www.linkedin.com/jobs/view/4394909903",
+      "apply_url": "https://www.linkedin.com/jobs/view/4394909903",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "8877cd23f555e8de",
+      "canonical": true,
+      "canonical_id": "8877cd23f555e8de",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4394909903",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Software Engineer - Backend",
+      "company": "Haptik",
+      "location": "Mumbai, Maharashtra, India",
+      "url": "https://www.linkedin.com/jobs/view/4320655757",
+      "apply_url": "https://www.linkedin.com/jobs/view/4320655757",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "nan",
+      "_source_type": "jobspy",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "c1ba1aaacf8f7201",
+      "canonical": true,
+      "canonical_id": "c1ba1aaacf8f7201",
+      "apply_route": {
+        "best_apply_route": "linkedin",
+        "apply_url": "https://www.linkedin.com/jobs/view/4320655757",
+        "backup_urls": [],
+        "reason": "best route: linkedin (priority 5)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "4211 Ai Engineer Jobs in India: Latest Ai Engineer Jobs Vacancies in...",
+      "company": "",
+      "location": "Mumbai",
+      "url": "https://www.foundit.in/search/ai-engineer-jobs-in-india",
+      "apply_url": "https://www.foundit.in/search/ai-engineer-jobs-in-india",
+      "description": "Quick Apply. Full Stack AI Engineer.Associate – Full stack AI Engineer.",
+      "_source_type": "foundit",
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "bd56c26e65575d2f",
+      "canonical": true,
+      "canonical_id": "bd56c26e65575d2f",
+      "apply_route": {
+        "best_apply_route": "foundit",
+        "apply_url": "https://www.foundit.in/search/ai-engineer-jobs-in-india",
+        "backup_urls": [],
+        "reason": "best route: foundit (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Full Stack AI Engineer with 0",
+      "company": "",
+      "location": "Mumbai",
+      "url": "https://www.foundit.in/job/full-stack-ai-engineer-shapoorji-pallonji-finance-private-limited-mumbai-46983694",
+      "apply_url": "https://www.foundit.in/job/full-stack-ai-engineer-shapoorji-pallonji-finance-private-limited-mumbai-46983694",
+      "description": "Full Stack AI Engineer. shapoorji pallonji finance private limited. Mumbai, India.",
+      "_source_type": "foundit",
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "6435551ffd059c25",
+      "canonical": true,
+      "canonical_id": "6435551ffd059c25",
+      "apply_route": {
+        "best_apply_route": "foundit",
+        "apply_url": "https://www.foundit.in/job/full-stack-ai-engineer-shapoorji-pallonji-finance-private-limited-mumbai-46983694",
+        "backup_urls": [],
+        "reason": "best route: foundit (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "14 Aws Ai Stack Job vacancies in Mumbai 2026",
+      "company": "",
+      "location": "Mumbai",
+      "url": "https://www.foundit.in/search/aws-ai-stack-jobs-in-mumbai",
+      "apply_url": "https://www.foundit.in/search/aws-ai-stack-jobs-in-mumbai",
+      "description": "Apply to the latest Aws Ai Stack Jobs Vacancies in Mumbai on foundit.in. Explore competitive salaries, top companies, and openings in your preferred location.Full Stack AI Engineer.",
+      "_source_type": "foundit",
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "b475e49a62fd8e4a",
+      "canonical": true,
+      "canonical_id": "b475e49a62fd8e4a",
+      "apply_route": {
+        "best_apply_route": "foundit",
+        "apply_url": "https://www.foundit.in/search/aws-ai-stack-jobs-in-mumbai",
+        "backup_urls": [],
+        "reason": "best route: foundit (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Full stack AI Engineer Remote with 0",
+      "company": "",
+      "location": "Mumbai",
+      "url": "https://www.foundit.in/job/full-stack-ai-engineer-remote-m0851-india-48751973",
+      "apply_url": "https://www.foundit.in/job/full-stack-ai-engineer-remote-m0851-india-48751973",
+      "description": "Title : Full stack LLM / Backend engineer Remote. About The Company: Web 3.0 is the next wave of technology breakthroughs to revolutionize human society, with key pillars being decentralized finance (DeFi), NFTs, Metaverse, and decentralized autonomous organization (DAO).",
+      "_source_type": "foundit",
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "d50b14fc292f3032",
+      "canonical": true,
+      "canonical_id": "d50b14fc292f3032",
+      "apply_route": {
+        "best_apply_route": "foundit",
+        "apply_url": "https://www.foundit.in/job/full-stack-ai-engineer-remote-m0851-india-48751973",
+        "backup_urls": [],
+        "reason": "best route: foundit (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "HighLevel",
+      "company": "Full Stack Builder (Team of One)",
+      "location": "Mumbai",
+      "url": "https://jobs.lever.co/gohighlevel/ce928065-f2cf-4412-a5e7-32677e6f4e4b/apply",
+      "apply_url": "https://jobs.lever.co/gohighlevel/ce928065-f2cf-4412-a5e7-32677e6f4e4b/apply",
+      "description": "HighLevel answers over 1.3m+ calls a month using AI, and sends over 17m text messages using AI. Together with AskAI, the agent builder and the AI employee it is the AI platform of choice to grow.",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "448fafad9f61e991",
+      "canonical": true,
+      "canonical_id": "448fafad9f61e991",
+      "apply_route": {
+        "best_apply_route": "lever",
+        "apply_url": "https://jobs.lever.co/gohighlevel/ce928065-f2cf-4412-a5e7-32677e6f4e4b/apply",
+        "backup_urls": [],
+        "reason": "best route: lever (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Job Application for Software Engineer, Machine Learning (India) at...",
+      "company": "Gleanwork",
+      "location": "Mumbai",
+      "url": "https://boards.greenhouse.io/gleanwork/jobs/4012745005",
+      "apply_url": "https://boards.greenhouse.io/gleanwork/jobs/4012745005",
+      "description": "Our engineers work on a range of systems across the stack, including query understanding, document understanding, domain-adapted language models, natural language question-answering, evaluation, and experimentation.",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "7573e26e1f4d57af",
+      "canonical": true,
+      "canonical_id": "7573e26e1f4d57af",
+      "apply_route": {
+        "best_apply_route": "greenhouse",
+        "apply_url": "https://boards.greenhouse.io/gleanwork/jobs/4012745005",
+        "backup_urls": [],
+        "reason": "best route: greenhouse (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Job Application for Full stack developer-Studio AI",
+      "company": "Vonage",
+      "location": "Mumbai",
+      "url": "https://boards.greenhouse.io/vonage/jobs/7253350002",
+      "apply_url": "https://boards.greenhouse.io/vonage/jobs/7253350002",
+      "description": "About the job: Vonage AI Applications group is looking for a Full Stack Engineer to create and optimize the process of creating AI-based automated bots, enabling technical-oriented people to create their own unique complex flows.",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "57250d7fdb6ec927",
+      "canonical": true,
+      "canonical_id": "57250d7fdb6ec927",
+      "apply_route": {
+        "best_apply_route": "greenhouse",
+        "apply_url": "https://boards.greenhouse.io/vonage/jobs/7253350002",
+        "backup_urls": [],
+        "reason": "best route: greenhouse (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Job Application for Senior Full-Stack Engineer",
+      "company": "Typeface",
+      "location": "Mumbai",
+      "url": "https://boards.greenhouse.io/typeface/jobs/4065834007",
+      "apply_url": "https://boards.greenhouse.io/typeface/jobs/4065834007",
+      "description": "As a Senior Full-Stack Engineer, you will be responsible for building features end-to-end. You will work closely with cross-functional teams including product, design, marketing, and data science to design and develop features. Core Responsibilities.",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "500488924e096b1d",
+      "canonical": true,
+      "canonical_id": "500488924e096b1d",
+      "apply_route": {
+        "best_apply_route": "greenhouse",
+        "apply_url": "https://boards.greenhouse.io/typeface/jobs/4065834007",
+        "backup_urls": [],
+        "reason": "best route: greenhouse (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Full Stack AI Engineer @ Luma AI",
+      "company": "Luma Ai",
+      "location": "Mumbai",
+      "url": "https://jobs.ashbyhq.com/luma-ai/edca8ab1-12ee-49c0-b746-b82aeb71abea/application",
+      "apply_url": "https://jobs.ashbyhq.com/luma-ai/edca8ab1-12ee-49c0-b746-b82aeb71abea/application",
+      "description": "AI Engineer @ Luma AI. Build interfaces & tools for state-of-the-art multimodal AI. Join us at the edge of research, creativity, and ML. Bay Area, hybrid.",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "3cdfec535dbead26",
+      "canonical": true,
+      "canonical_id": "3cdfec535dbead26",
+      "apply_route": {
+        "best_apply_route": "ashby",
+        "apply_url": "https://jobs.ashbyhq.com/luma-ai/edca8ab1-12ee-49c0-b746-b82aeb71abea/application",
+        "backup_urls": [],
+        "reason": "best route: ashby (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Applied AI Engineer @ Tandem",
+      "company": "Tandem",
+      "location": "Mumbai",
+      "url": "https://jobs.ashbyhq.com/tandem/09564102-1713-4941-bbd5-77eaac9ca88e",
+      "apply_url": "https://jobs.ashbyhq.com/tandem/09564102-1713-4941-bbd5-77eaac9ca88e",
+      "description": "Help build out our Applied AI team!",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "bec916eef14c33e9",
+      "canonical": true,
+      "canonical_id": "bec916eef14c33e9",
+      "apply_route": {
+        "best_apply_route": "ashby",
+        "apply_url": "https://jobs.ashbyhq.com/tandem/09564102-1713-4941-bbd5-77eaac9ca88e",
+        "backup_urls": [],
+        "reason": "best route: ashby (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Principal Full Stack Engineer @ Hippocratic AI",
+      "company": "Hippocratic+Ai",
+      "location": "Mumbai",
+      "url": "https://jobs.ashbyhq.com/Hippocratic+AI/47086b02-7f6b-4ddf-8681-665f48e1c47e",
+      "apply_url": "https://jobs.ashbyhq.com/Hippocratic+AI/47086b02-7f6b-4ddf-8681-665f48e1c47e",
+      "description": "As a React and Flask expert at Hippocratic AI, you will play a pivotal role in the development and enhancement of our Gen AI SaaS products.",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "a0c892eefcafc7b0",
+      "canonical": true,
+      "canonical_id": "a0c892eefcafc7b0",
+      "apply_route": {
+        "best_apply_route": "ashby",
+        "apply_url": "https://jobs.ashbyhq.com/Hippocratic+AI/47086b02-7f6b-4ddf-8681-665f48e1c47e",
+        "backup_urls": [],
+        "reason": "best route: ashby (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "AI/ML Senior Full-Stack Engineer",
+      "company": "AND Digital",
+      "location": "Mumbai",
+      "url": "https://apply.workable.com/and-digital/j/253C452021",
+      "apply_url": "https://apply.workable.com/and-digital/j/253C452021",
+      "description": "AI/ML Full Stack EngineerAt AND, we accelerate the development of digital capabilities. In practice, that means helping ambitious leaders and organisations build the teams, products, processes and even operational structures they need to close the digi...",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "eabfe8a955f8d7f8",
+      "canonical": true,
+      "canonical_id": "eabfe8a955f8d7f8",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://apply.workable.com/and-digital/j/253C452021",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
+    },
+    {
+      "title": "Senior Full-Stack Engineer",
+      "company": "Akur8",
+      "location": "Mumbai",
+      "url": "https://apply.workable.com/akur8/j/3E5A379075/apply?ref=getin.ai",
+      "apply_url": "https://apply.workable.com/akur8/j/3E5A379075/apply?ref=getin.ai",
+      "description": "Akur8 is a young, dynamic, fast growing Insurtech startup that is revolutionizing insurance pricing with transparent AI.Since 2016 our skilled R&D team of Data Scientists, Software Engineers and Actuaries has developed unique AI algorithms that...",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "22be64b42087bd77",
+      "canonical": true,
+      "canonical_id": "22be64b42087bd77",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://apply.workable.com/akur8/j/3E5A379075/apply?ref=getin.ai",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
+    },
+    {
+      "title": "Lead Full-Stack AI Engineer",
+      "company": "Reveal Health Tech",
+      "location": "Mumbai",
+      "url": "https://apply.workable.com/reveal-health-tech/j/484A888106/",
+      "apply_url": "https://apply.workable.com/reveal-health-tech/j/484A888106/",
+      "description": "Lead Full-Stack AI Engineer. Remote AI BU - Engineering - US.As a Lead Full-Stack AI Engineer at Reveal Health Tech, you will play a crucial role in driving technical development and leading the implementation of cutting-edge AI solutions.",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "bbc074e255c4a28e",
+      "canonical": true,
+      "canonical_id": "bbc074e255c4a28e",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://apply.workable.com/reveal-health-tech/j/484A888106/",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
+    },
+    {
+      "title": "AI Engineer",
+      "company": "AHOY",
+      "location": "Mumbai",
+      "url": "https://apply.workable.com/ahoy/j/35AE8F2A9A",
+      "apply_url": "https://apply.workable.com/ahoy/j/35AE8F2A9A",
+      "description": "AHOY is seeking a talented AI Engineer to join our innovative team dedicated to pushing the boundaries of artificial intelligence technology. In this role, you will develop and implement AI models and algorithms that enhance our products and services. ...",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "ca159557905c4c4d",
+      "canonical": true,
+      "canonical_id": "ca159557905c4c4d",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://apply.workable.com/ahoy/j/35AE8F2A9A",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
+    },
+    {
+      "title": "Software Engineer (AI)",
+      "company": "Python/React",
+      "location": "Mumbai",
+      "url": "https://apply.workable.com/acoladgroup/j/B2ABBEAB90/",
+      "apply_url": "https://apply.workable.com/acoladgroup/j/B2ABBEAB90/",
+      "description": "As a Full-Stack Software Engineer AI, you will play a pivotal role in transforming AI research and models into scalable, production-ready products that empower our users.",
+      "_source_type": "google_jobs",
+      "_india_filter": "location contains mumbai",
+      "_canonical_fp": "8ddfcb740f661505",
+      "canonical": true,
+      "canonical_id": "8ddfcb740f661505",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://apply.workable.com/acoladgroup/j/B2ABBEAB90/",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
+    },
+    {
+      "title": "Full Stack Python Django Developer",
+      "company": "Study Reach",
+      "location": "Gurugram, Chennai",
+      "url": "https://cutshort.io/job/Full-Stack-Python-Django-Developer-Gurugram-Chennai-Study-Reach-sfoM7G8t",
+      "apply_url": "",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "We are looking for a full-stack Python Django developer to work on the latest technologies for global education. You'll be part of a cross-functional team responsible for the entire software development life cycle, from conception to deployment. As a Full Stack Developer, you should be comfortable around both front-end and back-end coding languages, development frameworks, and third-party libraries. With problem-solving approaches and rigorous thinking abilities, we are looking for a learner who may not know all the answers but are obsessive about finding them and know exactly where to look for them. \"If you're also familiar with Agile methodologies, we'd like to meet you.\" Why you should work with us: Culture: - Fun and learning environment - Interact with stakeholders and clients from day one on a project - Work with professionals across the globe from marketing, to technology, and learn problem-solving from their experiences. Technology exposure: - Exposure to the latest technologies like AWS Cloud Platform, Python Programming, and DevOps Processes. - Opportunity to work in Cloud-based Data Integration Solutions and Products. - Building our products and solutions on the latest technologies like Python, Django, AWS Google Cloud, and Microservices. - Serverless services like AWS Lambda, SQS, SNS, DynamoDB, etc. - Container-based applications i.e. Microservices built on Dockers, we also use AI for data analytics and reporting. - Work with agile methodology. Benefits: - 5-day working week - No location constraints - Competitive salary - Stable work environment You are suitable if, you: - Have 2+ yrs of Python experience. - Have 2 yrs of experience in Django-powered web/mobile apps. - Extensive experience in Full-Stack application design and development using Python. - Have hands-on experience in HTML, JS, Bootstrap, Angular, and server-side APIs integration. - Have worked on Agile projects - Have a learning attitude, and excellent communication interpersonal skills. - Have the ability to work both in teams and individually.",
+      "skills": [
+        "Django",
+        "Python",
+        "Javascript",
+        "React.js",
+        "Angular (2+)",
+        "AngularJS (1.x)",
+        "Vue.js",
+        "Flask",
+        "MySQL",
+        "PostgreSQL"
+      ],
+      "salary": "₹8L - ₹15L / yr",
+      "work_mode": "",
+      "_source_type": "scrapegraph",
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "226f2d944da2dfc0",
+      "canonical": true,
+      "canonical_id": "226f2d944da2dfc0",
+      "apply_route": {
+        "best_apply_route": "cutshort",
+        "apply_url": "https://cutshort.io/job/Full-Stack-Python-Django-Developer-Gurugram-Chennai-Study-Reach-sfoM7G8t",
+        "backup_urls": [],
+        "reason": "best route: cutshort (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Full-stack Python Architect / Lead",
+      "company": "LogIQ Labs Pvt.Ltd.",
+      "location": "",
+      "url": "https://cutshort.io/job/Full-stack-Python-Architect-Lead-LogIQ-Labs-Pvt-Ltd-sDzJdEsm",
+      "apply_url": "",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "Plan, architect, integrate, and develop back-end and database driven features using the Python language and frameworks (Flask/ Falcon, MongoDB ). Create decoupled, interactive web UIs using JavaScript (Angular, jQuery) Aid in the development and ongoing maintenance of our DevOps platform (Ansible) Provide technical advice and recommendations for language and software choices. Develop code that is cross-browser and cross-platform friendly Collaborate with project stakeholders to ensure all requirements are met Evaluate technologies and manage technical planning Support and ongoing development for existing projects Provide clean code and proper documentation for each project Fix bugs and resolve ongoing issues",
+      "skills": [
+        "Python",
+        "Flask",
+        "MongoDB",
+        "Javascript",
+        "DevOps",
+        "Angular (2+)",
+        "jQuery"
+      ],
+      "salary": "₹8L - ₹15L / yr",
+      "work_mode": "remote",
+      "_source_type": "scrapegraph",
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "166d10e80f4cbf3e",
+      "canonical": true,
+      "canonical_id": "166d10e80f4cbf3e",
+      "apply_route": {
+        "best_apply_route": "cutshort",
+        "apply_url": "https://cutshort.io/job/Full-stack-Python-Architect-Lead-LogIQ-Labs-Pvt-Ltd-sDzJdEsm",
+        "backup_urls": [],
+        "reason": "best route: cutshort (priority 4)",
+        "risk": "medium"
+      }
+    }
+  ]
+}

@@ -92,6 +92,7 @@ class OnDemandSearch:
         max_results: int = 10,
         portal_companies: int = 20,
         include_boards: bool = True,
+        force_refresh: bool = False,
     ) -> OnDemandResult:
         """Run a targeted discovery pass. Returns top-N ranked jobs."""
         import time
@@ -100,11 +101,11 @@ class OnDemandSearch:
         self._current_role = role  # used by post-ATS filter
         result = OnDemandResult(role=role, city=city)
 
-        # Check shared crawl cache first
+        # Check shared crawl cache first (skip when force_refresh=True)
         try:
             from careerloop.sources.crawl_cache import CrawlCache
             _cache = CrawlCache(self.root)
-            cached = _cache.get(role, city)
+            cached = None if force_refresh else _cache.get(role, city)
             if cached is not None:
                 result.notes.append(f"crawl cache hit: {len(cached)} jobs (skipping pipeline)")
                 result.candidate_count = len(cached)
@@ -628,7 +629,8 @@ class OnDemandSearch:
             from careerloop.sources.company_discovery import CompanyDiscoveryEngine
             engine = CompanyDiscoveryEngine(self.root)
             sector = self._infer_sector(role)
-            print(f"    sector={sector} — hitting DDG/Wellfound/Crunchbase/Inc42/YC...", flush=True)
+            src = "SerpAPI" if os.environ.get("SERPAPI_KEY") else "DDG"
+            print(f"    sector={sector} — Phase A via {src}+Wellfound+Crunchbase+Inc42+YC...", flush=True)
             engine.discover(city=city, sector=sector, function_hint=role, max_companies=n * 2)
             print(f"    internet discovery done — querying DB for top companies...", flush=True)
             # Targets pulled from DB now enriched by live discovery
