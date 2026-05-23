@@ -17,6 +17,7 @@ Output: List[CompanyRecord] upserted to the company registry.
 """
 
 import logging
+import os
 import re
 import time
 from dataclasses import dataclass
@@ -222,6 +223,110 @@ class GoogleMapsDiscovery:
         # Remove common suffixes like "- Jobs", "| Careers", etc.
         name = re.sub(r"\s*[-|–]\s*(jobs|careers|hiring|about|official|india).*$", "", title, flags=re.IGNORECASE)
         return name.strip()[:100]
+
+
+class SerpAPIDiscovery:
+    """
+    Company discovery via SerpAPI Google Search — real Google results, stable and structured.
+    Replaces DDG-based GoogleMapsDiscovery as primary Phase A source when API key is available.
+    Falls back gracefully to DDG if key missing.
+
+    API key: SERPAPI_KEY env var.
+    Endpoint: https://serpapi.com/search?engine=google
+    """
+
+    ENDPOINT = "https://serpapi.com/search"
+    _SKIP_DOMAINS = {
+        "naukri", "linkedin", "glassdoor", "indeed", "wikipedia",
+        "youtube", "twitter", "facebook", "instagram", "quora",
+        "reddit", "medium", "ambitionbox", "crunchbase", "startupindia",
+        "serpapi",
+    }
+
+    def __init__(self, api_key: str = None):
+        self.api_key = api_key or os.environ.get("SERPAPI_KEY", "")
+        self.session = requests.Session()
+
+    @property
+    def available(self) -> bool:
+        return bool(self.api_key)
+
+    def search(self, city: str, sector: str, function_hint: str = "") -> list[RawCompany]:
+        if not self.available:
+            logger.debug("[SerpAPI] No API key — skipping")
+            return []
+
+        queries = self._build_queries(city, sector, function_hint)
+        results = []
+        seen: set[str] = set()
+
+        for query in queries:
+            companies = self._search_one(query, city, sector)
+            for c in companies:
+                key = _normalize_id(c.domain or c.name)
+                if key and key not in seen:
+                    seen.add(key)
+                    results.append(c)
+            time.sleep(0.5)
+
+        logger.info(f"[SerpAPI] {city}/{sector}: {len(results)} companies")
+        return results
+
+    def _build_queries(self, city: str, sector: str, function_hint: str) -> list[str]:
+        sector_short = sector.split("&")[0].strip().lower()
+        queries = [
+            f"{sector_short} companies in {city} India",
+            f"top {sector_short} startups {city} hiring",
+        ]
+        if function_hint:
+            queries.append(f"companies hiring {function_hint} in {city} India")
+        return queries
+
+    def _search_one(self, query: str, city: str, sector: str) -> list[RawCompany]:
+        try:
+            resp = self.session.get(
+                self.ENDPOINT,
+                params={
+                    "engine": "google",
+                    "q": query,
+                    "gl": "in",
+                    "hl": "en",
+                    "num": "20",
+                    "api_key": self.api_key,
+                },
+                timeout=15,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+        except Exception as e:
+            logger.debug(f"[SerpAPI] Request failed: {e}")
+            return []
+
+        results = []
+        for r in data.get("organic_results", []):
+            url = r.get("link", "")
+            title = r.get("title", "")
+            snippet = r.get("snippet", "")
+            if not url or not title:
+                continue
+            domain = _clean_domain(url)
+            if not domain or any(s in domain for s in self._SKIP_DOMAINS):
+                continue
+            city_lower = city.lower()
+            combined = (title + " " + snippet).lower()
+            if city_lower not in combined and not any(c in combined for c in INDIA_CITIES):
+                continue
+            results.append(RawCompany(
+                name=re.sub(r"\s*[-|–]\s*(jobs|careers|hiring|about|official|india).*$",
+                            "", title, flags=re.IGNORECASE).strip()[:100],
+                domain=domain,
+                city=city,
+                sector=_infer_sector(snippet + " " + sector),
+                description=snippet[:300],
+                source="serpapi",
+            ))
+
+        return results
 
 
 class WellfoundDiscovery:
@@ -590,9 +695,10 @@ class CompanyDiscoveryEngine:
     Each discovered company is enriched with ATS + career page detection.
     """
 
-    def __init__(self, career_ops_root: str = None):
+    def __init__(self, career_ops_root: str = None, serpapi_key: str = None):
         self.registry = CompanyRegistry(career_ops_root)
         self.enricher = CompanyEnricher()
+        self.serpapi = SerpAPIDiscovery(serpapi_key or os.environ.get("SERPAPI_KEY", ""))
         self.google = GoogleMapsDiscovery()
         self.wellfound = WellfoundDiscovery()
         self.crunchbase = CrunchbaseDiscovery()
@@ -617,7 +723,11 @@ class CompanyDiscoveryEngine:
         # but it never replaces a live search.
         raw_companies: list[RawCompany] = []
 
-        raw_companies += self.google.search(city, sector, function_hint)
+        # SerpAPI = real Google results, primary source when key available
+        if self.serpapi.available:
+            raw_companies += self.serpapi.search(city, sector, function_hint)
+        else:
+            raw_companies += self.google.search(city, sector, function_hint)
         raw_companies += self.wellfound.search(city, sector)
         raw_companies += self.crunchbase.search(city, sector)
         raw_companies += self.inc42.search(city, sector)
