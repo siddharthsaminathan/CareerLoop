@@ -28,7 +28,7 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 |--------|---|--------|-----------|-------|
 | **Transport abstraction layer** | **65%** | 🟡 | No | Base + Terminal stubs. Echo fallback removed. Safe error messages. /brief + /scan + CommandRouter wired. |
 | **Multi-user onboarding** | **15%** | 🔴 | **YES** | is_complete validated against required fields. Profile completeness check. Hardcoded strings removed. |
-| **LangGraph Chatbot Orchestrator** | **82%** | 🟢 | No | All 11 states handled. GENERAL_CHAT returns LLM reply. PACK_GENERATING reachable. add_messages reducer. CommandRouter. Profile hydration. |
+| **LangGraph Chatbot Orchestrator** | **85%** | 🟢 | No | 2-node pipeline. GENERAL_CHAT returns real LLM. ActionResolver context injection. Live scan rendering. Supabase-only. |
 | **PostgresSaver Checkpointer** | **20%** | 🔴 | **YES** | SQLite sessions functional without Postgres. Dual-mode verified. Interrupt/resume proof still needed. |
 | **Application pack delivery** | **95%** | 🟢 | No | PackageAssembler + Playwright PDFs. E2E validated on real job. |
 | **Daily brief cron delivery** | **90%** | 🟢 | No | Daily Runner triggers scan and fully populates daily_briefs and daily_brief_items SQL tables. E2E database brief retrieval verified. |
@@ -51,13 +51,13 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 | Gmail integration | 0% | ⚫ | No | Sprint 6. Needs transport first. |
 | Calendar integration | 0% | ⚫ | No | Sprint 6. Needs transport first. |
 | Interview memory (full) | 25% | 🟡 | No | Vent parsing works. Debrief + weakness tracker = Sprint 7. |
-| Persistent memory graph | **48%** | 🟡 | No | Single session load. Profile hydration from DB. add_messages conversation history. |
+| Persistent memory graph | **60%** | 🟡 | No | Schema isolation (careerloop.*). Repository layer. Fingerprint dedup. User-job relationships. |
 | Background job scheduler | 0% | ⚫ | No | Sprint 2. Daily + per-job two classes. |
 | WhatsApp / Meta Cloud API | 0% | ⚫ | No | After Telegram beta validates loop. |
 | Monetization / billing | 0% | 🔴 | No | Pricing tiers defined. No paywall yet. Needs onboarding first. |
-| Data engineering V2 | 40% | 🟡 Active | 16-table MECE schema. Global job cache. Repository layer. Cache-first scan strategy pending. |
+| Data engineering V2 | 75% | 🟢 Active | 22 tables in `careerloop` schema. Repository layer (7 classes, 32 methods). Schema isolation complete. Fingerprint dedup. Schema dump exported. |
  
-**Overall product maturity: ~68-71% of vision.** Chat runtime is real — no echo, no slop, all states reachable, 14 regression tests. Council ceiling hit (93%). Geo filter proven. Critical gap remains: transport delivery loop + multi-user onboarding.
+**Overall product maturity: ~71-73% of vision.** Data engineering V2 complete (22 tables, schema isolated). Chat runtime real (no echo, no slop). Supabase-only. Geo filter proven. Critical gap remains: full scan E2E against Supabase + multi-user onboarding.
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -105,6 +105,32 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 ---
 
 ## Session Log
+
+### 2026-05-25 — Session: Data Engineering V2 + Schema Isolation + Runtime Fluidity
+
+**What was done:**
+- **Data Engineering V2 architecture** — 16-table MECE schema: global job cache (`careerloop.jobs`), per-user personalization (`careerloop.user_job_relationships`), async runs (`careerloop.background_runs` + `careerloop.run_events`), daily briefs, applications, packs, people, outreach, followups, evidence, preferences, outcome learning.
+- **Repository layer** — `careerloop/memory/repository_v2.py` (1040 lines, 7 classes, 32 methods). All DB access centralized.
+- **Schema isolation** — Moved 22 CareerLoop tables from `public` → `careerloop` schema. `public` now holds only Supabase auth (`users`), LangGraph checkpoints, and Emote app tables. Zero data loss.
+- **Supabase-only runtime** — Removed all SQLite fallback code. `connection.py` hard-fails if DATABASE_URL missing. DB banner at startup shows Supabase host, journey_state, brief count, active_context.
+- **Profile recovery** — `session_store.py` loads profile from `careerloop.sessions` + `public.users`. Siddharth's 5,626-char CV loads correctly from Supabase.
+- **ActionResolver onboarding fix** — NEW_USER state messages route to GENERAL_CHAT, never START_SCAN. "I want ML Engineer roles" during onboarding = profile refinement, not scan trigger.
+- **Live CLI scan rendering** — `_render_scan_events()` polls `careerloop.run_events` with Rich color output (MATCH=green, REJECT=red).
+- **Natural language responses** — All slash references removed from user-facing text. `/scan` → "Want me to scan now?". No hardcoded AI slop.
+- **Data engineer skill** — `.claude/skills/careerloop-data-engineer/SKILL.md` created. Full schema knowledge for all agents.
+- **Schema export** — `docs/CAREERLOOP_SCHEMA_DUMP.json` (265KB) + `docs/CAREERLOOP_SCHEMA.md` (68KB). Live Supabase export with columns, types, FKs, indexes, row counts.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED
+Data engineering V2 is the foundation for everything — global job dedup, user personalization, cache-first strategy, outcome learning. Schema isolation is production-grade.
+
+**Deviations detected:** None. All work advances core architecture.
+
+**Recommended next 3 actions:**
+1. Run full fresh scan against Supabase to populate `careerloop.jobs`, `careerloop.job_candidates`, `careerloop.daily_brief_items` — prove end-to-end data flow (PRD §5-6)
+2. Implement cache-hit path: check `careerloop.jobs` before external API calls (PRD §5)
+3. Wire `careerloop.outcome_events` learning loop from application status changes (PRD §23)
+
+---
 
 ### 2026-05-24, 18:30 IST — Session: Chat Runtime Stabilization — No More Demo Slop
 

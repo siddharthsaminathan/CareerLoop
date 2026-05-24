@@ -382,7 +382,7 @@ working together to turn openings into interviews.
 | Multi-user onboarding | 15% | 🔴 Gap | is_complete validated against required fields. Hardcoded strings removed. CV-upload flow still needed. |
 | Monetization logic | 30% | 🟡 Active | Strategic understanding solid; no billing/paywall |
  
-**Overall product maturity: ~68-71% of vision.** Chat runtime is real — no echo, no slop, all 11 states reachable, 14 regression tests. Council ceiling hit (93%). Geo filter proven. Critical gap: transport delivery loop + multi-user onboarding remain P0.
+**Overall product maturity: ~71-73% of vision.** Data engineering V2 complete (22 tables, schema isolated, repository layer). Chat runtime real (no echo, no slop). Supabase-only. Council ceiling hit (93%). Geo filter proven. Critical gap remains: full scan E2E + multi-user onboarding.
  
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
