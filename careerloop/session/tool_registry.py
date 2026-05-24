@@ -62,12 +62,12 @@ class ToolRegistry:
             response_type="list",
             text="",
             cards=[
-                {"command": "/brief", "description": "Today's job matches"},
-                {"command": "/scan", "description": "Search for new jobs"},
-                {"command": "/pipeline", "description": "All tracked jobs"},
-                {"command": "/status", "description": "Your profile and state"},
-                {"command": "/profile", "description": "Full profile details"},
-                {"command": "/reset", "description": "Reset your session"},
+                {"command": "Today's matches", "description": "Show your latest job brief"},
+                {"command": "Scan for jobs", "description": "Search for new matching jobs"},
+                {"command": "My pipeline", "description": "See all tracked applications"},
+                {"command": "My status", "description": "Check your profile and journey state"},
+                {"command": "My profile", "description": "See full profile details"},
+                {"command": "Start fresh", "description": "Reset your session"},
             ]
         )
         
@@ -178,6 +178,53 @@ class ToolRegistry:
 
             res = runner.run(do_scan=True)
             today_str = datetime.now(timezone.utc).date().isoformat()
+
+            # If brief already generated today, load and return it from DB
+            if res.get("already_generated"):
+                try:
+                    with self.db.get_connection() as conn:
+                        with conn.cursor() as cur:
+                            cur.execute(
+                                "SELECT id, summary FROM daily_briefs WHERE user_id = %s AND date_str = %s ORDER BY date_str DESC LIMIT 1",
+                                (user_id, today_str)
+                            )
+                            existing = cur.fetchone()
+                            if existing:
+                                cur.execute(
+                                    "SELECT item_index, job_id, title, company, location, fit_score FROM daily_brief_items WHERE brief_id = %s ORDER BY item_index",
+                                    (existing["id"],)
+                                )
+                                items = cur.fetchall()
+                                if items:
+                                    lines = [f"# Daily Brief — {today_str}\n"]
+                                    cards = []
+                                    for item in items:
+                                        idx = item["item_index"]
+                                        lines.append(f"{idx}. **{item['title']}** @ {item['company']} ({item['location']}) — **{item['fit_score']:.1f}/100**")
+                                        cards.append({"index": idx, "job_id": item["job_id"], "title": item["title"], "company": item["company"], "fit_score": item["fit_score"]})
+                                    lines.append("\nReply with a number to review details.")
+
+                                    # Mark the already-completed scan as done
+                                    try:
+                                        with self.db.get_connection() as conn2:
+                                            with conn2.cursor() as cur2:
+                                                cur2.execute(
+                                                    "UPDATE background_runs SET status = 'COMPLETED', updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
+                                                    (run_id,)
+                                                )
+                                    except Exception:
+                                        pass
+
+                                    return ResponseEnvelope(
+                                        response_type="list",
+                                        text="\n".join(lines),
+                                        cards=cards,
+                                        artifact_context_updates={"active_artifact_type": "daily_brief", "active_artifact_id": existing["id"]},
+                                    )
+                except Exception:
+                    pass
+                # If we couldn't find the brief, fall through to normal completion
+
             brief_id = str(uuid.uuid4())
 
             with self.db.get_connection() as conn:
@@ -201,7 +248,7 @@ class ToolRegistry:
                         job = item["job"]
                         score = item["score"]
                         breakdown = item["breakdown"]
-                        
+
                         cursor.execute(
                             "INSERT INTO daily_brief_items (id, brief_id, item_index, job_id, title, company, location, fit_score, recommendation_reason, risk_summary, route_recommendation) "
                             "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
@@ -236,23 +283,25 @@ class ToolRegistry:
                         except Exception:
                             pass
 
-                    # Emit filtering summary to run_events
-                    if res and not res.get("already_generated"):
-                        new_jobs = res.get("new_jobs_found", 0)
-                        unique = res.get("unique_added", 0)
-                        scored = res.get("scored", 0)
-                        summary_events = [
-                            f"Scan filtering summary:",
-                            f"  {new_jobs} total found",
-                            f"  {scored} matched and scored",
-                            f"  {new_jobs - unique} duplicates removed",
-                            f"Brief ready with top matches.",
-                        ]
-                        for event_msg in summary_events:
+                    # Emit real scan filtering summary to run_events
+                    new_jobs = res.get("new_jobs_found", 0)
+                    unique_added = res.get("unique_added", 0)
+                    scored = res.get("scored", 0)
+                    summary_lines = [
+                        f"Scan complete.",
+                        f"  {new_jobs} raw jobs found",
+                        f"  {unique_added} new (after dedup)",
+                        f"  {scored} scored",
+                        f"Brief ready with top matches.",
+                    ]
+                    for event_msg in summary_lines:
+                        try:
                             cursor.execute(
                                 "INSERT INTO run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
                                 (str(uuid.uuid4()), run_id, event_msg, "scan_progress")
                             )
+                        except Exception:
+                            pass
 
                     cursor.execute(
                         "UPDATE background_runs SET status = 'COMPLETED', updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
@@ -263,7 +312,8 @@ class ToolRegistry:
                         (str(uuid.uuid4()), run_id)
                     )
 
-            text = f"Scan complete! Scored {res['scored']} opportunities. Here is your Daily Brief:\n\n{res['shortlist_text']}"
+            scored_count = res.get("scored", 0)
+            text = f"Scan complete! Scored {scored_count} opportunities. Here is your Daily Brief:\n\n{res.get('shortlist_text', '')}"
             return ResponseEnvelope(
                 response_type="list",
                 text=text,
@@ -352,7 +402,8 @@ class ToolRegistry:
             cards=cards,
             artifact_context_updates={
                 "active_artifact_type": "daily_brief",
-                "active_artifact_id": brief["id"]
+                "active_artifact_id": brief["id"],
+                "active_brief_id": brief["id"],
             },
             state_updates={"state": UserJourneyState.PROFILE_READY}
         )
@@ -399,6 +450,7 @@ class ToolRegistry:
             artifact_context_updates={
                 "active_artifact_type": "job_card",
                 "active_job_id": item["job_id"],
+                "active_brief_id": brief_id,
                 "current_selection_index": index
             },
             state_updates={"state": UserJourneyState.PROFILE_READY}
@@ -477,7 +529,7 @@ class ToolRegistry:
     def show_company_intel(self, action: Action, state: UserJourneyState, context: Dict[str, Any]) -> ResponseEnvelope:
         job_id = context.get("active_job_id")
         if not job_id:
-            return ResponseEnvelope(response_type="error", text="No job selected.")
+            return ResponseEnvelope(response_type="error", text="I don't have a job selected. Would you like me to show your latest brief?")
 
         company_name = ""
         try:
@@ -533,7 +585,7 @@ class ToolRegistry:
                 pass
 
         if not intel_text:
-            intel_text = f"No company intelligence found for {company_name}. Use /scan to discover more companies."
+            intel_text = f"No company intelligence found for {company_name}. Want me to scan for more companies?"
 
         return ResponseEnvelope(
             response_type="card",
@@ -549,7 +601,7 @@ class ToolRegistry:
     def show_people_to_reach(self, action: Action, state: UserJourneyState, context: Dict[str, Any]) -> ResponseEnvelope:
         job_id = context.get("active_job_id")
         if not job_id:
-            return ResponseEnvelope(response_type="error", text="No job selected.")
+            return ResponseEnvelope(response_type="error", text="I don't have a job selected. Would you like me to show your latest brief?")
 
         company_name = ""
         try:

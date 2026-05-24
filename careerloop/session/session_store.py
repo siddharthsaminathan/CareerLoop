@@ -1,4 +1,3 @@
-import os
 import json
 import logging
 from typing import Optional, Dict, Any
@@ -31,14 +30,8 @@ class SessionStore:
         pass # Schema is initialized via connection.py and supabase_schema.sql
 
     def _tbl(self, name: str) -> str:
-        """Returns schema-qualified table name for Postgres, bare name for SQLite.
-
-        SQLite does not support schema-qualified identifiers (e.g. public.sessions),
-        so the prefix is only applied when DATABASE_URL points at PostgreSQL.
-        """
-        if os.getenv("DATABASE_URL"):
-            return f"public.{name}"
-        return name
+        """Returns schema-qualified table name. Supabase-only: always public.{name}."""
+        return f"public.{name}"
 
     def _parse_profile_prefs(self, raw_prefs: Any) -> dict:
         if isinstance(raw_prefs, dict):
@@ -112,12 +105,9 @@ class SessionStore:
                         try:
                             cv = (profile_data.get("cv_content") or "").strip()
                             if cv and len(cv) > 50:  # Has a real CV
-                                has_roles = bool(profile_data.get("target_roles"))
-                                has_cities = bool(profile_data.get("target_cities"))
-                                logger.info(f"Profile recovery: user {user_id} has CV ({len(cv)} chars), roles={has_roles}, cities={has_cities}")
-                                if has_roles or has_cities:
-                                    default_state = UserJourneyState.PROFILE_READY
-                                    temp_profile_data = profile_data
+                                logger.info(f"Profile recovery: user {user_id[:12]}... has CV ({len(cv)} chars), upgrading to PROFILE_READY")
+                                default_state = UserJourneyState.PROFILE_READY
+                                temp_profile_data = profile_data
                         except Exception as e:
                             logger.error(f"Profile recovery check failed: {e}")
 
@@ -172,6 +162,16 @@ class SessionStore:
                 )
         except Exception as e:
             logger.error(f"Failed to retrieve session for user {user_id}: {e}")
+            # Attempt profile recovery even when session query fails
+            try:
+                profile_data = self._load_profile_data(user_id)
+                if profile_data:
+                    cv = (profile_data.get("cv_content") or "").strip()
+                    if cv and len(cv) > 50:
+                        logger.info(f"Exception-path profile recovery: user {user_id[:12]}... has CV ({len(cv)} chars)")
+                        return Session(user_id=user_id, state=UserJourneyState.PROFILE_READY, temp_profile_data=profile_data)
+            except Exception:
+                pass
             return Session(user_id=user_id, state=UserJourneyState.NEW_USER)
 
     def save_session(self, session: Session) -> bool:

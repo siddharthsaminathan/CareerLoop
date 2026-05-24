@@ -1,14 +1,10 @@
 """
-CareerLoop Memory Connection Manager — dual-mode database access layer.
+CareerLoop Memory Connection Manager -- Supabase PostgreSQL only.
 
-Mode 1 (production/Supabase): DATABASE_URL set → PostgreSQL via psycopg2
-Mode 2 (local dev): DATABASE_URL absent → SQLite via careerloop/careerloop.db
-
-All callers use get_connection() context manager and get dict-like rows either way.
+All DB access goes through psycopg2/PostgreSQL via DATABASE_URL.
 """
 
 import os
-import sqlite3
 import threading
 import logging
 from contextlib import contextmanager
@@ -16,90 +12,8 @@ from typing import Generator, Optional
 
 logger = logging.getLogger("careerloop.memory.connection")
 
-# ─── SQLite compatibility shim ────────────────────────────────────────────────
 
-class _DictRow(dict):
-    """sqlite3.Row wrapper that behaves like a dict (compatible with psycopg2 RealDictRow)."""
-    pass
-
-
-def _sqlite_row_factory(cursor, row):
-    return _DictRow(zip([d[0] for d in cursor.description], row))
-
-
-class _SQLiteCursor:
-    """Thin wrapper so callers can use cursor.execute() / fetchall() / fetchone()."""
-    def __init__(self, conn):
-        self._conn = conn
-        self._cur = conn.cursor()
-
-    def execute(self, sql, params=()):
-        # PostgreSQL-style %s → SQLite-style ?
-        sql = sql.replace("%s", "?")
-        self._cur.execute(sql, params)
-        return self
-
-    def executemany(self, sql, params_seq):
-        sql = sql.replace("%s", "?")
-        self._cur.executemany(sql, params_seq)
-        return self
-
-    def fetchall(self):
-        return self._cur.fetchall()
-
-    def fetchone(self):
-        return self._cur.fetchone()
-
-    @property
-    def rowcount(self):
-        return self._cur.rowcount
-
-    @property
-    def lastrowid(self):
-        return self._cur.lastrowid
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, *_):
-        pass
-
-
-class _SQLiteConn:
-    """Wraps sqlite3 connection to behave like psycopg2 connection for our usage patterns."""
-    def __init__(self, path: str):
-        self._conn = sqlite3.connect(path, check_same_thread=False)
-        self._conn.row_factory = _sqlite_row_factory
-        self._conn.execute("PRAGMA journal_mode=WAL")
-        self._conn.execute("PRAGMA foreign_keys=ON")
-
-    def cursor(self):
-        return _SQLiteCursor(self._conn)
-
-    def execute(self, sql, params=()):
-        sql = sql.replace("%s", "?")
-        return self._conn.execute(sql, params)
-
-    def commit(self):
-        self._conn.commit()
-
-    def rollback(self):
-        self._conn.rollback()
-
-    def close(self):
-        self._conn.close()
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, *_):
-        if exc_type:
-            self.rollback()
-        else:
-            self.commit()
-
-
-# ─── PostgreSQL path (only imported when DATABASE_URL is set) ─────────────────
+# ─── PostgreSQL connection ─────────────────────────────────────────────────
 
 def _get_pg_connection(db_url: str):
     import psycopg2
@@ -110,185 +24,21 @@ def _get_pg_connection(db_url: str):
 # ─── DatabaseManager ──────────────────────────────────────────────────────────
 
 class DatabaseManager:
-    """
-    Thread-safe database manager.
-    Auto-selects PostgreSQL (Supabase) or SQLite based on DATABASE_URL presence.
-    """
+    """Thread-safe database manager. Supabase PostgreSQL only."""
 
     def __init__(self, db_url: Optional[str] = None, schema_path: Optional[str] = None):
         base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
         self.db_url = db_url or os.getenv("DATABASE_URL")
-        self._use_sqlite = not bool(self.db_url)
-        self._local = threading.local()
-
-        if self._use_sqlite:
-            self._sqlite_path = os.path.join(base_dir, "careerloop", "careerloop.db")
-            self._init_sqlite_schema()
-        else:
-            self.schema_path = schema_path or os.path.join(
-                base_dir, "careerloop", "memory", "supabase_schema.sql"
+        if not self.db_url:
+            raise ValueError(
+                "DATABASE_URL is required. CareerLoop runs on Supabase PostgreSQL only. "
+                "Set DATABASE_URL in your .env file or environment."
             )
-            self._init_pg_schema()
-
-    def _init_sqlite_schema(self):
-        """Bootstrap minimal SQLite tables needed by the search pipeline."""
-        ddl = """
-        CREATE TABLE IF NOT EXISTS users (
-            id TEXT PRIMARY KEY,
-            email TEXT,
-            full_name TEXT,
-            master_cv_markdown TEXT,
-            work_style_prefs TEXT DEFAULT '{}',
-            employment_state TEXT,
-            urgency INTEGER DEFAULT 5,
-            burnout_level INTEGER DEFAULT 5,
-            preferred_environments TEXT DEFAULT '[]',
-            startup_tolerance TEXT,
-            compensation_floor_lakhs REAL,
-            compensation_target_lakhs REAL,
-            emotional_constraints TEXT DEFAULT '{}',
-            interview_tolerance TEXT,
-            remote_pref TEXT,
-            search_posture TEXT,
-            created_at TEXT DEFAULT (datetime('now')),
-            updated_at TEXT DEFAULT (datetime('now'))
-        );
-        CREATE TABLE IF NOT EXISTS sessions (
-            user_id TEXT PRIMARY KEY,
-            state TEXT DEFAULT 'NEW_USER',
-            current_job_id TEXT,
-            onboarding_step INTEGER DEFAULT 0,
-            temp_profile_data TEXT DEFAULT '{}',
-            active_artifact_type TEXT,
-            active_artifact_id TEXT,
-            active_job_id TEXT,
-            active_brief_id TEXT,
-            active_pack_id TEXT,
-            current_selection_index INTEGER,
-            updated_at TEXT DEFAULT (datetime('now'))
-        );
-        CREATE TABLE IF NOT EXISTS daily_briefs (
-            id TEXT PRIMARY KEY,
-            user_id TEXT NOT NULL,
-            date_str TEXT NOT NULL,
-            run_id TEXT,
-            summary TEXT,
-            created_at TEXT DEFAULT (datetime('now')),
-            UNIQUE(user_id, date_str)
-        );
-        CREATE TABLE IF NOT EXISTS background_runs (
-            run_id TEXT PRIMARY KEY,
-            user_id TEXT NOT NULL,
-            run_type TEXT NOT NULL,
-            status TEXT DEFAULT 'QUEUED',
-            created_at TEXT DEFAULT (datetime('now')),
-            updated_at TEXT DEFAULT (datetime('now'))
-        );
-        CREATE TABLE IF NOT EXISTS run_events (
-            event_id TEXT PRIMARY KEY,
-            run_id TEXT NOT NULL,
-            message TEXT,
-            timestamp TEXT DEFAULT (datetime('now'))
-        );
-        CREATE TABLE IF NOT EXISTS daily_brief_items (
-            id TEXT PRIMARY KEY,
-            brief_id TEXT NOT NULL,
-            item_index INTEGER NOT NULL,
-            job_id TEXT NOT NULL,
-            title TEXT,
-            company TEXT,
-            location TEXT,
-            fit_score REAL,
-            recommendation_reason TEXT,
-            risk_summary TEXT,
-            route_recommendation TEXT,
-            UNIQUE(brief_id, item_index)
-        );
-        CREATE TABLE IF NOT EXISTS companies (
-            id TEXT PRIMARY KEY,
-            name TEXT NOT NULL,
-            domain TEXT,
-            city TEXT,
-            sector TEXT,
-            description TEXT,
-            career_page_url TEXT,
-            ats_provider TEXT,
-            ats_url TEXT,
-            ats_slug TEXT,
-            linkedin_url TEXT,
-            employee_count INTEGER,
-            funding_stage TEXT,
-            function_probability REAL DEFAULT 0.5,
-            targeting_score REAL DEFAULT 50.0,
-            crawl_status TEXT DEFAULT 'pending',
-            last_crawled_at TEXT,
-            created_at TEXT DEFAULT (datetime('now')),
-            updated_at TEXT DEFAULT (datetime('now'))
-        );
-        CREATE TABLE IF NOT EXISTS company_sources (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            company_id TEXT NOT NULL,
-            source_type TEXT NOT NULL,
-            crawl_url TEXT,
-            last_crawled_at TEXT,
-            is_active INTEGER DEFAULT 1,
-            UNIQUE(company_id, source_type)
-        );
-        CREATE TABLE IF NOT EXISTS role_keywords (
-            role_key TEXT PRIMARY KEY,
-            keywords TEXT,
-            updated_at TEXT DEFAULT (datetime('now'))
-        );
-        CREATE TABLE IF NOT EXISTS job_cache (
-            id TEXT PRIMARY KEY,
-            company_id TEXT,
-            title TEXT,
-            description TEXT,
-            apply_url TEXT,
-            location TEXT,
-            department TEXT,
-            source_type TEXT,
-            raw_json TEXT,
-            created_at TEXT DEFAULT (datetime('now'))
-        );
-        """
-        conn = _SQLiteConn(self._sqlite_path)
-        for stmt in ddl.split(";"):
-            stmt = stmt.strip()
-            if stmt:
-                try:
-                    conn.execute(stmt)
-                except Exception:
-                    pass
-        self._ensure_sqlite_columns(conn, "users", {
-            "email": "TEXT",
-            "full_name": "TEXT",
-            "master_cv_markdown": "TEXT",
-            "parsed_cv_data": "TEXT",
-        })
-        self._ensure_sqlite_columns(conn, "sessions", {
-            "active_artifact_type": "TEXT",
-            "active_artifact_id": "TEXT",
-            "active_job_id": "TEXT",
-            "active_brief_id": "TEXT",
-            "active_pack_id": "TEXT",
-            "current_selection_index": "INTEGER",
-        })
-        try:
-            conn.execute("UPDATE sessions SET state = 'PROFILE_COMPLETE' WHERE state = 'DAILY_BRIEF_SENT'")
-        except Exception as e:
-            logger.warning(f"SQLite session state repair skipped: {e}")
-        conn.commit()
-        conn.close()
-
-    def _ensure_sqlite_columns(self, conn, table: str, columns: dict[str, str]) -> None:
-        try:
-            existing = {row["name"] for row in conn.execute(f"PRAGMA table_info({table})").fetchall()}
-            for name, ddl in columns.items():
-                if name not in existing:
-                    conn.execute(f"ALTER TABLE {table} ADD COLUMN {name} {ddl}")
-        except Exception as e:
-            logger.warning(f"SQLite schema column repair skipped for {table}: {e}")
+        self._local = threading.local()
+        self.schema_path = schema_path or os.path.join(
+            base_dir, "careerloop", "memory", "supabase_schema.sql"
+        )
+        self._init_pg_schema()
 
     def _init_pg_schema(self):
         if not os.path.exists(self.schema_path):
@@ -318,26 +68,15 @@ class DatabaseManager:
 
     @contextmanager
     def get_connection(self) -> Generator:
-        if self._use_sqlite:
-            conn = _SQLiteConn(self._sqlite_path)
-            try:
-                yield conn
-                conn.commit()
-            except Exception:
-                conn.rollback()
-                raise
-            finally:
-                conn.close()
-        else:
-            conn = _get_pg_connection(self.db_url)
-            try:
-                yield conn
-                conn.commit()
-            except Exception:
-                conn.rollback()
-                raise
-            finally:
-                conn.close()
+        conn = _get_pg_connection(self.db_url)
+        try:
+            yield conn
+            conn.commit()
+        except Exception:
+            conn.rollback()
+            raise
+        finally:
+            conn.close()
 
 
 # ─── Module-level singleton ───────────────────────────────────────────────────
@@ -350,6 +89,11 @@ def get_db_manager(career_ops_root: Optional[str] = None) -> DatabaseManager:
     global _default_manager
     with _manager_lock:
         if _default_manager is None:
+            if not os.getenv("DATABASE_URL"):
+                raise ValueError(
+                    "DATABASE_URL is required. CareerLoop runs on Supabase PostgreSQL only. "
+                    "Set DATABASE_URL in your .env file or environment."
+                )
             schema_path = None
             if career_ops_root:
                 schema_path = os.path.join(

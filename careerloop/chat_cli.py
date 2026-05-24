@@ -29,9 +29,6 @@ from rich.table import Table
 from rich import box
 console = Console()
 
-def db_table(name: str) -> str:
-    return f"public.{name}" if os.getenv("DATABASE_URL") else name
-
 def authenticate_cli_user() -> str:
     """
     Mock authentication for the CLI that returns a UUID.
@@ -69,8 +66,8 @@ def authenticate_cli_user() -> str:
         db = get_db_manager()
         with db.get_connection() as conn:
             with conn.cursor() as cur:
-                cur.execute(f"""
-                    INSERT INTO {db_table('users')} (id, email, full_name, created_at, updated_at)
+                cur.execute("""
+                    INSERT INTO public.users (id, email, full_name, created_at, updated_at)
                     VALUES (%s, %s, %s, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
                     ON CONFLICT (id) DO NOTHING
                 """, (user_uuid, email, email.split('@')[0]))
@@ -105,9 +102,9 @@ def get_profile_data(session) -> dict:
         db = get_db_manager()
         with db.get_connection() as conn:
             with conn.cursor() as cur:
-                cur.execute(f"""
-                    SELECT master_cv_markdown, work_style_prefs 
-                    FROM {db_table('users')} 
+                cur.execute("""
+                    SELECT master_cv_markdown, work_style_prefs
+                    FROM public.users
                     WHERE id = %s
                 """, (session.user_id,))
                 row = cur.fetchone()
@@ -150,16 +147,15 @@ def print_status_card(session):
     console.print(table)
 
 def print_help_panel():
-    table = Table(title="[bold cyan]Interactive Command Hub[/bold cyan]", box=box.ROUNDED, border_style="cyan")
-    table.add_column("Command", style="bold green")
+    table = Table(title="[bold cyan]What You Can Ask Me[/bold cyan]", box=box.ROUNDED, border_style="cyan")
+    table.add_column("Topic", style="bold green")
     table.add_column("Description", style="white")
-    table.add_row("/status", "Display current session state and profile attributes.")
-    table.add_row("/scan", "Trigger background job search engine scan.mjs.")
-    table.add_row("/pipeline", "Show a list of crawled jobs from the local database cache.")
-    table.add_row("/brief", "Display today's daily brief from output/daily_briefs/.")
-    table.add_row("/profile", "View full extracted profile attributes and markdown CV.")
-    table.add_row("/reset", "Reset session and clear profile data to start onboarding fresh.")
-    table.add_row("/exit, /quit", "Teardown session and exit terminal co-pilot.")
+    table.add_row("Scan for jobs", "Search job boards for roles matching your profile.")
+    table.add_row("Show my pipeline", "Display recently crawled and scored jobs.")
+    table.add_row("Show my brief", "Display today's daily job brief with recommendations.")
+    table.add_row("Update my profile", "Change your target roles, cities, salary expectations, or CV.")
+    table.add_row("Reset my session", "Clear your profile data and restart onboarding.")
+    table.add_row("Exit / Quit", "End your CareerLoop session.")
     console.print(table)
 
 def print_pipeline(db_manager):
@@ -173,10 +169,10 @@ def print_pipeline(db_manager):
     try:
         with db_manager.get_connection() as conn:
             with conn.cursor() as cur:
-                cur.execute(f"SELECT id, company_id, title, location, source_type FROM {db_table('job_cache')} LIMIT 15")
+                cur.execute("SELECT id, company_id, title, location, source_type FROM public.job_cache LIMIT 15")
                 rows = cur.fetchall()
         if not rows:
-            console.print("[yellow]No jobs in the local cache yet. Run /scan to search for jobs![/yellow]")
+            console.print("[yellow]No jobs in the local cache yet. Want me to scan now?[/yellow]")
             return
         for row in rows:
             comp_id = row.get('company_id', '') or ''
@@ -208,44 +204,6 @@ def print_profile_details(session):
         table.add_row(k.replace('_', ' ').title(), str(v))
     console.print(table)
 
-def run_background_scan():
-    """Invoke the full DailyRunner pipeline — scan, filter, score, brief, persist."""
-    from datetime import datetime, timezone
-
-    root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-
-    try:
-        from careerloop.daily_runner import DailyRunner
-    except Exception as e:
-        console.print(f"[bold red]Failed to import DailyRunner: {e}[/bold red]")
-        return
-
-    with console.status("[bold green]Scanning job boards, filtering, and scoring...[/bold green]", spinner="dots"):
-        try:
-            runner = DailyRunner(root)
-            result = runner.run(do_scan=True)
-
-            if result.get("already_generated"):
-                console.print(f"[yellow]Brief already generated today ({datetime.now(timezone.utc).date().isoformat()}).[/yellow]")
-                brief_path = os.path.join(root, "output", "daily_briefs", f"{datetime.now(timezone.utc).date().isoformat()}.md")
-                if os.path.exists(brief_path):
-                    console.print("[dim]Showing today's brief:[/dim]\n")
-                    with open(brief_path) as f:
-                        console.print(f.read())
-                return
-
-            console.print(f"[bold green]Scan complete![/bold green] {result['new_jobs_found']} raw → {result['unique_added']} new → {result['scored']} scored.")
-
-            brief_path = os.path.join(root, "output", "daily_briefs", f"{datetime.now(timezone.utc).date().isoformat()}.md")
-            if os.path.exists(brief_path):
-                console.print("\n[bold]Today's Brief:[/bold]\n")
-                with open(brief_path) as f:
-                    console.print(f.read())
-            else:
-                console.print("[yellow]No new jobs matched your filters today.[/yellow]")
-        except Exception as e:
-            console.print(f"[bold red]Scan pipeline failed: {e}[/bold red]")
-
 def main():
     # 1. Authenticate (returns UUID)
     user_id = authenticate_cli_user()
@@ -276,7 +234,31 @@ def main():
             session.temp_profile_data = profile_data or session.temp_profile_data
             session_store.save_session(session)
 
-    console.print(f"[dim]user_id={user_id[:12]}... | journey_state={session.state.value} | active_context={getattr(session, 'active_context', {})}[/dim]")
+    # Banner: session state
+    console.print(f"[dim]user_id={user_id[:12]}... | journey_state={session.state.value}[/dim]")
+
+    # Show latest brief if available
+    try:
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute("SELECT id, date_str FROM public.daily_briefs WHERE user_id = %s ORDER BY date_str DESC LIMIT 1", (user_id,))
+                brief = cur.fetchone()
+        if brief:
+            console.print(f"[dim]latest_brief_id={brief['id'][:12]}... | date={brief['date_str']}[/dim]")
+        else:
+            console.print(f"[dim]latest_brief_id=none[/dim]")
+
+        # Show active_context from session
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute("SELECT active_artifact_type, active_artifact_id, active_job_id FROM public.sessions WHERE user_id = %s", (user_id,))
+                ctx_row = cur.fetchone()
+        if ctx_row and ctx_row.get("active_artifact_type"):
+            console.print(f"[dim]active_context: {ctx_row['active_artifact_type']} | job={ctx_row.get('active_job_id', 'none')[:12] if ctx_row.get('active_job_id') else 'none'}[/dim]")
+        else:
+            console.print(f"[dim]active_context: none[/dim]")
+    except Exception:
+        pass
 
     checkpointer_cm = None
     using_checkpointer = False
@@ -294,16 +276,18 @@ def main():
 
         print_banner()
 
-        # ── DB Mode Banner ─────────────────────────────────────────────
-        db_url = os.getenv("DATABASE_URL")
+        # ── Supabase DB Banner ─────────────────────────────────────────
+        db_url = os.getenv("DATABASE_URL", "")
         if db_url:
-            db_mode = "postgres"
-            db_source = db_url.split("@")[-1].split("/")[0] if "@" in db_url else "supabase"
+            host = "unknown"
+            if "@" in db_url:
+                host = db_url.split("@")[-1].split("/")[0]
+            elif "://" in db_url:
+                host = db_url.split("://")[1].split("/")[0]
+            console.print(f"[dim]DB_MODE=supabase | HOST={host}[/dim]")
         else:
-            db_mode = "sqlite"
-            db_source = os.path.abspath(os.path.join(os.path.dirname(__file__), "careerloop.db"))
-
-        console.print(f"[dim]DB_MODE={db_mode} | SOURCE={db_source}[/dim]")
+            console.print("[bold red]DATABASE_URL not set. CareerLoop requires Supabase.[/bold red]")
+            sys.exit(1)
 
         print_status_card(session)
 
@@ -360,22 +344,59 @@ def main():
             if response and isinstance(response, dict):
                 next_state = response.get("current_state")
                 artifact_context = response.get("artifact_context", {})
-                
+
                 if "temp_profile_data" in response:
                     session.temp_profile_data = response.get("temp_profile_data")
-                    
+
                 session.active_artifact_type = artifact_context.get("active_artifact_type", session.active_artifact_type)
                 session.active_artifact_id = artifact_context.get("active_artifact_id", session.active_artifact_id)
                 session.active_job_id = artifact_context.get("active_job_id", session.active_job_id)
                 session.active_brief_id = artifact_context.get("active_brief_id", session.active_brief_id)
                 session.active_pack_id = artifact_context.get("active_pack_id", session.active_pack_id)
                 session.current_selection_index = artifact_context.get("current_selection_index", session.current_selection_index)
-                
+
                 if isinstance(next_state, UserJourneyState):
                     if session.state != next_state:
                         logger.info(f"State updated: {session.state} -> {next_state}")
                     session.state = next_state
                 session_store.save_session(session)
+
+            # ── Scan progress display ─────────────────────────────────
+            if response and isinstance(response, dict):
+                action_taken = response.get("action_taken")
+                if action_taken and hasattr(action_taken, 'action_type') and str(action_taken.action_type) == "ActionType.START_SCAN":
+                    try:
+                        # Find the latest scan run for this user
+                        run_id = None
+                        with db.get_connection() as conn:
+                            with conn.cursor() as cur:
+                                cur.execute(
+                                    "SELECT run_id FROM public.background_runs WHERE user_id = %s AND run_type = 'scan' ORDER BY started_at DESC LIMIT 1",
+                                    (user_id,),
+                                )
+                                row = cur.fetchone()
+                                if row:
+                                    run_id = row["run_id"]
+                        if run_id:
+                            with db.get_connection() as conn:
+                                with conn.cursor() as cur:
+                                    cur.execute(
+                                        "SELECT message FROM public.run_events WHERE run_id = %s AND event_type IN ('scan_match', 'scan_progress') ORDER BY timestamp",
+                                        (run_id,),
+                                    )
+                                    events = cur.fetchall()
+                            if events:
+                                console.print("\n[bold cyan]Scan Progress:[/bold cyan]")
+                                for e in events:
+                                    msg = e["message"]
+                                    if msg.startswith("MATCH"):
+                                        console.print(f"[green]{msg}[/green]")
+                                    elif "rejected" in msg.lower() or "duplicates" in msg.lower():
+                                        console.print(f"[dim]{msg}[/dim]")
+                                    else:
+                                        console.print(msg)
+                    except Exception:
+                        pass  # streaming is best-effort
     except KeyboardInterrupt:
         console.print("\n[bold red]Exiting CareerLoop. Goodbye![/bold red]")
     except Exception as e:
