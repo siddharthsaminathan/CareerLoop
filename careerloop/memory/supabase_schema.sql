@@ -2,10 +2,10 @@
 -- PostgreSQL + Supabase Native Implementation with Row Level Security
 
 -- NOTE: We assume `auth.users` exists as part of Supabase's native auth schema.
--- This schema extends `auth.users` for our multi-tenant application.
+-- CareerLoop maintains its own `careerloop.users` table that extends `auth.users` for our multi-tenant application.
 
 -- 1. USERS Table
-CREATE TABLE IF NOT EXISTS public.users (
+CREATE TABLE IF NOT EXISTS careerloop.users (
     id UUID PRIMARY KEY,
     email TEXT UNIQUE NOT NULL,
     full_name TEXT,
@@ -32,13 +32,13 @@ CREATE TABLE IF NOT EXISTS public.users (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
-ALTER TABLE public.users ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Users can manage their own profile" 
-    ON public.users FOR ALL USING (auth.uid() = id);
+ALTER TABLE careerloop.users ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Users can manage their own profile"
+    ON careerloop.users FOR ALL USING (auth.uid() = id);
 
 -- 2. SESSIONS Table (Replaces local session_store)
 CREATE TABLE IF NOT EXISTS careerloop.sessions (
-    user_id UUID PRIMARY KEY REFERENCES public.users(id) ON DELETE CASCADE,
+    user_id UUID PRIMARY KEY REFERENCES careerloop.users(id) ON DELETE CASCADE,
     state TEXT NOT NULL DEFAULT 'NEW_USER',
     current_job_id TEXT,
     onboarding_step INTEGER DEFAULT 0,
@@ -59,7 +59,7 @@ CREATE POLICY "Users can manage their own session"
 -- 2a. DAILY_BRIEFS Tables
 CREATE TABLE IF NOT EXISTS careerloop.daily_briefs (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+    user_id UUID NOT NULL REFERENCES careerloop.users(id) ON DELETE CASCADE,
     date_str TEXT NOT NULL,
     run_id TEXT,
     summary TEXT,
@@ -98,7 +98,7 @@ CREATE POLICY "Users can manage their own daily brief items"
 -- 3. STRATEGIC_TRACKS Table
 CREATE TABLE IF NOT EXISTS careerloop.strategic_tracks (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+    user_id UUID NOT NULL REFERENCES careerloop.users(id) ON DELETE CASCADE,
     track_identity TEXT NOT NULL,
     positioning_strategy TEXT DEFAULT '',
     resume_variant_id TEXT DEFAULT '',
@@ -116,7 +116,7 @@ CREATE POLICY "Users can manage their own tracks"
 -- 4. APPLICATION_LEDGER Table
 CREATE TABLE IF NOT EXISTS careerloop.application_ledger (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+    user_id UUID NOT NULL REFERENCES careerloop.users(id) ON DELETE CASCADE,
     track_id UUID REFERENCES careerloop.strategic_tracks(id) ON DELETE SET NULL,
     job_fingerprint TEXT NOT NULL,
     title TEXT NOT NULL,
@@ -147,7 +147,7 @@ CREATE POLICY "Users can manage their own applications"
 -- 5. EVENT_TIMELINE Table
 CREATE TABLE IF NOT EXISTS careerloop.event_timeline (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+    user_id UUID NOT NULL REFERENCES careerloop.users(id) ON DELETE CASCADE,
     event_type TEXT NOT NULL,
     reference_id TEXT DEFAULT '',
     reference_type TEXT DEFAULT '',
@@ -162,7 +162,7 @@ CREATE POLICY "Users can manage their own events"
 -- 6. COMPANY_MEMORY Table (Per-user private company intelligence)
 CREATE TABLE IF NOT EXISTS careerloop.company_memory (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+    user_id UUID NOT NULL REFERENCES careerloop.users(id) ON DELETE CASCADE,
     company_normalized TEXT NOT NULL,
     company_intelligence TEXT DEFAULT '',
     compensation_analysis TEXT DEFAULT '',
@@ -186,7 +186,7 @@ CREATE POLICY "Users can manage their own company memory"
 -- 7. POSITIONING_MEMORY Table
 CREATE TABLE IF NOT EXISTS careerloop.positioning_memory (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+    user_id UUID NOT NULL REFERENCES careerloop.users(id) ON DELETE CASCADE,
     track_id UUID NOT NULL REFERENCES careerloop.strategic_tracks(id) ON DELETE CASCADE,
     company_normalized TEXT NOT NULL,
     generated_narrative TEXT NOT NULL,
@@ -262,7 +262,7 @@ CREATE POLICY "Authenticated users can read global jobs"
 -- 9. BACKGROUND_RUNS Table (Layer 3 State)
 CREATE TABLE IF NOT EXISTS careerloop.background_runs (
     run_id TEXT PRIMARY KEY,
-    user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+    user_id UUID NOT NULL REFERENCES careerloop.users(id) ON DELETE CASCADE,
     run_type TEXT NOT NULL,
     status TEXT DEFAULT 'QUEUED',
     created_at TIMESTAMPTZ DEFAULT NOW(),

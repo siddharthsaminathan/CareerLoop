@@ -67,7 +67,7 @@ def authenticate_cli_user() -> str:
         with db.get_connection() as conn:
             with conn.cursor() as cur:
                 cur.execute("""
-                    INSERT INTO public.users (id, email, full_name, created_at, updated_at)
+                    INSERT INTO careerloop.users (id, email, full_name, created_at, updated_at)
                     VALUES (%s, %s, %s, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
                     ON CONFLICT (id) DO NOTHING
                 """, (user_uuid, email, email.split('@')[0]))
@@ -91,12 +91,12 @@ def print_banner():
 
 def get_profile_data(session) -> dict:
     """
-    Get profile data, falling back to persisted public.users table if temp_profile_data is empty.
+    Get profile data, falling back to persisted careerloop.users table if temp_profile_data is empty.
     """
     if session.temp_profile_data and any(session.temp_profile_data.values()):
         return session.temp_profile_data
     
-    # Load from public.users
+    # Load from careerloop.users
     try:
         from careerloop.memory.connection import get_db_manager
         db = get_db_manager()
@@ -104,7 +104,7 @@ def get_profile_data(session) -> dict:
             with conn.cursor() as cur:
                 cur.execute("""
                     SELECT master_cv_markdown, work_style_prefs
-                    FROM public.users
+                    FROM careerloop.users
                     WHERE id = %s
                 """, (session.user_id,))
                 row = cur.fetchone()

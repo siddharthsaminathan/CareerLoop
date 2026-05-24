@@ -125,7 +125,7 @@ class ToolRegistry:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
-                        "SELECT master_cv_markdown, work_style_prefs FROM public.users WHERE id = %s",
+                        "SELECT master_cv_markdown, work_style_prefs FROM careerloop.users WHERE id = %s",
                         (action.user_id,)
                     )
                     row = cur.fetchone()

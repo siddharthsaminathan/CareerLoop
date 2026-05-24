@@ -101,6 +101,18 @@ New dev-blog entries are created by the `careerloop-product-lead` skill for sign
 
 ---
 
+## Data Architecture
+
+- [Canonical Data Model](DATA_MODEL_CANONICAL.md)
+- [Memory Architecture](MEMORY_ARCHITECTURE.md)
+- [Job Persistence Engine](JOB_PERSISTENCE_ENGINE.md)
+- [Global vs User-Scoped Data](GLOBAL_VS_USER_SCOPED_DATA.md)
+- [Schema Reference](SCHEMA_REFERENCE.md)
+- [DB Migration Report](DB_MIGRATION_REPORT.md)
+- [Full Schema Dump (JSON)](CAREERLOOP_SCHEMA_DUMP.json)
+
+---
+
 ## 🔗 Quick Reference — Key Fast-Access Assets
 
 | # | Document | Category | Why Read |

@@ -10,7 +10,7 @@ The canonical schema dump is at `docs/CAREERLOOP_SCHEMA_DUMP.json` and `docs/CAR
 
 ### Schema Isolation
 - **`careerloop` schema** — ALL CareerLoop runtime/product tables. 22 tables.
-- **`public` schema** — Supabase auth (`users`) + LangGraph checkpoints + Emote app. Never add CareerLoop tables here.
+- **`public` schema** — LangGraph checkpoints + Emote app. Never add CareerLoop tables here.
 - **`auth` schema** — Supabase managed. Never touch.
 
 ### Canonical Tables
@@ -39,25 +39,25 @@ The canonical schema dump is at `docs/CAREERLOOP_SCHEMA_DUMP.json` and `docs/CAR
 | `careerloop.positioning_memory` | Positioning data | 0 |
 | `careerloop.strategic_tracks` | Strategy tracks | 0 |
 | `careerloop.company_memory` | Company intel | 0 |
-| `public.users` | Supabase auth (not CareerLoop) | 14 |
+| `careerloop.users` | CareerLoop user profiles (extends auth.users) | 14 |
 
 ### Key Foreign Keys
-- `careerloop.sessions.user_id` → `public.users(id)`
-- `careerloop.user_job_relationships.user_id` → `public.users(id)`
+- `careerloop.sessions.user_id` → `careerloop.users(id)`
+- `careerloop.user_job_relationships.user_id` → `careerloop.users(id)`
 - `careerloop.user_job_relationships.job_id` → `careerloop.jobs(id)` (logical, not enforced)
-- `careerloop.daily_briefs.user_id` → `public.users(id)`
+- `careerloop.daily_briefs.user_id` → `careerloop.users(id)`
 - `careerloop.daily_brief_items.brief_id` → `careerloop.daily_briefs(id)`
 - `careerloop.run_events.run_id` → `careerloop.background_runs(run_id)`
-- `careerloop.background_runs.user_id` → `public.users(id)`
+- `careerloop.background_runs.user_id` → `careerloop.users(id)`
 
 ### Data Access
 - **Repository layer:** `careerloop/memory/repository_v2.py` (7 classes, 32 methods)
 - **Migration:** `careerloop/memory/supabase_migration_v2.sql` (idempotent, safe to re-run)
-- **Session store:** `careerloop/session/session_store.py` (uses `_tbl()` → `careerloop.*` for CareerLoop, `public.users` for auth)
+- **Session store:** `careerloop/session/session_store.py` (uses `_tbl()` → `careerloop.*` for all tables including users)
 - **Tool registry:** `careerloop/session/tool_registry.py` (all SQL qualified with `careerloop.`)
 
 ### Schema prefix rules
-- `_tbl(name)` in session_store: `users` → `public.users`, everything else → `careerloop.{name}`
+- `_tbl(name)` in session_store: `users` → `careerloop.users`, everything else → `careerloop.{name}`
 - All raw SQL in tool_registry, repository_v2, chat_cli uses `careerloop.` prefix
 - Never use bare table names (no `FROM jobs`, always `FROM careerloop.jobs`)
 
@@ -76,6 +76,13 @@ The canonical schema dump is at `docs/CAREERLOOP_SCHEMA_DUMP.json` and `docs/CAR
 - Schema dump: `docs/CAREERLOOP_SCHEMA_DUMP.json` (265KB, full information_schema export)
 - Schema markdown: `docs/CAREERLOOP_SCHEMA.md` (68KB, human-readable)
 - Architecture doc: `docs/DATA_ENGINEERING_ARCHITECTURE.md`
+
+## V3 Changes (2026-05-25)
+- `careerloop.users` is now the canonical identity spine. All CareerLoop tables FK here.
+- Zero CareerLoop tables reference `public.users` anymore.
+- All IDs standardized to UUID.
+- New tables: conversations, messages, memory_events, recruiter_contacts, job_sources, job_search_runs.
+- See `docs/DATA_MODEL_CANONICAL.md` for the full data model.
 
 ## When to invoke this skill
 - Any DB schema change

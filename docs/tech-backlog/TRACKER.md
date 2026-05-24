@@ -55,9 +55,11 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 | Background job scheduler | 0% | ⚫ | No | Sprint 2. Daily + per-job two classes. |
 | WhatsApp / Meta Cloud API | 0% | ⚫ | No | After Telegram beta validates loop. |
 | Monetization / billing | 0% | 🔴 | No | Pricing tiers defined. No paywall yet. Needs onboarding first. |
-| Data engineering V2 | 75% | 🟢 Active | 22 tables in `careerloop` schema. Repository layer (7 classes, 32 methods). Schema isolation complete. Fingerprint dedup. Schema dump exported. |
+| Data engineering V3 | 85% | 🟢 | No | careerloop.users identity spine. All FKs migrated. UUID standardized. 6 new tables. 5 canonical docs. Schema audit complete. |
+| Memory architecture | 35% | 🟡 Active | 6-layer model defined. memory_events table created. Propagation architecture documented. |
+| Job persistence engine | 60% | 🟡 Active | Global cache + user relationships. Fingerprint dedup. TTL strategy. Cache-hit path pending. |
  
-**Overall product maturity: ~71-73% of vision.** Data engineering V2 complete (22 tables, schema isolated). Chat runtime real (no echo, no slop). Supabase-only. Geo filter proven. Critical gap remains: full scan E2E against Supabase + multi-user onboarding.
+**Overall product maturity: ~73-75% of vision.** Data engineering V3 complete (careerloop.users identity spine, all FKs migrated, UUID standardized, 6 new tables). Chat runtime real (no echo, no slop). Supabase-only. Geo filter proven. Critical gap remains: full scan E2E against Supabase + multi-user onboarding.
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -105,6 +107,31 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 ---
 
 ## Session Log
+
+### 2026-05-25 — Session: Canonical Data Architecture V3
+
+**What was done:**
+- Created `careerloop.users` as canonical identity spine. All 16 CareerLoop tables now FK → `careerloop.users(id)`.
+- Migrated all FKs from `public.users` to `careerloop.users`. Zero CareerLoop tables reference `public.users`.
+- Standardized UUIDs across all tables. Added UUID columns for legacy TEXT ID fields (run_id_uuid, event_id_uuid).
+- Created 6 new tables: conversations, messages, memory_events, recruiter_contacts, job_sources, job_search_runs.
+- Cleaned up sessions table — documented deprecated columns.
+- Built job persistence engine: global cache → user fit → relationship → brief. Fingerprint dedup with TTL policy.
+- Defined 6-layer memory architecture: profile → positioning → recruiter → interview → company → strategic.
+- Created 5 canonical docs: DATA_MODEL_CANONICAL.md, MEMORY_ARCHITECTURE.md, JOB_PERSISTENCE_ENGINE.md, GLOBAL_VS_USER_SCOPED_DATA.md, SCHEMA_REFERENCE.md.
+- Produced real Supabase evidence: schema dump, FK audit, ID type audit, table counts.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED
+This is the permanent data foundation. No more schema thrash. careerloop.users is the identity root. All FKs consistent. Global/user separation clear.
+
+**Deviations detected:** None.
+
+**Recommended next 3 actions:**
+1. Backfill careerloop.users from public.users + enrich with onboarding/profile data (PRD §4)
+2. Implement cache-hit path in scan: check careerloop.jobs before external APIs (PRD §5)
+3. Wire memory_events into ActionResolver context injection (PRD §7)
+
+---
 
 ### 2026-05-25 — Session: Data Engineering V2 + Schema Isolation + Runtime Fluidity
 

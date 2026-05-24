@@ -377,12 +377,15 @@ working together to turn openings into interviews.
 | Follow-up system | 25% | 🔴 Gap | Ledger auto-schedules; no message generation yet |
 | Interview memory | 25% | 🟡 Active | interview-playbook skill; auto-extracts from venting; no rejection post-mortem |
 | Persistent memory graph | 48% | 🟡 Active | Single session load. Profile hydration from DB. add_messages conversation history. Ledger UUID-IDs deduped. |
+| Data engineering V3 | 85% | 🟢 Active | careerloop.users identity spine. All FKs migrated. UUID standardized. 6 new tables. 5 canonical docs. Schema audit complete. |
+| Memory architecture | 35% | 🟡 Active | 6-layer model defined. memory_events table created. Propagation architecture documented. |
+| Job persistence engine | 60% | 🟡 Active | Global cache + user relationships. Fingerprint dedup. TTL strategy. Cache-hit path pending. |
 | WhatsApp/transport UX | 65% | 🟡 Active | Echo fallback removed. Safe errors. CommandRouter unified routing. /brief + /scan + /pipeline + /status. |
 | Gmail memory | 0% | ⚫ Not started | ROI Vision's #1 priority — never touched |
 | Multi-user onboarding | 15% | 🔴 Gap | is_complete validated against required fields. Hardcoded strings removed. CV-upload flow still needed. |
 | Monetization logic | 30% | 🟡 Active | Strategic understanding solid; no billing/paywall |
  
-**Overall product maturity: ~71-73% of vision.** Data engineering V2 complete (22 tables, schema isolated, repository layer). Chat runtime real (no echo, no slop). Supabase-only. Council ceiling hit (93%). Geo filter proven. Critical gap remains: full scan E2E + multi-user onboarding.
+**Overall product maturity: ~73-75% of vision.** Data engineering V3 complete (careerloop.users identity spine, all FKs migrated, UUID standardized, 6 new tables). Chat runtime real (no echo, no slop). Supabase-only. Council ceiling hit (93%). Geo filter proven. Critical gap remains: full scan E2E + multi-user onboarding.
  
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
