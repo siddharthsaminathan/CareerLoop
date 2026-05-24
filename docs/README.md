@@ -122,6 +122,7 @@ New dev-blog entries are created by the `careerloop-product-lead` skill for sign
 | **[MEMORY_ARCHITECTURE.md](MEMORY_ARCHITECTURE.md)** | 10-layer memory architecture: profile, positioning, recruiter, interview, company, strategic, session, timeline, outcomes, conversations. 8 recall chain levels. | Understanding how memory propagates across CareerLoop, designing recall behavior. |
 | **[JOB_PERSISTENCE_ENGINE.md](JOB_PERSISTENCE_ENGINE.md)** | Global job cache strategy: cache-first, fingerprint dedup, user personalization, TTL policy. | Modifying scan pipeline, cache behavior, or job deduplication logic. |
 | **[GLOBAL_VS_USER_SCOPED_DATA.md](GLOBAL_VS_USER_SCOPED_DATA.md)** | Rules for separating global data (shared across users: `jobs`, `companies`) from user-scoped data (private per user: relationships, preferences, evidence). | Deciding whether a new table should be global or user-scoped. |
+| **[MEMORY_SYSTEMS_ARCHITECTURE.md](MEMORY_SYSTEMS_ARCHITECTURE.md)** | 7-layer operational memory model: Identity, Preference, Evidence, Opportunity, User-Opportunity, Execution, Learning. 4-level recall, 8 propagation flows, 10 anti-patterns. | Understanding the full memory architecture, designing recall behavior, debugging memory propagation. |
 
 ### Migration & Evidence
 

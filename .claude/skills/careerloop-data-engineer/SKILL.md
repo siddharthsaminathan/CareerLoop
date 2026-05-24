@@ -93,6 +93,13 @@ The canonical schema dump is at `docs/CAREERLOOP_SCHEMA_DUMP.json` and `docs/CAR
 - See `docs/DATA_MODEL_CANONICAL.md` for the full data model.
 - See `docs/FINAL_STABILIZATION_EVIDENCE.md` for production readiness assessment.
 
+## Memory Systems (2026-05-25)
+- 7-layer memory architecture documented: Identity → Preference → Evidence → Opportunity → User-Opportunity → Execution → Learning
+- 4-level recall hierarchy: Active Context → Structured Relational → Event Timeline → Semantic (future)
+- 8 propagation flows defined (onboarding through rejection/ghosting)
+- 10 anti-patterns documented
+- Full architecture in `docs/MEMORY_SYSTEMS_ARCHITECTURE.md`
+
 ## When to invoke this skill
 - Any DB schema change
 - Any new CareerLoop table

@@ -523,3 +523,4 @@ These are architectural invariants. Do NOT violate them in any session.
 - **Never hard-delete jobs.** Mark status=expired. Keep for audit.
 - **Daily briefs are permanent.** Application packs are permanent.
 - **Full schema in `docs/DATA_ENGINEERING_ARCHITECTURE.md`.**
+- **Memory is operational, not conversational.** CareerLoop memory = identity + preferences + evidence + opportunities + user-opportunity relationships + execution tracking + outcome learning. See `docs/MEMORY_SYSTEMS_ARCHITECTURE.md`.
