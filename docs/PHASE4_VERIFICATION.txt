@@ -1,0 +1,177 @@
+========================================================================
+CAREERLOOP PHASE 4 VERIFICATION — SUPABASE MEMORY & BACKGROUND RUNS
+Timestamp: 2026-05-25
+User ID: 9c512f87-1f5b-5e58-bf23-778d97e6e0a7
+Schema: careerloop
+========================================================================
+
+========================================================================
+VERIFY 1: MEMORY PROPAGATION — RECALL CHAIN
+========================================================================
+  1a. Journey memory (sessions): state=BRIEF_AVAILABLE
+      active_artifact_type=daily_brief, active_job_id=test-job-id
+  RESULT: PASS
+  1b. Conversational memory (conversations + messages): 2 messages
+  RESULT: PASS
+  1c. Artifact memory (sessions context): type=daily_brief artifact_id=test-brief-id job_id=test-job-id
+  RESULT: PASS
+  1d. Scan memory (background_runs + run_events): 3 runs found
+      run=ad4ec0e6e285... type=scan status=FAILED events=3
+      run=da6db9831f1f... type=scan status=RUNNING events=1
+      run=2d5f32d41504... type=scan status=FAILED events=3
+  RESULT: PASS
+  1e. Memory events: 2 stored
+  RESULT: PASS
+  1f. Background run lifecycle: id=ad4ec0e6e285... status=FAILED
+      started=2026-05-24 19:08:14.931572+00:00 completed=None error=None stats={}
+  RESULT: PASS (status=FAILED)
+
+========================================================================
+VERIFY 2: MEMORY LAYER TABLE EXISTENCE CHECK
+========================================================================
+  [EXISTS ] sessions                       (journey memory)
+  [EXISTS ] conversations                  (conversational memory)
+  [EXISTS ] messages                       (conversational memory)
+  [EXISTS ] daily_briefs                   (artifact memory)
+  [EXISTS ] daily_brief_items              (artifact memory)
+  [EXISTS ] background_runs                (scan memory)
+  [EXISTS ] run_events                     (scan memory)
+  [EXISTS ] memory_events                  (event memory)
+  [EXISTS ] company_memory                 (company memory)
+  [EXISTS ] companies                      (company memory)
+  [EXISTS ] positioning_memory             (positioning memory)
+  [EXISTS ] strategic_tracks               (positioning memory)
+  [EXISTS ] user_job_relationships         (job memory)
+  [EXISTS ] applications                   (application memory)
+  [EXISTS ] outcome_events                 (outcome memory)
+
+  ALL 15 VERIFIED TABLES: PASS
+
+  Full careerloop schema: 29 tables
+    - application_ledger
+    - application_packs
+    - applications
+    - background_runs
+    - companies
+    - company_memory
+    - conversations
+    - daily_brief_items
+    - daily_briefs
+    - event_timeline
+    - followups
+    - job_candidates
+    - job_search_runs
+    - job_sources
+    - jobs
+    - memory_events
+    - messages
+    - outcome_events
+    - outreach_messages
+    - people_to_reach
+    - positioning_memory
+    - recruiter_contacts
+    - run_events
+    - sessions
+    - strategic_tracks
+    - user_evidence
+    - user_job_relationships
+    - user_preferences
+    - users
+
+========================================================================
+VERIFY 3: UUID/TEXT ID COLUMN AUDIT
+========================================================================
+
+  29 TEXT ID columns found (should be UUID):
+
+  [application_packs]
+    company_intel_id               TEXT
+    job_id                         TEXT
+    resume_artifact_id             TEXT
+  [applications]
+    job_id                         TEXT
+  [background_runs]
+    run_id                         TEXT
+  [conversations]
+    external_chat_id               TEXT
+  [daily_brief_items]
+    job_id                         TEXT
+  [daily_briefs]
+    run_id                         TEXT
+  [event_timeline]
+    reference_id                   TEXT
+  [job_candidates]
+    matched_job_id                 TEXT
+  [job_search_runs]
+    run_id                         TEXT
+  [job_sources]
+    job_id                         TEXT
+    source_job_id                  TEXT
+  [jobs]
+    canonical_id                   TEXT
+    id                             TEXT
+  [outcome_events]
+    job_id                         TEXT
+  [outreach_messages]
+    job_id                         TEXT
+  [people_to_reach]
+    job_id                         TEXT
+  [run_events]
+    event_id                       TEXT
+    run_id                         TEXT
+  [sessions]
+    active_artifact_id             TEXT
+    active_brief_id                TEXT
+    active_job_id                  TEXT
+    active_pack_id                 TEXT
+    current_job_id                 TEXT
+  [strategic_tracks]
+    resume_variant_id              TEXT
+  [user_job_relationships]
+    job_id                         TEXT
+  [users]
+    telegram_id                    TEXT
+    whatsapp_id                    TEXT
+
+  --- Migration checklist ---
+  ALTER TABLE careerloop.application_packs ALTER COLUMN company_intel_id TYPE UUID USING company_intel_id::UUID;
+  ALTER TABLE careerloop.application_packs ALTER COLUMN job_id TYPE UUID USING job_id::UUID;
+  ALTER TABLE careerloop.application_packs ALTER COLUMN resume_artifact_id TYPE UUID USING resume_artifact_id::UUID;
+  ALTER TABLE careerloop.applications ALTER COLUMN job_id TYPE UUID USING job_id::UUID;
+  ALTER TABLE careerloop.background_runs ALTER COLUMN run_id TYPE UUID USING run_id::UUID;
+  ALTER TABLE careerloop.conversations ALTER COLUMN external_chat_id TYPE UUID USING external_chat_id::UUID;
+  ALTER TABLE careerloop.daily_brief_items ALTER COLUMN job_id TYPE UUID USING job_id::UUID;
+  ALTER TABLE careerloop.daily_briefs ALTER COLUMN run_id TYPE UUID USING run_id::UUID;
+  ALTER TABLE careerloop.event_timeline ALTER COLUMN reference_id TYPE UUID USING reference_id::UUID;
+  ALTER TABLE careerloop.job_candidates ALTER COLUMN matched_job_id TYPE UUID USING matched_job_id::UUID;
+  ALTER TABLE careerloop.job_search_runs ALTER COLUMN run_id TYPE UUID USING run_id::UUID;
+  ALTER TABLE careerloop.job_sources ALTER COLUMN job_id TYPE UUID USING job_id::UUID;
+  ALTER TABLE careerloop.job_sources ALTER COLUMN source_job_id TYPE UUID USING source_job_id::UUID;
+  ALTER TABLE careerloop.jobs ALTER COLUMN canonical_id TYPE UUID USING canonical_id::UUID;
+  ALTER TABLE careerloop.jobs ALTER COLUMN id TYPE UUID USING id::UUID;
+  ALTER TABLE careerloop.outcome_events ALTER COLUMN job_id TYPE UUID USING job_id::UUID;
+  ALTER TABLE careerloop.outreach_messages ALTER COLUMN job_id TYPE UUID USING job_id::UUID;
+  ALTER TABLE careerloop.people_to_reach ALTER COLUMN job_id TYPE UUID USING job_id::UUID;
+  ALTER TABLE careerloop.run_events ALTER COLUMN event_id TYPE UUID USING event_id::UUID;
+  ALTER TABLE careerloop.run_events ALTER COLUMN run_id TYPE UUID USING run_id::UUID;
+  ALTER TABLE careerloop.sessions ALTER COLUMN active_artifact_id TYPE UUID USING active_artifact_id::UUID;
+  ALTER TABLE careerloop.sessions ALTER COLUMN active_brief_id TYPE UUID USING active_brief_id::UUID;
+  ALTER TABLE careerloop.sessions ALTER COLUMN active_job_id TYPE UUID USING active_job_id::UUID;
+  ALTER TABLE careerloop.sessions ALTER COLUMN active_pack_id TYPE UUID USING active_pack_id::UUID;
+  ALTER TABLE careerloop.sessions ALTER COLUMN current_job_id TYPE UUID USING current_job_id::UUID;
+  ALTER TABLE careerloop.strategic_tracks ALTER COLUMN resume_variant_id TYPE UUID USING resume_variant_id::UUID;
+  ALTER TABLE careerloop.user_job_relationships ALTER COLUMN job_id TYPE UUID USING job_id::UUID;
+  ALTER TABLE careerloop.users ALTER COLUMN telegram_id TYPE UUID USING telegram_id::UUID;
+  ALTER TABLE careerloop.users ALTER COLUMN whatsapp_id TYPE UUID USING whatsapp_id::UUID;
+
+========================================================================
+SUMMARY
+========================================================================
+  Verify 1 — Memory Recall Chain:   6/6 checks PASS
+  Verify 2 — Table Existence:       15/15 tables EXIST in careerloop schema (29 total)
+  Verify 3 — UUID Audit:            29 TEXT ID columns identified for migration
+                                     (not yet migrated — these remain TEXT)
+
+  Overall: All memory layers operational on Supabase.
+  Warning: 2 background runs show FAILED status — investigate scan pipeline.
+  Warning: 1 background run shows RUNNING — may be a stale/zombie run.

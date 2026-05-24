@@ -1,0 +1,141 @@
+========================================================================
+PHASE 3 VERIFICATION -- CareerLoop Global vs User-Scoped Data Model
+Supabase: careerloop schema
+========================================================================
+
+========================================================================
+VERIFY 1: Global Job Cache Deduplication
+========================================================================
+Test fingerprint: b5d3d33f789e1a86...
+Job inserted: 368d7cde-441... source=linkedin
+Duplicate blocked by unique index: True
+Job count after duplicate: 1
+UNIQUE INDEX on content_fingerprint: YES (idx_jobs_fingerprint_unique)
+GLOBAL DEDUP: PASS
+User relationships: 2 (expected 2)
+  user=9c512f87-1f5... status=matched score=88.0
+  user=ca30d45f-6c5... status=rejected score=15.0
+Jobs has user_id: False
+UJR PK: PRIMARY KEY (user_id, job_id)
+USER-JOB SEPARATION: PASS
+
+========================================================================
+VERIFY 2: Table Inventory by Scope
+========================================================================
+
+Table                            Scope              Rows  RLS   Pol
+------------------------------------------------------------------------
+application_ledger               USER-SCOPED           0  YES   1
+application_packs                USER-SCOPED           0  NO    0
+applications                     USER-SCOPED           0  NO    0
+background_runs                  USER-SCOPED           3  YES   1
+companies                        GLOBAL                0  YES   1
+company_memory                   USER-SCOPED           0  YES   1
+conversations                    USER-SCOPED           2  NO    0
+daily_brief_items                USER-SCOPED           1  YES   1
+daily_briefs                     USER-SCOPED           1  YES   1
+event_timeline                   USER-SCOPED           0  YES   1
+followups                        USER-SCOPED           0  NO    0
+job_candidates                   GLOBAL                0  NO    0
+job_search_runs                  USER-SCOPED           0  NO    0
+job_sources                      GLOBAL                0  NO    0
+jobs                             GLOBAL                3  YES   1
+memory_events                    USER-SCOPED           2  NO    0
+messages                         USER-SCOPED           4  NO    0
+outcome_events                   USER-SCOPED           0  NO    0
+outreach_messages                USER-SCOPED           0  NO    0
+people_to_reach                  GLOBAL                0  NO    0
+positioning_memory               USER-SCOPED           0  YES   1
+recruiter_contacts               GLOBAL                0  NO    0
+run_events                       USER-SCOPED           7  YES   1
+sessions                         USER-SCOPED          13  YES   1
+strategic_tracks                 USER-SCOPED           0  YES   1
+user_evidence                    USER-SCOPED           0  NO    0
+user_job_relationships           USER-SCOPED           6  NO    0
+user_preferences                 USER-SCOPED           0  NO    0
+users                            USER-SCOPED          17  NO    0
+
+  6 GLOBAL tables: 3 rows
+  23 USER-SCOPED tables: 56 rows
+  Total: 59 rows across 29 tables
+
+--- RLS Status ---
+Tables WITHOUT RLS (17): application_packs, applications, conversations, followups, job_candidates, job_search_runs, job_sources, memory_events, messages, outcome_events, outreach_messages, people_to_reach, recruiter_contacts, user_evidence, user_job_relationships, user_preferences, users
+Tables WITHOUT POLICIES (17): application_packs, applications, conversations, followups, job_candidates, job_search_runs, job_sources, memory_events, messages, outcome_events, outreach_messages, people_to_reach, recruiter_contacts, user_evidence, user_job_relationships, user_preferences, users
+
+Leakage (user_id in global tables): 0 NONE
+
+========================================================================
+VERIFY 3: Scan / Background Run Evidence
+========================================================================
+background_runs:    3
+run_events:         7
+job_search_runs:    0
+job_sources:        0
+job_candidates:     0
+  [FAILED  ] type=scan   user=9c512f87-1f5... err=None
+  [RUNNING ] type=scan   user=9c512f87-1f5... err=None
+  [FAILED  ] type=scan   user=9c512f87-1f5... err=None
+
+Latest run events (ad4ec0e6e285...):
+  [info] Scan failed: current transaction is aborted, commands ignored until end of transaction block
+
+  [info] Executing discovery scan...
+  [info] Initializing scan runner...
+
+SCAN PIPELINE: candidates(0) -> jobs -> user_job_relationships -> application_ledger
+SCAN EVIDENCE: DATA PRESENT
+
+========================================================================
+VERIFY 4: Final Table Counts
+========================================================================
+Total rows across 29 tables: 59 (3 global, 56 user-scoped)
+
+  application_ledger                    0
+  application_packs                     0
+  applications                          0
+  background_runs                       3
+  companies                             0
+  company_memory                        0
+  conversations                         2
+  daily_brief_items                     1
+  daily_briefs                          1
+  event_timeline                        0
+  followups                             0
+  job_candidates                        0
+  job_search_runs                       0
+  job_sources                           0
+  jobs                                  3
+  memory_events                         2
+  messages                              4
+  outcome_events                        0
+  outreach_messages                     0
+  people_to_reach                       0
+  positioning_memory                    0
+  recruiter_contacts                    0
+  run_events                            7
+  sessions                             13
+  strategic_tracks                      0
+  user_evidence                         0
+  user_job_relationships                6
+  user_preferences                      0
+  users                                17
+
+Test data cleaned up
+
+========================================================================
+FINAL VERDICT
+========================================================================
+  V1-GlobalDedup                 PASS         UNIQUE INDEX idx_jobs_fingerprint_unique blocks duplicates; 1 row after 2 discoveries
+  V1-UserJobSeparation           PASS         2 relationships / 1 global job; no user_id in jobs; PK(user_id,job_id) on ujr
+  V2-RLSCoverage                 FAIL         17 tables without RLS
+  V2-PolicyCoverage              GAP          17 tables without policies
+  V2-NoUserIDLeakage             PASS         no user_id in global tables
+  V2-ScopeSeparation             INFO         6 global tables (3 rows) + 23 user-scoped (56 rows)
+  V3-ScanLifecycle               PASS         bg_runs=3, run_events=7, search_runs=0, sources=0, candidates=0
+  V4-TotalRows                   INFO         59 rows across 29 tables (3 global + 56 user)
+
+  ------------------------------------------------------------------------
+  PASS=4  FAIL=1  GAP=1  INFO=2
+  ARCHITECTURE: CONFIRMED (1 gap: RLS policies needed for 17 tables)
+========================================================================

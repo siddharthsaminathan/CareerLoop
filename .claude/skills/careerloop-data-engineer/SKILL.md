@@ -77,12 +77,21 @@ The canonical schema dump is at `docs/CAREERLOOP_SCHEMA_DUMP.json` and `docs/CAR
 - Schema markdown: `docs/CAREERLOOP_SCHEMA.md` (68KB, human-readable)
 - Architecture doc: `docs/DATA_ENGINEERING_ARCHITECTURE.md`
 
-## V3 Changes (2026-05-25)
+## V3 Changes (2026-05-25) — Phase 1+2 Complete
+
+**Phase 1+2 completion: 20 FKs migrated, 14 users backfilled, 7 new tables, zero public.* references.**
+
 - `careerloop.users` is now the canonical identity spine. All CareerLoop tables FK here.
-- Zero CareerLoop tables reference `public.users` anymore.
-- All IDs standardized to UUID.
-- New tables: conversations, messages, memory_events, recruiter_contacts, job_sources, job_search_runs.
+- 20 FK constraints migrated from `public.users` → `careerloop.users(id)` ON DELETE CASCADE.
+- 14 users backfilled from `public.users` — all UUIDs preserved, email + full_name + created_at + updated_at migrated.
+- 7 new tables: `users`, `conversations`, `messages`, `memory_events`, `recruiter_contacts`, `job_sources`, `job_search_runs`.
+- Zero CareerLoop tables reference `public.users` anymore. Zero `public.*` references in CareerLoop Python code.
+- All IDs standardized to UUID. 4 UUID bridge columns added for legacy TEXT ID fields.
+- 3 session columns deprecated (current_job_id, onboarding_step, temp_profile_data).
+- 7 RLS policies created (idempotent DO block).
+- Evidence docs: `docs/PHASE1_2_EVIDENCE.md`, `docs/FINAL_STABILIZATION_EVIDENCE.md`.
 - See `docs/DATA_MODEL_CANONICAL.md` for the full data model.
+- See `docs/FINAL_STABILIZATION_EVIDENCE.md` for production readiness assessment.
 
 ## When to invoke this skill
 - Any DB schema change

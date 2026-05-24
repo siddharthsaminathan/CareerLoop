@@ -103,13 +103,34 @@ New dev-blog entries are created by the `careerloop-product-lead` skill for sign
 
 ## Data Architecture
 
-- [Canonical Data Model](DATA_MODEL_CANONICAL.md)
-- [Memory Architecture](MEMORY_ARCHITECTURE.md)
-- [Job Persistence Engine](JOB_PERSISTENCE_ENGINE.md)
-- [Global vs User-Scoped Data](GLOBAL_VS_USER_SCOPED_DATA.md)
-- [Schema Reference](SCHEMA_REFERENCE.md)
-- [DB Migration Report](DB_MIGRATION_REPORT.md)
-- [Full Schema Dump (JSON)](CAREERLOOP_SCHEMA_DUMP.json)
+> Canonical data engineering documents. CareerLoop runs on Supabase PostgreSQL. All tables live in `careerloop.*` schema. Identity spine is `careerloop.users`.
+
+### Canonical Data Model & Architecture
+
+| Document | Purpose | When to Read |
+|----------|---------|--------------|
+| **[DATA_ENGINEERING_ARCHITECTURE.md](DATA_ENGINEERING_ARCHITECTURE.md)** | Architecture overview: design principles, ERD, table inventory, cache strategy, TTL rules. | Understanding the overall data architecture before any DB work. |
+| **[DATA_MODEL_CANONICAL.md](DATA_MODEL_CANONICAL.md)** | Full data model with entity-relationship diagrams, table descriptions, relationship cardinalities, and migration history. | Designing new tables, modifying schemas, understanding data relationships. |
+| **[SCHEMA_REFERENCE.md](SCHEMA_REFERENCE.md)** | Column-level schema reference: every table, every column, every type, every constraint. | Quick lookup of column names, types, or constraint details. |
+| **[CAREERLOOP_SCHEMA.md](CAREERLOOP_SCHEMA.md)** | Human-readable full schema dump from live Supabase: columns, types, FKs, indexes, row counts. | Getting actual row counts and verifying production schema state. |
+| **[CAREERLOOP_SCHEMA_DUMP.json](CAREERLOOP_SCHEMA_DUMP.json)** | Machine-readable full `information_schema` export from Supabase (265KB). | Programmatic schema queries, automated audits. |
+
+### Memory & Persistence
+
+| Document | Purpose | When to Read |
+|----------|---------|--------------|
+| **[MEMORY_ARCHITECTURE.md](MEMORY_ARCHITECTURE.md)** | 10-layer memory architecture: profile, positioning, recruiter, interview, company, strategic, session, timeline, outcomes, conversations. 8 recall chain levels. | Understanding how memory propagates across CareerLoop, designing recall behavior. |
+| **[JOB_PERSISTENCE_ENGINE.md](JOB_PERSISTENCE_ENGINE.md)** | Global job cache strategy: cache-first, fingerprint dedup, user personalization, TTL policy. | Modifying scan pipeline, cache behavior, or job deduplication logic. |
+| **[GLOBAL_VS_USER_SCOPED_DATA.md](GLOBAL_VS_USER_SCOPED_DATA.md)** | Rules for separating global data (shared across users: `jobs`, `companies`) from user-scoped data (private per user: relationships, preferences, evidence). | Deciding whether a new table should be global or user-scoped. |
+
+### Migration & Evidence
+
+| Document | Purpose | When to Read |
+|----------|---------|--------------|
+| **[DB_MIGRATION_REPORT.md](DB_MIGRATION_REPORT.md)** | Full V1 → V2 → V3 migration audit trail: every schema change, every FK migration, every data copy. | Auditing migration history, planning rollbacks, understanding schema evolution. |
+| **[PHASE1_2_EVIDENCE.md](PHASE1_2_EVIDENCE.md)** | Phase 1+2 completion evidence: 20 FK migrations, 14 users backfilled, 7 new tables, zero `public.*` references. Clean audit results. | Verifying Phase 1+2 delivery, onboarding new agents to schema state. |
+| **[FINAL_STABILIZATION_EVIDENCE.md](FINAL_STABILIZATION_EVIDENCE.md)** | Final stabilization evidence package: production readiness assessment, UUID standardization status, remaining technical debt. | Production go/no-go decisions, technical debt tracking, architecture verification. |
+| **[supabase_migration_v3.sql](../careerloop/memory/supabase_migration_v3.sql)** | Canonical V3 migration SQL (426 lines, 8 sections, idempotent). | Running the migration, reviewing FK changes, understanding schema DDL. |
 
 ---
 
