@@ -12,32 +12,74 @@ class LLMChatAgent:
         self.base_url = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com/v1")
         self.model = model
 
+    RETRY_STATUSES = {429, 500, 502, 503, 504}
+    MAX_RETRIES = 2
+    SAFE_ERROR_MSG = (
+        "I hit a model issue while processing that. "
+        "Your data is safe. Try again or type /help for available commands."
+    )
+
     def _call_api(self, system_prompt: str, user_prompt: str) -> str:
-        try:
-            response = requests.post(
-                f"{self.base_url}/chat/completions",
-                headers={
-                    "Authorization": f"Bearer {self.api_key}",
-                    "Content-Type": "application/json",
-                },
-                json={
-                    "model": self.model,
-                    "messages": [
-                        {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": user_prompt},
-                    ],
-                    "temperature": 0.3,
-                    "max_tokens": 4096,
-                },
-                timeout=30,
-            )
-            if response.status_code == 200:
-                data = response.json()
-                return data["choices"][0]["message"]["content"]
-            else:
-                return f'{{"reply": "API error: {response.status_code}"}}'
-        except Exception as e:
-            return f'{{"reply": "Exception: {str(e)}"}}'
+        """Call DeepSeek with retry on transient errors. Never return raw API text to user."""
+        import time
+
+        for attempt in range(self.MAX_RETRIES + 1):
+            try:
+                response = requests.post(
+                    f"{self.base_url}/chat/completions",
+                    headers={
+                        "Authorization": f"Bearer {self.api_key}",
+                        "Content-Type": "application/json",
+                    },
+                    json={
+                        "model": self.model,
+                        "messages": [
+                            {"role": "system", "content": system_prompt},
+                            {"role": "user", "content": user_prompt},
+                        ],
+                        "temperature": 0.3,
+                        "max_tokens": 4096,
+                    },
+                    timeout=30,
+                )
+
+                if response.status_code == 200:
+                    data = response.json()
+                    return data["choices"][0]["message"]["content"]
+
+                # Retryable error?
+                if response.status_code in self.RETRY_STATUSES and attempt < self.MAX_RETRIES:
+                    wait = (attempt + 1) * 2
+                    logger.warning(
+                        "DeepSeek %d on attempt %d/%d, retrying in %ds",
+                        response.status_code, attempt + 1, self.MAX_RETRIES + 1, wait,
+                    )
+                    time.sleep(wait)
+                    continue
+
+                # Non-retryable or exhausted retries — log internally, return safe message
+                logger.error(
+                    "DeepSeek API error %d after %d attempts: %s",
+                    response.status_code, attempt + 1, response.text[:200],
+                )
+                return f'{{"reply": "{self.SAFE_ERROR_MSG}"}}'
+
+            except requests.Timeout:
+                if attempt < self.MAX_RETRIES:
+                    logger.warning("DeepSeek timeout on attempt %d, retrying", attempt + 1)
+                    time.sleep(2)
+                    continue
+                logger.error("DeepSeek timeout after %d attempts", self.MAX_RETRIES + 1)
+                return f'{{"reply": "{self.SAFE_ERROR_MSG}"}}'
+
+            except Exception as e:
+                logger.exception("DeepSeek unexpected error on attempt %d", attempt + 1)
+                if attempt < self.MAX_RETRIES:
+                    time.sleep(2)
+                    continue
+                return f'{{"reply": "{self.SAFE_ERROR_MSG}"}}'
+
+        return f'{{"reply": "{self.SAFE_ERROR_MSG}"}}'
 
     def _parse_json(self, text: str) -> dict:
         import re
@@ -117,22 +159,58 @@ class ChatIntentAgent(LLMChatAgent):
     SYSTEM_PROMPT = """You are the CareerLoop central router.
 Analyze the user's message and their profile context.
 Determine the user's intent from the following list:
-- SCAN_JOBS: User wants to scan/find new jobs.
-- SHOW_PIPELINE: User wants to see their job pipeline.
+- SHOW_PIPELINE: User wants to see their current jobs, daily briefing, pipeline, or shortlist. "daily briefing", "show my jobs", "pipeline status", "what jobs do I have" → SHOW_PIPELINE.
+- SCAN_JOBS: User EXPLICITLY wants to run a NEW scan to find fresh jobs. Only use this for explicit scan/search requests like "scan for new jobs", "find me new jobs", "run a search".
 - GENERAL_CHAT: User is just chatting or asking a general question.
 
 Return ONLY valid JSON in the following format:
 {
-  "intent": "SCAN_JOBS",
-  "reply": "If GENERAL_CHAT, put your intelligent conversational response here. If SCAN_JOBS, put a brief confirmation like 'Scanning jobs now...'."
+  "intent": "SHOW_PIPELINE",
+  "reply": "If GENERAL_CHAT, put your intelligent conversational response here. If SHOW_PIPELINE, put a brief confirmation like 'Let me pull up your pipeline...'."
 }"""
 
     def process(self, user_message: str, profile_data: Dict[str, Any]) -> Tuple[str, str]:
-        prompt = f"""User Profile: {json.dumps(profile_data)}
-User Message: {user_message}"""
+        # Only send a compact profile summary — never the full CV to the intent router.
+        # Full CV content in the prompt causes DeepSeek to produce malformed JSON.
+        compact = {}
+        for key in ("target_roles", "target_cities", "salary_expectations",
+                     "notice_period", "aggressiveness"):
+            if profile_data.get(key):
+                compact[key] = profile_data[key]
+        cv = profile_data.get("cv_content", "")
+        if cv and isinstance(cv, str):
+            compact["has_cv"] = True
+            compact["cv_preview"] = cv[:200]
+
+        prompt = f"User Profile: {json.dumps(compact)}\nUser Message: {user_message}"
         raw_response = self._call_api(self.SYSTEM_PROMPT, prompt)
         result = self._parse_json(raw_response)
-        
+
+        if not result:
+            logger.error("ChatIntentAgent JSON parse failed. Raw: %s", raw_response[:500])
+            # Graceful fallback — defer to GENERAL_CHAT instead of guessing
+            return "GENERAL_CHAT", (
+                "I'm here to help with your job search! You can use these commands:\n"
+                "• `/brief` — see today's job matches\n"
+                "• `/scan` — search for new jobs\n"
+                "• `/status` — view your profile\n"
+                "• `/pipeline` — see all crawled jobs\n\n"
+                "What would you like to do?"
+            )
+
         intent = result.get("intent", "GENERAL_CHAT")
-        reply = result.get("reply", "I'm not sure how to respond to that.")
+        reply = result.get("reply", "")
+        if not reply:
+            reply = "How can I help with your job search today?"
         return intent, reply
+
+
+def validate_api_key() -> bool:
+    """Check DEEPSEEK_API_KEY is set and non-empty. Log warning if missing."""
+    key = os.getenv("DEEPSEEK_API_KEY", "")
+    if not key:
+        logging.getLogger("careerloop.llm_chat").critical(
+            "DEEPSEEK_API_KEY is not set. All LLM calls will fail."
+        )
+        return False
+    return True
