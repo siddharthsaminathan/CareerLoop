@@ -1038,3 +1038,92 @@ class EvidenceRepository:
         except Exception as e:
             logger.error(f"record_outcome failed: {e}")
             return outcome_id
+
+
+# ── Cache-Hit Strategy ──────────────────────────────────────────────────────
+
+def get_fresh_cached_jobs(
+    user_preferences: dict,
+    freshness_window_days: int = 14,
+    limit: int = 50,
+) -> list[dict]:
+    """Query careerloop.jobs for fresh active India jobs matching user preferences.
+
+    Cache-first strategy: before making external API calls, check if we already
+    have enough fresh active jobs matching the user's target criteria.
+
+    Args:
+        user_preferences: dict with target_roles, target_cities, salary_min, salary_max
+        freshness_window_days: only return jobs seen within this many days
+        limit: max jobs to return
+
+    Returns:
+        List of job dicts ready for user-specific fit scoring.
+        Empty list if cache is too thin or stale.
+    """
+    import psycopg2, os, logging
+    _log = logging.getLogger("careerloop.memory.repository_v2.cache")
+
+    try:
+        target_cities = user_preferences.get("target_cities", [])
+        if isinstance(target_cities, str):
+            target_cities = [c.strip().lower() for c in target_cities.split(",") if c.strip()]
+        elif isinstance(target_cities, list):
+            target_cities = [str(c).strip().lower() for c in target_cities if c]
+
+        target_roles = user_preferences.get("target_roles", [])
+        if isinstance(target_roles, str):
+            target_roles = [r.strip().lower() for r in target_roles.split(",") if r.strip()]
+        elif isinstance(target_roles, list):
+            target_roles = [str(r).strip().lower() for r in target_roles if r]
+
+        db_url = os.getenv("DATABASE_URL")
+        if not db_url:
+            _log.warning("Cache-hit skipped: DATABASE_URL not set")
+            return []
+
+        conn = psycopg2.connect(db_url)
+        cur = conn.cursor()
+
+        # Base query: fresh active India jobs
+        query = """
+            SELECT id, title, company_name, location, source, apply_url,
+                   jd_text, last_seen_at, content_fingerprint
+            FROM careerloop.jobs
+            WHERE status = 'active'
+              AND is_india_role = true
+              AND last_seen_at >= NOW() - INTERVAL '%s days'
+        """
+        params = [freshness_window_days]
+
+        # Filter by city if preferences set
+        if target_cities:
+            city_clauses = []
+            for city in target_cities:
+                city_clauses.append("LOWER(location) LIKE %s")
+                params.append(f"%{city}%")
+            query += " AND (" + " OR ".join(city_clauses) + ")"
+
+        # Filter by role if preferences set
+        if target_roles:
+            role_clauses = []
+            for role in target_roles:
+                role_clauses.append("LOWER(title) LIKE %s")
+                params.append(f"%{role}%")
+            query += " AND (" + " OR ".join(role_clauses) + ")"
+
+        query += " ORDER BY last_seen_at DESC LIMIT %s"
+        params.append(limit)
+
+        cur.execute(query, params)
+        rows = cur.fetchall()
+        cur.close()
+        conn.close()
+
+        jobs = [dict(r) for r in rows] if rows else []
+        _log.info(f"Cache-hit: {len(jobs)} fresh jobs found (window={freshness_window_days}d, cities={target_cities}, roles={target_roles})")
+        return jobs
+
+    except Exception as e:
+        _log.warning(f"Cache-hit failed, returning empty: {e}")
+        return []

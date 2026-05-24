@@ -304,34 +304,6 @@ class ToolRegistry:
                             )
                         )
 
-                    # Repository V2: upsert into global jobs cache + user-job relationships
-                    if _REPO_V2 and JobRepository and UserJobRepository:
-                        for idx, item in enumerate(top_jobs, 1):
-                            try:
-                                job = item["job"]
-                                score = item["score"]
-                                # Upsert into careerloop.jobs (global cache)
-                                JobRepository.upsert_job(
-                                    job_id=job["job_id"],
-                                    title=job.get("title", ""),
-                                    company_name=job.get("company", ""),
-                                    location=job.get("location", ""),
-                                    source=job.get("source", "portal_scan"),
-                                    source_url=job.get("source_url", ""),
-                                    apply_url=job.get("apply_url", ""),
-                                    role_summary=job.get("role_summary") or job.get("description", ""),
-                                    scraped_at=datetime.now(timezone.utc).isoformat(),
-                                )
-                                # Create user_job_relationships row
-                                UserJobRepository.create_relationship(
-                                    user_id=user_id,
-                                    job_id=job["job_id"],
-                                    relationship_type="discovered",
-                                    fit_score=score,
-                                    brief_id=brief_id,
-                                )
-                            except Exception as e:
-                                logger.debug(f"Repository V2 write failed for job {job.get('job_id', '?')}: {e}")
 
                     # Emit CANDIDATE_MATCHED events for top 5 jobs
                     for idx, item in enumerate(top_jobs[:5], 1):
@@ -398,6 +370,77 @@ class ToolRegistry:
                     )
 
             scored_count = res.get("scored", 0)
+
+            # ── V3 Canonical Pipeline (SEPARATE connection — best-effort, non-blocking) ──
+            # Read scored jobs from ledger (top_jobs in runner result is often empty)
+            import hashlib as _hashlib
+            _v3_jobs = 0
+            _v3_candidates = 0
+            _v3_rels = 0
+            _v3_top = top_jobs if top_jobs else []
+            if not _v3_top:
+                # Fallback: load top scored from ledger
+                try:
+                    from careerloop.application_ledger import ApplicationLedger
+                    _root = os.path.realpath(os.path.join(os.path.dirname(__file__), "..", ".."))
+                    _ledger = ApplicationLedger(_root)
+                    _v3_top = _ledger.get_top_scored(min_score=1, limit=10)
+                    # Convert to same format as top_jobs: [{"job": entry, "score": score, "breakdown": breakdown}]
+                    _v3_top = [{"job": e, "score": _ledger._get_score(e) or 0, "breakdown": e.get("fit_breakdown", {})} for e in _v3_top]
+                except Exception:
+                    pass
+
+            try:
+                with self.db.get_connection() as _v3_conn:
+                    with _v3_conn.cursor() as _v3_cur:
+                        for idx, item in enumerate(_v3_top, 1):
+                            try:
+                                job = item["job"]
+                                score = item["score"]
+                                breakdown = item.get("breakdown", {})
+                                jd_text = job.get("description") or job.get("raw_description", "")
+                                title = job.get("title", "")
+                                company = job.get("company", "")
+                                location = job.get("location", "")
+                                source_url = job.get("source_url") or job.get("url", "")
+
+                                fp_raw = f"{title.strip().lower()}|{company.strip().lower()}|{location.strip().lower()}"
+                                fingerprint = _hashlib.sha256(fp_raw.encode()).hexdigest()
+
+                                # Stage 1: job_candidates
+                                _v3_cur.execute(
+                                    "INSERT INTO careerloop.job_candidates (candidate_id, run_id, source, raw_title, raw_company, raw_location, raw_url, raw_snippet, raw_payload, extraction_status) "
+                                    "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, 'accepted')",
+                                    (str(uuid.uuid4()), run_id, job.get("source", "portal_scan"),
+                                     title, company, location, source_url, (jd_text or "")[:500], json.dumps(job)))
+                                _v3_candidates += 1
+
+                                # Stage 2: jobs (global cache, fingerprint dedup)
+                                global_job_id = job.get("job_id") or str(uuid.uuid4())
+                                _v3_cur.execute(
+                                    "INSERT INTO careerloop.jobs (id, source, title, company_name, location, content_fingerprint, jd_text, is_india_role, status, scraped_at, apply_url) "
+                                    "VALUES (%s, %s, %s, %s, %s, %s, %s, true, 'active', NOW(), %s) "
+                                    "ON CONFLICT (content_fingerprint) DO UPDATE SET last_seen_at = NOW(), updated_at = NOW(), apply_url = EXCLUDED.apply_url",
+                                    (global_job_id, job.get("source", "portal_scan"), title, company,
+                                     location, fingerprint, (jd_text or "")[:5000], source_url))
+                                _v3_jobs += 1
+
+                                # Stage 3: user_job_relationships
+                                rejection = breakdown.get("rejected") or breakdown.get("rejection_reason")
+                                match_status = "rejected" if rejection else "matched"
+                                _v3_cur.execute(
+                                    "INSERT INTO careerloop.user_job_relationships (user_id, job_id, fit_score, match_status, rejection_reason, shown_in_brief_id, route_recommendation, personalization_payload) "
+                                    "VALUES (%s, %s, %s, %s, %s, %s, %s, %s) "
+                                    "ON CONFLICT (user_id, job_id) DO UPDATE SET fit_score = EXCLUDED.fit_score, match_status = EXCLUDED.match_status, shown_in_brief_id = EXCLUDED.shown_in_brief_id, updated_at = NOW()",
+                                    (user_id, global_job_id, score, match_status, rejection, brief_id,
+                                     breakdown.get("route_recommendation") or "direct_apply", json.dumps(breakdown)))
+                                _v3_rels += 1
+                            except Exception as _e:
+                                logger.debug(f"V3 pipeline row skipped: {_e}")
+                logger.info(f"V3 pipeline: {_v3_candidates} candidates, {_v3_jobs} jobs, {_v3_rels} relationships written")
+            except Exception as _v3_err:
+                logger.warning(f"V3 pipeline best-effort skipped: {_v3_err}")
+
             text = f"Scan complete! Scored {scored_count} opportunities. Here is your Daily Brief:\n\n{res.get('shortlist_text', '')}"
             return ResponseEnvelope(
                 response_type="list",
