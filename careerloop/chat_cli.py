@@ -24,6 +24,7 @@ from careerloop.session.supervisor_graph import get_supervisor_graph
 from careerloop.memory.checkpointer import get_checkpointer
 from rich.console import Console
 from rich.panel import Panel
+from rich.markdown import Markdown
 from rich.table import Table
 from rich import box
 console = Console()
@@ -285,6 +286,8 @@ def main():
         else:
             transport.send_text(user_id, f"Resuming session in state: {session.state.value}")
 
+        root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
         # 3. Interactive Loop
         while True:
             user_input = transport.request_input(user_id)
@@ -296,36 +299,37 @@ def main():
                 console.print("[bold cyan]Goodbye![/bold cyan]")
                 break
 
-            # Intercept Slash Commands
+            # ── Slash commands ── route through CommandRouter for unified handling ──
             if user_input.startswith("/"):
-                cmd = user_input.strip().lower()
+                cmd = user_input.strip().lower().split()[0]
+                from careerloop.session.command_router import CommandRouter
+                router = CommandRouter(root)
+                result = None
+
                 if cmd == "/help":
-                    print_help_panel()
+                    result = router.help()
                 elif cmd == "/status":
-                    print_status_card(session)
+                    result = router.status(session)
                 elif cmd == "/profile":
-                    print_profile_details(session)
-                elif cmd == "/pipeline" or cmd == "/jobs":
-                    print_pipeline(session_store.db_manager)
+                    result = router.profile(session)
                 elif cmd == "/scan":
-                    run_background_scan()
+                    result = router.scan()
+                elif cmd == "/pipeline":
+                    result = router.pipeline()
                 elif cmd == "/brief":
-                    from datetime import datetime, timezone
-                    today_str = datetime.now(timezone.utc).date().isoformat()
-                    root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-                    brief_path = os.path.join(root, "output", "daily_briefs", f"{today_str}.md")
-                    if os.path.exists(brief_path):
-                        with open(brief_path) as f:
-                            console.print(f.read())
-                    else:
-                        console.print("[yellow]No brief generated today. Type /scan to generate one.[/yellow]")
+                    result = router.brief()
                 elif cmd == "/reset":
-                    session.state = UserState.IDLE
-                    session.temp_profile_data = None
-                    session_store.save_session(session)
-                    console.print("[bold green]Session reset successful! You are now back in IDLE state. Type '/status' to verify.[/bold green]")
+                    result = router.reset(session)
                 else:
-                    console.print(f"[bold yellow]Unknown command: {user_input}. Type /help for list of commands.[/bold yellow]")
+                    console.print(f"[yellow]Unknown command: {user_input}. Type /help for available commands.[/yellow]")
+                    continue
+
+                if result:
+                    console.print(Panel(Markdown(result.text), title="CareerLoop", border_style="bold cyan"))
+                    if result.new_state and session_store:
+                        from careerloop.session.states import normalize_user_state
+                        session.state = normalize_user_state(result.new_state) or session.state
+                        session_store.save_session(session)
                 continue
 
             payload = {
