@@ -261,6 +261,7 @@ RUN_EVENTS (Streaming Layer)
 - GENERAL_CHAT: Real DeepSeek LLM responses (no hardcoded text)
 - Conversation history: add_messages reducer persists across turns
 - E2E test script: e2e_runtime_test.py with real LLM calls
+- **Data Engineering V2** — MECE schema (16 tables), repository layer, cache-first strategy, global job dedup. See `docs/DATA_ENGINEERING_ARCHITECTURE.md`.
 
 ### In Progress
 - Scan progress streaming via run_events to CLI

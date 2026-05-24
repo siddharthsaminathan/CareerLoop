@@ -8,6 +8,22 @@ from careerloop.session.session_store import SessionStore
 from careerloop.session.states import UserJourneyState
 from careerloop.memory.connection import DatabaseManager
 
+# Repository V2 — optional; falls back to raw SQL if unavailable
+try:
+    from careerloop.memory.repository_v2 import (
+        JobRepository, DiscoveryRepository, UserJobRepository,
+        BriefRepository, ApplicationRepository, PeopleRepository
+    )
+    _REPO_V2 = True
+except ImportError:
+    JobRepository = None
+    DiscoveryRepository = None
+    UserJobRepository = None
+    BriefRepository = None
+    ApplicationRepository = None
+    PeopleRepository = None
+    _REPO_V2 = False
+
 logger = logging.getLogger("careerloop.session.tool_registry")
 
 class ToolRegistry:
@@ -162,6 +178,14 @@ class ToolRegistry:
                         "INSERT INTO run_events (event_id, run_id, message) VALUES (%s, %s, 'Initializing scan runner...')",
                         (str(uuid.uuid4()), run_id)
                     )
+                    # Repository V2: structured scan lifecycle event
+                    try:
+                        cursor.execute(
+                            "INSERT INTO run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                            (str(uuid.uuid4()), run_id, "Starting job discovery...", "SCAN_STARTED")
+                        )
+                    except Exception:
+                        pass
                 bg_inserted = True
         except Exception as e:
             logger.error(f"Error initializing background run in DB: {e}")
@@ -180,6 +204,14 @@ class ToolRegistry:
                         "INSERT INTO run_events (event_id, run_id, message) VALUES (%s, %s, 'Executing discovery scan...')",
                         (str(uuid.uuid4()), run_id)
                     )
+                    # Repository V2: source started event
+                    try:
+                        cursor.execute(
+                            "INSERT INTO run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                            (str(uuid.uuid4()), run_id, "Searching configured portals for new job postings...", "SOURCE_STARTED")
+                        )
+                    except Exception:
+                        pass
 
             res = runner.run(do_scan=True)
             today_str = datetime.now(timezone.utc).date().isoformat()
@@ -272,7 +304,36 @@ class ToolRegistry:
                             )
                         )
 
-                    # Emit MATCH events for top 5 jobs
+                    # Repository V2: upsert into global jobs cache + user-job relationships
+                    if _REPO_V2 and JobRepository and UserJobRepository:
+                        for idx, item in enumerate(top_jobs, 1):
+                            try:
+                                job = item["job"]
+                                score = item["score"]
+                                # Upsert into public.jobs (global cache)
+                                JobRepository.upsert_job(
+                                    job_id=job["job_id"],
+                                    title=job.get("title", ""),
+                                    company_name=job.get("company", ""),
+                                    location=job.get("location", ""),
+                                    source=job.get("source", "portal_scan"),
+                                    source_url=job.get("source_url", ""),
+                                    apply_url=job.get("apply_url", ""),
+                                    role_summary=job.get("role_summary") or job.get("description", ""),
+                                    scraped_at=datetime.now(timezone.utc).isoformat(),
+                                )
+                                # Create user_job_relationships row
+                                UserJobRepository.create_relationship(
+                                    user_id=user_id,
+                                    job_id=job["job_id"],
+                                    relationship_type="discovered",
+                                    fit_score=score,
+                                    brief_id=brief_id,
+                                )
+                            except Exception as e:
+                                logger.debug(f"Repository V2 write failed for job {job.get('job_id', '?')}: {e}")
+
+                    # Emit CANDIDATE_MATCHED events for top 5 jobs
                     for idx, item in enumerate(top_jobs[:5], 1):
                         job = item["job"]
                         score = item["score"]
@@ -283,7 +344,7 @@ class ToolRegistry:
                         try:
                             cursor.execute(
                                 "INSERT INTO run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
-                                (str(uuid.uuid4()), run_id, msg, "scan_match")
+                                (str(uuid.uuid4()), run_id, msg, "CANDIDATE_MATCHED")
                             )
                         except Exception:
                             pass
@@ -307,6 +368,25 @@ class ToolRegistry:
                             )
                         except Exception:
                             pass
+
+                    # Repository V2: structured filter summary event
+                    try:
+                        filter_msg = f"Scan filter complete — {new_jobs} raw, {unique_added} new, {scored} scored"
+                        cursor.execute(
+                            "INSERT INTO run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                            (str(uuid.uuid4()), run_id, filter_msg, "FILTER_SUMMARY")
+                        )
+                    except Exception:
+                        pass
+
+                    # Repository V2: brief created event
+                    try:
+                        cursor.execute(
+                            "INSERT INTO run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                            (str(uuid.uuid4()), run_id, "Brief created with top matches.", "BRIEF_CREATED")
+                        )
+                    except Exception:
+                        pass
 
                     cursor.execute(
                         "UPDATE background_runs SET status = 'COMPLETED', updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
@@ -351,24 +431,62 @@ class ToolRegistry:
     def show_brief(self, action: Action, state: UserJourneyState, context: Dict[str, Any]) -> ResponseEnvelope:
         brief = None
         brief_items = []
-        try:
-            with self.db.get_connection() as conn:
-                with conn.cursor() as cursor:
-                    cursor.execute(
-                        "SELECT id, date_str, summary FROM daily_briefs WHERE user_id = %s ORDER BY date_str DESC LIMIT 1",
-                        (action.user_id,)
-                    )
-                    brief = cursor.fetchone()
-                    if brief:
-                        brief_id = brief["id"]
+        repo_used = False
+
+        # Repository V2: try BriefRepository first
+        if _REPO_V2 and BriefRepository:
+            try:
+                brief_data = BriefRepository.get_latest_brief(action.user_id)
+                if brief_data:
+                    # Normalize to dict if model object
+                    if hasattr(brief_data, '__dict__') and not isinstance(brief_data, dict):
+                        brief = {"id": getattr(brief_data, "id", ""), "date_str": getattr(brief_data, "date_str", ""), "summary": getattr(brief_data, "summary", "")}
+                    else:
+                        brief = brief_data
+                    brief_id_v2 = brief["id"] if isinstance(brief, dict) else brief.id
+                    raw_items = BriefRepository.get_brief_items(brief_id_v2)
+                    if raw_items:
+                        if hasattr(raw_items[0], '__dict__') and not isinstance(raw_items[0], dict):
+                            brief_items = [
+                                {
+                                    "item_index": getattr(i, "item_index", 0),
+                                    "job_id": getattr(i, "job_id", ""),
+                                    "title": getattr(i, "title", ""),
+                                    "company": getattr(i, "company", ""),
+                                    "location": getattr(i, "location", ""),
+                                    "fit_score": getattr(i, "fit_score", 0),
+                                    "recommendation_reason": getattr(i, "recommendation_reason", ""),
+                                    "risk_summary": getattr(i, "risk_summary", ""),
+                                    "route_recommendation": getattr(i, "route_recommendation", ""),
+                                }
+                                for i in raw_items
+                            ]
+                        else:
+                            brief_items = raw_items
+                    repo_used = True
+            except Exception as e:
+                logger.debug(f"BriefRepository unavailable, falling back to raw SQL: {e}")
+
+        # Fall back to raw SQL
+        if not repo_used:
+            try:
+                with self.db.get_connection() as conn:
+                    with conn.cursor() as cursor:
                         cursor.execute(
-                            "SELECT item_index, job_id, title, company, location, fit_score, recommendation_reason, risk_summary, route_recommendation "
-                            "FROM daily_brief_items WHERE brief_id = %s ORDER BY item_index ASC",
-                            (brief_id,)
+                            "SELECT id, date_str, summary FROM daily_briefs WHERE user_id = %s ORDER BY date_str DESC LIMIT 1",
+                            (action.user_id,)
                         )
-                        brief_items = cursor.fetchall()
-        except Exception as e:
-            logger.error(f"Error loading brief from database: {e}")
+                        brief = cursor.fetchone()
+                        if brief:
+                            brief_id = brief["id"]
+                            cursor.execute(
+                                "SELECT item_index, job_id, title, company, location, fit_score, recommendation_reason, risk_summary, route_recommendation "
+                                "FROM daily_brief_items WHERE brief_id = %s ORDER BY item_index ASC",
+                                (brief_id,)
+                            )
+                            brief_items = cursor.fetchall()
+            except Exception as e:
+                logger.error(f"Error loading brief from database: {e}")
 
         if not brief or not brief_items:
             return ResponseEnvelope(
@@ -441,6 +559,7 @@ class ToolRegistry:
 
         text = (
             f"### {item['title']} @ {item['company']}\n"
+            f"🆔 **Job ID:** {item['job_id']}\n"
             f"📍 **Location:** {item['location'] or 'N/A'}\n"
             f"🎯 **Fit Score:** {item['fit_score']:.1f}/100\n\n"
             f"💡 **Why it's a fit:** {item['recommendation_reason'] or 'N/A'}\n\n"
@@ -476,6 +595,18 @@ class ToolRegistry:
             if not job:
                 return ResponseEnvelope(response_type="error", text="Job not found in ledger.")
 
+            # Repository V2: supplement with richer job detail from global cache
+            repo_job = None
+            if _REPO_V2 and JobRepository:
+                try:
+                    fingerprint = job.get("job_fingerprint") or job.get("job_id")
+                    if fingerprint:
+                        repo_job = JobRepository.find_by_fingerprint(fingerprint)
+                        if repo_job and hasattr(repo_job, '__dict__') and not isinstance(repo_job, dict):
+                            repo_job = {k: v for k, v in repo_job.__dict__.items() if not k.startswith('_')}
+                except Exception as e:
+                    logger.debug(f"JobRepository unavailable: {e}")
+
             breakdown = job.get("fit_breakdown", {})
             if isinstance(breakdown, str):
                 try:
@@ -489,6 +620,16 @@ class ToolRegistry:
                 {"label": "Location", "value": job.get("location", "N/A")},
                 {"label": "Fit Score", "value": f"{job.get('fit_score', 0):.1f}/100"},
             ]
+
+            # Enrich with repository data if available
+            if repo_job:
+                if repo_job.get("role_summary"):
+                    cards.append({"label": "Role Summary", "value": str(repo_job["role_summary"])[:500]})
+                if repo_job.get("source_url"):
+                    cards.append({"label": "Source URL", "value": str(repo_job["source_url"])})
+                if repo_job.get("apply_url"):
+                    cards.append({"label": "Apply URL", "value": str(repo_job["apply_url"])})
+
             if isinstance(breakdown, dict):
                 for k, v in breakdown.items():
                     if k not in ("rejected",):
@@ -733,11 +874,36 @@ class ToolRegistry:
         except Exception:
             pass
 
+        # Repository V2: supplement with user_job_relationships data
+        repo_matches = []
+        if _REPO_V2 and UserJobRepository:
+            try:
+                relationships = UserJobRepository.get_matches_for_user(action.user_id)
+                if relationships:
+                    for rel in relationships:
+                        if hasattr(rel, '__dict__') and not isinstance(rel, dict):
+                            repo_matches.append({
+                                "title": getattr(rel, "title", "?"),
+                                "company": getattr(rel, "company_name", getattr(rel, "company", "?")),
+                                "fit_score": getattr(rel, "fit_score", 0),
+                            })
+                        else:
+                            repo_matches.append({
+                                "title": rel.get("title", "?"),
+                                "company": rel.get("company_name", rel.get("company", "?")),
+                                "fit_score": rel.get("fit_score", 0),
+                            })
+                    # Merge repo data if ledger was empty
+                    if not top_matches and repo_matches:
+                        top_matches = sorted(repo_matches, key=lambda x: x.get("fit_score", 0), reverse=True)[:3]
+            except Exception as e:
+                logger.debug(f"UserJobRepository unavailable: {e}")
+
         text = f"### Pipeline Status Summary\n"
         text += f"• **Total Tracked Jobs:** {total_count}\n"
         text += f"• **Active Applications:** {active_count}\n\n"
         if top_matches:
-            text += "**Top Rated ledger fits:**\n"
+            text += "**Top Rated fits:**\n"
             for i, match in enumerate(top_matches, 1):
                 text += f"{i}. **{match['title']}** @ {match['company']} — **{match['fit_score']:.1f}/100**\n"
 

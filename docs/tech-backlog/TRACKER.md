@@ -55,6 +55,7 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 | Background job scheduler | 0% | ⚫ | No | Sprint 2. Daily + per-job two classes. |
 | WhatsApp / Meta Cloud API | 0% | ⚫ | No | After Telegram beta validates loop. |
 | Monetization / billing | 0% | 🔴 | No | Pricing tiers defined. No paywall yet. Needs onboarding first. |
+| Data engineering V2 | 40% | 🟡 Active | 16-table MECE schema. Global job cache. Repository layer. Cache-first scan strategy pending. |
  
 **Overall product maturity: ~68-71% of vision.** Chat runtime is real — no echo, no slop, all states reachable, 14 regression tests. Council ceiling hit (93%). Geo filter proven. Critical gap remains: transport delivery loop + multi-user onboarding.
 

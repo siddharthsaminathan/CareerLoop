@@ -204,6 +204,65 @@ def print_profile_details(session):
         table.add_row(k.replace('_', ' ').title(), str(v))
     console.print(table)
 
+def _render_scan_events(user_id: str):
+    """Poll run_events for the latest scan and render MATCH/REJECT cleanly."""
+    try:
+        from careerloop.memory.connection import get_db_manager
+
+        db = get_db_manager()
+
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                # Find the latest scan run for this user
+                cur.execute(
+                    "SELECT run_id, status FROM public.background_runs "
+                    "WHERE user_id = %s AND run_type = 'scan' "
+                    "ORDER BY created_at DESC LIMIT 1",
+                    (user_id,),
+                )
+                run = cur.fetchone()
+
+                if not run:
+                    return
+
+                run_id = run["run_id"]
+
+                # Get all events for this run
+                cur.execute(
+                    "SELECT event_type, message FROM public.run_events "
+                    "WHERE run_id = %s ORDER BY created_at ASC",
+                    (run_id,),
+                )
+                events = cur.fetchall()
+
+                if not events:
+                    return
+
+                console.print("\n[bold cyan]── Scan Progress ──[/bold cyan]")
+                for e in events:
+                    msg = e["message"]
+                    etype = e.get("event_type", "info")
+
+                    if "MATCH" in msg or etype == "CANDIDATE_MATCHED":
+                        console.print(f"[green]{msg}[/green]")
+                    elif "REJECT" in msg or etype == "CANDIDATE_REJECTED":
+                        console.print(f"[red]{msg}[/red]")
+                    elif "SOURCE" in etype or "Started" in msg or "Starting" in msg:
+                        console.print(f"[dim]{msg}[/dim]")
+                    elif "FILTER" in etype or "SUMMARY" in etype or "complete" in msg.lower():
+                        console.print(f"[bold yellow]{msg}[/bold yellow]")
+                    elif "ERROR" in msg or "FAILED" in msg:
+                        console.print(f"[bold red]{msg}[/bold red]")
+                    elif "BRIEF" in etype or "brief" in msg.lower():
+                        console.print(f"[bold green]{msg}[/bold green]")
+                    else:
+                        console.print(f"[dim]{msg}[/dim]")
+
+                console.print("[bold cyan]── End Scan Progress ──[/bold cyan]\n")
+    except Exception as e:
+        logger.debug(f"Scan event rendering skipped: {e}")
+
+
 def main():
     # 1. Authenticate (returns UUID)
     user_id = authenticate_cli_user()
@@ -364,39 +423,8 @@ def main():
             # ── Scan progress display ─────────────────────────────────
             if response and isinstance(response, dict):
                 action_taken = response.get("action_taken")
-                if action_taken and hasattr(action_taken, 'action_type') and str(action_taken.action_type) == "ActionType.START_SCAN":
-                    try:
-                        # Find the latest scan run for this user
-                        run_id = None
-                        with db.get_connection() as conn:
-                            with conn.cursor() as cur:
-                                cur.execute(
-                                    "SELECT run_id FROM public.background_runs WHERE user_id = %s AND run_type = 'scan' ORDER BY started_at DESC LIMIT 1",
-                                    (user_id,),
-                                )
-                                row = cur.fetchone()
-                                if row:
-                                    run_id = row["run_id"]
-                        if run_id:
-                            with db.get_connection() as conn:
-                                with conn.cursor() as cur:
-                                    cur.execute(
-                                        "SELECT message FROM public.run_events WHERE run_id = %s AND event_type IN ('scan_match', 'scan_progress') ORDER BY timestamp",
-                                        (run_id,),
-                                    )
-                                    events = cur.fetchall()
-                            if events:
-                                console.print("\n[bold cyan]Scan Progress:[/bold cyan]")
-                                for e in events:
-                                    msg = e["message"]
-                                    if msg.startswith("MATCH"):
-                                        console.print(f"[green]{msg}[/green]")
-                                    elif "rejected" in msg.lower() or "duplicates" in msg.lower():
-                                        console.print(f"[dim]{msg}[/dim]")
-                                    else:
-                                        console.print(msg)
-                    except Exception:
-                        pass  # streaming is best-effort
+                if action_taken and hasattr(action_taken, 'action_type') and action_taken.action_type.value == "START_SCAN":
+                    _render_scan_events(user_id)
     except KeyboardInterrupt:
         console.print("\n[bold red]Exiting CareerLoop. Goodbye![/bold red]")
     except Exception as e:

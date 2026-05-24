@@ -510,3 +510,16 @@ These are architectural invariants. Do NOT violate them in any session.
 - Test results: `e2e_test_results.json`
 - Test with actual DeepSeek API calls, not mocks.
 - Verify: DB tables populated, no echoes, no fake jobs, active_context updates, state transitions.
+
+### Data Engineering Rules (LOCKED)
+
+- **Supabase PostgreSQL only.** No SQLite. No local filesystem as truth.
+- **Global job cache in `public.jobs`.** Same job = one row, shared across users.
+- **User personalization in `public.user_job_relationships`.** Same job can be matched for one user, rejected for another.
+- **All data access through `careerloop/memory/repository_v2.py`.** No scattered raw SQL in tools/handlers.
+- **Migration file: `careerloop/memory/supabase_migration_v2.sql`.** Idempotent. Safe to re-run.
+- **Cache-first scan strategy.** Check jobs table before external API calls.
+- **Run observability through `public.run_events`.** Live CLI/Telegram streaming from run_events.
+- **Never hard-delete jobs.** Mark status=expired. Keep for audit.
+- **Daily briefs are permanent.** Application packs are permanent.
+- **Full schema in `docs/DATA_ENGINEERING_ARCHITECTURE.md`.**
