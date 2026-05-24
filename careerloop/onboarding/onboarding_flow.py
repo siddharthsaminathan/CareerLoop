@@ -1,8 +1,11 @@
 import json
+import logging
 from typing import Tuple, Optional
 from careerloop.session.states import UserState
 from careerloop.session.session_store import SessionStore, Session
 from careerloop.llm_chat import OnboardingAgent
+
+logger = logging.getLogger("careerloop.onboarding.onboarding_flow")
 
 class OnboardingFlow:
     """
@@ -15,15 +18,19 @@ class OnboardingFlow:
 
     def handle_message(self, session: Session, text: str) -> Tuple[str, UserState]:
         state = session.state
-        data = session.temp_profile_data or {}
+        data = session.temp_profile_data or self.session_store._load_profile_data(session.user_id)
 
         if state == UserState.IDLE:
-            # Start onboarding
-            session.state = UserState.ONBOARDING_WAITING_CV
-            self.session_store.save_session(session)
+            state = self.session_store.infer_onboarding_state(data)
+            session.state = state
+            session.temp_profile_data = data or None
+            if not self.session_store.save_session(session):
+                raise RuntimeError(f"Failed to persist session state {session.state}. Check database connection.")
+
+        if state == UserState.PROFILE_COMPLETE:
             return (
-                "Welcome to CareerLoop! I am your AI agent. I need to collect some details to set up your profile: your CV, target roles, target cities, salary expectations, notice period, and aggressiveness. To get started, please paste your full Resume/CV in text format, or provide a link to it, and tell me a bit about what you're looking for.",
-                UserState.ONBOARDING_WAITING_CV
+                "Your profile is already set up. Type `/status` to review it, `/brief` to see today's brief, or `/scan` to search for new jobs.",
+                UserState.PROFILE_COMPLETE,
             )
 
         if state.name.startswith("ONBOARDING_"):
@@ -39,15 +46,17 @@ class OnboardingFlow:
                 
                 # Clean up temp data
                 session.temp_profile_data = None
-                session.state = UserState.DAILY_BRIEF_SENT
-                self.session_store.save_session(session)
-                
+                session.state = UserState.PROFILE_COMPLETE
+                if not self.session_store.save_session(session):
+                    raise RuntimeError(f"Failed to persist session state {session.state}. Check database connection.")
+
                 return (
-                    reply + "\n\nAwesome! Your profile is set up. I'll start monitoring jobs for you and send you daily briefs. You are now fully onboarded.",
-                    UserState.DAILY_BRIEF_SENT
+                    reply + "\n\nAwesome! Your profile is set up. Type `/scan` when you want me to search for matching jobs.",
+                    UserState.PROFILE_COMPLETE
                 )
             else:
-                self.session_store.save_session(session)
+                if not self.session_store.save_session(session):
+                    raise RuntimeError(f"Failed to persist session state {session.state}. Check database connection.")
                 return (reply, state)
 
         return ("I'm not sure how to handle that right now.", state)
@@ -80,26 +89,55 @@ class OnboardingFlow:
 
     def _commit_profile_to_db(self, user_id: str, profile_data: dict):
         """Update the users table with the collected preferences."""
+        def clean(value):
+            if value is None:
+                return None
+            if isinstance(value, str):
+                stripped = value.strip()
+                if not stripped or stripped.lower() in {"n/a", "na", "none", "null", "-"}:
+                    return None
+                return stripped
+            return value
+
         try:
             with self.session_store.db_manager.get_connection() as conn:
                 with conn.cursor() as cur:
-                    cur.execute("""
-                        UPDATE public.users 
+                    cur.execute(
+                        f"SELECT master_cv_markdown, work_style_prefs FROM {self.session_store._tbl('users')} WHERE id = %s",
+                        (user_id,),
+                    )
+                    existing = cur.fetchone() or {}
+                    existing_prefs = self.session_store._parse_profile_prefs(existing.get("work_style_prefs"))
+
+                    cv_content = clean(profile_data.get("cv_content")) or existing.get("master_cv_markdown") or ""
+                    merged_prefs = dict(existing_prefs)
+                    for key in [
+                        "target_roles",
+                        "target_cities",
+                        "salary_expectations",
+                        "notice_period",
+                        "aggressiveness",
+                    ]:
+                        next_value = clean(profile_data.get(key))
+                        if next_value is not None:
+                            merged_prefs[key] = next_value
+
+                    cur.execute(f"""
+                        INSERT INTO {self.session_store._tbl('users')} (id, email, full_name, created_at, updated_at)
+                        VALUES (%s, %s, %s, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                        ON CONFLICT (id) DO NOTHING
+                    """, (user_id, f"user_{user_id}@placeholder.com", "Unknown User"))
+                    cur.execute(f"""
+                        UPDATE {self.session_store._tbl('users')}
                         SET master_cv_markdown = %s,
                             work_style_prefs = %s,
-                            updated_at = NOW()
+                            updated_at = CURRENT_TIMESTAMP
                         WHERE id = %s
                     """, (
-                        profile_data.get('cv_content', ''),
-                        json.dumps({
-                            'target_roles': profile_data.get('target_roles', ''),
-                            'target_cities': profile_data.get('target_cities', ''),
-                            'salary_expectations': profile_data.get('salary_expectations', ''),
-                            'notice_period': profile_data.get('notice_period', ''),
-                            'aggressiveness': profile_data.get('aggressiveness', ''),
-                        }),
+                        cv_content,
+                        json.dumps(merged_prefs),
                         user_id
                     ))
                 conn.commit()
         except Exception as e:
-            print(f"Error saving profile to DB: {e}")
+            logger.error(f"Error saving profile to DB: {e}")

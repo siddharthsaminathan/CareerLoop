@@ -406,3 +406,24 @@ def classify_url_type(url: str) -> URLType:
         return URLType.INDIVIDUAL_JOB
 
     return URLType.UNKNOWN
+
+
+# ── Pipeline Observability ────────────────────────────────────────────
+
+
+@dataclass
+class RunMetrics:
+    """Per-pipeline-run tracking. Standardizes what we measure across runs."""
+
+    run_id: str
+    started_at: str
+    completed_at: str = ""
+    jobs_discovered: int = 0
+    jobs_deduped: int = 0
+    jobs_scored: int = 0
+    jobs_shortlisted: int = 0
+    llm_calls: int = 0
+    llm_prompt_tokens: int = 0
+    llm_completion_tokens: int = 0
+    errors: list[str] = field(default_factory=list)
+    source_breakdown: dict = field(default_factory=dict)

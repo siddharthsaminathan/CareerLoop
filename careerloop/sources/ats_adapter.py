@@ -21,11 +21,15 @@ from bs4 import BeautifulSoup
 logger = logging.getLogger(__name__)
 
 REQUEST_TIMEOUT = 15
-INDIA_CITY_KEYWORDS = [
+# Hard India cities/identifiers — a bare match here is sufficient.
+INDIA_CITIES = [
     "india", "bangalore", "bengaluru", "mumbai", "delhi", "hyderabad",
     "chennai", "pune", "kolkata", "noida", "gurgaon", "gurugram",
-    "remote", "hybrid",  # remote/hybrid roles are fair game
+    "ahmedabad", "jaipur", "surat", "lucknow", "kanpur", "nagpur",
+    "coimbatore", "kochi", "thiruvananthapuram", "vizag", "visakhapatnam",
 ]
+# Work modes only count as India when an India city/"india" is also present.
+INDIA_WORK_MODES = ["remote", "hybrid"]
 
 
 @dataclass
@@ -70,11 +74,21 @@ class ATSJob:
 
 
 def _is_india_location(location: str) -> bool:
-    """Return True if location string suggests India or remote."""
+    """Return True if location string suggests India.
+
+    Bare 'remote'/'hybrid' do NOT pass — they only count when an India city
+    (or 'india') is also present in the string.
+    """
     if not location:
-        return False
+        return True  # no location = assume India for India-first ATS
     loc = location.lower()
-    return any(kw in loc for kw in INDIA_CITY_KEYWORDS)
+    # Direct city match
+    if any(city in loc for city in INDIA_CITIES):
+        return True
+    # Remote/hybrid only counts if India is also present
+    if any(mode in loc for mode in INDIA_WORK_MODES):
+        return any(city in loc for city in INDIA_CITIES) or "india" in loc
+    return False
 
 
 def _strip_html(html: str) -> str:

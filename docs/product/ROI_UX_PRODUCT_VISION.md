@@ -58,13 +58,15 @@ Wake up
 
 The market report validates this fragmentation: India has a massive graduate pipeline, 10.7M annual pass-outs, but graduate unemployment is still materially higher than national unemployment, creating a large population stuck between education and formal work.
 
-**CareerLoop's UX should therefore show the user:**
+**The Unbearable Pain:**
+The pain is not "I need interview prep." The unbearable pain is:
+> "I am applying and nothing is happening. I don't know what to change. I don't know who to talk to. I don't know whether I am wasting time."
 
-- Your search is being run.
-- Your decisions are being compressed.
-- Your applications are being prepared.
-- Your follow-ups are being tracked.
-- Your interviews are becoming learning.
+**CareerLoop's UX should therefore show the user visible weekly momentum:**
+- You applied to X roles.
+- You contacted Y people (recruiters/referrals).
+- You received Z replies.
+- You are getting closer to an interview.
 
 That is the ROI story.
 
@@ -72,32 +74,29 @@ That is the ROI story.
 
 ## 2. The Core ROI Formula
 
-CareerLoop should measure ROI across **6 layers**:
+CareerLoop should measure ROI across **the Momentum Conversion Chain**:
 
 | Layer | Description |
 |-------|-------------|
-| Time saved | How many hours of manual search/apply/track eliminated |
-| Decision quality improved | Fewer bad-fit applications, more strong-fit surfaced |
-| Application quality improved | Role-specific packs, humanized writing, better conversion |
-| Follow-up discipline improved | Applications don't get forgotten, pipeline stays warm |
-| Interview learning captured | Every interview becomes structured intelligence |
-| Confidence / control restored | User feels in command of their career transition |
+| Applications Submitted | Moving from finding a job to actually applying. |
+| Outreach Executed | Contacting recruiters, hiring managers, and referrers directly. |
+| Replies Received | The ultimate validation of the application pack and outreach strategy. |
+| Interviews Scheduled | The conversion of a conversation into a formal opportunity. |
+| Strategy Iterated | Changing the approach (e.g. stop Direct Apply, use Referral-First) based on data. |
 
-### User-Facing ROI Dashboard (Example)
+### User-Facing ROI Dashboard (The Money Screen)
 
-The user-facing ROI can be shown as a **CareerLoop Impact Dashboard**:
+The user-facing ROI is the **Momentum Dashboard**. Scanning metrics are vanity and should be hidden. 
 
-> **This month CareerLoop saved you:**
+> **This week, CareerLoop helped you:**
 >
-> - 18.5 hours of searching
-> - 42 bad-fit roles filtered
-> - 11 applications prepared
-> - 7 follow-ups scheduled
-> - 3 interviews debriefed
-> - 2 role patterns discovered
-> - 1 salary-positioning risk flagged
+> - Submit 8 applications
+> - Contact 11 people
+> - Send 4 follow-ups
+> - Get 2 replies
+> - Prepare for 1 interview
 
-This is better than vanity metrics like "jobs found."
+This is the only screen that matters for retention.
 
 ---
 
@@ -105,35 +104,23 @@ This is better than vanity metrics like "jobs found."
 
 ---
 
-### Workflow 1 — Market Scan
+### Workflow 1 — The Discovery Hook (Top of Funnel)
 
 **User pain:** They manually search LinkedIn, Naukri, Indeed, WhatsApp groups, and random portals.
 
-**CareerLoop action:** Scans India-relevant sources, dedupes, verifies, rejects noise.
+**CareerLoop action:** Scans India-relevant sources, dedupes, verifies, rejects noise. **Note: This is the free lead magnet. It is not the paid product.**
 
 **Tech:** Discovery engine, India Fit Engine, ledger.
 
-**ROI metrics:**
+**ROI metrics:** (For internal tracking, hidden from the primary user dashboard)
 
 | Metric |
 |--------|
-| Minutes saved per day |
-| Jobs scanned |
-| Junk jobs removed |
-| Verified active jobs found |
+| Active roles discovered |
+| Signal-to-noise ratio |
+| User funnel conversion rate (Search -> Apply click) |
 
-**Competitors:**
-
-| Competitor |
-|------------|
-| LinkedIn |
-| Naukri |
-| Indeed |
-| HiringCafe |
-
-HiringCafe matters because it validates direct-source job discovery: it focuses on company career pages rather than relying only on aggregator feeds.
-
-**Why CareerLoop wins here:** The win is not more jobs. The win is less garbage reaching the user.
+**Why CareerLoop wins here:** The win is hooking the user with relevant opportunities so they trigger the "Upgrade to Apply" wedge. Discovery alone is a commodity.
 
 ---
 

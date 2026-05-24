@@ -1,7 +1,10 @@
 import os
 import json
+import logging
 import requests
 from typing import Tuple, Dict, Any
+
+logger = logging.getLogger("careerloop.llm_chat")
 
 class LLMChatAgent:
     def __init__(self, api_key: str = None, model: str = "deepseek-chat"):
@@ -53,8 +56,7 @@ class LLMChatAgent:
         try:
             return json.loads(content)
         except Exception as e:
-            print(f"DEBUG: Failed to parse JSON. Error: {e}")
-            print(f"DEBUG: Raw content was: {content[:500]}...")
+            logger.debug(f"Failed to parse JSON. Error: {e}; raw content: {content[:500]}")
             return {}
 
 class OnboardingAgent(LLMChatAgent):
@@ -101,7 +103,12 @@ User Message: {user_message}"""
         # Merge extracted with current data to ensure we don't lose fields if LLM hallucinated missing ones
         updated_data = current_data.copy()
         for k, v in extracted.items():
-            if v and v.strip():
+            if not isinstance(v, str):
+                if v:
+                    updated_data[k] = v
+                continue
+            normalized = v.strip()
+            if normalized and normalized.lower() not in {"n/a", "na", "none", "null", "-"}:
                 updated_data[k] = v
                 
         return updated_data, reply, is_complete

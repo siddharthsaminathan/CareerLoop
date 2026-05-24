@@ -21,7 +21,7 @@ The goal of this session was to transform the CLI from an unstable, crashing pro
 
 ### 5. Data & State Management
 - `careerloop/ledger.json` was repaired via a standalone script to manually close the truncated arrays/dictionaries.
-- The state graph successfully deserializes `UserState.DAILY_BRIEF_SENT` from the LangGraph PostgreSQL checkpointer on reboot.
+- The state graph previously deserialized the legacy `DAILY_BRIEF_SENT` checkpoint state on reboot; new code must normalize that persisted value to `PROFILE_COMPLETE`.
 
 ### 6. Transport & Interface Status
 The Terminal CLI is now functional and persistent. 

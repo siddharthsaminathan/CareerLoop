@@ -147,7 +147,7 @@ class TestConversationRouter(unittest.TestCase):
         self.router.route(incoming)
         
         session = self.session_store.get_session(user_id)
-        self.assertEqual(session.state, UserState.DAILY_BRIEF_SENT)
+        self.assertEqual(session.state, UserState.PROFILE_COMPLETE)
         self.assertIn("compressed Daily Brief", self.transport.sent_texts[-1]["text"])
 
         # 3. User selects job "1"

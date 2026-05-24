@@ -9,22 +9,22 @@
 
 ## 0. The One Sentence
 
-> **You're too good to be spraying 100 applications into the void. CareerLoop finds the 5 that actually fit — and makes you impossible to ignore.**
+> **CareerLoop helps you turn job openings into interviews.**
 
-*Supporting subhead: "Found 57 jobs today. Only 8 clear your personal threshold. Apply to 5. Save 3. Ignore the rest."*
+*Supporting subhead: "This week you submitted 8 applications, contacted 11 people, and got 2 replies. Stop spraying resumes into the void. Start building momentum."*
 
 ---
 
 ## 1. What CareerLoop Is
 
-**CareerLoop is a career decision engine for Indian professionals.**
+**CareerLoop is a momentum generator for Indian professionals.**
 
-It does one thing no other product does: compresses 100 noisy job opportunities into 5 intelligent decisions, then executes on them.
+It does one thing no other product does: it executes the heavy lifting of applying, outreaching, and following up, so you can actually get interviews.
 
 The full loop:
 
 ```
-Discover → Verify → Score → Compress → Research → Position → Tailor → Humanize → Apply → Learn
+Discover → Create Application Pack (Resume, DMs) → Execute Route (Direct, Recruiter, Referral) → Track Momentum → Improve Conversion
 ```
 
 Every step feeds the next. Every outcome feeds back. The system gets smarter with every application.
@@ -74,17 +74,17 @@ Indian professionals apply to 100+ jobs. They get 90 ghosts, 7 rejections, maybe
 
 **What CareerLoop does:** The Persistent Career Memory Graph captures what worked, what didn't, which companies responded, which positioning angles converted. Every rejection becomes training data for the next application. The system compounds. The hit rate improves with every cycle.
 
-### Pain 4: Weak Positioning
+### Pain 4: Weak Positioning & No Human Context
 
-Most resumes are generic — same bullet structures, same vague verbs, same positioning regardless of the company or role. They don't answer the question: *"Why this person for this role right now?"*
+Most resumes are generic. They don't answer the question: *"Why this person for this role right now?"* More importantly, applying cold is weak. The real hiring happens through conversations.
 
-**What CareerLoop does:** The Positioning Engine + Resume Council surgically adapts a professional identity to resonate with a specific company's needs — without compromising truth, seniority, or privacy. 8-stage structured compiler. Not freeform generation. Not keyword stuffing. Strategic representation.
+**What CareerLoop does:** For every job, CareerLoop determines the best route (Direct, Recruiter, or Referral). It generates the tailored resume, the recruiter DM, and the referral ask. It forces you to talk to humans instead of just clicking "Easy Apply."
 
-### Pain 5: Decision Paralysis
+### Pain 5: No Visible Momentum
 
-100+ open tabs. 57 jobs found. No way to know which 5 matter. The user doesn't need more jobs — they need fewer, better decisions.
+100+ open tabs. You apply and hear nothing. You don't know if you're making progress. You feel like you're wasting time.
 
-**What CareerLoop does:** Decision Compression — the core wedge. 100 jobs scored across 14 dimensions against the user's actual profile. Compressed to 5 actionable decisions. Not a dump of listings. A decision framework.
+**What CareerLoop does:** The Momentum Dashboard (The Money Screen). It doesn't show you "Jobs Scanned." It shows you: applications submitted, people contacted, follow-ups sent, and replies received. Visible weekly momentum.
 
 ---
 

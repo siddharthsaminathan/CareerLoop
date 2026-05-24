@@ -51,8 +51,8 @@ class ApplicationLedger:
     """
 
     def __init__(self, career_ops_root: str):
-        self.root = career_ops_root
-        self.path = os.path.join(career_ops_root, "careerloop", "ledger.json")
+        self.root = os.path.realpath(career_ops_root)
+        self.path = os.path.realpath(os.path.join(self.root, "careerloop", "ledger.json"))
         self.entries: list[dict] = []
         self._load()
 
@@ -75,7 +75,7 @@ class ApplicationLedger:
 
     def add_job(self, job: dict, source: str = "unknown") -> str:
         """Add a newly discovered job. Returns job_id."""
-        job_id = f"loop-{len(self.entries) + 1:04d}"
+        job_id = f"loop-{uuid.uuid4().hex[:8]}"
         now = datetime.now(timezone.utc).isoformat()
 
         entry = {
@@ -194,7 +194,7 @@ class ApplicationLedger:
                         fud_dt = datetime.fromisoformat(fud)
                     else:
                         fud_dt = fud
-                    if fud_dt <= now and fud_dt > now.replace(hour=0, minute=0, second=0):
+                    if fud_dt <= now:  # any overdue follow-up, not just today's
                         due.append(e)
                         break
         return due
@@ -202,15 +202,39 @@ class ApplicationLedger:
     def get_by_status(self, status: str) -> list[dict]:
         return [e for e in self.entries if e["status"] == status]
 
+    @staticmethod
+    def _get_score(entry: dict) -> Optional[float]:
+        """Read a fit score, handling both the new `fit_score` float schema and
+        the legacy `fit_result` dict schema (overall_score)."""
+        if entry.get("fit_score") is not None:
+            return float(entry["fit_score"])
+        if isinstance(entry.get("fit_result"), dict):
+            return float(entry["fit_result"].get("overall_score", 0))
+        return None
+
     def get_top_scored(self, min_score: float = 60, limit: int = 10) -> list[dict]:
-        """Top scored jobs that haven't been shown yet."""
-        candidates = [
-            e for e in self.entries
-            if e["status"] in ("DISCOVERED", "SHORTLISTED")
-            and e.get("fit_score") is not None
-            and e["fit_score"] >= min_score
-        ]
-        candidates.sort(key=lambda x: x.get("fit_score", 0), reverse=True)
+        """Top scored jobs that haven't been shown yet. Excludes non-India jobs."""
+        try:
+            from careerloop.india_filter import is_india_job as _india_check
+        except ImportError:
+            _india_check = None
+        candidates = []
+        for e in self.entries:
+            if e["status"] not in ("DISCOVERED", "SHORTLISTED"):
+                continue
+            if e.get("status") == "SKIP":
+                continue
+            # Hard geo filter — never surface non-India jobs
+            if _india_check:
+                loc = e.get("location", "")
+                url = e.get("source_url", "") or e.get("url", "")
+                passed, _reason = _india_check(loc, "", url)
+                if not passed:
+                    continue
+            score = self._get_score(e)
+            if score is not None and score >= min_score:
+                candidates.append(e)
+        candidates.sort(key=lambda x: self._get_score(x) or 0, reverse=True)
         return candidates[:limit]
 
     def is_duplicate(self, url: str = "", company: str = "", title: str = "") -> bool:
@@ -230,8 +254,8 @@ class ApplicationLedger:
         for e in self.entries:
             counts[e["status"]] = counts.get(e["status"], 0) + 1
 
-        scored = [e for e in self.entries if e.get("fit_score") is not None]
-        avg_score = sum(e["fit_score"] for e in scored) / len(scored) if scored else 0
+        scored = [e for e in self.entries if self._get_score(e) is not None]
+        avg_score = sum(self._get_score(e) for e in scored) / len(scored) if scored else 0
 
         return {
             "total_jobs": len(self.entries),

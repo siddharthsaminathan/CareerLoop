@@ -22,6 +22,9 @@ This directory is dedicated to tracking active work, sprint metrics, open blocke
 ### 📄 [MINIMAL_REFACTOR_PLAN.md](file:///Users/siddharthsaminathan/Projects/CareerLoop/docs/tech-backlog/MINIMAL_REFACTOR_PLAN.md)
 * **Purpose:** Practical checklist outlining quick stabilization refactors for the rendering pipeline.
 
+### 📄 [cli_redesign_implementation_plan.md](file:///Users/siddharthsaminathan/Projects/CareerLoop/docs/tech-backlog/cli_redesign_implementation_plan.md)
+* **Purpose:** Premium cyberpunk terminal redesign blueprint utilizing Rich and Prompt Toolkit. Establishes live status cards, layout frames, and slash command integrations.
+
 ---
 > [!NOTE]
 > When completing sprint milestones or fixing active blockers, make sure to record the outcome in the Session Log of **[TRACKER.md](file:///Users/siddharthsaminathan/Projects/CareerLoop/docs/tech-backlog/TRACKER.md)**.

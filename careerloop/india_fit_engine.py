@@ -72,48 +72,90 @@ def _jd_text(job: dict) -> str:
 
 # ── Company memory accessor ──────────────────────────────────────────────
 
-def _company_memory_lookup(company_name: str) -> dict:
+def _company_memory_lookup(company_name: str, conn=None) -> dict:
     """Pull stability + brand_value + sector signals from company_memory table.
     Returns {} on miss — caller falls back to defaults."""
     if not company_name:
         return {}
     try:
         from careerloop.memory.connection import get_db_manager
-    except Exception:
+    except Exception as e:
+        import logging
+        logging.getLogger(__name__).warning(
+            "company_memory_lookup failed for '%s': %s — using defaults", company_name, e
+        )
         return {}
     try:
         db = get_db_manager()
         normalized = re.sub(r"[^a-z0-9]+", "", company_name.lower())
-        with db.get_connection() as conn:
-            row = conn.execute(
-                "SELECT startup_risk, company_maturity, company_intelligence "
-                "FROM company_memory WHERE company_normalized = ?",
-                [normalized],
-            ).fetchone()
-        return dict(row) if row else {}
-    except Exception:
+        
+        if conn is not None:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "SELECT startup_risk, company_maturity, company_intelligence "
+                    "FROM company_memory WHERE company_normalized = %s",
+                    [normalized],
+                )
+                row = cur.fetchone()
+            return dict(row) if row else {}
+        else:
+            with db.get_connection() as c:
+                with c.cursor() as cur:
+                    cur.execute(
+                        "SELECT startup_risk, company_maturity, company_intelligence "
+                        "FROM company_memory WHERE company_normalized = %s",
+                        [normalized],
+                    )
+                    row = cur.fetchone()
+            return dict(row) if row else {}
+    except Exception as e:
+        import logging
+        logging.getLogger(__name__).warning(
+            "company_memory_lookup failed for '%s': %s — using defaults", company_name, e
+        )
         return {}
 
 
-def _company_registry_lookup(company_name: str) -> dict:
+def _company_registry_lookup(company_name: str, conn=None) -> dict:
     """Pull employee_estimate + sector + ats_provider from companies registry."""
     if not company_name:
         return {}
     try:
         from careerloop.memory.connection import get_db_manager
-    except Exception:
+    except Exception as e:
+        import logging
+        logging.getLogger(__name__).warning(
+            "company_registry import failed for '%s': %s — using defaults", company_name, e
+        )
         return {}
     try:
         db = get_db_manager()
         normalized = re.sub(r"[^a-z0-9]+", "-", company_name.lower()).strip("-")
-        with db.get_connection() as conn:
-            row = conn.execute(
-                "SELECT employee_estimate, sector, ats_provider, last_job_count "
-                "FROM companies WHERE id = ? OR LOWER(name) = LOWER(?)",
-                [normalized, company_name],
-            ).fetchone()
-        return dict(row) if row else {}
-    except Exception:
+
+        if conn is not None:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "SELECT employee_estimate, sector, ats_provider, last_job_count "
+                    "FROM companies WHERE id = %s OR LOWER(name) = LOWER(%s)",
+                    [normalized, company_name],
+                )
+                row = cur.fetchone()
+            return dict(row) if row else {}
+        else:
+            with db.get_connection() as c:
+                with c.cursor() as cur:
+                    cur.execute(
+                        "SELECT employee_estimate, sector, ats_provider, last_job_count "
+                        "FROM companies WHERE id = %s OR LOWER(name) = LOWER(%s)",
+                        [normalized, company_name],
+                    )
+                    row = cur.fetchone()
+            return dict(row) if row else {}
+    except Exception as e:
+        import logging
+        logging.getLogger(__name__).warning(
+            "company_registry_lookup failed for '%s': %s — using defaults", company_name, e
+        )
         return {}
 
 
@@ -168,10 +210,12 @@ class IndiaFitEngine:
 
     def __init__(self, profile: "ProfileManager"):
         self.p = profile
+        self._company_memory_cache = {}
+        self._company_registry_cache = {}
 
     # ── Public API ────────────────────────────────────────────────────
 
-    def score_job(self, job: dict) -> tuple[float, dict]:
+    def score_job(self, job: dict, conn=None) -> tuple[float, dict]:
         """Score a single job. Returns (total_score, breakdown).
         job dict must have: title, company, location.
         Optional: role_summary, responsibilities, requirements, benefits,
@@ -183,8 +227,15 @@ class IndiaFitEngine:
         # Precompute shared signals
         jd_text = _jd_text(job)
         jd_tokens = _tokens(jd_text)
-        memory = _company_memory_lookup(job.get("company", ""))
-        registry = _company_registry_lookup(job.get("company", ""))
+        
+        company = job.get("company", "")
+        if company not in self._company_memory_cache:
+            self._company_memory_cache[company] = _company_memory_lookup(company, conn=conn)
+        memory = self._company_memory_cache[company]
+        
+        if company not in self._company_registry_cache:
+            self._company_registry_cache[company] = _company_registry_lookup(company, conn=conn)
+        registry = self._company_registry_cache[company]
 
         ctx = {
             "jd_text": jd_text,

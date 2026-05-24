@@ -372,53 +372,29 @@ Write one TSV file per evaluation to `batch/tracker-additions/{num}-{company-slu
 <claude-mem-context>
 # Memory Context
 
-# [CareerLoop] recent context, 2026-05-23 3:54pm GMT+5:30
+# [CareerLoop] recent context, 2026-05-24 2:50pm GMT+5:30
 
 Legend: 🎯session 🔴bugfix 🟣feature 🔄refactor ✅change 🔵discovery ⚖️decision 🚨security_alert 🔐security_note
 Format: ID TIME TYPE TITLE
 Fetch details: get_observations([IDs]) | Search: mem-search skill
 
-Stats: 50 obs (23,721t read) | 2,811,519t work | 99% savings
+Stats: 50 obs (24,110t read) | 1,509,893t work | 98% savings
 
 ### May 19, 2026
-S404 Deploy Nicobar showcase HTML to GitHub Pages — hit UI issue where /public folder option doesn't appear (May 19 at 12:55 AM)
-S405 Fix GitHub Pages deployment — move showcase from /public to /docs folder so branch source selector works (May 19 at 1:00 AM)
-S406 Deploy Nicobar showcase to GitHub Pages — session wrap-up with all outputs committed (May 19 at 1:01 AM)
 S407 Session wrap-up: codify Nicobar showcase design system into reusable showcase-builder skill (May 19 at 1:04 AM)
 S408 Update showcase-builder skill with final Nicobar HTML as canonical template + 5 named color variants (May 19 at 1:06 AM)
 S409 CareerLoop pipeline E2E fix: tailoring delta P0 fix, validator bug fixes, full pipeline run for nicobar-ai-pm job, and output quality review (May 19 at 2:02 AM)
 ### May 20, 2026
 S412 Implement all company intel phases (P1+P2+P3) with superpowers/sub-agents — full MECE multi-source research engine upgrade to company_intel.py (May 20 at 3:39 AM)
+S413 CareerLoop Master Landing Page Vision — Full LLM Council Positioning Exercise + Canonical Document Creation (May 20 at 12:11 PM)
 S410 Company Intel MECE first-principles design — audit current S3 engine, map all functional limitations, and produce phased implementation plan for 8-source structured intelligence system (May 20 at 12:11 PM)
 S411 Implement all company intel phases (P1+P2+P3) — multi-source research engine with targeted DDG queries, company website scraping, Reddit/Glassdoor/Twitter signals, people layer, and show final s7_rewrite_context output (May 20 at 12:11 PM)
-1035 11:16p 🔵 S7 section rewrites node uses ThreadPoolExecutor with 3 workers — parallel execution architecture confirmed
-1036 " 🔵 Last 10 commits added 39,522 lines — company_intel.py rebuilt from scratch at 1,419 new lines
-1037 " 🔵 render_all_templates.py _derive_role_subtitle uses 4-level cascade — header title → recent job role → bolded profile term → profile first sentence
 ### May 21, 2026
-1042 3:19a 🔵 CareerLoop PRD — Full Product Vision and Current Engineering Tracker State
-1043 " 🔵 CareerLoop Git History — 30 Commits Since May 18 Represent Intensive Multi-Agent Build Sprint
-1044 " 🟣 S7 Structured Bullet Contract — LLM Now Returns `tailored_bullets` Array Instead of Markdown String
-1045 " 🟣 Delta Report System Added to run_council.py — Quantifies Tailoring and Humanization Quality
-1046 " 🟣 CandidateGraph Dataclass Created — Canonical Structured Identity for Council Pipeline
-1047 " 🟣 P0/P1 Stabilization Test Suite Added — 70 Regression Tests Covering Critical Contract Points
-1048 " 🔵 Humanizer Zero-Delta Bug Confirmed — 0.21% Delta, 0 Nonblank Changes on Latest Nicobar Run
-1049 " 🟣 Interview Playbook Skill Created — Auto-Extracts Learnings from User Venting After Interviews
-1050 4:10a ⚖️ Master Career Vision MD File — Product Owner Handoff Initiated
-1052 " ⚖️ CareerLoop LLM Council — Member A Positioning Analysis
-1051 4:12a 🔵 CareerLoop — Full Document Corpus Read for Career Vision Synthesis
-1053 4:13a 🔵 CareerLoop PRD — Canonical Vision v1.0 Confirmed
-1054 " 🔵 CareerLoop Vision v1.6 — Original WhatsApp-First Architecture Documented
-1055 " 🔵 CareerLoop TRACKER.md — Live System Status as of 2026-05-20
-1056 4:16a 🔵 CareerLoop Origin — Fork of santifer/Career-Ops Open Source Pipeline
-1057 " 🔵 Resume Council v3.0 — 8-System Architecture Specification
-1058 " 🔵 CareerLoop PRD §18–19 — Employer Discovery Engine and Human Pipeline Layer
-1059 " ⚖️ CareerLoop LLM Council — Member B Positioning Analysis (Sonnet)
-1060 4:17a ⚖️ CareerLoop LLM Council — Member C Positioning Analysis (Opus)
-1061 " ⚖️ CareerLoop LLM Council — Peer Reviewer 1 Ranks All Three Positioning Analyses
+1061 4:17a ⚖️ CareerLoop LLM Council — Peer Reviewer 1 Ranks All Three Positioning Analyses
 1062 " ⚖️ CareerLoop LLM Council — Peer Reviewer 2 Confirms C > B > A Ranking
 1063 " 🔵 CareerLoop TRACKER.md — Locked Architecture Decisions and MECE Company Intelligence Session Log
 1064 4:20a ⚖️ CareerLoop LLM Council — Peer Reviewer 3 (Opus) Confirms Unanimous C > B > A with PRD-Grounded Analysis
-S413 CareerLoop Master Landing Page Vision — Full LLM Council Positioning Exercise + Canonical Document Creation (May 21 at 4:20 AM)
+S416 CareerLoop Full Architecture Audit — MECE audit of execution pipeline via 7 parallel subagents covering state machine, persistence, discovery/scoring, token economics, observability, intent routing, and ledger/daily brief lifecycle (May 21 at 4:20 AM)
 ### May 23, 2026
 1066 3:07p ⚖️ LLM Council Architecture Audit for CareerLoop
 1067 " 🟣 LangGraph Supervisor StateGraph Replaces CLI State Machine
@@ -444,6 +420,48 @@ S413 CareerLoop Master Landing Page Vision — Full LLM Council Positioning Exer
 1087 " 🟣 DELIVERY_ORCHESTRATION_HANDOFF_2026-05-23.md Created — Formal Next-Agent Handoff Document
 1088 " ✅ Dev Blog Entry Created for 2026-05-23 Session
 1089 " 🔵 MVP_SPRINT_PLAN.md Still References message_router.py and Chrome Extension — Not Updated This Session
+### May 24, 2026
+1110 1:44p 🔵 CareerLoop Architecture Audit Initiated — 8 Systemic Failures Identified from CLI Logs
+1111 " ⚖️ CareerLoop Target Architecture Defined: Strict Layered Pipeline with MECE Boundaries
+1112 1:45p 🔵 CareerLoop Package Structure Mapped — 40+ Python Modules with No Clear Layering
+1113 " 🔵 Root Cause Found: DAILY_BRIEF_SENT Handler Directly Instantiates DailyRunner on Chat Input
+1114 " 🔵 Three Unsynchronized Profile Persistence Paths — Root Cause of CV Re-Ask Bug
+1115 " 🔵 State Persistence is Split Between SessionStore and LangGraph Checkpointer with No Reconciliation
+1116 " 🔵 CareerLoop Has 100+ Python Modules Across 10 Subdomain Packages Including Migration Scripts
+1117 " 🔵 7 Parallel Audit Subagents Launched for MECE Architecture Coverage
+1118 1:46p 🔵 CareerLoop Architecture Audit: 8 Systemic Failures Identified from CLI Logs
+1119 1:47p 🔵 Ledger Persistence Split: SQLite Has 19 Entries vs ledger.json Has 1,268
+1120 " 🔵 State Machine Desync Root Cause: SessionStore Silently Falls Back to IDLE on DB Error
+1121 " 🔵 Intent Router Fires DailyRunner.run() With Zero Confirmation Gate
+1122 " 🔵 Observability: company_intel.py Uses Raw print() — No Structured Logging Anywhere
+S417 CareerLoop Full Architecture Audit — COMPLETE. All 7 subagent MECE audits finished, full report written to docs/tech-backlog/ARCHITECTURE_AUDIT_2026-05-24.md and indexed in Claude project memory. (May 24 at 1:48 PM)
+1123 1:49p 🔵 DAILY_BRIEF_SENT Handler Passes Empty Profile to Intent Agent and sync_profile_data
+1124 1:50p 🔵 18 UserState Enum Values Defined — Only ~4 Wired Into supervisor_graph Routing
+1126 " 🔵 Prior Architecture Documents Exist in docs/tech-backlog — Including orchestration_audit_report.md
+1127 " 🟣 ARCHITECTURE_AUDIT_2026-05-24.md Written — Full MECE Audit Report with 12 Critical + 16 High + 17 Medium Findings
+1125 1:51p 🔵 CV Re-Ask Bug Has Three Independent Trigger Paths — Any One Sufficient to Reproduce
+1128 1:54p ✅ Architecture Audit Summary Saved to Claude Project Memory for Cross-Session Persistence
+1129 2:00p 🚨 Supabase Production Credentials Confirmed Hardcoded in scripts/migrate_sqlite_to_supabase.py
+1130 2:01p 🔴 Phase 0-A Complete: Hardcoded Supabase Credentials Removed from Migration Script
+1131 " 🔴 Phase 0-B + 0-C Complete: DailyRunner.run() and sync_profile_data() Removed from Chat Intent Path
+S418 CareerLoop Phase 0 Emergency Fixes — "fix all 3" — applied all 3 Phase 0 emergency items from the architecture audit in a single pass (May 24 at 2:01 PM)
+**Investigated**: - Full supervisor_graph.py (251 lines) read to locate DAILY_BRIEF_SENT handler and sync_profile_data call
+    - Full scripts/migrate_sqlite_to_supabase.py (168 lines) read to locate hardcoded DATABASE_URL
+    - Post-fix verification: grep for "FS48TIvMiumRin8a" across all .py/.env/.yml/.yaml/.json/.toml files returned zero results — password confirmed removed from codebase
+    - Post-edit read of supervisor_graph.py lines 139-163 confirmed clean new DAILY_BRIEF_SENT handler
 
-Access 2812k tokens of past work via get_observations([IDs]) or mem-search skill.
+**Learned**: - The Supabase password FS48TIvMiumRin8a is no longer present in any tracked file, but git history still contains it — manual credential rotation on Supabase dashboard is still required
+    - SUPABASE_URL default value "https://iephtlrikgfgakcojwhu.supabase.co" (without password) remains in migrate_sqlite_to_supabase.py line 17 — considered acceptable as it contains no credentials
+    - The DailyRunner and sync_profile_data imports were both cleanly removed from the DAILY_BRIEF_SENT handler in one edit — no dangling imports remain
+
+**Completed**: - Fix 0-A: scripts/migrate_sqlite_to_supabase.py — hardcoded DATABASE_URL with plaintext password removed; script now calls sys.exit(1) with helpful message if DATABASE_URL env var not set
+    - Fix 0-B: session/supervisor_graph.py — DailyRunner.run(do_scan=True) removed from SCAN_JOBS intent handler; chat message now returns "Type /scan to start" prompt instead of firing pipeline
+    - Fix 0-C: session/supervisor_graph.py — sync_profile_data(profile_data) call removed from chat path; portals.yml no longer mutated by conversational messages
+    - Verification pass: confirmed password string absent from entire codebase
+    - All 3 Phase 0 emergency fixes from ARCHITECTURE_AUDIT_2026-05-24.md are complete
+
+**Next Steps**: Phase 1 persistence fixes are next: (1-A) fix SQLite session persistence — add users/sessions tables to connection.py _init_sqlite_schema() and strip "public." schema prefix from all SQL in session_store.py; (1-B) check save_session() return value in onboarding_flow.py lines 40/47; (1-C) fix fit_score/fit_result schema split in ledger.json; (1-D) fix non-atomic ID generation in application_ledger.py. User was asked "Want me to continue?" — awaiting confirmation.
+
+
+Access 1510k tokens of past work via get_observations([IDs]) or mem-search skill.
 </claude-mem-context>

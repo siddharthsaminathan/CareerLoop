@@ -145,8 +145,8 @@ def _test_router_and_session(user_id: str) -> None:
     router.handle_incoming(user_id, "Here is my profile data")
     s2 = session_store.get_session(user_id)
     _must(
-        s2.state == UserState.DAILY_BRIEF_SENT,
-        "Session moved ONBOARDING -> DAILY_BRIEF_SENT.",
+        s2.state == UserState.PROFILE_COMPLETE,
+        "Session moved ONBOARDING -> PROFILE_COMPLETE.",
         f"Unexpected state after onboarding completion: {s2.state}",
     )
     _must(

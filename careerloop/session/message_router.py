@@ -4,7 +4,6 @@ from careerloop.session.states import UserState
 from careerloop.transport.base import TransportAdapter
 from careerloop.onboarding.onboarding_flow import OnboardingFlow
 from careerloop.llm_chat import ChatIntentAgent
-from careerloop.daily_runner import DailyRunner
 
 class MessageRouter:
     """
@@ -35,19 +34,15 @@ class MessageRouter:
             self.transport.send_text(user_id, reply)
             return
 
-        elif current_state == UserState.DAILY_BRIEF_SENT:
+        elif current_state == UserState.PROFILE_COMPLETE:
             # Post-onboarding intent detection
             profile_data = session.temp_profile_data or {}
             intent, reply = self.intent_agent.process(text, profile_data)
-            
-            self.transport.send_text(user_id, reply)
-            
+
             if intent == "SCAN_JOBS":
-                self.transport.send_text(user_id, "Triggering job scan via DailyRunner...")
-                runner = DailyRunner(self.career_ops_root)
-                result = runner.run(do_scan=True)
-                summary = f"Scan complete! Found {result['new_jobs_found']} new raw jobs, {result['unique_added']} unique added, {result['scored']} scored."
-                self.transport.send_text(user_id, summary)
+                reply = "Ready to scan. Type `/scan` to start a job search."
+
+            self.transport.send_text(user_id, reply)
             
             return
 

@@ -2,6 +2,8 @@ from careerloop.transport.base import TransportAdapter, UserEvent
 from prompt_toolkit import prompt
 from rich.console import Console
 from rich.markdown import Markdown
+from rich.panel import Panel
+from rich import box
 import sys
 import logging
 
@@ -17,9 +19,11 @@ class TerminalChatAdapter(TransportAdapter):
         CLI sends raw_payload as a dict: {"user_id": "...", "text": "..."}
         """
         logger.info(f"TerminalChatAdapter parsing raw payload: {raw_payload}")
+        user_text = raw_payload.get("text", "")
+        logger.info(f"USER: {user_text}")
         return UserEvent(
             user_id=raw_payload.get("user_id", "unknown"),
-            text=raw_payload.get("text", ""),
+            text=user_text,
             platform="cli",
             metadata=raw_payload.get("metadata", {})
         )
@@ -28,35 +32,50 @@ class TerminalChatAdapter(TransportAdapter):
         if "[SYSTEM_CMD_TRIGGER_SCAN]" in text:
             text = text.replace("[SYSTEM_CMD_TRIGGER_SCAN]", "")
             
-        # We print bot messages with a distinctive prefix and markdown support
-        self.console.print("\n🤖 [bold cyan]CareerLoop:[/bold cyan]")
-        self.console.print(Markdown(text))
+        logger.info(f"ASSISTANT: {text}")
+
+        # We print bot messages wrapped in a premium panel with markdown support
+        self.console.print(Panel(
+            Markdown(text),
+            title="🤖 [bold cyan]CareerLoop Assistant[/bold cyan]",
+            border_style="cyan",
+            box=box.ROUNDED
+        ))
         
         return True
 
     def request_input(self, user_id: str, prompt_text: str = "") -> str:
         if prompt_text:
-            self.console.print(f"\n🤖 [bold cyan]CareerLoop:[/bold cyan] {prompt_text}")
+            self.console.print(Panel(
+                prompt_text,
+                title="🤖 [bold cyan]CareerLoop Prompt[/bold cyan]",
+                border_style="cyan",
+                box=box.ROUNDED
+            ))
 
-        self.console.print("\n[dim]> (Type or paste your text. Press Enter TWICE to submit)[/dim]")
-        
         # Non-interactive smoke tests (stdin pipe)
         if not sys.stdin.isatty():
             return input("> ").strip()
             
-        lines = []
-        while True:
-            try:
-                line = input("> " if not lines else "... ")
-                if not line and lines:
-                    break # empty line signifies end of input
-                lines.append(line)
-                # If they only typed one short line and want to submit, they must hit enter again.
-                # But for single-line questions, maybe it's annoying. 
-                # Still, it's foolproof for pasting.
-            except EOFError:
-                break
-        return "\n".join(lines).strip()
+        self.console.print("\n[dim]> (Type your query and press Enter. For multiline paste, paste your text and press Enter.)[/dim]")
+        
+        from prompt_toolkit.key_binding import KeyBindings
+        kb = KeyBindings()
+        
+        @kb.add("enter")
+        def _(event):
+            # Enter immediately submits the query
+            event.current_buffer.validate_and_handle()
+            
+        @kb.add("escape", "enter")
+        def _(event):
+            # Alt+Enter or Esc+Enter manually inserts a newline
+            event.current_buffer.insert_text("\n")
+            
+        try:
+            return prompt("> ", multiline=True, key_bindings=kb).strip()
+        except (KeyboardInterrupt, EOFError):
+            return "exit"
 
     def start_loop(self, user_id: str):
         """Helper to run the CLI loop directly routing to the LangGraph Supervisor."""

@@ -274,6 +274,12 @@ PREFERRED QUALIFICATIONS
 - Exposure to category launch or new market entry projects
 - Experience building and operating WIP trackers and production calendars""",
     },
+    "bukuwarung": {
+        "title": "AI Product Engineer",
+        "company": "BukuWarung",
+        "url": "https://www.linkedin.com/jobs/view/bukuwarung-ai-product-engineer",
+        "jd": """Function: Software Engineering → Other Software Development Generative AI Python DevOps LLMs Machine Learning Java +3 more MLOps MCP Deployment We are looking for a highly skilled AI Productivity Engineer to lead the development and integration of AI-driven solutions, driving automation and efficiency across multiple business functions. In this role, you will play a crucial part in building scalable tools and workflows, optimizing internal processes, and fostering continuous productivity improvements. Your expertise will directly contribute to accelerating our GTM strategy, enhancing operational scalability, and shaping the future of AI adoption within our company. The role, in our view, is split across three core areas of responsibility. The core responsibilities for the job include the following: AI-Powered Automation and Operational Scaling: Lead the development and integration of cost-effective AI systems, leveraging LLMs and AI agents to optimize business operations, automate workflows, and improve customer support processes. Implement AI-based self-serve tools to reduce operational dependencies. Collaborate with product and engineering teams to integrate AI-driven automation into products, customer support, and internal operations. Identify and implement AI tools to enhance team productivity, GTM strategies, and business scalability.""",
+    },
 }
 
 
@@ -579,6 +585,22 @@ def run_council(job_id: str, person: str = "siddharth", intent: str = "INTERESTE
             )
         except Exception as e:
             print(f"  !! Rendering failed: {e}")
+
+    # ── Trigger Package Assembly Layer ──
+    if pack.get("resume_markdown"):
+        try:
+            print(f"\n{'-' * 72}")
+            print("  💼 Assembling & Compiling final Application Pack...")
+            from careerloop.package_assembly import PackageAssembler
+            assembler = PackageAssembler(root_dir=str(ROOT))
+            assembly_res = assembler.assemble_package(
+                person_id=person_label,
+                job_id=job_id,
+                council_state=final_state
+            )
+            print(f"  ✓ Compiled Package Directory: {assembly_res['pack_dir']}")
+        except Exception as assembly_err:
+            print(f"  !! Package assembly failed: {assembly_err}")
 
     print(f"\n{'-' * 72}")
     print(f"  Artifacts saved -> {output_dir}")

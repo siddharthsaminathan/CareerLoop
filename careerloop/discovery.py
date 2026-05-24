@@ -229,12 +229,13 @@ class DiscoveryEngine:
                     job["verification_outcome"] = VerificationOutcome.VERIFIED_MAYBE.value
                     all_candidate_jobs.append(job)
 
-        # Add CSV imports — always trusted as manually curated India jobs
+        # Add CSV imports — filter for India even for "curated" sources
+        csv_india_jobs, _ = filter_india_jobs([j for j in csv_jobs if self._is_scorable_job_dict(j)])
+        for job in csv_india_jobs:
+            job["verification_outcome"] = VerificationOutcome.VERIFIED_MAYBE.value
+            all_candidate_jobs.append(job)
         for job in csv_jobs:
-            if self._is_scorable_job_dict(job):
-                job["verification_outcome"] = VerificationOutcome.VERIFIED_MAYBE.value
-                all_candidate_jobs.append(job)
-            else:
+            if not self._is_scorable_job_dict(job):
                 job["verification_outcome"] = VerificationOutcome.NEEDS_MORE_DATA.value
                 report["discovery_leads"].append(job)
 
@@ -493,7 +494,8 @@ class DiscoveryEngine:
         return {
             "title": title,
             "company": "",
-            "location": result.get("source_city", ""),
+            "location": "",  # not extracted from page — do not use query city as location
+            "source_city": result.get("source_city", ""),  # query metadata only, NOT canonical location
             "url": result.get("url", ""),
             "url_type": result.get("url_type", classify_url_type(result.get("url", "")).value),
             "description": result.get("snippet", ""),

@@ -8,7 +8,7 @@ from langchain_core.tools import tool
 from langgraph.graph import StateGraph, START, END
 
 from careerloop.council.graph import get_council_graph
-from careerloop.session.states import UserState
+from careerloop.session.states import UserState, normalize_user_state
 
 # ── Tools Wrapping Phase 1 Scripts ──
 
@@ -80,7 +80,7 @@ def intent_router(state: ConversationState) -> dict:
     last_message = (
         messages[-1].content if hasattr(messages[-1], "content") else str(messages[-1])
     )
-    current_state = state.get("current_state", UserState.IDLE)
+    current_state = normalize_user_state(state.get("current_state", UserState.IDLE)) or UserState.IDLE
 
     if current_state == UserState.IDLE or current_state.name.startswith("ONBOARDING_"):
         import os
@@ -137,31 +137,62 @@ def intent_router(state: ConversationState) -> dict:
             ),
         }
 
-    # For other states like DAILY_BRIEF_SENT, use Intent Agent or pass through
-    if current_state == UserState.DAILY_BRIEF_SENT:
+    # For post-onboarding states: classify intent but never auto-execute the pipeline.
+    # Scanning must be explicitly triggered via the /scan slash command — never from chat text.
+    if current_state == UserState.PROFILE_COMPLETE:
         from careerloop.llm_chat import ChatIntentAgent
-        from careerloop.daily_runner import DailyRunner
-        import os
         agent = ChatIntentAgent()
         profile_data = state.get("temp_profile_data", {})
         intent, reply = agent.process(last_message, profile_data)
-        
+
         if intent == "SCAN_JOBS":
-            from careerloop.tools.sync_profile import sync_profile_data
-            sync_res = sync_profile_data(profile_data)
-            
-            reply += "\nTriggering job scan via DailyRunner..."
-            root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+            # Never auto-fire the pipeline from a chat message. Require an explicit /scan command.
+            reply = (
+                "Ready to scan for new jobs matching your profile. "
+                "Type `/scan` to start — this will search all configured job boards and score "
+                "results against your fit criteria.\n\n"
+                "Tip: `/scan` runs ~156 board queries and takes 60–120 seconds."
+            )
+        elif intent == "SHOW_PIPELINE":
             try:
-                runner = DailyRunner(root)
-                result = runner.run(do_scan=True)
-                reply += f"\nScan complete! Found {result['new_jobs_found']} new raw jobs, {result['unique_added']} unique added, {result['scored']} scored."
+                from careerloop.application_ledger import ApplicationLedger
+                root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+                ledger = ApplicationLedger(root)
+
+                # Count by status
+                status_counts = {}
+                for e in ledger.entries:
+                    s = e.get("status", "UNKNOWN")
+                    status_counts[s] = status_counts.get(s, 0) + 1
+
+                # Top scored jobs
+                top = ledger.get_top_scored(min_score=1, limit=5)
+
+                reply = "**Your Pipeline**\n\n"
+                reply += "**Status Summary:**\n"
+                for status, count in sorted(status_counts.items()):
+                    reply += f"  - {status}: {count}\n"
+
+                if top:
+                    reply += f"\n**Top Matches:**\n"
+                    for i, job in enumerate(top, 1):
+                        score = ledger._get_score(job) or 0
+                        reply += f"  {i}. **{job.get('title','?')}** @ {job.get('company','?')} -- {score:.0f}/100\n"
+                else:
+                    reply += "\nNo scored jobs yet. Type `/scan` to search for new opportunities."
+
+                # Check for today's brief
+                from datetime import datetime, timezone
+                today_str = datetime.now(timezone.utc).date().isoformat()
+                brief_path = os.path.join(root, "output", "daily_briefs", f"{today_str}.md")
+                if os.path.exists(brief_path):
+                    reply += f"\n\nToday's brief is available at: {brief_path}"
             except Exception as e:
-                reply += f"\nError running scan: {e}"
-        
+                reply = f"Could not load pipeline: {e}"
+
         return {
             "current_state": current_state,
-            "assistant_response": reply
+            "assistant_response": reply,
         }
 
     return {"current_state": current_state}
@@ -178,6 +209,8 @@ def pack_generating_node(state: ConversationState) -> dict:
             ),
         }
 
+    import logging
+    logger = logging.getLogger("careerloop.session.supervisor_graph")
     council = get_council_graph()
     try:
         result = council.invoke(council_state)
@@ -187,17 +220,39 @@ def pack_generating_node(state: ConversationState) -> dict:
             "assistant_response": f"Pack generation failed safely: {e}",
         }
 
+    # ── Hook the Package Assembly layer ──
+    try:
+        from careerloop.package_assembly import PackageAssembler
+        assembler = PackageAssembler()
+        person_id = state.get("user_id") or "siddharth"
+        job_id = state.get("pending_job_id") or result.get("job_id") or "unknown"
+        assembly_res = assembler.assemble_package(
+            person_id=person_id,
+            job_id=job_id,
+            council_state=result
+        )
+        msg = (
+            f"✅ **Application pack compiled and assembled successfully!**\n\n"
+            f"📁 **Location:** `{assembly_res['pack_dir']}`\n"
+            f"📄 **Tailored Resume PDFs generated:**\n"
+            + "\n".join(f"- `{os.path.basename(p)}`" for p in assembly_res['pdfs']) + "\n\n"
+            f"Please review the `outreach_pack.md` in that folder and type 'Approve & Auto-Apply' to proceed with the assisted execution."
+        )
+    except Exception as assembly_err:
+        logger.error(f"Package assembly failed: {assembly_err}")
+        msg = f"Application pack generated successfully but assembly failed: {assembly_err}"
+
     return {
         "current_state": UserState.PACK_READY,
         "council_state": result,
-        "assistant_response": "Application pack is ready for review.",
+        "assistant_response": msg,
     }
 
 # ── Graph Builder ──
 
 def route_from_intent(state: ConversationState):
     """Conditional routing based on current conversation state."""
-    curr = state.get("current_state", UserState.IDLE)
+    curr = normalize_user_state(state.get("current_state", UserState.IDLE)) or UserState.IDLE
     if curr == UserState.PACK_GENERATING:
         return "pack_generation"
     return END

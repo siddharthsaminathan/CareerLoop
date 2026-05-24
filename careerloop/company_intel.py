@@ -1066,24 +1066,80 @@ def build_company_intelligence(
         reddit_signal=payload.get("reddit_signal", ""),
     )
 
-    # ── Extract people from company website & LinkedIn (deterministic) ───────
-    people_sources = [
-        s for s in web_sources 
-        if s.get("source_type") in ("company_website", "linkedin_scraping")
-    ]
-    for source in people_sources:
-        content = source.get("page_content", "")
-        if content:
-            label = "linkedin" if source.get("source_type") == "linkedin_scraping" else "company_website"
-            extracted = _extract_people_from_html(content, source_label=label)
-            for p in extracted:
-                if not any(ep.get("name") == p["name"] for ep in result.key_people):
-                    result.key_people.append(p)
-                    # If this came from LinkedIn and we don't have recruiter_info name yet, try to set it
-                    if label == "linkedin" and not result.recruiter_info.get("name"):
-                        result.recruiter_info["name"] = p["name"]
-                        if not result.recruiter_info.get("link"):
-                            result.recruiter_info["link"] = source.get("url", "")
+    # ── Extract people from company website & LinkedIn (determinstic fallback & OutreachEngine integration) ──
+    if llm_client is not None and company:
+        try:
+            from careerloop.outreach_engine import OutreachEngine
+            print(f"  → S3 running OutreachEngine lead generation for {company}...")
+            engine = OutreachEngine(api_key=llm_client.api_key)
+            
+            # Step 1: Classify route
+            route_details = engine.classify_route(jd_text or "")
+            
+            # Step 2: Discover recruiter / EM leads
+            leads = engine.discover_leads(company)
+            
+            # Step 3 & 4: Relevance parsing & ranking
+            match_result = engine.parse_and_rank_leads(leads, jd_text or "")
+            
+            recruiter = match_result.get("recruiter")
+            hm = match_result.get("hiring_manager")
+            
+            # Persist key_people list
+            for lead in match_result.get("all_leads", []):
+                result.key_people.append({
+                    "name": lead.get("name", ""),
+                    "title": lead.get("title", ""),
+                    "source": "linkedin",
+                    "plausibility_score": lead.get("score", 0)
+                })
+                
+            # Persist recruiter_info target
+            best_target = hm if hm else (recruiter if recruiter else None)
+            if best_target:
+                result.recruiter_info = {
+                    "name": best_target.get("name", ""),
+                    "link": best_target.get("linkedin_url", ""),
+                    "role": best_target.get("title", ""),
+                    "plausibility_score": str(best_target.get("plausibility_score", 0)),
+                    "route": route_details.get("route", "Route C"),
+                    "reason": best_target.get("reason", "")
+                }
+                
+                # Step 5: Synthesize humanized outreach pack
+                cand = candidate_context.get("candidate", {}) if candidate_context else {}
+                narr = candidate_context.get("narrative", {}) if candidate_context else {}
+                user_prof = {
+                    "full_name": cand.get("full_name", ""),
+                    "headline": narr.get("headline", ""),
+                    "narrative": narr.get("exit_story", ""),
+                    "superpowers": narr.get("superpowers", []),
+                    "proof_points": narr.get("proof_points", [])
+                }
+                outreach_pack = engine.generate_outreach_pack(best_target, user_prof, jd_text or "", route_details.get("route", "Route C"))
+                result.outreach_strategy_hint = f"OUTREACH PACK:\nDM: {outreach_pack.get('outreach_dm')}\n\nExit Line: {outreach_pack.get('exit_line')}\n\nEmail Guesses: {', '.join(outreach_pack.get('email_guesses', []))}"
+                print(f"     ✓ Outreach target matched: {best_target.get('name')} ({best_target.get('title')}) via {route_details.get('route')}")
+        except Exception as e:
+            print(f"  !! OutreachEngine integration failed: {e}")
+    else:
+        # Fallback to deterministic regex for offline / no-LLM mode
+        people_sources = [
+            s for s in web_sources 
+            if s.get("source_type") in ("company_website", "linkedin_scraping")
+        ]
+        for source in people_sources:
+            content = source.get("page_content", "")
+            if content:
+                label = "linkedin" if source.get("source_type") == "linkedin_scraping" else "company_website"
+                extracted = _extract_people_from_html(content, source_label=label)
+                for p in extracted:
+                    if not any(ep.get("name") == p["name"] for ep in result.key_people):
+                        result.key_people.append(p)
+                        # If this came from LinkedIn and we don't have recruiter_info name yet, try to set it
+                        if label == "linkedin" and not result.recruiter_info.get("name"):
+                            result.recruiter_info["name"] = p["name"]
+                            if not result.recruiter_info.get("link"):
+                                result.recruiter_info["link"] = source.get("url", "")
     
     if result.key_people:
         print(f"  → S3 people extracted: {len(result.key_people)} ({', '.join(p['name'] for p in result.key_people[:3])}...)")

@@ -4,15 +4,18 @@ import uuid
 import logging
 from dotenv import load_dotenv
 
+# Support running as script (python careerloop/chat_cli.py) and module (-m careerloop.chat_cli)
+if __package__ is None or __package__ == "":
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    if repo_root not in sys.path:
+        sys.path.insert(0, repo_root)
+
 # Load environment variables from .env file
 load_dotenv()
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+from careerloop.logging_config import configure as _configure_logging
+_configure_logging()
 logger = logging.getLogger(__name__)
-
-# Support running as script (python careerloop/chat_cli.py) and module (-m careerloop.chat_cli)
-if __package__ is None or __package__ == "":
-    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from careerloop.session.session_store import SessionStore
 from careerloop.session.states import UserState
@@ -20,7 +23,13 @@ from careerloop.transport.terminal_chat import TerminalChatAdapter
 from careerloop.session.supervisor_graph import get_supervisor_graph
 from careerloop.memory.checkpointer import get_checkpointer
 from rich.console import Console
+from rich.panel import Panel
+from rich.table import Table
+from rich import box
 console = Console()
+
+def db_table(name: str) -> str:
+    return f"public.{name}" if os.getenv("DATABASE_URL") else name
 
 def authenticate_cli_user() -> str:
     """
@@ -59,17 +68,182 @@ def authenticate_cli_user() -> str:
         db = get_db_manager()
         with db.get_connection() as conn:
             with conn.cursor() as cur:
-                cur.execute("""
-                    INSERT INTO public.users (id, email, full_name)
-                    VALUES (%s, %s, %s)
+                cur.execute(f"""
+                    INSERT INTO {db_table('users')} (id, email, full_name, created_at, updated_at)
+                    VALUES (%s, %s, %s, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
                     ON CONFLICT (id) DO NOTHING
                 """, (user_uuid, email, email.split('@')[0]))
             conn.commit()
     except Exception as e:
-        console.print(f"[bold yellow]Warning:[/bold yellow] Could not create user in Supabase: {e}")
-        console.print("Make sure you ran the migration or schema script. Continuing in local-only mode.")
+        logger.warning(f"Could not create authenticated user row; continuing with existing/local session state: {e}")
 
     return user_uuid
+
+def print_banner():
+    banner = """
+  ______ ___   ____  ______ ______ ____  __     ____   
+ / ____//   | / __ \\/ ____// ____// __ \\/ /    / __ \\  
+/ /    / /| |/ /_/ / __/  / __/  / /_/ / /    / / / /  
+/ /___ / ___ / _, _/ /___ / /___ / ____/ /___ / /_/ /   
+\\____//_/  |_/_/ |_/_____//_____/_/   /_____/ \\____/    
+                                                        
+            CO-PILOT CONSOLE v1.0                    
+    """
+    console.print(Panel(banner, border_style="bold green", title="CareerLoop Core Shell", box=box.DOUBLE))
+
+def get_profile_data(session) -> dict:
+    """
+    Get profile data, falling back to persisted public.users table if temp_profile_data is empty.
+    """
+    if session.temp_profile_data and any(session.temp_profile_data.values()):
+        return session.temp_profile_data
+    
+    # Load from public.users
+    try:
+        from careerloop.memory.connection import get_db_manager
+        db = get_db_manager()
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(f"""
+                    SELECT master_cv_markdown, work_style_prefs 
+                    FROM {db_table('users')} 
+                    WHERE id = %s
+                """, (session.user_id,))
+                row = cur.fetchone()
+        if row:
+            prefs = row.get("work_style_prefs") or {}
+            # Handle if prefs is a JSON string or dict
+            if isinstance(prefs, str):
+                import json
+                try:
+                    prefs = json.loads(prefs)
+                except Exception:
+                    prefs = {}
+            data = {
+                "cv_content": row.get("master_cv_markdown", ""),
+                "target_roles": prefs.get("target_roles", ""),
+                "target_cities": prefs.get("target_cities", ""),
+                "salary_expectations": prefs.get("salary_expectations", ""),
+                "notice_period": prefs.get("notice_period", ""),
+                "aggressiveness": prefs.get("aggressiveness", ""),
+            }
+            return data
+    except Exception as e:
+        logger.error(f"Error loading persisted profile: {e}")
+    
+    return {}
+
+def print_status_card(session):
+    data = get_profile_data(session)
+    table = Table(title="[bold green]Active Session Profile Card[/bold green]", box=box.ROUNDED, border_style="cyan")
+    table.add_column("Attribute", style="bold yellow")
+    table.add_column("Value", style="white")
+    
+    table.add_row("User ID (UUID)", session.user_id)
+    table.add_row("State Node", session.state.name)
+    table.add_row("Notice Period", str(data.get("notice_period", "N/A")) if data.get("notice_period") else "N/A")
+    table.add_row("Salary Exp", str(data.get("salary_expectations", "N/A")) if data.get("salary_expectations") else "N/A")
+    table.add_row("Target Roles", str(data.get("target_roles", "N/A")) if data.get("target_roles") else "N/A")
+    table.add_row("Target Cities", str(data.get("target_cities", "N/A")) if data.get("target_cities") else "N/A")
+    table.add_row("Aggressiveness", str(data.get("aggressiveness", "N/A")) if data.get("aggressiveness") else "N/A")
+    console.print(table)
+
+def print_help_panel():
+    table = Table(title="[bold cyan]Interactive Command Hub[/bold cyan]", box=box.ROUNDED, border_style="cyan")
+    table.add_column("Command", style="bold green")
+    table.add_column("Description", style="white")
+    table.add_row("/status", "Display current session state and profile attributes.")
+    table.add_row("/scan", "Trigger background job search engine scan.mjs.")
+    table.add_row("/pipeline", "Show a list of crawled jobs from the local database cache.")
+    table.add_row("/brief", "Display today's daily brief from output/daily_briefs/.")
+    table.add_row("/profile", "View full extracted profile attributes and markdown CV.")
+    table.add_row("/reset", "Reset session and clear profile data to start onboarding fresh.")
+    table.add_row("/exit, /quit", "Teardown session and exit terminal co-pilot.")
+    console.print(table)
+
+def print_pipeline(db_manager):
+    table = Table(title="[bold yellow]Scored Job Pipeline[/bold yellow]", box=box.ROUNDED, border_style="yellow")
+    table.add_column("Job ID", style="cyan")
+    table.add_column("Company ID", style="magenta")
+    table.add_column("Title", style="bold white")
+    table.add_column("Location", style="yellow")
+    table.add_column("Source", style="green")
+    
+    try:
+        with db_manager.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(f"SELECT id, company_id, title, location, source_type FROM {db_table('job_cache')} LIMIT 15")
+                rows = cur.fetchall()
+        if not rows:
+            console.print("[yellow]No jobs in the local cache yet. Run /scan to search for jobs![/yellow]")
+            return
+        for row in rows:
+            comp_id = row.get('company_id', '') or ''
+            comp_id_display = comp_id[:8] + "..." if len(str(comp_id)) > 8 else (str(comp_id) or "N/A")
+            table.add_row(
+                row.get('id', '')[:8] + "...",
+                comp_id_display,
+                row.get('title', ''),
+                row.get('location', '') or "N/A",
+                row.get('source_type', '') or "N/A"
+            )
+        console.print(table)
+    except Exception as e:
+        console.print(f"[red]Error reading pipeline database: {e}[/red]")
+
+def print_profile_details(session):
+    data = get_profile_data(session)
+    if not data or not any(data.values()):
+        console.print("[yellow]No extracted profile data found yet. Start onboarding to set up your profile![/yellow]")
+        return
+    
+    table = Table(title="[bold magenta]Extracted Profile Details[/bold magenta]", box=box.ROUNDED, border_style="magenta")
+    table.add_column("Field", style="bold cyan")
+    table.add_column("Value", style="white")
+    
+    for k, v in data.items():
+        if k == 'cv_content':
+            v = str(v)[:200] + "..." if len(str(v)) > 200 else str(v)
+        table.add_row(k.replace('_', ' ').title(), str(v))
+    console.print(table)
+
+def run_background_scan():
+    """Invoke the full DailyRunner pipeline — scan, filter, score, brief, persist."""
+    from datetime import datetime, timezone
+
+    root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
+    try:
+        from careerloop.daily_runner import DailyRunner
+    except Exception as e:
+        console.print(f"[bold red]Failed to import DailyRunner: {e}[/bold red]")
+        return
+
+    with console.status("[bold green]Scanning job boards, filtering, and scoring...[/bold green]", spinner="dots"):
+        try:
+            runner = DailyRunner(root)
+            result = runner.run(do_scan=True)
+
+            if result.get("already_generated"):
+                console.print(f"[yellow]Brief already generated today ({datetime.now(timezone.utc).date().isoformat()}).[/yellow]")
+                brief_path = os.path.join(root, "output", "daily_briefs", f"{datetime.now(timezone.utc).date().isoformat()}.md")
+                if os.path.exists(brief_path):
+                    console.print("[dim]Showing today's brief:[/dim]\n")
+                    with open(brief_path) as f:
+                        console.print(f.read())
+                return
+
+            console.print(f"[bold green]Scan complete![/bold green] {result['new_jobs_found']} raw → {result['unique_added']} new → {result['scored']} scored.")
+
+            brief_path = os.path.join(root, "output", "daily_briefs", f"{datetime.now(timezone.utc).date().isoformat()}.md")
+            if os.path.exists(brief_path):
+                console.print("\n[bold]Today's Brief:[/bold]\n")
+                with open(brief_path) as f:
+                    console.print(f.read())
+            else:
+                console.print("[yellow]No new jobs matched your filters today.[/yellow]")
+        except Exception as e:
+            console.print(f"[bold red]Scan pipeline failed: {e}[/bold red]")
 
 def main():
     # 1. Authenticate (returns UUID)
@@ -78,64 +252,126 @@ def main():
     # 2. Setup systems (session store + supervisor graph with Postgres checkpointer)
     session_store = SessionStore()
     session = session_store.get_session(user_id)  # ensure row exists
+    if session.state == UserState.IDLE:
+        profile_data = session_store._load_profile_data(user_id)
+        recovered_state = session_store.infer_onboarding_state(profile_data)
+        if any(profile_data.values()) and recovered_state != UserState.IDLE:
+            session.state = recovered_state
+            session.temp_profile_data = profile_data or session.temp_profile_data
+            session_store.save_session(session)
 
+    checkpointer_cm = None
+    using_checkpointer = False
     try:
-        with get_checkpointer() as checkpointer:
-            supervisor = get_supervisor_graph(checkpointer=checkpointer)
-            transport = TerminalChatAdapter(supervisor_graph=supervisor)
+        try:
+            checkpointer_cm = get_checkpointer()
+            checkpointer = checkpointer_cm.__enter__()
             using_checkpointer = True
+        except Exception as e:
+            logger.warning(f"Checkpointer unavailable; starting CLI without checkpoint persistence: {e}")
+            checkpointer = None
 
-            if session.state == UserState.IDLE:
-                transport.send_text(
-                    user_id,
-                    "Welcome to CareerLoop. Paste your CV text to start onboarding.",
-                )
-            else:
-                transport.send_text(user_id, f"Resuming session in state: {session.state.value}")
+        supervisor = get_supervisor_graph(checkpointer=checkpointer)
+        transport = TerminalChatAdapter(supervisor_graph=supervisor)
 
-            # 3. Interactive Loop
-            while True:
-                user_input = transport.request_input(user_id)
-                if user_input.lower() in ['exit', 'quit', '/quit']:
-                    console.print("[bold cyan]Goodbye![/bold cyan]")
-                    break
+        print_banner()
+        print_status_card(session)
 
-                payload = {
-                    "user_id": user_id,
-                    "text": user_input,
-                    "metadata": {"current_state": session.state},
-                }
-                logger.info("User payload received from input.")
-                logger.info(f"Passing payload to transport: {payload}")
-                try:
-                    response = transport.receive(payload)
-                except Exception as e:
-                    err = str(e).lower()
-                    if using_checkpointer and "prepared statement" in err:
-                        console.print(
-                            "[bold yellow]Warning:[/bold yellow] Checkpointed invoke failed; switching to non-checkpointed supervisor for this session."
-                        )
-                        logger.warning("Checkpointed invoke failed with prepared statement error. Falling back to non-checkpointed graph.")
-                        supervisor = get_supervisor_graph(checkpointer=None)
-                        transport.supervisor_graph = supervisor
-                        using_checkpointer = False
-                        response = transport.receive(payload)
+        if session.state == UserState.IDLE:
+            transport.send_text(
+                user_id,
+                "Welcome to CareerLoop. Paste your CV text to start onboarding.",
+            )
+        else:
+            transport.send_text(user_id, f"Resuming session in state: {session.state.value}")
+
+        # 3. Interactive Loop
+        while True:
+            user_input = transport.request_input(user_id)
+            if not user_input:
+                continue
+
+            # Check for exit commands
+            if user_input.lower() in ['exit', 'quit', '/quit', '/exit']:
+                console.print("[bold cyan]Goodbye![/bold cyan]")
+                break
+
+            # Intercept Slash Commands
+            if user_input.startswith("/"):
+                cmd = user_input.strip().lower()
+                if cmd == "/help":
+                    print_help_panel()
+                elif cmd == "/status":
+                    print_status_card(session)
+                elif cmd == "/profile":
+                    print_profile_details(session)
+                elif cmd == "/pipeline" or cmd == "/jobs":
+                    print_pipeline(session_store.db_manager)
+                elif cmd == "/scan":
+                    run_background_scan()
+                elif cmd == "/brief":
+                    from datetime import datetime, timezone
+                    today_str = datetime.now(timezone.utc).date().isoformat()
+                    root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+                    brief_path = os.path.join(root, "output", "daily_briefs", f"{today_str}.md")
+                    if os.path.exists(brief_path):
+                        with open(brief_path) as f:
+                            console.print(f.read())
                     else:
-                        raise
+                        console.print("[yellow]No brief generated today. Type /scan to generate one.[/yellow]")
+                elif cmd == "/reset":
+                    session.state = UserState.IDLE
+                    session.temp_profile_data = None
+                    session_store.save_session(session)
+                    console.print("[bold green]Session reset successful! You are now back in IDLE state. Type '/status' to verify.[/bold green]")
+                else:
+                    console.print(f"[bold yellow]Unknown command: {user_input}. Type /help for list of commands.[/bold yellow]")
+                continue
 
-                # Persist current state from supervisor response into sessions table.
-                if response and isinstance(response, dict):
-                    next_state = response.get("current_state")
-                    if isinstance(next_state, UserState):
-                        if session.state != next_state:
-                            logger.info(f"State updated: {session.state} -> {next_state}")
-                        session.state = next_state
-                        session_store.save_session(session)
+            payload = {
+                "user_id": user_id,
+                "text": user_input,
+                "metadata": {
+                    "current_state": session.state,
+                    "temp_profile_data": get_profile_data(session),
+                },
+            }
+            logger.info("User payload received from input.")
+            logger.info(f"Passing payload to transport: {payload}")
+            try:
+                response = transport.receive(payload)
+            except Exception as e:
+                err = str(e).lower()
+                if using_checkpointer and "prepared statement" in err:
+                    console.print(
+                        "[bold yellow]Warning:[/bold yellow] Checkpointed invoke failed; switching to non-checkpointed supervisor for this session."
+                    )
+                    logger.warning("Checkpointed invoke failed with prepared statement error. Falling back to non-checkpointed graph.")
+                    supervisor = get_supervisor_graph(checkpointer=None)
+                    transport.supervisor_graph = supervisor
+                    using_checkpointer = False
+                    response = transport.receive(payload)
+                else:
+                    raise
+
+            # Persist current state from supervisor response into sessions table.
+            if response and isinstance(response, dict):
+                next_state = response.get("current_state")
+                if "temp_profile_data" in response:
+                    session.temp_profile_data = response.get("temp_profile_data")
+                if isinstance(next_state, UserState):
+                    if session.state != next_state:
+                        logger.info(f"State updated: {session.state} -> {next_state}")
+                    session.state = next_state
+                    session_store.save_session(session)
     except KeyboardInterrupt:
         console.print("\n[bold red]Exiting CareerLoop. Goodbye![/bold red]")
     except Exception as e:
         console.print(f"\n[bold red]CLI startup failed:[/bold red] {e}")
         sys.exit(1)
+    finally:
+        if checkpointer_cm is not None and using_checkpointer:
+            checkpointer_cm.__exit__(None, None, None)
 
 if __name__ == "__main__":
     main()

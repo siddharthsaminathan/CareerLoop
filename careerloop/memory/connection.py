@@ -10,8 +10,11 @@ All callers use get_connection() context manager and get dict-like rows either w
 import os
 import sqlite3
 import threading
+import logging
 from contextlib import contextmanager
 from typing import Generator, Optional
+
+logger = logging.getLogger("careerloop.memory.connection")
 
 # ─── SQLite compatibility shim ────────────────────────────────────────────────
 
@@ -130,6 +133,34 @@ class DatabaseManager:
     def _init_sqlite_schema(self):
         """Bootstrap minimal SQLite tables needed by the search pipeline."""
         ddl = """
+        CREATE TABLE IF NOT EXISTS users (
+            id TEXT PRIMARY KEY,
+            email TEXT,
+            full_name TEXT,
+            master_cv_markdown TEXT,
+            work_style_prefs TEXT DEFAULT '{}',
+            employment_state TEXT,
+            urgency INTEGER DEFAULT 5,
+            burnout_level INTEGER DEFAULT 5,
+            preferred_environments TEXT DEFAULT '[]',
+            startup_tolerance TEXT,
+            compensation_floor_lakhs REAL,
+            compensation_target_lakhs REAL,
+            emotional_constraints TEXT DEFAULT '{}',
+            interview_tolerance TEXT,
+            remote_pref TEXT,
+            search_posture TEXT,
+            created_at TEXT DEFAULT (datetime('now')),
+            updated_at TEXT DEFAULT (datetime('now'))
+        );
+        CREATE TABLE IF NOT EXISTS sessions (
+            user_id TEXT PRIMARY KEY,
+            state TEXT DEFAULT 'IDLE',
+            current_job_id TEXT,
+            onboarding_step INTEGER DEFAULT 0,
+            temp_profile_data TEXT DEFAULT '{}',
+            updated_at TEXT DEFAULT (datetime('now'))
+        );
         CREATE TABLE IF NOT EXISTS companies (
             id TEXT PRIMARY KEY,
             name TEXT NOT NULL,
@@ -186,8 +217,27 @@ class DatabaseManager:
                     conn.execute(stmt)
                 except Exception:
                     pass
+        self._ensure_sqlite_columns(conn, "users", {
+            "email": "TEXT",
+            "full_name": "TEXT",
+            "master_cv_markdown": "TEXT",
+            "parsed_cv_data": "TEXT",
+        })
+        try:
+            conn.execute("UPDATE sessions SET state = 'PROFILE_COMPLETE' WHERE state = 'DAILY_BRIEF_SENT'")
+        except Exception as e:
+            logger.warning(f"SQLite session state repair skipped: {e}")
         conn.commit()
         conn.close()
+
+    def _ensure_sqlite_columns(self, conn, table: str, columns: dict[str, str]) -> None:
+        try:
+            existing = {row["name"] for row in conn.execute(f"PRAGMA table_info({table})").fetchall()}
+            for name, ddl in columns.items():
+                if name not in existing:
+                    conn.execute(f"ALTER TABLE {table} ADD COLUMN {name} {ddl}")
+        except Exception as e:
+            logger.warning(f"SQLite schema column repair skipped for {table}: {e}")
 
     def _init_pg_schema(self):
         if not os.path.exists(self.schema_path):
@@ -208,11 +258,12 @@ class DatabaseManager:
                         except Exception as e:
                             cur.execute("ROLLBACK TO SAVEPOINT schema_cmd")
                             if "already exists" not in str(e):
-                                print(f"Schema cmd warning: {e}")
+                                logger.warning(f"Schema cmd warning: {e}")
+                    cur.execute("UPDATE public.sessions SET state = 'PROFILE_COMPLETE' WHERE state = 'DAILY_BRIEF_SENT'")
                     cur.execute("SELECT pg_advisory_unlock(hashtext('careerloop_schema_init'))")
                 conn.commit()
         except Exception as e:
-            print(f"PG schema init warning: {e}")
+            logger.warning(f"PG schema init warning: {e}")
 
     @contextmanager
     def get_connection(self) -> Generator:

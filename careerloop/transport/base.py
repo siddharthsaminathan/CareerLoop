@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 from langchain_core.messages import HumanMessage
-from careerloop.session.states import UserState
+from careerloop.session.states import UserState, normalize_user_state
 
 @dataclass
 class UserEvent:
@@ -21,13 +21,7 @@ class TransportAdapter(ABC):
         """
         metadata = event.metadata or {}
         current_state_raw = metadata.get("current_state", UserState.IDLE)
-        if isinstance(current_state_raw, UserState):
-            current_state = current_state_raw
-        else:
-            try:
-                current_state = UserState(str(current_state_raw))
-            except Exception:
-                current_state = UserState.IDLE
+        current_state = normalize_user_state(current_state_raw) or UserState.IDLE
 
         return {
             "user_id": event.user_id,
@@ -35,6 +29,7 @@ class TransportAdapter(ABC):
             "pending_job_id": metadata.get("pending_job_id"),
             "messages": [HumanMessage(content=event.text)],
             "council_state": metadata.get("council_state"),
+            "temp_profile_data": metadata.get("temp_profile_data"),
         }
 
     def receive(self, raw_payload: Any) -> Optional[Dict[str, Any]]:

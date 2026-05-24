@@ -19,7 +19,7 @@ def get_checkpointer():
         "prepare_threshold": None,
     }
     
-    with ConnectionPool(conninfo=db_url, kwargs=connection_kwargs) as pool:
+    with ConnectionPool(conninfo=db_url, kwargs=connection_kwargs, timeout=3) as pool:
         checkpointer = PostgresSaver(pool)
         try:
             checkpointer.setup()

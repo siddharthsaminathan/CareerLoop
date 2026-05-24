@@ -6,10 +6,44 @@
 
 ---
 
-## PHASE 1 — Market Discovery Engine
+## PHASE 1 — Application Action Engine (The Paid Wedge)
+**Status: ~75% | Owner: CTO**
+ 
+Turn approved job openings into tailored, ready-to-execute application bundles and outreach targets.
+ 
+| System | % | Status |
+|--------|---|--------|
+| Application Route Classifier (A/B/C/D) | 100% | ✅ |
+| Pack Assembly (Resume, Cover, DMs) | 95% | ✅ |
+| Recruiter Discovery & Outreach Draft | 95% | ✅ |
+| Referral Network Mapper & Draft | 0% | ⚫ |
+| Status Tracking (Applied/Contacted/Replied) | 15% | 🔴 |
+
+**Exit criteria:** For any job, the system hands the user a completely prepared pack and tells them exactly who to message.
+
+---
+
+## PHASE 1.5 — Momentum Dashboard & Intelligence
+**Status: ~5% | Owner: CEO**
+
+Visualize and improve the user's weekly conversation pipeline (not just job scans).
+
+| System | % | Status |
+|--------|---|--------|
+| Daily Action Brief (Jobs to Apply) | 5% | 🔴 |
+| Weekly Momentum Dashboard | 0% | ⚫ |
+| Outreach Follow-up Scheduler | 25% | 🔴 |
+| Conversion Analytics (App -> Reply) | 0% | ⚫ |
+| Strategy Correction Loop | 0% | ⚫ |
+
+**Exit criteria:** Users immediately see if they are getting closer to an interview this week.
+
+---
+
+## PHASE 2 — Market Discovery (Top of Funnel Hook)
 **Status: ~75% | Owner: CTO**
 
-Build India-native job intelligence infrastructure.
+Build the free lead magnet: India-native job intelligence infrastructure.
 
 | System | % | Status |
 |--------|---|--------|
@@ -19,12 +53,8 @@ Build India-native job intelligence infrastructure.
 | ATS scraping (Greenhouse, Lever, Ashby) | 75% | ✅ |
 | ScrapeGraphAI extraction | 75% | ✅ |
 | Verification pipeline | 60% | 🟡 |
-| Ledger system | 75% | ✅ |
-| Daily shortlist generation | 55% | 🟡 |
 
-**Remaining:** Better JS portal handling, direct company page indexing, search freshness tuning.
-
-**Exit criteria:** System reliably produces high-quality India-fit opportunities daily.
+**Exit criteria:** System reliably produces high-quality India-fit opportunities to feed into the paid Action Engine.
 
 ---
 
@@ -49,10 +79,10 @@ Convert job overload into daily strategic clarity.
 
 ---
 
-## PHASE 2 — Positioning + Application Intelligence
-**Status: ~45% | Owner: CTO**
+## PHASE 3 — Resume Council & Positioning Engine
+**Status: ~80% | Owner: CTO**
 
-Generate believable, role-aware application strategy.
+Generate believable, role-aware application assets (feeds into the Action Engine).
 
 ### 2A — Resume Council
 **Status: ~92% 🟢**

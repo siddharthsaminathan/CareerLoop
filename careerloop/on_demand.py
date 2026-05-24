@@ -111,7 +111,34 @@ class OnDemandSearch:
                 result.candidate_count = len(cached)
                 deduped = cached
                 scored = self.fit_engine.score_jobs_batch(deduped)
-                result.ranked_jobs = scored[:max_results]
+                # City filter (was previously skipped in cache path)
+                _city_lc = city.lower().strip()
+                _city_aliases = {
+                    "bangalore": {"bangalore", "bengaluru", "blr"},
+                    "bengaluru": {"bangalore", "bengaluru", "blr"},
+                    "mumbai": {"mumbai", "bombay"},
+                    "delhi": {"delhi", "new delhi", "ncr", "gurgaon", "gurugram", "noida"},
+                    "hyderabad": {"hyderabad", "hyd"},
+                    "chennai": {"chennai", "madras"},
+                    "remote": {"remote"},
+                }
+                _allowed = _city_aliases.get(_city_lc, {_city_lc})
+                _allowed |= {"remote", "india", "pan india", "pan-india", "anywhere"}
+                def _city_ok_cached(jd: dict) -> bool:
+                    loc = (jd.get("job", jd).get("location") or "").lower()
+                    if not loc:
+                        return True
+                    return any(a in loc for a in _allowed)
+                scored = [j for j in scored if _city_ok_cached(j)]
+                # Company cap (was previously skipped in cache path)
+                _cc: dict[str, int] = {}
+                _capped = []
+                for j in scored:
+                    _comp = (j.get("job", j).get("company_name") or j.get("job", j).get("company") or "unknown").lower().strip()
+                    _cc[_comp] = _cc.get(_comp, 0) + 1
+                    if _cc[_comp] <= 3:
+                        _capped.append(j)
+                result.ranked_jobs = _capped[:max_results]
                 result.after_dedup_count = len(deduped)
                 result.elapsed_seconds = round(time.time() - t0, 2)
                 return result
@@ -232,14 +259,8 @@ class OnDemandSearch:
         except Exception:
             pass
 
-        # 7b. FIX 20: LLM validator — DeepSeek pass to reject hardware/intern/bodyshop jobs
-        # that slipped past embedding filter (runs on top-60 scored to stay within token budget)
-        try:
-            scored = self._llm_validate(scored[:60], role=role) + scored[60:]
-        except Exception as e:
-            logger.debug(f"[OnDemand] LLM validator skipped: {e}")
-
-        # 8. City filter — reject jobs in wrong city (keep remote/India-wide)
+        # 7. City filter — reject jobs in wrong city (keep remote/India-wide)
+        #    Runs BEFORE LLM validation (FREE filter) to avoid wasting tokens on wrong-city jobs.
         city_lc = city.lower().strip()
         city_aliases = {
             "bangalore": {"bangalore", "bengaluru", "blr"},
@@ -264,7 +285,8 @@ class OnDemandSearch:
         if off_city:
             result.notes.append(f"city filter ({city}): {len(scored)} → {len(city_filtered)} ({off_city} off-city removed)")
 
-        # 9. Per-company cap — prevent one company flooding the ranked list
+        # 8. Per-company cap — prevent one company flooding the ranked list
+        #    Runs BEFORE LLM validation (FREE filter) to avoid wasting tokens on capped jobs.
         company_counts: dict[str, int] = {}
         capped = []
         for j in city_filtered:
@@ -274,6 +296,13 @@ class OnDemandSearch:
                 capped.append(j)
         if len(capped) < len(city_filtered):
             result.notes.append(f"company cap (max 3): {len(city_filtered)} → {len(capped)}")
+
+        # 9. FIX 20: LLM validator — DeepSeek pass to reject hardware/intern/bodyshop jobs
+        #    that slipped past embedding filter. Runs on pre-filtered top-60 to save tokens.
+        try:
+            capped = self._llm_validate(capped[:60], role=role) + capped[60:]
+        except Exception as e:
+            logger.debug(f"[OnDemand] LLM validator skipped: {e}")
 
         # 10. Trim to max_results
         result.ranked_jobs = capped[:max_results]

@@ -13,10 +13,13 @@ No regex. No hardcoded company tables. Actual reasoning.
 
 import os
 import json
+import logging
 import requests
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
+
+logger = logging.getLogger(__name__)
 
 try:
     import yaml
@@ -137,6 +140,26 @@ RULES:
                 return self._fallback_score(job, user_profile, f"API error: {response.status_code}")
 
             data = response.json()
+
+            # Token accounting — extract usage from API response
+            try:
+                usage = data.get("usage", {})
+                if usage:
+                    prompt_tokens = usage.get("prompt_tokens", 0)
+                    completion_tokens = usage.get("completion_tokens", 0)
+                    logger.info("llm_call", extra={
+                        "extra": {
+                            "event": "llm_call",
+                            "method": "india_fit_llm.score_job",
+                            "prompt_tokens": prompt_tokens,
+                            "completion_tokens": completion_tokens,
+                            "total_tokens": prompt_tokens + completion_tokens,
+                            "model": self.model,
+                        }
+                    })
+            except Exception:
+                pass  # token counting should never break the pipeline
+
             content = data["choices"][0]["message"]["content"]
 
             # Parse JSON from response (handle markdown code blocks)
@@ -227,8 +250,21 @@ Score this job. Return ONLY valid JSON."""
             "_error": error,
         }
 
-    def score_batch(self, jobs: list[JobPosting], profile: dict) -> list[dict]:
-        """Score multiple jobs. Returns scored list sorted by overall_score desc."""
+    def score_batch(self, jobs: list[JobPosting], profile: dict, min_heuristic_score: float = 0) -> list[dict]:
+        """Score multiple jobs. Returns scored list sorted by overall_score desc.
+
+        Hard-capped to MAX_LLM_SCORE_JOBS (default 15). Callers must pre-filter
+        (hard geo/role/city filters) before passing jobs here.
+        """
+        import os
+        MAX_BATCH = int(os.getenv("MAX_LLM_SCORE_JOBS", "15"))
+        if min_heuristic_score > 0:
+            jobs = [j for j in jobs if (getattr(j, "heuristic_score", 0) or 0) >= min_heuristic_score]
+        if len(jobs) > MAX_BATCH:
+            raise ValueError(
+                f"score_batch() called with {len(jobs)} jobs — exceeds MAX_LLM_SCORE_JOBS={MAX_BATCH}. "
+                f"Apply hard filters (geo, role, dedup) before calling this method."
+            )
         results = []
         for job in jobs:
             result = self.score_job(job, profile)

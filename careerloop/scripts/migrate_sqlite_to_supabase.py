@@ -17,10 +17,11 @@ from datetime import datetime
 # Supabase setup
 SUPABASE_URL = os.getenv("SUPABASE_URL", "https://iephtlrikgfgakcojwhu.supabase.co")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")  # Requires service_role key to bypass RLS during migration
-DATABASE_URL = os.getenv(
-    "DATABASE_URL", 
-    "postgresql://postgres.iephtlrikgfgakcojwhu:FS48TIvMiumRin8a@aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres?sslmode=require"
-)
+DATABASE_URL = os.getenv("DATABASE_URL")
+if not DATABASE_URL:
+    print("Error: DATABASE_URL environment variable is required.")
+    print("Set it before running: export DATABASE_URL='postgresql://...'")
+    sys.exit(1)
 
 SQLITE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "careerloop.db"))
 

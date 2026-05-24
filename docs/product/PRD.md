@@ -26,23 +26,21 @@ CareerLoop is **not**:
 - An ATS spray tool (LazyApply, LoopCV)
 
 CareerLoop **is**:
-- **A Career Operating System** — unified command center for employment execution
-- **An AI Career Command Center** — strategically manages the entire job search → placement arc
-- **A closed-loop employment intelligence layer** — learns from outcomes and continuously improves strategy
+- **A Momentum Generator** — turning job openings into interviews.
+- **An Execution Operator** — handling the heavy lifting of applying, outreaching, and following up.
+- **A closed-loop employment intelligence layer** — learning from outcomes and continuously improving conversion rates.
 
-CareerLoop **exists** to help users:
-
+CareerLoop **exists** to help users create visible weekly momentum:
 ```
-discover → decide → position → apply → follow up → prepare → learn → improve
+applications submitted → humans contacted → replies received → interviews booked
 ```
-
 without drowning in cognitive overload.
 
 **Core philosophy:**
-> The user should make decisions. The system should handle the chaos.
+> Finding jobs is a free commodity. Getting interviews is a paid execution problem.
 
 **Core differentiation:**
-> Others optimize: application volume. We optimize: employment probability.
+> Others optimize: jobs scanned. We optimize: meaningful career conversations generated per week.
 
 ---
 
@@ -121,21 +119,17 @@ CareerLoop must reduce psychological load.
 ## 4. The Core Product Loop
 
 ```
-Discover
-→ Verify
-→ Filter
-→ Decide
-→ Research
-→ Position
-→ Prepare
-→ Apply
+Discover (Free Hook)
+→ Decide (Paid Wedge)
+→ Create Application Pack (Resume, Cover, DMs)
+→ Execute Route (Direct, Recruiter, Referral)
+→ Push via Humans (Outreach)
+→ Track Momentum (Dashboard)
 → Follow up
-→ Interview
-→ Learn
-→ Improve
+→ Improve Conversion
 ```
 
-Every feature must strengthen this loop. Every session must move the user forward on it.
+Every feature must strengthen this momentum chain. Every session must move the user closer to an interview. Scanning metrics are vanity; conversation metrics are reality.
 
 ---
 
@@ -281,22 +275,24 @@ Output must feel: grounded, intelligent, specific, human, interview-defensible.
 
 ---
 
-## 13. Application Execution Layer
+## 13. Application Execution Layer (The Action Engine)
 
-CareerLoop reduces application friction. The system prepares:
+CareerLoop reduces application friction and optimizes the conversion path. For every approved job, the system determines the **Apply Route**:
+
+- **Route A — Direct Apply**: Prepare pack, open link, track, follow up.
+- **Route B — Recruiter First**: Find recruiter, draft DM, user sends, track reply, then apply.
+- **Route C — Referral First**: Find employees/alumni, draft referral ask, track reply, apply after signal.
+- **Route D — Skip**: Bad ROI, poor fit, weak company.
+
+The system prepares a complete **Application Pack**:
 - Resume/profile (tailored)
 - Recruiter messages
+- Referral DMs
 - Cover notes
 - Screening answers
 - Follow-ups
-- Interview prep
 
-Future execution:
-- Kimi K2 Webbridge / Hermes assisted execution layer ("Approve & Auto-Fill & Submit")
-- Application tracking
-- Recruiter outreach automation
-
-**The user remains in control of final submission — always.** CareerLoop may fill forms and click submit only after the user has reviewed the generated application pack and given an explicit, per-job command. No scheduled, unattended, or bulk auto-submit flow is allowed.
+**The user remains in control of final submission — always.** The system removes the friction of *creation* and *planning*, but the user executes the final human interaction.
 
 ---
 
@@ -334,24 +330,28 @@ Over time: less prompting, less explaining, better positioning, better recommend
 
 ---
 
-## 16. The End-State Vision
+## 16. The End-State Vision and Monetization
 
 CareerLoop should feel like:
 
 ```
 a recruiter
-+ a strategist
++ an outreach strategist
 + a researcher
 + a career coach
 + an execution operator
 + a brutally honest editor
-+ a memory system
 ```
+working together to turn openings into interviews.
 
-working together, 24/7, for one user.
+### Monetization Tiers (The Paid Packaging)
 
-The user should feel:
-> "I am no longer handling my career transition alone."
+- **Free Tier:** Search + Shortlist. A taste of discovery, but no execution engine. "Here are 5 roles worth your time. Upgrade to prepare applications and outreach."
+- **₹499 Student:** Shortlist + Starter Packs + Basic Outreach.
+- **₹1299 Accelerator:** Application Packs + Outreach + Follow-ups + Momentum Dashboard.
+- **₹2999 Offer Mode:** Daily execution support + interview prep + negotiation + aggressive outreach.
+
+**The Upgrade Moment:** When the user clicks "Apply" on a free role, the system states: "I can prepare the resume, screening answers, recruiter DM, referral message, and follow-up plan for this role." This is the core conversion wedge.
 
 ---
 
@@ -361,31 +361,29 @@ The user should feel:
 
 | System | Completion | Status | Notes |
 |--------|-----------|--------|-------|
-| India-first discovery | 90% | 🟢 Active | SerpAPI primary (intent-based, 2-call cap); 14 ATS adapters; 6 parallel board sources; SQLite dual-mode unblocks local runs; score compression bug open (JobSpy 60-64 cluster) |
-| Verification & filtering | 60% | 🟡 Active | detect_ats_pass.py; Block G not hoisted |
-| Opportunity scoring (14-dim) | 55% | 🟡 Active | function_probability.py + metrics.py; needs calibration |
+| India-first discovery | 92% | 🟢 Active | Geo filter on all ATS adapters. Location spoofing fixed. 14 ATS adapters + 6 boards. 1,183/1,207 non-India rejected correctly. |
+| Verification & filtering | 78% | 🟢 Active | India filter at 3 choke points (entry, get_top_scored, shortlist). Block G not hoisted. |
+| Opportunity scoring (14-dim) | 62% | 🟡 Active | Scoring caps (CPU=50, LLM=15). Token accounting per call. _get_score() unified schema. |
 | Decision compression / triage | 20% | 🔴 Gap | DECISION_COMPRESSION_VISION.md written. CEO owns UX build. |
-| Career state system (modes) | 15% | 🔴 Gap | `UserState` + LangGraph supervisor scaffold exists; router/state contract not yet functional |
+| Career state system (modes) | 35% | 🟡 Active | DAILY_BRIEF_SENT → PROFILE_COMPLETE. Legacy aliasing. Profile recovery. Onboarding save checks. |
 | Company intelligence | 75% | 🟢 Active | MECE D1-D5 vectors; S3 cache; JD_ONLY fallback |
 | Positioning engine | 38% | 🟡 Active | S6 wired; narrative angle, objection preempt, must_haves all reach S7 |
 | Resume Council (v3) | 93% | 🟢 Active | Job-aware chunking; prose fallback; 42 tests; ceiling hit |
 | Humanizer layer | 65% | 🟡 Active | LLM rewrite active; Truth Guard UNSUPPORTED matching too aggressive |
-| Resume rendering (templates) | 85% | 🟡 Active | 10 templates; normalizer handles 3 user CV formats; automated validation |
-| Validator / QA | 75% | 🟡 Active | 42 stabilization + 22 integration; automated pre-render validation |
+| Resume rendering (templates) | 90% | 🟢 Active | 10 templates; normalizer handles 3 user CV formats; automated validation; PackageAssembler renders high-fidelity PDFs |
+| Validator / QA | 80% | 🟢 Active | 42 stabilization + 22 integration; automated pre-render validation; E2E package assembly fully validated |
 | Application execution | 18% | 🔴 Gap | modes/apply.md prototype; Kimi bridge scaffold exists; real browser/Webbridge integration not verified |
 | Assisted apply bridge | 5% | ⚫ Scaffold | Kimi/Hermes executor mock only; no unattended submit |
 | Follow-up system | 25% | 🔴 Gap | Ledger auto-schedules; no message generation yet |
 | Interview memory | 25% | 🟡 Active | interview-playbook skill; auto-extracts from venting; no rejection post-mortem |
-| Persistent memory graph | 25% | 🟡 Active | Ledger + company_registry + SQLite schema; not read back to improve positioning |
-| WhatsApp/transport UX | 18% | 🔴 Gap | TransportAdapter + Terminal/Telegram stubs exist. No production webhook, send_document, or tested graph handoff. |
+| Persistent memory graph | 40% | 🟡 Active | SQLite sessions+users tables. _tbl() dual-mode. save_session checked. Ledger UUID-IDs deduped. |
+| WhatsApp/transport UX | 55% | 🟡 Active | TransportAdapter + Terminal. /brief + /scan commands. Structured JSONL logging. |
 | Gmail memory | 0% | ⚫ Not started | ROI Vision's #1 priority — never touched |
-| Multi-user onboarding | 0% | ⚫ Not started | 3 hardcoded PERSON_CONFIGs. No CV-upload-to-profile flow. |
+| Multi-user onboarding | 5% | ⚫ Not started | Session persistence works locally. Profile recovery from DB. CV-upload flow still needed. |
 | Monetization logic | 30% | 🟡 Active | Strategic understanding solid; no billing/paywall |
-
-**Overall product maturity: ~59-62% of vision.** Council at quality ceiling (93%). Critical gap: user-facing interface is scaffolded but not functional end-to-end. Transport, onboarding, graph routing, and daily brief delivery remain the P0 blockers.
-
-> Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
-
+ 
+**Overall product maturity: ~66-69% of vision.** Architecture audit complete (22/22 fixes). Council ceiling hit (93%). Geo filter proven. Brief persistence shipped. Critical gap: transport delivery + multi-user onboarding remain P0.
+ 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
 ---
