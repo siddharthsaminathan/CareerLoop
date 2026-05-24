@@ -1,5 +1,5 @@
 {
-  "test_run": "2026-05-24T18:27:15.170778+00:00",
+  "test_run": "2026-05-24T19:07:00.802622+00:00",
   "model": "deepseek-chat",
   "sessions": {
     "shayagreev_onboarding": {
@@ -14,21 +14,21 @@
           "state_after": "UserJourneyState.NEW_USER",
           "response_type": "text",
           "cards_count": 0,
-          "assistant_response": "Hey Shayagreev, great to meet you! With 5 years of ML experience, you're in a sweet spot — what kind of career move are you looking to make next?",
-          "response_length": 145,
-          "elapsed_ms": 2250
+          "assistant_response": "Hey Shayagreev, great to meet you! With 5 years in ML engineering, you've got solid experience under your belt. What kind of career move are you looking to make next?",
+          "response_length": 166,
+          "elapsed_ms": 9184
         },
         {
           "turn": 2,
           "user_input": "I want ML Engineer or Applied AI Engineer roles in Bangalore, Chennai, Mumbai.",
-          "resolved_action": "START_SCAN",
+          "resolved_action": "GENERAL_CHAT",
           "confidence": 0.95,
           "state_after": "UserJourneyState.PROFILE_READY",
-          "response_type": "list",
+          "response_type": "text",
           "cards_count": 0,
-          "assistant_response": "Scan complete! Scored 0 opportunities. Here is your Daily Brief:\n\n",
-          "response_length": 66,
-          "elapsed_ms": 993
+          "assistant_response": "Great choices! Bangalore has the strongest ML ecosystem, but Chennai and Mumbai also have growing AI hubs. Are you looking to stay in a similar role or move into a more senior/leadership position?",
+          "response_length": 196,
+          "elapsed_ms": 7951
         },
         {
           "turn": 3,
@@ -38,9 +38,9 @@
           "state_after": "UserJourneyState.PROFILE_READY",
           "response_type": "text",
           "cards_count": 0,
-          "assistant_response": "Got it, Shayagreev — quality over quantity makes sense. Let me refine the search to focus on top-tier companies in Bangalore, Chennai, and Mumbai that match your 30-40 LPA range and ML/AI profile. I'll come back with a tighter, more relevant list.",
-          "response_length": 247,
-          "elapsed_ms": 1977
+          "assistant_response": "Got it — you're targeting top-tier roles with that salary range and a short notice period. I'll focus on high-impact opportunities at strong product companies in those cities. Ready to start with a tailored search?",
+          "response_length": 214,
+          "elapsed_ms": 9027
         },
         {
           "turn": 4,
@@ -52,19 +52,19 @@
           "cards_count": 3,
           "assistant_response": "**Journey State:** PROFILE_READY\n**Active Artifact:** none\n**Background Runs:** none",
           "response_length": 84,
-          "elapsed_ms": 6
+          "elapsed_ms": 6748
         },
         {
           "turn": 5,
           "user_input": "do you have any jobs for me?",
           "resolved_action": "SHOW_BRIEF",
-          "confidence": 0.95,
+          "confidence": 0.9,
           "state_after": "UserJourneyState.PROFILE_READY",
           "response_type": "text",
           "cards_count": 0,
           "assistant_response": "You do not have a daily brief yet. Would you like me to scan for matching jobs now?",
           "response_length": 83,
-          "elapsed_ms": 1221
+          "elapsed_ms": 7573
         },
         {
           "turn": 6,
@@ -74,9 +74,9 @@
           "state_after": "UserJourneyState.PROFILE_READY",
           "response_type": "text",
           "cards_count": 0,
-          "assistant_response": "No problem, take your time! Just say \"scan jobs\" whenever you're ready, and I'll find the best matches for you.",
-          "response_length": 111,
-          "elapsed_ms": 1966
+          "assistant_response": "Sure, no problem. Just say \"scan\" whenever you're ready and I'll find the best matches for you.",
+          "response_length": 95,
+          "elapsed_ms": 9164
         }
       ],
       "behavior_checks": {
@@ -97,33 +97,33 @@
           "state_after": "UserJourneyState.NEW_USER",
           "response_type": "text",
           "cards_count": 3,
-          "assistant_response": "**Journey State:** NEW_USER\n**Active Artifact:** none\n**Background Runs:** none",
-          "response_length": 79,
-          "elapsed_ms": 18
+          "assistant_response": "**Journey State:** NEW_USER\n**Active Artifact:** none\n**Background Runs:** [{'run_id': 'da6db9831f1f', 'run_type': 'scan', 'status': 'RUNNING'}, {'run_id': '2d5f32d41504', 'run_type': 'scan', 'status': 'FAILED'}]",
+          "response_length": 212,
+          "elapsed_ms": 6558
         },
         {
           "turn": 2,
           "user_input": "give me my daily briefing",
           "resolved_action": "SHOW_BRIEF",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "state_after": "UserJourneyState.PROFILE_READY",
           "response_type": "text",
           "cards_count": 0,
           "assistant_response": "You do not have a daily brief yet. Would you like me to scan for matching jobs now?",
           "response_length": 83,
-          "elapsed_ms": 930
+          "elapsed_ms": 10203
         },
         {
           "turn": 3,
           "user_input": "match me with new jobs — find me something fresh",
           "resolved_action": "START_SCAN",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "state_after": "UserJourneyState.PROFILE_READY",
-          "response_type": "list",
+          "response_type": "error",
           "cards_count": 0,
-          "assistant_response": "Scan complete! Scored 0 opportunities. Here is your Daily Brief:\n\n",
-          "response_length": 66,
-          "elapsed_ms": 799
+          "assistant_response": "⚠️ Scan failed: current transaction is aborted, commands ignored until end of transaction block\n",
+          "response_length": 96,
+          "elapsed_ms": 34570
         },
         {
           "turn": 4,
@@ -133,9 +133,9 @@
           "state_after": "UserJourneyState.PROFILE_READY",
           "response_type": "list",
           "cards_count": 6,
-          "assistant_response": "**/brief:** Today's job matches\n**/scan:** Search for new jobs\n**/pipeline:** All tracked jobs\n**/status:** Your profile and state\n**/profile:** Full profile details\n**/reset:** Reset your session",
-          "response_length": 196,
-          "elapsed_ms": 2
+          "assistant_response": "**Today's matches:** Show your latest job brief\n**Scan for jobs:** Search for new matching jobs\n**My pipeline:** See all tracked applications\n**My status:** Check your profile and journey state\n**My profile:** See full profile details\n**Start fresh:** Reset your session",
+          "response_length": 270,
+          "elapsed_ms": 6924
         },
         {
           "turn": 5,
@@ -147,7 +147,7 @@
           "cards_count": 0,
           "assistant_response": "### Pipeline Status Summary\n• **Total Tracked Jobs:** 0\n• **Active Applications:** 0\n\n",
           "response_length": 86,
-          "elapsed_ms": 720
+          "elapsed_ms": 6988
         },
         {
           "turn": 6,
@@ -159,19 +159,19 @@
           "cards_count": 0,
           "assistant_response": "You do not have a daily brief yet. Would you like me to scan for matching jobs now?",
           "response_length": 83,
-          "elapsed_ms": 1138
+          "elapsed_ms": 8293
         },
         {
           "turn": 7,
           "user_input": "who should I reach out to there?",
           "resolved_action": "GENERAL_CHAT",
-          "confidence": 0.9,
+          "confidence": 0.95,
           "state_after": "UserJourneyState.PROFILE_READY",
           "response_type": "text",
           "cards_count": 0,
-          "assistant_response": "You don't have any jobs tracked yet, so there's no company or contact to look up. Want me to scan for matching jobs first so we can build your pipeline?",
-          "response_length": 152,
-          "elapsed_ms": 1951
+          "assistant_response": "It looks like you haven't scanned for jobs yet, so I don't have a top match or contacts to share. Want me to search for matching roles now so we can find the right people to connect with?",
+          "response_length": 187,
+          "elapsed_ms": 8310
         },
         {
           "turn": 8,
@@ -181,21 +181,21 @@
           "state_after": "UserJourneyState.PROFILE_READY",
           "response_type": "text",
           "cards_count": 0,
-          "assistant_response": "I'd love to prepare an application pack, but I need a job to work with first. Let's scan for matching roles so I can build your resume, cover letter, and outreach notes.",
-          "response_length": 169,
-          "elapsed_ms": 2108
+          "assistant_response": "Sure, I can help you prepare an application pack once we have a job to target. Let's start by scanning for matching roles — just tell me your preferred role and location.",
+          "response_length": 170,
+          "elapsed_ms": 8261
         },
         {
           "turn": 9,
           "user_input": "skip this one",
           "resolved_action": "GENERAL_CHAT",
-          "confidence": 0.9,
+          "confidence": 0.95,
           "state_after": "UserJourneyState.PROFILE_READY",
           "response_type": "text",
           "cards_count": 0,
-          "assistant_response": "Got it, I'll skip that one. Want me to keep scanning for other matching jobs?",
-          "response_length": 77,
-          "elapsed_ms": 2256
+          "assistant_response": "Got it, I'll skip that one. Let me know when you're ready to look at the next role.",
+          "response_length": 83,
+          "elapsed_ms": 7782
         },
         {
           "turn": 10,
@@ -205,9 +205,9 @@
           "state_after": "UserJourneyState.PROFILE_READY",
           "response_type": "text",
           "cards_count": 0,
-          "assistant_response": "You're welcome! We've made a good start today. Whenever you're ready, just say the word and I'll help you scan for jobs or prepare application materials.",
-          "response_length": 153,
-          "elapsed_ms": 2154
+          "assistant_response": "You're welcome! Take a break — whenever you're ready to pick this up again, just say the word and we'll find the right roles for you. Have a great day!",
+          "response_length": 151,
+          "elapsed_ms": 7738
         }
       ],
       "behavior_checks": {

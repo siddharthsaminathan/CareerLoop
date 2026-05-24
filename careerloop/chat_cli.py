@@ -169,7 +169,7 @@ def print_pipeline(db_manager):
     try:
         with db_manager.get_connection() as conn:
             with conn.cursor() as cur:
-                cur.execute("SELECT id, company_id, title, location, source_type FROM public.job_cache LIMIT 15")
+                cur.execute("SELECT id, company_id, title, location, source_type FROM careerloop.job_cache LIMIT 15")
                 rows = cur.fetchall()
         if not rows:
             console.print("[yellow]No jobs in the local cache yet. Want me to scan now?[/yellow]")
@@ -215,7 +215,7 @@ def _render_scan_events(user_id: str):
             with conn.cursor() as cur:
                 # Find the latest scan run for this user
                 cur.execute(
-                    "SELECT run_id, status FROM public.background_runs "
+                    "SELECT run_id, status FROM careerloop.background_runs "
                     "WHERE user_id = %s AND run_type = 'scan' "
                     "ORDER BY created_at DESC LIMIT 1",
                     (user_id,),
@@ -229,7 +229,7 @@ def _render_scan_events(user_id: str):
 
                 # Get all events for this run
                 cur.execute(
-                    "SELECT event_type, message FROM public.run_events "
+                    "SELECT event_type, message FROM careerloop.run_events "
                     "WHERE run_id = %s ORDER BY created_at ASC",
                     (run_id,),
                 )
@@ -300,7 +300,7 @@ def main():
     try:
         with db.get_connection() as conn:
             with conn.cursor() as cur:
-                cur.execute("SELECT id, date_str FROM public.daily_briefs WHERE user_id = %s ORDER BY date_str DESC LIMIT 1", (user_id,))
+                cur.execute("SELECT id, date_str FROM careerloop.daily_briefs WHERE user_id = %s ORDER BY date_str DESC LIMIT 1", (user_id,))
                 brief = cur.fetchone()
         if brief:
             console.print(f"[dim]latest_brief_id={brief['id'][:12]}... | date={brief['date_str']}[/dim]")
@@ -310,7 +310,7 @@ def main():
         # Show active_context from session
         with db.get_connection() as conn:
             with conn.cursor() as cur:
-                cur.execute("SELECT active_artifact_type, active_artifact_id, active_job_id FROM public.sessions WHERE user_id = %s", (user_id,))
+                cur.execute("SELECT active_artifact_type, active_artifact_id, active_job_id FROM careerloop.sessions WHERE user_id = %s", (user_id,))
                 ctx_row = cur.fetchone()
         if ctx_row and ctx_row.get("active_artifact_type"):
             console.print(f"[dim]active_context: {ctx_row['active_artifact_type']} | job={ctx_row.get('active_job_id', 'none')[:12] if ctx_row.get('active_job_id') else 'none'}[/dim]")

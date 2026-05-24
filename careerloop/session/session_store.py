@@ -30,8 +30,11 @@ class SessionStore:
         pass # Schema is initialized via connection.py and supabase_schema.sql
 
     def _tbl(self, name: str) -> str:
-        """Returns schema-qualified table name. Supabase-only: always public.{name}."""
-        return f"public.{name}"
+        """Returns schema-qualified table name.
+        users lives in public (Supabase auth). All CareerLoop tables in careerloop."""
+        if name == "users":
+            return "public.users"
+        return f"careerloop.{name}"
 
     def _parse_profile_prefs(self, raw_prefs: Any) -> dict:
         if isinstance(raw_prefs, dict):

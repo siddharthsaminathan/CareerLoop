@@ -47,7 +47,7 @@ class JobRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        INSERT INTO public.jobs (
+                        INSERT INTO careerloop.jobs (
                             job_id, source, title, company_name,
                             location_raw, content_fingerprint, jd_text,
                             raw_payload, apply_url, posted_at, status
@@ -95,7 +95,7 @@ class JobRepository:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
-                        "SELECT * FROM public.jobs WHERE content_fingerprint = %s",
+                        "SELECT * FROM careerloop.jobs WHERE content_fingerprint = %s",
                         (fingerprint,),
                     )
                     row = cur.fetchone()
@@ -110,7 +110,7 @@ class JobRepository:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
-                        "UPDATE public.jobs SET last_seen_at = NOW(), updated_at = NOW() WHERE job_id = %s",
+                        "UPDATE careerloop.jobs SET last_seen_at = NOW(), updated_at = NOW() WHERE job_id = %s",
                         (job_id,),
                     )
         except Exception as e:
@@ -123,7 +123,7 @@ class JobRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        UPDATE public.jobs
+                        UPDATE careerloop.jobs
                         SET status = 'expired', updated_at = NOW()
                         WHERE status = 'active'
                           AND last_seen_at < NOW() - INTERVAL '%s days'
@@ -145,7 +145,7 @@ class JobRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        INSERT INTO public.companies (
+                        INSERT INTO careerloop.companies (
                             company_id, domain_slug, name, domain,
                             city, sector, subsector, ats_provider,
                             career_page_url, employee_estimate, crawl_status,
@@ -217,7 +217,7 @@ class DiscoveryRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        INSERT INTO public.background_runs (
+                        INSERT INTO careerloop.background_runs (
                             run_id, user_id, run_type, status, params
                         ) VALUES (
                             %s, %s, %s, 'QUEUED', %s
@@ -252,7 +252,7 @@ class DiscoveryRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        UPDATE public.background_runs
+                        UPDATE careerloop.background_runs
                         SET status     = %s,
                             stats      = COALESCE(%s, stats),
                             error      = COALESCE(%s, error),
@@ -285,7 +285,7 @@ class DiscoveryRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        INSERT INTO public.run_events (
+                        INSERT INTO careerloop.run_events (
                             event_id, run_id, event_type, message, payload
                         ) VALUES (
                             %s, %s, %s, %s, %s
@@ -315,7 +315,7 @@ class DiscoveryRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        SELECT * FROM public.run_events
+                        SELECT * FROM careerloop.run_events
                         WHERE run_id = %s
                         ORDER BY timestamp ASC
                         LIMIT %s
@@ -337,7 +337,7 @@ class DiscoveryRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        INSERT INTO public.job_candidates (
+                        INSERT INTO careerloop.job_candidates (
                             candidate_id, run_id, title, company, location,
                             source_url, apply_url, jd_text, raw_payload, stage
                         ) VALUES (
@@ -375,7 +375,7 @@ class DiscoveryRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        UPDATE public.job_candidates
+                        UPDATE careerloop.job_candidates
                         SET stage            = %s,
                             rejection_reason = %s
                         WHERE candidate_id = %s
@@ -392,7 +392,7 @@ class DiscoveryRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        UPDATE public.job_candidates
+                        UPDATE careerloop.job_candidates
                         SET stage          = 'matched',
                             matched_job_id = %s
                         WHERE candidate_id = %s
@@ -427,7 +427,7 @@ class UserJobRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        INSERT INTO public.user_job_relationships (
+                        INSERT INTO careerloop.user_job_relationships (
                             user_id, job_id, match_status, fit_score, route
                         ) VALUES (
                             %s, %s, %s, %s, %s
@@ -450,7 +450,7 @@ class UserJobRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        SELECT * FROM public.user_job_relationships
+                        SELECT * FROM careerloop.user_job_relationships
                         WHERE user_id = %s AND job_id = %s
                         """,
                         (user_id, job_id),
@@ -472,8 +472,8 @@ class UserJobRepository:
                         """
                         SELECT r.*, j.title, j.company_name, j.location_raw,
                                j.apply_url, j.jd_text, j.posted_at
-                        FROM public.user_job_relationships r
-                        JOIN public.jobs j ON j.job_id = r.job_id
+                        FROM careerloop.user_job_relationships r
+                        JOIN careerloop.jobs j ON j.job_id = r.job_id
                         WHERE r.user_id = %s AND r.match_status = %s
                         ORDER BY r.fit_score DESC NULLS LAST
                         LIMIT %s
@@ -511,7 +511,7 @@ class BriefRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        INSERT INTO public.daily_briefs (
+                        INSERT INTO careerloop.daily_briefs (
                             brief_id, user_id, run_id, date_str, summary, stats
                         ) VALUES (
                             %s, %s, %s, %s, %s, %s
@@ -560,7 +560,7 @@ class BriefRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        INSERT INTO public.daily_brief_items (
+                        INSERT INTO careerloop.daily_brief_items (
                             item_id, brief_id, item_index, job_id, fit_score,
                             title, company, location, reason, risk, route, display
                         ) VALUES (
@@ -609,7 +609,7 @@ class BriefRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        SELECT * FROM public.daily_briefs
+                        SELECT * FROM careerloop.daily_briefs
                         WHERE user_id = %s
                         ORDER BY created_at DESC
                         LIMIT 1
@@ -629,7 +629,7 @@ class BriefRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        SELECT * FROM public.daily_brief_items
+                        SELECT * FROM careerloop.daily_brief_items
                         WHERE brief_id = %s
                         ORDER BY item_index ASC
                         """,
@@ -649,7 +649,7 @@ class BriefRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        SELECT * FROM public.daily_brief_items
+                        SELECT * FROM careerloop.daily_brief_items
                         WHERE brief_id = %s AND item_index = %s
                         """,
                         (brief_id, index),
@@ -687,7 +687,7 @@ class ApplicationRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        INSERT INTO public.applications (
+                        INSERT INTO careerloop.applications (
                             application_id, user_id, job_id, pack_id, channel, status
                         ) VALUES (
                             %s, %s, %s, %s, %s, 'applied'
@@ -716,7 +716,7 @@ class ApplicationRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        UPDATE public.applications
+                        UPDATE careerloop.applications
                         SET status     = %s,
                             notes      = COALESCE(%s, notes),
                             updated_at = NOW()
@@ -739,7 +739,7 @@ class ApplicationRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        INSERT INTO public.application_packs (
+                        INSERT INTO careerloop.application_packs (
                             pack_id, user_id, job_id, run_id
                         ) VALUES (
                             %s, %s, %s, %s
@@ -772,7 +772,7 @@ class ApplicationRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        INSERT INTO public.followups (
+                        INSERT INTO careerloop.followups (
                             followup_id, user_id, application_id, due_at, draft, status
                         ) VALUES (
                             %s, %s, %s, %s, %s, 'pending'
@@ -797,8 +797,8 @@ class ApplicationRepository:
                     cur.execute(
                         """
                         SELECT f.*, a.job_id, a.status AS application_status
-                        FROM public.followups f
-                        JOIN public.applications a ON a.application_id = f.application_id
+                        FROM careerloop.followups f
+                        JOIN careerloop.applications a ON a.application_id = f.application_id
                         WHERE f.user_id = %s
                           AND f.status = 'pending'
                           AND f.due_at <= NOW()
@@ -830,7 +830,7 @@ class PeopleRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        INSERT INTO public.people_to_reach (
+                        INSERT INTO careerloop.people_to_reach (
                             person_id, company_id, name, title,
                             linkedin_url, email, notes
                         ) VALUES (
@@ -870,7 +870,7 @@ class PeopleRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        SELECT * FROM public.people_to_reach
+                        SELECT * FROM careerloop.people_to_reach
                         WHERE company_id = %s
                         ORDER BY created_at DESC
                         """,
@@ -896,7 +896,7 @@ class PeopleRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        INSERT INTO public.outreach_messages (
+                        INSERT INTO careerloop.outreach_messages (
                             message_id, user_id, person_id, job_id, msg_type, body, status
                         ) VALUES (
                             %s, %s, %s, %s, %s, %s, 'draft'
@@ -934,7 +934,7 @@ class EvidenceRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        INSERT INTO public.user_evidence (
+                        INSERT INTO careerloop.user_evidence (
                             evidence_id, user_id, evidence_type, content, source
                         ) VALUES (
                             %s, %s, %s, %s, %s
@@ -969,7 +969,7 @@ class EvidenceRepository:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
-                        "SELECT * FROM public.user_preferences WHERE user_id = %s",
+                        "SELECT * FROM careerloop.user_preferences WHERE user_id = %s",
                         (user_id,),
                     )
                     row = cur.fetchone()
@@ -985,7 +985,7 @@ class EvidenceRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        INSERT INTO public.user_preferences (user_id, prefs)
+                        INSERT INTO careerloop.user_preferences (user_id, prefs)
                         VALUES (%s, %s)
                         ON CONFLICT (user_id) DO UPDATE SET
                             prefs      = EXCLUDED.prefs,
@@ -1013,7 +1013,7 @@ class EvidenceRepository:
                 with conn.cursor() as cur:
                     cur.execute(
                         """
-                        INSERT INTO public.outcome_events (
+                        INSERT INTO careerloop.outcome_events (
                             outcome_id, user_id, event_type, job_id,
                             application_id, payload
                         ) VALUES (

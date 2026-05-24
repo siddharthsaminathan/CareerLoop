@@ -19,7 +19,7 @@
 -- ############################################################################
 -- 1. GLOBAL JOB CACHE (CREATE + ALTER bridge)
 -- ############################################################################
-CREATE TABLE IF NOT EXISTS public.jobs (
+CREATE TABLE IF NOT EXISTS careerloop.jobs (
     job_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     source TEXT NOT NULL,
     source_job_id TEXT,
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS public.jobs (
     apply_url TEXT,
     title TEXT NOT NULL,
     normalized_title TEXT,
-    company_id UUID REFERENCES public.companies(id),
+    company_id UUID REFERENCES careerloop.companies(id),
     company_name TEXT,
     location_raw TEXT,
     location_city TEXT,
@@ -52,43 +52,43 @@ CREATE TABLE IF NOT EXISTS public.jobs (
 -- Bridge: if jobs table already exists from v1 (id TEXT PK, different columns),
 -- add all v2 columns that are missing. NOT NULL columns get a safe DEFAULT so
 -- existing rows survive the ALTER.
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS job_id UUID DEFAULT gen_random_uuid();
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS source_job_id TEXT;
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS canonical_url TEXT;
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS normalized_title TEXT;
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS location_raw TEXT;
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS location_city TEXT;
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS location_country TEXT;
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS is_india_role BOOLEAN DEFAULT false;
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS work_mode TEXT;
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS salary_min NUMERIC;
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS salary_max NUMERIC;
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS salary_currency TEXT DEFAULT 'INR';
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS jd_text TEXT;
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS jd_hash TEXT;
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS content_fingerprint TEXT DEFAULT '';  -- backfill before making NOT NULL
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS first_seen_at TIMESTAMPTZ DEFAULT NOW();
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS last_seen_at TIMESTAMPTZ DEFAULT NOW();
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS expires_at TIMESTAMPTZ;
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS status TEXT DEFAULT 'active';
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS raw_payload JSONB DEFAULT '{}';
-ALTER TABLE public.jobs ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ DEFAULT NOW();
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS job_id UUID DEFAULT gen_random_uuid();
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS source_job_id TEXT;
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS canonical_url TEXT;
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS normalized_title TEXT;
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS location_raw TEXT;
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS location_city TEXT;
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS location_country TEXT;
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS is_india_role BOOLEAN DEFAULT false;
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS work_mode TEXT;
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS salary_min NUMERIC;
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS salary_max NUMERIC;
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS salary_currency TEXT DEFAULT 'INR';
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS jd_text TEXT;
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS jd_hash TEXT;
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS content_fingerprint TEXT DEFAULT '';  -- backfill before making NOT NULL
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS first_seen_at TIMESTAMPTZ DEFAULT NOW();
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS last_seen_at TIMESTAMPTZ DEFAULT NOW();
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS expires_at TIMESTAMPTZ;
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS status TEXT DEFAULT 'active';
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS raw_payload JSONB DEFAULT '{}';
+ALTER TABLE careerloop.jobs ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ DEFAULT NOW();
 -- NOTE: v1 `id` (TEXT PK) remains; v2 `job_id` (UUID) is additive.
 --       PK migration from TEXT→UUID requires a separate backfill step.
 
-CREATE UNIQUE INDEX IF NOT EXISTS idx_jobs_fingerprint ON public.jobs(content_fingerprint);
-CREATE INDEX IF NOT EXISTS idx_jobs_company ON public.jobs(company_name);
-CREATE INDEX IF NOT EXISTS idx_jobs_job_id ON public.jobs(job_id);
-CREATE INDEX IF NOT EXISTS idx_jobs_title ON public.jobs(normalized_title);
-CREATE INDEX IF NOT EXISTS idx_jobs_city ON public.jobs(location_city);
-CREATE INDEX IF NOT EXISTS idx_jobs_source ON public.jobs(source);
-CREATE INDEX IF NOT EXISTS idx_jobs_last_seen ON public.jobs(last_seen_at);
-CREATE INDEX IF NOT EXISTS idx_jobs_status ON public.jobs(status);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_jobs_fingerprint ON careerloop.jobs(content_fingerprint);
+CREATE INDEX IF NOT EXISTS idx_jobs_company ON careerloop.jobs(company_name);
+CREATE INDEX IF NOT EXISTS idx_jobs_job_id ON careerloop.jobs(job_id);
+CREATE INDEX IF NOT EXISTS idx_jobs_title ON careerloop.jobs(normalized_title);
+CREATE INDEX IF NOT EXISTS idx_jobs_city ON careerloop.jobs(location_city);
+CREATE INDEX IF NOT EXISTS idx_jobs_source ON careerloop.jobs(source);
+CREATE INDEX IF NOT EXISTS idx_jobs_last_seen ON careerloop.jobs(last_seen_at);
+CREATE INDEX IF NOT EXISTS idx_jobs_status ON careerloop.jobs(status);
 
 -- ############################################################################
 -- 2. COMPANY CACHE (CREATE + ALTER bridge)
 -- ############################################################################
-CREATE TABLE IF NOT EXISTS public.companies (
+CREATE TABLE IF NOT EXISTS careerloop.companies (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name TEXT NOT NULL,
     normalized_name TEXT NOT NULL,
@@ -110,48 +110,48 @@ CREATE TABLE IF NOT EXISTS public.companies (
 -- Bridge: v1 companies has domain_slug, city, sector, subsector, ats_provider,
 -- career_page_url, ats_url, employee_estimate, crawl_status, last_crawled_at,
 -- last_job_count, is_active, source. Keep those; add v2 columns.
-ALTER TABLE public.companies ADD COLUMN IF NOT EXISTS normalized_name TEXT;
-ALTER TABLE public.companies ADD COLUMN IF NOT EXISTS website TEXT;
-ALTER TABLE public.companies ADD COLUMN IF NOT EXISTS logo_url TEXT;
-ALTER TABLE public.companies ADD COLUMN IF NOT EXISTS industry TEXT;
-ALTER TABLE public.companies ADD COLUMN IF NOT EXISTS size TEXT;
-ALTER TABLE public.companies ADD COLUMN IF NOT EXISTS funding_stage TEXT;
-ALTER TABLE public.companies ADD COLUMN IF NOT EXISTS raw_payload JSONB DEFAULT '{}';
-ALTER TABLE public.companies ADD COLUMN IF NOT EXISTS first_seen_at TIMESTAMPTZ DEFAULT NOW();
-ALTER TABLE public.companies ADD COLUMN IF NOT EXISTS last_updated_at TIMESTAMPTZ DEFAULT NOW();
+ALTER TABLE careerloop.companies ADD COLUMN IF NOT EXISTS normalized_name TEXT;
+ALTER TABLE careerloop.companies ADD COLUMN IF NOT EXISTS website TEXT;
+ALTER TABLE careerloop.companies ADD COLUMN IF NOT EXISTS logo_url TEXT;
+ALTER TABLE careerloop.companies ADD COLUMN IF NOT EXISTS industry TEXT;
+ALTER TABLE careerloop.companies ADD COLUMN IF NOT EXISTS size TEXT;
+ALTER TABLE careerloop.companies ADD COLUMN IF NOT EXISTS funding_stage TEXT;
+ALTER TABLE careerloop.companies ADD COLUMN IF NOT EXISTS raw_payload JSONB DEFAULT '{}';
+ALTER TABLE careerloop.companies ADD COLUMN IF NOT EXISTS first_seen_at TIMESTAMPTZ DEFAULT NOW();
+ALTER TABLE careerloop.companies ADD COLUMN IF NOT EXISTS last_updated_at TIMESTAMPTZ DEFAULT NOW();
 -- Backfill normalized_name from existing name column if NULL
-UPDATE public.companies SET normalized_name = LOWER(TRIM(name)) WHERE normalized_name IS NULL AND name IS NOT NULL;
+UPDATE careerloop.companies SET normalized_name = LOWER(TRIM(name)) WHERE normalized_name IS NULL AND name IS NOT NULL;
 
-CREATE UNIQUE INDEX IF NOT EXISTS idx_companies_normalized ON public.companies(normalized_name);
-CREATE UNIQUE INDEX IF NOT EXISTS idx_companies_domain ON public.companies(domain) WHERE domain IS NOT NULL;
+CREATE UNIQUE INDEX IF NOT EXISTS idx_companies_normalized ON careerloop.companies(normalized_name);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_companies_domain ON careerloop.companies(domain) WHERE domain IS NOT NULL;
 
 -- ############################################################################
 -- 3. BACKGROUND RUNS (extend existing table)
 -- ############################################################################
 -- v1 has: run_id TEXT PK, user_id, run_type, status, created_at, updated_at
-ALTER TABLE public.background_runs ADD COLUMN IF NOT EXISTS error_code TEXT;
-ALTER TABLE public.background_runs ADD COLUMN IF NOT EXISTS error_summary TEXT;
-ALTER TABLE public.background_runs ADD COLUMN IF NOT EXISTS params JSONB DEFAULT '{}';
-ALTER TABLE public.background_runs ADD COLUMN IF NOT EXISTS stats JSONB DEFAULT '{}';
-ALTER TABLE public.background_runs ADD COLUMN IF NOT EXISTS started_at TIMESTAMPTZ;
-ALTER TABLE public.background_runs ADD COLUMN IF NOT EXISTS completed_at TIMESTAMPTZ;
-CREATE INDEX IF NOT EXISTS idx_bg_runs_status ON public.background_runs(status);
-CREATE INDEX IF NOT EXISTS idx_bg_runs_type ON public.background_runs(run_type);
+ALTER TABLE careerloop.background_runs ADD COLUMN IF NOT EXISTS error_code TEXT;
+ALTER TABLE careerloop.background_runs ADD COLUMN IF NOT EXISTS error_summary TEXT;
+ALTER TABLE careerloop.background_runs ADD COLUMN IF NOT EXISTS params JSONB DEFAULT '{}';
+ALTER TABLE careerloop.background_runs ADD COLUMN IF NOT EXISTS stats JSONB DEFAULT '{}';
+ALTER TABLE careerloop.background_runs ADD COLUMN IF NOT EXISTS started_at TIMESTAMPTZ;
+ALTER TABLE careerloop.background_runs ADD COLUMN IF NOT EXISTS completed_at TIMESTAMPTZ;
+CREATE INDEX IF NOT EXISTS idx_bg_runs_status ON careerloop.background_runs(status);
+CREATE INDEX IF NOT EXISTS idx_bg_runs_type ON careerloop.background_runs(run_type);
 
 -- ############################################################################
 -- 4. RUN EVENTS (extend existing table)
 -- ############################################################################
 -- v1 has: event_id TEXT PK, run_id, message, timestamp
-ALTER TABLE public.run_events ADD COLUMN IF NOT EXISTS event_type TEXT DEFAULT 'info';
-ALTER TABLE public.run_events ADD COLUMN IF NOT EXISTS payload JSONB DEFAULT '{}';
-CREATE INDEX IF NOT EXISTS idx_run_events_type ON public.run_events(event_type);
+ALTER TABLE careerloop.run_events ADD COLUMN IF NOT EXISTS event_type TEXT DEFAULT 'info';
+ALTER TABLE careerloop.run_events ADD COLUMN IF NOT EXISTS payload JSONB DEFAULT '{}';
+CREATE INDEX IF NOT EXISTS idx_run_events_type ON careerloop.run_events(event_type);
 
 -- ############################################################################
 -- 5. RAW DISCOVERY CANDIDATES (new table)
 -- ############################################################################
-CREATE TABLE IF NOT EXISTS public.job_candidates (
+CREATE TABLE IF NOT EXISTS careerloop.job_candidates (
     candidate_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    run_id UUID NOT NULL REFERENCES public.background_runs(run_id),
+    run_id UUID NOT NULL REFERENCES careerloop.background_runs(run_id),
     source TEXT,
     query TEXT,
     raw_title TEXT,
@@ -163,18 +163,18 @@ CREATE TABLE IF NOT EXISTS public.job_candidates (
     extraction_status TEXT DEFAULT 'pending',
     rejection_stage TEXT,
     rejection_reason TEXT,
-    matched_job_id UUID REFERENCES public.jobs(job_id),
+    matched_job_id UUID REFERENCES careerloop.jobs(job_id),
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
-CREATE INDEX IF NOT EXISTS idx_candidates_run ON public.job_candidates(run_id);
-CREATE INDEX IF NOT EXISTS idx_candidates_status ON public.job_candidates(extraction_status);
+CREATE INDEX IF NOT EXISTS idx_candidates_run ON careerloop.job_candidates(run_id);
+CREATE INDEX IF NOT EXISTS idx_candidates_status ON careerloop.job_candidates(extraction_status);
 
 -- ############################################################################
 -- 6. USER-JOB RELATIONSHIP (new table)
 -- ############################################################################
-CREATE TABLE IF NOT EXISTS public.user_job_relationships (
+CREATE TABLE IF NOT EXISTS careerloop.user_job_relationships (
     user_id UUID NOT NULL REFERENCES public.users(id),
-    job_id UUID NOT NULL REFERENCES public.jobs(job_id),
+    job_id UUID NOT NULL REFERENCES careerloop.jobs(job_id),
     fit_score NUMERIC,
     fit_label TEXT,
     match_status TEXT DEFAULT 'matched' CHECK (match_status IN ('matched','rejected','maybe','saved','skipped','interested','applied')),
@@ -189,16 +189,16 @@ CREATE TABLE IF NOT EXISTS public.user_job_relationships (
     updated_at TIMESTAMPTZ DEFAULT NOW(),
     PRIMARY KEY (user_id, job_id)
 );
-CREATE INDEX IF NOT EXISTS idx_ujr_match_status ON public.user_job_relationships(match_status);
-CREATE INDEX IF NOT EXISTS idx_ujr_fit_score ON public.user_job_relationships(fit_score);
+CREATE INDEX IF NOT EXISTS idx_ujr_match_status ON careerloop.user_job_relationships(match_status);
+CREATE INDEX IF NOT EXISTS idx_ujr_fit_score ON careerloop.user_job_relationships(fit_score);
 
 -- ############################################################################
 -- 7. DAILY BRIEFS (CREATE + ALTER bridge)
 -- ############################################################################
-CREATE TABLE IF NOT EXISTS public.daily_briefs (
+CREATE TABLE IF NOT EXISTS careerloop.daily_briefs (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id),
-    run_id UUID NOT NULL REFERENCES public.background_runs(run_id),
+    run_id UUID NOT NULL REFERENCES careerloop.background_runs(run_id),
     date_str TEXT NOT NULL,
     version INTEGER DEFAULT 1,
     status TEXT DEFAULT 'active',
@@ -209,24 +209,24 @@ CREATE TABLE IF NOT EXISTS public.daily_briefs (
 
 -- Bridge: v1 daily_briefs has run_id TEXT, summary (not summary_text), no version,
 -- no status, no stats. Add missing columns.
-ALTER TABLE public.daily_briefs ADD COLUMN IF NOT EXISTS version INTEGER DEFAULT 1;
-ALTER TABLE public.daily_briefs ADD COLUMN IF NOT EXISTS status TEXT DEFAULT 'active';
-ALTER TABLE public.daily_briefs ADD COLUMN IF NOT EXISTS summary_text TEXT;
-ALTER TABLE public.daily_briefs ADD COLUMN IF NOT EXISTS stats JSONB DEFAULT '{}';
+ALTER TABLE careerloop.daily_briefs ADD COLUMN IF NOT EXISTS version INTEGER DEFAULT 1;
+ALTER TABLE careerloop.daily_briefs ADD COLUMN IF NOT EXISTS status TEXT DEFAULT 'active';
+ALTER TABLE careerloop.daily_briefs ADD COLUMN IF NOT EXISTS summary_text TEXT;
+ALTER TABLE careerloop.daily_briefs ADD COLUMN IF NOT EXISTS stats JSONB DEFAULT '{}';
 -- NOTE: v1 `summary` column remains; migrate data to `summary_text` in a
 --       separate backfill step if needed.
 
-CREATE INDEX IF NOT EXISTS idx_briefs_user_date ON public.daily_briefs(user_id, date_str);
-CREATE INDEX IF NOT EXISTS idx_briefs_status ON public.daily_briefs(status);
+CREATE INDEX IF NOT EXISTS idx_briefs_user_date ON careerloop.daily_briefs(user_id, date_str);
+CREATE INDEX IF NOT EXISTS idx_briefs_status ON careerloop.daily_briefs(status);
 
 -- ############################################################################
 -- 8. DAILY BRIEF ITEMS (CREATE + ALTER bridge)
 -- ############################################################################
-CREATE TABLE IF NOT EXISTS public.daily_brief_items (
+CREATE TABLE IF NOT EXISTS careerloop.daily_brief_items (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    brief_id UUID NOT NULL REFERENCES public.daily_briefs(id),
+    brief_id UUID NOT NULL REFERENCES careerloop.daily_briefs(id),
     item_index INTEGER NOT NULL,
-    job_id UUID NOT NULL REFERENCES public.jobs(job_id),
+    job_id UUID NOT NULL REFERENCES careerloop.jobs(job_id),
     fit_score NUMERIC,
     fit_label TEXT,
     title TEXT,
@@ -242,21 +242,21 @@ CREATE TABLE IF NOT EXISTS public.daily_brief_items (
 
 -- Bridge: v1 daily_brief_items has job_id TEXT, fit_score REAL, no fit_label,
 -- no display_payload, no created_at. Add missing columns.
-ALTER TABLE public.daily_brief_items ADD COLUMN IF NOT EXISTS fit_label TEXT;
-ALTER TABLE public.daily_brief_items ADD COLUMN IF NOT EXISTS display_payload JSONB DEFAULT '{}';
-ALTER TABLE public.daily_brief_items ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ DEFAULT NOW();
+ALTER TABLE careerloop.daily_brief_items ADD COLUMN IF NOT EXISTS fit_label TEXT;
+ALTER TABLE careerloop.daily_brief_items ADD COLUMN IF NOT EXISTS display_payload JSONB DEFAULT '{}';
+ALTER TABLE careerloop.daily_brief_items ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ DEFAULT NOW();
 -- NOTE: v1 `job_id` is TEXT; v2 expects UUID. A separate backfill step is
 --       needed to map TEXT→UUID references before enforcing the FK.
 
-CREATE INDEX IF NOT EXISTS idx_brief_items_job ON public.daily_brief_items(job_id);
+CREATE INDEX IF NOT EXISTS idx_brief_items_job ON careerloop.daily_brief_items(job_id);
 
 -- ############################################################################
 -- 9. APPLICATIONS (new table)
 -- ############################################################################
-CREATE TABLE IF NOT EXISTS public.applications (
+CREATE TABLE IF NOT EXISTS careerloop.applications (
     application_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id),
-    job_id UUID NOT NULL REFERENCES public.jobs(job_id),
+    job_id UUID NOT NULL REFERENCES careerloop.jobs(job_id),
     status TEXT DEFAULT 'prepared' CHECK (status IN ('prepared','applied','followup_due','recruiter_contacted','referral_requested','interview_scheduled','rejected','offer')),
     application_pack_id UUID,
     applied_at TIMESTAMPTZ,
@@ -265,18 +265,18 @@ CREATE TABLE IF NOT EXISTS public.applications (
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
-CREATE INDEX IF NOT EXISTS idx_apps_user ON public.applications(user_id);
-CREATE INDEX IF NOT EXISTS idx_apps_status ON public.applications(status);
-CREATE INDEX IF NOT EXISTS idx_apps_job ON public.applications(job_id);
+CREATE INDEX IF NOT EXISTS idx_apps_user ON careerloop.applications(user_id);
+CREATE INDEX IF NOT EXISTS idx_apps_status ON careerloop.applications(status);
+CREATE INDEX IF NOT EXISTS idx_apps_job ON careerloop.applications(job_id);
 
 -- ############################################################################
 -- 10. APPLICATION PACKS (new table)
 -- ############################################################################
-CREATE TABLE IF NOT EXISTS public.application_packs (
+CREATE TABLE IF NOT EXISTS careerloop.application_packs (
     pack_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id),
-    job_id UUID NOT NULL REFERENCES public.jobs(job_id),
-    run_id UUID NOT NULL REFERENCES public.background_runs(run_id),
+    job_id UUID NOT NULL REFERENCES careerloop.jobs(job_id),
+    run_id UUID NOT NULL REFERENCES careerloop.background_runs(run_id),
     resume_artifact_id TEXT,
     cover_note TEXT,
     recruiter_dm TEXT,
@@ -287,16 +287,16 @@ CREATE TABLE IF NOT EXISTS public.application_packs (
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
-CREATE INDEX IF NOT EXISTS idx_packs_user ON public.application_packs(user_id);
-CREATE INDEX IF NOT EXISTS idx_packs_job ON public.application_packs(job_id);
+CREATE INDEX IF NOT EXISTS idx_packs_user ON careerloop.application_packs(user_id);
+CREATE INDEX IF NOT EXISTS idx_packs_job ON careerloop.application_packs(job_id);
 
 -- ############################################################################
 -- 11. PEOPLE TO REACH (new table)
 -- ############################################################################
-CREATE TABLE IF NOT EXISTS public.people_to_reach (
+CREATE TABLE IF NOT EXISTS careerloop.people_to_reach (
     person_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    company_id UUID REFERENCES public.companies(id),
-    job_id UUID REFERENCES public.jobs(job_id),
+    company_id UUID REFERENCES careerloop.companies(id),
+    job_id UUID REFERENCES careerloop.jobs(job_id),
     name TEXT,
     title TEXT,
     linkedin_url TEXT,
@@ -306,48 +306,48 @@ CREATE TABLE IF NOT EXISTS public.people_to_reach (
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
-CREATE INDEX IF NOT EXISTS idx_people_company ON public.people_to_reach(company_id);
-CREATE INDEX IF NOT EXISTS idx_people_job ON public.people_to_reach(job_id);
+CREATE INDEX IF NOT EXISTS idx_people_company ON careerloop.people_to_reach(company_id);
+CREATE INDEX IF NOT EXISTS idx_people_job ON careerloop.people_to_reach(job_id);
 
 -- ############################################################################
 -- 12. OUTREACH MESSAGES (new table)
 -- ############################################################################
-CREATE TABLE IF NOT EXISTS public.outreach_messages (
+CREATE TABLE IF NOT EXISTS careerloop.outreach_messages (
     message_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id),
-    person_id UUID REFERENCES public.people_to_reach(person_id),
-    job_id UUID REFERENCES public.jobs(job_id),
-    application_id UUID REFERENCES public.applications(application_id),
+    person_id UUID REFERENCES careerloop.people_to_reach(person_id),
+    job_id UUID REFERENCES careerloop.jobs(job_id),
+    application_id UUID REFERENCES careerloop.applications(application_id),
     message_type TEXT CHECK (message_type IN ('recruiter_dm','referral_ask','followup','thank_you')),
     body TEXT,
     status TEXT DEFAULT 'drafted' CHECK (status IN ('drafted','sent','replied','ghosted')),
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
-CREATE INDEX IF NOT EXISTS idx_outreach_user ON public.outreach_messages(user_id);
-CREATE INDEX IF NOT EXISTS idx_outreach_status ON public.outreach_messages(status);
+CREATE INDEX IF NOT EXISTS idx_outreach_user ON careerloop.outreach_messages(user_id);
+CREATE INDEX IF NOT EXISTS idx_outreach_status ON careerloop.outreach_messages(status);
 
 -- ############################################################################
 -- 13. FOLLOWUPS (new table)
 -- ############################################################################
-CREATE TABLE IF NOT EXISTS public.followups (
+CREATE TABLE IF NOT EXISTS careerloop.followups (
     followup_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id),
-    application_id UUID REFERENCES public.applications(application_id),
-    person_id UUID REFERENCES public.people_to_reach(person_id),
+    application_id UUID REFERENCES careerloop.applications(application_id),
+    person_id UUID REFERENCES careerloop.people_to_reach(person_id),
     due_at TIMESTAMPTZ,
     status TEXT DEFAULT 'pending' CHECK (status IN ('pending','sent','completed','skipped')),
     draft_message TEXT,
     completed_at TIMESTAMPTZ,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
-CREATE INDEX IF NOT EXISTS idx_followups_user ON public.followups(user_id);
-CREATE INDEX IF NOT EXISTS idx_followups_due ON public.followups(due_at) WHERE status = 'pending';
+CREATE INDEX IF NOT EXISTS idx_followups_user ON careerloop.followups(user_id);
+CREATE INDEX IF NOT EXISTS idx_followups_due ON careerloop.followups(due_at) WHERE status = 'pending';
 
 -- ############################################################################
 -- 14. USER EVIDENCE (new table)
 -- ############################################################################
-CREATE TABLE IF NOT EXISTS public.user_evidence (
+CREATE TABLE IF NOT EXISTS careerloop.user_evidence (
     evidence_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id),
     evidence_type TEXT CHECK (evidence_type IN ('project','work_achievement','skill','education','certification','link')),
@@ -359,13 +359,13 @@ CREATE TABLE IF NOT EXISTS public.user_evidence (
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
-CREATE INDEX IF NOT EXISTS idx_evidence_user ON public.user_evidence(user_id);
-CREATE INDEX IF NOT EXISTS idx_evidence_type ON public.user_evidence(evidence_type);
+CREATE INDEX IF NOT EXISTS idx_evidence_user ON careerloop.user_evidence(user_id);
+CREATE INDEX IF NOT EXISTS idx_evidence_type ON careerloop.user_evidence(evidence_type);
 
 -- ############################################################################
 -- 15. USER PREFERENCES (new table)
 -- ############################################################################
-CREATE TABLE IF NOT EXISTS public.user_preferences (
+CREATE TABLE IF NOT EXISTS careerloop.user_preferences (
     user_id UUID PRIMARY KEY REFERENCES public.users(id),
     target_roles JSONB DEFAULT '[]',
     target_cities JSONB DEFAULT '[]',
@@ -382,31 +382,31 @@ CREATE TABLE IF NOT EXISTS public.user_preferences (
 -- ############################################################################
 -- 16. OUTCOME EVENTS — Learning loop (new table)
 -- ############################################################################
-CREATE TABLE IF NOT EXISTS public.outcome_events (
+CREATE TABLE IF NOT EXISTS careerloop.outcome_events (
     outcome_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id),
-    job_id UUID REFERENCES public.jobs(job_id),
-    application_id UUID REFERENCES public.applications(application_id),
+    job_id UUID REFERENCES careerloop.jobs(job_id),
+    application_id UUID REFERENCES careerloop.applications(application_id),
     event_type TEXT CHECK (event_type IN ('reply_received','interview_scheduled','rejected','ghosted','offer_received','followup_worked','recruiter_replied')),
     payload JSONB DEFAULT '{}',
     occurred_at TIMESTAMPTZ DEFAULT NOW(),
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
-CREATE INDEX IF NOT EXISTS idx_outcomes_user ON public.outcome_events(user_id);
-CREATE INDEX IF NOT EXISTS idx_outcomes_type ON public.outcome_events(event_type);
-CREATE INDEX IF NOT EXISTS idx_outcomes_occurred ON public.outcome_events(occurred_at);
+CREATE INDEX IF NOT EXISTS idx_outcomes_user ON careerloop.outcome_events(user_id);
+CREATE INDEX IF NOT EXISTS idx_outcomes_type ON careerloop.outcome_events(event_type);
+CREATE INDEX IF NOT EXISTS idx_outcomes_occurred ON careerloop.outcome_events(occurred_at);
 
 -- ############################################################################
 -- SESSIONS EXTENSION — active_context columns
 -- ############################################################################
 -- v1 sessions already has all these columns, so these are safe no-ops on v1.
 -- On a fresh DB where sessions was created without them, they add the columns.
-ALTER TABLE public.sessions ADD COLUMN IF NOT EXISTS active_artifact_type TEXT;
-ALTER TABLE public.sessions ADD COLUMN IF NOT EXISTS active_artifact_id TEXT;
-ALTER TABLE public.sessions ADD COLUMN IF NOT EXISTS active_job_id TEXT;
-ALTER TABLE public.sessions ADD COLUMN IF NOT EXISTS active_brief_id TEXT;
-ALTER TABLE public.sessions ADD COLUMN IF NOT EXISTS active_pack_id TEXT;
-ALTER TABLE public.sessions ADD COLUMN IF NOT EXISTS current_selection_index INTEGER;
+ALTER TABLE careerloop.sessions ADD COLUMN IF NOT EXISTS active_artifact_type TEXT;
+ALTER TABLE careerloop.sessions ADD COLUMN IF NOT EXISTS active_artifact_id TEXT;
+ALTER TABLE careerloop.sessions ADD COLUMN IF NOT EXISTS active_job_id TEXT;
+ALTER TABLE careerloop.sessions ADD COLUMN IF NOT EXISTS active_brief_id TEXT;
+ALTER TABLE careerloop.sessions ADD COLUMN IF NOT EXISTS active_pack_id TEXT;
+ALTER TABLE careerloop.sessions ADD COLUMN IF NOT EXISTS current_selection_index INTEGER;
 
 -- ############################################################################
 -- USERS EXTENSION — convenience columns for v2 features
@@ -427,72 +427,72 @@ DO $$
 BEGIN
     -- job_candidates
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Authenticated users can read job candidates') THEN
-        ALTER TABLE public.job_candidates ENABLE ROW LEVEL SECURITY;
+        ALTER TABLE careerloop.job_candidates ENABLE ROW LEVEL SECURITY;
         CREATE POLICY "Authenticated users can read job candidates"
-            ON public.job_candidates FOR SELECT USING (auth.role() = 'authenticated');
+            ON careerloop.job_candidates FOR SELECT USING (auth.role() = 'authenticated');
     END IF;
 
     -- user_job_relationships
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Users can manage their own job relationships') THEN
-        ALTER TABLE public.user_job_relationships ENABLE ROW LEVEL SECURITY;
+        ALTER TABLE careerloop.user_job_relationships ENABLE ROW LEVEL SECURITY;
         CREATE POLICY "Users can manage their own job relationships"
-            ON public.user_job_relationships FOR ALL USING (auth.uid() = user_id);
+            ON careerloop.user_job_relationships FOR ALL USING (auth.uid() = user_id);
     END IF;
 
     -- applications
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Users can manage their own applications') THEN
-        ALTER TABLE public.applications ENABLE ROW LEVEL SECURITY;
+        ALTER TABLE careerloop.applications ENABLE ROW LEVEL SECURITY;
         CREATE POLICY "Users can manage their own applications"
-            ON public.applications FOR ALL USING (auth.uid() = user_id);
+            ON careerloop.applications FOR ALL USING (auth.uid() = user_id);
     END IF;
 
     -- application_packs
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Users can manage their own application packs') THEN
-        ALTER TABLE public.application_packs ENABLE ROW LEVEL SECURITY;
+        ALTER TABLE careerloop.application_packs ENABLE ROW LEVEL SECURITY;
         CREATE POLICY "Users can manage their own application packs"
-            ON public.application_packs FOR ALL USING (auth.uid() = user_id);
+            ON careerloop.application_packs FOR ALL USING (auth.uid() = user_id);
     END IF;
 
     -- people_to_reach
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Authenticated users can read people to reach') THEN
-        ALTER TABLE public.people_to_reach ENABLE ROW LEVEL SECURITY;
+        ALTER TABLE careerloop.people_to_reach ENABLE ROW LEVEL SECURITY;
         CREATE POLICY "Authenticated users can read people to reach"
-            ON public.people_to_reach FOR SELECT USING (auth.role() = 'authenticated');
+            ON careerloop.people_to_reach FOR SELECT USING (auth.role() = 'authenticated');
     END IF;
 
     -- outreach_messages
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Users can manage their own outreach messages') THEN
-        ALTER TABLE public.outreach_messages ENABLE ROW LEVEL SECURITY;
+        ALTER TABLE careerloop.outreach_messages ENABLE ROW LEVEL SECURITY;
         CREATE POLICY "Users can manage their own outreach messages"
-            ON public.outreach_messages FOR ALL USING (auth.uid() = user_id);
+            ON careerloop.outreach_messages FOR ALL USING (auth.uid() = user_id);
     END IF;
 
     -- followups
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Users can manage their own followups') THEN
-        ALTER TABLE public.followups ENABLE ROW LEVEL SECURITY;
+        ALTER TABLE careerloop.followups ENABLE ROW LEVEL SECURITY;
         CREATE POLICY "Users can manage their own followups"
-            ON public.followups FOR ALL USING (auth.uid() = user_id);
+            ON careerloop.followups FOR ALL USING (auth.uid() = user_id);
     END IF;
 
     -- user_evidence
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Users can manage their own evidence') THEN
-        ALTER TABLE public.user_evidence ENABLE ROW LEVEL SECURITY;
+        ALTER TABLE careerloop.user_evidence ENABLE ROW LEVEL SECURITY;
         CREATE POLICY "Users can manage their own evidence"
-            ON public.user_evidence FOR ALL USING (auth.uid() = user_id);
+            ON careerloop.user_evidence FOR ALL USING (auth.uid() = user_id);
     END IF;
 
     -- user_preferences
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Users can manage their own preferences') THEN
-        ALTER TABLE public.user_preferences ENABLE ROW LEVEL SECURITY;
+        ALTER TABLE careerloop.user_preferences ENABLE ROW LEVEL SECURITY;
         CREATE POLICY "Users can manage their own preferences"
-            ON public.user_preferences FOR ALL USING (auth.uid() = user_id);
+            ON careerloop.user_preferences FOR ALL USING (auth.uid() = user_id);
     END IF;
 
     -- outcome_events
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Users can manage their own outcome events') THEN
-        ALTER TABLE public.outcome_events ENABLE ROW LEVEL SECURITY;
+        ALTER TABLE careerloop.outcome_events ENABLE ROW LEVEL SECURITY;
         CREATE POLICY "Users can manage their own outcome events"
-            ON public.outcome_events FOR ALL USING (auth.uid() = user_id);
+            ON careerloop.outcome_events FOR ALL USING (auth.uid() = user_id);
     END IF;
 END $$;
 

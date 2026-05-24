@@ -134,7 +134,7 @@ def migrate_session_store(sqlite_conn, pg_conn):
         return
 
     query = """
-    INSERT INTO public.sessions (
+    INSERT INTO careerloop.sessions (
         user_id, state, current_job_id, onboarding_step, temp_profile_data, updated_at
     ) VALUES %s ON CONFLICT (user_id) DO NOTHING
     """

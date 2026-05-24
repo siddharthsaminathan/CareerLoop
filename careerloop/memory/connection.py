@@ -60,7 +60,7 @@ class DatabaseManager:
                             cur.execute("ROLLBACK TO SAVEPOINT schema_cmd")
                             if "already exists" not in str(e):
                                 logger.warning(f"Schema cmd warning: {e}")
-                    cur.execute("UPDATE public.sessions SET state = 'PROFILE_COMPLETE' WHERE state = 'DAILY_BRIEF_SENT'")
+                    cur.execute("UPDATE careerloop.sessions SET state = 'PROFILE_COMPLETE' WHERE state = 'DAILY_BRIEF_SENT'")
                     cur.execute("SELECT pg_advisory_unlock(hashtext('careerloop_schema_init'))")
                 conn.commit()
         except Exception as e:

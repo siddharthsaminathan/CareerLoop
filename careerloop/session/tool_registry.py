@@ -100,7 +100,7 @@ class ToolRegistry:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
-                        "SELECT run_id, run_type, status FROM background_runs WHERE user_id = %s ORDER BY started_at DESC LIMIT 5",
+                        "SELECT run_id, run_type, status FROM careerloop.background_runs WHERE user_id = %s ORDER BY started_at DESC LIMIT 5",
                         (action.user_id,)
                     )
                     rows = cur.fetchall()
@@ -125,7 +125,7 @@ class ToolRegistry:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
-                        "SELECT master_cv_markdown, work_style_prefs FROM users WHERE id = %s",
+                        "SELECT master_cv_markdown, work_style_prefs FROM public.users WHERE id = %s",
                         (action.user_id,)
                     )
                     row = cur.fetchone()
@@ -171,17 +171,17 @@ class ToolRegistry:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cursor:
                     cursor.execute(
-                        "INSERT INTO background_runs (run_id, user_id, run_type, status, started_at) VALUES (%s, %s, 'scan', 'RUNNING', NOW())",
+                        "INSERT INTO careerloop.background_runs (run_id, user_id, run_type, status, started_at) VALUES (%s, %s, 'scan', 'RUNNING', NOW())",
                         (run_id, user_id)
                     )
                     cursor.execute(
-                        "INSERT INTO run_events (event_id, run_id, message) VALUES (%s, %s, 'Initializing scan runner...')",
+                        "INSERT INTO careerloop.run_events (event_id, run_id, message) VALUES (%s, %s, 'Initializing scan runner...')",
                         (str(uuid.uuid4()), run_id)
                     )
                     # Repository V2: structured scan lifecycle event
                     try:
                         cursor.execute(
-                            "INSERT INTO run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                            "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
                             (str(uuid.uuid4()), run_id, "Starting job discovery...", "SCAN_STARTED")
                         )
                     except Exception:
@@ -201,13 +201,13 @@ class ToolRegistry:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cursor:
                     cursor.execute(
-                        "INSERT INTO run_events (event_id, run_id, message) VALUES (%s, %s, 'Executing discovery scan...')",
+                        "INSERT INTO careerloop.run_events (event_id, run_id, message) VALUES (%s, %s, 'Executing discovery scan...')",
                         (str(uuid.uuid4()), run_id)
                     )
                     # Repository V2: source started event
                     try:
                         cursor.execute(
-                            "INSERT INTO run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                            "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
                             (str(uuid.uuid4()), run_id, "Searching configured portals for new job postings...", "SOURCE_STARTED")
                         )
                     except Exception:
@@ -222,13 +222,13 @@ class ToolRegistry:
                     with self.db.get_connection() as conn:
                         with conn.cursor() as cur:
                             cur.execute(
-                                "SELECT id, summary FROM daily_briefs WHERE user_id = %s AND date_str = %s ORDER BY date_str DESC LIMIT 1",
+                                "SELECT id, summary FROM careerloop.daily_briefs WHERE user_id = %s AND date_str = %s ORDER BY date_str DESC LIMIT 1",
                                 (user_id, today_str)
                             )
                             existing = cur.fetchone()
                             if existing:
                                 cur.execute(
-                                    "SELECT item_index, job_id, title, company, location, fit_score FROM daily_brief_items WHERE brief_id = %s ORDER BY item_index",
+                                    "SELECT item_index, job_id, title, company, location, fit_score FROM careerloop.daily_brief_items WHERE brief_id = %s ORDER BY item_index",
                                     (existing["id"],)
                                 )
                                 items = cur.fetchall()
@@ -237,7 +237,7 @@ class ToolRegistry:
                                     cards = []
                                     for item in items:
                                         idx = item["item_index"]
-                                        lines.append(f"{idx}. **{item['title']}** @ {item['company']} ({item['location']}) — **{item['fit_score']:.1f}/100**")
+                                        lines.append(f"{idx}. **{item['title']}** @ {item['company']} ({item['location']}) — **{(item.get('fit_score') or 0):.1f}/100**")
                                         cards.append({"index": idx, "job_id": item["job_id"], "title": item["title"], "company": item["company"], "fit_score": item["fit_score"]})
                                     lines.append("\nReply with a number to review details.")
 
@@ -246,7 +246,7 @@ class ToolRegistry:
                                         with self.db.get_connection() as conn2:
                                             with conn2.cursor() as cur2:
                                                 cur2.execute(
-                                                    "UPDATE background_runs SET status = 'COMPLETED', updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
+                                                    "UPDATE careerloop.background_runs SET status = 'COMPLETED', updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
                                                     (run_id,)
                                                 )
                                     except Exception:
@@ -268,15 +268,15 @@ class ToolRegistry:
                 with conn.cursor() as cursor:
                     # Clear out today's old briefs to stay clean
                     cursor.execute(
-                        "DELETE FROM daily_brief_items WHERE brief_id IN (SELECT id FROM daily_briefs WHERE user_id = %s AND date_str = %s)",
+                        "DELETE FROM careerloop.daily_brief_items WHERE brief_id IN (SELECT id FROM careerloop.daily_briefs WHERE user_id = %s AND date_str = %s)",
                         (user_id, today_str)
                     )
                     cursor.execute(
-                        "DELETE FROM daily_briefs WHERE user_id = %s AND date_str = %s",
+                        "DELETE FROM careerloop.daily_briefs WHERE user_id = %s AND date_str = %s",
                         (user_id, today_str)
                     )
                     cursor.execute(
-                        "INSERT INTO daily_briefs (id, user_id, date_str, run_id, summary) VALUES (%s, %s, %s, %s, %s)",
+                        "INSERT INTO careerloop.daily_briefs (id, user_id, date_str, run_id, summary) VALUES (%s, %s, %s, %s, %s)",
                         (brief_id, user_id, today_str, run_id, res.get("shortlist_text", ""))
                     )
 
@@ -287,7 +287,7 @@ class ToolRegistry:
                         breakdown = item["breakdown"]
 
                         cursor.execute(
-                            "INSERT INTO daily_brief_items (id, brief_id, item_index, job_id, title, company, location, fit_score, recommendation_reason, risk_summary, route_recommendation) "
+                            "INSERT INTO careerloop.daily_brief_items (id, brief_id, item_index, job_id, title, company, location, fit_score, recommendation_reason, risk_summary, route_recommendation) "
                             "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                             (
                                 str(uuid.uuid4()),
@@ -310,7 +310,7 @@ class ToolRegistry:
                             try:
                                 job = item["job"]
                                 score = item["score"]
-                                # Upsert into public.jobs (global cache)
+                                # Upsert into careerloop.jobs (global cache)
                                 JobRepository.upsert_job(
                                     job_id=job["job_id"],
                                     title=job.get("title", ""),
@@ -343,7 +343,7 @@ class ToolRegistry:
                         msg = f"MATCH #{idx} — {title} @ {company} — {location} — {score:.0f}/100"
                         try:
                             cursor.execute(
-                                "INSERT INTO run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                                "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
                                 (str(uuid.uuid4()), run_id, msg, "CANDIDATE_MATCHED")
                             )
                         except Exception:
@@ -363,7 +363,7 @@ class ToolRegistry:
                     for event_msg in summary_lines:
                         try:
                             cursor.execute(
-                                "INSERT INTO run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                                "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
                                 (str(uuid.uuid4()), run_id, event_msg, "scan_progress")
                             )
                         except Exception:
@@ -373,7 +373,7 @@ class ToolRegistry:
                     try:
                         filter_msg = f"Scan filter complete — {new_jobs} raw, {unique_added} new, {scored} scored"
                         cursor.execute(
-                            "INSERT INTO run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                            "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
                             (str(uuid.uuid4()), run_id, filter_msg, "FILTER_SUMMARY")
                         )
                     except Exception:
@@ -382,18 +382,18 @@ class ToolRegistry:
                     # Repository V2: brief created event
                     try:
                         cursor.execute(
-                            "INSERT INTO run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                            "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
                             (str(uuid.uuid4()), run_id, "Brief created with top matches.", "BRIEF_CREATED")
                         )
                     except Exception:
                         pass
 
                     cursor.execute(
-                        "UPDATE background_runs SET status = 'COMPLETED', updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
+                        "UPDATE careerloop.background_runs SET status = 'COMPLETED', updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
                         (run_id,)
                     )
                     cursor.execute(
-                        "INSERT INTO run_events (event_id, run_id, message) VALUES (%s, %s, 'Scan completed and daily brief persisted.')",
+                        "INSERT INTO careerloop.run_events (event_id, run_id, message) VALUES (%s, %s, 'Scan completed and daily brief persisted.')",
                         (str(uuid.uuid4()), run_id)
                     )
 
@@ -414,11 +414,11 @@ class ToolRegistry:
                 with self.db.get_connection() as conn:
                     with conn.cursor() as cursor:
                         cursor.execute(
-                            "UPDATE background_runs SET status = 'FAILED', updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
+                            "UPDATE careerloop.background_runs SET status = 'FAILED', updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
                             (run_id,)
                         )
                         cursor.execute(
-                            "INSERT INTO run_events (event_id, run_id, message) VALUES (%s, %s, %s)",
+                            "INSERT INTO careerloop.run_events (event_id, run_id, message) VALUES (%s, %s, %s)",
                             (str(uuid.uuid4()), run_id, f"Scan failed: {str(scan_err)}")
                         )
             except Exception:
@@ -473,7 +473,7 @@ class ToolRegistry:
                 with self.db.get_connection() as conn:
                     with conn.cursor() as cursor:
                         cursor.execute(
-                            "SELECT id, date_str, summary FROM daily_briefs WHERE user_id = %s ORDER BY date_str DESC LIMIT 1",
+                            "SELECT id, date_str, summary FROM careerloop.daily_briefs WHERE user_id = %s ORDER BY date_str DESC LIMIT 1",
                             (action.user_id,)
                         )
                         brief = cursor.fetchone()
@@ -481,7 +481,7 @@ class ToolRegistry:
                             brief_id = brief["id"]
                             cursor.execute(
                                 "SELECT item_index, job_id, title, company, location, fit_score, recommendation_reason, risk_summary, route_recommendation "
-                                "FROM daily_brief_items WHERE brief_id = %s ORDER BY item_index ASC",
+                                "FROM careerloop.daily_brief_items WHERE brief_id = %s ORDER BY item_index ASC",
                                 (brief_id,)
                             )
                             brief_items = cursor.fetchall()
@@ -502,7 +502,7 @@ class ToolRegistry:
             company = item["company"]
             location = item["location"] or "India"
             score = item["fit_score"]
-            lines.append(f"{idx}. **{title}** @ {company} ({location}) — **{score:.1f}/100**")
+            lines.append(f"{idx}. **{title}** @ {company} ({location}) — **{(score or 0):.1f}/100**")
             
             cards.append({
                 "index": idx,
@@ -547,7 +547,7 @@ class ToolRegistry:
                 with conn.cursor() as cursor:
                     cursor.execute(
                         "SELECT job_id, title, company, location, fit_score, recommendation_reason, risk_summary, route_recommendation "
-                        "FROM daily_brief_items WHERE brief_id = %s AND item_index = %s",
+                        "FROM careerloop.daily_brief_items WHERE brief_id = %s AND item_index = %s",
                         (brief_id, index)
                     )
                     item = cursor.fetchone()
@@ -561,7 +561,7 @@ class ToolRegistry:
             f"### {item['title']} @ {item['company']}\n"
             f"🆔 **Job ID:** {item['job_id']}\n"
             f"📍 **Location:** {item['location'] or 'N/A'}\n"
-            f"🎯 **Fit Score:** {item['fit_score']:.1f}/100\n\n"
+            f"🎯 **Fit Score:** {(item.get('fit_score') or 0):.1f}/100\n\n"
             f"💡 **Why it's a fit:** {item['recommendation_reason'] or 'N/A'}\n\n"
             f"⚠️ **Risks:** {item['risk_summary'] or 'N/A'}\n\n"
             f"🚀 **Action Playbook:** {item['route_recommendation'] or 'N/A'}\n\n"
@@ -618,7 +618,7 @@ class ToolRegistry:
                 {"label": "Title", "value": job.get("title", "N/A")},
                 {"label": "Company", "value": job.get("company", "N/A")},
                 {"label": "Location", "value": job.get("location", "N/A")},
-                {"label": "Fit Score", "value": f"{job.get('fit_score', 0):.1f}/100"},
+                {"label": "Fit Score", "value": f"{(job.get('fit_score') or 0):.1f}/100"},
             ]
 
             # Enrich with repository data if available
@@ -785,11 +785,11 @@ class ToolRegistry:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
-                        "INSERT INTO background_runs (run_id, user_id, run_type, status, started_at) VALUES (%s, %s, 'pack_generation', 'QUEUED', CURRENT_TIMESTAMP)",
+                        "INSERT INTO careerloop.background_runs (run_id, user_id, run_type, status, started_at) VALUES (%s, %s, 'pack_generation', 'QUEUED', CURRENT_TIMESTAMP)",
                         (run_id, action.user_id)
                     )
                     cur.execute(
-                        "INSERT INTO run_events (event_id, run_id, message) VALUES (%s, %s, 'Application pack queued for generation.')",
+                        "INSERT INTO careerloop.run_events (event_id, run_id, message) VALUES (%s, %s, 'Application pack queued for generation.')",
                         (str(uuid.uuid4()), run_id)
                     )
         except Exception as e:
@@ -823,11 +823,11 @@ class ToolRegistry:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
-                        "INSERT INTO background_runs (run_id, user_id, run_type, status, started_at) VALUES (%s, %s, 'pack_edit', 'QUEUED', CURRENT_TIMESTAMP)",
+                        "INSERT INTO careerloop.background_runs (run_id, user_id, run_type, status, started_at) VALUES (%s, %s, 'pack_edit', 'QUEUED', CURRENT_TIMESTAMP)",
                         (run_id, action.user_id)
                     )
                     cur.execute(
-                        "INSERT INTO run_events (event_id, run_id, message) VALUES (%s, %s, %s)",
+                        "INSERT INTO careerloop.run_events (event_id, run_id, message) VALUES (%s, %s, %s)",
                         (str(uuid.uuid4()), run_id, f"Edit requested: {instruction}")
                     )
         except Exception as e:
@@ -905,6 +905,6 @@ class ToolRegistry:
         if top_matches:
             text += "**Top Rated fits:**\n"
             for i, match in enumerate(top_matches, 1):
-                text += f"{i}. **{match['title']}** @ {match['company']} — **{match['fit_score']:.1f}/100**\n"
+                text += f"{i}. **{match['title']}** @ {match['company']} — **{(match.get('fit_score') or 0):.1f}/100**\n"
 
         return ResponseEnvelope(response_type="list", text=text)

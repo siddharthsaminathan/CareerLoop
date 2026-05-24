@@ -37,7 +37,7 @@ CREATE POLICY "Users can manage their own profile"
     ON public.users FOR ALL USING (auth.uid() = id);
 
 -- 2. SESSIONS Table (Replaces local session_store)
-CREATE TABLE IF NOT EXISTS public.sessions (
+CREATE TABLE IF NOT EXISTS careerloop.sessions (
     user_id UUID PRIMARY KEY REFERENCES public.users(id) ON DELETE CASCADE,
     state TEXT NOT NULL DEFAULT 'NEW_USER',
     current_job_id TEXT,
@@ -52,12 +52,12 @@ CREATE TABLE IF NOT EXISTS public.sessions (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
-ALTER TABLE public.sessions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE careerloop.sessions ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can manage their own session" 
-    ON public.sessions FOR ALL USING (auth.uid() = user_id);
+    ON careerloop.sessions FOR ALL USING (auth.uid() = user_id);
 
 -- 2a. DAILY_BRIEFS Tables
-CREATE TABLE IF NOT EXISTS public.daily_briefs (
+CREATE TABLE IF NOT EXISTS careerloop.daily_briefs (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
     date_str TEXT NOT NULL,
@@ -67,13 +67,13 @@ CREATE TABLE IF NOT EXISTS public.daily_briefs (
     UNIQUE(user_id, date_str)
 );
 
-ALTER TABLE public.daily_briefs ENABLE ROW LEVEL SECURITY;
+ALTER TABLE careerloop.daily_briefs ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can manage their own daily briefs" 
-    ON public.daily_briefs FOR ALL USING (auth.uid() = user_id);
+    ON careerloop.daily_briefs FOR ALL USING (auth.uid() = user_id);
 
-CREATE TABLE IF NOT EXISTS public.daily_brief_items (
+CREATE TABLE IF NOT EXISTS careerloop.daily_brief_items (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    brief_id UUID NOT NULL REFERENCES public.daily_briefs(id) ON DELETE CASCADE,
+    brief_id UUID NOT NULL REFERENCES careerloop.daily_briefs(id) ON DELETE CASCADE,
     item_index INTEGER NOT NULL,
     job_id TEXT NOT NULL,
     title TEXT,
@@ -86,17 +86,17 @@ CREATE TABLE IF NOT EXISTS public.daily_brief_items (
     UNIQUE(brief_id, item_index)
 );
 
-ALTER TABLE public.daily_brief_items ENABLE ROW LEVEL SECURITY;
+ALTER TABLE careerloop.daily_brief_items ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can manage their own daily brief items" 
-    ON public.daily_brief_items FOR ALL USING (
+    ON careerloop.daily_brief_items FOR ALL USING (
         EXISTS (
-            SELECT 1 FROM public.daily_briefs b 
-            WHERE b.id = public.daily_brief_items.brief_id AND b.user_id = auth.uid()
+            SELECT 1 FROM careerloop.daily_briefs b 
+            WHERE b.id = careerloop.daily_brief_items.brief_id AND b.user_id = auth.uid()
         )
     );
 
 -- 3. STRATEGIC_TRACKS Table
-CREATE TABLE IF NOT EXISTS public.strategic_tracks (
+CREATE TABLE IF NOT EXISTS careerloop.strategic_tracks (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
     track_identity TEXT NOT NULL,
@@ -109,15 +109,15 @@ CREATE TABLE IF NOT EXISTS public.strategic_tracks (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
-ALTER TABLE public.strategic_tracks ENABLE ROW LEVEL SECURITY;
+ALTER TABLE careerloop.strategic_tracks ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can manage their own tracks" 
-    ON public.strategic_tracks FOR ALL USING (auth.uid() = user_id);
+    ON careerloop.strategic_tracks FOR ALL USING (auth.uid() = user_id);
 
 -- 4. APPLICATION_LEDGER Table
-CREATE TABLE IF NOT EXISTS public.application_ledger (
+CREATE TABLE IF NOT EXISTS careerloop.application_ledger (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
-    track_id UUID REFERENCES public.strategic_tracks(id) ON DELETE SET NULL,
+    track_id UUID REFERENCES careerloop.strategic_tracks(id) ON DELETE SET NULL,
     job_fingerprint TEXT NOT NULL,
     title TEXT NOT NULL,
     company TEXT NOT NULL,
@@ -140,12 +140,12 @@ CREATE TABLE IF NOT EXISTS public.application_ledger (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
-ALTER TABLE public.application_ledger ENABLE ROW LEVEL SECURITY;
+ALTER TABLE careerloop.application_ledger ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can manage their own applications" 
-    ON public.application_ledger FOR ALL USING (auth.uid() = user_id);
+    ON careerloop.application_ledger FOR ALL USING (auth.uid() = user_id);
 
 -- 5. EVENT_TIMELINE Table
-CREATE TABLE IF NOT EXISTS public.event_timeline (
+CREATE TABLE IF NOT EXISTS careerloop.event_timeline (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
     event_type TEXT NOT NULL,
@@ -155,12 +155,12 @@ CREATE TABLE IF NOT EXISTS public.event_timeline (
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
-ALTER TABLE public.event_timeline ENABLE ROW LEVEL SECURITY;
+ALTER TABLE careerloop.event_timeline ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can manage their own events" 
-    ON public.event_timeline FOR ALL USING (auth.uid() = user_id);
+    ON careerloop.event_timeline FOR ALL USING (auth.uid() = user_id);
 
 -- 6. COMPANY_MEMORY Table (Per-user private company intelligence)
-CREATE TABLE IF NOT EXISTS public.company_memory (
+CREATE TABLE IF NOT EXISTS careerloop.company_memory (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
     company_normalized TEXT NOT NULL,
@@ -179,15 +179,15 @@ CREATE TABLE IF NOT EXISTS public.company_memory (
     UNIQUE(user_id, company_normalized)
 );
 
-ALTER TABLE public.company_memory ENABLE ROW LEVEL SECURITY;
+ALTER TABLE careerloop.company_memory ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can manage their own company memory" 
-    ON public.company_memory FOR ALL USING (auth.uid() = user_id);
+    ON careerloop.company_memory FOR ALL USING (auth.uid() = user_id);
 
 -- 7. POSITIONING_MEMORY Table
-CREATE TABLE IF NOT EXISTS public.positioning_memory (
+CREATE TABLE IF NOT EXISTS careerloop.positioning_memory (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
-    track_id UUID NOT NULL REFERENCES public.strategic_tracks(id) ON DELETE CASCADE,
+    track_id UUID NOT NULL REFERENCES careerloop.strategic_tracks(id) ON DELETE CASCADE,
     company_normalized TEXT NOT NULL,
     generated_narrative TEXT NOT NULL,
     framing_strategy TEXT DEFAULT '',
@@ -198,15 +198,15 @@ CREATE TABLE IF NOT EXISTS public.positioning_memory (
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
-ALTER TABLE public.positioning_memory ENABLE ROW LEVEL SECURITY;
+ALTER TABLE careerloop.positioning_memory ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can manage their own positioning memory" 
-    ON public.positioning_memory FOR ALL USING (auth.uid() = user_id);
+    ON careerloop.positioning_memory FOR ALL USING (auth.uid() = user_id);
 
 -- 8. GLOBAL TABLES (COMPANIES, JOBS)
 -- These are system-level tracking tables, readable by all authenticated users
 -- but writable only by the system/admin role.
 
-CREATE TABLE IF NOT EXISTS public.companies (
+CREATE TABLE IF NOT EXISTS careerloop.companies (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     domain_slug TEXT UNIQUE NOT NULL,
     name TEXT NOT NULL,
@@ -228,14 +228,14 @@ CREATE TABLE IF NOT EXISTS public.companies (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
-ALTER TABLE public.companies ENABLE ROW LEVEL SECURITY;
+ALTER TABLE careerloop.companies ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Authenticated users can read global companies" 
-    ON public.companies FOR SELECT USING (auth.role() = 'authenticated');
+    ON careerloop.companies FOR SELECT USING (auth.role() = 'authenticated');
 -- Writable only by service role (handled automatically bypassing RLS)
 
-CREATE TABLE IF NOT EXISTS public.jobs (
+CREATE TABLE IF NOT EXISTS careerloop.jobs (
     id TEXT PRIMARY KEY, -- sha256 fingerprint
-    company_id UUID REFERENCES public.companies(id) ON DELETE SET NULL,
+    company_id UUID REFERENCES careerloop.companies(id) ON DELETE SET NULL,
     canonical_id TEXT,
     title TEXT NOT NULL,
     company_name TEXT NOT NULL,
@@ -255,12 +255,12 @@ CREATE TABLE IF NOT EXISTS public.jobs (
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
-ALTER TABLE public.jobs ENABLE ROW LEVEL SECURITY;
+ALTER TABLE careerloop.jobs ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Authenticated users can read global jobs" 
-    ON public.jobs FOR SELECT USING (auth.role() = 'authenticated');
+    ON careerloop.jobs FOR SELECT USING (auth.role() = 'authenticated');
 
 -- 9. BACKGROUND_RUNS Table (Layer 3 State)
-CREATE TABLE IF NOT EXISTS public.background_runs (
+CREATE TABLE IF NOT EXISTS careerloop.background_runs (
     run_id TEXT PRIMARY KEY,
     user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
     run_type TEXT NOT NULL,
@@ -269,23 +269,23 @@ CREATE TABLE IF NOT EXISTS public.background_runs (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
-ALTER TABLE public.background_runs ENABLE ROW LEVEL SECURITY;
+ALTER TABLE careerloop.background_runs ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can view their own background runs" 
-    ON public.background_runs FOR SELECT USING (auth.uid() = user_id);
+    ON careerloop.background_runs FOR SELECT USING (auth.uid() = user_id);
 
 -- 10. RUN_EVENTS Table
-CREATE TABLE IF NOT EXISTS public.run_events (
+CREATE TABLE IF NOT EXISTS careerloop.run_events (
     event_id TEXT PRIMARY KEY,
-    run_id TEXT NOT NULL REFERENCES public.background_runs(run_id) ON DELETE CASCADE,
+    run_id TEXT NOT NULL REFERENCES careerloop.background_runs(run_id) ON DELETE CASCADE,
     message TEXT,
     timestamp TIMESTAMPTZ DEFAULT NOW()
 );
 
-ALTER TABLE public.run_events ENABLE ROW LEVEL SECURITY;
+ALTER TABLE careerloop.run_events ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can view events for their runs" 
-    ON public.run_events FOR SELECT USING (
+    ON careerloop.run_events FOR SELECT USING (
         EXISTS (
-            SELECT 1 FROM public.background_runs r
-            WHERE r.run_id = public.run_events.run_id AND r.user_id = auth.uid()
+            SELECT 1 FROM careerloop.background_runs r
+            WHERE r.run_id = careerloop.run_events.run_id AND r.user_id = auth.uid()
         )
     );
