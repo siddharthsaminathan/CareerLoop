@@ -1,11 +1,12 @@
 import subprocess
 import os
-from typing import Optional, Any
+from typing import Optional, Any, Annotated
 from typing_extensions import TypedDict
 
-from langchain_core.messages import BaseMessage
+from langchain_core.messages import AIMessage, BaseMessage
 from langchain_core.tools import tool
 from langgraph.graph import StateGraph, START, END
+from langgraph.graph.message import add_messages
 
 from careerloop.council.graph import get_council_graph
 from careerloop.session.states import UserState, normalize_user_state
@@ -63,7 +64,7 @@ class ConversationState(TypedDict):
     user_id: str
     current_state: UserState
     pending_job_id: Optional[str]
-    messages: list[BaseMessage]
+    messages: Annotated[list[BaseMessage], add_messages]
     # State used to invoke the council graph
     council_state: Optional[dict]
     assistant_response: Optional[str]
@@ -159,6 +160,7 @@ def _handle_active_state(state: dict, current_state: UserState, last_message: st
     return {
         "current_state": current_state,
         "assistant_response": reply,
+        "messages": [AIMessage(content=reply)],
         "temp_profile_data": profile_data,
     }
 
@@ -187,7 +189,11 @@ def intent_router(state: ConversationState) -> dict:
 
     messages = state.get("messages", [])
     if not messages:
-        return {"assistant_response": "I didn't receive a message. How can I help?"}
+        reply = "I didn't receive a message. How can I help?"
+        return {
+            "assistant_response": reply,
+            "messages": [AIMessage(content=reply)],
+        }
 
     last_message = (
         messages[-1].content if hasattr(messages[-1], "content") else str(messages[-1])
@@ -231,6 +237,7 @@ def intent_router(state: ConversationState) -> dict:
         return {
             "current_state": next_state,
             "assistant_response": reply,
+            "messages": [AIMessage(content=reply)],
             "temp_profile_data": session.temp_profile_data,
         }
 
@@ -246,25 +253,30 @@ def intent_router(state: ConversationState) -> dict:
     if current_state == UserState.REVIEWING_JOB:
         result = _intent_approve_or_reply(state, current_state, last_message)
         if result["intent"] == "APPROVE":
+            reply = result.get("reply") or "Approved! Generating your application pack now..."
             return {
                 "current_state": UserState.PACK_GENERATING,
-                "assistant_response": result.get("reply") or "Approved! Generating your application pack now...",
+                "assistant_response": reply,
+                "messages": [AIMessage(content=reply)],
                 "temp_profile_data": result.get("profile_data", {}),
             }
         elif result["intent"] == "GENERAL_CHAT":
             return {
                 "current_state": current_state,
                 "assistant_response": result["reply"],
+                "messages": [AIMessage(content=result["reply"])],
                 "temp_profile_data": result.get("profile_data", {}),
             }
         else:
+            reply = (
+                result.get("reply")
+                or "Would you like me to prepare an application pack for this job? "
+                "Type 'yes' or 'approve' to proceed, or ask me any questions about the role."
+            )
             return {
                 "current_state": current_state,
-                "assistant_response": (
-                    result.get("reply")
-                    or "Would you like me to prepare an application pack for this job? "
-                    "Type 'yes' or 'approve' to proceed, or ask me any questions about the role."
-                ),
+                "assistant_response": reply,
+                "messages": [AIMessage(content=reply)],
                 "temp_profile_data": result.get("profile_data", {}),
             }
 
@@ -273,9 +285,11 @@ def intent_router(state: ConversationState) -> dict:
     #           this to the pack_generation node before user sees it)
     # ═══════════════════════════════════════════════════════════════
     if current_state == UserState.PACK_GENERATING:
+        reply = "Your application pack is being generated. This may take a moment..."
         return {
             "current_state": current_state,
-            "assistant_response": "Your application pack is being generated. This may take a moment...",
+            "assistant_response": reply,
+            "messages": [AIMessage(content=reply)],
         }
 
     # ═══════════════════════════════════════════════════════════════
@@ -284,23 +298,27 @@ def intent_router(state: ConversationState) -> dict:
     if current_state == UserState.PACK_READY:
         result = _intent_approve_or_reply(state, current_state, last_message)
         if result["intent"] == "APPROVE":
+            reply = (
+                result.get("reply")
+                or "Approval received! Moving to application confirmation. "
+                "Type 'submit' or 'approve' to confirm submission."
+            )
             return {
                 "current_state": UserState.AWAITING_APPLICATION_CONFIRMATION,
-                "assistant_response": (
-                    result.get("reply")
-                    or "Approval received! Moving to application confirmation. "
-                    "Type 'submit' or 'approve' to confirm submission."
-                ),
+                "assistant_response": reply,
+                "messages": [AIMessage(content=reply)],
                 "temp_profile_data": result.get("profile_data", {}),
             }
         else:
+            reply = (
+                result.get("reply")
+                or "Your application pack is ready for review. "
+                "Type 'approve' to proceed with assisted application, or ask me any questions."
+            )
             return {
                 "current_state": current_state,
-                "assistant_response": (
-                    result.get("reply")
-                    or "Your application pack is ready for review. "
-                    "Type 'approve' to proceed with assisted application, or ask me any questions."
-                ),
+                "assistant_response": reply,
+                "messages": [AIMessage(content=reply)],
                 "temp_profile_data": result.get("profile_data", {}),
             }
 
@@ -310,22 +328,26 @@ def intent_router(state: ConversationState) -> dict:
     if current_state == UserState.AWAITING_APPLICATION_CONFIRMATION:
         result = _intent_approve_or_reply(state, current_state, last_message)
         if result["intent"] == "APPROVE":
+            reply = (
+                result.get("reply")
+                or "Application submitted! Your application has been logged and is now being tracked."
+            )
             return {
                 "current_state": UserState.APPLIED,
-                "assistant_response": (
-                    result.get("reply")
-                    or "Application submitted! Your application has been logged and is now being tracked."
-                ),
+                "assistant_response": reply,
+                "messages": [AIMessage(content=reply)],
                 "temp_profile_data": result.get("profile_data", {}),
             }
         else:
+            reply = (
+                result.get("reply")
+                or "Ready to submit this application. Type 'approve' or 'submit' to confirm, "
+                "or ask me any questions first."
+            )
             return {
                 "current_state": current_state,
-                "assistant_response": (
-                    result.get("reply")
-                    or "Ready to submit this application. Type 'approve' or 'submit' to confirm, "
-                    "or ask me any questions first."
-                ),
+                "assistant_response": reply,
+                "messages": [AIMessage(content=reply)],
                 "temp_profile_data": result.get("profile_data", {}),
             }
 
@@ -333,13 +355,15 @@ def intent_router(state: ConversationState) -> dict:
     # STATE 11: APPLIED
     # ═══════════════════════════════════════════════════════════════
     if current_state == UserState.APPLIED:
+        reply = (
+            "Your application has been logged and is being tracked. "
+            "Use /pipeline to check status or /brief for today's updates. "
+            "Type /scan to search for more opportunities."
+        )
         return {
             "current_state": current_state,
-            "assistant_response": (
-                "Your application has been logged and is being tracked. "
-                "Use /pipeline to check status or /brief for today's updates. "
-                "Type /scan to search for more opportunities."
-            ),
+            "assistant_response": reply,
+            "messages": [AIMessage(content=reply)],
         }
 
     # ═══════════════════════════════════════════════════════════════
@@ -350,12 +374,14 @@ def intent_router(state: ConversationState) -> dict:
         "Returning safe fallback message.",
         current_state, type(current_state).__name__,
     )
+    reply = (
+        "I'm not sure what to do next. Type /help for available commands "
+        "or /scan to search for new opportunities."
+    )
     return {
         "current_state": current_state,
-        "assistant_response": (
-            "I'm not sure what to do next. Type /help for available commands "
-            "or /scan to search for new opportunities."
-        ),
+        "assistant_response": reply,
+        "messages": [AIMessage(content=reply)],
     }
 
 def pack_generating_node(state: ConversationState) -> dict:
