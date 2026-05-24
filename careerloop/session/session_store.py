@@ -3,7 +3,7 @@ import json
 import logging
 from typing import Optional, Dict, Any
 from dataclasses import dataclass
-from careerloop.session.states import LEGACY_STATE_ALIASES, UserState, normalize_user_state
+from careerloop.session.states import UserState, normalize_user_state
 from careerloop.memory.connection import get_db_manager
 
 logger = logging.getLogger("careerloop.session.session_store")
@@ -96,7 +96,7 @@ class SessionStore:
             return UserState.PROFILE_COMPLETE
         if not self._has_value(profile_data.get("cv_content")):
             return UserState.ONBOARDING_WAITING_CV
-        return UserState.ONBOARDING_Q1_ROLES
+        return UserState.ONBOARDING_COLLECTING
 
     def _repair_session_state(self, user_id: str, state: UserState) -> None:
         try:
@@ -136,18 +136,26 @@ class SessionStore:
                 temp_profile_str = row['temp_profile_data']
                 
                 state = normalize_user_state(state_str)
-                if state_str in LEGACY_STATE_ALIASES:
-                    logger.info(f"Migrating legacy state '{state_str}' to '{state.value}' for user {user_id}.")
+
+                # normalize_user_state handles legacy migration internally.
+                # Persist the resolved state back to DB if it differs from the raw value.
+                if state_str and state_str != state.value:
+                    logger.info(f"Migrating session state '{state_str}' -> '{state.value}' for user {user_id}.")
                     self._repair_session_state(user_id, state)
 
-                if state is None:
+                # For truly unknown states that defaulted to IDLE, attempt recovery
+                # from profile data so persisted rows with garbage values don't get
+                # stuck in IDLE.
+                if state == UserState.IDLE and state_str and state_str != "IDLE":
                     profile_data = self._load_profile_data(user_id)
-                    state = self.infer_onboarding_state(profile_data)
-                    logger.warning(
-                        f"Unknown state '{state_str}' encountered in DB for user {user_id}. "
-                        f"Recovered to {state.value} from persisted profile completeness."
-                    )
-                    self._repair_session_state(user_id, state)
+                    inferred = self.infer_onboarding_state(profile_data)
+                    if inferred != UserState.IDLE:
+                        state = inferred
+                        logger.warning(
+                            f"Unknown state '{state_str}' encountered in DB for user {user_id}. "
+                            f"Recovered to {state.value} from persisted profile completeness."
+                        )
+                        self._repair_session_state(user_id, state)
 
                 temp_profile_data = None
                 if temp_profile_str:

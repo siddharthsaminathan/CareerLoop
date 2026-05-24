@@ -76,24 +76,24 @@ class TestConversationRouter(unittest.TestCase):
         self.router.route(incoming)
         
         session = self.session_store.get_session(user_id)
-        self.assertEqual(session.state, UserState.ONBOARDING_Q1_ROLES)
+        self.assertEqual(session.state, UserState.ONBOARDING_COLLECTING)
         self.assertIn("What professional roles", self.transport.sent_texts[-1]["text"])
 
         # 4. Answer Q1: Roles
         incoming = IncomingMessage(user_id=user_id, text="Python Platform Engineer, AI PM")
         self.router.route(incoming)
-        
+
         session = self.session_store.get_session(user_id)
-        self.assertEqual(session.state, UserState.ONBOARDING_Q2_CITIES)
+        self.assertEqual(session.state, UserState.ONBOARDING_COLLECTING)
         self.assertEqual(session.temp_profile_data["target_roles"], ["Python Platform Engineer", "AI PM"])
         self.assertIn("Which cities in India", self.transport.sent_texts[-1]["text"])
 
         # 5. Answer Q2: Cities
         incoming = IncomingMessage(user_id=user_id, text="Bangalore, Noida")
         self.router.route(incoming)
-        
+
         session = self.session_store.get_session(user_id)
-        self.assertEqual(session.state, UserState.ONBOARDING_Q3_SALARY)
+        self.assertEqual(session.state, UserState.ONBOARDING_COLLECTING)
         self.assertEqual(session.temp_profile_data["locations"], ["Bangalore", "Noida"])
         self.assertIn("salary floor", self.transport.sent_texts[-1]["text"])
 
@@ -102,23 +102,23 @@ class TestConversationRouter(unittest.TestCase):
         incoming = IncomingMessage(user_id=user_id, text="invalid salary text")
         self.router.route(incoming)
         session = self.session_store.get_session(user_id)
-        self.assertEqual(session.state, UserState.ONBOARDING_Q3_SALARY) # state unchanged
-        
+        self.assertEqual(session.state, UserState.ONBOARDING_COLLECTING) # state unchanged
+
         # Send valid answer
         incoming = IncomingMessage(user_id=user_id, text="₹25 LPA")
         self.router.route(incoming)
-        
+
         session = self.session_store.get_session(user_id)
-        self.assertEqual(session.state, UserState.ONBOARDING_Q4_NOTICE)
+        self.assertEqual(session.state, UserState.ONBOARDING_COLLECTING)
         self.assertEqual(session.temp_profile_data["salary_floor_lakhs"], 25)
         self.assertIn("notice period in", self.transport.sent_texts[-1]["text"])
 
         # 7. Answer Q4: Notice period days
         incoming = IncomingMessage(user_id=user_id, text="30 days")
         self.router.route(incoming)
-        
+
         session = self.session_store.get_session(user_id)
-        self.assertEqual(session.state, UserState.ONBOARDING_Q5_MODE)
+        self.assertEqual(session.state, UserState.ONBOARDING_COLLECTING)
         self.assertEqual(session.temp_profile_data["notice_period_days"], 30)
         self.assertIn("Select your Job Search Mode", self.transport.sent_buttons[-1]["text"])
 
