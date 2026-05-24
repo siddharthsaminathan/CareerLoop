@@ -7,6 +7,11 @@ from careerloop.llm_chat import OnboardingAgent
 
 logger = logging.getLogger("careerloop.onboarding.onboarding_flow")
 
+REQUIRED_FIELDS = [
+    "target_roles", "target_cities", "salary_expectations",
+    "notice_period", "aggressiveness",
+]
+
 class OnboardingFlow:
     """
     Handles the state transitions for a new user through the questionnaire.
@@ -28,38 +33,55 @@ class OnboardingFlow:
                 raise RuntimeError(f"Failed to persist session state {session.state}. Check database connection.")
 
         if state == UserState.PROFILE_COMPLETE:
-            return (
-                "Your profile is already set up. Type `/status` to review it, `/brief` to see today's brief, or `/scan` to search for new jobs.",
-                UserState.PROFILE_COMPLETE,
+            reply = (
+                f"Your profile is already set up! You're targeting **{data.get('target_roles', 'N/A')}** roles "
+                f"in **{data.get('target_cities', 'N/A')}**.\n\n"
+                "What would you like to do? Type `/brief` for today's jobs, `/scan` to search, or just chat with me."
             )
+            return (reply, UserState.PROFILE_COMPLETE)
 
         if state.name.startswith("ONBOARDING_"):
             updated_data, reply, is_complete = self.agent.process(text, data)
             session.temp_profile_data = updated_data
             
             if is_complete:
+                # Validate all required fields are actually populated (not just LLM saying "done")
+                missing = [f for f in REQUIRED_FIELDS if not updated_data.get(f)]
+                if missing:
+                    reply = f"I still need a few more details: {', '.join(missing).replace('_', ' ')}. Could you share those?"
+                    if not self.session_store.save_session(session):
+                        raise RuntimeError(f"Failed to persist session state {session.state}.")
+                    return (reply, state)
+
+                # All required fields present — truly complete
                 # 1. Save final profile to public.users table in DB
                 self._commit_profile_to_db(session.user_id, updated_data)
-                
+
                 # 2. Update portals.yml with target roles
                 self._update_portals_yml(updated_data.get('target_roles', ''))
-                
+
                 # Clean up temp data
                 session.temp_profile_data = None
                 session.state = UserState.PROFILE_COMPLETE
                 if not self.session_store.save_session(session):
                     raise RuntimeError(f"Failed to persist session state {session.state}. Check database connection.")
 
-                return (
-                    reply + "\n\nAwesome! Your profile is set up. Type `/scan` when you want me to search for matching jobs.",
-                    UserState.PROFILE_COMPLETE
+                reply = (
+                    f"Your profile is complete! Here's a summary:\n"
+                    f"• **Roles:** {updated_data.get('target_roles', 'N/A')}\n"
+                    f"• **Cities:** {updated_data.get('target_cities', 'N/A')}\n"
+                    f"• **Salary:** {updated_data.get('salary_expectations', 'N/A')}\n"
+                    f"• **Notice:** {updated_data.get('notice_period', 'N/A')}\n"
+                    f"• **Mode:** {updated_data.get('aggressiveness', 'N/A')}\n\n"
+                    f"I'll now match you with relevant jobs. Type `/scan` to start searching or ask me for your daily briefing."
                 )
+                return (reply, UserState.PROFILE_COMPLETE)
             else:
                 if not self.session_store.save_session(session):
                     raise RuntimeError(f"Failed to persist session state {session.state}. Check database connection.")
                 return (reply, state)
 
-        return ("I'm not sure how to handle that right now.", state)
+        return ("I didn't quite catch that. Could you rephrase? I'm collecting your profile details.", state)
 
     def _update_portals_yml(self, target_roles: str):
         """Parse target roles and inject them into portals.yml."""
