@@ -43,19 +43,35 @@ class TransportAdapter(ABC):
             response = self.supervisor_graph.invoke(graph_input, config=config)
 
             if response and hasattr(response, "get"):
-                # First preference: explicit assistant response field.
                 assistant_response = response.get("assistant_response")
                 if assistant_response:
                     self.send_text(event.user_id, str(assistant_response))
                     return response
 
-                # Backward-compatible fallback to message list.
-                messages = response.get("messages", [])
-                if messages:
-                    last_msg = messages[-1]
-                    content = last_msg.content if hasattr(last_msg, "content") else str(last_msg)
-                    self.send_text(event.user_id, content)
+                # CRITICAL: no assistant_response — graph node returned incomplete state.
+                # NEVER echo the user's message back. Log and return safe error.
+                import logging
+                _log = logging.getLogger("careerloop.transport.base")
+                _log.critical(
+                    "supervisor_graph returned no assistant_response. "
+                    "state=%s user_id=%s",
+                    response.get("current_state"),
+                    event.user_id,
+                )
+                self.send_text(
+                    event.user_id,
+                    "I hit an internal routing issue. Your data is safe — try again or type /help.",
+                )
                 return response
+
+            # Backward-compatible fallback: message list — only used when
+            # assistant_response is absent but messages were explicitly set by the graph.
+            messages = response.get("messages", [])
+            if messages:
+                last_msg = messages[-1]
+                content = last_msg.content if hasattr(last_msg, "content") else str(last_msg)
+                self.send_text(event.user_id, content)
+            return response
         return None
 
     @abstractmethod
