@@ -213,6 +213,34 @@ class ToolRegistry:
                     except Exception:
                         pass
 
+            # Cache-hit: check careerloop.jobs before external scan
+            _cache_hit = 0
+            try:
+                from careerloop.memory.repository_v2 import get_fresh_cached_jobs
+                _prefs = {}
+                try:
+                    with self.db.get_connection() as _pconn:
+                        with _pconn.cursor() as _pcur:
+                            _pcur.execute("SELECT work_style_prefs FROM public.users WHERE id = %s", (user_id,))
+                            _prow = _pcur.fetchone()
+                            if _prow and _prow.get("work_style_prefs"):
+                                import json as _json
+                                _prefs = _json.loads(_prow["work_style_prefs"]) if isinstance(_prow["work_style_prefs"], str) else _prow["work_style_prefs"]
+                except Exception:
+                    pass
+                _cached = get_fresh_cached_jobs(_prefs, freshness_window_days=14, limit=20)
+                _cache_hit = len(_cached)
+                if _cache_hit >= 5:
+                    logger.info(f"Cache-hit: {_cache_hit} fresh cached jobs -- skipping external scan")
+                    with self.db.get_connection() as _cconn:
+                        with _cconn.cursor() as _ccur:
+                            _ccur.execute(
+                                "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                                (str(uuid.uuid4()), run_id, f"Cache-hit: {_cache_hit} fresh jobs found in global cache", "CACHE_HIT")
+                            )
+            except Exception as _cherr:
+                logger.debug(f"Cache-hit check skipped: {_cherr}")
+
             res = runner.run(do_scan=True)
             today_str = datetime.now(timezone.utc).date().isoformat()
 
@@ -402,7 +430,34 @@ class ToolRegistry:
                                 title = job.get("title", "")
                                 company = job.get("company", "")
                                 location = job.get("location", "")
+                                source = job.get("source", "portal_scan")
                                 source_url = job.get("source_url") or job.get("url", "")
+
+                                # Parse Cutshort format: "BigRio is hiring AI Engineer job in Chennai | Cutshort"
+                                if not company and "|" in title:
+                                    parts = title.rsplit("|", 1)
+                                    if len(parts) == 2:
+                                        title_part = parts[0].strip()
+                                        source_part = parts[1].strip()
+                                        match = re.match(r"(.+?)\s+is\s+hiring\s+(.+?)(?:\s+job)?\s+in\s+(.+?)$", title_part, re.IGNORECASE)
+                                        if match:
+                                            company = match.group(1).strip()
+                                            title = match.group(2).strip()
+                                            parsed_location = match.group(3).strip()
+                                            if parsed_location:
+                                                location = parsed_location
+                                            source = source_part if source_part else "Cutshort"
+                                        else:
+                                            if " is hiring " in title_part.lower():
+                                                hire_split = title_part.lower().split(" is hiring ", 1)
+                                                company = hire_split[0].strip()
+                                                remaining = hire_split[1].strip() if len(hire_split) > 1 else ""
+                                                loc_match = re.search(r"\s+in\s+(.+?)$", remaining, re.IGNORECASE)
+                                                if loc_match:
+                                                    location = loc_match.group(1).strip()
+                                                    title = remaining[:loc_match.start()].strip()
+                                                else:
+                                                    title = remaining
 
                                 fp_raw = f"{title.strip().lower()}|{company.strip().lower()}|{location.strip().lower()}"
                                 fingerprint = _hashlib.sha256(fp_raw.encode()).hexdigest()
@@ -411,7 +466,7 @@ class ToolRegistry:
                                 _v3_cur.execute(
                                     "INSERT INTO careerloop.job_candidates (candidate_id, run_id, source, raw_title, raw_company, raw_location, raw_url, raw_snippet, raw_payload, extraction_status) "
                                     "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, 'accepted')",
-                                    (str(uuid.uuid4()), run_id, job.get("source", "portal_scan"),
+                                    (str(uuid.uuid4()), run_id, source,
                                      title, company, location, source_url, (jd_text or "")[:500], json.dumps(job)))
                                 _v3_candidates += 1
 
@@ -421,9 +476,40 @@ class ToolRegistry:
                                     "INSERT INTO careerloop.jobs (id, source, title, company_name, location, content_fingerprint, jd_text, is_india_role, status, scraped_at, apply_url) "
                                     "VALUES (%s, %s, %s, %s, %s, %s, %s, true, 'active', NOW(), %s) "
                                     "ON CONFLICT (content_fingerprint) DO UPDATE SET last_seen_at = NOW(), updated_at = NOW(), apply_url = EXCLUDED.apply_url",
-                                    (global_job_id, job.get("source", "portal_scan"), title, company,
+                                    (global_job_id, source, title, company,
                                      location, fingerprint, (jd_text or "")[:5000], source_url))
                                 _v3_jobs += 1
+
+                                # Upsert company (normalize name for dedup)
+                                if company:
+                                    normalized = re.sub(r"[^a-z0-9]+", "", company.lower())
+                                    try:
+                                        _v3_cur.execute(
+                                            "INSERT INTO careerloop.companies (id, domain_slug, name, normalized_name, first_seen_at, last_updated_at) "
+                                            "VALUES (%s, %s, %s, %s, NOW(), NOW()) "
+                                            "ON CONFLICT (domain_slug) DO UPDATE SET last_updated_at = NOW(), name = EXCLUDED.name",
+                                            (str(uuid.uuid4()), normalized[:50], company, normalized)
+                                        )
+                                        _v3_cur.execute("SELECT id FROM careerloop.companies WHERE domain_slug = %s", (normalized[:50],))
+                                        company_row = _v3_cur.fetchone()
+                                        if company_row:
+                                            company_id = company_row["id"]
+                                            _v3_cur.execute(
+                                                "UPDATE careerloop.jobs SET company_id = %s, company_name = %s, location = %s WHERE id = %s",
+                                                (company_id, company, location, global_job_id)
+                                            )
+                                        # Minimal company_memory row
+                                        try:
+                                            _v3_cur.execute(
+                                                "INSERT INTO careerloop.company_memory (id, user_id, company_normalized, company_intelligence, startup_risk, created_at, updated_at) "
+                                                "VALUES (%s, %s, %s, '', 5.0, NOW(), NOW()) "
+                                                "ON CONFLICT DO NOTHING",
+                                                (str(uuid.uuid4()), user_id, normalized)
+                                            )
+                                        except Exception:
+                                            pass
+                                    except Exception as _ce:
+                                        logger.debug(f"company upsert skipped: {_ce}")
 
                                 # Stage 3: user_job_relationships
                                 rejection = breakdown.get("rejected") or breakdown.get("rejection_reason")
