@@ -365,24 +365,24 @@ working together to turn openings into interviews.
 | Verification & filtering | 78% | 🟢 Active | India filter at 3 choke points (entry, get_top_scored, shortlist). Block G not hoisted. |
 | Opportunity scoring (14-dim) | 62% | 🟡 Active | Scoring caps (CPU=50, LLM=15). Token accounting per call. _get_score() unified schema. |
 | Decision compression / triage | 20% | 🔴 Gap | DECISION_COMPRESSION_VISION.md written. CEO owns UX build. |
-| Career state system (modes) | 35% | 🟡 Active | DAILY_BRIEF_SENT → PROFILE_COMPLETE. Legacy aliasing. Profile recovery. Onboarding save checks. |
+| Career state system (modes) | 60% | 🟡 Active | 11 real states with legacy migration. All have setter+handler+test. Natural approval phrases. No echo. |
 | Company intelligence | 75% | 🟢 Active | MECE D1-D5 vectors; S3 cache; JD_ONLY fallback |
 | Positioning engine | 38% | 🟡 Active | S6 wired; narrative angle, objection preempt, must_haves all reach S7 |
 | Resume Council (v3) | 93% | 🟢 Active | Job-aware chunking; prose fallback; 42 tests; ceiling hit |
 | Humanizer layer | 65% | 🟡 Active | LLM rewrite active; Truth Guard UNSUPPORTED matching too aggressive |
 | Resume rendering (templates) | 90% | 🟢 Active | 10 templates; normalizer handles 3 user CV formats; automated validation; PackageAssembler renders high-fidelity PDFs |
-| Validator / QA | 80% | 🟢 Active | 42 stabilization + 22 integration; automated pre-render validation; E2E package assembly fully validated |
+| Validator / QA | 83% | 🟢 Active | 42 stabilization + 22 integration + 14 chat runtime regression. All passing. |
 | Application execution | 18% | 🔴 Gap | modes/apply.md prototype; Kimi bridge scaffold exists; real browser/Webbridge integration not verified |
 | Assisted apply bridge | 5% | ⚫ Scaffold | Kimi/Hermes executor mock only; no unattended submit |
 | Follow-up system | 25% | 🔴 Gap | Ledger auto-schedules; no message generation yet |
 | Interview memory | 25% | 🟡 Active | interview-playbook skill; auto-extracts from venting; no rejection post-mortem |
-| Persistent memory graph | 40% | 🟡 Active | SQLite sessions+users tables. _tbl() dual-mode. save_session checked. Ledger UUID-IDs deduped. |
-| WhatsApp/transport UX | 55% | 🟡 Active | TransportAdapter + Terminal. /brief + /scan commands. Structured JSONL logging. |
+| Persistent memory graph | 48% | 🟡 Active | Single session load. Profile hydration from DB. add_messages conversation history. Ledger UUID-IDs deduped. |
+| WhatsApp/transport UX | 65% | 🟡 Active | Echo fallback removed. Safe errors. CommandRouter unified routing. /brief + /scan + /pipeline + /status. |
 | Gmail memory | 0% | ⚫ Not started | ROI Vision's #1 priority — never touched |
-| Multi-user onboarding | 5% | ⚫ Not started | Session persistence works locally. Profile recovery from DB. CV-upload flow still needed. |
+| Multi-user onboarding | 15% | 🔴 Gap | is_complete validated against required fields. Hardcoded strings removed. CV-upload flow still needed. |
 | Monetization logic | 30% | 🟡 Active | Strategic understanding solid; no billing/paywall |
  
-**Overall product maturity: ~66-69% of vision.** Architecture audit complete (22/22 fixes). Council ceiling hit (93%). Geo filter proven. Brief persistence shipped. Critical gap: transport delivery + multi-user onboarding remain P0.
+**Overall product maturity: ~68-71% of vision.** Chat runtime is real — no echo, no slop, all 11 states reachable, 14 regression tests. Council ceiling hit (93%). Geo filter proven. Critical gap: transport delivery loop + multi-user onboarding remain P0.
  
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
