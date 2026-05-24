@@ -107,38 +107,50 @@ def _format_envelope(envelope: ResponseEnvelope) -> str:
         parts.append(envelope.text)
 
     if envelope.cards:
-        cards_md = "\n".join(
-            f"**{c.get('label', '')}:** {c.get('value', '')}"
-            for c in envelope.cards
-            if c.get("label") and c.get("value") is not None
-        )
-        if cards_md:
-            parts.append(cards_md)
+        lines = []
+        for c in envelope.cards:
+            label = c.get("label") or c.get("command") or c.get("name", "")
+            value = c.get("value") or c.get("description") or c.get("status", "")
+            if label and value is not None:
+                lines.append(f"**{label}:** {value}")
+            elif label:
+                lines.append(f"**{label}**")
+        if lines:
+            parts.append("\n".join(lines))
 
     return "\n\n".join(parts) if parts else ""
 
 
 def _generate_chat_reply(messages: list) -> str:
-    """Fallback: generate a conversational reply when no tool handles the input."""
+    """Generate a conversational reply when no tool handles the input."""
     try:
         from careerloop.llm_chat import LLMChatAgent
         agent = LLMChatAgent()
-        history = "\n".join(
-            f"{'User' if i % 2 == 0 else 'Assistant'}: {m.content if hasattr(m, 'content') else str(m)}"
-            for i, m in enumerate(messages[-6:])
-        ) if messages else "(no history)"
+        # Build conversation context from last 6 messages
+        history_parts = []
+        for m in (messages or [])[-6:]:
+            content = m.content if hasattr(m, "content") else str(m)
+            history_parts.append(content)
+        context = "\n".join(history_parts) if history_parts else "(no prior messages)"
 
-        prompt = (
-            "You are CareerLoop, a career execution assistant. "
-            "Respond naturally and helpfully to the user. "
-            "Keep it brief and conversational.\n\n"
-            f"Conversation:\n{history}\n\nAssistant:"
+        system = (
+            "You are CareerLoop, a career execution assistant for Indian professionals. "
+            "Be helpful, concise, and conversational. Keep responses to 2-3 sentences. "
+            "Never output JSON — always respond in natural English."
         )
-        raw = agent._call_api(
-            "You are CareerLoop. Be helpful, concise, and conversational.",
-            prompt,
-        )
-        return raw.strip() if raw else "How can I help with your job search?"
+        user = f"Conversation:\n{context}\n\nRespond naturally to the last message."
+        raw = agent._call_api(system, user)
+
+        # Strip JSON if the model accidentally returned structured output
+        text = (raw or "").strip()
+        if text.startswith("{") and text.endswith("}"):
+            import json as _json
+            try:
+                parsed = _json.loads(text)
+                text = parsed.get("reply") or parsed.get("text") or parsed.get("reasoning") or ""
+            except Exception:
+                pass
+        return text if text else "How can I help with your job search today?"
     except Exception:
         return "I'm here to help with your job search. Ask me for your daily brief, pipeline, or to scan for new jobs!"
 
