@@ -161,12 +161,13 @@ Analyze the user's message and their profile context.
 Determine the user's intent from the following list:
 - SHOW_PIPELINE: User wants to see their current jobs, daily briefing, pipeline, or shortlist. "daily briefing", "show my jobs", "pipeline status", "what jobs do I have" → SHOW_PIPELINE.
 - SCAN_JOBS: User EXPLICITLY wants to run a NEW scan to find fresh jobs. Only use this for explicit scan/search requests like "scan for new jobs", "find me new jobs", "run a search".
+- APPROVE: User is approving, confirming, or saying yes to proceed. "yes", "approve", "looks good", "prepare this", "apply to this one", "go ahead", "do it", "let's go", "submit" → APPROVE.
 - GENERAL_CHAT: User is just chatting or asking a general question.
 
 Return ONLY valid JSON in the following format:
 {
   "intent": "SHOW_PIPELINE",
-  "reply": "If GENERAL_CHAT, put your intelligent conversational response here. If SHOW_PIPELINE, put a brief confirmation like 'Let me pull up your pipeline...'."
+  "reply": "If GENERAL_CHAT, put your conversational response here. For other intents, a brief confirmation."
 }"""
 
     def process(self, user_message: str, profile_data: Dict[str, Any]) -> Tuple[str, str]:

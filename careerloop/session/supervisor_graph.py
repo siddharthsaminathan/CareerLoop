@@ -71,48 +71,161 @@ class ConversationState(TypedDict):
 
 # ── Nodes ──
 
+def _hydrate_profile(state: dict) -> dict:
+    """Reload temp_profile_data from DB if the graph state is empty."""
+    profile_data = state.get("temp_profile_data") or {}
+    if not profile_data:
+        try:
+            from careerloop.session.session_store import SessionStore
+            from careerloop.memory.connection import DatabaseManager
+            db = DatabaseManager(os.getenv("DATABASE_URL"))
+            store = SessionStore(db)
+            session = store.get_session(state.get("user_id", "unknown"))
+            if session.temp_profile_data:
+                profile_data = session.temp_profile_data
+        except Exception:
+            pass
+    return profile_data
+
+
+def _handle_active_state(state: dict, current_state: UserState, last_message: str) -> dict:
+    """Shared handler for PROFILE_COMPLETE, SCAN_RUNNING, and BRIEF_AVAILABLE.
+
+    Uses ChatIntentAgent to classify intent, then routes to SCAN_JOBS,
+    SHOW_PIPELINE, or GENERAL_CHAT. Never auto-executes the pipeline.
+    """
+    from careerloop.llm_chat import ChatIntentAgent
+
+    profile_data = _hydrate_profile(state)
+    agent = ChatIntentAgent()
+    intent, reply = agent.process(last_message, profile_data)
+
+    if intent == "SCAN_JOBS":
+        # Check if a brief already exists for today
+        from datetime import datetime as _dt, timezone as _tz
+        today_str = _dt.now(_tz.utc).date().isoformat()
+        brief_path = os.path.join(
+            os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")),
+            "output", "daily_briefs", f"{today_str}.md",
+        )
+        if os.path.exists(brief_path):
+            reply = (
+                "Today's brief is already ready! Type `/brief` to see it, "
+                "or `/scan` to run a fresh search."
+            )
+        else:
+            reply = (
+                "Ready to scan for new jobs matching your profile. "
+                "Type `/scan` to start -- this will search all configured job boards and score "
+                "results against your fit criteria.\n\n"
+                "Tip: `/scan` runs ~156 board queries and takes 60-120 seconds."
+            )
+    elif intent == "SHOW_PIPELINE":
+        try:
+            from careerloop.application_ledger import ApplicationLedger
+            root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+            ledger = ApplicationLedger(root)
+
+            status_counts = {}
+            for e in ledger.entries:
+                s = e.get("status", "UNKNOWN")
+                status_counts[s] = status_counts.get(s, 0) + 1
+
+            top = ledger.get_top_scored(min_score=1, limit=5)
+
+            reply = "**Your Pipeline**\n\n"
+            reply += "**Status Summary:**\n"
+            for status, count in sorted(status_counts.items()):
+                reply += f"  - {status}: {count}\n"
+
+            if top:
+                reply += "\n**Top Matches:**\n"
+                for i, job in enumerate(top, 1):
+                    score = ledger._get_score(job) or 0
+                    reply += f"  {i}. **{job.get('title','?')}** @ {job.get('company','?')} -- {score:.0f}/100\n"
+            else:
+                reply += "\nNo scored jobs yet. Type `/scan` to search for new opportunities."
+
+            from datetime import datetime, timezone
+            today_str = datetime.now(timezone.utc).date().isoformat()
+            brief_path = os.path.join(root, "output", "daily_briefs", f"{today_str}.md")
+            if os.path.exists(brief_path):
+                reply += f"\n\nToday's brief is available at: {brief_path}"
+        except Exception as e:
+            reply = f"Could not load pipeline: {e}"
+
+    # GENERAL_CHAT returns the ChatIntentAgent reply as-is
+
+    return {
+        "current_state": current_state,
+        "assistant_response": reply,
+        "temp_profile_data": profile_data,
+    }
+
+
+def _intent_approve_or_reply(state: dict, current_state: UserState, last_message: str) -> dict:
+    """Use ChatIntentAgent to check for APPROVE intent, else return the LLM reply."""
+    from careerloop.llm_chat import ChatIntentAgent
+    profile_data = _hydrate_profile(state)
+    agent = ChatIntentAgent()
+    intent, reply = agent.process(last_message, profile_data)
+    return {
+        "intent": intent,
+        "reply": reply,
+        "profile_data": profile_data,
+    }
+
+
 def intent_router(state: ConversationState) -> dict:
-    """Classify free-form user messages against the current state."""
+    """Classify free-form user messages against the current state.
+
+    All 11 UserState values have an explicit handler path.
+    Every return dict includes assistant_response.
+    """
+    import logging
+    _logger = logging.getLogger("careerloop.session.supervisor_graph")
+
     messages = state.get("messages", [])
     if not messages:
-        return {}
+        return {"assistant_response": "I didn't receive a message. How can I help?"}
 
     last_message = (
         messages[-1].content if hasattr(messages[-1], "content") else str(messages[-1])
     )
     current_state = normalize_user_state(state.get("current_state", UserState.IDLE)) or UserState.IDLE
 
-    if current_state == UserState.IDLE or current_state.name.startswith("ONBOARDING_"):
-        import os
+    # ═══════════════════════════════════════════════════════════════
+    # STATE 1-3: IDLE + ONBOARDING_WAITING_CV + ONBOARDING_COLLECTING
+    # ═══════════════════════════════════════════════════════════════
+    if current_state in (UserState.IDLE, UserState.ONBOARDING_WAITING_CV, UserState.ONBOARDING_COLLECTING):
         from careerloop.session.session_store import SessionStore, Session
         from careerloop.memory.connection import DatabaseManager
         from careerloop.onboarding.onboarding_flow import OnboardingFlow
-        
+
         db = DatabaseManager(os.getenv("DATABASE_URL"))
         store = SessionStore(db)
-        
-        # Ensure user exists before using SessionStore
+
         user_id = state.get("user_id", "unknown")
         try:
             with db.get_connection() as conn:
                 with conn.cursor() as cur:
-                    cur.execute("INSERT INTO public.users (id, email) VALUES (%s, %s) ON CONFLICT (id) DO NOTHING", (user_id, f"{user_id}@example.com"))
+                    cur.execute(
+                        "INSERT INTO public.users (id, email) VALUES (%s, %s) ON CONFLICT (id) DO NOTHING",
+                        (user_id, f"{user_id}@example.com"),
+                    )
                 conn.commit()
         except Exception:
             pass
-            
-        # Fetch the actual session from the Postgres database
+
         session = store.get_session(user_id)
-        
-        # Override the state if it was explicitly passed via LangGraph metadata
+
         if current_state != UserState.IDLE:
             session.state = current_state
-            
-        # Ensure we capture any new temp profile data passed from LangGraph
+
         graph_temp_data = state.get("temp_profile_data", {})
         if graph_temp_data:
             session.temp_profile_data = graph_temp_data
-        
+
         flow = OnboardingFlow(store)
         reply, next_state = flow.handle_message(session, last_message)
         return {
@@ -121,81 +234,129 @@ def intent_router(state: ConversationState) -> dict:
             "temp_profile_data": session.temp_profile_data,
         }
 
+    # ═══════════════════════════════════════════════════════════════
+    # STATE 4-6: PROFILE_COMPLETE + SCAN_RUNNING + BRIEF_AVAILABLE
+    # ═══════════════════════════════════════════════════════════════
+    if current_state in (UserState.PROFILE_COMPLETE, UserState.SCAN_RUNNING, UserState.BRIEF_AVAILABLE):
+        return _handle_active_state(state, current_state, last_message)
+
+    # ═══════════════════════════════════════════════════════════════
+    # STATE 7: REVIEWING_JOB
+    # ═══════════════════════════════════════════════════════════════
+    if current_state == UserState.REVIEWING_JOB:
+        result = _intent_approve_or_reply(state, current_state, last_message)
+        if result["intent"] == "APPROVE":
+            return {
+                "current_state": UserState.PACK_GENERATING,
+                "assistant_response": result.get("reply") or "Approved! Generating your application pack now...",
+                "temp_profile_data": result.get("profile_data", {}),
+            }
+        elif result["intent"] == "GENERAL_CHAT":
+            return {
+                "current_state": current_state,
+                "assistant_response": result["reply"],
+                "temp_profile_data": result.get("profile_data", {}),
+            }
+        else:
+            return {
+                "current_state": current_state,
+                "assistant_response": (
+                    result.get("reply")
+                    or "Would you like me to prepare an application pack for this job? "
+                    "Type 'yes' or 'approve' to proceed, or ask me any questions about the role."
+                ),
+                "temp_profile_data": result.get("profile_data", {}),
+            }
+
+    # ═══════════════════════════════════════════════════════════════
+    # STATE 8: PACK_GENERATING (transient -- route_from_intent sends
+    #           this to the pack_generation node before user sees it)
+    # ═══════════════════════════════════════════════════════════════
+    if current_state == UserState.PACK_GENERATING:
+        return {
+            "current_state": current_state,
+            "assistant_response": "Your application pack is being generated. This may take a moment...",
+        }
+
+    # ═══════════════════════════════════════════════════════════════
+    # STATE 9: PACK_READY
+    # ═══════════════════════════════════════════════════════════════
     if current_state == UserState.PACK_READY:
-        normalized = last_message.strip().lower()
-        if normalized == "approve & auto-apply":
+        result = _intent_approve_or_reply(state, current_state, last_message)
+        if result["intent"] == "APPROVE":
             return {
                 "current_state": UserState.AWAITING_APPLICATION_CONFIRMATION,
                 "assistant_response": (
-                    "Approval received for this job. Assisted execution is enabled for this single reviewed pack."
+                    result.get("reply")
+                    or "Approval received! Moving to application confirmation. "
+                    "Type 'submit' or 'approve' to confirm submission."
                 ),
+                "temp_profile_data": result.get("profile_data", {}),
             }
+        else:
+            return {
+                "current_state": current_state,
+                "assistant_response": (
+                    result.get("reply")
+                    or "Your application pack is ready for review. "
+                    "Type 'approve' to proceed with assisted application, or ask me any questions."
+                ),
+                "temp_profile_data": result.get("profile_data", {}),
+            }
+
+    # ═══════════════════════════════════════════════════════════════
+    # STATE 10: AWAITING_APPLICATION_CONFIRMATION
+    # ═══════════════════════════════════════════════════════════════
+    if current_state == UserState.AWAITING_APPLICATION_CONFIRMATION:
+        result = _intent_approve_or_reply(state, current_state, last_message)
+        if result["intent"] == "APPROVE":
+            return {
+                "current_state": UserState.APPLIED,
+                "assistant_response": (
+                    result.get("reply")
+                    or "Application submitted! Your application has been logged and is now being tracked."
+                ),
+                "temp_profile_data": result.get("profile_data", {}),
+            }
+        else:
+            return {
+                "current_state": current_state,
+                "assistant_response": (
+                    result.get("reply")
+                    or "Ready to submit this application. Type 'approve' or 'submit' to confirm, "
+                    "or ask me any questions first."
+                ),
+                "temp_profile_data": result.get("profile_data", {}),
+            }
+
+    # ═══════════════════════════════════════════════════════════════
+    # STATE 11: APPLIED
+    # ═══════════════════════════════════════════════════════════════
+    if current_state == UserState.APPLIED:
         return {
-            "current_state": UserState.REVIEWING_JOB,
+            "current_state": current_state,
             "assistant_response": (
-                "I did not receive approval. I kept you in review mode. Type exactly 'Approve & Auto-Apply' to continue."
+                "Your application has been logged and is being tracked. "
+                "Use /pipeline to check status or /brief for today's updates. "
+                "Type /scan to search for more opportunities."
             ),
         }
 
-    # For post-onboarding states: classify intent but never auto-execute the pipeline.
-    # Scanning must be explicitly triggered via the /scan slash command — never from chat text.
-    if current_state == UserState.PROFILE_COMPLETE:
-        from careerloop.llm_chat import ChatIntentAgent
-        agent = ChatIntentAgent()
-        profile_data = state.get("temp_profile_data", {})
-        intent, reply = agent.process(last_message, profile_data)
-
-        if intent == "SCAN_JOBS":
-            # Never auto-fire the pipeline from a chat message. Require an explicit /scan command.
-            reply = (
-                "Ready to scan for new jobs matching your profile. "
-                "Type `/scan` to start — this will search all configured job boards and score "
-                "results against your fit criteria.\n\n"
-                "Tip: `/scan` runs ~156 board queries and takes 60–120 seconds."
-            )
-        elif intent == "SHOW_PIPELINE":
-            try:
-                from careerloop.application_ledger import ApplicationLedger
-                root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-                ledger = ApplicationLedger(root)
-
-                # Count by status
-                status_counts = {}
-                for e in ledger.entries:
-                    s = e.get("status", "UNKNOWN")
-                    status_counts[s] = status_counts.get(s, 0) + 1
-
-                # Top scored jobs
-                top = ledger.get_top_scored(min_score=1, limit=5)
-
-                reply = "**Your Pipeline**\n\n"
-                reply += "**Status Summary:**\n"
-                for status, count in sorted(status_counts.items()):
-                    reply += f"  - {status}: {count}\n"
-
-                if top:
-                    reply += f"\n**Top Matches:**\n"
-                    for i, job in enumerate(top, 1):
-                        score = ledger._get_score(job) or 0
-                        reply += f"  {i}. **{job.get('title','?')}** @ {job.get('company','?')} -- {score:.0f}/100\n"
-                else:
-                    reply += "\nNo scored jobs yet. Type `/scan` to search for new opportunities."
-
-                # Check for today's brief
-                from datetime import datetime, timezone
-                today_str = datetime.now(timezone.utc).date().isoformat()
-                brief_path = os.path.join(root, "output", "daily_briefs", f"{today_str}.md")
-                if os.path.exists(brief_path):
-                    reply += f"\n\nToday's brief is available at: {brief_path}"
-            except Exception as e:
-                reply = f"Could not load pipeline: {e}"
-
-        return {
-            "current_state": current_state,
-            "assistant_response": reply,
-        }
-
-    return {"current_state": current_state}
+    # ═══════════════════════════════════════════════════════════════
+    # FALLTHROUGH: unexpected state -- log warning, return safe message
+    # ═══════════════════════════════════════════════════════════════
+    _logger.warning(
+        "intent_router fallthrough: unhandled state %s (type=%s). "
+        "Returning safe fallback message.",
+        current_state, type(current_state).__name__,
+    )
+    return {
+        "current_state": current_state,
+        "assistant_response": (
+            "I'm not sure what to do next. Type /help for available commands "
+            "or /scan to search for new opportunities."
+        ),
+    }
 
 def pack_generating_node(state: ConversationState) -> dict:
     """Calls the Resume Council Subgraph."""
@@ -251,7 +412,11 @@ def pack_generating_node(state: ConversationState) -> dict:
 # ── Graph Builder ──
 
 def route_from_intent(state: ConversationState):
-    """Conditional routing based on current conversation state."""
+    """Conditional routing based on current conversation state.
+
+    PACK_GENERATING -> pack_generation node (triggers Resume Council).
+    All other states -> END (response is returned to the transport layer).
+    """
     curr = normalize_user_state(state.get("current_state", UserState.IDLE)) or UserState.IDLE
     if curr == UserState.PACK_GENERATING:
         return "pack_generation"
