@@ -1,0 +1,88 @@
+--- pre_humanizer
++++ final_resume
+@@ -4,11 +4,7 @@
+ +91 7299707403 · siddharthsaminathan99@gmail.com · Chennai, India
+ Website: https://emotenow.app/ · github.com/siddharthsaminathan
+ 
+-
+-
+ ---
+-
+-
+ 
+ ## Profile
+ 
+@@ -22,11 +18,7 @@
+ 
+ Ready to apply this end-to-end ownership to automate and scale BukuWarung's financial workflows for small businesses, starting with a prototype AI automation for a key workflow and a plan for self-serve AI tools.
+ 
+-
+-
+ ## Work Experience
+-
+-
+ 
+ ## AI Engineer — Omnex Systems (AquaPro AI)
+ 
+@@ -40,8 +32,6 @@
+ - Improved output consistency and reduced failures with validation layers, retry handling, and fallback logic, ensuring reliability in production.
+ - Implemented observability (structured logging, tracing, and metrics) to monitor system behavior and debug production issues, enabling proactive maintenance.
+ 
+-
+-
+ ## Co-Founder, AI Product Engineer — Emote (emotenow.app)
+ 
+ **2024 – Present**
+@@ -54,8 +44,6 @@
+ - Built an internal AI product manager that monitors system behavior, detects anomalies, and improves observability across the production AI stack, enabling self-serve reliability and reducing manual oversight.
+ - Built a Reddit bot to automate user acquisition, reducing outreach time from ~6–8 hours to ~30–40 minutes, enabling 50–100 hyper-personalized DMs per session, increasing activation from ~20% to ~75% and weekly retention from ~5% to ~13% — demonstrating GTM automation and growth hacking.
+ 
+-
+-
+ ## Data Engineer — Akkodis AB (Ericsson Client)
+ 
+ **Nov 2022 – Nov 2024 | Sweden**
+@@ -64,8 +52,6 @@
+ - Redesigned data pipelines to power dashboards (Power BI, Tableau), enabling self-serve analytics and reducing manual reporting effort across teams.
+ - Built end-to-end ETL lifecycle for business-critical reporting, ensuring data consistency and timely delivery to support cross-functional decision-making.
+ - Enforced data quality audits during migration, maintaining 99.9% data accuracy and enabling seamless transition for 50+ downstream systems.
+-
+-
+ 
+ ## Data Analyst — Positive Integers Pvt Ltd
+ 
+@@ -77,8 +63,6 @@
+ 
+ ---
+ 
+-
+-
+ ## Skills
+ 
+ - Core Languages & Data:** Python, SQL
+@@ -86,8 +70,6 @@
+ - AI / ML Systems:** LLM APIs, RAG pipelines, embeddings, prompt design, multi-model routing, multi-agent orchestration, memory systems
+ - Infra & Deployment:** Docker, Fly.io, AWS (basics), logging, observability, performance optimization
+ - Data & Analytics:** ETL pipelines, Power BI, Tableau, data validation, pipeline optimization
+-
+-
+ 
+ ## Education
+ 
+@@ -102,16 +84,12 @@
+ 
+ ---
+ 
+-
+-
+ ## Achievements
+ 
+ - Shipped Emote from zero to 450+ users with 40+ power users and 13–15% weekly retention, all through zero paid acquisition, demonstrating product-led growth and self-serve scalability. (https://emotenow.app/)
+ - Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson, improving reporting reliability and delivery speed for business-critical workflows.
+ 
+ ---
+-
+-
+ 
+ ## Languages
+ 

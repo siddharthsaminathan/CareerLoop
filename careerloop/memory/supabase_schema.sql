@@ -39,16 +39,61 @@ CREATE POLICY "Users can manage their own profile"
 -- 2. SESSIONS Table (Replaces local session_store)
 CREATE TABLE IF NOT EXISTS public.sessions (
     user_id UUID PRIMARY KEY REFERENCES public.users(id) ON DELETE CASCADE,
-    state TEXT NOT NULL DEFAULT 'IDLE',
+    state TEXT NOT NULL DEFAULT 'NEW_USER',
     current_job_id TEXT,
     onboarding_step INTEGER DEFAULT 0,
     temp_profile_data JSONB,
+    active_artifact_type TEXT,
+    active_artifact_id TEXT,
+    active_job_id TEXT,
+    active_brief_id TEXT,
+    active_pack_id TEXT,
+    current_selection_index INTEGER,
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 ALTER TABLE public.sessions ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Users can manage their own session" 
     ON public.sessions FOR ALL USING (auth.uid() = user_id);
+
+-- 2a. DAILY_BRIEFS Tables
+CREATE TABLE IF NOT EXISTS public.daily_briefs (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+    date_str TEXT NOT NULL,
+    run_id TEXT,
+    summary TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    UNIQUE(user_id, date_str)
+);
+
+ALTER TABLE public.daily_briefs ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Users can manage their own daily briefs" 
+    ON public.daily_briefs FOR ALL USING (auth.uid() = user_id);
+
+CREATE TABLE IF NOT EXISTS public.daily_brief_items (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    brief_id UUID NOT NULL REFERENCES public.daily_briefs(id) ON DELETE CASCADE,
+    item_index INTEGER NOT NULL,
+    job_id TEXT NOT NULL,
+    title TEXT,
+    company TEXT,
+    location TEXT,
+    fit_score REAL,
+    recommendation_reason TEXT,
+    risk_summary TEXT,
+    route_recommendation TEXT,
+    UNIQUE(brief_id, item_index)
+);
+
+ALTER TABLE public.daily_brief_items ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Users can manage their own daily brief items" 
+    ON public.daily_brief_items FOR ALL USING (
+        EXISTS (
+            SELECT 1 FROM public.daily_briefs b 
+            WHERE b.id = public.daily_brief_items.brief_id AND b.user_id = auth.uid()
+        )
+    );
 
 -- 3. STRATEGIC_TRACKS Table
 CREATE TABLE IF NOT EXISTS public.strategic_tracks (
@@ -213,3 +258,34 @@ CREATE TABLE IF NOT EXISTS public.jobs (
 ALTER TABLE public.jobs ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Authenticated users can read global jobs" 
     ON public.jobs FOR SELECT USING (auth.role() = 'authenticated');
+
+-- 9. BACKGROUND_RUNS Table (Layer 3 State)
+CREATE TABLE IF NOT EXISTS public.background_runs (
+    run_id TEXT PRIMARY KEY,
+    user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
+    run_type TEXT NOT NULL,
+    status TEXT DEFAULT 'QUEUED',
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.background_runs ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Users can view their own background runs" 
+    ON public.background_runs FOR SELECT USING (auth.uid() = user_id);
+
+-- 10. RUN_EVENTS Table
+CREATE TABLE IF NOT EXISTS public.run_events (
+    event_id TEXT PRIMARY KEY,
+    run_id TEXT NOT NULL REFERENCES public.background_runs(run_id) ON DELETE CASCADE,
+    message TEXT,
+    timestamp TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.run_events ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Users can view events for their runs" 
+    ON public.run_events FOR SELECT USING (
+        EXISTS (
+            SELECT 1 FROM public.background_runs r
+            WHERE r.run_id = public.run_events.run_id AND r.user_id = auth.uid()
+        )
+    );

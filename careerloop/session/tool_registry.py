@@ -154,7 +154,7 @@ class ToolRegistry:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cursor:
                     cursor.execute(
-                        "INSERT INTO background_runs (run_id, user_id, run_type, status) VALUES (%s, %s, 'scan', 'RUNNING')",
+                        "INSERT INTO background_runs (run_id, user_id, run_type, status, started_at) VALUES (%s, %s, 'scan', 'RUNNING', CURRENT_TIMESTAMP)",
                         (run_id, user_id)
                     )
                     cursor.execute(
@@ -220,6 +220,40 @@ class ToolRegistry:
                             )
                         )
 
+                    # Emit MATCH events for top 5 jobs
+                    for idx, item in enumerate(top_jobs[:5], 1):
+                        job = item["job"]
+                        score = item["score"]
+                        company = job.get("company", "?")
+                        title = job.get("title", "?")
+                        location = job.get("location", "?")
+                        msg = f"MATCH #{idx} — {title} @ {company} — {location} — {score:.0f}/100"
+                        try:
+                            cursor.execute(
+                                "INSERT INTO run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                                (str(uuid.uuid4()), run_id, msg, "scan_match")
+                            )
+                        except Exception:
+                            pass
+
+                    # Emit filtering summary to run_events
+                    if res and not res.get("already_generated"):
+                        new_jobs = res.get("new_jobs_found", 0)
+                        unique = res.get("unique_added", 0)
+                        scored = res.get("scored", 0)
+                        summary_events = [
+                            f"Scan filtering summary:",
+                            f"  {new_jobs} total found",
+                            f"  {scored} matched and scored",
+                            f"  {new_jobs - unique} duplicates removed",
+                            f"Brief ready with top matches.",
+                        ]
+                        for event_msg in summary_events:
+                            cursor.execute(
+                                "INSERT INTO run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                                (str(uuid.uuid4()), run_id, event_msg, "scan_progress")
+                            )
+
                     cursor.execute(
                         "UPDATE background_runs SET status = 'COMPLETED', updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
                         (run_id,)
@@ -273,7 +307,7 @@ class ToolRegistry:
                     if brief:
                         brief_id = brief["id"]
                         cursor.execute(
-                            "SELECT item_index, job_id, title, company, location, fit_score "
+                            "SELECT item_index, job_id, title, company, location, fit_score, recommendation_reason, risk_summary, route_recommendation "
                             "FROM daily_brief_items WHERE brief_id = %s ORDER BY item_index ASC",
                             (brief_id,)
                         )
@@ -302,7 +336,11 @@ class ToolRegistry:
                 "job_id": item["job_id"],
                 "title": title,
                 "company": company,
-                "fit_score": score
+                "location": location,
+                "fit_score": score,
+                "recommendation_reason": item.get("recommendation_reason", ""),
+                "risk_summary": item.get("risk_summary", ""),
+                "route_recommendation": item.get("route_recommendation", "")
             })
             
         lines.append("\nReply with a number to review details (e.g., '1').")
@@ -549,7 +587,7 @@ class ToolRegistry:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
-                        "INSERT INTO background_runs (run_id, user_id, run_type, status) VALUES (%s, %s, 'pack_generation', 'QUEUED')",
+                        "INSERT INTO background_runs (run_id, user_id, run_type, status, started_at) VALUES (%s, %s, 'pack_generation', 'QUEUED', CURRENT_TIMESTAMP)",
                         (run_id, action.user_id)
                     )
                     cur.execute(
@@ -587,7 +625,7 @@ class ToolRegistry:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
-                        "INSERT INTO background_runs (run_id, user_id, run_type, status) VALUES (%s, %s, 'pack_edit', 'QUEUED')",
+                        "INSERT INTO background_runs (run_id, user_id, run_type, status, started_at) VALUES (%s, %s, 'pack_edit', 'QUEUED', CURRENT_TIMESTAMP)",
                         (run_id, action.user_id)
                     )
                     cur.execute(

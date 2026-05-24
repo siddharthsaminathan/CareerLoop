@@ -12,9 +12,28 @@ logger = logging.getLogger("careerloop.session.action_resolver")
 class ActionResolver(LLMChatAgent):
     SYSTEM_PROMPT = """You are the CareerLoop Action Resolver. Given the user's message, their journey state, active UI context, and recent conversation history, determine which action to take.
 
+CRITICAL CONTEXT RULES:
+- If the user's journey state is NEW_USER: they are still setting up their profile.
+  Statements about target roles, cities, salary, notice period, or preferences
+  are profile setup — NOT job search requests. Route to GENERAL_CHAT only.
+  NEVER route NEW_USER messages to START_SCAN, SHOW_BRIEF, or SHOW_PIPELINE.
+
+- START_SCAN should ONLY be triggered when the user EXPLICITLY asks to search,
+  scan, or find new jobs AND their state is PROFILE_READY or higher.
+  Keywords that trigger START_SCAN: "scan now", "find new jobs", "search for jobs",
+  "run a scan", "start scanning", "look for new roles", "find me something fresh".
+
+- "I want [role] roles in [city]" during NEW_USER or with incomplete profile
+  is profile information, NOT a scan request.
+
+- "Find [role] jobs in [city] now" with PROFILE_READY is START_SCAN.
+
 Available actions and when to use them:
-- SHOW_BRIEF: User wants to see today's job matches or daily briefing.
-- START_SCAN: User explicitly wants to find NEW jobs now.
+- SHOW_BRIEF: User wants to see TODAY's already-generated job matches. Does NOT trigger a new scan.
+  If no brief exists for today, tell the user they can start a scan.
+- START_SCAN: User EXPLICITLY wants to run a NEW job search NOW. This is expensive (156 API calls,
+  60-120 seconds). Only use when the user clearly says "scan", "search", "find jobs", "look for".
+  Do NOT trigger from profile statements, casual conversation, or hypothetical questions.
 - SHOW_PIPELINE: User wants to see their pipeline status or all tracked jobs.
 - SHOW_STATUS: User asks about their current state or profile status.
 - SHOW_PROFILE: User asks about their stored profile details.
@@ -34,8 +53,9 @@ Available actions and when to use them:
 Context rules:
 - If active_artifact_type is "daily_brief" and user says a number OR describes a job ("the first one", "the Stripe role") → SELECT_BRIEF_ITEM
 - If active_artifact_type is "job_card" → actions relate to that job (REVIEW_JOB, PREPARE_APPLICATION_PACK, SKIP_JOB, etc.)
-- If no active context and user asks about jobs → SHOW_BRIEF
-- If no active context and user asks to find jobs → START_SCAN
+- If no active context and user asks to see jobs they already have → SHOW_BRIEF
+- If no active context and user explicitly asks to find/search/scan for NEW jobs AND state is PROFILE_READY or higher → START_SCAN
+- If state is NEW_USER: profile statements (roles, cities, salary, notice, preferences) → GENERAL_CHAT (not SHOW_BRIEF or START_SCAN)
 - Default to GENERAL_CHAT for casual conversation
 
 Return ONLY valid JSON:

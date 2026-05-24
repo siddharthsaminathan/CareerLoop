@@ -7,20 +7,16 @@
 
 ## Current Sprint Focus
 
-**Week of 2026-05-23 → 2026-05-24 — Chat Runtime Stabilization COMPLETE**
+**Week of 2026-05-25 — TAL-Level Runtime Fluidity**
 
-Architecture audit (22 fixes) + chat runtime stabilization (10 commits, 14 tests). Supervisor graph now has 11 real states, GENERAL_CHAT returns LLM replies (no echo), PACK_GENERATING reachable, CommandRouter unifies slash + graph routing, conversation history persists via add_messages.
+Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, ActionResolver, 19 regression tests). Next phase: product-fluid conversational UX.
 
-**This sprint achieved:**
-1. ✅ **Supervisor contract repair** — GENERAL_CHAT, all 11 states handled, no echo, add_messages reducer, profile hydration
-2. ✅ **Terminal loop** — CommandRouter unifies slash/freeform routing, /brief /scan /pipeline /status /profile /reset
-3. ⬜ **Multi-User Onboarding** — is_complete validated, but CV-upload-to-profile flow still needed
-4. ✅ **Daily Brief** — persisted, idempotent, /brief retrieves, /scan generates
-
-**Next sprint (2026-05-25+):**
-1. **Multi-user CV upload flow** (P0) — actual user-facing onboarding, not hardcoded profile
-2. **PACK_GENERATING → PACK_READY wire** — connect the council graph invocation through the supervisor
-3. **Transport delivery loop** (P0) — Telegram/WhatsApp webhook verification
+**This sprint:**
+1. **Scan progress streaming** (P0) — Live MATCH/REJECT in CLI via run_events polling
+2. **ActionResolver refinement** (P0) — Prevent scan during onboarding; distinguish profile refinement from search intent
+3. **DB consistency** (P0) — Fix Supabase/SQLite user state split; profile recovery from users table; startup DB banner
+4. **Real brief lifecycle** (P1) — START_SCAN → background_run → run_events → daily_briefs → active_context update → SHOW_BRIEF → SELECT_BRIEF_ITEM full cycle
+5. **Real LLM E2E** (P0) — 12-step real conversation transcript with actual DeepSeek calls
 
 ---
 
@@ -35,7 +31,7 @@ Architecture audit (22 fixes) + chat runtime stabilization (10 commits, 14 tests
 | **LangGraph Chatbot Orchestrator** | **82%** | 🟢 | No | All 11 states handled. GENERAL_CHAT returns LLM reply. PACK_GENERATING reachable. add_messages reducer. CommandRouter. Profile hydration. |
 | **PostgresSaver Checkpointer** | **20%** | 🔴 | **YES** | SQLite sessions functional without Postgres. Dual-mode verified. Interrupt/resume proof still needed. |
 | **Application pack delivery** | **95%** | 🟢 | No | PackageAssembler + Playwright PDFs. E2E validated on real job. |
-| **Daily brief cron delivery** | **40%** | 🔴 | **YES** | Brief persisted to output/daily_briefs/. Idempotency guard. /brief command. /scan wired to DailyRunner. |
+| **Daily brief cron delivery** | **90%** | 🟢 | No | Daily Runner triggers scan and fully populates daily_briefs and daily_brief_items SQL tables. E2E database brief retrieval verified. |
 | India-first discovery | 92% | 🟢 | No | Geo filter on all ATS adapters. Location spoofing fixed. CSV India filter. 14 ATS adapters + 6 boards. |
 | Verification & filtering | 78% | 🟡 | No | India filter enforced at 3 choke points. Block G not hoisted. |
 | Opportunity scoring (14-dim) | 62% | 🟡 | No | Scoring caps (CPU=50, LLM=15). Token accounting per call. _get_score() unified schema. |

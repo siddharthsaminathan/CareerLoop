@@ -1,6 +1,6 @@
 import os
 from careerloop.session.session_store import SessionStore
-from careerloop.session.states import UserState
+from careerloop.session.states import UserJourneyState
 from careerloop.transport.base import TransportAdapter
 from careerloop.onboarding.onboarding_flow import OnboardingFlow
 from careerloop.llm_chat import ChatIntentAgent
@@ -23,7 +23,7 @@ class MessageRouter:
         current_state = session.state
 
         # 2. Route based on state
-        if current_state.name.startswith("ONBOARDING_") or current_state == UserState.IDLE:
+        if current_state.name.startswith("ONBOARDING_") or current_state == UserJourneyState.NEW_USER:
             reply, next_state = self.onboarding.handle_message(session, text)
             
             # Save new state
@@ -34,7 +34,7 @@ class MessageRouter:
             self.transport.send_text(user_id, reply)
             return
 
-        elif current_state == UserState.PROFILE_COMPLETE:
+        elif current_state == UserJourneyState.PROFILE_READY:
             # Post-onboarding intent detection
             profile_data = session.temp_profile_data or {}
             intent, reply = self.intent_agent.process(text, profile_data)

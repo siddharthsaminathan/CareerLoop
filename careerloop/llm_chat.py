@@ -16,7 +16,7 @@ class LLMChatAgent:
     MAX_RETRIES = 2
     SAFE_ERROR_MSG = (
         "I hit a model issue while processing that. "
-        "Your data is safe. Try again or type /help for available commands."
+        "Your data is safe. Try asking your question again."
     )
 
     def _call_api(self, system_prompt: str, user_prompt: str) -> str:
@@ -157,20 +157,37 @@ User Message: {user_message}"""
 
 class ChatIntentAgent(LLMChatAgent):
     SYSTEM_PROMPT = """You are the CareerLoop central router.
-Analyze the user's message and their profile context.
+Analyze the user's message, their profile context, and the recent conversation history.
 Determine the user's intent from the following list:
 - SHOW_PIPELINE: User wants to see their current jobs, daily briefing, pipeline, or shortlist. "daily briefing", "show my jobs", "pipeline status", "what jobs do I have" → SHOW_PIPELINE.
 - SCAN_JOBS: User EXPLICITLY wants to run a NEW scan to find fresh jobs. Only use this for explicit scan/search requests like "scan for new jobs", "find me new jobs", "run a search".
-- APPROVE: User is approving, confirming, or saying yes to proceed. "yes", "approve", "looks good", "prepare this", "apply to this one", "go ahead", "do it", "let's go", "submit" → APPROVE.
+- UPDATE_PROFILE: User wants to search for, sync, import, or update their profile details from LinkedIn or a resume (e.g. 'go find me on linkedin', 'update my profile from linkedin', 'sync linkedin', 'import profile', 'search for my profile').
+- DEEP_RESEARCH: User wants to research a specific company, or is asking questions about a company (e.g. 'are they funded?', 'what's their tech stack?'), or is confirming a prompt to scan/get intelligence for a company (e.g. 'yes do it' when the previous assistant message proposed checking funding/recruiter for CheQ).
+- APPROVE: User is approving, confirming, or saying yes to proceed with a package or submission. "yes", "approve", "looks good", "prepare this", "apply to this one", "go ahead", "do it", "let's go", "submit" → APPROVE.
 - GENERAL_CHAT: User is just chatting or asking a general question.
 
 Return ONLY valid JSON in the following format:
 {
-  "intent": "SHOW_PIPELINE",
-  "reply": "If GENERAL_CHAT, put your conversational response here. For other intents, a brief confirmation."
-}"""
+  "intent": "DEEP_RESEARCH",
+  "reply": "Brief confirmation to the user.",
+  "company_slug": "cheq",
+  "specific_question": "Are they funded? what is their recent funding status?"
+}
 
-    def process(self, user_message: str, profile_data: Dict[str, Any]) -> Tuple[str, str]:
+Ensure "company_slug" and "specific_question" are ONLY populated if the intent is DEEP_RESEARCH. Format company names as lower-case slug (e.g., "CheQ" -> "cheq").
+If the user says "yes bro can you do it" or similar in response to the Assistant proposing to search a company (e.g. Cheq), classify the intent as DEEP_RESEARCH, set "company_slug" to the proposed company, and "specific_question" to the research goal.
+"""
+
+    def __init__(self, api_key: str = None, model: str = "deepseek-chat"):
+        super().__init__(api_key=api_key, model=model)
+        self.company_slug = None
+        self.specific_question = None
+
+    def process(self, user_message: str, profile_data: Dict[str, Any], messages: list = None) -> Tuple[str, str]:
+        # Reset state parameters
+        self.company_slug = None
+        self.specific_question = None
+
         # Only send a compact profile summary — never the full CV to the intent router.
         # Full CV content in the prompt causes DeepSeek to produce malformed JSON.
         compact = {}
@@ -183,7 +200,23 @@ Return ONLY valid JSON in the following format:
             compact["has_cv"] = True
             compact["cv_preview"] = cv[:200]
 
-        prompt = f"User Profile: {json.dumps(compact)}\nUser Message: {user_message}"
+        # Reconstruct message history context
+        history_str = ""
+        if messages:
+            for m in messages[-5:]:
+                role = "Assistant"
+                content = str(m)
+                if hasattr(m, 'type') and m.type == "human":
+                    role = "User"
+                elif hasattr(m, 'type') and m.type == "ai":
+                    role = "Assistant"
+                if hasattr(m, 'content'):
+                    content = str(m.content)
+                history_str += f"{role}: {content}\n"
+        else:
+            history_str = f"User: {user_message}\n"
+
+        prompt = f"User Profile: {json.dumps(compact)}\nRecent Conversation History:\n{history_str}\nUser Message: {user_message}"
         raw_response = self._call_api(self.SYSTEM_PROMPT, prompt)
         result = self._parse_json(raw_response)
 
@@ -191,11 +224,11 @@ Return ONLY valid JSON in the following format:
             logger.error("ChatIntentAgent JSON parse failed. Raw: %s", raw_response[:500])
             # Graceful fallback — defer to GENERAL_CHAT instead of guessing
             return "GENERAL_CHAT", (
-                "I'm here to help with your job search! You can use these commands:\n"
-                "• `/brief` — see today's job matches\n"
-                "• `/scan` — search for new jobs\n"
-                "• `/status` — view your profile\n"
-                "• `/pipeline` — see all crawled jobs\n\n"
+                "I'm here to help with your job search! You can ask me to:\n"
+                "• show your daily brief\n"
+                "• scan for new jobs\n"
+                "• view your profile\n"
+                "• see your pipeline\n\n"
                 "What would you like to do?"
             )
 
@@ -203,6 +236,10 @@ Return ONLY valid JSON in the following format:
         reply = result.get("reply", "")
         if not reply:
             reply = "How can I help with your job search today?"
+            
+        self.company_slug = result.get("company_slug")
+        self.specific_question = result.get("specific_question")
+        
         return intent, reply
 
 

@@ -1,0 +1,79 @@
+{
+  "passed": true,
+  "passed_strict": true,
+  "strict_mode": false,
+  "error_count": 0,
+  "warning_count": 0,
+  "rules": {
+    "RAW_MARKDOWN_TOKENS": {
+      "severity": "ERROR",
+      "passed": true,
+      "details": "",
+      "count": 0,
+      "locations": []
+    },
+    "EM_DASH": {
+      "severity": "ERROR",
+      "passed": true,
+      "details": "",
+      "count": 0,
+      "locations": []
+    },
+    "ARROWS": {
+      "severity": "ERROR",
+      "passed": true,
+      "details": "",
+      "count": 0,
+      "locations": []
+    },
+    "COLLAPSED_BULLETS": {
+      "severity": "ERROR",
+      "passed": true,
+      "details": "",
+      "count": 0,
+      "locations": []
+    },
+    "FORBIDDEN_SECTIONS": {
+      "severity": "ERROR",
+      "passed": true,
+      "details": "",
+      "count": 0,
+      "locations": []
+    },
+    "ZERO_BULLETS": {
+      "severity": "ERROR",
+      "passed": true,
+      "details": "Found 23 bullet item(s) in Work Experience section",
+      "count": 23,
+      "locations": []
+    },
+    "INLINE_BULLETS": {
+      "severity": "ERROR",
+      "passed": true,
+      "details": "",
+      "count": 0,
+      "locations": []
+    },
+    "MALFORMED_LISTS": {
+      "severity": "ERROR",
+      "passed": true,
+      "details": "All lists properly formed",
+      "count": 0,
+      "locations": []
+    },
+    "ORPHAN_HEADINGS": {
+      "severity": "WARNING",
+      "passed": true,
+      "details": "All headings have content",
+      "count": 0,
+      "locations": []
+    },
+    "TAILORING_DELTA": {
+      "severity": "ERROR",
+      "passed": true,
+      "details": "No base resume provided for comparison \u2014 skipping delta check",
+      "count": 0,
+      "locations": []
+    }
+  }
+}

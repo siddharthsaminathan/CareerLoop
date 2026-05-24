@@ -3,7 +3,7 @@ import json
 import logging
 from typing import Optional, Dict, Any
 from dataclasses import dataclass
-from careerloop.session.states import UserState, normalize_user_state
+from careerloop.session.states import UserJourneyState, normalize_user_state
 from careerloop.memory.connection import get_db_manager
 
 logger = logging.getLogger("careerloop.session.session_store")
@@ -11,10 +11,16 @@ logger = logging.getLogger("careerloop.session.session_store")
 @dataclass
 class Session:
     user_id: str
-    state: UserState
+    state: UserJourneyState
     current_job_id: Optional[str] = None
     onboarding_step: int = 0
     temp_profile_data: Optional[Dict[str, Any]] = None
+    active_artifact_type: Optional[str] = None
+    active_artifact_id: Optional[str] = None
+    active_job_id: Optional[str] = None
+    active_brief_id: Optional[str] = None
+    active_pack_id: Optional[str] = None
+    current_selection_index: Optional[int] = None
 
 class SessionStore:
     def __init__(self, db_manager=None):
@@ -80,29 +86,7 @@ class SessionStore:
             return bool(value)
         return True
 
-    def is_profile_complete(self, profile_data: Dict[str, Any]) -> bool:
-        required = [
-            "cv_content",
-            "target_roles",
-            "target_cities",
-            "salary_expectations",
-            "notice_period",
-            "aggressiveness",
-        ]
-        return all(self._has_value(profile_data.get(key)) for key in required)
-
-    def infer_onboarding_state(self, profile_data: Dict[str, Any]) -> UserState:
-        if self.is_profile_complete(profile_data):
-            return UserState.PROFILE_COMPLETE
-        if not self._has_value(profile_data.get("cv_content")):
-            return UserState.ONBOARDING_WAITING_CV
-        return UserState.ONBOARDING_COLLECTING
-
-    def _repair_session_state(self, user_id: str, state: UserState) -> None:
-        try:
-            self.update_state(user_id, state)
-        except Exception as e:
-            logger.error(f"Failed to repair session state for {user_id}: {e}")
+    # infer_onboarding_state and _repair_session_state removed (orchestration logic should live in resolvers)
 
     def get_session(self, user_id: str) -> Session:
         """Retrieves a session from the store. If not exists, initializes a default IDLE session."""
@@ -110,22 +94,37 @@ class SessionStore:
             with self.db_manager.get_connection() as conn:
                 with conn.cursor() as cursor:
                     cursor.execute(
-                        f"SELECT state, current_job_id, onboarding_step, temp_profile_data FROM {self._tbl('sessions')} WHERE user_id = %s",
+                        f"SELECT state, current_job_id, onboarding_step, temp_profile_data, "
+                        f"active_artifact_type, active_artifact_id, active_job_id, active_brief_id, active_pack_id, current_selection_index "
+                        f"FROM {self._tbl('sessions')} WHERE user_id = %s",
                         (user_id,)
                     )
                     row = cursor.fetchone()
                 
                 if not row:
                     profile_data = self._load_profile_data(user_id)
-                    default_state = (
-                        self.infer_onboarding_state(profile_data)
-                        if any(profile_data.values())
-                        else UserState.IDLE
-                    )
+                    default_state = UserJourneyState.NEW_USER
+                    temp_profile_data = profile_data or None
+
+                    # Profile recovery: if user has a complete profile in users table
+                    # but no sessions row, upgrade to PROFILE_READY
+                    if default_state == UserJourneyState.NEW_USER and profile_data:
+                        try:
+                            cv = (profile_data.get("cv_content") or "").strip()
+                            if cv and len(cv) > 50:  # Has a real CV
+                                has_roles = bool(profile_data.get("target_roles"))
+                                has_cities = bool(profile_data.get("target_cities"))
+                                logger.info(f"Profile recovery: user {user_id} has CV ({len(cv)} chars), roles={has_roles}, cities={has_cities}")
+                                if has_roles or has_cities:
+                                    default_state = UserJourneyState.PROFILE_READY
+                                    temp_profile_data = profile_data
+                        except Exception as e:
+                            logger.error(f"Profile recovery check failed: {e}")
+
                     default_session = Session(
                         user_id=user_id,
                         state=default_state,
-                        temp_profile_data=profile_data or None,
+                        temp_profile_data=temp_profile_data,
                     )
                     self.save_session(default_session)
                     return default_session
@@ -134,28 +133,16 @@ class SessionStore:
                 current_job_id = row['current_job_id']
                 onboarding_step = row['onboarding_step']
                 temp_profile_str = row['temp_profile_data']
+                active_artifact_type = row.get('active_artifact_type')
+                active_artifact_id = row.get('active_artifact_id')
+                active_job_id = row.get('active_job_id')
+                active_brief_id = row.get('active_brief_id')
+                active_pack_id = row.get('active_pack_id')
+                current_selection_index = row.get('current_selection_index')
                 
                 state = normalize_user_state(state_str)
 
-                # normalize_user_state handles legacy migration internally.
-                # Persist the resolved state back to DB if it differs from the raw value.
-                if state_str and state_str != state.value:
-                    logger.info(f"Migrating session state '{state_str}' -> '{state.value}' for user {user_id}.")
-                    self._repair_session_state(user_id, state)
-
-                # For truly unknown states that defaulted to IDLE, attempt recovery
-                # from profile data so persisted rows with garbage values don't get
-                # stuck in IDLE.
-                if state == UserState.IDLE and state_str and state_str != "IDLE":
-                    profile_data = self._load_profile_data(user_id)
-                    inferred = self.infer_onboarding_state(profile_data)
-                    if inferred != UserState.IDLE:
-                        state = inferred
-                        logger.warning(
-                            f"Unknown state '{state_str}' encountered in DB for user {user_id}. "
-                            f"Recovered to {state.value} from persisted profile completeness."
-                        )
-                        self._repair_session_state(user_id, state)
+                # Session state recovery logic was moved to orchestrator
 
                 temp_profile_data = None
                 if temp_profile_str:
@@ -167,7 +154,7 @@ class SessionStore:
                         except Exception as e:
                             logger.error(f"Failed to deserialize temp_profile_data JSON: {e}")
 
-                if not temp_profile_data and state == UserState.PROFILE_COMPLETE:
+                if not temp_profile_data and state == UserJourneyState.PROFILE_READY:
                     temp_profile_data = self._load_profile_data(user_id)
 
                 return Session(
@@ -175,11 +162,17 @@ class SessionStore:
                     state=state,
                     current_job_id=current_job_id,
                     onboarding_step=onboarding_step,
-                    temp_profile_data=temp_profile_data
+                    temp_profile_data=temp_profile_data,
+                    active_artifact_type=active_artifact_type,
+                    active_artifact_id=active_artifact_id,
+                    active_job_id=active_job_id,
+                    active_brief_id=active_brief_id,
+                    active_pack_id=active_pack_id,
+                    current_selection_index=current_selection_index
                 )
         except Exception as e:
             logger.error(f"Failed to retrieve session for user {user_id}: {e}")
-            return Session(user_id=user_id, state=UserState.IDLE)
+            return Session(user_id=user_id, state=UserJourneyState.NEW_USER)
 
     def save_session(self, session: Session) -> bool:
         """Saves or updates a full Session record in the database."""
@@ -196,20 +189,36 @@ class SessionStore:
                         ON CONFLICT (id) DO NOTHING;
                     """, (session.user_id, f"user_{session.user_id}@placeholder.com"))
                     cursor.execute(f"""
-                        INSERT INTO {self._tbl('sessions')} (user_id, state, current_job_id, onboarding_step, temp_profile_data, updated_at)
-                        VALUES (%s, %s, %s, %s, %s, CURRENT_TIMESTAMP)
+                        INSERT INTO {self._tbl('sessions')} (
+                            user_id, state, current_job_id, onboarding_step, temp_profile_data, 
+                            active_artifact_type, active_artifact_id, active_job_id, active_brief_id, active_pack_id, current_selection_index, 
+                            updated_at
+                        )
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP)
                         ON CONFLICT (user_id) DO UPDATE SET
                             state = EXCLUDED.state,
                             current_job_id = EXCLUDED.current_job_id,
                             onboarding_step = EXCLUDED.onboarding_step,
                             temp_profile_data = EXCLUDED.temp_profile_data,
+                            active_artifact_type = EXCLUDED.active_artifact_type,
+                            active_artifact_id = EXCLUDED.active_artifact_id,
+                            active_job_id = EXCLUDED.active_job_id,
+                            active_brief_id = EXCLUDED.active_brief_id,
+                            active_pack_id = EXCLUDED.active_pack_id,
+                            current_selection_index = EXCLUDED.current_selection_index,
                             updated_at = CURRENT_TIMESTAMP;
                     """, (
                         session.user_id,
                         session.state.value,
                         session.current_job_id,
                         session.onboarding_step,
-                        temp_profile_str
+                        temp_profile_str,
+                        session.active_artifact_type,
+                        session.active_artifact_id,
+                        session.active_job_id,
+                        session.active_brief_id,
+                        session.active_pack_id,
+                        session.current_selection_index
                     ))
                 conn.commit()
                 return True
@@ -217,10 +226,10 @@ class SessionStore:
             logger.error(f"Failed to save session for user {session.user_id}: {e}")
             return False
 
-    def update_state(self, user_id: str, state: UserState) -> bool:
+    def update_state(self, user_id: str, state: UserJourneyState) -> bool:
         """Helper to quickly update state only."""
         try:
-            state = normalize_user_state(state) or UserState.IDLE
+            state = normalize_user_state(state) or UserJourneyState.NEW_USER
             with self.db_manager.get_connection() as conn:
                 with conn.cursor() as cursor:
                     cursor.execute(

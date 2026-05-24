@@ -1,0 +1,224 @@
+{
+  "test_run": "2026-05-24T18:27:15.170778+00:00",
+  "model": "deepseek-chat",
+  "sessions": {
+    "shayagreev_onboarding": {
+      "user_name": "Shayagreev Shivkumar",
+      "total_turns": 6,
+      "turns": [
+        {
+          "turn": 1,
+          "user_input": "Hi, I'm Shayagreev Shivkumar. I'm an ML engineer with 5 years experience.",
+          "resolved_action": "GENERAL_CHAT",
+          "confidence": 0.95,
+          "state_after": "UserJourneyState.NEW_USER",
+          "response_type": "text",
+          "cards_count": 0,
+          "assistant_response": "Hey Shayagreev, great to meet you! With 5 years of ML experience, you're in a sweet spot — what kind of career move are you looking to make next?",
+          "response_length": 145,
+          "elapsed_ms": 2250
+        },
+        {
+          "turn": 2,
+          "user_input": "I want ML Engineer or Applied AI Engineer roles in Bangalore, Chennai, Mumbai.",
+          "resolved_action": "START_SCAN",
+          "confidence": 0.95,
+          "state_after": "UserJourneyState.PROFILE_READY",
+          "response_type": "list",
+          "cards_count": 0,
+          "assistant_response": "Scan complete! Scored 0 opportunities. Here is your Daily Brief:\n\n",
+          "response_length": 66,
+          "elapsed_ms": 993
+        },
+        {
+          "turn": 3,
+          "user_input": "Salary: 30-40 LPA. Notice: 1 month. I'm selective — quality over quantity.",
+          "resolved_action": "GENERAL_CHAT",
+          "confidence": 0.95,
+          "state_after": "UserJourneyState.PROFILE_READY",
+          "response_type": "text",
+          "cards_count": 0,
+          "assistant_response": "Got it, Shayagreev — quality over quantity makes sense. Let me refine the search to focus on top-tier companies in Bangalore, Chennai, and Mumbai that match your 30-40 LPA range and ML/AI profile. I'll come back with a tighter, more relevant list.",
+          "response_length": 247,
+          "elapsed_ms": 1977
+        },
+        {
+          "turn": 4,
+          "user_input": "/status",
+          "resolved_action": "SHOW_STATUS",
+          "confidence": 1.0,
+          "state_after": "UserJourneyState.PROFILE_READY",
+          "response_type": "text",
+          "cards_count": 3,
+          "assistant_response": "**Journey State:** PROFILE_READY\n**Active Artifact:** none\n**Background Runs:** none",
+          "response_length": 84,
+          "elapsed_ms": 6
+        },
+        {
+          "turn": 5,
+          "user_input": "do you have any jobs for me?",
+          "resolved_action": "SHOW_BRIEF",
+          "confidence": 0.95,
+          "state_after": "UserJourneyState.PROFILE_READY",
+          "response_type": "text",
+          "cards_count": 0,
+          "assistant_response": "You do not have a daily brief yet. Would you like me to scan for matching jobs now?",
+          "response_length": 83,
+          "elapsed_ms": 1221
+        },
+        {
+          "turn": 6,
+          "user_input": "ok thanks, I'll come back later for a scan",
+          "resolved_action": "GENERAL_CHAT",
+          "confidence": 0.95,
+          "state_after": "UserJourneyState.PROFILE_READY",
+          "response_type": "text",
+          "cards_count": 0,
+          "assistant_response": "No problem, take your time! Just say \"scan jobs\" whenever you're ready, and I'll find the best matches for you.",
+          "response_length": 111,
+          "elapsed_ms": 1966
+        }
+      ],
+      "behavior_checks": {
+        "general_chat_no_echo": true,
+        "slash_confidence_1.0": true,
+        "state_stable_mid_session": true
+      }
+    },
+    "siddharth_active": {
+      "user_name": "Siddharth Saminathan",
+      "total_turns": 10,
+      "turns": [
+        {
+          "turn": 1,
+          "user_input": "/status",
+          "resolved_action": "SHOW_STATUS",
+          "confidence": 1.0,
+          "state_after": "UserJourneyState.NEW_USER",
+          "response_type": "text",
+          "cards_count": 3,
+          "assistant_response": "**Journey State:** NEW_USER\n**Active Artifact:** none\n**Background Runs:** none",
+          "response_length": 79,
+          "elapsed_ms": 18
+        },
+        {
+          "turn": 2,
+          "user_input": "give me my daily briefing",
+          "resolved_action": "SHOW_BRIEF",
+          "confidence": 0.98,
+          "state_after": "UserJourneyState.PROFILE_READY",
+          "response_type": "text",
+          "cards_count": 0,
+          "assistant_response": "You do not have a daily brief yet. Would you like me to scan for matching jobs now?",
+          "response_length": 83,
+          "elapsed_ms": 930
+        },
+        {
+          "turn": 3,
+          "user_input": "match me with new jobs — find me something fresh",
+          "resolved_action": "START_SCAN",
+          "confidence": 0.98,
+          "state_after": "UserJourneyState.PROFILE_READY",
+          "response_type": "list",
+          "cards_count": 0,
+          "assistant_response": "Scan complete! Scored 0 opportunities. Here is your Daily Brief:\n\n",
+          "response_length": 66,
+          "elapsed_ms": 799
+        },
+        {
+          "turn": 4,
+          "user_input": "/help",
+          "resolved_action": "HELP",
+          "confidence": 1.0,
+          "state_after": "UserJourneyState.PROFILE_READY",
+          "response_type": "list",
+          "cards_count": 6,
+          "assistant_response": "**/brief:** Today's job matches\n**/scan:** Search for new jobs\n**/pipeline:** All tracked jobs\n**/status:** Your profile and state\n**/profile:** Full profile details\n**/reset:** Reset your session",
+          "response_length": 196,
+          "elapsed_ms": 2
+        },
+        {
+          "turn": 5,
+          "user_input": "what's in my pipeline right now?",
+          "resolved_action": "SHOW_PIPELINE",
+          "confidence": 0.95,
+          "state_after": "UserJourneyState.PROFILE_READY",
+          "response_type": "list",
+          "cards_count": 0,
+          "assistant_response": "### Pipeline Status Summary\n• **Total Tracked Jobs:** 0\n• **Active Applications:** 0\n\n",
+          "response_length": 86,
+          "elapsed_ms": 720
+        },
+        {
+          "turn": 6,
+          "user_input": "tell me about the company for my top match",
+          "resolved_action": "SHOW_BRIEF",
+          "confidence": 0.9,
+          "state_after": "UserJourneyState.PROFILE_READY",
+          "response_type": "text",
+          "cards_count": 0,
+          "assistant_response": "You do not have a daily brief yet. Would you like me to scan for matching jobs now?",
+          "response_length": 83,
+          "elapsed_ms": 1138
+        },
+        {
+          "turn": 7,
+          "user_input": "who should I reach out to there?",
+          "resolved_action": "GENERAL_CHAT",
+          "confidence": 0.9,
+          "state_after": "UserJourneyState.PROFILE_READY",
+          "response_type": "text",
+          "cards_count": 0,
+          "assistant_response": "You don't have any jobs tracked yet, so there's no company or contact to look up. Want me to scan for matching jobs first so we can build your pipeline?",
+          "response_length": 152,
+          "elapsed_ms": 1951
+        },
+        {
+          "turn": 8,
+          "user_input": "prepare an application pack for this",
+          "resolved_action": "GENERAL_CHAT",
+          "confidence": 0.95,
+          "state_after": "UserJourneyState.PROFILE_READY",
+          "response_type": "text",
+          "cards_count": 0,
+          "assistant_response": "I'd love to prepare an application pack, but I need a job to work with first. Let's scan for matching roles so I can build your resume, cover letter, and outreach notes.",
+          "response_length": 169,
+          "elapsed_ms": 2108
+        },
+        {
+          "turn": 9,
+          "user_input": "skip this one",
+          "resolved_action": "GENERAL_CHAT",
+          "confidence": 0.9,
+          "state_after": "UserJourneyState.PROFILE_READY",
+          "response_type": "text",
+          "cards_count": 0,
+          "assistant_response": "Got it, I'll skip that one. Want me to keep scanning for other matching jobs?",
+          "response_length": 77,
+          "elapsed_ms": 2256
+        },
+        {
+          "turn": 10,
+          "user_input": "thanks, that's enough for today",
+          "resolved_action": "GENERAL_CHAT",
+          "confidence": 0.95,
+          "state_after": "UserJourneyState.PROFILE_READY",
+          "response_type": "text",
+          "cards_count": 0,
+          "assistant_response": "You're welcome! We've made a good start today. Whenever you're ready, just say the word and I'll help you scan for jobs or prepare application materials.",
+          "response_length": 153,
+          "elapsed_ms": 2154
+        }
+      ],
+      "behavior_checks": {
+        "general_chat_no_echo": true,
+        "slash_confidence_1.0": true,
+        "state_stable_mid_session": true
+      }
+    }
+  },
+  "summary": {
+    "total_sessions": 2,
+    "total_turns": 16
+  }
+}

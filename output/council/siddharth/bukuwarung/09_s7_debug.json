@@ -1,0 +1,100 @@
+{
+  "n_sections_total": 9,
+  "n_rewritten": 9,
+  "n_fallback": 0,
+  "n_workers": 3,
+  "total_elapsed_s": 8.98,
+  "sections": [
+    {
+      "section_id": "ai_engineer_omnex_systems_aquapro_ai",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 1085,
+      "rewritten_chars": 1296,
+      "elapsed_s": 3.67,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "profile",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 500,
+      "rewritten_chars": 1227,
+      "elapsed_s": 4.13,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "co_founder_ai_product_engineer_emote_emotenow_app",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 1188,
+      "rewritten_chars": 1680,
+      "elapsed_s": 4.78,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "data_analyst_positive_integers_pvt_ltd",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 363,
+      "rewritten_chars": 472,
+      "elapsed_s": 5.94,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "data_engineer_akkodis_ab_ericsson_client",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 443,
+      "rewritten_chars": 667,
+      "elapsed_s": 6.67,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "skills",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 511,
+      "rewritten_chars": 495,
+      "elapsed_s": 6.85,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "languages",
+      "status": "REWRITE",
+      "change_type": "KEEP",
+      "original_chars": 41,
+      "rewritten_chars": 39,
+      "elapsed_s": 7.92,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "education",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 567,
+      "rewritten_chars": 789,
+      "elapsed_s": 8.42,
+      "model": "deepseek-chat"
+    },
+    {
+      "section_id": "achievements",
+      "status": "REWRITE",
+      "change_type": "REWRITE",
+      "original_chars": 295,
+      "rewritten_chars": 386,
+      "elapsed_s": 8.98,
+      "model": "deepseek-chat"
+    }
+  ],
+  "company_context_present": true,
+  "role_keywords_used": [
+    "LLM",
+    "AI agents",
+    "automation",
+    "self-serve",
+    "business scalability",
+    "cost-effective",
+    "GTM"
+  ]
+}

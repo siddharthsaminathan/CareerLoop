@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siddharth Saminathan — CV</title>
+<style>
+  /* ═══════════════════════════════════════════════
+     Compact One-Page — aggressive density, fits 1 page
+     ═══════════════════════════════════════════════ */
+  :root {
+    --ink: #1a1a1a;
+    --muted: #64748b;
+    --rule: #cccccc;
+    --accent: #2c5282;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 9pt;
+    line-height: 1.35;
+    color: var(--ink);
+    background: #ffffff;
+    max-width: 8.5in;
+    margin: 0 auto;
+    padding: 0.4in 0.5in;
+  }
+
+  /* ── Header ────────────────────────────────── */
+  .header {
+    margin-bottom: 0.6rem;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 0.4rem;
+  }
+  .header h1 {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 20pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+    line-height: 1.1;
+  }
+  .header-gradient { display: none; }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.15rem 0.6rem;
+    font-size: 8.5pt;
+    color: var(--muted);
+  }
+  .contact-row a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .contact-row .separator { color: #ccc; }
+
+  /* ── Section headings ──────────────────────── */
+  .section { margin-bottom: 0.5rem; }
+  .section-title {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+    margin: 0.8rem 0 0.25rem 0;
+  }
+  .section:first-of-type .section-title { margin-top: 0.25rem; }
+
+  /* ── Summary ───────────────────────────────── */
+  .summary-text {
+    font-size: 9pt;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+
+  /* ── Experience (exp-header layout) ────────── */
+  .exp-item { margin-bottom: 0.45rem; }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.4rem;
+    margin-bottom: 0.1rem;
+  }
+  .exp-header .role {
+    font-weight: 700;
+    font-size: 9.5pt;
+    color: var(--ink);
+    flex: 1;
+  }
+  .exp-header .exp-meta {
+    text-align: right;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .exp-header .company {
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 8.5pt;
+  }
+  .exp-header .dates {
+    font-size: 8pt;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Old job-* compat */
+  .job { margin-bottom: 0.45rem; }
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.4rem;
+    margin-bottom: 0.1rem;
+  }
+  .job-company { font-weight: 700; color: var(--ink); }
+  .job-period { font-size: 8pt; color: var(--muted); font-style: italic; }
+  .job-role { font-size: 8.5pt; color: var(--muted); margin-bottom: 0.1rem; }
+  .job-location { font-size: 8pt; color: var(--muted); }
+
+  .job ul, .exp-item ul { padding-left: 1.1rem; margin-top: 0.15rem; }
+  .job li, .exp-item li {
+    font-size: 8.5pt;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 0.08rem;
+  }
+  .job li strong, .exp-item li strong { font-weight: 600; }
+  ul li::marker { color: var(--muted); }
+
+  /* ── Skills grid ───────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 0.15rem 0.6rem;
+    font-size: 8.5pt;
+  }
+  .skills-grid .cat {
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .skills-grid .tags {
+    color: var(--ink);
+  }
+  .skill-item { font-size: 8.5pt; color: var(--ink); }
+  .skill-category { font-weight: 700; color: var(--ink); }
+
+  /* ── Projects ──────────────────────────────── */
+  .project { margin-bottom: 0.4rem; }
+  .project-title { font-size: 9.5pt; font-weight: 600; color: var(--ink); }
+  .project-desc { font-size: 8.5pt; color: var(--ink); margin-top: 0.1rem; line-height: 1.4; }
+
+  /* ── Education ─────────────────────────────── */
+  .edu-item { margin-bottom: 0.2rem; }
+  .edu-header { display: flex; justify-content: space-between; align-items: baseline; gap: 0.4rem; }
+  .edu-title { font-weight: 600; font-size: 9pt; color: var(--ink); }
+  .edu-org { color: var(--muted); font-weight: 400; }
+  .edu-year { font-size: 8pt; color: var(--muted); white-space: nowrap; }
+
+  /* ── Competencies ──────────────────────────── */
+  .competencies-grid { display: flex; flex-wrap: wrap; gap: 4px; }
+  .competency-tag {
+    font-size: 8pt;
+    font-weight: 500;
+    color: var(--ink);
+    background: #eeeeee;
+    padding: 2px 6px;
+    border-radius: 2px;
+    border: none;
+  }
+
+  /* ── Links ─────────────────────────────────── */
+  a { white-space: nowrap; color: var(--accent); text-decoration: none; }
+
+  /* ── Rendering contract fallbacks ───────────────
+     Standard classes rendered by render_all_templates.py.
+     Keep alongside template-unique styles. */
+  .achievements { margin-top: 0.05rem; }
+  .achievements li { margin-bottom: 0.15rem; }
+  .achievements li strong { color: var(--ink); }
+  .exp-desc { font-size: inherit; color: var(--ink); margin-bottom: 0.15rem; }
+  .edu-item .degree { font-weight: 600; color: var(--ink); font-size: 9pt; }
+  .edu-item .school { color: var(--muted); font-weight: 400; }
+  .edu-details { font-size: 8pt; color: var(--muted); margin-top: 1px; }
+  .tag { font-weight: 500; }
+  .thesis { font-size: 8pt; color: var(--muted); margin-top: 0.15rem; }
+  .thesis-heading { margin-top: 0.4rem; font-size: 9pt; }
+
+  /* ── Print ─────────────────────────────────── */
+  @media print {
+    body { padding: 0; background: #fff; }
+    @page { margin: 0.4in 0.5in; size: letter; }
+    .exp-item, .job { break-inside: avoid; }
+    h2, .section-title { break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Siddharth Saminathan</h1>
+  <div class="header-gradient"></div>
+  <div class="contact-row">
+    <span>+91 7299707403</span><span class="separator">|</span>
+    <span>siddharthsaminathan99@gmail.com</span><span class="separator">|</span><a href="https://emotenow.app">emotenow.app</a><span class="separator">|</span>
+    <span>Chennai, India</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Profile</div>
+  <div class="summary-text"><p>AI Product and Systems Engineer with 4+ years of experience shipping production AI systems that drive measurable business outcomes, reducing inference cost by 98% and latency from 15s to 3s, while scaling a consumer AI app to 450+ users with 13-15% weekly retention and zero paid acquisition.</p>
+<p>Combines deep LLM engineering with a product mindset, owning end-to-end delivery from concept to production: built multi-agent orchestration, real-time pipelines, and memory-driven AI systems that improved user retention and operational efficiency.</p>
+<p>Proven ability to automate complex workflows and build self-serve AI tools, designed a production AI system for quality workflows that reduced manual effort and improved consistency, and led enterprise data platform migration that enhanced reporting reliability.</p>
+<p>Experienced in cost optimization and performance tuning for AI systems, achieving 98% cost reduction while improving latency, and building AI observability tools that automate monitoring and reduce downtime.</p>
+<p>Ready to apply this end-to-end ownership to automate and scale BukuWarung's financial workflows for small businesses, starting with a prototype AI automation for a key workflow and a plan for self-serve AI tools.</p>
+</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Competencies</div>
+  <div class="competencies-grid"><div class="competencies-grid"><span class="competency-tag">Python</span><span class="competency-tag">SQL</span><span class="competency-tag">FastAPI</span><span class="competency-tag">Redis (caching, queues)</span><span class="competency-tag">PostgreSQL</span><span class="competency-tag">REST APIs</span><span class="competency-tag">async pipelines</span><span class="competency-tag">WebSockets</span><span class="competency-tag">SSE streaming</span><span class="competency-tag">LLM APIs</span><span class="competency-tag">RAG pipelines</span><span class="competency-tag">embeddings</span><span class="competency-tag">prompt design</span><span class="competency-tag">multi-model routing</span><span class="competency-tag">multi-agent orchestration</span><span class="competency-tag">memory systems</span><span class="competency-tag">Docker</span><span class="competency-tag">Fly.io</span><span class="competency-tag">AWS (basics)</span><span class="competency-tag">logging</span><span class="competency-tag">observability</span><span class="competency-tag">performance optimization</span><span class="competency-tag">ETL pipelines</span><span class="competency-tag">Power BI</span><span class="competency-tag">Tableau</span><span class="competency-tag">data validation</span><span class="competency-tag">pipeline optimization</span></div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Experience</div>
+  
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="role">AI Engineer</span>
+                    <span class="exp-meta">
+                        <span class="company">Omnex Systems (AquaPro AI), Chennai, India</span>
+                        <span class="dates">2025 - Present</span>
+                    </span>
+                </div>
+                
+                <ul class="bullets"><li>Shipped a production AI system that automates quality workflows (DFMEA, PFMEA, Control Plans, Process Flows, 5W2H, 5 Whys, 8D), reducing manual analysis effort and improving consistency for engineering teams.</li><li>Designed an orchestration layer using tool-calling that selects tools, routes data across internal services, and executes multi-step workflows end-to-end (generate, validate, update), enabling self-serve automation.</li><li>Enabled the system to understand production hierarchies and categories, map inputs to the right structures, and suggest updates based on existing data, driving business scalability.</li><li>Implemented feedback-aware flows that retrieve similar past concerns, link them, update records, and suggest impactful actions to users, improving retention and user engagement.</li><li>Reduced response latency from ~12.5s to ~8s by restructuring the pipeline and consolidating model calls, delivering a cost-effective and performant AI system.</li><li>Improved output consistency and reduced failures with validation layers, retry handling, and fallback logic, ensuring reliability in production.</li><li>Implemented observability (structured logging, tracing, and metrics) to monitor system behavior and debug production issues, enabling proactive maintenance.</li></ul>
+            </div>
+            
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="role">Co-Founder, AI Product Engineer</span>
+                    <span class="exp-meta">
+                        <span class="company">Emote (emotenow.app)</span>
+                        <span class="dates">2024 - Present</span>
+                    </span>
+                </div>
+                
+                <ul class="bullets"><li>Shipped a production AI companion system that delivers hyper-personalized emotional support, ensuring users feel remembered across sessions, directly applicable to automating personalized financial workflows for small businesses.</li><li>Designed a memory system tracking emotional context, relationships, and cause-effect patterns across 100s of conversations, improving relevance per user, a pattern reusable for self-serve AI tools that adapt to each business's unique bookkeeping needs.</li><li>Built the backend from scratch (FastAPI, Redis, PostgreSQL, Fly.io) with SSE streaming and WebSocket-based real-time pipelines, caching, and multi-model routing, demonstrating end-to-end ownership of scalable AI infrastructure.</li><li>Scaled from 0 to 450+ users with 40+ power users and ~13-15% weekly cohort retention (pre-PMF), proving ability to drive user adoption and retention without paid acquisition.</li><li>Reduced inference cost per conversation from ~$1.20 to ~$0.023 (98% reduction) and improved latency from ~15s to ~3s through model selection, caching, prompt optimization, and pipeline streaming, a cost-optimization mindset critical for scalable AI automation.</li><li>Built an internal AI product manager that monitors system behavior, detects anomalies, and improves observability across the production AI stack, enabling self-serve reliability and reducing manual oversight.</li><li>Built a Reddit bot to automate user acquisition, reducing outreach time from ~6-8 hours to ~30-40 minutes, enabling 50-100 hyper-personalized DMs per session, increasing activation from ~20% to ~75% and weekly retention from ~5% to ~13%, demonstrating GTM automation and growth hacking.</li></ul>
+            </div>
+            
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="role">Data Engineer</span>
+                    <span class="exp-meta">
+                        <span class="company">Akkodis AB (Ericsson Client), Sweden</span>
+                        <span class="dates">Nov 2022 - Nov 2024</span>
+                    </span>
+                </div>
+                
+                <ul class="bullets"><li>Owned the migration of a large-scale enterprise data platform from Azure to on-prem PostgreSQL, ensuring zero data loss and improving reporting reliability for business stakeholders.</li><li>Redesigned data pipelines to power dashboards (Power BI, Tableau), enabling self-serve analytics and reducing manual reporting effort across teams.</li><li>Built end-to-end ETL lifecycle for business-critical reporting, ensuring data consistency and timely delivery to support cross-functional decision-making.</li><li>Enforced data quality audits during migration, maintaining 99.9% data accuracy and enabling seamless transition for 50+ downstream systems.</li></ul>
+            </div>
+            
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="role">Data Analyst</span>
+                    <span class="exp-meta">
+                        <span class="company">Positive Integers Pvt Ltd, Chennai, India</span>
+                        <span class="dates">Sep 2019 - May 2020</span>
+                    </span>
+                </div>
+                
+                <ul class="bullets"><li>Built Tableau dashboards for an NBFC to analyze credit risk and loan repayment behavior, enabling data-driven lending decisions.</li><li>Built real-time Grafana dashboards for ID by SPI Cinemas to track the full order-to-table lifecycle, improving operational visibility.</li><li>Built SQL-based ETL workflows to extract, transform, and load data from operational source systems into reporting layers, ensuring reliable data pipelines.</li></ul>
+            </div>
+            
+</div>
+
+<div class="section">
+  <div class="section-title">Key Achievements</div>
+  <div class="achievements"><ul><li>Shipped Emote from zero to 450+ users with 40+ power users and 13-15% weekly retention, all through zero paid acquisition, demonstrating product-led growth and self-serve scalability. (https://emotenow.app/)</li><li>Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson, improving reporting reliability and delivery speed for business-critical workflows.</li></ul></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Education</div>
+  <div class="edu-item"><span class="degree">M.Sc. Statistics and Machine Learning</span>, <span class="school">Linköping University</span> <span class="dates">2020-2022</span><p class="edu-details">Sweden Thesis: Built an ML pipeline to predict colorectal cancer metastasis from high-dimensional RNA sequencing data (~64k features, <50 samples), demonstrating ability to extract signal from sparse, complex datasets. Applied autoencoders for feature compression and representation learning, reducing dimensionality while preserving predictive power. Used PCA for dimensionality reduction and feature selection, optimizing model performance and interpretability. Performed gene set enrichment analysis and statistical modeling to identify biologically relevant patterns, translating raw data into actionable insights.</p></div><div class="edu-item"><span class="degree">B.Tech Computer Science & Engineering</span>, <span class="school">SRM University</span> <span class="dates">2016-2020</span><p class="edu-details">India</p></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Skills</div>
+  <div class="skills-grid"><span class="cat">Core Languages & Data</span><span class="tags">Python · SQL</span><span class="cat">Backend & Systems</span><span class="tags">FastAPI · Redis (caching, queues) · PostgreSQL · REST APIs · async pipelines · WebSockets · SSE streaming</span><span class="cat">AI / ML Systems</span><span class="tags">LLM APIs · RAG pipelines · embeddings · prompt design · multi-model routing · multi-agent orchestration · memory systems</span><span class="cat">Infra & Deployment</span><span class="tags">Docker · Fly.io · AWS (basics) · logging · observability · performance optimization</span><span class="cat">Data</span><span class="tags">ETL pipelines · Power BI · Tableau · data validation · pipeline optimization</span></div>
+</div>
+
+</body>
+</html>

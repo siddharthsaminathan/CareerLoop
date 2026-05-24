@@ -1,0 +1,31 @@
+{
+  "required_public_sections": [
+    "work_experience",
+    "education"
+  ],
+  "sections_to_exclude": [],
+  "unknown_sections_to_preserve": [
+    "siddharth_saminathan",
+    "ai_engineer_omnex_systems_aquapro_ai",
+    "co_founder_ai_product_engineer_emote_emotenow_app",
+    "data_engineer_akkodis_ab_ericsson_client",
+    "data_analyst_positive_integers_pvt_ltd"
+  ],
+  "ordering_rules": [
+    "siddharth_saminathan",
+    "profile",
+    "work_experience",
+    "ai_engineer_omnex_systems_aquapro_ai",
+    "co_founder_ai_product_engineer_emote_emotenow_app",
+    "data_engineer_akkodis_ab_ericsson_client",
+    "data_analyst_positive_integers_pvt_ltd",
+    "skills",
+    "education",
+    "achievements",
+    "languages"
+  ],
+  "link_preservation_rules": {
+    "all": "MUST_SURVIVE"
+  },
+  "max_allowed_changes": 3
+}

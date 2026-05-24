@@ -1,0 +1,45 @@
+{
+  "normalized_title": "AI Productivity Engineer",
+  "seniority": "senior",
+  "must_haves": [
+    "Python",
+    "experience with LLMs",
+    "MLOps",
+    "DevOps",
+    "AI agent development",
+    "automation workflow design"
+  ],
+  "nice_to_haves": [
+    "Java",
+    "experience with GTM strategies",
+    "customer support automation",
+    "cloud cost optimization"
+  ],
+  "hidden_expectations": [
+    "business-outcome thinking",
+    "cross-functional collaboration",
+    "cost-consciousness",
+    "ability to influence GTM strategy"
+  ],
+  "day_one_deliverables": [
+    "Implement AI-based self-serve tools to reduce operational dependencies"
+  ],
+  "screening_keywords": [
+    "AI-powered automation",
+    "LLMs",
+    "AI agents",
+    "self-serve",
+    "GTM",
+    "operational scaling",
+    "DevOps",
+    "MLOps",
+    "Python",
+    "cost-effective"
+  ],
+  "disqualifiers": [
+    "no LLM experience",
+    "no coding skills",
+    "no production AI deployment experience"
+  ],
+  "confidence": 0.7
+}

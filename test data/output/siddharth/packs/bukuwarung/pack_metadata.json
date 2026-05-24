@@ -1,0 +1,29 @@
+{
+  "job_id": "loop-0001",
+  "company": "BukuWarung",
+  "company_slug": "bukuwarung",
+  "job_title": "AI Product Engineer",
+  "route_classified": "Route C",
+  "route_reason": "Direct hiring manager and engineering lead in matching division.",
+  "target_contact": {
+    "name": "Rajesh Chandrashekaran",
+    "role": "VP Engineering",
+    "linkedin_url": "https://www.linkedin.com/in/rajesh-chandrashekaran-12345",
+    "plausibility_score": "5"
+  },
+  "outreach_dm": "Hey Rajesh, saw you're expanding BukuWarung's AI engineering team. I built Emote from scratch (450+ users, FastAPI/Redis backend) and optimized our multi-agent orchestration pipeline to reduce latencies from 15s to 3s while cutting LLM costs by 95%. Would love to chat about bringing this operational focus to your scaling team.",
+  "exit_line": "Let me know if you have 5 minutes to chat this week.",
+  "email_guesses": [
+    "rajesh@bukuwarung.com",
+    "rajesh.c@bukuwarung.com"
+  ],
+  "compiled_files": {
+    "resume_markdown": "resume.md",
+    "cover_note": "cover_note.md",
+    "outreach_pack": "outreach_pack.md",
+    "pdfs": [
+      "Siddharth_Saminathan_Resume_BukuWarung_ATS.pdf",
+      "Siddharth_Saminathan_Resume_BukuWarung_Product_Engineer.pdf"
+    ]
+  }
+}

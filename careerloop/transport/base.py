@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 from langchain_core.messages import HumanMessage
-from careerloop.session.states import UserState, normalize_user_state
+from careerloop.session.states import UserJourneyState, normalize_user_state
 
 @dataclass
 class UserEvent:
@@ -20,8 +20,8 @@ class TransportAdapter(ABC):
         Normalize a transport-level UserEvent into the supervisor graph state contract.
         """
         metadata = event.metadata or {}
-        current_state_raw = metadata.get("current_state", UserState.IDLE)
-        current_state = normalize_user_state(current_state_raw) or UserState.IDLE
+        current_state_raw = metadata.get("current_state", UserJourneyState.NEW_USER)
+        current_state = normalize_user_state(current_state_raw) or UserJourneyState.NEW_USER
 
         return {
             "user_id": event.user_id,

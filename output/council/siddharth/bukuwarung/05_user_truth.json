@@ -1,0 +1,115 @@
+{
+  "total_years_experience": 6.7,
+  "confirmed_skills": [
+    {
+      "skill": "Python",
+      "years": 6.5,
+      "evidence": "Multiple production AI systems, backend development with FastAPI, data pipelines."
+    },
+    {
+      "skill": "LLM experience",
+      "years": 2,
+      "evidence": "Built AI companion system and AI quality management system using LLM APIs, multi-agent orchestration, memory systems."
+    },
+    {
+      "skill": "MLOps/DevOps",
+      "years": 2,
+      "evidence": "Implemented observability, logging, Docker deployment on Fly.io, performance optimization."
+    },
+    {
+      "skill": "Deployment of AI systems",
+      "years": 2,
+      "evidence": "Deployed Emote on Fly.io, scaled to 450+ users; deployed Omnex AI system."
+    },
+    {
+      "skill": "Automation and self-serve tool building",
+      "years": 5,
+      "evidence": "Built AI system reducing manual engineering effort; Reddit bot automating user acquisition; built self-serve dashboards."
+    },
+    {
+      "skill": "Cross-functional collaboration",
+      "years": 6.5,
+      "evidence": "Led data platform migration across stakeholders; co-founded and led product development; collaborated across teams."
+    }
+  ],
+  "weak_skills": [
+    "Java",
+    "MCP experience"
+  ],
+  "evidence_bank": {
+    "Python": [
+      "Built AI quality management system",
+      "Built AI companion system backend with FastAPI",
+      "Built ETL pipelines",
+      "Built Reddit bot"
+    ],
+    "LLM experience": [
+      "Multi-agent orchestration with tool-calling",
+      "Memory-driven AI system",
+      "Prompt optimization reducing cost by 98%",
+      "RAG pipelines"
+    ],
+    "MLOps/DevOps": [
+      "Structured logging, tracing, metrics",
+      "Docker deployment on Fly.io",
+      "Performance optimization reducing latency from 15s to 3s"
+    ],
+    "Deployment of AI systems": [
+      "0 to 450+ users on Fly.io",
+      "Production AI system at Omnex"
+    ],
+    "Automation and self-serve tool building": [
+      "AI-assisted quality workflows reducing manual effort",
+      "Reddit bot automating personalized DMs",
+      "Self-serve dashboards for stakeholders"
+    ],
+    "Cross-functional collaboration": [
+      "Led migration with data owners and stakeholders",
+      "Co-founder leading cross-functional product development"
+    ],
+    "Business-outcome thinking": [
+      "Improved engineering consistency and reduced analysis effort",
+      "Grew user base from zero with high retention",
+      "Reduced inference cost by 50x"
+    ],
+    "Cost optimization": [
+      "Reduced inference cost per conversation from $1.20 to $0.023",
+      "Reduced latency through pipeline optimization"
+    ],
+    "GTM strategy": [
+      "Automated user acquisition via Reddit bot, increasing activation from 20% to 75%"
+    ],
+    "Data Engineering": [
+      "Migrated enterprise data platform from Azure to PostgreSQL",
+      "Designed end-to-end ETL pipelines",
+      "Built real-time dashboards"
+    ]
+  },
+  "strongest_proof_points": [
+    "Reduced inference cost by 98% (from $1.20 to $0.023) while improving latency from 15s to 3s.",
+    "Scaled AI companion app to 450+ users with 13-15% weekly retention and zero paid acquisition.",
+    "Built production AI system for quality workflows at Omnex, reducing manual effort and improving consistency.",
+    "Led enterprise data platform migration for Ericsson, improving reporting reliability.",
+    "Built AI product manager that monitors system behavior and automates observability."
+  ],
+  "claims_allowed": [
+    "4+ years Python experience",
+    "LLM API experience",
+    "Agent architectures and multi-agent orchestration",
+    "Deployed AI systems in production",
+    "Experience building self-serve AI tools",
+    "Cross-functional leadership and collaboration",
+    "Cost optimization and performance tuning",
+    "User acquisition and GTM strategy experience",
+    "Data engineering and ETL pipeline design",
+    "Strong understanding of AI observability and reliability"
+  ],
+  "claims_not_allowed": [
+    "10 years AI experience",
+    "Deep learning expert",
+    "Java developer",
+    "MCP experience",
+    "Extensive AWS expertise",
+    "PhD in AI"
+  ]
+}

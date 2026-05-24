@@ -1,0 +1,25 @@
+2026-05-24 13:29:36,532 - careerloop.transport.terminal_chat - INFO - ASSISTANT: Resuming session in state: DAILY_BRIEF_SENT
+2026-05-24 13:30:20,070 - __main__ - INFO - User payload received from input.
+2026-05-24 13:30:20,071 - __main__ - INFO - Passing payload to transport: {'user_id': '9c512f87-1f5b-5e58-bf23-778d97e6e0a7', 'text': 'hi', 'metadata': {'current_state': <UserState.DAILY_BRIEF_SENT: 'DAILY_BRIEF_SENT'>}}
+2026-05-24 13:30:20,071 - careerloop.transport.terminal_chat - INFO - TerminalChatAdapter parsing raw payload: {'user_id': '9c512f87-1f5b-5e58-bf23-778d97e6e0a7', 'text': 'hi', 'metadata': {'current_state': <UserState.DAILY_BRIEF_SENT: 'DAILY_BRIEF_SENT'>}}
+2026-05-24 13:30:20,071 - careerloop.transport.terminal_chat - INFO - USER: hi
+2026-05-24 13:30:20,158 - langgraph.checkpoint.serde.jsonplus - WARNING - Deserializing unregistered type careerloop.session.states.UserState from checkpoint. This will be blocked in a future version. Set LANGGRAPH_STRICT_MSGPACK=true to block now, or add to allowed_msgpack_modules to allow explicitly: [('careerloop.session.states', 'UserState')]
+2026-05-24 13:30:21,163 - careerloop.transport.terminal_chat - INFO - ASSISTANT: Hello! How can I help you today? Are you looking for new job opportunities, or would you like to check your job pipeline?
+2026-05-24 13:30:31,246 - __main__ - INFO - User payload received from input.
+2026-05-24 13:30:31,247 - __main__ - INFO - Passing payload to transport: {'user_id': '9c512f87-1f5b-5e58-bf23-778d97e6e0a7', 'text': 'im looking for jobs', 'metadata': {'current_state': <UserState.DAILY_BRIEF_SENT: 'DAILY_BRIEF_SENT'>}}
+2026-05-24 13:30:31,247 - careerloop.transport.terminal_chat - INFO - TerminalChatAdapter parsing raw payload: {'user_id': '9c512f87-1f5b-5e58-bf23-778d97e6e0a7', 'text': 'im looking for jobs', 'metadata': {'current_state': <UserState.DAILY_BRIEF_SENT: 'DAILY_BRIEF_SENT'>}}
+2026-05-24 13:30:31,247 - careerloop.transport.terminal_chat - INFO - USER: im looking for jobs
+2026-05-24 13:33:30,663 - careerloop.transport.terminal_chat - INFO - ASSISTANT: Scanning jobs now...
+Triggering job scan via DailyRunner...
+Scan complete! Found 1192 new raw jobs, 0 unique added, 1182 scored.
+2026-05-24 13:34:23,279 - __main__ - INFO - User payload received from input.
+2026-05-24 13:34:23,279 - __main__ - INFO - Passing payload to transport: {'user_id': '9c512f87-1f5b-5e58-bf23-778d97e6e0a7', 'text': 'daily berif', 'metadata': {'current_state': <UserState.DAILY_BRIEF_SENT: 'DAILY_BRIEF_SENT'>}}
+2026-05-24 13:34:23,279 - careerloop.transport.terminal_chat - INFO - TerminalChatAdapter parsing raw payload: {'user_id': '9c512f87-1f5b-5e58-bf23-778d97e6e0a7', 'text': 'daily berif', 'metadata': {'current_state': <UserState.DAILY_BRIEF_SENT: 'DAILY_BRIEF_SENT'>}}
+2026-05-24 13:34:23,279 - careerloop.transport.terminal_chat - INFO - USER: daily berif
+2026-05-24 13:34:24,468 - careerloop.transport.terminal_chat - INFO - ASSISTANT: I think you meant 'daily brief'! Would you like a summary of your job pipeline or new job matches today? Let me know how I can help.
+2026-05-24 13:37:37,939 - careerloop.transport.terminal_chat - INFO - ASSISTANT: Resuming session in state: DAILY_BRIEF_SENT
+2026-05-24 13:37:42,307 - __main__ - INFO - User payload received from input.
+2026-05-24 13:37:42,307 - __main__ - INFO - Passing payload to transport: {'user_id': '9c512f87-1f5b-5e58-bf23-778d97e6e0a7', 'text': 'daily breif', 'metadata': {'current_state': <UserState.DAILY_BRIEF_SENT: 'DAILY_BRIEF_SENT'>}}
+2026-05-24 13:37:42,307 - careerloop.transport.terminal_chat - INFO - TerminalChatAdapter parsing raw payload: {'user_id': '9c512f87-1f5b-5e58-bf23-778d97e6e0a7', 'text': 'daily breif', 'metadata': {'current_state': <UserState.DAILY_BRIEF_SENT: 'DAILY_BRIEF_SENT'>}}
+2026-05-24 13:37:42,307 - careerloop.transport.terminal_chat - INFO - USER: daily breif
+2026-05-24 13:37:42,355 - langgraph.checkpoint.serde.jsonplus - WARNING - Deserializing unregistered type careerloop.session.states.UserState from checkpoint. This will be blocked in a future version. Set LANGGRAPH_STRICT_MSGPACK=true to block now, or add to allowed_msgpack_modules to allow explicitly: [('careerloop.session.states', 'UserState')]

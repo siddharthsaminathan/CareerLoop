@@ -1,0 +1,150 @@
+{
+  "total_claims": 14,
+  "verified": 0,
+  "weak": 8,
+  "unsupported": 6,
+  "exaggerated": 0,
+  "fabricated": 0,
+  "claims": [
+    {
+      "text": "4+ years of experience shipping production AI systems that drive measurable business outcomes—reducing inference cost",
+      "risk_level": "WEAK",
+      "claim_type": "year_experience",
+      "start_pos": 37,
+      "end_pos": 154,
+      "evidence_match": "Partially supported: verified_years = 6.7, claimed 4+",
+      "repair_suggestion": null,
+      "confidence": 0.6
+    },
+    {
+      "text": "built multi-agent",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 402,
+      "end_pos": 419,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "led enterprise data platform migration that enhanced reporting reliability",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 729,
+      "end_pos": 803,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built the backend",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 511,
+      "end_pos": 528,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "98% reduction",
+      "risk_level": "WEAK",
+      "claim_type": "percentage",
+      "start_pos": 982,
+      "end_pos": 995,
+      "evidence_match": "Numbers present in evidence bank — claim likely grounded",
+      "repair_suggestion": null,
+      "confidence": 0.4
+    },
+    {
+      "text": "Built an internal AI product manager that monitors system behavior",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 1182,
+      "end_pos": 1248,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built a Reddit bot",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 1393,
+      "end_pos": 1411,
+      "evidence_match": "Partial evidence match in 'Python'",
+      "repair_suggestion": null,
+      "confidence": 0.5249999999999999
+    },
+    {
+      "text": "Built Tableau dashboards",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 44,
+      "end_pos": 68,
+      "evidence_match": "Partial evidence match in 'Data Engineering'",
+      "repair_suggestion": null,
+      "confidence": 0.35
+    },
+    {
+      "text": "Built real-time Grafana dashboards",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 175,
+      "end_pos": 209,
+      "evidence_match": "Partial evidence match in 'Data Engineering'",
+      "repair_suggestion": null,
+      "confidence": 0.5249999999999999
+    },
+    {
+      "text": "Built SQL-based ETL workflows",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 312,
+      "end_pos": 341,
+      "evidence_match": "Partial evidence match in 'Python'",
+      "repair_suggestion": null,
+      "confidence": 0.27999999999999997
+    },
+    {
+      "text": "Owned the migration of a large-scale enterprise data platform",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 36,
+      "end_pos": 97,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Built end-to-end ETL lifecycle",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 371,
+      "end_pos": 401,
+      "evidence_match": "Partial evidence match in 'Python'",
+      "repair_suggestion": null,
+      "confidence": 0.27999999999999997
+    },
+    {
+      "text": "Built an ML pipeline",
+      "risk_level": "UNSUPPORTED",
+      "claim_type": "ownership",
+      "start_pos": 96,
+      "end_pos": 116,
+      "evidence_match": null,
+      "repair_suggestion": null,
+      "confidence": 0.0
+    },
+    {
+      "text": "Led enterprise data platform migration (Azure",
+      "risk_level": "WEAK",
+      "claim_type": "ownership",
+      "start_pos": 212,
+      "end_pos": 257,
+      "evidence_match": "Partial evidence match in 'Cross-functional collaboration'",
+      "repair_suggestion": null,
+      "confidence": 0.21
+    }
+  ]
+}

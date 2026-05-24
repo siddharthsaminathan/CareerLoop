@@ -18,7 +18,7 @@ _configure_logging()
 logger = logging.getLogger(__name__)
 
 from careerloop.session.session_store import SessionStore
-from careerloop.session.states import UserState
+from careerloop.session.states import UserJourneyState
 from careerloop.transport.terminal_chat import TerminalChatAdapter
 from careerloop.session.supervisor_graph import get_supervisor_graph
 from careerloop.memory.checkpointer import get_checkpointer
@@ -250,16 +250,33 @@ def main():
     # 1. Authenticate (returns UUID)
     user_id = authenticate_cli_user()
 
+    # 1.5 Ensure background_runs table has required columns
+    try:
+        from careerloop.memory.connection import get_db_manager
+        db = get_db_manager()
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                for col, col_type in [("started_at", "TEXT DEFAULT (datetime('now'))"),
+                                       ("completed_at", "TEXT")]:
+                    try:
+                        cur.execute(f"ALTER TABLE background_runs ADD COLUMN {col} {col_type}")
+                    except Exception:
+                        pass  # column already exists
+    except Exception:
+        pass
+
     # 2. Setup systems (session store + supervisor graph with Postgres checkpointer)
     session_store = SessionStore()
     session = session_store.get_session(user_id)  # ensure row exists
-    if session.state == UserState.IDLE:
+    if session.state == UserJourneyState.NEW_USER:
         profile_data = session_store._load_profile_data(user_id)
-        recovered_state = session_store.infer_onboarding_state(profile_data)
-        if any(profile_data.values()) and recovered_state != UserState.IDLE:
-            session.state = recovered_state
+        is_complete = all(profile_data.get(f) for f in ["target_roles", "target_cities", "salary_expectations", "notice_period", "aggressiveness"]) and bool(profile_data.get("cv_content"))
+        if is_complete:
+            session.state = UserJourneyState.PROFILE_READY
             session.temp_profile_data = profile_data or session.temp_profile_data
             session_store.save_session(session)
+
+    console.print(f"[dim]user_id={user_id[:12]}... | journey_state={session.state.value} | active_context={getattr(session, 'active_context', {})}[/dim]")
 
     checkpointer_cm = None
     using_checkpointer = False
@@ -276,9 +293,21 @@ def main():
         transport = TerminalChatAdapter(supervisor_graph=supervisor)
 
         print_banner()
+
+        # ── DB Mode Banner ─────────────────────────────────────────────
+        db_url = os.getenv("DATABASE_URL")
+        if db_url:
+            db_mode = "postgres"
+            db_source = db_url.split("@")[-1].split("/")[0] if "@" in db_url else "supabase"
+        else:
+            db_mode = "sqlite"
+            db_source = os.path.abspath(os.path.join(os.path.dirname(__file__), "careerloop.db"))
+
+        console.print(f"[dim]DB_MODE={db_mode} | SOURCE={db_source}[/dim]")
+
         print_status_card(session)
 
-        if session.state == UserState.IDLE:
+        if session.state == UserJourneyState.NEW_USER:
             transport.send_text(
                 user_id,
                 "Welcome to CareerLoop. Paste your CV text to start onboarding.",
@@ -299,38 +328,7 @@ def main():
                 console.print("[bold cyan]Goodbye![/bold cyan]")
                 break
 
-            # ── Slash commands ── route through CommandRouter for unified handling ──
-            if user_input.startswith("/"):
-                cmd = user_input.strip().lower().split()[0]
-                from careerloop.session.command_router import CommandRouter
-                router = CommandRouter(root)
-                result = None
 
-                if cmd == "/help":
-                    result = router.help()
-                elif cmd == "/status":
-                    result = router.status(session)
-                elif cmd == "/profile":
-                    result = router.profile(session)
-                elif cmd == "/scan":
-                    result = router.scan()
-                elif cmd == "/pipeline":
-                    result = router.pipeline()
-                elif cmd == "/brief":
-                    result = router.brief()
-                elif cmd == "/reset":
-                    result = router.reset(session)
-                else:
-                    console.print(f"[yellow]Unknown command: {user_input}. Type /help for available commands.[/yellow]")
-                    continue
-
-                if result:
-                    console.print(Panel(Markdown(result.text), title="CareerLoop", border_style="bold cyan"))
-                    if result.new_state and session_store:
-                        from careerloop.session.states import normalize_user_state
-                        session.state = normalize_user_state(result.new_state) or session.state
-                        session_store.save_session(session)
-                continue
 
             payload = {
                 "user_id": user_id,
@@ -361,13 +359,23 @@ def main():
             # Persist current state from supervisor response into sessions table.
             if response and isinstance(response, dict):
                 next_state = response.get("current_state")
+                artifact_context = response.get("artifact_context", {})
+                
                 if "temp_profile_data" in response:
                     session.temp_profile_data = response.get("temp_profile_data")
-                if isinstance(next_state, UserState):
+                    
+                session.active_artifact_type = artifact_context.get("active_artifact_type", session.active_artifact_type)
+                session.active_artifact_id = artifact_context.get("active_artifact_id", session.active_artifact_id)
+                session.active_job_id = artifact_context.get("active_job_id", session.active_job_id)
+                session.active_brief_id = artifact_context.get("active_brief_id", session.active_brief_id)
+                session.active_pack_id = artifact_context.get("active_pack_id", session.active_pack_id)
+                session.current_selection_index = artifact_context.get("current_selection_index", session.current_selection_index)
+                
+                if isinstance(next_state, UserJourneyState):
                     if session.state != next_state:
                         logger.info(f"State updated: {session.state} -> {next_state}")
                     session.state = next_state
-                    session_store.save_session(session)
+                session_store.save_session(session)
     except KeyboardInterrupt:
         console.print("\n[bold red]Exiting CareerLoop. Goodbye![/bold red]")
     except Exception as e:

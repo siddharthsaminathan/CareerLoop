@@ -140,3 +140,45 @@ If `modes/_profile.md` is missing, copy from `modes/_profile.template.md` silent
 2. Run `node verify-pipeline.mjs` to check health.
 3. All reports MUST include `**URL:**` and `**Legitimacy:**` in the header.
 4. All statuses MUST be canonical (see `templates/states.yml`).
+
+
+## Testing Policy
+**CRITICAL DIRECTIVE**: If you import the pytest module, you will be digitally castrated. No unit tests. Only functional end-to-end testing.
+
+
+## CareerLoop Runtime Rules (LOCKED)
+
+These are architectural invariants. Do NOT violate them in any session.
+
+### State Architecture
+- **Three-layer state model is canonical.** UserJourneyState (macro journey), ActiveContext (conversational resolution), BackgroundRuns (async work).
+- UserJourneyState has 4 states: NEW_USER, PROFILE_READY, APPLICATION_PENDING, INTERVIEW_ACTIVE.
+- ActiveContext resolves "this", "it", "the first one" → real entity IDs.
+- BackgroundRuns owns scans, pack generation, company research. UI subscribes to run_events.
+
+### Persistence
+- **DB is canonical.** Supabase/Postgres in production, SQLite in local dev.
+- Filesystem is cache/export only. Never use files as source of truth.
+- `daily_briefs`, `daily_brief_items`, `background_runs`, `run_events` are DB tables.
+- `sessions` table stores UserJourneyState + ActiveContext (JSONB).
+
+### Runtime
+- **No hardcoded job cards.** No mock Stripe/Vercel. No fake application packs.
+- **No giant if/else routing trees.** Use ActionResolver (LLM-based) + ToolRegistry (handler dispatch).
+- **Slash commands are shortcuts.** They resolve to the same Action → ToolRegistry path as natural language.
+- **No pytest.** Use real E2E scripts with actual LLM calls. Mock-only tests are insufficient.
+- **No local file paths in user-facing responses.**
+- **CLI is the product runtime test shell**, not a fake demo.
+
+### Chat Behavior
+- **No echo.** Every assistant_response must differ from user input.
+- **No raw API errors.** All errors surface as safe user-facing messages.
+- **No conversational amnesia.** Conversation history persists via LangGraph add_messages reducer.
+- **GENERAL_CHAT returns real LLM responses**, not hardcoded text.
+- **Tools return data, not text.** The LLM synthesizes final responses from tool output.
+
+### Verification
+- Real E2E script: `e2e_runtime_test.py`
+- Test results: `e2e_test_results.json`
+- Test with actual DeepSeek API calls, not mocks.
+- Verify: DB tables populated, no echoes, no fake jobs, active_context updates, state transitions.

@@ -1,0 +1,535 @@
+{
+  "job_id": "bukuwarung",
+  "person_id": "siddharth",
+  "job_title": "AI Product Engineer",
+  "company": "BukuWarung",
+  "job_url": "https://www.linkedin.com/jobs/view/bukuwarung-ai-product-engineer",
+  "jd_text": "Function: Software Engineering → Other Software Development Generative AI Python DevOps LLMs Machine Learning Java +3 more MLOps MCP Deployment We are looking for a highly skilled AI Productivity Engineer to lead the development and integration of AI-driven solutions, driving automation and efficiency across multiple business functions. In this role, you will play a crucial part in building scalable tools and workflows, optimizing internal processes, and fostering continuous productivity improvements. Your expertise will directly contribute to accelerating our GTM strategy, enhancing operational scalability, and shaping the future of AI adoption within our company. The role, in our view, is split across three core areas of responsibility. The core responsibilities for the job include the following: AI-Powered Automation and Operational Scaling: Lead the development and integration of cost-effective AI systems, leveraging LLMs and AI agents to optimize business operations, automate workflows, and improve customer support processes. Implement AI-based self-serve tools to reduce operational dependencies. Collaborate with product and engineering teams to integrate AI-driven automation into products, customer support, and internal operations. Identify and implement AI tools to enhance team productivity, GTM strategies, and business scalability.",
+  "master_cv": "# Siddharth Saminathan\n**AI Product Engineer · Systems Architect**\n+91 7299707403 · siddharthsaminathan99@gmail.com · Chennai, India\nWebsite: https://emotenow.app/ · github.com/siddharthsaminathan\n\n---\n\n## Profile\n\nAI Product and Systems Engineer with 4+ years of experience building and shipping production AI systems across data infrastructure, enterprise workflows, and consumer applications. Focus on taking systems from concept to real users, improving them through measurable outcomes such as latency, cost, and user retention. Experience spans multi-agent orchestration, real-time pipelines, and memory-driven AI systems, with a strong emphasis on reliability and iteration in production environments.\n\n---\n\n## Work Experience\n\n### AI Engineer — Omnex Systems (AquaPro AI)\n**2025 – Present | Chennai, India**\n\n- Built a production AI system enabling AI-assisted quality and control workflows (DFMEA, PFMEA, Control Plans, Process Flows, 5W2H, 5 Whys, 8D), improving consistency and reducing manual analysis effort for engineering teams.\n- Designed an orchestration layer using tool-calling: selects tools, routes data across internal services, and executes multi-step workflows end-to-end (generate, validate, update).\n- Enabled the system to understand production hierarchies and categories, map inputs to the right structures, and suggest updates based on existing data.\n- Implemented feedback-aware flows: retrieves similar past concerns, links them, updates records, and suggests impactful actions to users.\n- Reduced response latency from ~12.5s to ~8s by restructuring the pipeline and consolidating model calls.\n- Improved output consistency and reduced failures with validation layers, retry handling, and fallback logic.\n- Implemented observability (structured logging, tracing, and metrics) to monitor system behavior and debug production issues.\n\n### Co-Founder, AI Product Engineer — Emote (emotenow.app)\n**2024 – Present**\n\n- Built a production AI companion system for hyper-personalized emotional support — users feel remembered and do not start over each session.\n- Designed a memory system that tracks emotional context, relationships, and cause-effect patterns across 100s of conversations, improving relevance per user.\n- Built the backend from scratch (FastAPI, Redis, PostgreSQL, hosted on Fly.io) with SSE streaming and WebSocket-based real-time pipelines, caching, and multi-model routing.\n- Scaled from 0 to 450+ users, with 40+ power users and ~13–15% weekly cohort retention (pre-PMF).\n- Reduced inference cost per conversation from ~$1.20 to ~$0.023 through model selection, caching, and prompt optimization.\n- Improved latency from ~15s to ~3s through pipeline optimization and streaming.\n- Built an internal AI product manager that monitors system behaviour, detects anomalies, and improves observability across the production AI stack.\n- Built a Reddit bot to automate user acquisition; reduced outreach time from ~6–8 hours to ~30–40 minutes, enabling 50–100 hyper-personalized DMs per session, increasing activation from ~20% to ~75% and weekly retention from ~5% to ~13%.\n\n### Data Engineer — Akkodis AB (Ericsson Client)\n**Nov 2022 – Nov 2024 | Sweden**\n\n- Led migration of enterprise data platform from Azure to on-prem PostgreSQL cloud environment.\n- Owned redesign of data pipelines powering reporting systems across data owners and stakeholders.\n- Built and designed end-to-end ETL lifecycle for dashboards (Power BI, Tableau) used by business stakeholders.\n- Ensured data reliability and consistency during large-scale migration through data quality audits.\n\n### Data Analyst — Positive Integers Pvt Ltd\n**Sep 2019 – May 2020 | Chennai, India**\n\n- Built Tableau dashboards for an NBFC to analyze credit risk and loan repayment behaviour.\n- Built real-time Grafana dashboards for ID by SPI Cinemas to track full order-to-table lifecycle.\n- Built SQL-based ETL workflows to extract, transform, and load data from operational source systems into reporting layers.\n\n---\n\n## Skills\n\n**Programming & Data:** Python, SQL\n\n**Backend & Systems:** FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets, SSE streaming\n\n**AI / ML Systems:** LLM APIs, RAG pipelines, embeddings, prompt design, multi-model routing, multi-agent orchestration, memory systems\n\n**Infra & Deployment:** Docker, Fly.io, AWS (basics), logging, observability, performance optimization\n\n**Data & Analytics:** ETL pipelines, Power BI, Tableau, data validation, pipeline optimization\n\n---\n\n## Education\n\n**M.Sc. Statistics and Machine Learning** — Linköping University, Sweden · 2020–2022\n- Thesis: ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples).\n- Applied autoencoders for feature compression and representation learning.\n- Used PCA for dimensionality reduction and feature selection.\n- Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns.\n\n**B.Tech Computer Science & Engineering** — SRM University, India · 2016–2020\n\n---\n\n## Achievements\n\n- Built Emote from zero: grew to 450+ users with 40+ power users, 13–15% weekly retention with zero paid acquisition. (https://emotenow.app/)\n- Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson; recognised for improving reporting reliability and delivery.\n\n---\n\n## Languages\n\nEnglish (Fluent) · Tamil (Native) · Hindi\n",
+  "profile": {
+    "candidate": {
+      "full_name": "Siddharth Saminathan",
+      "email": "siddharthsaminathan99@gmail.com",
+      "phone": "+91 7299707403",
+      "location": "Chennai, India",
+      "linkedin": "linkedin.com/in/siddharthsaminathan",
+      "portfolio_url": "https://emotenow.app/",
+      "github": "github.com/siddharthsaminathan"
+    },
+    "target_roles": {
+      "primary": [
+        "AI Product Engineer",
+        "Applied AI Engineer",
+        "Founding Engineer (AI)",
+        "Senior AI Engineer"
+      ],
+      "archetypes": [
+        {
+          "name": "AI Product Engineer",
+          "level": "Senior/Staff",
+          "fit": "primary"
+        },
+        {
+          "name": "Applied AI Engineer",
+          "level": "Senior",
+          "fit": "primary"
+        },
+        {
+          "name": "Founding Engineer",
+          "level": "Senior/Lead",
+          "fit": "primary"
+        },
+        {
+          "name": "Platform Engineer (AI/ML)",
+          "level": "Senior",
+          "fit": "secondary"
+        },
+        {
+          "name": "Backend Engineer (AI systems)",
+          "level": "Senior",
+          "fit": "secondary"
+        },
+        {
+          "name": "Solutions Engineer (AI)",
+          "level": "Mid-Senior",
+          "fit": "adjacent"
+        }
+      ]
+    },
+    "narrative": {
+      "headline": "Manufacturing Enterprise Quality Digitalization — agentic AI for mission-critical production systems",
+      "exit_story": "Built Emote from zero to 450+ users (15x latency reduction, 50x cost reduction). Now building agentic AI for enterprise quality management at Omnex Systems — automating DFMEA, PFMEA, Control Plans, and 8D across global manufacturing supply chains.",
+      "superpowers": [
+        "Manufacturing enterprise quality digitalization (EQMS, APQP, DFMEA/PFMEA)",
+        "Agentic AI orchestration — multi-step quality workflows with full traceability",
+        "Taking AI from concept to production (0→1→iteration)",
+        "Performance optimization (latency 15s→3s, cost $1.20→$0.023)",
+        "Full-stack AI: architecture, backend, observability, iteration"
+      ],
+      "proof_points": [
+        {
+          "name": "Emote — Full AI Product",
+          "url": "https://emotenow.app/",
+          "hero_metric": "450+ users, 13-15% weekly retention, 15x latency reduction"
+        },
+        {
+          "name": "Omnex Agentic AI",
+          "url": "",
+          "hero_metric": "Production multi-agent system for quality workflows, 12.5s→8s"
+        },
+        {
+          "name": "Akkodis Data Migration",
+          "url": "",
+          "hero_metric": "Azure→PostgreSQL migration for Ericsson, 5% reporting accuracy improvement"
+        }
+      ]
+    },
+    "compensation": {
+      "target_range": "₹35L-60L",
+      "currency": "INR",
+      "minimum": "₹25L",
+      "location_flexibility": "Remote preferred. Chennai or Bangalore hybrid possible."
+    },
+    "location": {
+      "country": "India",
+      "city": "Chennai",
+      "timezone": "IST (UTC+5:30)",
+      "visa_status": "Indian citizen",
+      "onsite_availability": "Remote-first. Can do Chennai or Bangalore hybrid."
+    }
+  },
+  "today": "May 2026",
+  "canonical_resume": {
+    "person_id": "default",
+    "sections": [
+      {
+        "section_id": "siddharth_saminathan",
+        "section_title": "Siddharth Saminathan",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "**AI Product Engineer · Systems Architect**\n+91 7299707403 · siddharthsaminathan99@gmail.com · Chennai, India\nWebsite: https://emotenow.app/ · github.com/siddharthsaminathan\n\n\n\n---",
+        "original_order": 0,
+        "links": []
+      },
+      {
+        "section_id": "profile",
+        "section_title": "Profile",
+        "normalized_type": "profile",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "AI Product and Systems Engineer with 4+ years of experience building and shipping production AI systems across data infrastructure, enterprise workflows, and consumer applications. Focus on taking systems from concept to real users, improving them through measurable outcomes such as latency, cost, and user retention. Experience spans multi-agent orchestration, real-time pipelines, and memory-driven AI systems, with a strong emphasis on reliability and iteration in production environments.\n\n\n\n---",
+        "original_order": 1,
+        "links": []
+      },
+      {
+        "section_id": "work_experience",
+        "section_title": "Work Experience",
+        "normalized_type": "experience",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "",
+        "original_order": 2,
+        "links": []
+      },
+      {
+        "section_id": "ai_engineer_omnex_systems_aquapro_ai",
+        "section_title": "AI Engineer — Omnex Systems (AquaPro AI)",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "**2025 – Present | Chennai, India**\n\n\n\n- Built a production AI system enabling AI-assisted quality and control workflows (DFMEA, PFMEA, Control Plans, Process Flows, 5W2H, 5 Whys, 8D), improving consistency and reducing manual analysis effort for engineering teams.\n- Designed an orchestration layer using tool-calling: selects tools, routes data across internal services, and executes multi-step workflows end-to-end (generate, validate, update).\n- Enabled the system to understand production hierarchies and categories, map inputs to the right structures, and suggest updates based on existing data.\n- Implemented feedback-aware flows: retrieves similar past concerns, links them, updates records, and suggests impactful actions to users.\n- Reduced response latency from ~12.5s to ~8s by restructuring the pipeline and consolidating model calls.\n- Improved output consistency and reduced failures with validation layers, retry handling, and fallback logic.\n- Implemented observability (structured logging, tracing, and metrics) to monitor system behavior and debug production issues.",
+        "original_order": 3,
+        "links": []
+      },
+      {
+        "section_id": "co_founder_ai_product_engineer_emote_emotenow_app",
+        "section_title": "Co-Founder, AI Product Engineer — Emote (emotenow.app)",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "**2024 – Present**\n\n\n\n- Built a production AI companion system for hyper-personalized emotional support — users feel remembered and do not start over each session.\n- Designed a memory system that tracks emotional context, relationships, and cause-effect patterns across 100s of conversations, improving relevance per user.\n- Built the backend from scratch (FastAPI, Redis, PostgreSQL, hosted on Fly.io) with SSE streaming and WebSocket-based real-time pipelines, caching, and multi-model routing.\n- Scaled from 0 to 450+ users, with 40+ power users and ~13–15% weekly cohort retention (pre-PMF).\n- Reduced inference cost per conversation from ~$1.20 to ~$0.023 through model selection, caching, and prompt optimization.\n- Improved latency from ~15s to ~3s through pipeline optimization and streaming.\n- Built an internal AI product manager that monitors system behaviour, detects anomalies, and improves observability across the production AI stack.\n- Built a Reddit bot to automate user acquisition; reduced outreach time from ~6–8 hours to ~30–40 minutes, enabling 50–100 hyper-personalized DMs per session, increasing activation from ~20% to ~75% and weekly retention from ~5% to ~13%.",
+        "original_order": 4,
+        "links": []
+      },
+      {
+        "section_id": "data_engineer_akkodis_ab_ericsson_client",
+        "section_title": "Data Engineer — Akkodis AB (Ericsson Client)",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "**Nov 2022 – Nov 2024 | Sweden**\n\n\n\n- Led migration of enterprise data platform from Azure to on-prem PostgreSQL cloud environment.\n- Owned redesign of data pipelines powering reporting systems across data owners and stakeholders.\n- Built and designed end-to-end ETL lifecycle for dashboards (Power BI, Tableau) used by business stakeholders.\n- Ensured data reliability and consistency during large-scale migration through data quality audits.",
+        "original_order": 5,
+        "links": []
+      },
+      {
+        "section_id": "data_analyst_positive_integers_pvt_ltd",
+        "section_title": "Data Analyst — Positive Integers Pvt Ltd",
+        "normalized_type": "unknown",
+        "visibility_class": "UNKNOWN",
+        "raw_text": "**Sep 2019 – May 2020 | Chennai, India**\n\n\n\n- Built Tableau dashboards for an NBFC to analyze credit risk and loan repayment behaviour.\n- Built real-time Grafana dashboards for ID by SPI Cinemas to track full order-to-table lifecycle.\n- Built SQL-based ETL workflows to extract, transform, and load data from operational source systems into reporting layers.\n\n---",
+        "original_order": 6,
+        "links": []
+      },
+      {
+        "section_id": "skills",
+        "section_title": "Skills",
+        "normalized_type": "skill",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "**Programming & Data:** Python, SQL\n\n\n\n**Backend & Systems:** FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets, SSE streaming\n\n\n\n**AI / ML Systems:** LLM APIs, RAG pipelines, embeddings, prompt design, multi-model routing, multi-agent orchestration, memory systems\n\n\n\n**Infra & Deployment:** Docker, Fly.io, AWS (basics), logging, observability, performance optimization\n\n\n\n**Data & Analytics:** ETL pipelines, Power BI, Tableau, data validation, pipeline optimization\n\n\n\n---",
+        "original_order": 7,
+        "links": []
+      },
+      {
+        "section_id": "education",
+        "section_title": "Education",
+        "normalized_type": "education",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "**M.Sc. Statistics and Machine Learning** — Linköping University, Sweden · 2020–2022\n\n- Thesis: ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples).\n- Applied autoencoders for feature compression and representation learning.\n- Used PCA for dimensionality reduction and feature selection.\n- Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns.\n\n**B.Tech Computer Science & Engineering** — SRM University, India · 2016–2020\n\n\n\n---",
+        "original_order": 8,
+        "links": []
+      },
+      {
+        "section_id": "achievements",
+        "section_title": "Achievements",
+        "normalized_type": "achievement",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "- Built Emote from zero: grew to 450+ users with 40+ power users, 13–15% weekly retention with zero paid acquisition. (https://emotenow.app/)\n- Led enterprise data platform migration (Azure to PostgreSQL) at Akkodis for Ericsson; recognised for improving reporting reliability and delivery.\n\n---",
+        "original_order": 9,
+        "links": []
+      },
+      {
+        "section_id": "languages",
+        "section_title": "Languages",
+        "normalized_type": "language",
+        "visibility_class": "PUBLIC_APPLICATION_CONTENT",
+        "raw_text": "English (Fluent) · Tamil (Native) · Hindi",
+        "original_order": 10,
+        "links": []
+      }
+    ],
+    "parse_warnings": []
+  },
+  "preservation_contract": {
+    "required_public_sections": [
+      "work_experience",
+      "education"
+    ],
+    "sections_to_exclude": [],
+    "unknown_sections_to_preserve": [
+      "siddharth_saminathan",
+      "ai_engineer_omnex_systems_aquapro_ai",
+      "co_founder_ai_product_engineer_emote_emotenow_app",
+      "data_engineer_akkodis_ab_ericsson_client",
+      "data_analyst_positive_integers_pvt_ltd"
+    ],
+    "ordering_rules": [
+      "siddharth_saminathan",
+      "profile",
+      "work_experience",
+      "ai_engineer_omnex_systems_aquapro_ai",
+      "co_founder_ai_product_engineer_emote_emotenow_app",
+      "data_engineer_akkodis_ab_ericsson_client",
+      "data_analyst_positive_integers_pvt_ltd",
+      "skills",
+      "education",
+      "achievements",
+      "languages"
+    ],
+    "link_preservation_rules": {
+      "all": "MUST_SURVIVE"
+    },
+    "max_allowed_changes": 3
+  },
+  "company_intelligence": {
+    "company_name": "BukuWarung",
+    "role_title": "AI Product Engineer",
+    "source_urls": [],
+    "grounding_status": "JD_ONLY",
+    "confidence": 0.45,
+    "generated_at": "2026-05-23T19:14:02.279143+00:00",
+    "cache_key": "d266117bb5b6b492",
+    "ttl_days": 30,
+    "company_summary": "BukuWarung. with a focus on ai_ml, ai_ml, bioinformatics.",
+    "business_model": "",
+    "revenue_model": "",
+    "customer_segment": "",
+    "product_category": "",
+    "india_presence": "UNKNOWN",
+    "company_maturity": "UNKNOWN",
+    "growth_signals": [],
+    "stability_signals": [],
+    "hiring_urgency": "UNKNOWN",
+    "role_reason": "",
+    "likely_success_criteria": [],
+    "likely_failure_modes": [],
+    "culture_signals": [],
+    "communication_style": "",
+    "founder_or_leadership_signals": "",
+    "org_maturity": "UNKNOWN",
+    "technical_maturity": "UNKNOWN",
+    "ai_maturity": "UNKNOWN",
+    "likely_stack": "",
+    "interview_implications": "",
+    "compensation_signals": "",
+    "red_flags": [],
+    "red_flags_detail": [],
+    "recruiter_info": {
+      "name": "Isma Iriyani",
+      "link": "https://id.linkedin.com/in/ismairiyani",
+      "role": "Talent Acquisition Specialist at BukuWarung",
+      "plausibility_score": "4",
+      "route": "Route C",
+      "reason": "Talent Acquisition Specialist at BukuWarung, likely involved in recruiting for this role."
+    },
+    "positioning_implications": "",
+    "language_to_use": [],
+    "language_to_avoid": [],
+    "candidate_angles": [],
+    "transferability_angles": [],
+    "risks_to_soften": [],
+    "claims_to_avoid": [],
+    "resume_strategy_hint": "",
+    "outreach_strategy_hint": "OUTREACH PACK:\nDM: Isma, saw BukuWarung is hiring an AI Productivity Engineer to drive automation and GTM scaling. I built Emote (emotenow.app) from zero to 450+ users with 15x latency reduction and cost under $0.023 per inference. I can help you build and deploy similar AI systems for operational efficiency.\n\nExit Line: Open to a quick chat this week to discuss how I can contribute?\n\nEmail Guesses: isma.iriyani@bukuwarung.com, i.iriyani@bukuwarung.com",
+    "interview_strategy_hint": "",
+    "s6_positioning_context": {
+      "company_archetype": "BukuWarung. with a focus on ai_ml, ai_ml, bioinformatics.",
+      "business_model": "",
+      "company_maturity": "UNKNOWN",
+      "india_presence": "UNKNOWN",
+      "culture_signals": [],
+      "hiring_urgency": "UNKNOWN",
+      "positioning_implications": "",
+      "language_to_use": [],
+      "language_to_avoid": [],
+      "risks_to_soften": [],
+      "claims_to_avoid": [],
+      "candidate_angles": [],
+      "red_flags": [],
+      "grounding_status": "JD_ONLY",
+      "confidence": 0.0
+    },
+    "s7_rewrite_context": {
+      "company_archetype": "BukuWarung. with a focus on ai_ml, ai_ml, bioinformatics.",
+      "company_tone": "professional and direct",
+      "product_context": "",
+      "business_problem": "",
+      "role_success_criteria": [],
+      "language_to_use": [],
+      "language_to_avoid": [],
+      "proof_points_to_prefer": [
+        "measurable outcomes with numbers",
+        "specific, defensible achievements",
+        "evidence of ownership and initiative"
+      ],
+      "risks_to_soften": [],
+      "avoid_overclaiming_about": [],
+      "max_5_bullet_guidance": "Lead every bullet with a strong action verb and a measurable outcome. Replace weak verbs (Analyzed, Supported, Assisted) with ownership verbs (Built, Owned, Shipped, Drove). Keep all metrics exact.",
+      "founder_context": "UNKNOWN",
+      "hiring_reason": "UNKNOWN",
+      "culture_fit_signals": [
+        "automation",
+        "efficiency",
+        "scalability",
+        "innovation",
+        "collaboration"
+      ],
+      "interview_prep_hints": [
+        "How would you design an AI system to automate customer support workflows?",
+        "Describe your experience with LLMs and AI agents in production.",
+        "How do you approach cost optimization for AI systems?"
+      ],
+      "glassdoor_signal": "No data",
+      "reddit_signal": "No data",
+      "recruiter_info": {
+        "name": "Isma Iriyani",
+        "link": "https://id.linkedin.com/in/ismairiyani",
+        "role": "Talent Acquisition Specialist at BukuWarung",
+        "plausibility_score": "4",
+        "route": "Route C",
+        "reason": "Talent Acquisition Specialist at BukuWarung, likely involved in recruiting for this role."
+      }
+    },
+    "key_people": [
+      {
+        "name": "Sarah Haruka",
+        "title": "Talent Acquisition Specialist at BukuWarung",
+        "source": "linkedin",
+        "plausibility_score": 4
+      },
+      {
+        "name": "Isma Iriyani",
+        "title": "Talent Acquisition Specialist at BukuWarung",
+        "source": "linkedin",
+        "plausibility_score": 4
+      },
+      {
+        "name": "Rajesh Chandrashekaran",
+        "title": "Engineering Leader at BukuWarung",
+        "source": "linkedin",
+        "plausibility_score": 3
+      },
+      {
+        "name": "Mandeep Singh",
+        "title": "Engineering Manager at BukuWarung",
+        "source": "linkedin",
+        "plausibility_score": 3
+      },
+      {
+        "name": "Prasanth Nair",
+        "title": "Head Of Engineering at Bukuwarung",
+        "source": "linkedin",
+        "plausibility_score": 3
+      },
+      {
+        "name": "Arun Chaitanya Miriappalli",
+        "title": "Engineer at BukuWarung",
+        "source": "linkedin",
+        "plausibility_score": 2
+      }
+    ],
+    "founder_background": "UNKNOWN",
+    "hiring_manager_context": "UNKNOWN",
+    "interview_questions_likely": [
+      "How would you design an AI system to automate customer support workflows?",
+      "Describe your experience with LLMs and AI agents in production.",
+      "How do you approach cost optimization for AI systems?",
+      "Explain a time you integrated AI into an existing product or internal operation.",
+      "How do you measure the impact of AI-driven automation on business metrics?"
+    ],
+    "culture_keywords": [
+      "automation",
+      "efficiency",
+      "scalability",
+      "innovation",
+      "collaboration",
+      "customer-centric",
+      "productivity",
+      "AI-driven"
+    ],
+    "glassdoor_signal": "No data",
+    "reddit_signal": "No data",
+    "sources_by_type": {},
+    "unknowns": [
+      "company_identity",
+      "mission_statement",
+      "product_context",
+      "business_problem",
+      "role_success_criteria",
+      "recruiter_info",
+      "red_flags_detail",
+      "key_people",
+      "founder_background",
+      "hiring_manager_context",
+      "glassdoor_signal",
+      "reddit_signal",
+      "company_archetype",
+      "company_tone",
+      "language_to_use",
+      "language_to_avoid",
+      "proof_points_to_prefer",
+      "risks_to_soften",
+      "avoid_overclaiming_about",
+      "founder_context",
+      "culture_fit_signals",
+      "interview_prep_hints",
+      "max_5_bullet_guidance"
+    ]
+  },
+  "role_decode": {
+    "normalized_title": "AI Productivity Engineer",
+    "seniority": "senior",
+    "must_haves": [
+      "Python",
+      "experience with LLMs",
+      "MLOps",
+      "DevOps",
+      "AI agent development",
+      "automation workflow design"
+    ],
+    "nice_to_haves": [
+      "Java",
+      "experience with GTM strategies",
+      "customer support automation",
+      "cloud cost optimization"
+    ],
+    "hidden_expectations": [
+      "business-outcome thinking",
+      "cross-functional collaboration",
+      "cost-consciousness",
+      "ability to influence GTM strategy"
+    ],
+    "day_one_deliverables": [
+      "Implement AI-based self-serve tools to reduce operational dependencies"
+    ],
+    "screening_keywords": [
+      "AI-powered automation",
+      "LLMs",
+      "AI agents",
+      "self-serve",
+      "GTM",
+      "operational scaling",
+      "DevOps",
+      "MLOps",
+      "Python",
+      "cost-effective"
+    ],
+    "disqualifiers": [
+      "no LLM experience",
+      "no coding skills",
+      "no production AI deployment experience"
+    ],
+    "confidence": 0.7
+  },
+  "user_truth": null,
+  "positioning_strategy": null,
+  "section_rewrites": null,
+  "application_pack": {
+    "resume_markdown": "",
+    "cover_note": "",
+    "screening_answers": "",
+    "recruiter_message": "",
+    "follow_up_message": "",
+    "quality_report": null,
+    "preserved_links": [],
+    "link_audit": null,
+    "user_review_summary": "FAILURE: Council stopped with 1 error(s). See failure_report.md in output directory.",
+    "failure_report": "# Resume Council Failure Report\n\n**Generated:** 2026-05-23T20:09:42.246036+00:00\n**Job:** AI Product Engineer at BukuWarung\n\n## Errors (1)\n\n1. HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.\n\n## Next Steps\n\n1. Fix the underlying issue (API key, model config, input data).\n2. Re-run the council for this job.\n"
+  },
+  "truth_guard_report": null,
+  "pre_humanizer_resume": null,
+  "humanizer_output": null,
+  "humanizer_report": null,
+  "s7_debug": null,
+  "candidate_graph": {
+    "name": "",
+    "email": "",
+    "phone": "",
+    "links": [],
+    "profile_summary": "AI Product and Systems Engineer with 4+ years of experience building and shipping production AI systems across data infrastructure, enterprise workflows, and consumer applications. Focus on taking systems from concept to real users, improving them through measurable outcomes such as latency, cost, and user retention. Experience spans multi-agent orchestration, real-time pipelines, and memory-driven AI systems, with a strong emphasis on reliability and iteration in production environments.\n\n\n\n---",
+    "target_role_title": "",
+    "experience": [],
+    "education": [
+      {
+        "raw": "**M.Sc. Statistics and Machine Learning** — Linköping University, Sweden · 2020–2022\n\n- Thesis: ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples).\n- Applied autoencoders for feature compression and representation learning.\n- Used PCA for dimensionality reduction and feature selection.\n- Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns.\n\n**B.Tech Computer Science & Engineering** — SRM University, India · 2016–2020\n\n\n\n---",
+        "lines": [
+          "**M.Sc. Statistics and Machine Learning** — Linköping University, Sweden · 2020–2022",
+          "- Thesis: ML pipeline for colorectal cancer metastasis prediction from high-dimensional RNA sequencing data (~64,000 features, under 50 samples).",
+          "- Applied autoencoders for feature compression and representation learning.",
+          "- Used PCA for dimensionality reduction and feature selection.",
+          "- Performed gene set enrichment analysis and statistical modelling to identify biologically relevant patterns.",
+          "**B.Tech Computer Science & Engineering** — SRM University, India · 2016–2020",
+          "---"
+        ]
+      }
+    ],
+    "skills": [
+      "Programming & Data:** Python, SQL",
+      "Backend & Systems:** FastAPI, Redis (caching, queues), PostgreSQL, REST APIs, async pipelines, WebSockets, SSE streaming",
+      "AI / ML Systems:** LLM APIs, RAG pipelines, embeddings, prompt design, multi-model routing, multi-agent orchestration, memory systems",
+      "Infra & Deployment:** Docker, Fly.io, AWS (basics), logging, observability, performance optimization",
+      "Data & Analytics:** ETL pipelines, Power BI, Tableau, data validation, pipeline optimization"
+    ],
+    "achievements": [],
+    "metric_vault": [],
+    "private_constraints": []
+  },
+  "cv_tenure_years": 0.0,
+  "errors": [
+    "HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out."
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "job_id": "bukuwarung",
+  "person_id": "siddharth",
+  "job_title": "AI Product Engineer",
+  "company": "BukuWarung",
+  "job_url": "https://www.linkedin.com/jobs/view/bukuwarung-ai-product-engineer",
+  "jd_text": "Function: Software Engineering → Other Software Development Generative AI Python DevOps LLMs Machine Learning Java +3 more MLOps MCP Deployment We are looking for a highly skilled AI Productivity Engineer to lead the development and integration of AI-driven solutions, driving automation and efficiency across multiple business functions. In this role, you will play a crucial part in building scalable tools and workflows, optimizing internal processes, and fostering continuous productivity improvements. Your expertise will directly contribute to accelerating our GTM strategy, enhancing operational scalability, and shaping the future of AI adoption within our company. The role, in our view, is split across three core areas of responsibility. The core responsibilities for the job include the following: AI-Powered Automation and Operational Scaling: Lead the development and integration of cost-effective AI systems, leveraging LLMs and AI agents to optimize business operations, automate workflows, and improve customer support processes. Implement AI-based self-serve tools to reduce operational dependencies. Collaborate with product and engineering teams to integrate AI-driven automation into products, customer support, and internal operations. Identify and implement AI tools to enhance team productivity, GTM strategies, and business scalability.",
+  "profile": {
+    "candidate": {
+      "full_name": "Siddharth Saminathan",
+      "email": "siddharthsaminathan99@gmail.com",
+      "phone": "+91 7299707403",
+      "location": "Chennai, India",
+      "linkedin": "linkedin.com/in/siddharthsaminathan",
+      "portfolio_url": "https://emotenow.app/",
+      "github": "github.com/siddharthsaminathan"
+    },
+    "target_roles": {
+      "primary": [
+        "AI Product Engineer",
+        "Applied AI Engineer",
+        "Founding Engineer (AI)",
+        "Senior AI Engineer"
+      ],
+      "archetypes": [
+        {
+          "name": "AI Product Engineer",
+          "level": "Senior/Staff",
+          "fit": "primary"
+        },
+        {
+          "name": "Applied AI Engineer",
+          "level": "Senior",
+          "fit": "primary"
+        },
+        {
+          "name": "Founding Engineer",
+          "level": "Senior/Lead",
+          "fit": "primary"
+        },
+        {
+          "name": "Platform Engineer (AI/ML)",
+          "level": "Senior",
+          "fit": "secondary"
+        },
+        {
+          "name": "Backend Engineer (AI systems)",
+          "level": "Senior",
+          "fit": "secondary"
+        },
+        {
+          "name": "Solutions Engineer (AI)",
+          "level": "Mid-Senior",
+          "fit": "adjacent"
+        }
+      ]
+    },
+    "narrative": {
+      "headline": "Manufacturing Enterprise Quality Digitalization — agentic AI for mission-critical production systems",
+      "exit_story": "Built Emote from zero to 450+ users (15x latency reduction, 50x cost reduction). Now building agentic AI for enterprise quality management at Omnex Systems — automating DFMEA, PFMEA, Control Plans, and 8D across global manufacturing supply chains.",
+      "superpowers": [
+        "Manufacturing enterprise quality digitalization (EQMS, APQP, DFMEA/PFMEA)",
+        "Agentic AI orchestration — multi-step quality workflows with full traceability",
+        "Taking AI from concept to production (0→1→iteration)",
+        "Performance optimization (latency 15s→3s, cost $1.20→$0.023)",
+        "Full-stack AI: architecture, backend, observability, iteration"
+      ],
+      "proof_points": [
+        {
+          "name": "Emote — Full AI Product",
+          "url": "https://emotenow.app/",
+          "hero_metric": "450+ users, 13-15% weekly retention, 15x latency reduction"
+        },
+        {
+          "name": "Omnex Agentic AI",
+          "url": "",
+          "hero_metric": "Production multi-agent system for quality workflows, 12.5s→8s"
+        },
+        {
+          "name": "Akkodis Data Migration",
+          "url": "",
+          "hero_metric": "Azure→PostgreSQL migration for Ericsson, 5% reporting accuracy improvement"
+        }
+      ]
+    },
+    "compensation": {
+      "target_range": "₹35L-60L",
+      "currency": "INR",
+      "minimum": "₹25L",
+      "location_flexibility": "Remote preferred. Chennai or Bangalore hybrid possible."
+    },
+    "location": {
+      "country": "India",
+      "city": "Chennai",
+      "timezone": "IST (UTC+5:30)",
+      "visa_status": "Indian citizen",
+      "onsite_availability": "Remote-first. Can do Chennai or Bangalore hybrid."
+    }
+  },
+  "today": "May 2026",
+  "canonical_resume": null,
+  "preservation_contract": null,
+  "company_intelligence": null,
+  "role_decode": null,
+  "user_truth": null,
+  "positioning_strategy": null,
+  "section_rewrites": null,
+  "application_pack": null,
+  "truth_guard_report": null,
+  "pre_humanizer_resume": null,
+  "humanizer_output": null,
+  "humanizer_report": null,
+  "s7_debug": null,
+  "errors": [
+    "HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out."
+  ]
+}

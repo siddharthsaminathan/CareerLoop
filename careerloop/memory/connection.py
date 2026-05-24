@@ -155,11 +155,54 @@ class DatabaseManager:
         );
         CREATE TABLE IF NOT EXISTS sessions (
             user_id TEXT PRIMARY KEY,
-            state TEXT DEFAULT 'IDLE',
+            state TEXT DEFAULT 'NEW_USER',
             current_job_id TEXT,
             onboarding_step INTEGER DEFAULT 0,
             temp_profile_data TEXT DEFAULT '{}',
+            active_artifact_type TEXT,
+            active_artifact_id TEXT,
+            active_job_id TEXT,
+            active_brief_id TEXT,
+            active_pack_id TEXT,
+            current_selection_index INTEGER,
             updated_at TEXT DEFAULT (datetime('now'))
+        );
+        CREATE TABLE IF NOT EXISTS daily_briefs (
+            id TEXT PRIMARY KEY,
+            user_id TEXT NOT NULL,
+            date_str TEXT NOT NULL,
+            run_id TEXT,
+            summary TEXT,
+            created_at TEXT DEFAULT (datetime('now')),
+            UNIQUE(user_id, date_str)
+        );
+        CREATE TABLE IF NOT EXISTS background_runs (
+            run_id TEXT PRIMARY KEY,
+            user_id TEXT NOT NULL,
+            run_type TEXT NOT NULL,
+            status TEXT DEFAULT 'QUEUED',
+            created_at TEXT DEFAULT (datetime('now')),
+            updated_at TEXT DEFAULT (datetime('now'))
+        );
+        CREATE TABLE IF NOT EXISTS run_events (
+            event_id TEXT PRIMARY KEY,
+            run_id TEXT NOT NULL,
+            message TEXT,
+            timestamp TEXT DEFAULT (datetime('now'))
+        );
+        CREATE TABLE IF NOT EXISTS daily_brief_items (
+            id TEXT PRIMARY KEY,
+            brief_id TEXT NOT NULL,
+            item_index INTEGER NOT NULL,
+            job_id TEXT NOT NULL,
+            title TEXT,
+            company TEXT,
+            location TEXT,
+            fit_score REAL,
+            recommendation_reason TEXT,
+            risk_summary TEXT,
+            route_recommendation TEXT,
+            UNIQUE(brief_id, item_index)
         );
         CREATE TABLE IF NOT EXISTS companies (
             id TEXT PRIMARY KEY,
@@ -222,6 +265,14 @@ class DatabaseManager:
             "full_name": "TEXT",
             "master_cv_markdown": "TEXT",
             "parsed_cv_data": "TEXT",
+        })
+        self._ensure_sqlite_columns(conn, "sessions", {
+            "active_artifact_type": "TEXT",
+            "active_artifact_id": "TEXT",
+            "active_job_id": "TEXT",
+            "active_brief_id": "TEXT",
+            "active_pack_id": "TEXT",
+            "current_selection_index": "INTEGER",
         })
         try:
             conn.execute("UPDATE sessions SET state = 'PROFILE_COMPLETE' WHERE state = 'DAILY_BRIEF_SENT'")

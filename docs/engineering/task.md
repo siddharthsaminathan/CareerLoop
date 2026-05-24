@@ -1,0 +1,21 @@
+# Execution Tasks — Tal Onboarding & Dynamic Company Research
+
+- `[x]` **Phase 1: State Machine & Types Update**
+    - `[x]` Add `ONBOARDING_IDENTIFYING`, `ONBOARDING_PROFILE_CONFIRMATION`, and `RESEARCHING_COMPANY` states to `careerloop/session/states.py`.
+    - `[x]` Update `normalize_user_state` and legacymap in `states.py`.
+- `[x]` **Phase 2: Conversation History & Intent Classifier Upgrades**
+    - `[x]` Update `ChatIntentAgent` in `careerloop/llm_chat.py` to accept message history and parse intent as JSON with context.
+    - `[x]` Test intent classification with mock multi-turn dialogue.
+- `[x]` **Phase 3: Supervisor Graph & Routing Node Updates**
+    - `[x]` Add `pending_research_company` and `specific_question` to `ConversationState` in `careerloop/session/supervisor_graph.py`.
+    - `[x]` Implement `deep_research_node` invoking the MECE `CompanyIntelligenceEngine`.
+    - `[x]` Update conditional routing (`route_from_intent`) and build builder.
+- `[x]` **Phase 4: LinkedIn Scraper & Interactive Onboarding Flow**
+    - `[x]` Implement `LinkedInScraper` in `careerloop/sources/linkedin_scraper.py` using search and profile parsing logic.
+    - `[x]` Update `OnboardingFlow.handle_message()` in `careerloop/onboarding/onboarding_flow.py` to drive name identification, card rendering, confirmation, and auto-hydration.
+- `[x]` **Phase 5: Discovery Link Verification & Recruiter Sourcing**
+    - `[x]` Hook link verification gate in job crawl process.
+    - `[x]` Verify recruiter profile extraction during company intelligence Layer 3.
+- `[x]` **Phase 6: Verification & Testing**
+    - `[x]` Write regression tests for states, onboarding transitions, and routing.
+    - `[x]` Run test suite and manual verification in the CLI shell.

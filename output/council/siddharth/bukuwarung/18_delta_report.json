@@ -1,0 +1,135 @@
+{
+  "tailoring_delta": {
+    "sections_total": 9,
+    "sections_changed": 9,
+    "sections_changed_pct": 100.0,
+    "average_section_delta_pct": 38.61,
+    "sections": [
+      {
+        "section_id": "ai_engineer_omnex_systems_aquapro_ai",
+        "change_type": "REWRITE",
+        "similarity": 0.7652,
+        "delta_pct": 23.48,
+        "original_chars": 1085,
+        "rewritten_chars": 1296,
+        "original_bullets": 7,
+        "rewritten_bullets": 7,
+        "changed": true,
+        "change_reason": "Reframed bullets to emphasize automation, self-serve, scalability, and cost-effectiveness, aligning with BukuWarung's need for AI-driven business scalability and cost optimization."
+      },
+      {
+        "section_id": "profile",
+        "change_type": "REWRITE",
+        "similarity": 0.1216,
+        "delta_pct": 87.84,
+        "original_chars": 500,
+        "rewritten_chars": 1227,
+        "original_bullets": 0,
+        "rewritten_bullets": 0,
+        "changed": true,
+        "change_reason": "Reframed profile to emphasize business outcomes, cost optimization, and product scalability, aligning with BukuWarung's need for an outcome-driven AI engineer who can automate workflows and drive GTM."
+      },
+      {
+        "section_id": "co_founder_ai_product_engineer_emote_emotenow_app",
+        "change_type": "REWRITE",
+        "similarity": 0.7036,
+        "delta_pct": 29.64,
+        "original_chars": 1188,
+        "rewritten_chars": 1680,
+        "original_bullets": 8,
+        "rewritten_bullets": 7,
+        "changed": true,
+        "change_reason": "Reframed each bullet to emphasize business scalability, cost optimization, and automation — aligning with BukuWarung's need for AI-driven self-serve tools and operational efficiency."
+      },
+      {
+        "section_id": "data_analyst_positive_integers_pvt_ltd",
+        "change_type": "REWRITE",
+        "similarity": 0.7904,
+        "delta_pct": 20.96,
+        "original_chars": 363,
+        "rewritten_chars": 472,
+        "original_bullets": 3,
+        "rewritten_bullets": 3,
+        "changed": true,
+        "change_reason": "Reframed bullets to emphasize business impact and data pipeline reliability, aligning with the role's need for automation and scalability."
+      },
+      {
+        "section_id": "data_engineer_akkodis_ab_ericsson_client",
+        "change_type": "REWRITE",
+        "similarity": 0.2847,
+        "delta_pct": 71.53,
+        "original_chars": 443,
+        "rewritten_chars": 667,
+        "original_bullets": 4,
+        "rewritten_bullets": 4,
+        "changed": true,
+        "change_reason": "Reframed bullets to emphasize ownership, business impact, and scalability, aligning with the startup's need for automation and self-serve tools."
+      },
+      {
+        "section_id": "skills",
+        "change_type": "REWRITE",
+        "similarity": 0.4732,
+        "delta_pct": 52.68,
+        "original_chars": 511,
+        "rewritten_chars": 495,
+        "original_bullets": 0,
+        "rewritten_bullets": 5,
+        "changed": true,
+        "change_reason": "Reordered skills to prioritize Python, LLM, and deployment (must-haves) and grouped by relevance to the target role."
+      },
+      {
+        "section_id": "languages",
+        "change_type": "KEEP",
+        "similarity": 0.875,
+        "delta_pct": 12.5,
+        "original_chars": 41,
+        "rewritten_chars": 39,
+        "original_bullets": 0,
+        "rewritten_bullets": 0,
+        "changed": true,
+        "change_reason": "Languages are factual data and require no tailoring."
+      },
+      {
+        "section_id": "education",
+        "change_type": "REWRITE",
+        "similarity": 0.7389,
+        "delta_pct": 26.11,
+        "original_chars": 567,
+        "rewritten_chars": 789,
+        "original_bullets": 4,
+        "rewritten_bullets": 4,
+        "changed": true,
+        "change_reason": "Reframed thesis and coursework bullets to emphasize outcome-driven ML pipeline building and data efficiency, aligning with the role's need for automation and scalable AI solutions."
+      },
+      {
+        "section_id": "achievements",
+        "change_type": "REWRITE",
+        "similarity": 0.7724,
+        "delta_pct": 22.76,
+        "original_chars": 295,
+        "rewritten_chars": 386,
+        "original_bullets": 2,
+        "rewritten_bullets": 2,
+        "changed": true,
+        "change_reason": "Reframed first bullet to emphasize product-led growth and self-serve scalability, aligning with role's need for automation and GTM thinking. Second bullet kept as is but strengthened verb to 'Led' and added business impact."
+      }
+    ]
+  },
+  "humanization_delta": {
+    "similarity": 0.9981,
+    "delta_pct": 0.19,
+    "nonblank_line_changes": 0,
+    "mostly_whitespace": true
+  },
+  "cope_detection": {
+    "slop_hits": {
+      "spearheaded": 0,
+      "leveraged": 0,
+      "synergy": 0,
+      "passionate": 0,
+      "cutting-edge": 0,
+      "results-driven": 0
+    },
+    "status": "PASS"
+  }
+}

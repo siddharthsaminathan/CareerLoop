@@ -1,0 +1,24 @@
+{
+  "one_line_positioning": "AI Product Engineer who builds and scales AI automation from zero, with a track record of cost optimization and user growth.",
+  "narrative_angle": "Combines deep LLM engineering with a product mindset, having scaled an AI app to 450+ users and achieved 98% cost reduction; ready to apply this end-to-end ownership to automate and scale BukuWarung's financial workflows for small businesses.",
+  "lead_strengths": [
+    "Reduced inference cost by 98% (from $1.20 to $0.023) while improving latency from 15s to 3s.",
+    "Scaled AI companion app to 450+ users with 13-15% weekly retention and zero paid acquisition.",
+    "Built production AI system for quality workflows at Omnex, reducing manual effort and improving consistency."
+  ],
+  "proof_points_to_emphasize": [
+    "Reduced inference cost per conversation from $1.20 to $0.023",
+    "Scaled to 450+ users with 13-15% weekly retention",
+    "Automated user acquisition via Reddit bot, increasing activation from 20% to 75%",
+    "Built AI product manager that monitors system behavior and automates observability"
+  ],
+  "things_to_downplay": [
+    "No Java experience (nice-to-have)",
+    "No MCP experience (nice-to-have)",
+    "Domain experience is in consumer AI, not fintech or bookkeeping"
+  ],
+  "tone_guidance": "Outcome-first, emphasize business impact and scalability, use startup language (growth, retention, cost optimization), avoid over-technical AI jargon, keep it product-focused.",
+  "recruiter_first_impression_target": "This candidate is a rare find: an AI engineer who thinks like a product owner and has delivered measurable business outcomes.",
+  "application_stance": "STRONG_PUSH",
+  "reasoning": "Differentiator: full-stack AI product engineering with proven cost optimization and user growth from zero. All must-have requirements are strongly evidenced (Python, LLM, MLOps, deployment, automation, cross-functional collaboration). Gaps in nice-to-haves (Java, MCP) and domain are minor given the role's focus on general AI automation. Stance is STRONG_PUSH because the candidate's unique blend of engineering rigor and business-outcome thinking aligns perfectly with BukuWarung's need for an AI product engineer who can build self-serve tools and drive efficiency."
+}
