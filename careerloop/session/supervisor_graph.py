@@ -403,7 +403,7 @@ def pack_generating_node(state: ConversationState) -> dict:
             f"📁 **Location:** `{assembly_res['pack_dir']}`\n"
             f"📄 **Tailored Resume PDFs generated:**\n"
             + "\n".join(f"- `{os.path.basename(p)}`" for p in assembly_res['pdfs']) + "\n\n"
-            f"Please review the `outreach_pack.md` in that folder and type 'Approve & Auto-Apply' to proceed with the assisted execution."
+            f"Please review the `outreach_pack.md` in that folder and type 'approve' to proceed with the assisted execution."
         )
     except Exception as assembly_err:
         logger.error(f"Package assembly failed: {assembly_err}")
