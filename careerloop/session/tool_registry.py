@@ -150,19 +150,24 @@ class ToolRegistry:
         user_id = action.user_id
 
         # 1. Enqueue in background_runs
+        bg_inserted = False
         try:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cursor:
                     cursor.execute(
-                        "INSERT INTO background_runs (run_id, user_id, run_type, status, started_at) VALUES (%s, %s, 'scan', 'RUNNING', CURRENT_TIMESTAMP)",
+                        "INSERT INTO background_runs (run_id, user_id, run_type, status, started_at) VALUES (%s, %s, 'scan', 'RUNNING', NOW())",
                         (run_id, user_id)
                     )
                     cursor.execute(
                         "INSERT INTO run_events (event_id, run_id, message) VALUES (%s, %s, 'Initializing scan runner...')",
                         (str(uuid.uuid4()), run_id)
                     )
+                bg_inserted = True
         except Exception as e:
             logger.error(f"Error initializing background run in DB: {e}")
+
+        if not bg_inserted:
+            return ResponseEnvelope(response_type="error", text="Scan failed: could not create background run.")
 
         # 2. Call DailyRunner
         try:

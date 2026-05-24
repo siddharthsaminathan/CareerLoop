@@ -11,7 +11,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(__file__))
-os.environ["DATABASE_URL"] = ""
+# Supabase required — verify DATABASE_URL is set
+if not os.getenv("DATABASE_URL"):
+    print("ERROR: DATABASE_URL must be set for Supabase E2E test.")
+    sys.exit(1)
 from dotenv import load_dotenv
 load_dotenv()
 
