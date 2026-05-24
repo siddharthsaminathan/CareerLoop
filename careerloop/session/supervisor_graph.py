@@ -223,14 +223,9 @@ def intent_router(state: ConversationState) -> dict:
         except Exception:
             pass
 
-        session = store.get_session(user_id)
-
-        if current_state != UserState.IDLE:
-            session.state = current_state
-
-        graph_temp_data = state.get("temp_profile_data", {})
-        if graph_temp_data:
-            session.temp_profile_data = graph_temp_data
+        # Construct session from graph state — NOT from a second DB load
+        session = Session(user_id=user_id, state=current_state)
+        session.temp_profile_data = _hydrate_profile(state)
 
         flow = OnboardingFlow(store)
         reply, next_state = flow.handle_message(session, last_message)
@@ -242,9 +237,9 @@ def intent_router(state: ConversationState) -> dict:
         }
 
     # ═══════════════════════════════════════════════════════════════
-    # STATE 4-6: PROFILE_COMPLETE + SCAN_RUNNING + BRIEF_AVAILABLE
+    # STATE 4-6, 11: PROFILE_COMPLETE + SCAN_RUNNING + BRIEF_AVAILABLE + APPLIED
     # ═══════════════════════════════════════════════════════════════
-    if current_state in (UserState.PROFILE_COMPLETE, UserState.SCAN_RUNNING, UserState.BRIEF_AVAILABLE):
+    if current_state in (UserState.PROFILE_COMPLETE, UserState.SCAN_RUNNING, UserState.BRIEF_AVAILABLE, UserState.APPLIED):
         return _handle_active_state(state, current_state, last_message)
 
     # ═══════════════════════════════════════════════════════════════
@@ -350,21 +345,6 @@ def intent_router(state: ConversationState) -> dict:
                 "messages": [AIMessage(content=reply)],
                 "temp_profile_data": result.get("profile_data", {}),
             }
-
-    # ═══════════════════════════════════════════════════════════════
-    # STATE 11: APPLIED
-    # ═══════════════════════════════════════════════════════════════
-    if current_state == UserState.APPLIED:
-        reply = (
-            "Your application has been logged and is being tracked. "
-            "Use /pipeline to check status or /brief for today's updates. "
-            "Type /scan to search for more opportunities."
-        )
-        return {
-            "current_state": current_state,
-            "assistant_response": reply,
-            "messages": [AIMessage(content=reply)],
-        }
 
     # ═══════════════════════════════════════════════════════════════
     # FALLTHROUGH: unexpected state -- log warning, return safe message
