@@ -1085,10 +1085,6 @@ def get_fresh_cached_jobs(
         conn = psycopg2.connect(db_url)
         cur = conn.cursor()
 
-        # Column names for dict construction (regular cursor returns tuples)
-        _cols = ["id", "title", "company_name", "location", "source", "apply_url",
-                 "jd_text", "last_seen_at", "content_fingerprint"]
-
         # Base query: fresh active India jobs
         query = """
             SELECT id, title, company_name, location, source, apply_url,
@@ -1124,7 +1120,7 @@ def get_fresh_cached_jobs(
         cur.close()
         conn.close()
 
-        jobs = [dict(zip(_cols, r)) for r in rows] if rows else []
+        jobs = [dict(r) for r in rows] if rows else []
         _log.info(f"Cache-hit: {len(jobs)} fresh jobs found (window={freshness_window_days}d, cities={target_cities}, roles={target_roles})")
         return jobs
 

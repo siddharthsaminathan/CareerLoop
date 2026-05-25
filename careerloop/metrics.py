@@ -98,13 +98,13 @@ class MetricsEngine:
         since = _iso_n_days_ago(days)
         with self.db.get_connection() as conn:
             jobs_row = conn.execute(
-                "SELECT COUNT(*) AS c FROM careerloop.jobs WHERE scraped_at >= ?", [since]
+                "SELECT COUNT(*) AS c FROM jobs WHERE scraped_at >= ?", [since]
             ).fetchone()
             companies_row = conn.execute(
-                "SELECT COUNT(*) AS c FROM careerloop.companies WHERE created_at >= ?", [since]
+                "SELECT COUNT(*) AS c FROM companies WHERE created_at >= ?", [since]
             ).fetchone()
             canon_row = conn.execute(
-                "SELECT COUNT(*) AS c FROM careerloop.jobs WHERE scraped_at >= ? AND canonical_id IS NULL",
+                "SELECT COUNT(*) AS c FROM jobs WHERE scraped_at >= ? AND canonical_id IS NULL",
                 [since],
             ).fetchone()
         return {
@@ -141,13 +141,13 @@ class MetricsEngine:
             wm.rejections = count_status("REJECTED")
 
             row = conn.execute(
-                "SELECT COUNT(*) AS c FROM careerloop.companies WHERE created_at >= ? AND created_at < ?",
+                "SELECT COUNT(*) AS c FROM companies WHERE created_at >= ? AND created_at < ?",
                 [start, end],
             ).fetchone()
             wm.companies_added = row["c"] if row else 0
 
             row = conn.execute(
-                "SELECT COUNT(*) AS c FROM careerloop.jobs WHERE scraped_at >= ? AND scraped_at < ?",
+                "SELECT COUNT(*) AS c FROM jobs WHERE scraped_at >= ? AND scraped_at < ?",
                 [start, end],
             ).fetchone()
             wm.jobs_discovered = row["c"] if row else 0

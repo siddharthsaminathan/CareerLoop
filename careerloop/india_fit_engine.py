@@ -93,7 +93,7 @@ def _company_memory_lookup(company_name: str, conn=None) -> dict:
             with conn.cursor() as cur:
                 cur.execute(
                     "SELECT startup_risk, company_maturity, company_intelligence "
-                    "FROM careerloop.company_memory WHERE company_normalized = %s",
+                    "FROM company_memory WHERE company_normalized = %s",
                     [normalized],
                 )
                 row = cur.fetchone()
@@ -103,7 +103,7 @@ def _company_memory_lookup(company_name: str, conn=None) -> dict:
                 with c.cursor() as cur:
                     cur.execute(
                         "SELECT startup_risk, company_maturity, company_intelligence "
-                        "FROM careerloop.company_memory WHERE company_normalized = %s",
+                        "FROM company_memory WHERE company_normalized = %s",
                         [normalized],
                     )
                     row = cur.fetchone()
@@ -136,7 +136,7 @@ def _company_registry_lookup(company_name: str, conn=None) -> dict:
             with conn.cursor() as cur:
                 cur.execute(
                     "SELECT employee_estimate, sector, ats_provider, last_job_count "
-                    "FROM careerloop.companies WHERE id = %s OR LOWER(name) = LOWER(%s)",
+                    "FROM companies WHERE id = %s OR LOWER(name) = LOWER(%s)",
                     [normalized, company_name],
                 )
                 row = cur.fetchone()
@@ -146,7 +146,7 @@ def _company_registry_lookup(company_name: str, conn=None) -> dict:
                 with c.cursor() as cur:
                     cur.execute(
                         "SELECT employee_estimate, sector, ats_provider, last_job_count "
-                        "FROM careerloop.companies WHERE id = %s OR LOWER(name) = LOWER(%s)",
+                        "FROM companies WHERE id = %s OR LOWER(name) = LOWER(%s)",
                         [normalized, company_name],
                     )
                     row = cur.fetchone()
