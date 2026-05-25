@@ -10,28 +10,35 @@ Usage:
 Flow:
     1. Run scan.mjs → discover new jobs
     2. Read pipeline.md → parse new job URLs
-    3. Load ledger → deduplicate (remove already seen/applied/skipped)
-    4. Run India Fit Engine → score all new jobs
-    5. Update ledger with scores
-    6. Generate daily shortlist
-    7. Print to console (future: send via WhatsApp)
+    3. India geo filter + role family filter
+    4. Load ledger → deduplicate (remove already seen/applied/skipped)
+    5. Add new jobs to ledger
+    6. Run India Fit Engine → score all new jobs (capped at MAX_SCORE_PER_RUN)
+    7. Update ledger with scores
+    8. Generate daily shortlist + persist to disk
+    9. Print to console (future: send via WhatsApp)
 """
 
 import os
 import sys
+import uuid
+import logging
 import subprocess
 import re
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timezone, date
 from pathlib import Path
 
+logger = logging.getLogger(__name__)
+
 # Add parent to path
-CAREER_OPS_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CAREER_OPS_ROOT = os.path.realpath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, CAREER_OPS_ROOT)
 
 from careerloop.profile_manager import ProfileManager
 from careerloop.india_fit_engine import IndiaFitEngine
 from careerloop.application_ledger import ApplicationLedger
+from careerloop.india_filter import filter_india_jobs
 from careerloop.shortlist_formatter import (
     format_daily_shortlist,
     format_job_detail,
@@ -43,7 +50,7 @@ class DailyRunner:
     """
     Orchestrates the daily CareerLoop pipeline:
 
-    1. Scan → 2. Parse → 3. Dedupe → 4. Score → 5. Shortlist → 6. Output
+    1. Scan → 2. Parse → 3. India + Role Filter → 4. Dedupe → 5. Add → 6. Score → 7. Shortlist → 8. Persist → 9. Output
     """
 
     def __init__(self, career_ops_root: str = None):
@@ -57,12 +64,36 @@ class DailyRunner:
 
     def run(self, do_scan: bool = True) -> dict:
         """Run the full daily pipeline. Returns summary dict."""
+
+        # ── Pipeline observability: run_id + start timestamp ──────
+        run_id = uuid.uuid4().hex[:12]
+        started_at = datetime.now(timezone.utc).isoformat()
+        logger.info("daily_run_started", extra={"extra": {"run_id": run_id, "event": "pipeline_start"}})
+
         print("=" * 60)
         print("🔁 CareerLoop Daily Runner")
         print(f"   {datetime.now(timezone.utc).strftime('%B %d, %Y — %H:%M UTC')}")
         print(f"   User: {self.profile.full_name}")
         print("=" * 60)
         print()
+
+        # ── Idempotency guard: skip if brief already generated today ──
+        today_str = datetime.now(timezone.utc).date().isoformat()
+        brief_date_file = os.path.join(self.root, "careerloop", ".last_brief_date")
+        if os.path.exists(brief_date_file):
+            with open(brief_date_file) as f:
+                if f.read().strip() == today_str:
+                    print(f"Brief already generated today ({today_str}). Use --no-scan --force to re-run.")
+                    return {
+                        "new_jobs_found": 0,
+                        "unique_added": 0,
+                        "scored": 0,
+                        "shortlist_count": 0,
+                        "follow_ups_due": 0,
+                        "shortlist_text": "",
+                        "top_jobs": [],
+                        "already_generated": True,
+                    }
 
         # ── Step 1: Scan ─────────────────────────────────────────────
         new_raw_jobs = []
@@ -75,11 +106,33 @@ class DailyRunner:
             print("📡 Step 1: Skipped (--no-scan)")
             new_raw_jobs = self._parse_pipeline()
 
-        # ── Step 2: Dedupe ───────────────────────────────────────────
-        print("🔍 Step 2: Running baseline deduplication...")
+        logger.info("scan_completed", extra={"extra": {"run_id": run_id, "event": "scan_completed", "jobs_found": len(new_raw_jobs), "do_scan": do_scan}})
+
+        # ── Step 2: Geo & Role Family Filters ────────────────────────
+        print("📍 Step 2: Applying India geo filter & role family filter...")
+        india_jobs, rejected_india = filter_india_jobs(new_raw_jobs)
+        print(f"   India filter: {len(india_jobs)} passed, {len(rejected_india)} rejected")
+        for rj in rejected_india[:3]:
+            print(f"     ✗ {rj.get('title','?')} @ {rj.get('company','?')} — {rj.get('_rejection_reason','?')}")
+
+        # Role family filter: keep only jobs matching target roles
+        target_roles = self.profile.target_roles or []
+        if target_roles:
+            role_filtered = []
+            for job in india_jobs:
+                title = (job.get("title", "") or "").lower()
+                if any(role.lower() in title for role in target_roles):
+                    role_filtered.append(job)
+            print(f"   Role filter: {len(role_filtered)} of {len(india_jobs)} match target roles {target_roles}")
+            india_jobs = role_filtered
+
+        logger.info("filter_completed", extra={"extra": {"run_id": run_id, "event": "filter_completed", "india_passed": len(india_jobs), "rejected": len(rejected_india)}})
+
+        # ── Step 3: Dedupe ───────────────────────────────────────────
+        print("🔍 Step 3: Running baseline deduplication...")
         unique_jobs = []
         dupes = 0
-        for job in new_raw_jobs:
+        for job in india_jobs:
             url = job.get("url", "")
             company = job.get("company", "")
             title = job.get("title", "")
@@ -90,8 +143,10 @@ class DailyRunner:
             unique_jobs.append(job)
         print(f"   {len(unique_jobs)} unique roles survived deduplication")
 
-        # ── Step 3: Add to ledger ────────────────────────────────────
-        print("📝 Step 3: Adding to ledger...")
+        logger.info("dedup_completed", extra={"extra": {"run_id": run_id, "event": "dedup_completed", "unique": len(unique_jobs), "dupes": dupes}})
+
+        # ── Step 4: Add to ledger ────────────────────────────────────
+        print("📝 Step 4: Adding to ledger...")
         added = 0
         for job in unique_jobs:
             source = job.get("source", "unknown")
@@ -100,8 +155,10 @@ class DailyRunner:
                 added += 1
         print(f"   {added} jobs added to ledger")
 
-        # ── Step 4: Score ────────────────────────────────────────────
-        print("🎯 Step 4: Scoring with India Fit Engine...")
+        logger.info("ledger_updated", extra={"extra": {"run_id": run_id, "event": "ledger_updated", "added": added}})
+
+        # ── Step 5: Score ────────────────────────────────────────────
+        print("🎯 Step 5: Scoring with India Fit Engine...")
         unscored = self.ledger.get_by_status("DISCOVERED")
         if not unscored:
             # Also check SHORTLISTED that haven't been scored
@@ -111,9 +168,13 @@ class DailyRunner:
                 and e.get("fit_score") is None
             ]
 
+        MAX_SCORE_PER_RUN = int(os.getenv("MAX_SCORE_PER_RUN", "50"))
         scored_count = 0
         rejected_count = 0
         for entry in unscored:
+            if scored_count >= MAX_SCORE_PER_RUN:
+                print(f"   ⚠️ Scoring cap reached ({MAX_SCORE_PER_RUN}). {len(unscored) - scored_count} jobs left unscored.")
+                break
             try:
                 score, breakdown = self.engine.score_job(entry)
                 if breakdown.get("rejected"):
@@ -128,8 +189,12 @@ class DailyRunner:
 
         print(f"   {scored_count} jobs scored, {rejected_count} rejected (search pages/articles)")
 
-        # ── Step 5: Shortlist ────────────────────────────────────────
-        print("📋 Step 5: Generating shortlist...")
+        logger.info("scoring_completed", extra={"extra": {"run_id": run_id, "event": "scoring_completed", "scored_count": scored_count, "rejected_count": rejected_count}})
+
+        # ── Step 6: Shortlist ────────────────────────────────────────
+        print("📋 Step 6: Generating shortlist...")
+        # Import India check for geo-guarding the shortlist
+        from careerloop.india_filter import is_india_job as _india_guard
         scored_jobs = [
             {
                 "job": e,
@@ -140,12 +205,16 @@ class DailyRunner:
             for e in self.ledger.entries
             if e.get("fit_score") is not None
             and e["status"] in ("DISCOVERED", "SHORTLISTED", "SENT_TO_USER")
+            and _india_guard(e.get("location", ""), "", e.get("source_url", "") or e.get("url", ""))[0]
         ]
         scored_jobs.sort(key=lambda x: x["score"], reverse=True)
 
+        shortlist_count = len([j for j in scored_jobs if j["score"] >= 60])
+        logger.info("shortlist_completed", extra={"extra": {"run_id": run_id, "event": "shortlist_completed", "total_scored": len(scored_jobs), "shortlist_count": shortlist_count}})
+
         follow_ups = self.ledger.get_follow_ups_due()
 
-        # ── Step 6: Mark shown jobs ──────────────────────────────────
+        # ── Step 7: Mark shown jobs ──────────────────────────────────
         for item in scored_jobs[:5]:
             job = item["job"]
             if job["status"] == "DISCOVERED":
@@ -154,11 +223,19 @@ class DailyRunner:
                 except Exception:
                     pass
 
-        # ── Step 7: Output ───────────────────────────────────────────
+        # ── Step 8: Output ───────────────────────────────────────────
         shortlist_text = format_daily_shortlist(
             scored_jobs, follow_ups,
             user_name=self.profile.full_name.split()[0]
         )
+
+        # Persist daily brief to disk so it can be retrieved later
+        brief_dir = os.path.join(self.root, "output", "daily_briefs")
+        os.makedirs(brief_dir, exist_ok=True)
+        brief_path = os.path.join(brief_dir, f"{today_str}.md")
+        with open(brief_path, 'w') as f:
+            f.write(f"# Daily Brief — {today_str}\n\n")
+            f.write(shortlist_text)
 
         print()
         print(shortlist_text)
@@ -171,6 +248,14 @@ class DailyRunner:
               f"{stats['follow_ups_due']} follow-ups due")
         print(f"Avg fit score: {stats['avg_fit_score']}/100 | {stats['scored_count']} scored")
         print("─" * 60)
+
+        # Write sentinel so we skip re-runs today
+        with open(brief_date_file, 'w') as f:
+            f.write(today_str)
+
+        # ── Pipeline end: elapsed time ──────────────────────────
+        elapsed = (datetime.now(timezone.utc) - datetime.fromisoformat(started_at)).total_seconds()
+        logger.info("daily_run_completed", extra={"extra": {"run_id": run_id, "event": "pipeline_end", "elapsed_s": elapsed}})
 
         return {
             "new_jobs_found": len(new_raw_jobs),
@@ -266,9 +351,9 @@ if __name__ == "__main__":
 
     # Determine root directory based on user
     if args.user == "gf":
-        root = os.path.expanduser("~/projects/career-ops-gf")
+        root = os.path.realpath(os.path.expanduser("~/projects/career-ops-gf"))
     else:
-        root = CAREER_OPS_ROOT
+        root = os.path.realpath(CAREER_OPS_ROOT)
 
     runner = DailyRunner(root)
 

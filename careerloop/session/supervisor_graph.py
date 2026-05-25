@@ -86,46 +86,7 @@ def execute_action_node(state: ConversationState) -> dict:
 
     # For GENERAL_CHAT with empty tool output, call LLM for conversational response
     if action.action_type.value == "GENERAL_CHAT" and not response_text.strip():
-        response_text = _generate_chat_reply(
-            state.get("messages", []),
-            user_id=state.get("user_id", ""),
-            artifact_context=new_context,
-        )
-
-    # Persist user + assistant messages to careerloop.messages for restart continuity
-    try:
-        import uuid as _uuid, json as _json
-        _persist_messages = state.get("messages", [])
-        if _persist_messages:
-            with db.get_connection() as _mconn:
-                with _mconn.cursor() as _mcur:
-                    _mcur.execute(
-                        "SELECT id FROM careerloop.conversations WHERE user_id = %s AND transport = 'cli' AND status = 'active' ORDER BY created_at DESC LIMIT 1",
-                        (user_id,))
-                    _crow = _mcur.fetchone()
-                    if _crow:
-                        conv_id = _crow["id"]
-                    else:
-                        conv_id = str(_uuid.uuid4())
-                        _mcur.execute(
-                            "INSERT INTO careerloop.conversations (id, user_id, transport) VALUES (%s, %s, 'cli')",
-                            (conv_id, user_id))
-                    last_user_msg = _persist_messages[-1]
-                    user_content = last_user_msg.content if hasattr(last_user_msg, "content") else str(last_user_msg)
-                    _mcur.execute(
-                        "INSERT INTO careerloop.messages (id, conversation_id, user_id, role, content, action_type, action_confidence, artifact_context) "
-                        "VALUES (%s, %s, %s, 'user', %s, %s, %s, %s)",
-                        (str(_uuid.uuid4()), conv_id, user_id, user_content,
-                         action.action_type.value if action else None,
-                         action.confidence if action else None,
-                         _json.dumps(new_context) if new_context else None))
-                    _mcur.execute(
-                        "INSERT INTO careerloop.messages (id, conversation_id, user_id, role, content, response_envelope) "
-                        "VALUES (%s, %s, %s, 'assistant', %s, %s)",
-                        (str(_uuid.uuid4()), conv_id, user_id, response_text,
-                         _json.dumps({"response_type": envelope.response_type, "cards_count": len(envelope.cards)} if envelope else {})))
-    except Exception as _me:
-        logger.debug(f"Message persistence skipped: {_me}")
+        response_text = _generate_chat_reply(state.get("messages", []))
 
     return {
         "response_envelope": envelope,
@@ -160,60 +121,27 @@ def _format_envelope(envelope: ResponseEnvelope) -> str:
     return "\n\n".join(parts) if parts else ""
 
 
-def _generate_chat_reply(messages: list, user_id: str = "", artifact_context: dict = None) -> str:
+def _generate_chat_reply(messages: list) -> str:
     """Generate a conversational reply when no tool handles the input."""
     try:
         from careerloop.llm_chat import LLMChatAgent
         agent = LLMChatAgent()
+        # Build conversation context from last 6 messages
         history_parts = []
-        for m in (messages or [])[-8:]:
+        for m in (messages or [])[-6:]:
             content = m.content if hasattr(m, "content") else str(m)
             history_parts.append(content)
         context = "\n".join(history_parts) if history_parts else "(no prior messages)"
 
-        # Load user profile for context
-        profile_note = ""
-        if user_id:
-            try:
-                import os as _os, json as _json
-                import psycopg2
-                _conn = psycopg2.connect(_os.getenv("DATABASE_URL", ""))
-                _cur = _conn.cursor()
-                _cur.execute(
-                    "SELECT u.full_name, up.target_roles, up.target_cities, up.aggressiveness "
-                    "FROM careerloop.users u LEFT JOIN careerloop.user_preferences up ON u.id = up.user_id WHERE u.id = %s",
-                    (user_id,))
-                _row = _cur.fetchone()
-                if _row:
-                    name = _row[0] or "User"
-                    roles = _row[1] or []; cities = _row[2] or []
-                    if isinstance(roles, str): roles = [r.strip() for r in roles.split(",") if r.strip()]
-                    if isinstance(cities, str): cities = [c.strip() for c in cities.split(",") if c.strip()]
-                    profile_note = f"You are talking to {name}. They target {', '.join(roles[:3])} roles in {', '.join(cities[:3])}."
-                _cur.close(); _conn.close()
-            except Exception:
-                pass
-
-        ctx_note = ""
-        if artifact_context:
-            atype = artifact_context.get("active_artifact_type", "")
-            if atype == "daily_brief": ctx_note = "The user is looking at their daily job brief."
-            elif atype == "job_card": ctx_note = "The user is reviewing a specific job."
-            elif atype == "scan_running": ctx_note = "A job scan is running in the background."
-
         system = (
             "You are CareerLoop, a career execution assistant for Indian professionals. "
             "Be helpful, concise, and conversational. Keep responses to 2-3 sentences. "
-            "Never output JSON — always respond in natural English. "
-            "If the user's pipeline is empty, suggest running a scan. "
-            "If the user seems confused, suggest they ask for their daily brief or pipeline status."
+            "Never output JSON — always respond in natural English."
         )
-        if profile_note: system += f" {profile_note}"
-        if ctx_note: system += f" {ctx_note}"
-
-        user = f"Recent conversation:\n{context}\n\nRespond naturally to the last user message."
+        user = f"Conversation:\n{context}\n\nRespond naturally to the last message."
         raw = agent._call_api(system, user)
 
+        # Strip JSON if the model accidentally returned structured output
         text = (raw or "").strip()
         if text.startswith("{") and text.endswith("}"):
             import json as _json
