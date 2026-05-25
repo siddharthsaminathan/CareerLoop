@@ -7,59 +7,60 @@
 
 ## Current Sprint Focus
 
-**Week of 2026-05-25 — TAL-Level Runtime Fluidity**
+**Week of 2026-05-23 — Delivery Foundation Scaffolding + Supervisor Graph Hardening**
 
-Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, ActionResolver, 19 regression tests). Next phase: product-fluid conversational UX.
+S8.5 completeness check shipped. Council is at quality ceiling (93%). System status review complete.
 
-**This sprint:**
-1. **Scan progress streaming** (P0) — Live MATCH/REJECT in CLI via run_events polling
-2. **ActionResolver refinement** (P0) — Prevent scan during onboarding; distinguish profile refinement from search intent
-3. **DB consistency** (P0) — Fix Supabase/SQLite user state split; profile recovery from users table; startup DB banner
-4. **Real brief lifecycle** (P1) — START_SCAN → background_run → run_events → daily_briefs → active_context update → SHOW_BRIEF → SELECT_BRIEF_ITEM full cycle
-5. **Real LLM E2E** (P0) — 12-step real conversation transcript with actual DeepSeek calls
+**Critical finding:** The user-facing interface is now scaffolded but not functional end-to-end. All strong backend systems (Council 93%, Discovery 75%, Company Intel 75%) still need a verified transport → supervisor graph → delivery loop. `TransportAdapter`, `TerminalChatAdapter`, `supervisor_graph.py`, `PostgresSaver`, and `kimi_bridge.py` exist as first-pass code, but graph state mapping, real routing, delivery, and safe assisted apply are not yet production-ready.
+
+**This sprint:** Ship the integration layer that connects the backend to users:
+1. **Supervisor contract repair** (P0) — `UserEvent` → `ConversationState`, tested graph routing, stable `thread_id`
+2. **Terminal/Telegram beta loop** (P0) — message in → graph → response out; document delivery path
+3. **Multi-User Onboarding** (P0) — CV upload → profile creation → user registry
+4. **Daily Brief Cron** (P1) — DailyRunner → transport delivery at 7AM IST per user
 
 ---
 
 ## System Status (Live)
 
-> Updated 2026-05-24, 18:30 IST — Chat runtime stabilized: 11-state machine, GENERAL_CHAT fixed (no echo), PACK_GENERATING reachable, CommandRouter unified routing, add_messages history, profile hydration, LLM retry+safe errors, 14 regression tests. All hardcoded slop removed.
+> Updated 2026-05-23 — Phase 0 Delivery Foundation has first-pass scaffolds. The bottleneck is now contract correctness and end-to-end verification, not file creation.
 
 | System | % | Status | Blocking? | Notes |
 |--------|---|--------|-----------|-------|
-| **Transport abstraction layer** | **65%** | 🟡 | No | Base + Terminal stubs. Echo fallback removed. Safe error messages. /brief + /scan + CommandRouter wired. |
-| **Multi-user onboarding** | **15%** | 🔴 | **YES** | is_complete validated against required fields. Profile completeness check. Hardcoded strings removed. |
-| **LangGraph Chatbot Orchestrator** | **85%** | 🟢 | No | 2-node pipeline. GENERAL_CHAT returns real LLM. ActionResolver context injection. Live scan rendering. Supabase-only. |
-| **PostgresSaver Checkpointer** | **20%** | 🔴 | **YES** | SQLite sessions functional without Postgres. Dual-mode verified. Interrupt/resume proof still needed. |
-| **Application pack delivery** | **95%** | 🟢 | No | PackageAssembler + Playwright PDFs. E2E validated on real job. |
-| **Daily brief cron delivery** | **90%** | 🟢 | No | Daily Runner triggers scan and fully populates daily_briefs and daily_brief_items SQL tables. E2E database brief retrieval verified. |
-| India-first discovery | 92% | 🟢 | No | Geo filter on all ATS adapters. Location spoofing fixed. CSV India filter. 14 ATS adapters + 6 boards. |
-| Verification & filtering | 78% | 🟡 | No | India filter enforced at 3 choke points. Block G not hoisted. |
-| Opportunity scoring (14-dim) | 62% | 🟡 | No | Scoring caps (CPU=50, LLM=15). Token accounting per call. _get_score() unified schema. |
+| **Transport abstraction layer** | **18%** | 🔴 | **YES** | Base + Terminal/Telegram stubs exist. Graph handoff and document delivery unverified. Sprint 0. |
+| **Multi-user onboarding** | **0%** | 🔴 | **YES** | CV upload → profile creation → user registry. Sprint 1. |
+| **LangGraph Chatbot Orchestrator** | **12%** | 🔴 | **YES** | Supervisor graph scaffold exists. Intent router placeholder; `UserEvent`/state mismatch must be fixed. Sprint 0. |
+| **PostgresSaver Checkpointer** | **15%** | 🔴 | **YES** | Supabase checkpointer wrapper + schema scaffold exist. Needs connection test + interrupt/resume proof. Sprint 0. |
+| **Application pack delivery** | **0%** | 🔴 | **YES** | Pack → PDF → send_document(). Sprint 3. |
+| **Daily brief cron delivery** | **5%** | 🔴 | **YES** | DailyRunner exists. Transport missing. Sprint 2. |
+| **Application Action Engine** | **15%** | 🔴 | **YES** | Packs assemble, but Apply Route A/B/C/D logic is missing. Sprint 1. |
+| **Momentum Dashboard** | **0%** | 🔴 | **YES** | User has no visibility into submitted/replied/contacted metrics. Sprint 1. |
+| **Outreach Generation** | **0%** | 🔴 | **YES** | Missing recruiter and referral DM generation. Sprint 1. |
+| India-first discovery | 75% | 🟡 | No | Now considered top-of-funnel free hook. ATS adapter + Spire AI active. |
+| Verification & filtering | 60% | 🟡 | No | detect_ats_pass.py; Block G not hoisted |
+| Opportunity scoring (14-dim) | 55% | 🟡 | No | function_probability.py + metrics.py; needs calibration |
 | Decision compression / triage | 20% | 🔴 | No | CEO owns. DECISION_COMPRESSION_VISION.md written. |
-| Career state system (modes) | **60%** | 🟡 | No | 11 real states with legacy migration. All states have setter+handler+test paths. Natural approval phrases work. |
+| Career state system (modes) | 15% | 🔴 | No | `UserState` + supervisor scaffold; no proven routing yet |
 | Company intelligence | 75% | 🟢 | No | MECE vision implemented; S3 cache working |
 | Positioning engine | 38% | 🟡 | No | S6 wired; tailoring delta substantial; narrative angle reaches S7 |
 | Resume Council (v3) | 93% | 🟢 | No | Job-aware chunking; prose fallback; 42 tests; ceiling hit |
-| Humanizer layer | 65% | 🟡 | No | LLM rewrite active; Truth Guard UNSUPPORTED matching too aggressive |
-| Resume rendering (templates) | 90% | 🟢 | No | 10 templates; normalizer handles 3 user CV formats; automated validation |
+| Humanizer layer | 65% | 🟡 | No | LLM rewrite active; Truth Guard UNSUPPORTED matching still too aggressive |
+| Resume rendering (templates) | 85% | 🟡 | No | 10 templates; normalizer handles 3 user CV formats; S8.5 completeness check |
 | ATS validator layer | 0% | ⚫ | No | Spec written (PRD §26). Sprint 4. |
 | Resume editing layer | 0% | ⚫ | No | Spec written (PRD §25). Surgical edits without full Council rerun. Sprint 4. |
-| Validator / QA | **83%** | 🟢 | No | 42 stabilization + 22 integration + 14 chat runtime regression. All passing. |
+| Validator / QA | 75% | 🟡 | No | 42 stabilization + 22 integration pass; automated pre-render validation |
 | Application execution | 18% | 🔴 | No | modes/apply.md prototype; Kimi bridge scaffold. Real Webbridge/Hermes integration not verified. |
 | Assisted apply bridge | 5% | ⚫ | No | `kimi_bridge.py` mock only. Must never run queue-based or unattended submission. |
 | Follow-up engine (full) | 25% | 🔴 | No | Scheduling exists. Message generation + delivery = Sprint 5. |
 | Gmail integration | 0% | ⚫ | No | Sprint 6. Needs transport first. |
 | Calendar integration | 0% | ⚫ | No | Sprint 6. Needs transport first. |
 | Interview memory (full) | 25% | 🟡 | No | Vent parsing works. Debrief + weakness tracker = Sprint 7. |
-| Persistent memory graph | **60%** | 🟡 | No | Schema isolation (careerloop.*). Repository layer. Fingerprint dedup. User-job relationships. |
+| Persistent memory graph | 25% | 🟡 | No | Ledger + SQLite schema; not read back to improve positioning |
 | Background job scheduler | 0% | ⚫ | No | Sprint 2. Daily + per-job two classes. |
 | WhatsApp / Meta Cloud API | 0% | ⚫ | No | After Telegram beta validates loop. |
 | Monetization / billing | 0% | 🔴 | No | Pricing tiers defined. No paywall yet. Needs onboarding first. |
-| Data engineering V3 | **95%** | 🟢 | No | careerloop.users identity spine. 20 FKs migrated. 14 users backfilled. 7 new tables. 12 canonical docs. Phase 1+2 complete. Companies populated, Cutshort parsing, cache-hit wired, memory architecture documented. |
-| Memory architecture | **70%** | 🟡 Active | 7-layer model defined. 4-level recall hierarchy. 8 propagation flows. 10 anti-patterns. MEMORY_SYSTEMS_ARCHITECTURE.md created. |
-| Job persistence engine | **75%** | 🟡 Active | Global cache + user relationships. Fingerprint dedup. TTL strategy. Cache-hit check wired, companies linked via FK, Cutshort parsing. |
- 
-**Overall product maturity: ~75-77% of vision.** Data engineering V3 at 95% (companies populated, Cutshort parsing, cache-hit wired, memory architecture documented). Chat runtime real (no echo, no slop). Supabase-only. Geo filter proven. Critical gap remains: full scan E2E against Supabase + multi-user onboarding.
+
+**Overall product maturity: ~59-62% of vision.** Council ceiling hit (93%). User-facing interface is scaffolded but not live. Transport + supervisor graph + onboarding remain P0.
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -74,6 +75,8 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 | ~~B3~~ | cover_note/recruiter_message stubs | Closed | ✅ Improved prompts + richer context |
 | ~~B7~~ | LLM nodes lacked JSON schemas | Closed | ✅ All 6 prompts have JSON examples |
 | **B-TRANSPORT** | Transport stubs exist, but no verified webhook/document delivery/graph response loop | User-facing | **P0** |
+| **B-MOMENTUM** | No Momentum Dashboard — users cannot see "conversations generated" | Core Product | **P0** |
+| **B-OUTREACH** | Missing Application Routes (A/B/C/D) and Recruiter/Referral Outreach drafts | Core Product | **P0** |
 | **B-ONBOARD** | No multi-user onboarding — 3 hardcoded PERSON_CONFIGs, no CV-upload-to-profile flow | User-facing | **P0** |
 | **B-SUPERVISOR** | LangGraph scaffold exists, but state contract/routing/resume interrupts are not verified | User-facing | **P0** |
 | **B-DELIVERY** | Council generates 10 PDFs per run but delivers them to nobody | User-facing | **P0** |
@@ -107,194 +110,6 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 ---
 
 ## Session Log
-
-### 2026-05-25 — Session: Phase 1+2 Final Stabilization Evidence Package
-
-**What was done:**
-- Created `docs/PHASE1_2_EVIDENCE.md` — full Phase 1+2 completion evidence: 20 FK migrations documented with old/new targets, 14 users backfilled, 7 new tables with row counts, clean audit (zero `public.*` references in Python code).
-- Created `docs/FINAL_STABILIZATION_EVIDENCE.md` — production readiness assessment: identity spine verified, global vs user-scoped data separation enumerated, 10 memory layers with 8 recall chain levels, remaining technical debt cataloged (23 TEXT IDs, P2/P3 non-blocking), production readiness matrix (10/14 dimensions PRODUCTION-READY).
-- Updated `docs/README.md` Data Architecture section — expanded from flat list to categorized tables (Canonical Data Model & Architecture, Memory & Persistence, Migration & Evidence). Now indexes all 12 data architecture documents plus migration SQL.
-- Updated `.claude/skills/careerloop-data-engineer/SKILL.md` — added Phase 1+2 completion summary line and evidence doc references.
-- Updated `docs/tech-backlog/TRACKER.md` (this file) — corrected V3 session log counts (16 → 20 FKs, 6 → 7 new tables, 5 → 7 canonical docs), added this final stabilization entry.
-- Data Engineering V3 system status: 85% → **93%** (evidence package complete, production readiness assessed).
-
-**Vision alignment verdict:** ✅ STRONGLY ALIGNED
-Evidence package closes the data engineering stabilization track. Every claim is verifiable against `careerloop/memory/supabase_migration_v3.sql` and live Supabase. No further schema work without a PRD-amended requirement.
-
-**Deviations detected:** None.
-
-**Recommended next 3 actions:**
-1. Run full fresh scan against Supabase — populate `careerloop.jobs` from live portal data (PRD §5)
-2. V3.1 hardening: TEXT→UUID backfill for remaining 23 TEXT ID fields (P2, non-blocking)
-3. Wire the cache-hit path: check `careerloop.jobs` before external API calls in scan pipeline (PRD §5)
-
----
-
-### 2026-05-25 — Session: P1 Product Quality + Memory Systems Architecture
-
-**What was done:**
-- **Cutshort parsing** — Regex extracts company/title/location from "BigRio is hiring AI Engineer job in Chennai | Cutshort" format. Company field now populated for all 7 jobs.
-- **Companies table populated** — 5 companies created with domain_slug dedup (BigRio, Moative, us healthcare, ZakApps, Niki.ai). All jobs linked via company_id FK.
-- **Company memory seeded** — 5 minimal rows with startup_risk=5.0, ready for deep research.
-- **Cache-hit check wired** — `get_fresh_cached_jobs()` queries careerloop.jobs before external scan. Logs CACHE_HIT event when 5+ fresh jobs found.
-- **Memory Systems Architecture documented** — 7-layer model: Identity, Preference, Evidence, Opportunity, User-Opportunity, Execution, Learning. 4-level recall hierarchy. 8 propagation flows. 10 anti-patterns. All in `docs/MEMORY_SYSTEMS_ARCHITECTURE.md`.
-- **Product path verified end-to-end** — scan → candidates → jobs → relationships → brief_items → companies → company_memory. All writing to Supabase careerloop schema.
-
-**Vision alignment verdict:** ✅ STRONGLY ALIGNED
-Memory systems architecture captures the full operational knowledge model. V3 pipeline writes through all 7 layers. P1 quality fixed.
-
-**Deviations detected:** None.
-
-**Recommended next 3 actions:**
-1. Fix india_fit_engine.py bare table prefix bug (company_memory, companies queried without careerloop. prefix) — P1
-2. Implement cache-hit blocking: skip external scan when 5+ fresh cached jobs exist — P1
-3. Backfill user_preferences from public.users.work_style_prefs for all 14 users — P2
-
----
-
-### 2026-05-25 — Session: Canonical Data Architecture V3
-
-**What was done:**
-- Created `careerloop.users` as canonical identity spine. **20 FK constraints** migrated from `public.users` → `careerloop.users(id)` ON DELETE CASCADE.
-- Migrated all FKs from `public.users` to `careerloop.users`. Zero CareerLoop tables reference `public.users`. Zero `public.*` references in CareerLoop Python code.
-- Standardized UUIDs across all tables. Added 4 UUID bridge columns for legacy TEXT ID fields (run_id_uuid, event_id_uuid).
-- Created **7 new tables**: `careerloop.users`, conversations, messages, memory_events, recruiter_contacts, job_sources, job_search_runs.
-- Backfilled **14 users** from `public.users` to `careerloop.users` — all UUIDs preserved, email + full_name + created_at + updated_at migrated.
-- Cleaned up sessions table — 3 columns deprecated (current_job_id, onboarding_step, temp_profile_data).
-- Built job persistence engine: global cache → user fit → relationship → brief. Fingerprint dedup with TTL policy.
-- Defined 10-layer memory architecture: profile → positioning → recruiter → interview → company → strategic → session → timeline → outcomes → conversations.
-- Defined 8 recall chain levels: R1 Identity → R8 Full.
-- Created 7 canonical docs: DATA_MODEL_CANONICAL.md, MEMORY_ARCHITECTURE.md, JOB_PERSISTENCE_ENGINE.md, GLOBAL_VS_USER_SCOPED_DATA.md, SCHEMA_REFERENCE.md, DATA_ENGINEERING_ARCHITECTURE.md, DB_MIGRATION_REPORT.md.
-- Created 7 RLS policies (idempotent DO block) for all new tables.
-- Produced real Supabase evidence: schema dump (265KB JSON + 68KB MD), FK audit, ID type audit, table counts.
-
-**Vision alignment verdict:** ✅ STRONGLY ALIGNED
-This is the permanent data foundation. No more schema thrash. careerloop.users is the identity root. 20 FKs consistent. Global/user separation clear. Production-ready data layer.
-
-**Deviations detected:** None.
-
-**Recommended next 3 actions:**
-1. Run full fresh scan against Supabase to populate careerloop.jobs, careerloop.job_candidates, careerloop.daily_brief_items — prove end-to-end data flow (PRD §5-6) ✅ DONE this session
-2. Implement cache-hit path in scan: check careerloop.jobs before external APIs (PRD §5)
-3. Wire memory_events into ActionResolver context injection (PRD §7)
-
----
-
-### 2026-05-25 — Session: Data Engineering V2 + Schema Isolation + Runtime Fluidity
-
-**What was done:**
-- **Data Engineering V2 architecture** — 16-table MECE schema: global job cache (`careerloop.jobs`), per-user personalization (`careerloop.user_job_relationships`), async runs (`careerloop.background_runs` + `careerloop.run_events`), daily briefs, applications, packs, people, outreach, followups, evidence, preferences, outcome learning.
-- **Repository layer** — `careerloop/memory/repository_v2.py` (1040 lines, 7 classes, 32 methods). All DB access centralized.
-- **Schema isolation** — Moved 22 CareerLoop tables from `public` → `careerloop` schema. `public` now holds only Supabase auth (`users`), LangGraph checkpoints, and Emote app tables. Zero data loss.
-- **Supabase-only runtime** — Removed all SQLite fallback code. `connection.py` hard-fails if DATABASE_URL missing. DB banner at startup shows Supabase host, journey_state, brief count, active_context.
-- **Profile recovery** — `session_store.py` loads profile from `careerloop.sessions` + `public.users`. Siddharth's 5,626-char CV loads correctly from Supabase.
-- **ActionResolver onboarding fix** — NEW_USER state messages route to GENERAL_CHAT, never START_SCAN. "I want ML Engineer roles" during onboarding = profile refinement, not scan trigger.
-- **Live CLI scan rendering** — `_render_scan_events()` polls `careerloop.run_events` with Rich color output (MATCH=green, REJECT=red).
-- **Natural language responses** — All slash references removed from user-facing text. `/scan` → "Want me to scan now?". No hardcoded AI slop.
-- **Data engineer skill** — `.claude/skills/careerloop-data-engineer/SKILL.md` created. Full schema knowledge for all agents.
-- **Schema export** — `docs/CAREERLOOP_SCHEMA_DUMP.json` (265KB) + `docs/CAREERLOOP_SCHEMA.md` (68KB). Live Supabase export with columns, types, FKs, indexes, row counts.
-
-**Vision alignment verdict:** ✅ STRONGLY ALIGNED
-Data engineering V2 is the foundation for everything — global job dedup, user personalization, cache-first strategy, outcome learning. Schema isolation is production-grade.
-
-**Deviations detected:** None. All work advances core architecture.
-
-**Recommended next 3 actions:**
-1. Run full fresh scan against Supabase to populate `careerloop.jobs`, `careerloop.job_candidates`, `careerloop.daily_brief_items` — prove end-to-end data flow (PRD §5-6)
-2. Implement cache-hit path: check `careerloop.jobs` before external API calls (PRD §5)
-3. Wire `careerloop.outcome_events` learning loop from application status changes (PRD §23)
-
----
-
-### 2026-05-24, 18:30 IST — Session: Chat Runtime Stabilization — No More Demo Slop
-
-**What was done:**
-- **Removed echo fallback** — `base.py` no longer echoes user's message back when assistant_response is missing. Logs CRITICAL and returns safe error.
-- **GENERAL_CHAT fixed** — supervisor graph now returns ChatIntentAgent's LLM reply. No more discarded LLM output.
-- **State machine reduced to 11 real states** — dead states removed, legacy migration map, all 11 have setter+handler+test paths.
-- **PACK_GENERATING reachable** — REVIEWING_JOB + APPROVE intent → PACK_GENERATING transition. Exact string match replaced with LLM intent classification.
-- **CommandRouter created** — unified handler for 7 slash commands and supervisor graph intents. `chat_cli.py` delegates, no business logic.
-- **Conversation history** — `add_messages` reducer + `AIMessage` appended to every return dict.
-- **Profile hydration** — `_hydrate_profile()` reloads from DB when graph state is empty.
-- **Single session load** — Session constructed from graph state instead of second DB read.
-- **LLM error handling** — retry on 429/5xx, safe messages on all failures, never raw API text to user.
-- **14 regression tests** — proving no echo, no auto-scan, state migration, APPROVE→PACK_GENERATING, safe errors, unified routing, conversation history.
-
-**Vision alignment verdict:** ✅ STRONGLY ALIGNED
-Fixed the core chat runtime architecture. Removed all demo slop. The supervisor graph is now a real orchestrator, not a hardcoded state machine. Every state is reachable, every intent is handled, and tests prove it.
-
-**Deviations detected:** None. All work was structural repair — no features added.
-
-**Recommended next 3 actions:**
-1. Wire council graph invocation through supervisor (PACK_GENERATING → PACK_READY via pack_generation node) — PRD §11
-2. Build multi-user CV upload flow — actual onboarding, not hardcoded profiles — PRD §4
-3. Telegram/WhatsApp transport webhook verification — PRD §21
-
----
-
-### 2026-05-24, 15:00 IST — Session: Architecture Audit + Full Pipeline Stabilization
-
-**What was done:**
-- **7-subagent MECE audit**: All critical failures documented with file+line at `ARCHITECTURE_AUDIT_2026-05-24.md` (12 CRITICAL, 16 HIGH, 17 MEDIUM).
-- **22/22 fixes shipped across 5 phases**: credential rotation, SQLite session persistence, geo filter at 3 choke points, token caps, structured logging, state rename, brief persistence, idempotency guard.
-- **Ledger cleaned**: 1,216 entries deduped (110 duplicates removed), 1,103 non-India entries marked SKIP (90% were USA/EMEA jobs from pre-fix pipeline).
-- **E2E verified**: `DailyRunner.run(do_scan=True)` — 24 India jobs passed filter, 1,183 rejected. All 5 shortlisted jobs in Chennai/Bangalore. Zero USA jobs.
-
-**Vision alignment verdict:** ✅ STRONGLY ALIGNED
-Fixed the core execution pipeline that was silently broken. The 3-pipeline architecture (runner, daily_runner, on_demand) with no shared filter chain was the root cause of all observable failures. Now all paths enforce geo/role filtering before scoring.
-
-**Deviations detected:** None. All work was structural repair, not feature creep.
-
-**Recommended next 3 actions:**
-1. Broaden target role filter or make it configurable — 3 of 24 India jobs matched narrow role set (PRD §5)
-2. Wire shared `JobFilterChain` class so all 3 pipelines use identical filters (PRD §6)
-3. Seed Indian company database (Mumbai/Remote) for ATS portal coverage — 0 companies in those cities (PRD §5)
-
----
-
-### 2026-05-24 — Session: E2E Package Assembly + Direct URL Search Fallbacks
-
-**What was done:**
-- **Shipped `PackageAssembler`**: Shipped `careerloop/package_assembly.py` which compiles tailored resumes, cover letters, and outreach pack metadata, and renders high-fidelity PDFs via local headless Playwright.
-- **Wired into LangGraph Supervisor**: Hooked package assembly directly into the `pack_generating_node` in `careerloop/session/supervisor_graph.py`, updating chat feedback with immediate absolute paths.
-- **Robust Direct URLs & Search Fallbacks**: Enhanced `PackageAssembler` to pre-compute direct company LinkedIn links and separate, clean search fallbacks for the job posting, company, and target recruiters on LinkedIn, resolving zero-result search crashes.
-- **Successfully Ran E2E Validation**: Ran both `run_assembly_test.py` and `run_council.py` against a real-world BukuWarung AI Product Engineer opportunity, successfully outputting 100% complete PDFs, cover letters, and outreach packs with robust fallbacks on disk under `test data/output/siddharth/packs/bukuwarung/`.
-
-**Vision alignment verdict:** ✅ ALIGNED
-Directly accomplishes the core of Phase 1 (Application Action Engine) and delivery loops (PRD §21-23). The output pack is now fully action-oriented, easily navigable, and completely eliminates search and navigation friction for the user.
-
-**Deviations detected:** None. Verified locally against the actual headless Playwright and browser engine.
-
-**Recommended next 3 actions:**
-1. Fix score compression: fetch full JDs for JobSpy results before scoring to widen the scoring range from a tight cluster (PRD §6)
-2. Seed Mumbai/Remote company database in SQLite/Supabase to get direct ATS coverage during the next full search (PRD §5)
-3. Strengthen the title filtering logic in `india_fit_engine.py` to block hardware/mechanical/HVAC jobs earlier in the pipeline (PRD §5)
-
----
-
-### 2026-05-24 — Session: SerpAPI Integration + Siddharth Full Pipeline Run
-
-**What was done:**
-- **SerpAPI wired as Phase A primary**: `SerpAPIDiscovery` class added to `company_discovery.py`. Reads `SERPAPI_KEY` from env, constructs 2 intent-based queries per search (role-aware, funding-aware, anti-body-shop), graceful DDG fallback when key absent.
-- **2-call cap enforced**: `_build_queries` hard-capped to 2 queries per search (was 4-6 → would have burned 48-72 SerpAPI calls per full run).
-- **SQLite dual-mode DB**: Rewrote `careerloop/memory/connection.py` — PostgreSQL when `DATABASE_URL` set, SQLite fallback at `careerloop/careerloop.db` when absent. Unblocks local dev runs without Supabase creds.
-- **`force_refresh` param**: Added to `OnDemandSearch.run()` to bypass crawl cache. Required for repeatable test runs.
-- **`run_siddharth.py` rewrite**: `TeeOutput` (stdout+log), phase banners, 4 roles × 3 cities × 60 max, audit log saved per run.
-- **Siddharth v4 run**: 4 roles × Bangalore → 114 ranked jobs. Top: Sarvam AI (73.1), Glean (Greenhouse), Altimate.ai (Ashby). 4 bad jobs (HVAC/Mech/Intern) leaking at score bottom.
-- **Score compression identified**: JobSpy returns 500-char snippets → scorer has no signal → all cluster 60-64. Full JD fetch needed before scoring.
-- **Mumbai/Remote ATS gap identified**: Company DB not seeded for those cities → 0 ATS portal coverage, board-only.
-
-**Vision alignment verdict:** ✅ ALIGNED
-Advances PRD §5 (Discovery Engine) — SerpAPI integration moves Phase A from generic DDG queries to real funded-AI-company targeting. SQLite fallback was a genuine local-run blocker. Score compression is the next honest bottleneck.
-
-**Deviations detected:** Mumbai/Remote cities ran with 0 ATS coverage — company DB not seeded. Scoring quality bottleneck (JobSpy clustering) identified but not fixed.
-
-**Recommended next 3 actions:**
-1. Fix score compression: fetch full JD for JobSpy URLs before scoring → spreads the scoring range from 60-64 cluster to 0-100 (PRD §6)
-2. Seed Mumbai/Remote company DB: Phase A-only run targeting those cities so next Siddharth run gets ATS portals (PRD §5)
-3. Strengthen bad-job title blocklist at filter level: kill HVAC/Mechanical/Intern/Hardware before scoring, not after (PRD §5)
-
----
 
 ### 2026-05-23 — Session: CLI Stabilization & Ledger Safety (Part 2)
 
@@ -708,47 +523,6 @@ The direction directly advances PRD §21-§23 and the Phase 0 Delivery Foundatio
 ---
 
 <!-- product-lead appends new entries above this line -->
-
-### 2026-05-23 — Session: Phase B ATS Layer — 14 Adapters + Parallel Board Search
-
-**What was done:**
-- **`careerloop/sources/ats_extended.py` (new):** 10 new ATS adapters — SmartRecruiters, SAP SuccessFactors, Oracle Taleo, iCIMS, TalentRecruit, Darwinbox, Workable, Teamtailor, Recruitee, BambooHR. Fingerprint engine with 13/13 validated fingerprints. ATS coverage: 4 → 14 platforms.
-- **`careerloop/sources/monster_adapter.py` (new):** Monster/foundit.in jobs via DDG.
-- **`careerloop/sources/glassdoor_adapter.py` (new):** Glassdoor jobs via DDG.
-- **`careerloop/sources/google_jobs_adapter.py` (new):** Google Jobs corpus via DDG targeting Lever/Greenhouse/Ashby postings.
-- **`careerloop/sources/ats_adapter.py` refactored:** `detect_ats()` upgraded with fingerprint engine + 8 REST probe candidates. Now routes to 14 ATS platforms (was 4).
-- **`careerloop/on_demand.py` major refactor (FIX 23):** All 6 board sources (DDG, JobSpy, Naukri, Monster, Glassdoor, Google Jobs) now run in parallel via `ThreadPoolExecutor(6)`. Board search time: ~14 min → ~3-4 min.
-- **FIX 20 (`_llm_validate()`):** DeepSeek batch validator on top-60 scored results; rejects hardware/intern/bodyshop false positives.
-- **FIX 11 (`_update_company_ats()`):** Now persists ATS detection results to `company_sources` DB table (not just session cache).
-- **M1 (`_retry()` wrapper):** All board workers and portal scrapes wrapped with retry logic.
-- **M2 (`_last_board_health`):** Per-board result counts tracked and appended to result notes.
-- **FIX 9 (`portal_scraper.py`):** L3 now hovers nav menus and expands dropdowns for JS-heavy fashion/enterprise sites.
-- **`careerloop/india_fit_engine.py` (FIX 22):** Source-aware weighting: ATS +3.0, scraped +1.5, jobspy +1.0, DDG/generic +0.0.
-- **`careerloop/company_targeting.py` (FIX 6):** `top_n()` returns all companies scoring >50 — no artificial top-20 cap.
-- **`requirements.txt`:** Added `playwright>=1.40`, `ddgs>=0.1`.
-- All 28 items from the 25-fix list completed (25 fixes + M1/M2/M3).
-
-**What's working and proven:**
-- Fingerprint engine: 13/13 tests pass
-- Parallel board execution: 6 workers, confirmed ~3-4 min E2E
-- Source-aware scoring: ATS results surface above generic board results
-- `top_n()` uncapped: no longer silently drops high-score companies beyond position 20
-
-**What's built but unvalidated:**
-- Workable/Teamtailor adapters: built but not tested against India-based companies
-- FIX 19+21: Full validation run with new source-weighting scoring spread not yet run
-- ATS fingerprint engine not yet wired into Phase A company discovery (only Phase B on-demand)
-
-**Vision alignment verdict:** ✅ STRONGLY ALIGNED — PRD §5 (Discovery Engine). ATS coverage and board parallelism are the two largest structural gaps in discovery; both resolved this session.
-
-**Deviations detected:** None.
-
-**Recommended next 3 actions:**
-1. Wire ATS fingerprint engine into Phase A company discovery (`company_discovery.py`) — auto-detect ATS when crawling career pages (PRD §5, A9)
-2. Run full scoring validation (FIX 19+21) — generate score spread with new source-weighting to confirm ATS results bubble above generic DDG results
-3. Test Workable/Teamtailor adapters against known India-based companies (e.g., Freshworks on Workable, any SMB startup on Teamtailor)
-
----
 
 
 ### 2026-05-20 — Session: S3 Grounded Synthesis + S7 Timing Diagnostics + Humanizer Bullet Fix

@@ -7,15 +7,15 @@
 ---
 
 ## PHASE 1 — Application Action Engine (The Paid Wedge)
-**Status: ~75% | Owner: CTO**
- 
+**Status: ~18% | Owner: CTO**
+
 Turn approved job openings into tailored, ready-to-execute application bundles and outreach targets.
- 
+
 | System | % | Status |
 |--------|---|--------|
-| Application Route Classifier (A/B/C/D) | 100% | ✅ |
-| Pack Assembly (Resume, Cover, DMs) | 95% | ✅ |
-| Recruiter Discovery & Outreach Draft | 95% | ✅ |
+| Application Route Classifier (A/B/C/D) | 0% | ⚫ |
+| Pack Assembly (Resume, Cover, DMs) | 30% | 🟡 |
+| Recruiter Discovery & Outreach Draft | 0% | ⚫ |
 | Referral Network Mapper & Draft | 0% | ⚫ |
 | Status Tracking (Applied/Contacted/Replied) | 15% | 🔴 |
 
