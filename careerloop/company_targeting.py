@@ -138,7 +138,7 @@ class CompanyTargeting:
             db = get_db_manager()
             with db.get_connection() as conn:
                 row = conn.execute(
-                    """SELECT cm.company_maturity FROM company_memory cm
+                    """SELECT cm.company_maturity FROM careerloop.company_memory cm
                        JOIN companies c ON c.name = cm.company_normalized OR c.id = ?
                        WHERE c.id = ?""",
                     [company_id, company_id],
