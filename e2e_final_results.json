@@ -1,0 +1,67 @@
+{
+  "test_run": "2026-05-25T22:43:24Z",
+  "turns": [
+    {
+      "turn": 1,
+      "input": "/status",
+      "action": "SHOW_STATUS",
+      "confidence": 1.0,
+      "elapsed_ms": 7030,
+      "reply": "**Journey State:** PROFILE_READY\n**Active Artifact:** none\n**Background Runs:** [{'run_id': 'a6026951aef1', 'run_type': 'scan', 'status': 'COMPLETED'}, {'run_id': '1fcfa005b7d2', 'run_type': 'scan', 'status': 'COMPLETED'}, {'run_id': '2ed9e161b7c4', 'run_type': 'scan', 'status': 'COMPLETED'}, {'run_id': '0cedaf1ae103', 'run_type': 'scan', 'status': 'COMPLETED'}, {'run_id': '8e0ec509b632', 'run_typ"
+    },
+    {
+      "turn": 2,
+      "input": "give me my daily briefing",
+      "action": "SHOW_BRIEF",
+      "confidence": 0.95,
+      "elapsed_ms": 8500,
+      "reply": "# Daily Brief \u2014 2026-05-25\n\n1. **SWE** @ TestCorp India (India) \u2014 **0.0/100**\n\nReply with a number to review details (e.g., '1')."
+    },
+    {
+      "turn": 3,
+      "input": "whats in my pipeline",
+      "action": "SHOW_PIPELINE",
+      "confidence": 0.98,
+      "elapsed_ms": 7488,
+      "reply": "### Pipeline Status Summary\n\u2022 **Total Tracked Jobs:** 0\n\u2022 **Active Applications:** 0\n\n"
+    },
+    {
+      "turn": 4,
+      "input": "hello, how are you doing today?",
+      "action": "GENERAL_CHAT",
+      "confidence": 0.95,
+      "elapsed_ms": 8013,
+      "reply": "I'm doing well, thanks! Ready to help you move forward with your career goals today. What would you like to work on?"
+    },
+    {
+      "turn": 5,
+      "input": "thanks, what can you help me with?",
+      "action": "HELP",
+      "confidence": 0.95,
+      "elapsed_ms": 7751,
+      "reply": "**Today's matches:** Show your latest job brief\n**Scan for jobs:** Search for new matching jobs\n**My pipeline:** See all tracked applications\n**My status:** Check your profile and journey state\n**My profile:** See full profile details\n**Start fresh:** Reset your session"
+    },
+    {
+      "turn": 6,
+      "input": "/help",
+      "action": "HELP",
+      "confidence": 1.0,
+      "elapsed_ms": 6449,
+      "reply": "**Today's matches:** Show your latest job brief\n**Scan for jobs:** Search for new matching jobs\n**My pipeline:** See all tracked applications\n**My status:** Check your profile and journey state\n**My profile:** See full profile details\n**Start fresh:** Reset your session"
+    },
+    {
+      "turn": 7,
+      "input": "that is enough for now, thank you",
+      "action": "GENERAL_CHAT",
+      "confidence": 0.95,
+      "elapsed_ms": 7734,
+      "reply": "You're welcome! Feel free to come back anytime you're ready to explore jobs or track your applications. Good luck with your career journey!"
+    }
+  ],
+  "total": 7,
+  "checks": {
+    "no_echo": true,
+    "all_resolved": true,
+    "slash_instant": false
+  }
+}
