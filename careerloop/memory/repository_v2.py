@@ -1083,6 +1083,7 @@ def get_fresh_cached_jobs(
             return []
 
         conn = psycopg2.connect(db_url)
+        _cols = ["id","title","company_name","location","source","apply_url","jd_text","last_seen_at","content_fingerprint"]
         cur = conn.cursor()
 
         # Column names for dict construction (regular cursor returns tuples)
