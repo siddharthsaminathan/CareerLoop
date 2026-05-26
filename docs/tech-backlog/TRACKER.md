@@ -27,7 +27,7 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 | System | % | Status | Blocking? | Notes |
 |--------|---|--------|-----------|-------|
 | **Transport abstraction layer** | **65%** | 🟡 | No | Base + Terminal stubs. Echo fallback removed. Safe error messages. /brief + /scan + CommandRouter wired. |
-| **Multi-user onboarding** | **15%** | 🔴 | **YES** | is_complete validated against required fields. Profile completeness check. Hardcoded strings removed. |
+| **Multi-user onboarding** | **75%** | 🟢 | No | 3-user real E2E verified against Supabase + DeepSeek. 5 pillars extracted, CV→profile flow works, PROFILE_READY reached. _load_profile_data returns master_cv_markdown + has_cv. |
 | **LangGraph Chatbot Orchestrator** | **85%** | 🟢 | No | 2-node pipeline. GENERAL_CHAT returns real LLM. ActionResolver context injection. Live scan rendering. Supabase-only. |
 | **PostgresSaver Checkpointer** | **20%** | 🔴 | **YES** | SQLite sessions functional without Postgres. Dual-mode verified. Interrupt/resume proof still needed. |
 | **Application pack delivery** | **95%** | 🟢 | No | PackageAssembler + Playwright PDFs. E2E validated on real job. |
@@ -57,11 +57,11 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 | Monetization / billing | 0% | 🔴 | No | Pricing tiers defined. No paywall yet. Needs onboarding first. |
 | Data engineering V3 | **95%** | 🟢 | No | careerloop.users identity spine. 20 FKs migrated. 14 users backfilled. 7 new tables. 12 canonical docs. Phase 1+2 complete. Companies populated, Cutshort parsing, cache-hit wired, memory architecture documented. |
 | Memory architecture | **70%** | 🟡 Active | 7-layer model defined. 4-level recall hierarchy. 8 propagation flows. 10 anti-patterns. MEMORY_SYSTEMS_ARCHITECTURE.md created. |
-| **E2E Runtime Verification** | **85%** | 🟢 | No | 7-turn E2E against Supabase: zero echoes, all actions resolved, real LLM responses. Results in e2e_final_results.json. |
+| **E2E Runtime Verification** | **90%** | 🟢 | No | 3-user real onboarding E2E: 3/3 passed against live Supabase + DeepSeek. Priya (happy path), Rohan (correction), Ananya (gap-fill). Results in e2e_real_supabase.json. |
 | **Chat quality (known issues)** | **⚠️** | 🟡 | No | Polite closings misclassified as HELP (2/7 E2E turns). Fix: 1-line ActionResolver prompt update. |
 | Job persistence engine | **75%** | 🟡 Active | Global cache + user relationships. Fingerprint dedup. TTL strategy. Cache-hit check wired, companies linked via FK, Cutshort parsing. |
  
-**Overall product maturity: ~75-77% of vision.** Data engineering V3 at 95%. E2E verified (7 turns, zero echoes, real LLM). Bare table prefixes fixed. P1 bugs: async scan, chat fallback context, message persistence reverted safely (file truncation). 1-line prompt fix pending for polite closings. Critical gap remains: multi-user onboarding + transport deployment.
+**Overall product maturity: ~77-80% of vision.** Data engineering V3 at 95%. Multi-user onboarding E2E verified (3/3 real Supabase + DeepSeek). E2E at 90%. B-ONBOARD blocker closing. Remaining: transport deployment, async scan, chat fallback. |
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -76,7 +76,7 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 | ~~B3~~ | cover_note/recruiter_message stubs | Closed | ✅ Improved prompts + richer context |
 | ~~B7~~ | LLM nodes lacked JSON schemas | Closed | ✅ All 6 prompts have JSON examples |
 | **B-TRANSPORT** | Transport stubs exist, but no verified webhook/document delivery/graph response loop | User-facing | **P0** |
-| **B-ONBOARD** | No multi-user onboarding — 3 hardcoded PERSON_CONFIGs, no CV-upload-to-profile flow | User-facing | **P0** |
+| **B-ONBOARD** | Multi-user onboarding E2E verified (3/3 real Supabase + DeepSeek). Telegram webhook wiring still needed for real user flow | User-facing | **P1** |
 | **B-SUPERVISOR** | LangGraph scaffold exists, but state contract/routing/resume interrupts are not verified | User-facing | **P0** |
 | **B-DELIVERY** | Council generates 10 PDFs per run but delivers them to nobody | User-facing | **P0** |
 | B4 | Company career pages invisible | Discovery | P2 |
@@ -109,6 +109,26 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 ---
 
 ## Session Log
+
+### 2026-05-26, 15:00 IST — Session: Multi-User Onboarding E2E Verified
+
+**What was done:**
+- **Real E2E against Supabase + DeepSeek** — 3/3 passed. Priya (happy path, 1 LLM call), Rohan (correction turn, 2 LLM calls), Ananya (gap-fill loop, 2 LLM calls). All reached PROFILE_READY with real DB writes.
+- **Fixed `_load_profile_data` return contract** — now returns `master_cv_markdown`, `has_cv`, and `cv_content`. Test was checking for keys the function wasn't returning.
+- **Migration v4 gap fixed** — Added `master_cv_markdown` (TEXT) and `work_style_prefs` (JSONB) to `careerloop.users`. Migration v4 had the COMMENT ON statements but the columns weren't created. Applied directly to Supabase.
+- **Committed + pushed** — `ca0a641` on main.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED
+B-ONBOARD blocker closing. Multi-user onboarding verified against live infrastructure. The core pipeline (CV extraction → profile building → correction → gap-fill → DB commit) works end-to-end for 3 distinct user personas.
+
+**Deviations detected:** Migration v4 incomplete (missing 2 columns). Fixed directly.
+
+**Recommended next 3 actions:**
+1. Wire Telegram webhook → OnboardingFlow for real user signup (PRD §5)
+2. Fix polite closings → GENERAL_CHAT in ActionResolver (1-line prompt fix)
+3. Re-apply async scan in separate module (avoids file truncation)
+
+---
 
 ### 2026-05-25, 23:00 IST — Session: E2E Runtime Verification + P1 Bug Fixes
 
