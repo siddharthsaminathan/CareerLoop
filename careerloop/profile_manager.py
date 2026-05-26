@@ -164,6 +164,14 @@ class ProfileManager:
     def sector_rejections(self) -> list:
         return self.extended.get("sector_rejections", []) or []
 
+    @property
+    def role_fit_gate(self) -> float:
+        return float(self.extended.get("scoring", {}).get("role_fit_gate", 3.0))
+
+    @property
+    def min_description_chars(self) -> int:
+        return int(self.extended.get("scoring", {}).get("min_description_chars", 200))
+
     # ── Mutators ─────────────────────────────────────────────────────
 
     def update(self, field: str, value):

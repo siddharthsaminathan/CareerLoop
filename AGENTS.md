@@ -8,6 +8,13 @@ The portfolio that goes with this system is also open source: [cv-santiago](http
 
 **It will work out of the box, but it's designed to be made yours.** If the archetypes don't match your career, the modes are in the wrong language, or the scoring doesn't fit your priorities -- just ask. You (AI Agent) can edit the user's files. The user says "change the archetypes to data engineering roles" and you do it. That's the whole point.
 
+## Engineering Rules (LOCKED — NEVER VIOLATE)
+
+- **NO hardcoded values in pipeline code.** Keywords, thresholds, blocklists, scoring weights — all must come from `config/profile.yml` or `careerloop/profile_extended.yml` via `ProfileManager`. Every value a user might want to change belongs in config.
+- **NO static blocklists** (titles, companies, sectors, domains). These belong in `rejected_roles`, `rejected_company_types`, `sector_rejections` in `profile_extended.yml`.
+- **Everything scales to 100M users.** Every hardcoded string is a bug waiting to break someone's search.
+- Think in terms of scalability, dude. What the fuck will 100 million users do when you hardcode shit? Don't ever hardcode any shit. 
+
 ## Data Contract (CRITICAL)
 
 There are two layers. Read `DATA_CONTRACT.md` for the full list.

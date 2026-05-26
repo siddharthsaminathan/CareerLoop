@@ -35,21 +35,22 @@ ACTION_REQUIRED_STATUSES = {"SENT_TO_USER", "APPROVED", "FOLLOW_UP_DUE"}
 # Added:   equity_fit, benefits_fit, sector_fit.
 
 FIT_WEIGHTS = {
-    "role_fit": 14,            # token overlap target_functions/roles vs title+role_summary
-    "skill_fit": 14,           # token overlap confirmed_skills vs requirements+responsibilities
+    "role_fit": 12,            # token overlap target_functions/roles vs title+role_summary
+    "archetype_fit": 8,        # ontology archetype_match from _tag_jobs_with_ontology
+    "skill_fit": 12,           # token overlap confirmed_skills vs requirements+responsibilities
     "salary_fit": 10,          # floor+ceiling band check on extracted comp
-    "equity_fit": 5,           # NEW: ESOPs match
-    "benefits_fit": 5,         # NEW: must-have benefits match
+    "equity_fit": 4,           # ESOPs match
+    "benefits_fit": 4,         # must-have benefits match
     "location_fit": 10,
-    "work_mode_fit": 8,
-    "notice_period_fit": 5,
-    "sector_fit": 6,           # NEW: sector allow/deny preference
+    "work_mode_fit": 7,
+    "notice_period_fit": 4,
+    "sector_fit": 6,           # sector allow/deny preference
     "company_stability": 7,    # sourced from company_memory, not hardcoded
-    "startup_risk": 5,
-    "brand_value": 6,          # sourced from company_memory, not hardcoded
-    "commute_risk": 4,
-    "response_likelihood": 4,
-    "career_trajectory": 4,    # seniority match (not AI-biased)
+    "startup_risk": 4,
+    "brand_value": 5,          # sourced from company_memory, not hardcoded
+    "commute_risk": 3,
+    "response_likelihood": 3,
+    "career_trajectory": 1,    # seniority match
 }
 
 # ── Follow-up Schedule (days after application) ─────────────────────────

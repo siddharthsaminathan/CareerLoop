@@ -275,9 +275,20 @@ class SerpAPIDiscovery:
     def _build_queries(self, city: str, sector: str, function_hint: str) -> list[str]:
         sector_short = sector.split("&")[0].strip().lower()
         city_lc = city.lower()
+        is_remote = city_lc in ("remote", "anywhere", "pan india", "pan-india", "work from home", "wfh")
 
-        # Max 2 SerpAPI calls per search — one broad company discovery, one role-specific
-        if function_hint:
+        if is_remote:
+            if function_hint:
+                queries = [
+                    f"remote India {sector_short} startup hiring \"{function_hint}\" 2025",
+                    f"remote-first India {sector_short} company careers \"{function_hint}\"",
+                ]
+            else:
+                queries = [
+                    f"remote India {sector_short} startup hiring engineer 2025",
+                    f"remote-first India {sector_short} company careers Series A B funded",
+                ]
+        elif function_hint:
             queries = [
                 f"well-funded AI startup {city} India hiring \"{function_hint}\" 2025",
                 f"top {sector_short} product company {city} Series A B careers engineer",
@@ -369,8 +380,8 @@ class WellfoundDiscovery:
         }
         market = market_map.get(sector, "software")
 
-        url = f"{self.BASE}?locations[]={city_slug}&markets[]={market}"
-        results = self._scrape(url, city, sector)
+        # Skip Playwright scrape — use DDG fallback directly (no browser opens)
+        results = self._ddg_fallback(city, sector)
         logger.info(f"[Wellfound] {city}/{sector}: {len(results)} companies")
         return results
 

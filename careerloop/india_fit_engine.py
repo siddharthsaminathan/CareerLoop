@@ -246,6 +246,7 @@ class IndiaFitEngine:
 
         dims = [
             ("role_fit", self._score_role_fit),
+            ("archetype_fit", self._score_archetype_fit),
             ("skill_fit", self._score_skill_fit),
             ("salary_fit", self._score_salary_fit),
             ("equity_fit", self._score_equity_fit),
@@ -264,12 +265,19 @@ class IndiaFitEngine:
 
         breakdown = {}
         total = 0.0
+        role_fit_raw = 0.0
         for name, scorer in dims:
             raw = scorer(job, ctx)
             weight = FIT_WEIGHTS.get(name, 0)
             weighted = (raw / 10.0) * weight
             breakdown[name] = {"raw": raw, "weight": weight, "weighted": round(weighted, 1)}
             total += weighted
+            if name == "role_fit":
+                role_fit_raw = raw
+
+        # Hard gate: role identity mismatch → cap score at 30
+        if role_fit_raw < self.p.role_fit_gate:
+            return min(round(total, 1), 30.0), breakdown
 
         return round(total, 1), breakdown
 
@@ -358,6 +366,19 @@ class IndiaFitEngine:
             if rejected.lower() in title:
                 score = max(score - 5.0, 0.0)
 
+        return round(score, 1)
+
+    def _score_archetype_fit(self, job: dict, ctx: dict) -> float:
+        """Use pre-computed ontology archetype_match from _tag_jobs_with_ontology.
+        Falls back to 5.0 if ontology tag not present."""
+        ontology = job.get("_ontology")
+        if not ontology:
+            return 5.0
+        match = ontology.get("archetype_match", 0.5)
+        # Scale 0-1 → 0-10; preferred_company_match gives +1 bonus
+        score = match * 10.0
+        if ontology.get("preferred_company_match"):
+            score = min(score + 1.0, 10.0)
         return round(score, 1)
 
     def _score_skill_fit(self, job: dict, ctx: dict) -> float:

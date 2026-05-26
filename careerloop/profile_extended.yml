@@ -72,3 +72,6 @@ weak_skills:
 - java
 - mobile development
 willing_to_relocate: true
+scoring:
+  role_fit_gate: 3.0         # raw role_fit below this → score capped at 30
+  min_description_chars: 200 # jobs with shorter JD rejected before scoring

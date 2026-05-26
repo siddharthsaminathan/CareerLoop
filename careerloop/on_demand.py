@@ -29,10 +29,89 @@ from careerloop.sources.scrapegraph_adapter import ScrapeGraphAdapter
 from careerloop.sources.indeed_scraper import IndeedScraper
 from careerloop.sources.api_interceptor import APIInterceptor
 from careerloop.sources.portal_scraper import PortalScraper
+from careerloop.sources.role_archetype import RoleArchetypeEngine
 from careerloop.models import URLType, classify_url_type
 from careerloop.profile_manager import ProfileManager
 
 logger = logging.getLogger(__name__)
+
+
+def _tag_jobs_with_ontology(jobs: list[dict], archetype: "RoleArchetype") -> None:
+    """Tag each job dict with ontology dimensions in-place.
+    Tags are stored under job['_ontology'] and used by Phase E + Phase F.
+    All classification is token-overlap based — no hardcoded lists."""
+    from careerloop.sources.role_archetype import RoleArchetype  # local to avoid circular
+
+    _SENIORITY_SIGNALS = {
+        "senior": ["senior", "sr", "lead", "principal", "staff", "head of", "director"],
+        "mid": ["mid", "ii", "2", "associate"],
+        "junior": ["junior", "jr", "entry", "associate", "intern", "fresher", "trainee"],
+        "executive": ["vp", "chief", "cto", "cpo", "founder"],
+    }
+
+    for job in jobs:
+        title_lc = (job.get("title") or "").lower()
+        desc_lc = (job.get("description") or "").lower()[:500]
+        combined = title_lc + " " + desc_lc
+
+        # Seniority
+        seniority = "unknown"
+        for level, signals in _SENIORITY_SIGNALS.items():
+            if any(s in title_lc for s in signals):
+                seniority = level
+                break
+
+        # Role archetype match score (fraction of must_have tokens present)
+        must = archetype.must_have or []
+        archetype_match = (
+            sum(1 for m in must if m.lower() in combined) / len(must)
+            if must else 0.5
+        )
+
+        # Business model signal (B2B vs B2C inference from description)
+        biz_model = "unknown"
+        if any(w in desc_lc for w in ["enterprise", "b2b", "saas", "api", "platform", "clients"]):
+            biz_model = "b2b"
+        elif any(w in desc_lc for w in ["consumer", "b2c", "app", "users", "retail"]):
+            biz_model = "b2c"
+
+        job["_ontology"] = {
+            "seniority": seniority,
+            "archetype_match": round(archetype_match, 2),
+            "biz_model": biz_model,
+            "preferred_company_match": any(
+                p.lower() in combined for p in archetype.preferred_company_types
+            ),
+        }
+
+
+def _fetch_missing_jds(jobs: list[dict]) -> None:
+    """Attempt to fetch full JD text for jobs with thin descriptions (e.g. jobspy).
+    Mutates jobs in-place. Uses requests + BeautifulSoup; silently skips on failure."""
+    try:
+        import requests
+        from bs4 import BeautifulSoup
+    except ImportError:
+        return
+
+    for job in jobs:
+        if len(job.get("description") or "") >= 200:
+            continue
+        url = job.get("apply_url") or job.get("url") or ""
+        if not url or not url.startswith("http"):
+            continue
+        try:
+            resp = requests.get(url, timeout=8, headers={"User-Agent": "Mozilla/5.0"})
+            if resp.status_code != 200:
+                continue
+            soup = BeautifulSoup(resp.text, "html.parser")
+            for tag in soup(["script", "style", "nav", "header", "footer"]):
+                tag.decompose()
+            text = soup.get_text(separator=" ", strip=True)
+            if len(text) > len(job.get("description") or ""):
+                job["description"] = text[:8000]
+        except Exception:
+            continue
 
 
 @dataclass
@@ -66,6 +145,7 @@ class OnDemandSearch:
         self._interceptor = APIInterceptor()   # kept for backward compat
         self._portal_scraper = PortalScraper()  # 3-layer replacement
         self._role_filter = RoleSimilarityFilter()
+        self._archetype_engine = RoleArchetypeEngine(self.profile)
         self._ats = None
         self._portal = None
 
@@ -171,11 +251,16 @@ class OnDemandSearch:
             logger.warning(f"[OnDemand] Phase A failed: {e}")
 
         # 3. Job boards (DDG + JobSpy) — bounded
+        archetype = self._archetype_engine.get_archetype(role)
         if include_boards and queries:
             try:
                 print(f"  [Phase B] searching job boards (parallel)...", flush=True)
                 board_jobs = self._board_search(queries[:6], role=role, city=city)
-                print(f"  [Phase B] boards done — {len(board_jobs)} jobs", flush=True)
+                # Archetype filter: reject titles that match the user's avoided role signals
+                pre_arch = len(board_jobs)
+                board_jobs = [j for j in board_jobs if not archetype.reject_title(j.get("title", ""))]
+                arch_dropped = pre_arch - len(board_jobs)
+                print(f"  [Phase B] boards done — {len(board_jobs)} jobs (archetype dropped {arch_dropped})", flush=True)
                 # M2: report per-source health
                 if hasattr(self, "_last_board_health"):
                     health_str = " | ".join(f"{k}:{v}" for k, v in sorted(self._last_board_health.items()))
@@ -186,6 +271,9 @@ class OnDemandSearch:
                 logger.warning(f"[OnDemand] Board search failed: {e}")
 
         result.candidate_count = len(all_jobs)
+
+        # Tag all jobs with ontology dimensions (function, market, archetype, seniority)
+        _tag_jobs_with_ontology(all_jobs, archetype)
 
         # 4. India filter
         india_filtered, _ = filter_india_jobs(all_jobs)
@@ -241,13 +329,24 @@ class OnDemandSearch:
             target_functions=self.profile.target_functions or [],
             rejected_roles=self.profile.rejected_roles or [],
         )
-        result.notes.append(f"role filter: {len(company_type_filtered)} → {len(relevant)} relevant ({rejected_count} rejected)")
+        result.notes.append(f"role filter: {len(title_filtered)} → {len(relevant)} relevant ({rejected_count} rejected)")
 
         # 5. Canonical dedup
         deduped = deduplicate_canonical(relevant)
         for job in deduped:
             job["apply_route"] = resolve_apply_route(job)
         result.after_dedup_count = len(deduped)
+
+        # Attempt full JD fetch for jobs with thin descriptions (jobspy/foundit typically)
+        _fetch_missing_jds(deduped)
+
+        # Hard gate: reject jobs still under min_description_chars after fetch attempt
+        min_desc = self.profile.min_description_chars
+        pre_gate = len(deduped)
+        deduped = [j for j in deduped if len(j.get("description") or "") >= min_desc]
+        gate_dropped = pre_gate - len(deduped)
+        if gate_dropped:
+            result.notes.append(f"min-desc gate: dropped {gate_dropped} jobs (<{min_desc}c)")
 
         # 6. Score with IndiaFitEngine
         scored = self.fit_engine.score_jobs_batch(deduped)
@@ -658,9 +757,12 @@ class OnDemandSearch:
             from careerloop.sources.company_discovery import CompanyDiscoveryEngine
             engine = CompanyDiscoveryEngine(self.root)
             sector = self._infer_sector(role)
+            archetype = self._archetype_engine.get_archetype(role)
+            # Use archetype-constrained hint so SerpAPI queries target role type, not just role name
+            function_hint = archetype.to_query_constraint()
             src = "SerpAPI" if os.environ.get("SERPAPI_KEY") else "DDG"
             print(f"    sector={sector} — Phase A via {src}+Wellfound+Crunchbase+Inc42+YC...", flush=True)
-            engine.discover(city=city, sector=sector, function_hint=role, max_companies=n * 2)
+            engine.discover(city=city, sector=sector, function_hint=function_hint, max_companies=n * 2)
             print(f"    internet discovery done — querying DB for top companies...", flush=True)
             # Targets pulled from DB now enriched by live discovery
             return self.targeting.top_n(
