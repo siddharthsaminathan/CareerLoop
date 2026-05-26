@@ -60,8 +60,11 @@ class SessionStore:
             if not row:
                 return {}
             prefs = self._parse_profile_prefs(row.get("work_style_prefs"))
+            cv_md = row.get("master_cv_markdown") or ""
             return {
-                "cv_content": row.get("master_cv_markdown") or "",
+                "cv_content": cv_md,
+                "master_cv_markdown": cv_md,
+                "has_cv": bool(cv_md),
                 "target_roles": prefs.get("target_roles") or "",
                 "target_cities": prefs.get("target_cities") or prefs.get("locations") or "",
                 "salary_expectations": prefs.get("salary_expectations") or "",
