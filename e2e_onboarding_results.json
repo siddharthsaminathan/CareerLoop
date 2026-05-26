@@ -1,0 +1,217 @@
+{
+  "report": "CareerLoop Multi-User Onboarding E2E",
+  "timestamp": "2026-05-26T10:35:43.814840",
+  "mode": "dry-run (simulated DB)",
+  "duration_seconds": 0.36,
+  "summary": {
+    "total_users": 3,
+    "passed": 3,
+    "failed": 0,
+    "pass_rate": "100%"
+  },
+  "users": [
+    {
+      "user_id": "6471a520-a061-5d7d-828d-1baac5afd854",
+      "telegram_chat_id": 1000001,
+      "first_name": "Priya",
+      "steps": [
+        {
+          "step": "identity_bootstrap",
+          "status": "ok",
+          "user_id": "6471a520-a061-5d..."
+        },
+        {
+          "step": "greet",
+          "status": "ok",
+          "reply": "Welcome to CareerLoop! Please paste your CV..."
+        },
+        {
+          "step": "cv_submitted",
+          "status": "ok",
+          "extracted_fields": {
+            "full_name": "Priya Sharma",
+            "target_roles": "Senior Product Manager, Product Manager",
+            "target_cities": "Bangalore",
+            "salary_expectations": "45-55 LPA",
+            "notice_period": "60 days",
+            "aggressiveness": "upgrade",
+            "years_of_experience": 7,
+            "current_company": "Razorpay",
+            "current_title": "Senior Product Manager"
+          }
+        },
+        {
+          "step": "confirmation_accepted",
+          "status": "ok"
+        },
+        {
+          "step": "profile_complete",
+          "status": "ok"
+        },
+        {
+          "step": "onboarding_guard_test",
+          "status": "ok",
+          "note": "/scan resolved to GENERAL_CHAT (expected GENERAL_CHAT, not START_SCAN)",
+          "blocked": true
+        }
+      ],
+      "final_state": "PROFILE_READY",
+      "profile_in_db": {
+        "onboarding_complete": true,
+        "target_roles": "Senior Product Manager, Product Manager",
+        "target_cities": "Bangalore",
+        "salary_expectations": "45-55 LPA",
+        "notice_period": "60 days",
+        "career_mode": "upgrade",
+        "has_cv": true
+      },
+      "passed": true,
+      "errors": [],
+      "duration_ms": 362
+    },
+    {
+      "user_id": "0f97099f-80bd-5c69-a786-dd86bdba0de8",
+      "telegram_chat_id": 1000002,
+      "first_name": "Rohan",
+      "steps": [
+        {
+          "step": "identity_bootstrap",
+          "status": "ok",
+          "user_id": "0f97099f-80bd-5c..."
+        },
+        {
+          "step": "greet",
+          "status": "ok",
+          "reply": "Welcome to CareerLoop! Please paste your CV..."
+        },
+        {
+          "step": "cv_submitted",
+          "status": "ok",
+          "extracted_fields": {
+            "full_name": "Rohan Mehta",
+            "target_roles": "Senior Software Engineer, Staff Engineer",
+            "target_cities": "Mumbai, Pune",
+            "salary_expectations": "30-40 LPA",
+            "notice_period": "3 months",
+            "aggressiveness": "upgrade",
+            "years_of_experience": 6,
+            "current_company": "Flipkart",
+            "current_title": "Software Engineer II"
+          }
+        },
+        {
+          "step": "correction_applied",
+          "status": "ok",
+          "correction": "no wait, my cities are wrong — i want bangalore too, add that"
+        },
+        {
+          "step": "re_confirmation_accepted",
+          "status": "ok"
+        },
+        {
+          "step": "profile_complete",
+          "status": "ok"
+        },
+        {
+          "step": "onboarding_guard_test",
+          "status": "ok",
+          "note": "/scan resolved to GENERAL_CHAT (expected GENERAL_CHAT, not START_SCAN)",
+          "blocked": true
+        }
+      ],
+      "final_state": "PROFILE_READY",
+      "profile_in_db": {
+        "onboarding_complete": true,
+        "target_roles": "Senior Software Engineer, Staff Engineer",
+        "target_cities": "Mumbai, Pune, Bangalore",
+        "salary_expectations": "30-40 LPA",
+        "notice_period": "3 months",
+        "career_mode": "upgrade",
+        "has_cv": true
+      },
+      "passed": true,
+      "errors": [],
+      "duration_ms": 0
+    },
+    {
+      "user_id": "251c18a2-b592-57ec-aca2-8d853fb7f828",
+      "telegram_chat_id": 1000003,
+      "first_name": "Ananya",
+      "steps": [
+        {
+          "step": "identity_bootstrap",
+          "status": "ok",
+          "user_id": "251c18a2-b592-57..."
+        },
+        {
+          "step": "greet",
+          "status": "ok",
+          "reply": "Welcome to CareerLoop! Please paste your CV..."
+        },
+        {
+          "step": "cv_submitted",
+          "status": "ok",
+          "extracted_fields": {
+            "full_name": "Ananya Krishnan",
+            "target_cities": "Chennai"
+          }
+        },
+        {
+          "step": "confirmation_accepted_with_gaps",
+          "status": "ok",
+          "missing_fields": [
+            "target_roles",
+            "salary_expectations",
+            "notice_period",
+            "aggressiveness"
+          ]
+        },
+        {
+          "step": "gap_fill",
+          "status": "ok",
+          "reply": "Got it! Updated your profile.",
+          "is_complete": true
+        },
+        {
+          "step": "profile_complete",
+          "status": "ok"
+        },
+        {
+          "step": "onboarding_guard_test",
+          "status": "ok",
+          "note": "/scan resolved to GENERAL_CHAT (expected GENERAL_CHAT, not START_SCAN)",
+          "blocked": true
+        }
+      ],
+      "final_state": "PROFILE_READY",
+      "profile_in_db": {
+        "onboarding_complete": true,
+        "target_roles": "Finance Analyst, FP&A Analyst",
+        "target_cities": "Chennai",
+        "salary_expectations": "12-18 LPA",
+        "notice_period": "1 month",
+        "career_mode": "hunt",
+        "has_cv": true
+      },
+      "passed": true,
+      "errors": [],
+      "duration_ms": 0
+    }
+  ],
+  "checklist": {
+    "P0-1_webhook_server": "DONE: Created careerloop/transport/webhook_server.py",
+    "P0-2_identity_bootstrap": "DONE: get_or_create_user() — deterministic UUID from telegram_chat_id",
+    "P0-2_db_migration": "DONE: supabase_migration_v4.sql — telegram_chat_id, handle, profile columns",
+    "P0-3_portals_yml_killed": "DONE: _update_portals_yml() removed from onboarding_flow.py",
+    "P0-4_cv_primary_path": "DONE: Manual CV-first flow — LinkedIn no longer gating",
+    "P0-4_cv_extraction": "DONE: CVExtractionAgent — LLM extracts 9 structured fields from CV",
+    "P0-4_cv_file_parser": "DONE: cv_extractor.py — PDF (pypdf/pdfminer) + DOCX (python-docx)",
+    "P0-4_confirmation_step": "DONE: STEP_CONFIRMING — user sees extracted data before PROFILE_READY",
+    "P0-4_gap_fill_loop": "DONE: STEP_COLLECTING — conversational gap-fill for missing required fields",
+    "P0-5_onboarding_guard": "DONE: ActionResolver hard blocks /scan+/brief for NEW_USER state",
+    "P0-5_resume_logic": "DONE: resume_prompt() — reconnect mid-flow gets contextual re-entry prompt",
+    "P0-5_canonical_columns": "DONE: _commit_profile_to_db writes target_roles/cities/salary/notice/career_mode columns",
+    "P0-5_no_placeholder_email": "DONE: placeholder.com replaced with careerloop.internal",
+    "multi_user_isolation": "DONE: Each user has deterministic UUID; portals.yml mutation removed"
+  }
+}

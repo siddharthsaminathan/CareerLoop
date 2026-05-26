@@ -1,0 +1,284 @@
+{
+  "report": "CareerLoop REAL E2E Onboarding — Real LLM, Real OnboardingFlow",
+  "timestamp": "2026-05-26T10:41:24.686825",
+  "mode": "Real LLM + FakeStore (no DATABASE_URL)",
+  "what_is_real": [
+    "CVExtractionAgent.extract() — actual DeepSeek API call",
+    "OnboardingAgent.process() — actual DeepSeek API call for corrections/gap-fill",
+    "OnboardingFlow.handle_message() — actual state machine execution",
+    "ActionResolver.resolve() — actual guard logic",
+    "Session state transitions — actual step tracking"
+  ],
+  "what_is_faked": [
+    "SessionStore DB writes — intercepted to in-memory FakeStore (no DATABASE_URL)",
+    "All DB calls logged in db_calls[] per user for inspection"
+  ],
+  "summary": {
+    "total_users": 3,
+    "passed": 3,
+    "failed": 0,
+    "pass_rate": "100%",
+    "duration_seconds": 8.57
+  },
+  "users": [
+    {
+      "user": "Priya",
+      "telegram_chat_id": 9000001,
+      "steps": [
+        {
+          "step": "identity_bootstrap",
+          "user_id": "40b8c7da-80ff-51...",
+          "status": "ok"
+        },
+        {
+          "step": "STEP_IDLE->WAITING_CV",
+          "status": "ok",
+          "session_step": 1,
+          "reply_preview": "Welcome to CareerLoop! I'm your AI career execution partner.\n\nLet's get your pro",
+          "latency_ms": 0
+        },
+        {
+          "step": "STEP_WAITING_CV->CONFIRMING",
+          "status": "ok",
+          "session_step": 2,
+          "llm_call": "CVExtractionAgent.extract (REAL DeepSeek)",
+          "llm_latency_ms": 1227,
+          "extracted_fields": {
+            "full_name": "Priya Sharma",
+            "target_roles": "Senior Product Manager, Product Manager, Associate Director Product",
+            "target_cities": "Bangalore",
+            "salary_expectations": "45-55 LPA",
+            "notice_period": "60 days",
+            "aggressiveness": "upgrade",
+            "years_of_experience": 5,
+            "current_company": "Razorpay",
+            "current_title": "Senior Product Manager"
+          },
+          "reply_preview": "Here's what I extracted from your CV:\n\n• **Roles:** Senior Product Manager, Product Manager, Associate Director Product\n"
+        },
+        {
+          "step": "STEP_CONFIRMING->PROFILE_READY",
+          "status": "ok",
+          "session_step": 0,
+          "reply_preview": "Your profile is complete! Welcome to CareerLoop, Priya Sharma!\n\nHere's what I've got:\n• **Roles:** Senior Product Manage",
+          "latency_ms": 0
+        },
+        {
+          "step": "onboarding_guard (ActionResolver.resolve REAL)",
+          "status": "ok",
+          "input": "/scan with state=NEW_USER",
+          "resolved_to": "GENERAL_CHAT",
+          "blocked": true
+        }
+      ],
+      "db_calls": [
+        "INSERT careerloop.users uid=40b8c7da-80f chat_id=9000001",
+        "SELECT careerloop.sessions user_id=40b8c7da-80f -> NEW (created)",
+        "UPSERT careerloop.sessions user_id=40b8c7da-80f state=NEW_USER step=1",
+        "UPSERT careerloop.sessions user_id=40b8c7da-80f state=NEW_USER step=2",
+        "UPDATE careerloop.users uid=40b8c7da-80f roles=Senior Product Manager, Product Manager, Associate Director Product cities=Bangalore onboarding_complete=TRUE",
+        "UPSERT careerloop.sessions user_id=40b8c7da-80f state=PROFILE_READY step=0"
+      ],
+      "final_state": "PROFILE_READY",
+      "profile_written": {
+        "onboarding_complete": true,
+        "target_roles": "Senior Product Manager, Product Manager, Associate Director Product",
+        "target_cities": "Bangalore",
+        "salary_expectations": "45-55 LPA",
+        "notice_period": "60 days",
+        "career_mode": "upgrade",
+        "has_cv": true
+      },
+      "passed": true,
+      "errors": [],
+      "llm_calls": [
+        {
+          "agent": "CVExtractionAgent",
+          "latency_ms": 1227
+        }
+      ],
+      "total_ms": 1229
+    },
+    {
+      "user": "Rohan",
+      "telegram_chat_id": 9000002,
+      "steps": [
+        {
+          "step": "identity_bootstrap",
+          "user_id": "afda7cbc-7846-50...",
+          "status": "ok"
+        },
+        {
+          "step": "STEP_IDLE->WAITING_CV",
+          "status": "ok",
+          "session_step": 1,
+          "reply_preview": "Welcome to CareerLoop! I'm your AI career execution partner.\n\nLet's get your pro",
+          "latency_ms": 0
+        },
+        {
+          "step": "STEP_WAITING_CV->CONFIRMING",
+          "status": "ok",
+          "session_step": 2,
+          "llm_call": "CVExtractionAgent.extract (REAL DeepSeek)",
+          "llm_latency_ms": 1163,
+          "extracted_fields": {
+            "full_name": "Rohan Mehta",
+            "target_roles": "Senior SWE, Staff Engineer",
+            "target_cities": "Pune, Mumbai",
+            "salary_expectations": "30-40 LPA",
+            "notice_period": "3 months",
+            "aggressiveness": "hunt",
+            "years_of_experience": 6,
+            "current_company": "Flipkart",
+            "current_title": "Software Engineer II"
+          },
+          "reply_preview": "Here's what I extracted from your CV:\n\n• **Roles:** Senior SWE, Staff Engineer\n• **Cities:** Pune, Mumbai\n• **Salary:** "
+        },
+        {
+          "step": "STEP_CONFIRMING (correction)",
+          "status": "ok",
+          "session_step": 2,
+          "llm_call": "OnboardingAgent.process (REAL DeepSeek)",
+          "llm_latency_ms": 2214,
+          "correction_text": "no wait, I also want Bangalore added to my cities",
+          "reply_preview": "Got it! I've added Bangalore to your target cities. So now you're looking at Pune, Mumbai, and Bangalore. We still need "
+        },
+        {
+          "step": "STEP_CONFIRMING (re-confirm)",
+          "status": "ok",
+          "session_step": 0,
+          "reply_preview": "Your profile is complete! Welcome to CareerLoop, Rohan Mehta!\n\nHere's what I've got:\n• **Roles:** Senior SWE, Staff Engi",
+          "latency_ms": 0
+        },
+        {
+          "step": "onboarding_guard (ActionResolver.resolve REAL)",
+          "status": "ok",
+          "input": "/scan with state=NEW_USER",
+          "resolved_to": "GENERAL_CHAT",
+          "blocked": true
+        }
+      ],
+      "db_calls": [
+        "INSERT careerloop.users uid=afda7cbc-784 chat_id=9000002",
+        "SELECT careerloop.sessions user_id=afda7cbc-784 -> NEW (created)",
+        "UPSERT careerloop.sessions user_id=afda7cbc-784 state=NEW_USER step=1",
+        "UPSERT careerloop.sessions user_id=afda7cbc-784 state=NEW_USER step=2",
+        "UPSERT careerloop.sessions user_id=afda7cbc-784 state=NEW_USER step=2",
+        "UPDATE careerloop.users uid=afda7cbc-784 roles=Senior SWE, Staff Engineer cities=Pune, Mumbai, Bangalore onboarding_complete=TRUE",
+        "UPSERT careerloop.sessions user_id=afda7cbc-784 state=PROFILE_READY step=0"
+      ],
+      "final_state": "PROFILE_READY",
+      "profile_written": {
+        "onboarding_complete": true,
+        "target_roles": "Senior SWE, Staff Engineer",
+        "target_cities": "Pune, Mumbai, Bangalore",
+        "salary_expectations": "30-40 LPA",
+        "notice_period": "3 months",
+        "career_mode": "hunt",
+        "has_cv": true
+      },
+      "passed": true,
+      "errors": [],
+      "llm_calls": [
+        {
+          "agent": "CVExtractionAgent",
+          "latency_ms": 1163
+        },
+        {
+          "agent": "OnboardingAgent (correction)",
+          "latency_ms": 2214
+        }
+      ],
+      "total_ms": 3377
+    },
+    {
+      "user": "Ananya",
+      "telegram_chat_id": 9000003,
+      "steps": [
+        {
+          "step": "identity_bootstrap",
+          "user_id": "75bb8c2d-380a-58...",
+          "status": "ok"
+        },
+        {
+          "step": "STEP_IDLE->WAITING_CV",
+          "status": "ok",
+          "session_step": 1,
+          "reply_preview": "Welcome to CareerLoop! I'm your AI career execution partner.\n\nLet's get your pro",
+          "latency_ms": 0
+        },
+        {
+          "step": "STEP_WAITING_CV->CONFIRMING",
+          "status": "ok",
+          "session_step": 2,
+          "llm_call": "CVExtractionAgent.extract (REAL DeepSeek)",
+          "llm_latency_ms": 1469,
+          "extracted_fields": {
+            "full_name": "Ananya Krishnan",
+            "target_roles": "Analyst, Senior Analyst, Financial Analyst",
+            "target_cities": "Chennai",
+            "aggressiveness": "upgrade",
+            "years_of_experience": 4,
+            "current_company": "ICICI Bank",
+            "current_title": "Analyst"
+          },
+          "reply_preview": "Here's what I extracted from your CV:\n\n• **Roles:** Analyst, Senior Analyst, Financial Analyst\n• **Cities:** Chennai\n• *"
+        },
+        {
+          "step": "STEP_CONFIRMING->COLLECTING (gaps found)",
+          "status": "ok",
+          "session_step": 3,
+          "reply_preview": "Almost there! I still need a few details: **salary expectations, notice period**.\n\nCould you share those?",
+          "latency_ms": 0
+        },
+        {
+          "step": "STEP_COLLECTING->PROFILE_READY (gap fill)",
+          "status": "ok",
+          "session_step": 0,
+          "llm_call": "OnboardingAgent.process (REAL DeepSeek)",
+          "llm_latency_ms": 1941,
+          "reply_preview": "Your profile is complete! Welcome to CareerLoop, Ananya Krishnan!\n\nHere's what I've got:\n• **Roles:** Finance Analyst, F"
+        },
+        {
+          "step": "onboarding_guard (ActionResolver.resolve REAL)",
+          "status": "ok",
+          "input": "/scan with state=NEW_USER",
+          "resolved_to": "GENERAL_CHAT",
+          "blocked": true
+        }
+      ],
+      "db_calls": [
+        "INSERT careerloop.users uid=75bb8c2d-380 chat_id=9000003",
+        "SELECT careerloop.sessions user_id=75bb8c2d-380 -> NEW (created)",
+        "UPSERT careerloop.sessions user_id=75bb8c2d-380 state=NEW_USER step=1",
+        "UPSERT careerloop.sessions user_id=75bb8c2d-380 state=NEW_USER step=2",
+        "UPSERT careerloop.sessions user_id=75bb8c2d-380 state=NEW_USER step=3",
+        "UPDATE careerloop.users uid=75bb8c2d-380 roles=Finance Analyst, FP&A Analyst cities=Chennai onboarding_complete=TRUE",
+        "UPSERT careerloop.sessions user_id=75bb8c2d-380 state=PROFILE_READY step=0"
+      ],
+      "final_state": "PROFILE_READY",
+      "profile_written": {
+        "onboarding_complete": true,
+        "target_roles": "Finance Analyst, FP&A Analyst",
+        "target_cities": "Chennai",
+        "salary_expectations": "12-18 LPA",
+        "notice_period": "1 month",
+        "career_mode": "High volume",
+        "has_cv": true
+      },
+      "passed": true,
+      "errors": [],
+      "llm_calls": [
+        {
+          "agent": "CVExtractionAgent",
+          "latency_ms": 1469
+        },
+        {
+          "agent": "OnboardingAgent (gap fill)",
+          "latency_ms": 1941
+        }
+      ],
+      "total_ms": 3413
+    }
+  ]
+}

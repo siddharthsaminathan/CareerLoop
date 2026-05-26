@@ -1,5 +1,6 @@
 import json
 import logging
+import uuid
 from typing import Optional, Dict, Any
 from dataclasses import dataclass
 from careerloop.session.states import UserJourneyState, normalize_user_state
@@ -83,6 +84,48 @@ class SessionStore:
         return True
 
     # infer_onboarding_state and _repair_session_state removed (orchestration logic should live in resolvers)
+
+    def get_or_create_user(self, telegram_chat_id: int, first_name: str = "", username: str = "") -> str:
+        """
+        Resolve or create a careerloop.users row for a Telegram user.
+        Returns a stable user_id (UUID string) derived from telegram_chat_id.
+
+        Identity anchor: telegram_chat_id is Telegram-guaranteed unique and stable.
+        UUID is deterministic: uuid5(DNS, "telegram:{chat_id}") — reversible, collision-free.
+        """
+        deterministic_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, f"telegram:{telegram_chat_id}"))
+        email = f"telegram_{telegram_chat_id}@careerloop.internal"
+        full_name = (first_name or username or "User").strip()[:100]
+
+        try:
+            with self.db_manager.get_connection() as conn:
+                with conn.cursor() as cur:
+                    # Fast path: look up by telegram_chat_id
+                    cur.execute(
+                        f"SELECT id FROM {self._tbl('users')} WHERE telegram_chat_id = %s",
+                        (telegram_chat_id,),
+                    )
+                    row = cur.fetchone()
+                    if row:
+                        return str(row["id"])
+
+                    # New user: insert with deterministic UUID
+                    cur.execute(f"""
+                        INSERT INTO {self._tbl('users')}
+                            (id, email, full_name, telegram_chat_id, handle, created_at, updated_at)
+                        VALUES (%s, %s, %s, %s, %s, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                        ON CONFLICT (id) DO UPDATE SET
+                            telegram_chat_id = EXCLUDED.telegram_chat_id,
+                            handle = EXCLUDED.handle,
+                            updated_at = CURRENT_TIMESTAMP
+                    """, (deterministic_id, email, full_name, telegram_chat_id, username or None))
+                conn.commit()
+            logger.info("Created/resolved user %s for telegram_chat_id=%s", deterministic_id[:12], telegram_chat_id)
+            return deterministic_id
+        except Exception as e:
+            logger.error("get_or_create_user failed: %s", e)
+            # Deterministic fallback — still stable, just not DB-backed
+            return deterministic_id
 
     def get_session(self, user_id: str) -> Session:
         """Retrieves a session from the store. If not exists, initializes a default IDLE session."""
@@ -190,7 +233,7 @@ class SessionStore:
                         INSERT INTO {self._tbl('users')} (id, email, full_name, created_at, updated_at)
                         VALUES (%s, %s, 'Unknown User', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
                         ON CONFLICT (id) DO NOTHING;
-                    """, (session.user_id, f"user_{session.user_id}@placeholder.com"))
+                    """, (session.user_id, f"user_{session.user_id}@careerloop.internal"))
                     cursor.execute(f"""
                         INSERT INTO {self._tbl('sessions')} (
                             user_id, state, current_job_id, onboarding_step, temp_profile_data, 

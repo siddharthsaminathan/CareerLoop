@@ -243,6 +243,56 @@ If the user says "yes bro can you do it" or similar in response to the Assistant
         return intent, reply
 
 
+class CVExtractionAgent(LLMChatAgent):
+    """Extracts structured profile fields from raw CV/resume text."""
+
+    SYSTEM_PROMPT = """You are a CV parser for CareerLoop, an India-focused career platform.
+Extract the following fields from the CV text provided. Return ONLY valid JSON.
+If a field is not present in the CV, return null for that field — do NOT guess.
+
+Fields to extract:
+- full_name: The candidate's full name (string)
+- target_roles: Comma-separated job titles they are targeting or currently in (string)
+- target_cities: Indian cities they are targeting or currently in (string, e.g. "Bangalore, Chennai")
+- salary_expectations: Their expected salary / current CTC if mentioned (string, e.g. "25-35 LPA")
+- notice_period: Their notice period if mentioned (string, e.g. "30 days", "2 months", "Immediate")
+- aggressiveness: Their likely search mode — "hunt" (actively seeking), "upgrade" (employed but open), or "explore" (passive). Infer from context.
+- years_of_experience: Total years of work experience (integer or null)
+- current_company: Their most recent employer (string or null)
+- current_title: Their most recent job title (string or null)
+
+Return ONLY this JSON:
+{
+  "full_name": "...",
+  "target_roles": "...",
+  "target_cities": "...",
+  "salary_expectations": null,
+  "notice_period": null,
+  "aggressiveness": "upgrade",
+  "years_of_experience": null,
+  "current_company": null,
+  "current_title": null
+}
+
+RULES:
+- target_roles: Use their current title and adjacent roles, e.g. "Product Manager, Senior PM, Associate Director Product"
+- target_cities: If no city mentioned, return null
+- Do NOT invent data. null is correct when information is absent.
+- Escape all special characters in JSON values correctly."""
+
+    def extract(self, cv_text: str) -> dict:
+        """Extract structured fields from CV text. Returns dict (may have nulls)."""
+        # Trim to 6000 chars to avoid token overrun — enough for any real CV
+        truncated = cv_text[:6000]
+        raw = self._call_api(self.SYSTEM_PROMPT, f"CV Text:\n{truncated}")
+        result = self._parse_json(raw)
+        if not result:
+            logger.warning("CVExtractionAgent returned no parseable JSON")
+            return {}
+        # Filter out None/null values — caller decides what to ask for
+        return {k: v for k, v in result.items() if v is not None and str(v).strip() not in {"", "null", "none", "n/a"}}
+
+
 def validate_api_key() -> bool:
     """Check DEEPSEEK_API_KEY is set and non-empty. Log warning if missing."""
     key = os.getenv("DEEPSEEK_API_KEY", "")

@@ -66,8 +66,34 @@ Return ONLY valid JSON:
   "reasoning": "brief one-sentence explanation"
 }"""
 
+    # Slash commands that are always allowed regardless of onboarding state
+    _ONBOARDING_SAFE_COMMANDS = {"/reset", "/help"}
+    # Slash commands that require PROFILE_READY or higher
+    _PROFILE_REQUIRED_COMMANDS = {"/scan", "/brief", "/pipeline", "/status", "/profile"}
+
     def resolve(self, user_message: str, user_id: str, state: UserJourneyState, artifact_context: Dict[str, Any], messages: List[BaseMessage] = None) -> Action:
         msg_lower = user_message.strip().lower()
+
+        # Hard guard: NEW_USER must complete onboarding before accessing any
+        # scan/brief/pipeline actions. This cannot be bypassed by slash commands.
+        if state == UserJourneyState.NEW_USER:
+            cmd = msg_lower.split()[0] if msg_lower.startswith("/") else ""
+            if cmd and cmd not in self._ONBOARDING_SAFE_COMMANDS:
+                return Action(
+                    action_type=ActionType.GENERAL_CHAT,
+                    user_id=user_id,
+                    raw_text=user_message,
+                    parsed_args={"onboarding_blocked": True},
+                    confidence=1.0,
+                )
+            if not cmd:
+                # Non-slash messages during onboarding → GENERAL_CHAT (routed to onboarding flow by supervisor)
+                return Action(
+                    action_type=ActionType.GENERAL_CHAT,
+                    user_id=user_id,
+                    raw_text=user_message,
+                    confidence=1.0,
+                )
 
         _SLASH_MAP = {
             "/brief": ActionType.SHOW_BRIEF,

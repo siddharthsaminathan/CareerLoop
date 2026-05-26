@@ -3,8 +3,7 @@ import logging
 from typing import Tuple, Optional
 from careerloop.session.states import UserJourneyState
 from careerloop.session.session_store import SessionStore, Session
-from careerloop.llm_chat import OnboardingAgent
-from careerloop.sources.linkedin_scraper import LinkedInScraper
+from careerloop.llm_chat import OnboardingAgent, CVExtractionAgent
 
 logger = logging.getLogger("careerloop.onboarding.onboarding_flow")
 
@@ -13,233 +12,244 @@ REQUIRED_FIELDS = [
     "notice_period", "aggressiveness",
 ]
 
-STEP_IDLE = 0
-STEP_IDENTIFYING = 1
-STEP_PROFILE_CONFIRMATION = 2
-STEP_WAITING_CV = 3
-STEP_COLLECTING = 4
+# Step constants — stored in sessions.onboarding_step
+STEP_IDLE         = 0   # First message — greet and ask for CV
+STEP_WAITING_CV   = 1   # Waiting for CV text or file
+STEP_CONFIRMING   = 2   # Showing extracted summary — waiting for YES/correction
+STEP_COLLECTING   = 3   # Conversational gap-fill for missing fields
+# Legacy LinkedIn steps — kept for backward-compat with existing DB rows
+STEP_IDENTIFYING          = 10
+STEP_PROFILE_CONFIRMATION = 11
+
 
 class OnboardingFlow:
     """
-    Handles the state transitions for a new user through the questionnaire.
-    Returns (ResponseText, NextState).
+    Handles new-user onboarding from first message through PROFILE_READY.
+
+    Primary path (all users):
+        IDLE → ask for CV → WAITING_CV → extract → CONFIRMING → confirm → PROFILE_READY
+        Gap-fill loop via COLLECTING if any required field is missing.
+
+    Legacy LinkedIn path (existing DB rows only — not offered to new users):
+        IDENTIFYING → PROFILE_CONFIRMATION → WAITING_CV → ...
+
+    Key design decisions:
+    - portals.yml is NEVER mutated here (multi-user unsafe)
+    - All profile data is written to careerloop.users columns + work_style_prefs JSONB
+    - User confirms extracted data before PROFILE_READY transition
+    - Resume: reconnecting mid-flow re-emits the last contextual prompt
     """
+
     def __init__(self, session_store: SessionStore):
         self.session_store = session_store
-        self.agent = OnboardingAgent()
+        self.extraction_agent = CVExtractionAgent()
+        self.onboarding_agent = OnboardingAgent()
+
+    # ── Main entry point ──────────────────────────────────────────────────────
 
     def handle_message(self, session: Session, text: str) -> Tuple[str, UserJourneyState]:
-        state = session.state
-        step = session.onboarding_step
-        data = session.temp_profile_data or self.session_store._load_profile_data(session.user_id) or {}
+        state  = session.state
+        step   = session.onboarding_step
+        data   = session.temp_profile_data or {}
 
         if state == UserJourneyState.PROFILE_READY:
-            reply = (
-                f"Your profile is already set up! You're targeting **{data.get('target_roles', 'N/A')}** roles "
-                f"in **{data.get('target_cities', 'N/A')}**.\n\n"
-                "What would you like to do? Just chat with me or ask for your daily briefing."
-            )
-            return (reply, UserJourneyState.PROFILE_READY)
+            return self._already_complete(data), UserJourneyState.PROFILE_READY
 
+        # Route by step
         if step == STEP_IDLE:
-            session.onboarding_step = STEP_IDENTIFYING
-            session.temp_profile_data = data or {}
-            if not self.session_store.save_session(session):
-                raise RuntimeError("Failed to persist session state.")
-            reply = "Welcome to CareerLoop! Let's get you set up in less than a minute. What is your full name?"
-            return (reply, UserJourneyState.NEW_USER)
-
-        if step == STEP_IDENTIFYING:
-            text_clean = text.strip()
-            # If the user pasted a direct LinkedIn URL instead of name
-            if "linkedin.com" in text_clean.lower() and text_clean.startswith("http"):
-                scraper = LinkedInScraper()
-                try:
-                    scraped = scraper.scrape_profile(text_clean)
-                    session.temp_profile_data.update(scraped)
-                    session.onboarding_step = STEP_WAITING_CV
-                    if not self.session_store.save_session(session):
-                        raise RuntimeError("Failed to persist session.")
-                    self._commit_profile_to_db(session.user_id, session.temp_profile_data)
-                    reply = (
-                        f"Awesome! I scraped your LinkedIn profile directly.\n\n"
-                        f"Prefilled details:\n"
-                        f"• **Roles:** {scraped.get('target_roles', 'N/A')}\n"
-                        f"• **Cities:** {scraped.get('target_cities', 'N/A')}\n"
-                        f"• **Salary:** {scraped.get('salary_expectations', 'N/A')}\n"
-                        f"• **Notice:** {scraped.get('notice_period', 'N/A')}\n\n"
-                        f"Please upload your latest resume/CV text (or paste it here) to finalize your profile setup."
-                    )
-                    return (reply, UserJourneyState.NEW_USER)
-                except Exception as e:
-                    logger.error(f"LinkedIn URL scrape failed: {e}")
-
-            # Normal name search
-            scraper = LinkedInScraper()
-            results = scraper.search_profiles(text_clean)
-            if results:
-                session.temp_profile_data["search_results"] = results
-                session.temp_profile_data["full_name"] = text_clean
-                session.onboarding_step = STEP_PROFILE_CONFIRMATION
-                if not self.session_store.save_session(session):
-                    raise RuntimeError("Failed to persist session.")
-                
-                profile = results[0]
-                reply = (
-                    f"I found a LinkedIn profile matching your name:\n\n"
-                    f"💼 **{profile['name']}**\n"
-                    f"📌 *{profile['headline']}*\n"
-                    f"📍 {profile['location']}\n"
-                    f"🏢 Current: {profile['current_company']}\n\n"
-                    f"Is this you? Please reply with:\n"
-                    f"**1** = Yes, that's me!\n"
-                    f"**2** = No, that's not me\n"
-                    f"**3** = Skip and enter details manually"
-                )
-                return (reply, UserJourneyState.NEW_USER)
-            else:
-                reply = f"I couldn't find any LinkedIn profiles matching '{text_clean}'. Please try typing your full name again, or paste your direct LinkedIn profile URL."
-                return (reply, UserJourneyState.NEW_USER)
-
-        if step == STEP_PROFILE_CONFIRMATION:
-            choice = text.strip()
-            if choice == "1" or "yes" in choice.lower():
-                results = session.temp_profile_data.get("search_results", [])
-                if not results:
-                    reply = "No profiles found in search history. Let's do a manual setup. What roles are you targeting?"
-                    session.onboarding_step = STEP_COLLECTING
-                    if not self.session_store.save_session(session):
-                        raise RuntimeError("Failed to save session.")
-                    return (reply, UserJourneyState.NEW_USER)
-                
-                profile = results[0]
-                scraper = LinkedInScraper()
-                scraped = scraper.scrape_profile(profile["url"])
-                
-                session.temp_profile_data.update(scraped)
-                session.onboarding_step = STEP_WAITING_CV
-                if not self.session_store.save_session(session):
-                    raise RuntimeError("Failed to save session.")
-                
-                self._commit_profile_to_db(session.user_id, session.temp_profile_data)
-                
-                reply = (
-                    f"Awesome! I've prefilled your profile from your LinkedIn, {profile['name']}!\n\n"
-                    f"• **Roles:** {scraped.get('target_roles')}\n"
-                    f"• **Cities:** {scraped.get('target_cities')}\n"
-                    f"• **Salary:** {scraped.get('salary_expectations')}\n"
-                    f"• **Notice:** {scraped.get('notice_period')}\n\n"
-                    f"Now, please upload your latest resume/CV text (paste it here) to finalize your profile setup."
-                )
-                return (reply, UserJourneyState.NEW_USER)
-                
-            elif choice == "2" or "no" in choice.lower():
-                session.onboarding_step = STEP_IDENTIFYING
-                if not self.session_store.save_session(session):
-                    raise RuntimeError("Failed to save session.")
-                reply = "Got it! Please paste your direct LinkedIn profile URL (e.g. https://linkedin.com/in/yourprofile) so I can pull the correct page."
-                return (reply, UserJourneyState.NEW_USER)
-                
-            else: # Choice 3 or skip
-                session.onboarding_step = STEP_COLLECTING
-                if not self.session_store.save_session(session):
-                    raise RuntimeError("Failed to save session.")
-                reply = "Sure! Let's build your profile manually. Paste your LinkedIn profile, paste your CV text, or tell me: what roles are you targeting?"
-                return (reply, UserJourneyState.NEW_USER)
-
+            return self._handle_idle(session)
         if step == STEP_WAITING_CV:
-            # The input text is the CV content
-            cv_text = text.strip()
-            if len(cv_text) < 100:
-                reply = "That CV text looks a bit too short. Please copy-paste your full CV/resume text here."
-                return (reply, UserJourneyState.NEW_USER)
-            
-            session.temp_profile_data["cv_content"] = cv_text
-            
-            # Let's see if we have all required fields. Run LLM check if needed or just commit
-            missing = [f for f in REQUIRED_FIELDS if not session.temp_profile_data.get(f)]
+            return self._handle_waiting_cv(session, text, data)
+        if step == STEP_CONFIRMING:
+            return self._handle_confirming(session, text, data)
+        if step == STEP_COLLECTING:
+            return self._handle_collecting(session, text, data)
+
+        # Legacy LinkedIn steps (backward compat)
+        if step == STEP_IDENTIFYING:
+            return self._handle_legacy_identifying(session, text, data)
+        if step == STEP_PROFILE_CONFIRMATION:
+            return self._handle_legacy_profile_confirmation(session, text, data)
+
+        return ("I didn't quite catch that. Could you rephrase?", state)
+
+    # ── Step handlers ─────────────────────────────────────────────────────────
+
+    def _handle_idle(self, session: Session) -> Tuple[str, UserJourneyState]:
+        session.onboarding_step = STEP_WAITING_CV
+        session.temp_profile_data = {}
+        self._save(session)
+        reply = (
+            "Welcome to CareerLoop! I'm your AI career execution partner.\n\n"
+            "Let's get your profile set up in under a minute.\n\n"
+            "Please paste your CV/resume text here, or upload it as a PDF or DOCX file. "
+            "I'll extract your details automatically."
+        )
+        return reply, UserJourneyState.NEW_USER
+
+    def _handle_waiting_cv(self, session: Session, text: str, data: dict) -> Tuple[str, UserJourneyState]:
+        if len(text.strip()) < 80:
+            return (
+                "That looks too short to be a full CV. Please paste your complete resume text, "
+                "or upload a PDF/DOCX file.",
+                UserJourneyState.NEW_USER,
+            )
+
+        # Extract structured fields from CV using LLM
+        extracted = self.extraction_agent.extract(text)
+        data.update({"cv_content": text.strip()})
+        for k, v in extracted.items():
+            if v and str(v).strip().lower() not in {"null", "none", "n/a", "na", "-", ""}:
+                data[k] = v
+
+        session.temp_profile_data = data
+        session.onboarding_step = STEP_CONFIRMING
+        self._save(session)
+
+        return self._build_confirmation_prompt(data, extracted), UserJourneyState.NEW_USER
+
+    def _handle_confirming(self, session: Session, text: str, data: dict) -> Tuple[str, UserJourneyState]:
+        text_lower = text.strip().lower()
+        affirmative = {"yes", "y", "yep", "yeah", "yup", "correct", "confirmed", "ok", "okay", "looks good", "good", "right", "perfect", "done", "proceed", "go", "confirm"}
+
+        if text_lower in affirmative or text_lower.startswith("yes"):
+            missing = [f for f in REQUIRED_FIELDS if not data.get(f)]
             if missing:
                 session.onboarding_step = STEP_COLLECTING
-                if not self.session_store.save_session(session):
-                    raise RuntimeError("Failed to save session.")
-                reply = f"Thank you for uploading your CV! I need a few more details to customize your target metrics: {', '.join(missing).replace('_', ' ')}. Could you tell me about those?"
-                return (reply, UserJourneyState.NEW_USER)
-            
-            # All complete!
-            self._commit_profile_to_db(session.user_id, session.temp_profile_data)
-            self._update_portals_yml(session.temp_profile_data.get('target_roles', ''))
-            
-            full_name = session.temp_profile_data.get("full_name") or "User"
-            session.temp_profile_data = None
-            session.state = UserJourneyState.PROFILE_READY
-            if not self.session_store.save_session(session):
-                raise RuntimeError("Failed to save session.")
-                
-            reply = (
-                f"Your profile is complete! Welcome to CareerLoop, {full_name}!\n"
-                f"• **Roles:** {data.get('target_roles', 'N/A')}\n"
-                f"• **Cities:** {data.get('target_cities', 'N/A')}\n"
-                f"• **Salary:** {data.get('salary_expectations', 'N/A')}\n"
-                f"• **Notice:** {data.get('notice_period', 'N/A')}\n"
-                f"• **Mode:** {data.get('aggressiveness', 'N/A')}\n\n"
-                f"You can now ask me for your daily briefing."
-            )
-            return (reply, UserJourneyState.PROFILE_READY)
-
-        if step == STEP_COLLECTING:
-            updated_data, reply, is_complete = self.agent.process(text, data)
-            session.temp_profile_data = updated_data
-            
-            if is_complete:
-                missing = [f for f in REQUIRED_FIELDS if not updated_data.get(f)]
-                if missing:
-                    reply = f"I still need a few more details: {', '.join(missing).replace('_', ' ')}. Could you share those?"
-                    if not self.session_store.save_session(session):
-                        raise RuntimeError(f"Failed to persist session state {session.state}.")
-                    return (reply, state)
-
-                self._commit_profile_to_db(session.user_id, updated_data)
-                self._update_portals_yml(updated_data.get('target_roles', ''))
-
-                session.temp_profile_data = None
-                session.state = UserJourneyState.PROFILE_READY
-                if not self.session_store.save_session(session):
-                    raise RuntimeError(f"Failed to persist session state {session.state}. Check database connection.")
-
-                reply = (
-                    f"Your profile is complete! Here's a summary:\n"
-                    f"• **Roles:** {updated_data.get('target_roles', 'N/A')}\n"
-                    f"• **Cities:** {updated_data.get('target_cities', 'N/A')}\n"
-                    f"• **Salary:** {updated_data.get('salary_expectations', 'N/A')}\n"
-                    f"• **Notice:** {updated_data.get('notice_period', 'N/A')}\n"
-                    f"• **Mode:** {updated_data.get('aggressiveness', 'N/A')}\n\n"
-                    f"I'll now match you with relevant jobs. Ask me for your daily briefing."
+                self._save(session)
+                field_names = ", ".join(f.replace("_", " ") for f in missing)
+                return (
+                    f"Almost there! I still need a few details: **{field_names}**.\n\n"
+                    "Could you share those?",
+                    UserJourneyState.NEW_USER,
                 )
-                return (reply, UserJourneyState.PROFILE_READY)
-            else:
-                if not self.session_store.save_session(session):
-                    raise RuntimeError(f"Failed to persist session state {session.state}. Check database connection.")
-                return (reply, state)
+            return self._complete_onboarding(session, data)
 
-        return ("I didn't quite catch that. Could you rephrase? I'm collecting your profile details.", state)
+        # User wants to correct something — feed correction into OnboardingAgent
+        updated_data, reply, is_complete = self.onboarding_agent.process(text, data)
+        session.temp_profile_data = updated_data
+        if is_complete:
+            missing = [f for f in REQUIRED_FIELDS if not updated_data.get(f)]
+            if not missing:
+                return self._complete_onboarding(session, updated_data)
 
-    def _update_portals_yml(self, target_roles: str):
-        import os, yaml
-        portals_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "portals.yml"))
-        templates_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "templates", "portals.example.yml"))
-        source_path = portals_path if os.path.exists(portals_path) else templates_path
-        if not os.path.exists(source_path):
-            return
-        with open(source_path, 'r') as f:
-            config = yaml.safe_load(f)
-        roles = [r.strip() for r in target_roles.split(',') if r.strip()]
-        if roles and 'title_filter' in config:
-            existing = set(config['title_filter'].get('positive', []))
-            for r in roles:
-                existing.add(r)
-            config['title_filter']['positive'] = list(existing)
-        with open(portals_path, 'w') as f:
-            yaml.dump(config, f, sort_keys=False)
+        # Re-show summary after correction
+        session.onboarding_step = STEP_CONFIRMING
+        self._save(session)
+        correction_prompt = self._build_confirmation_prompt(updated_data, updated_data)
+        return f"{reply}\n\n{correction_prompt}", UserJourneyState.NEW_USER
+
+    def _handle_collecting(self, session: Session, text: str, data: dict) -> Tuple[str, UserJourneyState]:
+        updated_data, reply, is_complete = self.onboarding_agent.process(text, data)
+        session.temp_profile_data = updated_data
+
+        if is_complete:
+            missing = [f for f in REQUIRED_FIELDS if not updated_data.get(f)]
+            if missing:
+                self._save(session)
+                return (
+                    f"I still need: {', '.join(f.replace('_', ' ') for f in missing)}. Could you share those?",
+                    UserJourneyState.NEW_USER,
+                )
+            return self._complete_onboarding(session, updated_data)
+
+        self._save(session)
+        return reply, UserJourneyState.NEW_USER
+
+    # ── Legacy LinkedIn handlers (backward-compat only) ───────────────────────
+
+    def _handle_legacy_identifying(self, session: Session, text: str, data: dict) -> Tuple[str, UserJourneyState]:
+        """Legacy: user was at LinkedIn name-search step. Redirect to CV upload."""
+        session.onboarding_step = STEP_WAITING_CV
+        self._save(session)
+        return (
+            "Let's continue your setup. Please paste your CV/resume text "
+            "or upload it as a PDF/DOCX file.",
+            UserJourneyState.NEW_USER,
+        )
+
+    def _handle_legacy_profile_confirmation(self, session: Session, text: str, data: dict) -> Tuple[str, UserJourneyState]:
+        """Legacy: user was at LinkedIn confirm step. Redirect to CV upload."""
+        session.onboarding_step = STEP_WAITING_CV
+        self._save(session)
+        return (
+            "Please paste your CV/resume text or upload it as a file to finalize your profile.",
+            UserJourneyState.NEW_USER,
+        )
+
+    # ── Resume-from-step ─────────────────────────────────────────────────────
+
+    def resume_prompt(self, session: Session) -> str:
+        """Return a context-aware re-entry prompt for users reconnecting mid-flow."""
+        step = session.onboarding_step
+        data = session.temp_profile_data or {}
+
+        if step == STEP_WAITING_CV:
+            return (
+                "Welcome back! We were setting up your profile.\n\n"
+                "Please paste your CV/resume text or upload it as a PDF/DOCX to continue."
+            )
+        if step == STEP_CONFIRMING:
+            return self._build_confirmation_prompt(data, data)
+        if step == STEP_COLLECTING:
+            missing = [f for f in REQUIRED_FIELDS if not data.get(f)]
+            field_names = ", ".join(f.replace("_", " ") for f in missing) if missing else "a few remaining details"
+            return f"Welcome back! I still need: **{field_names}**. Could you share those?"
+        # Default: restart
+        return "Welcome back to CareerLoop! Please paste your CV text to get started."
+
+    # ── Completion ────────────────────────────────────────────────────────────
+
+    def _complete_onboarding(self, session: Session, data: dict) -> Tuple[str, UserJourneyState]:
+        self._commit_profile_to_db(session.user_id, data)
+        full_name = data.get("full_name") or "there"
+        session.temp_profile_data = None
+        session.state = UserJourneyState.PROFILE_READY
+        session.onboarding_step = 0
+        self._save(session)
+        reply = (
+            f"Your profile is complete! Welcome to CareerLoop, {full_name}!\n\n"
+            f"Here's what I've got:\n"
+            f"• **Roles:** {data.get('target_roles', 'N/A')}\n"
+            f"• **Cities:** {data.get('target_cities', 'N/A')}\n"
+            f"• **Salary:** {data.get('salary_expectations', 'N/A')}\n"
+            f"• **Notice:** {data.get('notice_period', 'N/A')}\n"
+            f"• **Mode:** {data.get('aggressiveness', 'N/A')}\n\n"
+            "You're all set! Ask me for your daily briefing or type /scan to find new roles."
+        )
+        return reply, UserJourneyState.PROFILE_READY
+
+    def _already_complete(self, data: dict) -> str:
+        return (
+            f"Your profile is already set up! You're targeting "
+            f"**{data.get('target_roles', 'your saved roles')}** in "
+            f"**{data.get('target_cities', 'your saved cities')}**.\n\n"
+            "What would you like to do? Ask for your daily briefing or type /scan."
+        )
+
+    # ── Helpers ───────────────────────────────────────────────────────────────
+
+    def _build_confirmation_prompt(self, data: dict, extracted: dict) -> str:
+        lines = ["Here's what I extracted from your CV:\n"]
+        field_labels = {
+            "target_roles": "Roles",
+            "target_cities": "Cities",
+            "salary_expectations": "Salary",
+            "notice_period": "Notice",
+            "aggressiveness": "Mode",
+        }
+        for field, label in field_labels.items():
+            val = data.get(field) or extracted.get(field) or "—"
+            lines.append(f"• **{label}:** {val}")
+
+        lines.append(
+            "\nReply **YES** to confirm, or tell me what needs to be corrected."
+        )
+        return "\n".join(lines)
+
+    def _save(self, session: Session):
+        if not self.session_store.save_session(session):
+            raise RuntimeError(f"Failed to persist session for user {session.user_id}")
 
     def _commit_profile_to_db(self, user_id: str, profile_data: dict):
         def clean(value):
@@ -264,33 +274,44 @@ class OnboardingFlow:
 
                     cv_content = clean(profile_data.get("cv_content")) or existing.get("master_cv_markdown") or ""
                     merged_prefs = dict(existing_prefs)
-                    for key in [
-                        "target_roles",
-                        "target_cities",
-                        "salary_expectations",
-                        "notice_period",
-                        "aggressiveness",
-                    ]:
+                    for key in ["target_roles", "target_cities", "salary_expectations", "notice_period", "aggressiveness"]:
                         next_value = clean(profile_data.get(key))
                         if next_value is not None:
                             merged_prefs[key] = next_value
 
+                    # Ensure user row exists (no placeholder emails)
                     cur.execute(f"""
                         INSERT INTO {self.session_store._tbl('users')} (id, email, full_name, created_at, updated_at)
                         VALUES (%s, %s, %s, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
                         ON CONFLICT (id) DO NOTHING
-                    """, (user_id, f"user_{user_id}@placeholder.com", "Unknown User"))
+                    """, (user_id, f"user_{user_id}@careerloop.internal", clean(profile_data.get("full_name")) or "User"))
+
+                    # Write to both canonical columns AND work_style_prefs JSONB
                     cur.execute(f"""
                         UPDATE {self.session_store._tbl('users')}
-                        SET master_cv_markdown = %s,
-                            work_style_prefs = %s,
-                            updated_at = CURRENT_TIMESTAMP
+                        SET master_cv_markdown   = %s,
+                            work_style_prefs     = %s,
+                            target_roles         = %s,
+                            target_cities        = %s,
+                            salary_expectations  = %s,
+                            notice_period        = %s,
+                            career_mode          = %s,
+                            onboarding_complete  = TRUE,
+                            full_name            = COALESCE(NULLIF(full_name, 'Unknown User'), NULLIF(full_name, 'User'), %s, full_name),
+                            updated_at           = CURRENT_TIMESTAMP
                         WHERE id = %s
                     """, (
                         cv_content,
                         json.dumps(merged_prefs),
-                        user_id
+                        clean(profile_data.get("target_roles")),
+                        clean(profile_data.get("target_cities")),
+                        clean(profile_data.get("salary_expectations")),
+                        clean(profile_data.get("notice_period")),
+                        clean(profile_data.get("aggressiveness")),
+                        clean(profile_data.get("full_name")),
+                        user_id,
                     ))
                 conn.commit()
         except Exception as e:
             logger.error(f"Error saving profile to DB: {e}")
+            raise
