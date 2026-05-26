@@ -243,18 +243,11 @@ class NaukriAdapter:
 
     def search(self, role: str, city: str, max_results: int = 50) -> list[dict]:
         try:
-            results = _search_via_playwright(role, city, max_results)
-            if results:
-                return results[:max_results]
+            results = _search_via_api(role, city, max_results)
+            return results[:max_results]
         except Exception as exc:
-            logger.warning("Naukri Playwright path failed entirely: %s", exc)
-
-        try:
-            return _search_via_api(role, city, max_results)
-        except Exception as exc:
-            logger.warning("Naukri API path failed entirely: %s", exc)
-
-        return []
+            logger.warning("Naukri API failed: %s", exc)
+            return []
 
 
 def search_naukri(role: str, city: str, max_results: int = 50) -> list[dict]:

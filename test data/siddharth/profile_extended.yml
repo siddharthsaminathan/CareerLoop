@@ -132,3 +132,14 @@ resume_tone: "confident"
 
 interview_weaknesses: []
 rejection_learnings: []
+
+scoring:
+  role_fit_gate: 3.0           # role_fit_raw below this → score capped at 30
+  min_description_chars: 200   # reject jobs with JD shorter than this after fetch
+  archetype_gate: 0.2          # archetype_match below this → hard reject before embedding
+
+seniority_signals:
+  senior: ["senior", "sr", "lead", "principal", "staff", "head of", "director"]
+  mid: ["mid", "ii", "2", "associate"]
+  junior: ["junior", "jr", "entry", "fresher", "trainee", "intern"]
+  executive: ["vp", "chief", "cto", "cpo", "founder"]

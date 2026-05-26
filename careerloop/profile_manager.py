@@ -172,6 +172,19 @@ class ProfileManager:
     def min_description_chars(self) -> int:
         return int(self.extended.get("scoring", {}).get("min_description_chars", 200))
 
+    @property
+    def archetype_gate(self) -> float:
+        return float(self.extended.get("scoring", {}).get("archetype_gate", 0.2))
+
+    @property
+    def seniority_signals(self) -> dict:
+        return self.extended.get("seniority_signals", {
+            "senior": ["senior", "sr", "lead", "principal", "staff"],
+            "mid": ["mid", "ii", "associate"],
+            "junior": ["junior", "jr", "entry", "fresher", "trainee"],
+            "executive": ["vp", "chief", "cto", "cpo", "founder"],
+        })
+
     # ── Mutators ─────────────────────────────────────────────────────
 
     def update(self, field: str, value):

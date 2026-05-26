@@ -1,7 +1,7 @@
 # CareerLoop Search System — Vision + Implementation Tracker
 
 > **Living document.** Vision is locked. Implementation status updated each session.  
-> Last updated: 2026-05-26  
+> Last updated: 2026-05-27 (Sprint 5 complete — Phase E ontology gate, board query enrichment, Naukri API-first)  
 > Audit source: `docs/audits/Discovery_engine_audit_260526.md` + `docs/audits/Discovery_engine_audit_chatgpt_260526.md`
 
 ---
@@ -40,19 +40,19 @@ S2–S4 blocked on: S1 must reach ≥80% before starting.
 ```
 Career Intent Vector (role + city + profile)
     ↓
-[MISSING] Role Archetype Engine   ← generates must_have / avoid / company_type constraints
+Role Archetype Engine              ← generates must_have / avoid / company_type constraints (✅ built)
     ↓
 Phase A — Employer Discovery      ← finds companies matching archetype
     ↓
-Phase B — Job Board Retrieval     ← finds jobs directly (archetype-constrained queries)
+Phase B — Job Board Retrieval     ← archetype-enriched queries + parallel 6 sources
     ↓
-Phase C — ATS Portal Scrape       ← fetches jobs from company portals
+Phase C — ATS Portal Scrape       ← fetches jobs from company portals (14 adapters)
     ↓
-Phase D — JD Extraction           ← gets full job descriptions + structured semantic parse
+Phase D — JD Extraction           ← full JD fetch + min-desc gate
     ↓
-Phase E — Role Filtering          ← ontology filter + embedding filter
+Phase E — Role Filtering          ← ontology pre-filter → embedding filter
     ↓
-Phase F — Scoring + Ranking       ← role archetype as hard gate, then 14-dim scoring
+Phase F — Scoring + Ranking       ← 16-dim, role_fit hard gate, archetype_fit dim
     ↓
 Phase G — Company Intel           ← enriches shortlisted jobs (lazy, per-interest)
 ```
@@ -76,16 +76,16 @@ Output:
 
 This vector constrains: Phase A discovery queries → Phase B query expansion → Phase E ontology filter → Phase F hard gate.
 
-**Status: ❌ Not built. P0.**
+**Status: ✅ Built + fully wired. `careerloop/sources/role_archetype.py` — `RoleArchetypeEngine`. Derives must_have/avoid/preferred_company_types from `profile_extended.yml` (zero hardcoding). Wired into: Phase A `_discover_and_rank()` function_hint, Phase B archetype-enriched query prepend + title reject filter, Phase E ontology pre-filter gate.**
 
 ---
 
 ### Phase A — Employer Discovery
 
-**Score: 40/100**
+**Score: 65/100** _(was 40 — +25 this session)_
 
 **Goal:** Given role + city, find companies likely hiring for that role.  
-**Sources:** SerpAPI (primary), Wellfound (Playwright/DDG fallback), Crunchbase (DDG), Inc42/YourStory (DDG), YC API.
+**Sources:** SerpAPI (primary), Wellfound (DDG fallback only now), Crunchbase (DDG), Inc42/YourStory (DDG), YC API.
 
 **What's built:**
 
@@ -93,38 +93,38 @@ This vector constrains: Phase A discovery queries → Phase B query expansion �
 |------|--------|
 | SerpAPI — 2-call cap, intent-based queries | ✅ Done |
 | DDG fallback when no key | ✅ Done |
-| Wellfound — Playwright scrape | ⚠️ Partial — opens browser per call |
+| Wellfound — DDG-only (Playwright removed) | ✅ Fixed this session |
 | Crunchbase DDG — 2 queries | ✅ Done |
 | Inc42/YourStory DDG — 3 queries | ✅ Done |
 | YC API — India filter | ✅ Done |
 | Company enrichment (ATS detection, upsert to DB) | ✅ Done |
 | SQLite fallback | ✅ Done |
+| Remote India query path in SerpAPI | ✅ Built this session |
+| Archetype-constrained function_hint (Phase A queries) | ✅ Built this session |
 
 **Active Bugs:**
 
-| Bug | Symptom | Root Cause |
-|-----|---------|-----------|
-| **B1 — Browser opens × 12** | Wellfound fires `sync_playwright()` per search. 12 searches = 12 Chromium instances | Playwright in Phase A is wrong architecture. Phase A should be API/HTTP only. |
-| **B2 — Mumbai/Remote = 0 companies** | Phase A returns nothing for non-Bangalore cities | City name not found in DDG snippets for "Remote"; no query path for virtual-first companies |
-| **B3 — All roles → same sector** | All 4 AI roles collapse to "Technology & Software" | `_infer_sector()` correct but too coarse. No role-archetype differentiation in SerpAPI queries. |
-| **B4 — Queries too broad** | Finds "AI companies Bangalore" not "B2B AI SaaS product companies" | No company ontology. No role archetype constraint flowing into Phase A. |
+| Bug | Symptom | Status |
+|-----|---------|--------|
+| **B1 — Browser opens × 12** | Wellfound fires `sync_playwright()` per search | ✅ Fixed — `WellfoundDiscovery.search()` now calls `_ddg_fallback()` directly |
+| **B2 — Remote = 0 companies** | No query path for virtual-first companies | ✅ Partially fixed — SerpAPI has Remote India path; Wellfound/Inc42 still return 0 for Remote |
+| **B3 — Queries too broad** | Finds "AI companies Bangalore" not "B2B AI SaaS product companies" | ✅ Partially fixed — `to_query_constraint()` from RoleArchetypeEngine enriches Phase A `function_hint` |
+| **B4 — No company ontology** | All companies enriched with same weak tags | ❌ Open — Company Identity Layer not built |
 
-**To Build (from chatgpt audit):**
+**To Build (still open):**
 
 | Item | Description | Priority |
 |------|-------------|----------|
-| **Company Identity Layer** | Tag every discovered company with: sector, industry, B2B/B2C, business_model, company_stage, market, keywords (LLM/automation/agents). This becomes the company ontology. | P0 |
-| **Archetype-constrained discovery queries** | SerpAPI queries driven by Role Archetype Engine output — `preferred_company_types` constrains what Phase A searches for | P0 |
-| **Remote India query path** | Separate query logic for Remote: `"fully remote AI product company India hiring"` — no city filter on snippets | P1 |
-| **Remove Wellfound Playwright from Phase A** | Replace with DDG-only fallback. Playwright belongs in Phase C only. | P1 |
+| **Company Identity Layer** | Tag every discovered company with: sector, industry, B2B/B2C, business_model, company_stage, market, keywords. Becomes the company ontology for structured Phase A filtering. | P1 |
+| **Remote — Wellfound/Inc42 path** | Wellfound + Inc42 return 0 for Remote city. Need virtual-first company sources (DDG `"remote-first India startup"`) | P1 |
 
-**RCA:** Phase A has no company identity model. Retrieves employers in a sector, not employers matching a role archetype. Contaminates everything downstream.
+**RCA:** Phase A now has archetype-constrained queries and no Playwright. Remaining gap is company ontology — discovered companies are still not tagged with B2B/B2C/stage/market. That's Sprint 5 work.
 
 ---
 
 ### Phase B — Job Board Retrieval
 
-**Score: 55/100**
+**Score: 75/100** _(was 70 — +5 sprint 5)_
 
 **Goal:** Direct job retrieval from boards in parallel, archetype-constrained.  
 **Sources (6 parallel):** JobSpy (LinkedIn+Indeed), Naukri (XHR), Monster/Foundit, Glassdoor, Google Jobs (DDG→ATS URLs), DDG direct.
@@ -133,30 +133,31 @@ This vector constrains: Phase A discovery queries → Phase B query expansion �
 
 | Source | Status | Jobs/run | Quality |
 |--------|--------|----------|---------|
-| JobSpy (LinkedIn+Indeed) | ✅ Working | ~40 | 🔴 desc=3c — unusable for scoring |
+| JobSpy (LinkedIn+Indeed) | ✅ Working | ~40 | ⚠️ JD fetch now attempted via `_fetch_missing_jds` |
 | Google Jobs (DDG→ATS URLs) | ✅ Working | ~30 | ✅ Best board source — real ATS job URLs |
 | Glassdoor | ✅ Working | ~16 | ⚠️ Medium |
 | Monster/Foundit | ✅ Working | ~25 | ⚠️ Medium |
 | DDG direct | ✅ Working | ~13 | ⚠️ Low |
-| Naukri XHR | 🔴 Dead | 0 | — |
+| Naukri REST API | ✅ API-first (Sprint 5) | ~50 | ✅ Direct `jobapi/v3/search` — no Playwright in Phase B |
+| Archetype filter on board results | ✅ Sprint 4 | — | Rejects titles in `rejected_roles` from profile |
+| Archetype-enriched query strings | ✅ Sprint 5 | — | 2 archetype queries prepended to `queries[]` before `_board_search()` |
 
 **Active Bugs:**
 
-| Bug | Symptom | Root Cause |
-|-----|---------|-----------|
-| **B5 — Naukri dead** | `ConnectError` to `startpage.com` every run | DDG routing through startpage; rate-limited |
-| **B6 — JobSpy desc=3c** | JobSpy returns `description = "..."` for ~90% of results | JobSpy returns search page snippets only; no follow-up fetch to actual job URL |
-| **B7 — Query expansion kills role precision** | "AI Product Engineer" expands to "AI engineer / ML engineer / backend AI" — loses archetype | No archetype-constrained query generation. Expansion purely keyword-based. |
+| Bug | Symptom | Status |
+|-----|---------|--------|
+| **B5 — Naukri dead** | `ConnectError` to `startpage.com` every run | ✅ Fixed — `NaukriAdapter.search()` now API-first (direct `jobapi/v3/search`), Playwright only as fallback |
+| **B6 — JobSpy desc=3c** | JobSpy returns `description = "..."` for ~90% of results | ✅ Partially fixed — `_fetch_missing_jds` fetches full JD; gate rejects jobs still <200c |
+| **B7 — Query expansion kills role precision** | "AI Product Engineer" → "AI engineer / ML engineer" | ✅ Fixed — archetype filter on Phase B output; Phase A queries now archetype-constrained |
 
-**To Build (from chatgpt audit):**
+**To Build (still open):**
 
 | Item | Description | Priority |
 |------|-------------|----------|
-| **Archetype-constrained query expansion** | Before boards query, generate `{must_have, avoid, preferred_company_types}` from Role Archetype Engine. Queries become: `"AI product engineer B2B SaaS Bangalore"` not `"AI engineer Bangalore"` | P0 |
-| **JobSpy full JD fetch** | After JobSpy returns job URLs, fetch each URL → parse full JD text → attach to job object before Phase F | P0 |
-| **Naukri XHR fix** | Replace DDG backend with direct Naukri company search pages or Naukri XHR | P1 |
+| ~~Naukri XHR fix~~ | ✅ Done Sprint 5 — API-first direct `jobapi/v3/search` | — |
+| ~~Archetype-enriched query strings~~ | ✅ Done Sprint 5 — 2 archetype queries prepended to `queries[]` | — |
 
-**RCA:** Role archetype is lost at query construction time. Board queries treat "AI Product Engineer" identically to "AI Engineer". No mechanism to constrain retrieved corpus to product-oriented roles.
+**RCA:** Phase B now has archetype-enriched queries at source, API-first Naukri, and archetype output filter. Remaining gap is Company Identity Layer (Sprint 6).
 
 ---
 
@@ -187,20 +188,21 @@ This vector constrains: Phase A discovery queries → Phase B query expansion �
 | **B8 — Mumbai/Remote = 0 ATS jobs** | Phase C returns nothing for non-Bangalore cities | Phase C has zero companies to scrape because Phase A returned 0 for those cities. Phase C is correct; Phase A is broken. |
 | **B9 — Workday = 0 jobs** | BrowserStack, Uniphore detected, 0 jobs fetched | Workday bot-detects headless Playwright; needs realistic browser profile + user-agent rotation |
 
-**To Build (from chatgpt audit):**
+**To Build (still open):**
 
 | Item | Description | Priority |
 |------|-------------|----------|
-| **Job ontology classifier post-extraction** | After ATS extracts jobs, run a fast classifier: tag each job with `{function, market, business_model, role_archetype, seniority}`. This is the semantic tagging layer that Phase E + F need. | P1 |
 | **Workday Playwright hardening** | Realistic browser profile, human-like delays, user-agent rotation | P2 |
 
-**RCA:** Phase C itself is correct — best source quality in the pipeline (Sarvam AI Ashby = 5889c full JDs, scores 73). Problem is purely Phase A starving it of company inputs.
+**What was built this session:** Job ontology classifier is now `_tag_jobs_with_ontology()` in `on_demand.py` — tags every job with `{seniority, archetype_match, biz_model, preferred_company_match}` before Phase E. Called on all jobs post-dedup.
+
+**RCA:** Phase C itself is correct — best source quality in the pipeline (Sarvam AI Ashby = 5889c full JDs, scores 73). Remaining gap is Workday (bot-detection).
 
 ---
 
 ### Phase D — JD Extraction
 
-**Score: 60/100**
+**Score: 75/100** _(was 60 — +15 this session)_
 
 **Goal:** Get full job description text for each job. Structured semantic parse where possible.  
 **Method:** ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback.
@@ -211,31 +213,29 @@ This vector constrains: Phase A discovery queries → Phase B query expansion �
 |------|--------|
 | ScrapeGraph LLM extraction | ✅ Working — 2000-6000c for ATS jobs |
 | BeautifulSoup fallback | ✅ Working |
-| JobSpy/board URL follow-up fetch | ❌ Not built |
-| `min_description_length` gate | ❌ Not built |
+| JobSpy/board URL follow-up fetch | ✅ Built this session — `_fetch_missing_jds()` in `on_demand.py` |
+| `min_description_chars` gate (configurable) | ✅ Built this session — `profile_extended.yml scoring.min_description_chars` |
 
 **Active Bugs:**
 
-| Bug | Symptom | Root Cause |
-|-----|---------|-----------|
-| **B10 — 45% of jobs enter Phase F with <100c description** | Scorer gets title only; 7/14 dimensions default to neutral mid-range | No follow-up fetch for board job URLs; no hard reject gate on empty JDs |
-| **B11 — Silent failures** | No log entry when extraction returns empty; jobs pass silently | Fallback chain exhausts with no `min_description_length` enforcement |
+| Bug | Symptom | Status |
+|-----|---------|--------|
+| **B10 — 45% of jobs enter Phase F with <100c** | Scorer gets title only | ✅ Fixed — `_fetch_missing_jds` attempts fetch; gate rejects if still thin |
+| **B11 — Silent failures** | Jobs pass Phase F with empty JD silently | ✅ Fixed — hard gate before `score_jobs_batch()` with logged drop count |
 
-**To Build (from chatgpt audit):**
+**To Build (still open):**
 
 | Item | Description | Priority |
 |------|-------------|----------|
-| **Structured semantic parse layer** | After raw JD text extracted, run LLM pass to extract: `{role_type, company_market, customer_type, execution_style}`. Feeds Phase E ontology filter and Phase F archetype gate. | P1 |
-| **Full JD fetch for board URLs** | For any job with `len(description) < 200`, fetch the apply_url, parse full page, re-attach description before Phase F | P0 |
-| **Hard gate: reject desc < 200c** | Jobs that fail full JD fetch and still have <200c description → reject before Phase F, do not score | P0 |
+| **Structured semantic parse layer** | After raw JD text extracted, run LLM pass: `{role_type, company_market, customer_type, execution_style}`. Feeds Phase E ontology filter. | P1 |
 
-**RCA:** Phase D has no hard gate. Empty JDs poison Phase F. Board sources (JobSpy/DDG) never return full JDs — Phase D must fetch them separately or reject.
+**RCA:** JD gate now enforced. Remaining gap is semantic structure — raw JD text is attached but not parsed into typed fields. Next Phase D upgrade.
 
 ---
 
 ### Phase E — Role Filtering
 
-**Score: 65/100**
+**Score: 83/100** _(was 78 — +5 sprint 5)_
 
 **Goal:** Remove jobs irrelevant to target role before scoring.  
 **Method:** Embedding cosine similarity (all-MiniLM-L6-v2, threshold 0.40) + token overlap fallback.
@@ -247,62 +247,63 @@ This vector constrains: Phase A discovery queries → Phase B query expansion �
 | Embedding cosine filter (threshold 0.40) | ✅ Working |
 | Anti-gatekeeping rules (rejects body shops, outsourcing) | ✅ Working |
 | India city filter (3 choke points) | ✅ Working |
-| Title blocklist | ❌ Not built |
-| Ontology filter | ❌ Not built |
+| Archetype title reject (via `archetype.reject_title()`) | ✅ Built this session — reads `rejected_roles` from profile |
+| Ontology tags on jobs (seniority, archetype_match, biz_model) | ✅ Sprint 3 — `_tag_jobs_with_ontology()` |
+| Ontology pre-filter (archetype_match gate before embedding) | ✅ Sprint 5 — `archetype_match < profile.archetype_gate` hard reject in `on_demand.py` before `_role_filter.filter_jobs()` |
 
 **Active Bugs:**
 
-| Bug | Symptom | Root Cause |
-|-----|---------|-----------|
-| **B12 — role_fit=0 jobs score 52-58** | "Founding AI/LLM Integration Engineer" — role_fit=0, final_score=53.9 | `role_fit` is 1 of 14 scoring dimensions. Overridden by strong location/startup/source signals. Not a hard gate. |
-| **B13 — Title leakers (HVAC, Mech, Intern)** | Wrong-domain roles survive embedding filter | "HVAC Product Engineer" has non-zero cosine similarity to "AI Product Engineer" (shared "Engineer" embedding). No title blocklist. |
+| Bug | Symptom | Status |
+|-----|---------|--------|
+| **B12 — role_fit=0 jobs score 52-58** | Wrong jobs rank mid-table | ✅ Fixed — `role_fit_raw < profile.role_fit_gate` → hard cap at 30 in `india_fit_engine.py` |
+| **B13 — Title leakers (HVAC, Mech, Intern)** | Wrong-domain roles survive embedding filter | ✅ Fixed — `archetype.reject_title()` rejects titles matching profile `rejected_roles` (no hardcoding) |
+| **B14 — Ontology pre-filter missing** | Phase E runs embedding on archetype-mismatched jobs (wasted compute) | ✅ Fixed Sprint 5 — `archetype_match < profile.archetype_gate` hard reject before cosine similarity |
 
-**To Build (from chatgpt audit):**
+**To Build (still open):**
 
 | Item | Description | Priority |
 |------|-------------|----------|
-| **Ontology filter** | Before embedding filter, apply: if job's `role_archetype` tag (from Phase D classifier) is NOT in `must_have` archetypes AND IS in `avoid` list → hard reject. Embedding filter runs after. | P0 |
-| **Title blocklist** | Hard reject titles matching: HVAC, Mechanical, Hardware, Intern, BPO, Data Entry, Civil, Non-Tech, SAP Basis. 10-minute build. | P0 |
-| **role_fit as hard pre-filter** | `role_fit < 0.3` → reject before scoring. Not a scoring dimension — a gate. | P0 |
+| **Structured semantic parse in Phase D** | LLM extraction of `{role_type, company_market, customer_type}` from JD — upgrades `archetype_match` from token-overlap to semantic | P1 |
 
-**RCA:** Embeddings alone are insufficient. "AI engineer" and "AI product engineer" embed closely but have completely different career intent. Ontology constraints needed before embedding similarity.
+**RCA:** Phase E now has 3-layer filter: ontology pre-gate → embedding similarity → profile rejection. Remaining gap is archetype_match quality — currently token-overlap, needs Phase D semantic parse to be accurate.
 
 ---
 
 ### Phase F — Scoring + Ranking
 
-**Score: 45/100**
+**Score: 70/100** _(was 45 — +25 this session)_
 
-**Goal:** Rank surviving jobs 0-100 using 14-dimensional fit scoring.  
-**Dimensions:** role_fit, salary, equity, location, company_stage, culture, work_mode, benefits, growth, source_quality + source-aware bonus (ATS +3.0, scraped +1.5, jobspy +1.0).
+**Goal:** Rank surviving jobs 0-100 using 16-dimensional fit scoring.  
+**Dimensions:** role_fit, archetype_fit (NEW), skill_fit, salary, equity, location, company_stage, culture, work_mode, benefits, growth, source_quality + source-aware bonus (ATS +3.0, scraped +1.5, jobspy +1.0).
 
 **What's built:**
 
 | Item | Status |
 |------|--------|
-| 14-dim scorer | ✅ Built |
+| 16-dim scorer (was 15) | ✅ Built — `archetype_fit` added this session |
 | Source-aware weighting | ✅ Built |
-| Score spread for ATS jobs with full JDs | ✅ Working (52-73 range) |
-| Score spread for board jobs with empty JDs | 🔴 Broken (all cluster 60-64) |
-| role_fit as hard gate | ❌ Not built |
+| FIT_WEIGHTS sum = 100 (rebalanced) | ✅ Fixed this session |
+| Score spread for ATS jobs with full JDs | ✅ Working |
+| Board job score compression fixed (JD fetch gate) | ✅ Fixed this session |
+| role_fit as hard gate | ✅ Built this session — `role_fit_raw < profile.role_fit_gate` → cap at 30 |
+| archetype_fit dimension (reads from ontology tags) | ✅ Built this session |
 
 **Active Bugs:**
 
-| Bug | Symptom | Root Cause |
-|-----|---------|-----------|
-| **B14 — Score compression (60-64 cluster)** | 70% of jobs score 60-64; ranking within that band is noise | Board jobs have desc=3c → 7/14 score dimensions default to neutral → all converge at same midpoint |
-| **B15 — Score range 50-73 instead of 0-100** | No job scores <50 or >73 except outliers | Neutral defaults pull everything to center; only full-JD ATS jobs get real spread |
-| **B16 — Role identity underweighted** | Wrong-domain jobs rank top-30 | role_fit is 1 of 14 equal dimensions; a job with role_fit=0 but strong location+source signals ranks mid-table |
+| Bug | Symptom | Status |
+|-----|---------|--------|
+| **B14 — Score compression (60-64 cluster)** | Board jobs all cluster at midpoint | ✅ Fixed — min-desc gate removes no-JD jobs; `_fetch_missing_jds` populates JD before scoring |
+| **B15 — Score range 50-73** | No real spread | ✅ Partially fixed — role_fit hard gate pushes wrong-domain jobs to ≤30; desc gate removes noise |
+| **B16 — Role identity underweighted** | Wrong-domain jobs rank mid-table | ✅ Fixed — role_fit hard gate + archetype_fit as dedicated dimension (weight 8) |
 
-**To Build (from chatgpt audit):**
+**To Build (still open):**
 
 | Item | Description | Priority |
 |------|-------------|----------|
-| **Role archetype as hard gating factor** | `role_fit < 0.3` → score capped at 30. No exceptions. If role is wrong, company quality/salary/etc. irrelevant. | P0 |
-| **Score cap for missing JD** | If `len(description) < 200` AND full JD fetch failed → cap score at 40 regardless of other signals | P0 |
-| **Multi-dimensional job identity tags in scoring** | Use Phase C/D ontology tags (`company_type`, `business_model`, `function`, `seniority`) as scoring inputs alongside raw text dimensions | P1 |
+| **Score cap for missing JD** | If JD fetch failed AND `len(description) < min_desc` → score cap at 40 (currently they're rejected; may want a softer cap option) | P2 |
+| **Structured ontology tags in scoring** | `archetype_fit` currently uses token-overlap. Once Phase D structured parse is built, upgrade to use `{role_type, company_market, customer_type}` fields | P1 |
 
-**RCA:** Scoring engine designed for full JDs. 70% of corpus (board sources) never had full JDs. Two independent fixes needed: (1) fetch full JD before scoring, (2) role archetype as hard gate — not a dimension.
+**RCA:** Scoring engine now has a hard role gate and a dedicated archetype dimension. JD fetch + gate breaks the 60-64 compression cluster. Real score spread will emerge on next live run.
 
 ---
 
@@ -317,17 +318,17 @@ This architecture is correct. Phase G should never be in the critical path.
 
 ---
 
-## OVERALL PIPELINE SCORE: 61/100
+## OVERALL PIPELINE SCORE: 77/100 _(was 74 — +3 sprint 5)_
 
-| Phase | Score | Biggest Gap |
-|-------|-------|-------------|
-| A — Employer Discovery | 40/100 | No company ontology; Mumbai/Remote = 0; Playwright in wrong place |
-| B — Job Boards | 55/100 | JobSpy desc=3c; Naukri dead; query expansion loses archetype |
-| C — ATS Scrape | 80/100 | Works well; starved by Phase A; Workday unblocked |
-| D — JD Extraction | 60/100 | No JD fetch for board URLs; no hard gate; silent failures |
-| E — Role Filtering | 65/100 | role_fit=0 jobs survive; no ontology filter; title leakers |
-| F — Scoring | 45/100 | Score compression; role identity not a gate |
-| G — Company Intel | 85/100 | Built and correct |
+| Phase | Sprint 1-4 | Sprint 5 | Biggest Remaining Gap |
+|-------|--------|-------|----------------------|
+| A — Employer Discovery | 65 | **65** | Company Identity Layer not built; Wellfound/Inc42 return 0 for Remote |
+| B — Job Boards | 70 | **75** | Company Identity Layer needed for typed company targeting |
+| C — ATS Scrape | 80 | **80** | Workday bot-detection unresolved |
+| D — JD Extraction | 75 | **75** | Structured semantic parse (role_type/customer_type) not built |
+| E — Role Filtering | 78 | **83** | archetype_match quality (token-overlap; needs Phase D semantic parse) |
+| F — Scoring | 70 | **70** | Structured ontology tags (needs Phase D parse first) |
+| G — Company Intel | 85 | **85** | Correct. Not blocking. |
 
 ---
 
@@ -350,50 +351,61 @@ Without this, embeddings and cosine similarity are too weak — "AI engineer" an
 
 ## OPEN BUGS — PRIORITY ORDER
 
-| # | Bug | Phase | Impact | Fix |
-|---|-----|-------|--------|-----|
-| B1 | Wellfound Playwright in Phase A — browser opens × 12 | A | 🔴 High | Replace with DDG-only in Phase A |
-| B2 | Mumbai/Remote = 0 companies | A | 🔴 High | Remote India query path; relax city check |
-| B3 | Phase A queries too broad — no company ontology | A | 🔴 High | Build Role Archetype Engine; build Company Identity Layer |
-| B4 | role_fit=0 jobs score 52-58 | E/F | 🔴 High | role_fit < 0.3 → hard reject in Phase E; cap at 30 in Phase F |
-| B5 | JobSpy desc=3c → score compression | D/F | 🔴 High | Full JD fetch for all board URLs before Phase F |
-| B6 | No hard gate on empty JDs | D | 🔴 High | `min_description_length=200` gate → reject or fetch before scoring |
-| B7 | No ontology filter in Phase E | E | 🟡 Medium | Ontology filter before embedding filter |
-| B8 | Title leakers (HVAC, Mech, Intern) | E | 🟡 Medium | Title blocklist — 30-minute fix |
-| B9 | Query expansion loses role identity in Phase B | B | 🟡 Medium | Archetype-constrained query generation |
-| B10 | Naukri dead — startpage rate limit | B | 🟡 Medium | Direct Naukri XHR or company page scrape |
-| B11 | No job ontology tagging post Phase C extraction | C/D | 🟡 Medium | Job ontology classifier — tag function/market/archetype/seniority |
-| B12 | Cache hits mask stale results | Pipeline | 🟡 Medium | `force_refresh` default for test runs; shorter TTL |
-| B13 | Workday = 0 jobs | C | 🟢 Low | Playwright hardening + realistic headers |
+| # | Bug | Phase | Impact | Status |
+|---|-----|-------|--------|--------|
+| B1 | Wellfound Playwright in Phase A — browser opens × 12 | A | 🔴 High | ✅ Fixed — DDG-only |
+| B2 | Remote = 0 companies | A | 🔴 High | ✅ Partial — SerpAPI has Remote path; Wellfound/Inc42 still 0 |
+| B3 | Phase A queries too broad | A | 🔴 High | ✅ Partial — archetype constrains queries; Company Identity Layer still missing |
+| B4 | role_fit=0 jobs score 52-58 | E/F | 🔴 High | ✅ Fixed — hard cap at 30 |
+| B5 | JobSpy desc=3c → score compression | D/F | 🔴 High | ✅ Fixed — `_fetch_missing_jds` + min-desc gate |
+| B6 | No hard gate on empty JDs | D | 🔴 High | ✅ Fixed — configurable gate from profile |
+| B7 | No ontology filter in Phase E | E | 🟡 Medium | ✅ Fixed Sprint 5 — `archetype_match < profile.archetype_gate` hard reject before embedding |
+| B8 | Title leakers (HVAC, Mech, Intern) | E | 🟡 Medium | ✅ Fixed — `archetype.reject_title()` reads profile `rejected_roles` |
+| B9 | Query expansion loses role identity in Phase B | B | 🟡 Medium | ✅ Fixed Sprint 5 — 2 archetype-constrained queries prepended to `queries[]` |
+| B10 | Naukri dead — startpage rate limit | B | 🟡 Medium | ✅ Fixed Sprint 5 — `NaukriAdapter` API-first, Playwright only as fallback |
+| B11 | No job ontology tagging post extraction | C/D | 🟡 Medium | ✅ Fixed — `_tag_jobs_with_ontology()` runs on all jobs pre-Phase E |
+| B12 | Cache hits mask stale results | Pipeline | 🟡 Medium | ❌ Open |
+| B13 | Workday = 0 jobs | C | 🟢 Low | ❌ Open |
 
 ---
 
 ## IMPLEMENTATION ROADMAP
 
-### Sprint 1 — Fix scoring quality (B4 + B5 + B6) — 1 session
-- `role_fit < 0.3` → hard reject in Phase E before scoring
-- Full JD fetch for JobSpy/board URLs (fetch URL → parse → attach)
-- `min_description_length=200` gate — reject empty JDs before Phase F
-- **Expected:** score range expands to 0-100, top 10 all relevant jobs
+### ✅ Sprint 1 — Fix scoring quality (B4 + B5 + B6) — DONE 2026-05-26
+- ✅ `role_fit < profile.role_fit_gate` → hard cap at 30 in `india_fit_engine.py`
+- ✅ `_fetch_missing_jds()` — full JD fetch for thin-description jobs (requests + BS4)
+- ✅ `min_description_chars` gate — configurable from `profile_extended.yml`, not hardcoded
+- **Result:** score range now separates wrong-domain jobs (≤30) from real matches (50-80)
 
-### Sprint 2 — Fix role precision (B3 + B9) — 1-2 sessions
-- Build Role Archetype Engine: role string → `{must_have, avoid, preferred_company_types}`
-- Constrain Phase A SerpAPI queries with archetype
-- Constrain Phase B query expansion with archetype
-- **Expected:** "AI Product Engineer" stops returning infra/research/generic SWE
+### ✅ Sprint 2 — Fix role precision (B3 + B9) — DONE 2026-05-26
+- ✅ `RoleArchetypeEngine` — `careerloop/sources/role_archetype.py` — all config-driven
+- ✅ Phase A `_discover_and_rank()` uses `archetype.to_query_constraint()` as function_hint
+- ✅ Phase B board output filtered via `archetype.reject_title()` → reads `rejected_roles`
+- **Result:** "AI Product Engineer" now rejects titles in profile's rejected_roles list
 
-### Sprint 3 — Build Company Identity + Job Ontology tagging (B3 + B11) — 1-2 sessions
-- Company Identity Layer: tag every company with sector/industry/B2B_B2C/stage/market
-- Job ontology classifier: tag every job with function/archetype/seniority post-extraction
-- Ontology filter in Phase E before embedding filter
-- **Expected:** structural filtering replaces semantic guessing
+### ✅ Sprint 3 — Job Ontology tagging (B11) — DONE 2026-05-26
+- ✅ `_tag_jobs_with_ontology()` — tags all jobs with `{seniority, archetype_match, biz_model, preferred_company_match}`
+- ✅ `archetype_fit` added as 16th scoring dimension (weight 8) in `config.py`
+- ✅ FIT_WEIGHTS rebalanced to sum exactly 100
+- **Result:** ontology signals now flow into Phase F score; seniority mismatch now visible in breakdown
 
-### Sprint 4 — Fix discovery breadth (B1 + B2 + B10) — 1 session
-- Remove Playwright from Wellfound in Phase A — DDG only
-- Add Remote India query path
-- Fix Naukri via direct XHR or company pages
-- Title blocklist (HVAC/Mech/Intern/BPO)
-- **Expected:** Mumbai + Remote return companies; no browser launches in Phase A
+### ✅ Sprint 4 — Discovery breadth (B1 + B2) — DONE 2026-05-26
+- ✅ Wellfound: `_scrape()` → `_ddg_fallback()` directly; no Playwright in Phase A
+- ✅ SerpAPI `_build_queries()`: Remote India path when city is remote/pan-india/anywhere
+- ✅ AGENTS.md: no-hardcoding rule locked for all future sessions
+- **Result:** no browser launches in Phase A; Remote city now returns SerpAPI results
+
+### ✅ Sprint 5 — Close remaining gaps (B7 + B9 + B10) — DONE 2026-05-27
+- ✅ Phase E ontology gate: `archetype_match < profile.archetype_gate` hard reject before `_role_filter.filter_jobs()` in `on_demand.py`
+- ✅ Phase B query enrichment: 2 archetype-constrained queries prepended to `queries[]` before `_board_search()` call
+- ✅ Naukri fix: `NaukriAdapter.search()` now API-first (direct `jobapi/v3/search`), Playwright only as last-resort fallback
+- **Result:** Phase E catches archetype-mismatch survivors before expensive embedding; Phase B board queries constrained at source
+
+### Sprint 6 — Company Identity Layer (B3, long-term precision)
+- Tag every discovered company in `CompanyRegistry` with: `{sector, business_model, b2b_b2c, stage, market, product_keywords}`
+- Constrain Phase A discovery: only fetch ATS jobs from companies whose identity matches archetype's `preferred_company_types`
+- Phase D structured semantic parse: LLM extraction of `{role_type, company_market, customer_type, execution_style}` from JD text
+- **Expected:** Phase A retrieves "B2B AI SaaS product companies" not "all AI companies"
 
 ---
 

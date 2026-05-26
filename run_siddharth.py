@@ -20,9 +20,9 @@ PROFILE_PATH = os.path.join(ROOT, "test data/siddharth/profile.yml")
 EXTENDED_PATH = os.path.join(ROOT, "test data/siddharth/profile_extended.yml")
 OUTPUT_DIR = os.path.join(ROOT, "test data/output/siddharth")
 
-ROLES = ["AI Product Engineer", "Full Stack AI Engineer", "Applied AI Engineer", "Founding AI Engineer"]
-CITIES = ["Bangalore", "Mumbai", "Remote"]
-MAX_RESULTS = 60  # per role×city — 4 roles × 3 cities × 60 = up to 720 candidates
+ROLES = ["AI Product Engineer", "Applied AI Engineer", "AI Product Manager"]
+CITIES = ["Bangalore"]
+MAX_RESULTS = 30  # per role×city — 3 roles × 1 city × 30 = up to 90 candidates
 
 TS = datetime.now().strftime("%Y%m%d_%H%M")
 AUDIT_LOG = os.path.join(OUTPUT_DIR, f"audit_{TS}.log")

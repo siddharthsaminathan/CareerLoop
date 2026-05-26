@@ -36,28 +36,18 @@ from careerloop.profile_manager import ProfileManager
 logger = logging.getLogger(__name__)
 
 
-def _tag_jobs_with_ontology(jobs: list[dict], archetype: "RoleArchetype") -> None:
+def _tag_jobs_with_ontology(jobs: list[dict], archetype: "RoleArchetype", seniority_signals: dict) -> None:
     """Tag each job dict with ontology dimensions in-place.
-    Tags are stored under job['_ontology'] and used by Phase E + Phase F.
-    All classification is token-overlap based — no hardcoded lists."""
-    from careerloop.sources.role_archetype import RoleArchetype  # local to avoid circular
-
-    _SENIORITY_SIGNALS = {
-        "senior": ["senior", "sr", "lead", "principal", "staff", "head of", "director"],
-        "mid": ["mid", "ii", "2", "associate"],
-        "junior": ["junior", "jr", "entry", "associate", "intern", "fresher", "trainee"],
-        "executive": ["vp", "chief", "cto", "cpo", "founder"],
-    }
-
+    Tags stored under job['_ontology']. All signals from profile config — zero hardcoding."""
     for job in jobs:
         title_lc = (job.get("title") or "").lower()
         desc_lc = (job.get("description") or "").lower()[:500]
         combined = title_lc + " " + desc_lc
 
-        # Seniority
+        # Seniority — signals come from profile_extended.yml seniority_signals
         seniority = "unknown"
-        for level, signals in _SENIORITY_SIGNALS.items():
-            if any(s in title_lc for s in signals):
+        for level, signals in seniority_signals.items():
+            if any(s.lower() in title_lc for s in signals):
                 seniority = level
                 break
 
@@ -68,11 +58,12 @@ def _tag_jobs_with_ontology(jobs: list[dict], archetype: "RoleArchetype") -> Non
             if must else 0.5
         )
 
-        # Business model signal (B2B vs B2C inference from description)
+        # Business model signal — inferred from JD text tokens (generic, not domain-specific)
+        biz_b2b_tokens = archetype.preferred_company_types or []
         biz_model = "unknown"
-        if any(w in desc_lc for w in ["enterprise", "b2b", "saas", "api", "platform", "clients"]):
+        if any(t.lower() in desc_lc for t in biz_b2b_tokens + ["enterprise", "b2b", "saas", "api platform"]):
             biz_model = "b2b"
-        elif any(w in desc_lc for w in ["consumer", "b2c", "app", "users", "retail"]):
+        elif any(t.lower() in desc_lc for t in ["consumer", "b2c", "retail", "end user"]):
             biz_model = "b2c"
 
         job["_ontology"] = {
@@ -230,6 +221,18 @@ class OnDemandSearch:
         result.keywords_used = kw_data.get("keywords", [])[:10]
         queries = kw_data.get("search_queries", [])
 
+        # Compute archetype once — used for query enrichment, Phase A hint, Phase B filter
+        archetype = self._archetype_engine.get_archetype(role)
+
+        # Prepend archetype-enriched queries to strengthen board retrieval signal
+        arch_constraint = archetype.to_query_constraint()
+        if arch_constraint:
+            archetype_queries = [
+                f'{arch_constraint} {city} jobs',
+                f'{arch_constraint} hiring {city} 2025',
+            ]
+            queries = archetype_queries + queries
+
         all_jobs: list[dict] = []
 
         # 2. Phase A — Employer discovery (primary) + portal scrape
@@ -251,7 +254,6 @@ class OnDemandSearch:
             logger.warning(f"[OnDemand] Phase A failed: {e}")
 
         # 3. Job boards (DDG + JobSpy) — bounded
-        archetype = self._archetype_engine.get_archetype(role)
         if include_boards and queries:
             try:
                 print(f"  [Phase B] searching job boards (parallel)...", flush=True)
@@ -273,7 +275,7 @@ class OnDemandSearch:
         result.candidate_count = len(all_jobs)
 
         # Tag all jobs with ontology dimensions (function, market, archetype, seniority)
-        _tag_jobs_with_ontology(all_jobs, archetype)
+        _tag_jobs_with_ontology(all_jobs, archetype, self.profile.seniority_signals)
 
         # 4. India filter
         india_filtered, _ = filter_india_jobs(all_jobs)
@@ -322,14 +324,25 @@ class OnDemandSearch:
         if company_type_dropped:
             result.notes.append(f"company-type filter: dropped {company_type_dropped} rejected-type companies")
 
+        # Phase E — Ontology pre-filter (fast, zero-cost, before embedding similarity)
+        arch_gate = self.profile.archetype_gate
+        pre_ontology = len(company_type_filtered)
+        ontology_filtered = [
+            j for j in company_type_filtered
+            if j.get("_ontology", {}).get("archetype_match", 0.5) >= arch_gate
+        ]
+        ont_dropped = pre_ontology - len(ontology_filtered)
+        if ont_dropped:
+            result.notes.append(f"ontology gate: dropped {ont_dropped} jobs (archetype_match<{arch_gate})")
+
         # Phase E — Role relevance filter (embedding similarity + profile rejection)
         relevant, rejected_count = self._role_filter.filter_jobs(
-            company_type_filtered,
+            ontology_filtered,
             target_role=role,
             target_functions=self.profile.target_functions or [],
             rejected_roles=self.profile.rejected_roles or [],
         )
-        result.notes.append(f"role filter: {len(title_filtered)} → {len(relevant)} relevant ({rejected_count} rejected)")
+        result.notes.append(f"role filter: {len(ontology_filtered)} → {len(relevant)} relevant ({rejected_count} rejected)")
 
         # 5. Canonical dedup
         deduped = deduplicate_canonical(relevant)

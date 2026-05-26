@@ -22,7 +22,7 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 
 ## System Status (Live)
 
-> Updated 2026-05-25, 23:00 IST — E2E runtime verified against Supabase (7 turns, zero echoes). Data Eng V3 at 95%. Chat quality at 85%. 3 async fixes attempted + reverted (file truncation). Remaining: async scan, chat fallback, message persistence, polite closings prompt.
+> Updated 2026-05-27, IST — Sprint 1-4 discovery engine complete. role_fit hard gate + archetype engine + JD fetch + Wellfound Playwright removed + Remote India path. India-first discovery 92→94%, Scoring 62→72%. PRD §17 synced.
 
 | System | % | Status | Blocking? | Notes |
 |--------|---|--------|-----------|-------|
@@ -32,9 +32,9 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 | **PostgresSaver Checkpointer** | **20%** | 🔴 | **YES** | SQLite sessions functional without Postgres. Dual-mode verified. Interrupt/resume proof still needed. |
 | **Application pack delivery** | **95%** | 🟢 | No | PackageAssembler + Playwright PDFs. E2E validated on real job. |
 | **Daily brief cron delivery** | **90%** | 🟢 | No | Daily Runner triggers scan and fully populates daily_briefs and daily_brief_items SQL tables. E2E database brief retrieval verified. |
-| India-first discovery | 92% | 🟢 | No | Geo filter on all ATS adapters. Location spoofing fixed. CSV India filter. 14 ATS adapters + 6 boards. |
-| Verification & filtering | 78% | 🟡 | No | India filter enforced at 3 choke points. Block G not hoisted. |
-| Opportunity scoring (14-dim) | 62% | 🟡 | No | Scoring caps (CPU=50, LLM=15). Token accounting per call. _get_score() unified schema. |
+| India-first discovery | **94%** | 🟢 | No | Wellfound Playwright removed (DDG-only). Remote India SerpAPI query path. RoleArchetypeEngine wired into Phase A+B. Geo filter + 14 ATS adapters + 6 boards. Open: Company Identity Layer, Phase E ontology gate, Naukri dead. |
+| Verification & filtering | **80%** | 🟡 | No | archetype.reject_title() on Phase B output (reads rejected_roles from profile). _tag_jobs_with_ontology() tags all jobs pre-Phase E. Open: full Phase E ontology pre-filter (archetype_match gate before embedding). |
+| Opportunity scoring (16-dim) | **72%** | 🟡 | No | role_fit hard gate (cap at 30 if raw < profile.role_fit_gate). archetype_fit added as 16th dimension (weight 8). FIT_WEIGHTS rebalanced to 100. _fetch_missing_jds + min_description_chars gate. All thresholds config-driven. |
 | Decision compression / triage | 20% | 🔴 | No | CEO owns. DECISION_COMPRESSION_VISION.md written. |
 | Career state system (modes) | **60%** | 🟡 | No | 11 real states with legacy migration. All states have setter+handler+test paths. Natural approval phrases work. |
 | Company intelligence | 75% | 🟢 | No | MECE vision implemented; S3 cache working |
@@ -61,7 +61,7 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 | **Chat quality (known issues)** | **⚠️** | 🟡 | No | Polite closings misclassified as HELP (2/7 E2E turns). Fix: 1-line ActionResolver prompt update. |
 | Job persistence engine | **75%** | 🟡 Active | Global cache + user relationships. Fingerprint dedup. TTL strategy. Cache-hit check wired, companies linked via FK, Cutshort parsing. |
  
-**Overall product maturity: ~77-80% of vision.** Data engineering V3 at 95%. Multi-user onboarding E2E verified (3/3 real Supabase + DeepSeek). E2E at 90%. B-ONBOARD blocker closing. Remaining: transport deployment, async scan, chat fallback. |
+**Overall product maturity: ~78-81% of vision.** Discovery engine Sprint 1-4 complete. role_fit hard gate + archetype engine + JD fetch + no-Playwright Wellfound + Remote India path. Scoring now 16-dim, FIT_WEIGHTS=100. Transport delivery (B-TRANSPORT, B-DELIVERY) remains the P0 blocker for any real user. |
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -109,6 +109,27 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 ---
 
 ## Session Log
+
+### 2026-05-27 — Session: Discovery Engine Sprint 1-4 — Archetype Engine + Scoring Gates
+
+**What was done:**
+- **Sprint 1 — Scoring gates**: `role_fit` hard gate (cap at 30 if raw < `profile.role_fit_gate`); `_fetch_missing_jds()` full JD fetch via requests+BS4 for thin-description board jobs; `min_description_chars` hard reject gate before `score_jobs_batch()`. All thresholds in `profile_extended.yml` — zero hardcoded values.
+- **Sprint 2 — Role Archetype Engine**: `careerloop/sources/role_archetype.py` — `RoleArchetypeEngine` derives `must_have/avoid/preferred_company_types` entirely from profile config. Wired into Phase A (`_discover_and_rank` uses `archetype.to_query_constraint()` as `function_hint`) and Phase B (`archetype.reject_title()` filters board output against `rejected_roles`).
+- **Sprint 3 — Job ontology tagging**: `_tag_jobs_with_ontology()` in `on_demand.py` tags all jobs with `{seniority, archetype_match, biz_model, preferred_company_match}`. `archetype_fit` added as 16th scoring dimension (weight 8). `FIT_WEIGHTS` rebalanced to sum exactly 100.
+- **Sprint 4 — Discovery breadth**: Wellfound `_scrape()` → `_ddg_fallback()` directly — no browser ever opens in Phase A. SerpAPI `_build_queries()` Remote India path (`is_remote` branch). AGENTS.md no-hardcoding rule locked.
+- **SEARCH_VISION.md tracker updated**: Phase scores A(40→65), B(55→70), D(60→75), E(65→78), F(45→70). Overall pipeline 61→74/100. Sprint 5-6 roadmap written.
+- **Commit**: `3ac41de` pushed to main.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED — PRD §5 (Discovery) and §6 (Scoring) directly advanced. Architecture is profile-driven, scalable, zero hardcoding.
+
+**Deviations detected:** Seniority signals in `_tag_jobs_with_ontology()` are inline static list — minor violation of new no-hardcoding rule. Fix in Sprint 5 (move to `profile_extended.yml`).
+
+**Recommended next 3 actions:**
+1. **Move seniority signals to config** — `profile_extended.yml` `seniority_signals` key; 10-min fix (PRD §5/§6)
+2. **Wire Phase E ontology pre-filter** — `archetype_match < profile.archetype_gate` hard reject before cosine; tags already exist on all jobs; 1-hour build (PRD §5)
+3. **Fix B-TRANSPORT** — P0 blocker; no real user can receive output regardless of discovery quality (PRD §13)
+
+---
 
 ### 2026-05-26, 15:00 IST — Session: Multi-User Onboarding E2E Verified
 

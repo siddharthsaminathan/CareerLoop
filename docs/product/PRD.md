@@ -357,13 +357,13 @@ working together to turn openings into interviews.
 
 ## 17. Product Engineering Tracker
 
-> Updated by the `careerloop-product-lead` skill. Last updated: 2026-05-24.
+> Updated by the `careerloop-product-lead` skill. Last updated: 2026-05-27.
 
 | System | Completion | Status | Notes |
 |--------|-----------|--------|-------|
-| India-first discovery | 92% | 🟢 Active | Geo filter on all ATS adapters. Location spoofing fixed. 14 ATS adapters + 6 boards. 1,183/1,207 non-India rejected correctly. |
-| Verification & filtering | 78% | 🟢 Active | India filter at 3 choke points (entry, get_top_scored, shortlist). Block G not hoisted. |
-| Opportunity scoring (14-dim) | 62% | 🟡 Active | Scoring caps (CPU=50, LLM=15). Token accounting per call. _get_score() unified schema. |
+| India-first discovery | **94%** | 🟢 Active | Wellfound Playwright removed. Remote India SerpAPI path. RoleArchetypeEngine wired (Phase A+B). 14 ATS adapters + 6 boards. Open: Company Identity Layer, Phase E ontology gate, Naukri dead. |
+| Verification & filtering | **80%** | 🟡 Active | archetype.reject_title() + _tag_jobs_with_ontology() on all jobs. Open: full Phase E ontology pre-filter. |
+| Opportunity scoring (16-dim) | **72%** | 🟡 Active | role_fit hard gate (cap 30). archetype_fit 16th dim (weight 8). FIT_WEIGHTS=100. JD fetch + min_description_chars gate. All thresholds config-driven. |
 | Decision compression / triage | 20% | 🔴 Gap | DECISION_COMPRESSION_VISION.md written. CEO owns UX build. |
 | Career state system (modes) | 60% | 🟡 Active | 11 real states with legacy migration. All have setter+handler+test. Natural approval phrases. No echo. |
 | Company intelligence | 75% | 🟢 Active | MECE D1-D5 vectors; S3 cache; JD_ONLY fallback |
@@ -377,12 +377,12 @@ working together to turn openings into interviews.
 | Follow-up system | 25% | 🔴 Gap | Ledger auto-schedules; no message generation yet |
 | Interview memory | 25% | 🟡 Active | interview-playbook skill; auto-extracts from venting; no rejection post-mortem |
 | Persistent memory graph | 48% | 🟡 Active | Single session load. Profile hydration from DB. add_messages conversation history. Ledger UUID-IDs deduped. |
-| Data engineering V3 | 85% | 🟢 Active | careerloop.users identity spine. All FKs migrated. UUID standardized. 6 new tables. 5 canonical docs. Schema audit complete. |
+| Data engineering V3 | **95%** | 🟢 Active | careerloop.users identity spine. 20 FKs migrated. 14 users backfilled. 7 new tables. 12 canonical docs. Phase 1+2 complete. |
 | Memory architecture | 35% | 🟡 Active | 6-layer model defined. memory_events table created. Propagation architecture documented. |
 | Job persistence engine | 60% | 🟡 Active | Global cache + user relationships. Fingerprint dedup. TTL strategy. Cache-hit path pending. |
 | WhatsApp/transport UX | 65% | 🟡 Active | Echo fallback removed. Safe errors. CommandRouter unified routing. /brief + /scan + /pipeline + /status. |
 | Gmail memory | 0% | ⚫ Not started | ROI Vision's #1 priority — never touched |
-| Multi-user onboarding | 15% | 🔴 Gap | is_complete validated against required fields. Hardcoded strings removed. CV-upload flow still needed. |
+| Multi-user onboarding | **75%** | 🟢 Active | 3-user real E2E verified (Supabase + DeepSeek). 5 pillars extracted, CV→profile flow, PROFILE_READY reached. Telegram webhook wiring still needed. |
 | Monetization logic | 30% | 🟡 Active | Strategic understanding solid; no billing/paywall |
  
 **Overall product maturity: ~73-75% of vision.** Data engineering V3 complete (careerloop.users identity spine, all FKs migrated, UUID standardized, 6 new tables). Chat runtime real (no echo, no slop). Supabase-only. Council ceiling hit (93%). Geo filter proven. Critical gap remains: full scan E2E + multi-user onboarding.

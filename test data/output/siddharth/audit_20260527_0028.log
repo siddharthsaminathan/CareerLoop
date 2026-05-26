@@ -1,0 +1,20 @@
+
+============================================================
+  CAREERLOOP SIDDHARTH FULL RUN — bangalore_validation
+============================================================
+  Started : 2026-05-27 00:28:57
+  Roles   : AI Product Engineer, Applied AI Engineer, AI Product Manager
+  Cities  : Bangalore
+  Max/role: 30
+  Audit   : /Users/hayagreev13/Projects/career-loop/CareerLoop/test data/output/siddharth/audit_20260527_0028.log
+  SerpAPI : ✅ ACTIVE
+  DeepSeek: ✅ ACTIVE
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 0: IMPORTS + INIT
+────────────────────────────────────────────────────────────
+  ✓ on_demand.OnDemandSearch imported
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  💥 FATAL: OnDemandSearch init failed: DATABASE_URL is required. CareerLoop runs on Supabase PostgreSQL only. Set DATABASE_URL in your .env file or environment.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
