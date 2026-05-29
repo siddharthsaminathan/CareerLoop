@@ -198,13 +198,13 @@ def stream_scan_events(run_id: str, db) -> Generator[str, None, None]:
                 with conn.cursor() as cur:
                     if last_ts is None:
                         cur.execute(
-                            "SELECT event_id, event_type, message, timestamp FROM careerloop.run_events "
+                            "SELECT event_id, event_type, message, timestamp, payload FROM careerloop.run_events "
                             "WHERE run_id = %s ORDER BY timestamp ASC",
                             (run_id,),
                         )
                     else:
                         cur.execute(
-                            "SELECT event_id, event_type, message, timestamp FROM careerloop.run_events "
+                            "SELECT event_id, event_type, message, timestamp, payload FROM careerloop.run_events "
                             "WHERE run_id = %s AND timestamp >= %s ORDER BY timestamp ASC",
                             (run_id, last_ts),
                         )
@@ -216,11 +216,18 @@ def stream_scan_events(run_id: str, db) -> Generator[str, None, None]:
                         seen_event_ids.add(eid)
                         if row.get("timestamp") is not None:
                             last_ts = row["timestamp"]
-                        payload = {
-                            "event_type": row.get("event_type") or "info",
-                            "message": row.get("message") or "",
-                            "timestamp": row["timestamp"].isoformat() if hasattr(row.get("timestamp"), "isoformat") else str(row.get("timestamp", "")),
-                        }
+                        # Start with the structured payload from the DB (if any), then
+                        # overlay event_type/message/timestamp so those always win.
+                        raw_payload = row.get("payload")
+                        if isinstance(raw_payload, str):
+                            try:
+                                raw_payload = json.loads(raw_payload)
+                            except Exception:
+                                raw_payload = None
+                        payload = dict(raw_payload) if isinstance(raw_payload, dict) else {}
+                        payload["event_type"] = row.get("event_type") or "info"
+                        payload["message"] = row.get("message") or ""
+                        payload["timestamp"] = row["timestamp"].isoformat() if hasattr(row.get("timestamp"), "isoformat") else str(row.get("timestamp", ""))
                         yield f"data: {json.dumps(payload)}\n\n"
 
                     # Check run status
@@ -246,12 +253,12 @@ def stream_scan_events(run_id: str, db) -> Generator[str, None, None]:
 
 # ── Background worker ──────────────────────────────────────────────────────────
 
-def _emit(cur, run_id: str, message: str, event_type: str = "info"):
+def _emit(cur, run_id: str, message: str, event_type: str = "info", payload: dict = None):
     """Write a run_event row. Must be called within an open cursor."""
     try:
         cur.execute(
-            "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
-            (str(uuid.uuid4()), run_id, message, event_type),
+            "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type, payload) VALUES (%s, %s, %s, %s, %s)",
+            (str(uuid.uuid4()), run_id, message, event_type, json.dumps(payload) if payload else None),
         )
     except Exception as e:
         logger.error("_emit failed for run %s (event_type=%s): %s", run_id, event_type, e)
@@ -398,15 +405,17 @@ def _execute_scan_more(user_id: str, run_id: str, db):
 
     with db.get_connection() as conn:
         with conn.cursor() as cur:
-            _emit(cur, run_id, "Hunting for fresh roles beyond your brief…", "SCAN_STARTED")
-            _emit(cur, run_id, f"Scanning live job portals for: {', '.join(target_roles) or 'your targets'}", "SOURCE_STARTED")
+            scan_started_payload = {"event": "SCAN_STARTED", "mode": "scan_more"}
+            _emit(cur, run_id, "Hunting for fresh roles beyond your brief…", "SCAN_STARTED", scan_started_payload)
+            source_started_payload = {"event": "SOURCE_STARTED", "target_roles": target_roles, "mode": "scan_more"}
+            _emit(cur, run_id, f"Scanning live job portals for: {', '.join(target_roles) or 'your targets'}", "SOURCE_STARTED", source_started_payload)
 
     # 2. Run scan.mjs and stream its per-company output live.
     found_jobs = []
     scanned_count = 0
     emitted_scanned = 0
     SCANNED_EMIT_CAP = 60   # bound run_events rows; counter keeps progress honest
-    buffer = []             # batched (event_type, message) for throttled writes
+    buffer = []             # batched (event_type, message, payload) for throttled writes
     last_flush = _time.time()
 
     def flush():
@@ -416,8 +425,8 @@ def _execute_scan_more(user_id: str, run_id: str, db):
         try:
             with db.get_connection() as conn:
                 with conn.cursor() as cur:
-                    for et, msg in buffer:
-                        _emit(cur, run_id, msg, et)
+                    for et, msg, pl in buffer:
+                        _emit(cur, run_id, msg, et, pl)
         except Exception as e:
             logger.error("scan_more flush failed for run %s: %s", run_id, e)
         buffer = []
@@ -441,10 +450,24 @@ def _execute_scan_more(user_id: str, run_id: str, db):
                 scanned_count += 1
                 if emitted_scanned < SCANNED_EMIT_CAP:
                     emitted_scanned += 1
-                    buffer.append(("SOURCE_SCANNING", f"🔍 Scanned {ev.get('company','?')} — {ev.get('found',0)} roles"))
+                    source_payload = {
+                        "event": "SOURCE_SCANNING",
+                        "source": ev.get("company", ""),
+                        "roles_found": ev.get("found", 0),
+                        "source_type": ev.get("source_type", "ats"),
+                    }
+                    buffer.append(("SOURCE_SCANNING", f"🔍 Scanned {ev.get('company','?')} — {ev.get('found',0)} roles", source_payload))
             elif ev.get("t") == "found":
                 found_jobs.append(ev)
-                buffer.append(("JOB_FOUND", f"Found: {ev.get('title','?')} @ {ev.get('company','?')}"))
+                job_payload = {
+                    "event": "JOB_FOUND",
+                    "job_title": ev.get("title", ""),
+                    "company": ev.get("company", ""),
+                    "location": ev.get("location", ""),
+                    "source": ev.get("source", ""),
+                    "apply_url": ev.get("url", "") or ev.get("apply_url", ""),
+                }
+                buffer.append(("JOB_FOUND", f"Found: {ev.get('title','?')} @ {ev.get('company','?')}", job_payload))
             # Throttle DB writes: flush every ~0.5s or every 12 buffered events.
             if len(buffer) >= 12 or (_time.time() - last_flush) > 0.5:
                 flush()
@@ -465,26 +488,50 @@ def _execute_scan_more(user_id: str, run_id: str, db):
         matched = _matches_targets(title, target_roles)
         if matched:
             net_new.append(ev)
+            eval_payload = {
+                "event": "JOB_EVALUATED",
+                "job_title": title,
+                "company": company,
+                "location": ev.get("location", ""),
+                "fit_score": _compute_title_match_score(title, target_roles),
+                "rejection_reason": None,
+            }
             with db.get_connection() as conn:
                 with conn.cursor() as cur:
-                    _emit(cur, run_id, f"✓ {title} @ {company} — matches your targets", "JOB_EVALUATED")
+                    _emit(cur, run_id, f"✓ {title} @ {company} — matches your targets", "JOB_EVALUATED", eval_payload)
         else:
+            reject_payload = {
+                "event": "JOB_EVALUATED",
+                "job_title": title,
+                "company": company,
+                "location": ev.get("location", ""),
+                "fit_score": 0,
+                "rejection_reason": "off-target role",
+            }
             with db.get_connection() as conn:
                 with conn.cursor() as cur:
-                    _emit(cur, run_id, f"✗ {title} @ {company} — off-target, skipped", "JOB_EVALUATED")
+                    _emit(cur, run_id, f"✗ {title} @ {company} — off-target, skipped", "JOB_EVALUATED", reject_payload)
 
     # 4. Append net-new matches to today's brief (append, never wipe).
     appended = _append_to_brief(user_id, run_id, net_new, db)
 
     with db.get_connection() as conn:
         with conn.cursor() as cur:
+            filter_payload = {
+                "event": "FILTER_SUMMARY",
+                "scanned_companies": scanned_count,
+                "roles_seen": len(found_jobs),
+                "new_matches": appended,
+            }
             _emit(cur, run_id,
                   f"Scanned {scanned_count} companies · {len(found_jobs)} roles seen · {appended} new matches added",
-                  "FILTER_SUMMARY")
+                  "FILTER_SUMMARY", filter_payload)
             if appended == 0:
-                _emit(cur, run_id, "No new matches beyond your current brief right now.", "BRIEF_CREATED")
+                _emit(cur, run_id, "No new matches beyond your current brief right now.", "BRIEF_CREATED",
+                      {"event": "BRIEF_CREATED", "new_matches": 0})
             else:
-                _emit(cur, run_id, f"{appended} fresh roles added to your brief.", "BRIEF_CREATED")
+                _emit(cur, run_id, f"{appended} fresh roles added to your brief.", "BRIEF_CREATED",
+                      {"event": "BRIEF_CREATED", "new_matches": appended})
             cur.execute(
                 "UPDATE careerloop.background_runs SET status = 'COMPLETED', updated_at = NOW() WHERE run_id = %s",
                 (run_id,),
@@ -621,8 +668,8 @@ def _execute_scan(user_id: str, run_id: str, db):
 
     with db.get_connection() as conn:
         with conn.cursor() as cur:
-            _emit(cur, run_id, "Starting job discovery...", "SCAN_STARTED")
-            _emit(cur, run_id, "Searching configured portals for new job postings...", "SOURCE_STARTED")
+            _emit(cur, run_id, "Starting job discovery...", "SCAN_STARTED", {"event": "SCAN_STARTED", "mode": "default"})
+            _emit(cur, run_id, "Searching configured portals for new job postings...", "SOURCE_STARTED", {"event": "SOURCE_STARTED", "mode": "default"})
 
     # Cache-hit check
     try:
@@ -645,9 +692,14 @@ def _execute_scan(user_id: str, run_id: str, db):
 
         cached = get_fresh_cached_jobs(prefs, freshness_window_days=14, limit=20)
         if len(cached) >= 5:
+            cache_payload = {
+                "event": "CACHE_HIT",
+                "cached_count": len(cached),
+                "source": "global_jobs_cache",
+            }
             with db.get_connection() as conn:
                 with conn.cursor() as cur:
-                    _emit(cur, run_id, f"Cache-hit: {len(cached)} fresh jobs found in global cache", "CACHE_HIT")
+                    _emit(cur, run_id, f"Cache-hit: {len(cached)} fresh jobs found in global cache", "CACHE_HIT", cache_payload)
     except Exception as e:
         logger.debug("Cache-hit check skipped: %s", e)
 
@@ -665,15 +717,21 @@ def _execute_scan(user_id: str, run_id: str, db):
     if not top_jobs:
         top_jobs = _build_from_cache(user_id, db)
         if top_jobs:
+            cache_fallback_payload = {
+                "event": "CACHE_HIT",
+                "cached_count": len(top_jobs),
+                "source": "cache_fallback",
+            }
             with db.get_connection() as conn:
                 with conn.cursor() as cur:
-                    _emit(cur, run_id, f"Surfacing {len(top_jobs)} matching roles from cache", "CACHE_HIT")
+                    _emit(cur, run_id, f"Surfacing {len(top_jobs)} matching roles from cache", "CACHE_HIT", cache_fallback_payload)
 
     # If there is genuinely nothing to show, keep any existing brief intact and stop.
     if not top_jobs:
         with db.get_connection() as conn:
             with conn.cursor() as cur:
-                _emit(cur, run_id, "No matching roles found right now — try again later.", "FILTER_SUMMARY")
+                _emit(cur, run_id, "No matching roles found right now — try again later.", "FILTER_SUMMARY",
+                      {"event": "FILTER_SUMMARY", "raw_jobs": 0, "unique_added": 0, "scored": 0})
                 cur.execute(
                     "UPDATE careerloop.background_runs SET status = 'COMPLETED', updated_at = NOW() WHERE run_id = %s",
                     (run_id,),
@@ -727,11 +785,21 @@ def _execute_scan(user_id: str, run_id: str, db):
                     company = m.group(1).strip()
                     title = m.group(2).strip()
                     location = m.group(3).strip().split("|")[0].strip()
-                _emit(cur, run_id, f"MATCH #{idx} — {title} @ {company} ({location}) — {score:.0f}/100", "CANDIDATE_MATCHED")
+                match_payload = {
+                    "event": "CANDIDATE_MATCHED",
+                    "job_title": title,
+                    "company": company,
+                    "location": location,
+                    "fit_score": score,
+                    "match_index": idx,
+                }
+                _emit(cur, run_id, f"MATCH #{idx} — {title} @ {company} ({location}) — {score:.0f}/100", "CANDIDATE_MATCHED", match_payload)
 
             # Summary events
-            _emit(cur, run_id, f"Scan complete: {new_jobs} raw jobs found, {unique_added} new, {scored} scored", "FILTER_SUMMARY")
-            _emit(cur, run_id, "Brief created with top matches.", "BRIEF_CREATED")
+            _emit(cur, run_id, f"Scan complete: {new_jobs} raw jobs found, {unique_added} new, {scored} scored", "FILTER_SUMMARY",
+                  {"event": "FILTER_SUMMARY", "raw_jobs": new_jobs, "unique_added": unique_added, "scored": scored})
+            _emit(cur, run_id, "Brief created with top matches.", "BRIEF_CREATED",
+                  {"event": "BRIEF_CREATED", "top_matches": len(top_jobs)})
             cur.execute(
                 "UPDATE careerloop.background_runs SET status = 'COMPLETED', updated_at = NOW() WHERE run_id = %s",
                 (run_id,),
