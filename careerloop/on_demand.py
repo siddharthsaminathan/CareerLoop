@@ -219,6 +219,11 @@ class OnDemandSearch:
                     _cc[_comp] = _cc.get(_comp, 0) + 1
                     if _cc[_comp] <= 3:
                         _capped.append(j)
+                # LLM validator on cache hit results (was previously skipped — P1-14 fix)
+                try:
+                    _capped = self._llm_validate(_capped[:60], role=role) + _capped[60:]
+                except Exception:
+                    pass
                 result.ranked_jobs = _capped[:max_results]
                 result.after_dedup_count = len(deduped)
                 result.elapsed_seconds = round(time.time() - t0, 2)

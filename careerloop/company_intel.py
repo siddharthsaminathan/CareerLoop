@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import logging
 import os
 import re
 import time
@@ -35,6 +36,8 @@ from typing import Any, Optional
 
 from careerloop.sources.portal_scraper import PortalScraper
 from careerloop.sources.scrapegraph_adapter import ScrapeGraphAdapter
+
+logger = logging.getLogger(__name__)
 
 # ── Timeout constants ──────────────────────────────────────────────────────────
 _WEB_SEARCH_TIMEOUT_SECONDS = 12
@@ -494,7 +497,8 @@ def _scrape_company_website(domain: str) -> list[dict[str, str]]:
                     "source_type": "company_website",
                 })
                 print(f"     ✓ {domain}{path}: {len(content)} chars")
-        except Exception:
+        except Exception as e:
+            logger.warning(f"company_intel: _scrape_company_website failed for {path}: {e}")
             pass
 
     return results
@@ -508,7 +512,8 @@ def _run_ddg_query(query: str, source_type: str, max_results: int = 3) -> list[d
     except Exception:
         try:
             from ddgs import DDGS
-        except Exception:
+        except Exception as e:
+            logger.warning(f"company_intel: DDGS import failed: {e}")
             return results
     try:
         with DDGS() as ddgs:
@@ -519,7 +524,8 @@ def _run_ddg_query(query: str, source_type: str, max_results: int = 3) -> list[d
                     "snippet": item.get("body", item.get("snippet", "")),
                     "source_type": source_type,
                 })
-    except Exception:
+    except Exception as e:
+        logger.warning(f"company_intel: DDGS query failed: {e}")
         pass
     return [r for r in results if r.get("url") or r.get("snippet")]
 
@@ -571,7 +577,8 @@ def _gather_web_sources(company: str, job_url: str = "") -> list[dict[str, str]]
                 try:
                     # Individual query timeout is generous
                     results_ref.extend(fut.result(timeout=7))
-                except Exception:
+                except Exception as e:
+                    logger.warning(f"company_intel: query future failed: {e}")
                     pass
 
     web_results: list[dict[str, str]] = []
@@ -651,7 +658,8 @@ def _gather_web_sources(company: str, job_url: str = "") -> list[dict[str, str]]
         with ThreadPoolExecutor(max_workers=1) as ex:
             future = ex.submit(_run_specialized_scrapers)
             future.result(timeout=10)
-    except Exception:
+    except Exception as e:
+        logger.warning(f"company_intel: specialized scrapers failed: {e}")
         pass
 
     # ── Company website scrape (D1: Identity/Product) ─────────────────

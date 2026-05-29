@@ -174,6 +174,7 @@ class ToolRegistry:
     def start_scan(self, action: Action, state: UserJourneyState, context: Dict[str, Any]) -> ResponseEnvelope:
         import uuid
         import os
+        import threading
         from datetime import datetime, timezone
         from careerloop.daily_runner import DailyRunner
 
@@ -208,369 +209,326 @@ class ToolRegistry:
         if not bg_inserted:
             return ResponseEnvelope(response_type="error", text="Scan failed: could not create background run.")
 
-        # 2. Call DailyRunner
-        try:
-            root = os.path.realpath(os.path.join(os.path.dirname(__file__), "..", ".."))
-            runner = DailyRunner(root)
-            
-            with self.db.get_connection() as conn:
-                with conn.cursor() as cursor:
-                    cursor.execute(
-                        "INSERT INTO careerloop.run_events (event_id, run_id, message) VALUES (%s, %s, 'Executing discovery scan...')",
-                        (str(uuid.uuid4()), run_id)
-                    )
-                    # Repository V2: source started event
-                    try:
-                        cursor.execute(
-                            "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
-                            (str(uuid.uuid4()), run_id, "Searching configured portals for new job postings...", "SOURCE_STARTED")
-                        )
-                    except Exception:
-                        pass
 
-            # Cache-hit: check careerloop.jobs before external scan
-            _cache_hit = 0
+        # 2. Start scan in background thread (non-blocking - HTTP response returns immediately)
+        root = os.path.realpath(os.path.join(os.path.dirname(__file__), "..", ".."))
+
+        def _scan_thread(run_id: str, user_id: str, root: str):
+            """Run the full scan + brief pipeline in a daemon thread."""
             try:
-                from careerloop.memory.repository_v2 import get_fresh_cached_jobs
-                _prefs = {}
-                try:
-                    with self.db.get_connection() as _pconn:
-                        with _pconn.cursor() as _pcur:
-                            _pcur.execute("SELECT work_style_prefs FROM public.users WHERE id = %s", (user_id,))
-                            _prow = _pcur.fetchone()
-                            if _prow and _prow.get("work_style_prefs"):
-                                import json as _json
-                                _prefs = _json.loads(_prow["work_style_prefs"]) if isinstance(_prow["work_style_prefs"], str) else _prow["work_style_prefs"]
-                except Exception:
-                    pass
-                _cached = get_fresh_cached_jobs(_prefs, freshness_window_days=14, limit=20)
-                _cache_hit = len(_cached)
-                if _cache_hit >= 5:
-                    logger.info(f"Cache-hit: {_cache_hit} fresh cached jobs -- skipping external scan")
-                    with self.db.get_connection() as _cconn:
-                        with _cconn.cursor() as _ccur:
-                            _ccur.execute(
-                                "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
-                                (str(uuid.uuid4()), run_id, f"Cache-hit: {_cache_hit} fresh jobs found in global cache", "CACHE_HIT")
-                            )
-            except Exception as _cherr:
-                logger.debug(f"Cache-hit check skipped: {_cherr}")
+                runner = DailyRunner(root)
 
-            res = runner.run(do_scan=True)
-            today_str = datetime.now(timezone.utc).date().isoformat()
-
-            # If brief already generated today, load and return it from DB
-            if res.get("already_generated"):
-                try:
-                    with self.db.get_connection() as conn:
-                        with conn.cursor() as cur:
-                            cur.execute(
-                                "SELECT id, summary FROM careerloop.daily_briefs WHERE user_id = %s AND date_str = %s ORDER BY date_str DESC LIMIT 1",
-                                (user_id, today_str)
-                            )
-                            existing = cur.fetchone()
-                            if existing:
-                                cur.execute(
-                                    "SELECT item_index, job_id, title, company, location, fit_score FROM careerloop.daily_brief_items WHERE brief_id = %s ORDER BY item_index",
-                                    (existing["id"],)
-                                )
-                                items = cur.fetchall()
-                                if items:
-                                    lines = [f"# Daily Brief — {today_str}\n"]
-                                    cards = []
-                                    for item in items:
-                                        idx = item["item_index"]
-                                        lines.append(f"{idx}. **{item['title']}** @ {item['company']} ({item['location']}) — **{(item.get('fit_score') or 0):.1f}/100**")
-                                        cards.append({"index": idx, "job_id": item["job_id"], "title": item["title"], "company": item["company"], "fit_score": item["fit_score"]})
-                                    lines.append("\nReply with a number to review details.")
-
-                                    # Mark the already-completed scan as done
-                                    try:
-                                        with self.db.get_connection() as conn2:
-                                            with conn2.cursor() as cur2:
-                                                cur2.execute(
-                                                    "UPDATE careerloop.background_runs SET status = 'COMPLETED', updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
-                                                    (run_id,)
-                                                )
-                                    except Exception:
-                                        pass
-
-                                    return ResponseEnvelope(
-                                        response_type="list",
-                                        text="\n".join(lines),
-                                        cards=cards,
-                                        artifact_context_updates={"active_artifact_type": "daily_brief", "active_artifact_id": existing["id"]},
-                                    )
-                except Exception:
-                    pass
-                # If we couldn't find the brief, fall through to normal completion
-
-            brief_id = str(uuid.uuid4())
-
-            with self.db.get_connection() as conn:
-                with conn.cursor() as cursor:
-                    # Clear out today's old briefs to stay clean
-                    cursor.execute(
-                        "DELETE FROM careerloop.daily_brief_items WHERE brief_id IN (SELECT id FROM careerloop.daily_briefs WHERE user_id = %s AND date_str = %s)",
-                        (user_id, today_str)
-                    )
-                    cursor.execute(
-                        "DELETE FROM careerloop.daily_briefs WHERE user_id = %s AND date_str = %s",
-                        (user_id, today_str)
-                    )
-                    cursor.execute(
-                        "INSERT INTO careerloop.daily_briefs (id, user_id, date_str, run_id, summary) VALUES (%s, %s, %s, %s, %s)",
-                        (brief_id, user_id, today_str, run_id, res.get("shortlist_text", ""))
-                    )
-
-                    top_jobs = res.get("top_jobs", [])
-                    for idx, item in enumerate(top_jobs, 1):
-                        job = item["job"]
-                        score = item["score"]
-                        breakdown = item["breakdown"]
-
-                        cursor.execute(
-                            "INSERT INTO careerloop.daily_brief_items (id, brief_id, item_index, job_id, title, company, location, fit_score, recommendation_reason, risk_summary, route_recommendation) "
-                            "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-                            (
-                                str(uuid.uuid4()),
-                                brief_id,
-                                idx,
-                                job["job_id"],
-                                job.get("title", ""),
-                                job.get("company", ""),
-                                job.get("location", ""),
-                                score,
-                                breakdown.get("recommendation_reason") or breakdown.get("reason", "Highly compatible role matching your target filters."),
-                                breakdown.get("risk_summary") or breakdown.get("risks", "No critical structural or tenure risks found."),
-                                breakdown.get("route_recommendation") or breakdown.get("outreach", "Leverage LinkedIn warm outreach playbook to the Engineering Manager.")
-                            )
-                        )
-
-
-                    # Emit CANDIDATE_MATCHED events for top 5 jobs
-                    for idx, item in enumerate(top_jobs[:5], 1):
-                        job = item["job"]
-                        score = item["score"]
-                        company = job.get("company", "?")
-                        title = job.get("title", "?")
-                        location = job.get("location", "?")
-                        msg = f"MATCH #{idx} — {title} @ {company} — {location} — {score:.0f}/100"
-                        try:
-                            cursor.execute(
-                                "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
-                                (str(uuid.uuid4()), run_id, msg, "CANDIDATE_MATCHED")
-                            )
-                        except Exception:
-                            pass
-
-                    # Emit real scan filtering summary to run_events
-                    new_jobs = res.get("new_jobs_found", 0)
-                    unique_added = res.get("unique_added", 0)
-                    scored = res.get("scored", 0)
-                    summary_lines = [
-                        f"Scan complete.",
-                        f"  {new_jobs} raw jobs found",
-                        f"  {unique_added} new (after dedup)",
-                        f"  {scored} scored",
-                        f"Brief ready with top matches.",
-                    ]
-                    for event_msg in summary_lines:
-                        try:
-                            cursor.execute(
-                                "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
-                                (str(uuid.uuid4()), run_id, event_msg, "scan_progress")
-                            )
-                        except Exception:
-                            pass
-
-                    # Repository V2: structured filter summary event
-                    try:
-                        filter_msg = f"Scan filter complete — {new_jobs} raw, {unique_added} new, {scored} scored"
-                        cursor.execute(
-                            "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
-                            (str(uuid.uuid4()), run_id, filter_msg, "FILTER_SUMMARY")
-                        )
-                    except Exception:
-                        pass
-
-                    # Repository V2: brief created event
-                    try:
-                        cursor.execute(
-                            "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
-                            (str(uuid.uuid4()), run_id, "Brief created with top matches.", "BRIEF_CREATED")
-                        )
-                    except Exception:
-                        pass
-
-                    cursor.execute(
-                        "UPDATE careerloop.background_runs SET status = 'COMPLETED', updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
-                        (run_id,)
-                    )
-                    cursor.execute(
-                        "INSERT INTO careerloop.run_events (event_id, run_id, message) VALUES (%s, %s, 'Scan completed and daily brief persisted.')",
-                        (str(uuid.uuid4()), run_id)
-                    )
-
-            scored_count = res.get("scored", 0)
-
-            # ── V3 Canonical Pipeline (SEPARATE connection — best-effort, non-blocking) ──
-            # Read scored jobs from ledger (top_jobs in runner result is often empty)
-            import hashlib as _hashlib
-            _v3_jobs = 0
-            _v3_candidates = 0
-            _v3_rels = 0
-            _v3_top = top_jobs if top_jobs else []
-            if not _v3_top:
-                # Fallback: load top scored from ledger
-                try:
-                    from careerloop.application_ledger import ApplicationLedger
-                    _root = os.path.realpath(os.path.join(os.path.dirname(__file__), "..", ".."))
-                    _ledger = ApplicationLedger(_root)
-                    _v3_top = _ledger.get_top_scored(min_score=1, limit=10)
-                    # Convert to same format as top_jobs: [{"job": entry, "score": score, "breakdown": breakdown}]
-                    _v3_top = [{"job": e, "score": _ledger._get_score(e) or 0, "breakdown": e.get("fit_breakdown", {})} for e in _v3_top]
-                except Exception:
-                    pass
-
-            try:
-                with self.db.get_connection() as _v3_conn:
-                    with _v3_conn.cursor() as _v3_cur:
-                        for idx, item in enumerate(_v3_top, 1):
-                            try:
-                                job = item["job"]
-                                score = item["score"]
-                                breakdown = item.get("breakdown", {})
-                                jd_text = job.get("description") or job.get("raw_description", "")
-                                title = job.get("title", "")
-                                company = job.get("company", "")
-                                location = job.get("location", "")
-                                source = job.get("source", "portal_scan")
-                                source_url = job.get("source_url") or job.get("url", "")
-
-                                # Parse Cutshort format: "BigRio is hiring AI Engineer job in Chennai | Cutshort"
-                                if not company and "|" in title:
-                                    parts = title.rsplit("|", 1)
-                                    if len(parts) == 2:
-                                        title_part = parts[0].strip()
-                                        source_part = parts[1].strip()
-                                        match = re.match(r"(.+?)\s+is\s+hiring\s+(.+?)(?:\s+job)?\s+in\s+(.+?)$", title_part, re.IGNORECASE)
-                                        if match:
-                                            company = match.group(1).strip()
-                                            title = match.group(2).strip()
-                                            parsed_location = match.group(3).strip()
-                                            if parsed_location:
-                                                location = parsed_location
-                                            source = source_part if source_part else "Cutshort"
-                                        else:
-                                            if " is hiring " in title_part.lower():
-                                                hire_split = title_part.lower().split(" is hiring ", 1)
-                                                company = hire_split[0].strip()
-                                                remaining = hire_split[1].strip() if len(hire_split) > 1 else ""
-                                                loc_match = re.search(r"\s+in\s+(.+?)$", remaining, re.IGNORECASE)
-                                                if loc_match:
-                                                    location = loc_match.group(1).strip()
-                                                    title = remaining[:loc_match.start()].strip()
-                                                else:
-                                                    title = remaining
-
-                                fp_raw = f"{title.strip().lower()}|{company.strip().lower()}|{location.strip().lower()}"
-                                fingerprint = _hashlib.sha256(fp_raw.encode()).hexdigest()
-
-                                # Stage 1: job_candidates
-                                _v3_cur.execute(
-                                    "INSERT INTO careerloop.job_candidates (candidate_id, run_id, source, raw_title, raw_company, raw_location, raw_url, raw_snippet, raw_payload, extraction_status) "
-                                    "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, 'accepted')",
-                                    (str(uuid.uuid4()), run_id, source,
-                                     title, company, location, source_url, (jd_text or "")[:500], json.dumps(job)))
-                                _v3_candidates += 1
-
-                                # Stage 2: jobs (global cache, fingerprint dedup)
-                                global_job_id = job.get("job_id") or str(uuid.uuid4())
-                                _v3_cur.execute(
-                                    "INSERT INTO careerloop.jobs (id, source, title, company_name, location, content_fingerprint, jd_text, is_india_role, status, scraped_at, apply_url) "
-                                    "VALUES (%s, %s, %s, %s, %s, %s, %s, true, 'active', NOW(), %s) "
-                                    "ON CONFLICT (content_fingerprint) DO UPDATE SET last_seen_at = NOW(), updated_at = NOW(), apply_url = EXCLUDED.apply_url",
-                                    (global_job_id, source, title, company,
-                                     location, fingerprint, (jd_text or "")[:5000], source_url))
-                                _v3_jobs += 1
-
-                                # Upsert company (normalize name for dedup)
-                                if company:
-                                    normalized = re.sub(r"[^a-z0-9]+", "", company.lower())
-                                    try:
-                                        _v3_cur.execute(
-                                            "INSERT INTO careerloop.companies (id, domain_slug, name, normalized_name, first_seen_at, last_updated_at) "
-                                            "VALUES (%s, %s, %s, %s, NOW(), NOW()) "
-                                            "ON CONFLICT (domain_slug) DO UPDATE SET last_updated_at = NOW(), name = EXCLUDED.name",
-                                            (str(uuid.uuid4()), normalized[:50], company, normalized)
-                                        )
-                                        _v3_cur.execute("SELECT id FROM careerloop.companies WHERE domain_slug = %s", (normalized[:50],))
-                                        company_row = _v3_cur.fetchone()
-                                        if company_row:
-                                            company_id = company_row["id"]
-                                            _v3_cur.execute(
-                                                "UPDATE careerloop.jobs SET company_id = %s, company_name = %s, location = %s WHERE id = %s",
-                                                (company_id, company, location, global_job_id)
-                                            )
-                                        # Minimal company_memory row
-                                        try:
-                                            _v3_cur.execute(
-                                                "INSERT INTO careerloop.company_memory (id, user_id, company_normalized, company_intelligence, startup_risk, created_at, updated_at) "
-                                                "VALUES (%s, %s, %s, '', 5.0, NOW(), NOW()) "
-                                                "ON CONFLICT DO NOTHING",
-                                                (str(uuid.uuid4()), user_id, normalized)
-                                            )
-                                        except Exception:
-                                            pass
-                                    except Exception as _ce:
-                                        logger.debug(f"company upsert skipped: {_ce}")
-
-                                # Stage 3: user_job_relationships
-                                rejection = breakdown.get("rejected") or breakdown.get("rejection_reason")
-                                match_status = "rejected" if rejection else "matched"
-                                _v3_cur.execute(
-                                    "INSERT INTO careerloop.user_job_relationships (user_id, job_id, fit_score, match_status, rejection_reason, shown_in_brief_id, route_recommendation, personalization_payload) "
-                                    "VALUES (%s, %s, %s, %s, %s, %s, %s, %s) "
-                                    "ON CONFLICT (user_id, job_id) DO UPDATE SET fit_score = EXCLUDED.fit_score, match_status = EXCLUDED.match_status, shown_in_brief_id = EXCLUDED.shown_in_brief_id, updated_at = NOW()",
-                                    (user_id, global_job_id, score, match_status, rejection, brief_id,
-                                     breakdown.get("route_recommendation") or "direct_apply", json.dumps(breakdown)))
-                                _v3_rels += 1
-                            except Exception as _e:
-                                logger.debug(f"V3 pipeline row skipped: {_e}")
-                logger.info(f"V3 pipeline: {_v3_candidates} candidates, {_v3_jobs} jobs, {_v3_rels} relationships written")
-            except Exception as _v3_err:
-                logger.warning(f"V3 pipeline best-effort skipped: {_v3_err}")
-
-            text = f"Scan complete! Scored {scored_count} opportunities. Here is your Daily Brief:\n\n{res.get('shortlist_text', '')}"
-            return ResponseEnvelope(
-                response_type="list",
-                text=text,
-                artifact_context_updates={
-                    "active_artifact_type": "daily_brief",
-                    "active_artifact_id": brief_id
-                },
-                state_updates={"state": UserJourneyState.PROFILE_READY}
-            )
-        except Exception as scan_err:
-            logger.error(f"Scan failed: {scan_err}", exc_info=True)
-            try:
                 with self.db.get_connection() as conn:
                     with conn.cursor() as cursor:
                         cursor.execute(
-                            "UPDATE careerloop.background_runs SET status = 'FAILED', updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
+                            "INSERT INTO careerloop.run_events (event_id, run_id, message) VALUES (%s, %s, 'Executing discovery scan...')",
+                            (str(uuid.uuid4()), run_id)
+                        )
+                        try:
+                            cursor.execute(
+                                "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                                (str(uuid.uuid4()), run_id, "Searching configured portals for new job postings...", "SOURCE_STARTED")
+                            )
+                        except Exception:
+                            pass
+
+                # Cache-hit: check careerloop.jobs before external scan
+                try:
+                    from careerloop.memory.repository_v2 import get_fresh_cached_jobs
+                    _prefs = {}
+                    try:
+                        with self.db.get_connection() as _pconn:
+                            with _pconn.cursor() as _pcur:
+                                _pcur.execute("SELECT work_style_prefs FROM public.users WHERE id = %s", (user_id,))
+                                _prow = _pcur.fetchone()
+                                if _prow and _prow.get("work_style_prefs"):
+                                    import json as _json
+                                    _prefs = _json.loads(_prow["work_style_prefs"]) if isinstance(_prow["work_style_prefs"], str) else _prow["work_style_prefs"]
+                    except Exception:
+                        pass
+                    _cached = get_fresh_cached_jobs(_prefs, freshness_window_days=14, limit=20)
+                    if len(_cached) >= 5:
+                        logger.info(f"Cache-hit: {len(_cached)} fresh cached jobs -- skipping external scan")
+                        with self.db.get_connection() as _cconn:
+                            with _cconn.cursor() as _ccur:
+                                _ccur.execute(
+                                    "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                                    (str(uuid.uuid4()), run_id, f"Cache-hit: {len(_cached)} fresh jobs found in global cache", "CACHE_HIT")
+                                )
+                except Exception:
+                    pass
+
+                res = runner.run(do_scan=True)
+                today_str = datetime.now(timezone.utc).date().isoformat()
+
+                # If brief already generated today, log completion and return
+                if res.get("already_generated"):
+                    try:
+                        with self.db.get_connection() as conn:
+                            with conn.cursor() as cur:
+                                cur.execute(
+                                    "SELECT id FROM careerloop.daily_briefs WHERE user_id = %s AND date_str = %s ORDER BY date_str DESC LIMIT 1",
+                                    (user_id, today_str)
+                                )
+                                existing = cur.fetchone()
+                                if existing:
+                                    with self.db.get_connection() as conn2:
+                                        with conn2.cursor() as cur2:
+                                            cur2.execute(
+                                                "UPDATE careerloop.background_runs SET status = 'COMPLETED', updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
+                                                (run_id,)
+                                            )
+                                            cur2.execute(
+                                                "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                                                (str(uuid.uuid4()), run_id, "Brief already generated today - loaded from DB.", "BRIEF_CREATED")
+                                            )
+                    except Exception:
+                        pass
+                    return
+
+                brief_id = str(uuid.uuid4())
+
+                with self.db.get_connection() as conn:
+                    with conn.cursor() as cursor:
+                        cursor.execute(
+                            "DELETE FROM careerloop.daily_brief_items WHERE brief_id IN (SELECT id FROM careerloop.daily_briefs WHERE user_id = %s AND date_str = %s)",
+                            (user_id, today_str)
+                        )
+                        cursor.execute(
+                            "DELETE FROM careerloop.daily_briefs WHERE user_id = %s AND date_str = %s",
+                            (user_id, today_str)
+                        )
+                        cursor.execute(
+                            "INSERT INTO careerloop.daily_briefs (id, user_id, date_str, run_id, summary) VALUES (%s, %s, %s, %s, %s)",
+                            (brief_id, user_id, today_str, run_id, res.get("shortlist_text", ""))
+                        )
+
+                        top_jobs = res.get("top_jobs", [])
+                        for idx, item in enumerate(top_jobs, 1):
+                            job = item["job"]
+                            score = item["score"]
+                            breakdown = item["breakdown"]
+
+                            cursor.execute(
+                                "INSERT INTO careerloop.daily_brief_items (id, brief_id, item_index, job_id, title, company, location, fit_score, recommendation_reason, risk_summary, route_recommendation) "
+                                "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                                (
+                                    str(uuid.uuid4()),
+                                    brief_id,
+                                    idx,
+                                    job["job_id"],
+                                    job.get("title", ""),
+                                    job.get("company", ""),
+                                    job.get("location", ""),
+                                    score,
+                                    breakdown.get("recommendation_reason") or breakdown.get("reason", "Highly compatible role matching your target filters."),
+                                    breakdown.get("risk_summary") or breakdown.get("risks", "No critical structural or tenure risks found."),
+                                    breakdown.get("route_recommendation") or breakdown.get("outreach", "Leverage LinkedIn warm outreach playbook to the Engineering Manager.")
+                                )
+                            )
+
+                        for idx, item in enumerate(top_jobs[:5], 1):
+                            job = item["job"]
+                            score = item["score"]
+                            _company = job.get("company", "?")
+                            _title = job.get("title", "?")
+                            _location = job.get("location", "?")
+                            _msg = f"MATCH #{idx} -- {_title} @ {_company} -- {_location} -- {score:.0f}/100"
+                            try:
+                                cursor.execute(
+                                    "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                                    (str(uuid.uuid4()), run_id, _msg, "CANDIDATE_MATCHED")
+                                )
+                            except Exception:
+                                pass
+
+                        new_jobs = res.get("new_jobs_found", 0)
+                        unique_added = res.get("unique_added", 0)
+                        scored = res.get("scored", 0)
+                        summary_lines = [
+                            "Scan complete.",
+                            f"  {new_jobs} raw jobs found",
+                            f"  {unique_added} new (after dedup)",
+                            f"  {scored} scored",
+                            "Brief ready with top matches.",
+                        ]
+                        for event_msg in summary_lines:
+                            try:
+                                cursor.execute(
+                                    "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                                    (str(uuid.uuid4()), run_id, event_msg, "scan_progress")
+                                )
+                            except Exception:
+                                pass
+
+                        try:
+                            filter_msg = f"Scan filter complete -- {new_jobs} raw, {unique_added} new, {scored} scored"
+                            cursor.execute(
+                                "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                                (str(uuid.uuid4()), run_id, filter_msg, "FILTER_SUMMARY")
+                            )
+                        except Exception:
+                            pass
+
+                        try:
+                            cursor.execute(
+                                "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, %s)",
+                                (str(uuid.uuid4()), run_id, "Brief created with top matches.", "BRIEF_CREATED")
+                            )
+                        except Exception:
+                            pass
+
+                        cursor.execute(
+                            "UPDATE careerloop.background_runs SET status = 'COMPLETED', updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
                             (run_id,)
                         )
                         cursor.execute(
-                            "INSERT INTO careerloop.run_events (event_id, run_id, message) VALUES (%s, %s, %s)",
-                            (str(uuid.uuid4()), run_id, f"Scan failed: {str(scan_err)}")
+                            "INSERT INTO careerloop.run_events (event_id, run_id, message) VALUES (%s, %s, 'Scan completed and daily brief persisted.')",
+                            (str(uuid.uuid4()), run_id)
                         )
-            except Exception:
-                pass
-            return ResponseEnvelope(
-                response_type="error",
-                text=f"Scan failed: {str(scan_err)}"
-            )
+
+                # V3 Canonical Pipeline (SEPARATE connection - best-effort, non-blocking)
+                import hashlib as _hashlib
+                _v3_jobs = 0
+                _v3_candidates = 0
+                _v3_rels = 0
+                _v3_top = top_jobs if top_jobs else []
+                if not _v3_top:
+                    try:
+                        from careerloop.application_ledger import ApplicationLedger
+                        _root2 = os.path.realpath(os.path.join(os.path.dirname(__file__), "..", ".."))
+                        _ledger = ApplicationLedger(_root2)
+                        _v3_top = _ledger.get_top_scored(min_score=1, limit=10)
+                        _v3_top = [{"job": e, "score": _ledger._get_score(e) or 0, "breakdown": e.get("fit_breakdown", {})} for e in _v3_top]
+                    except Exception:
+                        pass
+
+                try:
+                    with self.db.get_connection() as _v3_conn:
+                        with _v3_conn.cursor() as _v3_cur:
+                            for _v3_idx, item in enumerate(_v3_top, 1):
+                                try:
+                                    job = item["job"]
+                                    score = item["score"]
+                                    breakdown = item.get("breakdown", {})
+                                    jd_text = job.get("description") or job.get("raw_description", "")
+                                    _title_str = job.get("title", "")
+                                    _company_str = job.get("company", "")
+                                    _location_str = job.get("location", "")
+                                    source = job.get("source", "portal_scan")
+                                    source_url = job.get("source_url") or job.get("url", "")
+
+                                    if not _company_str and "|" in _title_str:
+                                        parts = _title_str.rsplit("|", 1)
+                                        if len(parts) == 2:
+                                            title_part = parts[0].strip()
+                                            source_part = parts[1].strip()
+                                            match = re.match(r"(.+?)\s+is\s+hiring\s+(.+?)(?:\s+job)?\s+in\s+(.+?)$", title_part, re.IGNORECASE)
+                                            if match:
+                                                _company_str = match.group(1).strip()
+                                                _title_str = match.group(2).strip()
+                                                parsed_location = match.group(3).strip()
+                                                if parsed_location:
+                                                    _location_str = parsed_location
+                                                source = source_part if source_part else "Cutshort"
+                                            else:
+                                                if " is hiring " in title_part.lower():
+                                                    hire_split = title_part.lower().split(" is hiring ", 1)
+                                                    _company_str = hire_split[0].strip()
+                                                    remaining = hire_split[1].strip() if len(hire_split) > 1 else ""
+                                                    loc_match = re.search(r"\s+in\s+(.+?)$", remaining, re.IGNORECASE)
+                                                    if loc_match:
+                                                        _location_str = loc_match.group(1).strip()
+                                                        _title_str = remaining[:loc_match.start()].strip()
+                                                    else:
+                                                        _title_str = remaining
+
+                                    fp_raw = f"{_title_str.strip().lower()}|{_company_str.strip().lower()}|{_location_str.strip().lower()}"
+                                    fingerprint = _hashlib.sha256(fp_raw.encode()).hexdigest()
+
+                                    _v3_cur.execute(
+                                        "INSERT INTO careerloop.job_candidates (candidate_id, run_id, source, raw_title, raw_company, raw_location, raw_url, raw_snippet, raw_payload, extraction_status) "
+                                        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, 'accepted')",
+                                        (str(uuid.uuid4()), run_id, source,
+                                         _title_str, _company_str, _location_str, source_url, (jd_text or "")[:500], json.dumps(job)))
+                                    _v3_candidates += 1
+
+                                    global_job_id = job.get("job_id") or str(uuid.uuid4())
+                                    _v3_cur.execute(
+                                        "INSERT INTO careerloop.jobs (id, source, title, company_name, location, content_fingerprint, jd_text, is_india_role, status, scraped_at, apply_url) "
+                                        "VALUES (%s, %s, %s, %s, %s, %s, %s, true, 'active', NOW(), %s) "
+                                        "ON CONFLICT (content_fingerprint) DO UPDATE SET last_seen_at = NOW(), updated_at = NOW(), apply_url = EXCLUDED.apply_url",
+                                        (global_job_id, source, _title_str, _company_str,
+                                         _location_str, fingerprint, (jd_text or "")[:5000], source_url))
+                                    _v3_jobs += 1
+
+                                    if _company_str:
+                                        normalized = re.sub(r"[^a-z0-9]+", "", _company_str.lower())
+                                        try:
+                                            _v3_cur.execute(
+                                                "INSERT INTO careerloop.companies (id, domain_slug, name, normalized_name, first_seen_at, last_updated_at) "
+                                                "VALUES (%s, %s, %s, %s, NOW(), NOW()) "
+                                                "ON CONFLICT (domain_slug) DO UPDATE SET last_updated_at = NOW(), name = EXCLUDED.name",
+                                                (str(uuid.uuid4()), normalized[:50], _company_str, normalized)
+                                            )
+                                            _v3_cur.execute("SELECT id FROM careerloop.companies WHERE domain_slug = %s", (normalized[:50],))
+                                            company_row = _v3_cur.fetchone()
+                                            if company_row:
+                                                company_id = company_row["id"]
+                                                _v3_cur.execute(
+                                                    "UPDATE careerloop.jobs SET company_id = %s, company_name = %s, location = %s WHERE id = %s",
+                                                    (company_id, _company_str, _location_str, global_job_id)
+                                                )
+                                            try:
+                                                _v3_cur.execute(
+                                                    "INSERT INTO careerloop.company_memory (id, user_id, company_normalized, company_intelligence, startup_risk, created_at, updated_at) "
+                                                    "VALUES (%s, %s, %s, '', 5.0, NOW(), NOW()) "
+                                                    "ON CONFLICT DO NOTHING",
+                                                    (str(uuid.uuid4()), user_id, normalized)
+                                                )
+                                            except Exception:
+                                                pass
+                                        except Exception:
+                                            pass
+
+                                    rejection = breakdown.get("rejected") or breakdown.get("rejection_reason")
+                                    match_status = "rejected" if rejection else "matched"
+                                    _v3_cur.execute(
+                                        "INSERT INTO careerloop.user_job_relationships (user_id, job_id, fit_score, match_status, rejection_reason, shown_in_brief_id, route_recommendation, personalization_payload) "
+                                        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s) "
+                                        "ON CONFLICT (user_id, job_id) DO UPDATE SET fit_score = EXCLUDED.fit_score, match_status = EXCLUDED.match_status, shown_in_brief_id = EXCLUDED.shown_in_brief_id, updated_at = NOW()",
+                                        (user_id, global_job_id, score, match_status, rejection, brief_id,
+                                         breakdown.get("route_recommendation") or "direct_apply", json.dumps(breakdown)))
+                                    _v3_rels += 1
+                                except Exception:
+                                    pass
+                    logger.info(f"V3 pipeline: {_v3_candidates} candidates, {_v3_jobs} jobs, {_v3_rels} relationships written")
+                except Exception:
+                    pass
+
+            except Exception as scan_err:
+                logger.error(f"Scan failed: {scan_err}", exc_info=True)
+                try:
+                    with self.db.get_connection() as conn:
+                        with conn.cursor() as cursor:
+                            cursor.execute(
+                                "UPDATE careerloop.background_runs SET status = 'FAILED', updated_at = CURRENT_TIMESTAMP WHERE run_id = %s",
+                                (run_id,)
+                            )
+                            cursor.execute(
+                                "INSERT INTO careerloop.run_events (event_id, run_id, message) VALUES (%s, %s, %s)",
+                                (str(uuid.uuid4()), run_id, f"Scan failed: {str(scan_err)}")
+                            )
+                except Exception:
+                    pass
+
+        thread = threading.Thread(target=_scan_thread, args=(run_id, user_id, root), daemon=True)
+        thread.start()
+
+        return ResponseEnvelope(
+            text="\U0001f50d Scan started! Your daily brief will be ready in a minute. Say 'show brief' or type a number to review matches once the scan completes.",
+            response_type="text",
+        )
 
     def show_brief(self, action: Action, state: UserJourneyState, context: Dict[str, Any]) -> ResponseEnvelope:
         brief = None

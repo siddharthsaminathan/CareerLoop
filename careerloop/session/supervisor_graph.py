@@ -1,4 +1,5 @@
 import os
+import json
 import logging
 from typing import Optional, Any, Annotated, Dict
 from typing_extensions import TypedDict
@@ -13,6 +14,28 @@ from careerloop.session.action_resolver import ActionResolver
 from careerloop.session.tool_registry import ToolRegistry
 
 logger = logging.getLogger("careerloop.session.supervisor_graph")
+
+# P1-07: Module-level singleton — created ONCE and reused across all graph invocations
+# so we don't exhaust the connection pool. Initialized lazily on first use.
+_db_singleton: Any = None
+_db_singleton_lock = None  # threading.Lock, initialized lazily
+
+
+def _get_db():
+    """Return the module-level DatabaseManager singleton (lazy-init, thread-safe)."""
+    global _db_singleton, _db_singleton_lock
+    if _db_singleton is not None:
+        return _db_singleton
+    import threading
+    if _db_singleton_lock is None:
+        _db_singleton_lock = threading.Lock()
+    with _db_singleton_lock:
+        if _db_singleton is not None:
+            return _db_singleton
+        from careerloop.memory.connection import DatabaseManager
+        _db_singleton = DatabaseManager(os.getenv("DATABASE_URL"))
+        logger.info("DatabaseManager singleton initialized")
+        return _db_singleton
 
 class ConversationState(TypedDict):
     user_id: str
@@ -64,10 +87,11 @@ def execute_action_node(state: ConversationState) -> dict:
     current_state = normalize_user_state(state.get("current_state"))
     artifact_context = state.get("artifact_context") or {}
 
-    # Initialize DB and Tool Registry
-    from careerloop.memory.connection import DatabaseManager
+    # P1-07: Use module-level DatabaseManager singleton instead of
+    # creating a new connection pool on every graph invocation.
+    # SessionStore is cheap — just wraps the shared db singleton.
     from careerloop.session.session_store import SessionStore
-    db = DatabaseManager(os.getenv("DATABASE_URL"))
+    db = _get_db()
     store = SessionStore(db)
 
     registry = ToolRegistry(db, store)

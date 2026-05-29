@@ -1,5 +1,6 @@
 import json
 import logging
+from datetime import date
 from typing import Tuple, Optional
 from careerloop.session.states import UserJourneyState
 from careerloop.session.session_store import SessionStore, Session
@@ -306,8 +307,15 @@ class OnboardingFlow:
 
     def _complete_onboarding(self, session: Session, data: dict) -> Tuple[str, UserJourneyState]:
         self._commit_profile_to_db(session.user_id, data)
+        self._seed_welcome_brief(session.user_id)
         full_name = data.get("full_name") or "there"
-        session.temp_profile_data = None
+        # P1-06: Preserve profile data (strip internal fields — keep real profile fields).
+        # Clearing this to None breaks DAILY_BRIEF_SENT handler and general chat which
+        # rely on temp_profile_data for CV context, roles, and salary target.
+        data.pop("_identity_card", None)
+        data.pop("_identity_candidate", None)
+        data.pop("_active_conversation_id", None)
+        session.temp_profile_data = data
         session.state = UserJourneyState.PROFILE_READY
         session.onboarding_step = 0
         self._save(session)
@@ -419,3 +427,31 @@ class OnboardingFlow:
         except Exception as e:
             logger.error(f"Error saving profile to DB: {e}")
             raise
+
+    def _seed_welcome_brief(self, user_id: str):
+        """Seed a welcome daily brief so GET /v1/briefs/latest doesn't 404.
+
+        Uses v1 schema: daily_briefs(id, user_id, date_str, run_id, summary,
+        created_at).  run_id is nullable TEXT, so no background_run FK required.
+        ON CONFLICT (user_id, date_str) DO NOTHING makes this safe to re-run.
+        """
+        today = date.today().isoformat()
+        summary = (
+            "Welcome to CareerLoop! Your profile is set up and you're ready to go. "
+            "Run your first scan to discover matching jobs tailored to your profile."
+        )
+        try:
+            with self.session_store.db_manager.get_connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        """
+                        INSERT INTO careerloop.daily_briefs (user_id, date_str, summary)
+                        VALUES (%s, %s, %s)
+                        ON CONFLICT (user_id, date_str) DO NOTHING
+                        """,
+                        (user_id, today, summary),
+                    )
+                conn.commit()
+            logger.info("Welcome brief seeded for user %s (date=%s)", user_id[:12], today)
+        except Exception as e:
+            logger.warning("Failed to seed welcome brief for %s: %s", user_id[:12], e)

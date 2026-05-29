@@ -53,7 +53,7 @@ def _is_india(location: str) -> bool:
     (or 'india') is also present in the string.
     """
     if not location:
-        return True  # no location = assume India for India-first ATS
+        return False  # empty location — cannot assume India
     loc = location.lower()
     if any(city in loc for city in INDIA_CITIES):
         return True
@@ -340,6 +340,8 @@ class TaleoAdapter:
                 jobs = []
                 for p in postings:
                     loc = p.get("locationId", "") or p.get("location", "")
+                    if loc and not _is_india(loc):
+                        continue
                     title = p.get("jobTitle", "") or p.get("title", "")
                     job_id = str(p.get("contestNo", "") or p.get("id", ""))
                     job_url = f"{base}/careersection/{section}/jobdetail.ftl?lang=en&job={job_id}"
@@ -529,6 +531,8 @@ class TalentRecruitAdapter:
                     loc = item.get("location", "") or item.get("job_location", "")
                     if isinstance(loc, list):
                         loc = ", ".join(loc)
+                    if loc and not _is_india(loc):
+                        continue
                     title = item.get("job_title", "") or item.get("title", "")
                     job_url = (item.get("apply_url") or item.get("job_url") or
                                f"https://gtprod.talentrecruit.com/career-page?company_id={tr_id}&job_id={item.get('id', '')}")
@@ -575,6 +579,8 @@ class TalentRecruitAdapter:
                         loc = item.get("location") or item.get("job_location", "")
                         if isinstance(loc, list):
                             loc = ", ".join(loc)
+                        if loc and not _is_india(loc):
+                            continue
                         job_url = item.get("apply_url") or item.get("job_url") or api_url
                         if title:
                             jobs.append(_make_job(
@@ -638,6 +644,8 @@ class DarwinboxAdapter:
                         title = (item.get("designation") or item.get("job_title") or
                                  item.get("title") or item.get("name", ""))
                         loc = str(item.get("location") or item.get("city") or "")
+                        if loc and not _is_india(loc):
+                            continue
                         job_id = str(item.get("id") or item.get("job_id") or item.get("vacancy_id", ""))
                         job_url = item.get("apply_url") or item.get("url") or career_url
                         if title:
@@ -771,6 +779,8 @@ class TeamtailorAdapter:
                 attrs = r.get("attributes", {})
                 links = r.get("links", {})
                 loc = attrs.get("city", "") or ""
+                if loc and not _is_india(loc):
+                    continue
                 title = attrs.get("title", "")
                 job_url = links.get("careersite-job-url", "") or f"https://{slug}.teamtailor.com/jobs/{r.get('id', '')}"
                 all_jobs.append(_make_job(

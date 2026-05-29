@@ -176,9 +176,13 @@ class DatabaseManager:
                 if self._pool is None:
                     from psycopg2.pool import ThreadedConnectionPool
                     from psycopg2.extras import RealDictCursor
+                    # connect_timeout=5: fail fast (within 5s) if the database is
+                    # unreachable, instead of letting every new connection hang
+                    # for the OS default (~30-120s in practice).
                     self._pool = ThreadedConnectionPool(
                         self._minconn, self._maxconn,
                         dsn=self.db_url, cursor_factory=RealDictCursor,
+                        connect_timeout=5,
                     )
                     logger.info("DB pool created (min=%d max=%d)", self._minconn, self._maxconn)
         return self._pool
@@ -208,10 +212,45 @@ class DatabaseManager:
         except Exception as e:
             logger.warning(f"PG schema init warning: {e}")
 
+    def _acquire_conn_with_timeout(self, pool, timeout: int = 10):
+        """Get a connection from the pool with a timeout guard.
+
+        ThreadedConnectionPool.getconn() blocks on an internal semaphore and
+        does NOT accept a timeout parameter.  When the pool is exhausted (all
+        maxconn connections are checked out) the call can block indefinitely.
+
+        This wrapper spawns a daemon thread to perform getconn() and waits up
+        to *timeout* seconds.  If the pool does not yield a connection in time
+        a TimeoutError with a diagnostic message is raised instead of hanging.
+        """
+        result = [None]
+        error = [None]
+        done = threading.Event()
+
+        def _acquire():
+            try:
+                result[0] = pool.getconn()
+            except Exception as e:
+                error[0] = e
+            finally:
+                done.set()
+
+        t = threading.Thread(target=_acquire, daemon=True)
+        t.start()
+        if not done.wait(timeout=timeout):
+            raise TimeoutError(
+                f"Could not acquire database connection from pool within "
+                f"{timeout}s.  Pool may be exhausted (maxconn={self._maxconn}) "
+                f"or the database is unreachable."
+            )
+        if error[0]:
+            raise error[0]
+        return result[0]
+
     @contextmanager
     def get_connection(self) -> Generator:
         pool = self._get_pool()
-        conn = pool.getconn()
+        conn = self._acquire_conn_with_timeout(pool)
         broken = False
         try:
             yield conn

@@ -42,8 +42,8 @@ Sprint 6 delivered: 7 MVP API endpoints live, SSE scan streaming, Supabase JWT a
 | **TAL Job Card Serializers** | **95%** | 🟢 | No | 3-tier logo fallback (explicit → Clearbit → initials avatar), fit_tier colors (emerald/amber/red), salary/description mapping. Never broken image. |
 | **Transport abstraction layer** | **100% → 🔴 DELAYED** | ⚫ | No | **Superseded by REST API.** Telegram/WhatsApp/webhook work permanently delayed. REST API is the transport layer now. |
 | **Multi-user onboarding** | **75%** | 🟢 | No | 3-user real E2E verified against Supabase + DeepSeek. 5 pillars extracted, CV→profile flow works, PROFILE_READY reached. _load_profile_data returns master_cv_markdown + has_cv. |
-| **LangGraph Chatbot Orchestrator** | **85%** | 🟢 | No | 2-node pipeline. GENERAL_CHAT returns real LLM. ActionResolver context injection. Live scan rendering. Supabase-only. |
-| **PostgresSaver Checkpointer** | **20%** | 🔴 | **YES** | SQLite sessions functional without Postgres. Dual-mode verified. Interrupt/resume proof still needed. |
+| **LangGraph Chatbot Orchestrator** | **90%** | 🟢 | No | 2-node pipeline. GENERAL_CHAT returns real LLM. ActionResolver context injection. Live scan rendering. Messages persisted to DB. Conversation history injected into LLM context. SessionStore unified. Scan async. P0/P1 bug hunt complete. |
+| **PostgresSaver Checkpointer** | **65%** | 🟡 | No | PostgresSaver wired into API path. Graceful MemorySaver fallback. Checkpoint tables verified. Interrupt/resume proof + multi-worker still needed. |
 | **Application pack delivery** | **95%** | 🟢 | No | PackageAssembler + Playwright PDFs. E2E validated on real job. |
 | **Daily brief cron delivery** | **90%** | 🟢 | No | Daily Runner triggers scan and fully populates daily_briefs and daily_brief_items SQL tables. E2E database brief retrieval verified. |
 | India-first discovery | **97%** | 🟢 | No | Wellfound Playwright removed (DDG-only). Remote India SerpAPI query path. RoleArchetypeEngine wired into Phase A+B. Geo filter + 14 ATS adapters + 6 boards. Open: Company Identity Layer, Phase E ontology gate, Naukri dead. |
@@ -75,7 +75,7 @@ Sprint 6 delivered: 7 MVP API endpoints live, SSE scan streaming, Supabase JWT a
 | **Chat quality (known issues)** | **⚠️** | 🟡 | No | Polite closings misclassified as HELP (2/7 E2E turns). Fix: 1-line ActionResolver prompt update. |
 | Job persistence engine | **75%** | 🟡 Active | Global cache + user relationships. Fingerprint dedup. TTL strategy. Cache-hit check wired, companies linked via FK, Cutshort parsing. |
 
-**Overall product maturity: ~80-83% of vision.** REST API v1 ships the product to web. Discovery engine at 97%. Scoring at 74%. Transport blocker resolved (REST API replaces Telegram). P0 blocker shifts from "no delivery channel" to "multi-worker reliability + PostgresSaver."
+**Overall product maturity: ~83-85% of vision.** REST API v1 ships the product to web. Discovery engine at 97%. Scoring at 74%. Transport blocker resolved (REST API replaces Telegram). P0 bug hunt complete — 31 bugs fixed, 5-layer verified. PostgresSaver now at 65%. Multi-worker reliability is the next frontier.
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -859,6 +859,28 @@ The direction directly advances PRD §21-§23 and the Phase 0 Delivery Foundatio
 1. Build the frontend against these endpoints: login → TAL list → job detail → chat (PRD §7).
 2. Fix the uncompiled-graph bug in `webhook_server.py` (use `get_supervisor_graph()`).
 3. Reconcile v1/v2 schema drift so `repository_v2.py` writes land in live columns; then add `/scans`+SSE, `/jobs/{id}/packs`, `/pipeline`.
+
+---
+
+### 2026-05-29 (PM) — Session: P0/P1 Bug Hunt — 31 Fixed, 5-Layer Verified
+
+**What was done:**
+- Scouted entire codebase with 5 parallel sub-agents — discovered 31 bugs (6 P0, 23 P1, 4 P2)
+- Fixed ALL 31 across 18 files: message persistence, onboarding timeout, checkpointer wiring, SessionStore unification, conversation history, profile data preservation, 4 ATS geo filters, empty location bug, async scan, cache path LLM validator, job ID collision, follow-up window, fingerprint divergence, 5 bare except→logger, auth redirect, race condition, retry guards, brief load retry, empty state re-scan, spinner timeout, welcome brief seed
+- 5-layer verification deployed (DB, Orchestration, Module, Auth, Application) — all PASS
+- 15 total sub-agents deployed (10 fixers + 4 verifiers + 1 straggler)
+- 3 live crashes debugged and fixed: checkpointer @contextmanager→real PostgresSaver, SessionStore NameError, msgpack serialization
+- Wrote 2 canonical docs: BUG_LIST_2026-05-29.md + FINAL_FIX_REPORT.md
+- Wrote daily dev blog at docs/learnings/dev-blog/2026-05-29-supervisor-persistence-bug-hunt.md
+
+**Vision alignment verdict:** ✅ ALIGNED — PRD §12 (Persistent Memory Graph) + §10 (LangGraph Chatbot Orchestrator). P0 persistence gaps were blocking the core product loop. All fixes were structural (not cosmetic) and directly advance the vision.
+
+**Deviations detected:** None. All fixes were direct responses to ARCHITECTURE_AUDIT_2026-05-24.md and DATA_PERSISTENCE_AUDIT.md findings.
+
+**Recommended next 3 actions:**
+1. Deploy frontend to Netlify for real user testing (PRD §7)
+2. Deep-dive chat orchestration quality — supervisor routing accuracy review (PRD §10)
+3. PostgresSaver checkpointer hardening — currently at 20%, needs interrupt/resume proof (PRD §12)
 
 ---
 

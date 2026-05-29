@@ -80,7 +80,7 @@ def _is_india_location(location: str) -> bool:
     (or 'india') is also present in the string.
     """
     if not location:
-        return True  # no location = assume India for India-first ATS
+        return False  # empty location — cannot assume India
     loc = location.lower()
     # Direct city match
     if any(city in loc for city in INDIA_CITIES):

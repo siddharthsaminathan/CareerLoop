@@ -8,7 +8,7 @@ Each job gets a unique ID, status history, and full audit trail.
 import json
 import os
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Optional
 
 from careerloop.config import (
@@ -75,7 +75,7 @@ class ApplicationLedger:
 
     def add_job(self, job: dict, source: str = "unknown") -> str:
         """Add a newly discovered job. Returns job_id."""
-        job_id = f"loop-{uuid.uuid4().hex[:8]}"
+        job_id = f"loop-{uuid.uuid4().hex}"
         now = datetime.now(timezone.utc).isoformat()
 
         entry = {
@@ -184,8 +184,9 @@ class ApplicationLedger:
         return [e for e in self.entries if e["status"] in ACTION_REQUIRED_STATUSES]
 
     def get_follow_ups_due(self) -> list[dict]:
-        """Jobs where follow-up is due or overdue."""
+        """Jobs where follow-up is due within the next 7 days."""
         now = datetime.now(timezone.utc)
+        cutoff = now - timedelta(days=7)
         due = []
         for e in self.entries:
             if e["status"] in ("APPLIED", "FOLLOW_UP_DUE"):
@@ -194,7 +195,7 @@ class ApplicationLedger:
                         fud_dt = datetime.fromisoformat(fud)
                     else:
                         fud_dt = fud
-                    if fud_dt <= now:  # any overdue follow-up, not just today's
+                    if cutoff <= fud_dt <= now:  # 7-day window
                         due.append(e)
                         break
         return due
@@ -221,8 +222,6 @@ class ApplicationLedger:
         candidates = []
         for e in self.entries:
             if e["status"] not in ("DISCOVERED", "SHORTLISTED"):
-                continue
-            if e.get("status") == "SKIP":
                 continue
             # Hard geo filter — never surface non-India jobs
             if _india_check:

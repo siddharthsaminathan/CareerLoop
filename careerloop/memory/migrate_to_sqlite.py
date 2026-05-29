@@ -27,7 +27,7 @@ def make_deterministic_fingerprint(company: str, role: str, location: str, url: 
     if url:
         m = re.search(r'https?://([^/]+)', url)
         if m:
-            domain = m.group(1).replace('boards.', '').replace('jobs.', '').replace('careers.', '')
+            domain = m.group(1).replace('boards.', '').replace('job-boards.', '').replace('jobs.', '').replace('careers.', '')
             
     key = f"{c}|{r}|{l}|{domain}"
     return hashlib.sha256(key.encode()).hexdigest()[:16]

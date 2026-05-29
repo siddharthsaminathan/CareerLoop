@@ -302,6 +302,61 @@ class SessionStore:
             logger.error(f"Failed to update state to {state.value} for user {user_id}: {e}")
             return False
 
+    def save_conversation(self, user_id: str, conversation_id: str) -> bool:
+        """Create a conversation row if it doesn't already exist."""
+        try:
+            with self.db_manager.get_connection() as conn:
+                with conn.cursor() as cursor:
+                    cursor.execute(
+                        f"INSERT INTO careerloop.conversations (id, user_id, created_at, updated_at) "
+                        f"VALUES (%s, %s, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) "
+                        f"ON CONFLICT (id) DO NOTHING",
+                        (conversation_id, user_id),
+                    )
+                conn.commit()
+                return True
+        except Exception as e:
+            logger.warning(f"save_conversation failed for user {user_id}: {e}")
+            return False
+
+    def save_message(
+        self,
+        user_id: str,
+        conversation_id: str,
+        role: str,
+        content: str,
+        action_type: str = None,
+        action_confidence: float = None,
+        artifact_context: dict = None,
+        response_envelope: dict = None,
+        tokens_used: int = None,
+    ) -> bool:
+        """Persist a single chat message to careerloop.messages."""
+        import uuid as _uuid
+        msg_id = str(_uuid.uuid4())
+        try:
+            with self.db_manager.get_connection() as conn:
+                with conn.cursor() as cursor:
+                    cursor.execute(
+                        f"INSERT INTO careerloop.messages "
+                        f"(id, conversation_id, user_id, role, content, "
+                        f" action_type, action_confidence, artifact_context, "
+                        f" response_envelope, tokens_used, created_at) "
+                        f"VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP)",
+                        (
+                            msg_id, conversation_id, user_id, role, content,
+                            action_type, action_confidence,
+                            json.dumps(artifact_context) if artifact_context else None,
+                            json.dumps(response_envelope) if response_envelope else None,
+                            tokens_used,
+                        ),
+                    )
+                conn.commit()
+                return True
+        except Exception as e:
+            logger.warning(f"save_message failed for user {user_id}: {e}")
+            return False
+
     def delete_session(self, user_id: str) -> bool:
         try:
             with self.db_manager.get_connection() as conn:

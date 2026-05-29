@@ -146,13 +146,14 @@ class DailyRunner:
         logger.info("dedup_completed", extra={"extra": {"run_id": run_id, "event": "dedup_completed", "unique": len(unique_jobs), "dupes": dupes}})
 
         # ── Step 4: Add to ledger ────────────────────────────────────
+        # NOTE: All jobs reaching this point passed the initial dedup
+        # check in Step 3 (line ~140).  No second is_duplicate check needed.
         print("📝 Step 4: Adding to ledger...")
         added = 0
         for job in unique_jobs:
             source = job.get("source", "unknown")
-            if not self.ledger.is_duplicate(url=job.get("url", "")):
-                self.ledger.add_job(job, source=source)
-                added += 1
+            self.ledger.add_job(job, source=source)
+            added += 1
         print(f"   {added} jobs added to ledger")
 
         logger.info("ledger_updated", extra={"extra": {"run_id": run_id, "event": "ledger_updated", "added": added}})
@@ -193,7 +194,11 @@ class DailyRunner:
 
         # ── Step 6: Shortlist ────────────────────────────────────────
         print("📋 Step 6: Generating shortlist...")
-        # Import India check for geo-guarding the shortlist
+        # Second geo guard: jobs that passed the initial India filter
+        # (filter_india_jobs at line ~113) are re-checked here because
+        # scored entries in the ledger may have been added during a
+        # previous run with different geo criteria, or may lack location
+        # data that is now available.
         from careerloop.india_filter import is_india_job as _india_guard
         scored_jobs = [
             {
@@ -236,6 +241,32 @@ class DailyRunner:
         with open(brief_path, 'w') as f:
             f.write(f"# Daily Brief — {today_str}\n\n")
             f.write(shortlist_text)
+
+        # Persist brief to DB so API can serve it (careerloop.daily_briefs table)
+        try:
+            from careerloop.memory.connection import get_db_manager
+            # Derive user_id from profile email (consistent with chat_cli.py authenticate_cli_user)
+            email = self.profile.base.get("candidate", {}).get("email", "") or self.profile.base.get("email", "")
+            if email:
+                NAMESPACE_CAREERLOOP = uuid.UUID('12345678-1234-5678-1234-567812345678')
+                user_id = str(uuid.uuid5(NAMESPACE_CAREERLOOP, email))
+                db = get_db_manager(self.root)
+                brief_id = str(uuid.uuid4())
+                with db.get_connection() as conn:
+                    with conn.cursor() as cur:
+                        cur.execute(
+                            "INSERT INTO careerloop.daily_briefs (id, user_id, date_str, run_id, summary) "
+                            "VALUES (%s, %s, %s, %s, %s) "
+                            "ON CONFLICT (user_id, date_str) DO UPDATE SET "
+                            "  run_id = EXCLUDED.run_id, summary = EXCLUDED.summary",
+                            (brief_id, user_id, today_str, run_id, shortlist_text),
+                        )
+                    conn.commit()
+                logger.info("brief_persisted_to_db", extra={"extra": {"brief_id": brief_id, "user_id": user_id}})
+            else:
+                logger.warning("No email in profile — cannot derive user_id, skipping DB persistence")
+        except Exception as e:
+            logger.warning(f"Failed to persist brief to DB: {e}")
 
         print()
         print(shortlist_text)
