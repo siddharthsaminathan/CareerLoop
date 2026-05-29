@@ -220,6 +220,12 @@ class ChatService:
                 if row.get("action_type"):
                     msg["action_type"] = row["action_type"]
                 messages.append(msg)
+            logger.info(
+                "CHAT_HISTORY_RESTORED user_id=%s messages=%d conversation_id=%s",
+                user_id[:12],
+                len(messages),
+                conv_id[:12] if conv_id else "none",
+            )
             return {
                 "messages": messages,
                 "state": session.state.value if hasattr(session.state, "value") else str(session.state),

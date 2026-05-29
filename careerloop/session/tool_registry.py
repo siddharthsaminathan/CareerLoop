@@ -905,6 +905,8 @@ class ToolRegistry:
 
     def prepare_application_pack(self, action: Action, state: UserJourneyState, context: Dict[str, Any]) -> ResponseEnvelope:
         import uuid
+        import threading
+
         job_id = context.get("active_job_id")
         if not job_id:
             return ResponseEnvelope(response_type="error", text="No job selected from brief.")
@@ -912,28 +914,135 @@ class ToolRegistry:
         pack_id = f"pack_{uuid.uuid4().hex[:8]}"
         run_id = uuid.uuid4().hex[:12]
 
-        # Register as background run
+        # Register background run as RUNNING immediately
         try:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
-                        "INSERT INTO careerloop.background_runs (run_id, user_id, run_type, status, started_at) VALUES (%s, %s, 'pack_generation', 'QUEUED', CURRENT_TIMESTAMP)",
+                        "INSERT INTO careerloop.background_runs (run_id, user_id, run_type, status, started_at) VALUES (%s, %s, 'pack_generation', 'RUNNING', CURRENT_TIMESTAMP)",
                         (run_id, action.user_id)
                     )
                     cur.execute(
-                        "INSERT INTO careerloop.run_events (event_id, run_id, message) VALUES (%s, %s, 'Application pack queued for generation.')",
+                        "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, 'Pack generation started', 'PACK_STARTED')",
                         (str(uuid.uuid4()), run_id)
                     )
         except Exception as e:
-            logger.error(f"Error queueing pack generation: {e}")
+            logger.error(f"Error registering pack background run: {e}")
+
+        # Launch daemon thread to actually assemble the pack (non-blocking)
+        def _pack_thread(run_id: str, user_id: str, job_id: str, pack_id: str):
+            """Run the full PackageAssembler in a daemon thread."""
+            import time
+            start_time = time.time()
+
+            try:
+                # 1. Load job data from DB
+                company_name = "Unknown Company"
+                job_title = "Unknown Role"
+                jd_text = ""
+                try:
+                    with self.db.get_connection() as conn:
+                        with conn.cursor() as cur:
+                            cur.execute(
+                                "SELECT title, company, description FROM careerloop.jobs WHERE id = %s",
+                                (job_id,)
+                            )
+                            job_row = cur.fetchone()
+                            if job_row:
+                                job_title = job_row.get("title") or job_title
+                                company_name = job_row.get("company") or company_name
+                                jd_text = job_row.get("description") or ""
+                except Exception as e:
+                    logger.warning(f"pack_thread: failed to load job {job_id}: {e}")
+
+                # 2. Load user profile / CV from session_store
+                user_profile = self.session_store._load_profile_data(user_id)
+                master_cv = user_profile.get("master_cv_markdown") or user_profile.get("cv_content") or ""
+
+                # 3. Build council_state for PackageAssembler
+                council_state = {
+                    "company": company_name,
+                    "job_title": job_title,
+                    "master_cv": master_cv,
+                    "application_pack": {
+                        "resume_markdown": master_cv,
+                        "cover_note": (
+                            f"Dear Hiring Team at {company_name},\n\n"
+                            f"I am writing to express my interest in the {job_title} position. "
+                            f"My background and experience align well with this role.\n\n"
+                            f"Please find my resume attached. I look forward to discussing "
+                            f"how I can contribute to {company_name}.\n\nBest regards,"
+                        ),
+                        "outreach_strategy_hint": "",
+                        "company_intelligence": {},
+                    }
+                }
+
+                # 4. Call PackageAssembler
+                from careerloop.package_assembly import PackageAssembler
+                assembler = PackageAssembler()
+                result = assembler.assemble_package(
+                    person_id=user_id,
+                    job_id=job_id,
+                    council_state=council_state,
+                )
+
+                elapsed = time.time() - start_time
+
+                # 5. Persist to application_packs table
+                with self.db.get_connection() as conn:
+                    with conn.cursor() as cur:
+                        cur.execute(
+                            "INSERT INTO careerloop.application_packs (pack_id, user_id, job_id, status, created_at) VALUES (%s, %s, %s, 'COMPLETED', CURRENT_TIMESTAMP)",
+                            (pack_id, user_id, job_id)
+                        )
+                        cur.execute(
+                            "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, 'PACK_COMPLETED')",
+                            (str(uuid.uuid4()), run_id, f"Pack generated in {elapsed:.1f}s at {result.get('pack_dir', 'unknown')}")
+                        )
+                        cur.execute(
+                            "UPDATE careerloop.background_runs SET status = 'COMPLETED', completed_at = CURRENT_TIMESTAMP WHERE run_id = %s",
+                            (run_id,)
+                        )
+
+                logger.info(
+                    "PACK_GENERATED user_id=%s pack_id=%s job_id=%s elapsed_ms=%d",
+                    user_id[:12] if user_id else "unknown",
+                    pack_id[:12],
+                    job_id[:12] if job_id else "unknown",
+                    int(elapsed * 1000),
+                )
+
+            except Exception as e:
+                logger.error(
+                    "PACK_FAILED user_id=%s pack_id=%s error=%s",
+                    user_id[:12] if user_id else "unknown",
+                    pack_id[:12],
+                    str(e)[:200],
+                )
+                try:
+                    with self.db.get_connection() as conn:
+                        with conn.cursor() as cur:
+                            cur.execute(
+                                "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, 'PACK_FAILED')",
+                                (str(uuid.uuid4()), run_id, str(e)[:500])
+                            )
+                            cur.execute(
+                                "UPDATE careerloop.background_runs SET status = 'FAILED', completed_at = CURRENT_TIMESTAMP WHERE run_id = %s",
+                                (run_id,)
+                            )
+                except Exception:
+                    pass
+
+        threading.Thread(target=_pack_thread, args=(run_id, action.user_id, job_id, pack_id), daemon=True).start()
 
         return ResponseEnvelope(
             response_type="document",
-            text="",
+            text=f"Generating your application pack for this role... I'll create your resume, cover note, and recruiter message. This takes about 30 seconds.",
             cards=[
                 {"label": "Pack ID", "value": pack_id},
                 {"label": "Job ID", "value": job_id},
-                {"label": "Status", "value": "QUEUED"},
+                {"label": "Status", "value": "GENERATING"},
                 {"label": "Run ID", "value": run_id},
             ],
             artifact_context_updates={
@@ -943,35 +1052,120 @@ class ToolRegistry:
             }
         )
 
+    def _apply_resume_edit(self, master_cv: str, instruction: str) -> str:
+        """Apply a surgical edit to a resume using DeepSeek."""
+        from careerloop.llm_chat import LLMChatAgent
+        agent = LLMChatAgent()
+        system = (
+            "You are a resume editor. Apply the user's requested change to their resume. "
+            "Make ONLY the requested change. Keep everything else identical. "
+            "Return the complete updated resume in markdown."
+        )
+        user = f"RESUME:\n{master_cv[:3000]}\n\nEDIT REQUEST: {instruction}\n\nReturn the complete updated resume:"
+        return agent._call_api(system, user)
+
     def edit_application_pack(self, action: Action, state: UserJourneyState, context: Dict[str, Any]) -> ResponseEnvelope:
         import uuid
-        instruction = action.parsed_args.get("instruction", "")
+        import threading
+        instruction = action.parsed_args.get("instruction", "") or "improve this resume"
         pack_id = context.get("active_pack_id")
-        if not pack_id:
+        job_id = context.get("active_job_id")
+
+        if not pack_id and not job_id:
             return ResponseEnvelope(response_type="error", text="No active application pack to edit.")
 
-        run_id = uuid.uuid4().hex[:12]
+        run_id = str(uuid.uuid4())
+
+        # Register as background run
         try:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
-                        "INSERT INTO careerloop.background_runs (run_id, user_id, run_type, status, started_at) VALUES (%s, %s, 'pack_edit', 'QUEUED', CURRENT_TIMESTAMP)",
+                        "INSERT INTO careerloop.background_runs (run_id, user_id, run_type, status, started_at) VALUES (%s, %s, 'resume_edit', 'RUNNING', CURRENT_TIMESTAMP)",
                         (run_id, action.user_id)
                     )
                     cur.execute(
-                        "INSERT INTO careerloop.run_events (event_id, run_id, message) VALUES (%s, %s, %s)",
-                        (str(uuid.uuid4()), run_id, f"Edit requested: {instruction}")
+                        "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, 'EDIT_STARTED')",
+                        (str(uuid.uuid4()), run_id, f"Resume edit: {instruction}")
                     )
         except Exception as e:
-            logger.error(f"Error queueing pack edit: {e}")
+            logger.error(f"Error starting resume edit: {e}")
+
+        def _edit_thread():
+            import time
+            edit_start = time.time()
+            try:
+                # Load user profile
+                profile = self.session_store._load_profile_data(action.user_id)
+                master_cv = profile.get("master_cv_markdown") or profile.get("cv_content") or ""
+                if not master_cv:
+                    raise ValueError("No resume found in your profile. Upload a CV first.")
+
+                # Apply the edit using the helper
+                updated_cv = self._apply_resume_edit(master_cv, instruction)
+
+                # Save back to profile (session_store)
+                session = self.session_store.get_session(action.user_id)
+                tp = session.temp_profile_data or {}
+                tp["cv_content"] = updated_cv
+                tp["master_cv_markdown"] = updated_cv
+                session.temp_profile_data = tp
+                self.session_store.save_session(session)
+
+                # Also update the users table
+                with self.db.get_connection() as conn:
+                    with conn.cursor() as cur:
+                        cur.execute(
+                            "UPDATE careerloop.users SET master_cv_markdown = %s, updated_at = CURRENT_TIMESTAMP WHERE id = %s",
+                            (updated_cv, action.user_id)
+                        )
+
+                with self.db.get_connection() as conn:
+                    with conn.cursor() as cur:
+                        cur.execute(
+                            "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, 'EDIT_COMPLETED')",
+                            (str(uuid.uuid4()), run_id, f"Resume updated: {instruction}")
+                        )
+                        cur.execute(
+                            "UPDATE careerloop.background_runs SET status = 'COMPLETED', completed_at = CURRENT_TIMESTAMP WHERE run_id = %s",
+                            (run_id,)
+                        )
+                edit_elapsed_ms = int((time.time() - edit_start) * 1000)
+                logger.info(
+                    "RESUME_EDIT user_id=%s instruction=%s elapsed_ms=%d",
+                    action.user_id[:12],
+                    instruction[:80],
+                    edit_elapsed_ms,
+                )
+            except Exception as e:
+                logger.error(
+                    "RESUME_EDIT_FAILED user_id=%s error=%s",
+                    action.user_id[:12],
+                    str(e)[:200],
+                )
+                try:
+                    with self.db.get_connection() as conn:
+                        with conn.cursor() as cur:
+                            cur.execute(
+                                "INSERT INTO careerloop.run_events (event_id, run_id, message, event_type) VALUES (%s, %s, %s, 'EDIT_FAILED')",
+                                (str(uuid.uuid4()), run_id, str(e)[:500])
+                            )
+                            cur.execute(
+                                "UPDATE careerloop.background_runs SET status = 'FAILED', completed_at = CURRENT_TIMESTAMP WHERE run_id = %s",
+                                (run_id,)
+                            )
+                except Exception:
+                    pass
+
+        threading.Thread(target=_edit_thread, daemon=True).start()
 
         return ResponseEnvelope(
             response_type="text",
-            text="",
+            text=f"Updating your resume: \"{instruction[:80]}...\"\n\nI'll apply this change and let you know when it's ready.",
             cards=[
-                {"label": "Pack ID", "value": pack_id},
-                {"label": "Instruction", "value": instruction},
-                {"label": "Status", "value": "QUEUED"},
+                {"label": "Edit", "value": instruction},
+                {"label": "Status", "value": "GENERATING"},
+                {"label": "Run ID", "value": run_id},
             ]
         )
 

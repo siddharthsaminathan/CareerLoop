@@ -158,6 +158,16 @@ class DailyRunner:
 
         logger.info("ledger_updated", extra={"extra": {"run_id": run_id, "event": "ledger_updated", "added": added}})
 
+        # Structured logging: scan completed
+        scan_elapsed_ms = int((datetime.now(timezone.utc) - datetime.fromisoformat(started_at)).total_seconds() * 1000)
+        logger.info(
+            "SCAN_COMPLETED user_id=%s jobs_found=%d new_jobs=%d elapsed_ms=%d",
+            brief_user_id,
+            len(new_raw_jobs),
+            added,
+            scan_elapsed_ms,
+        )
+
         # ── Step 5: Score ────────────────────────────────────────────
         print("🎯 Step 5: Scoring with India Fit Engine...")
         unscored = self.ledger.get_by_status("DISCOVERED")
@@ -232,6 +242,19 @@ class DailyRunner:
         shortlist_text = format_daily_shortlist(
             scored_jobs, follow_ups,
             user_name=self.profile.full_name.split()[0]
+        )
+
+        # Structured logging: brief generated
+        email = self.profile.base.get("candidate", {}).get("email", "") or self.profile.base.get("email", "")
+        brief_user_id = str(uuid.uuid5(uuid.UUID('12345678-1234-5678-1234-567812345678'), email))[:12] if email else "unknown"
+        elapsed_ms = int((datetime.now(timezone.utc) - datetime.fromisoformat(started_at)).total_seconds() * 1000)
+        logger.info(
+            "BRIEF_GENERATED user_id=%s date=%s items=%d run_id=%s elapsed_ms=%d",
+            brief_user_id,
+            today_str,
+            shortlist_count,
+            run_id,
+            elapsed_ms,
         )
 
         # Persist daily brief to disk so it can be retrieved later
