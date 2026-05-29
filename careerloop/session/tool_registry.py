@@ -158,6 +158,10 @@ class ToolRegistry:
             logger.error(f"Error loading profile: {e}")
 
         cv_preview = cv[:500] if cv else "No CV on file."
+        current_company = prefs.get("current_company", None) or "N/A"
+        current_ctc = prefs.get("current_ctc", None) or "N/A"
+        current_title = prefs.get("current_title", None) or "N/A"
+
         return ResponseEnvelope(
             response_type="card",
             text="",
@@ -168,6 +172,9 @@ class ToolRegistry:
                 {"label": "Salary", "value": str(salary_val)},
                 {"label": "Notice Period", "value": str(notice_val)},
                 {"label": "Mode", "value": str(mode_val)},
+                {"label": "Current Company", "value": str(current_company)},
+                {"label": "Current Title", "value": str(current_title)},
+                {"label": "Current CTC", "value": str(current_ctc)},
             ]
         )
 
@@ -862,6 +869,29 @@ class ToolRegistry:
                 company_name = job.get("company", "")
         except Exception:
             pass
+
+        if company_name:
+            try:
+                from careerloop.outreach_engine import OutreachEngine
+                engine = OutreachEngine()
+                leads = engine.discover_leads(company_name)
+                if leads:
+                    cards = []
+                    for lead in leads[:5]:
+                        name = lead.get("title", "Contact")
+                        url = lead.get("url", "")
+                        snippet = lead.get("snippet", "")
+                        label = name
+                        if snippet:
+                            label = f"{name} — {snippet[:100]}"
+                        cards.append({"label": label, "value": url})
+                    return ResponseEnvelope(
+                        response_type="card",
+                        text=f"Top contacts at {company_name}:",
+                        cards=cards,
+                    )
+            except Exception as e:
+                logger.warning(f"Outreach discovery failed: {e}")
 
         return ResponseEnvelope(
             response_type="card",

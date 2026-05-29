@@ -414,7 +414,7 @@ ACTIVE STATES:    All non-terminal, non-dormant
 
 | Phase | Systems | % of Vision | Est. Completion |
 |-------|---------|-------------|-----------------|
-| **Phase 0** (Delivery Foundation) | Transport, Supervisor, Checkpointer, Onboarding | ~10% | 12% scaffolded |
+| **Phase 0** (Delivery Foundation) | Transport, Supervisor, Checkpointer, Onboarding (7-step name-first: name → LinkedIn → identity card → CV → extraction → gap-fill → PROFILE_READY) | ~10% | 12% scaffolded |
 | **Phase 1** (Discovery + Pre-filter) | Discovery, Verification, India Fit Engine, Ledger | ~25% | 70% built |
 | **Phase 1.5** (Decision + Memory) | Triage UX, Career State Modes, A-G wrapper, Ledger migration | ~20% | 25% built |
 | **Phase 2** (Intelligence + Positioning) | Company Intel, Humanizer, Council hardening, Positioning engine | ~25% | 50% built (Company Intel + Humanizer live) |

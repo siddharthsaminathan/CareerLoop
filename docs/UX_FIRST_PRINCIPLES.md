@@ -20,7 +20,7 @@ The product has **two modes** with clear separation:
 
 ### User Journeys (MECE)
 
-1. **New user**: Landing → Login → OAuth → onAuthStateChange → ProtectedRoute detects onboarding_complete=false → redirect to /onboarding → onboarding chat → PROFILE_READY → refreshUser() → navigate /brief
+1. **New user**: Landing → Login → OAuth → onAuthStateChange → ProtectedRoute detects onboarding_complete=false → redirect to /onboarding → onboarding chat (7-step name-first flow: "What's your full name?" → LinkedIn lookup → identity card → CV → LLM extraction → gap-fill CTC+notice → PROFILE_READY) → refreshUser() → navigate /brief
 2. **Returning user (has brief)**: Login → ProtectedRoute → brief loads from cache → instant render
 3. **Returning user (needs scan)**: Login → "No brief yet" → tap "Go to Copilot" → type "/scan" → async scan with progress → "Brief ready!" → tap link → /brief
 4. **Existing user (wants re-scan)**: Copilot → "/scan" → scan → brief updates

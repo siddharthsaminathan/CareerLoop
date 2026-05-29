@@ -138,6 +138,11 @@ def execute_action_node(state: ConversationState) -> dict:
                             f"- Onboarding Complete: {user_row.get('onboarding_complete')}\n"
                             f"- Target Roles: {prefs.get('target_roles', 'N/A')}\n"
                             f"- Target Cities: {prefs.get('target_cities', 'N/A')}\n"
+                            f"- Current Company: {prefs.get('current_company', 'N/A')}\n"
+                            f"- Current Title: {prefs.get('current_title', 'N/A')}\n"
+                            f"- Current CTC: {prefs.get('current_ctc', 'N/A')}\n"
+                            f"- Notice Period: {prefs.get('notice_period', 'N/A')}\n"
+                            f"- Search Mode: {prefs.get('aggressiveness', 'N/A')}\n"
                         )
         except Exception as pe:
             logger.warning(f"Failed to load profile summary for general chat: {pe}")

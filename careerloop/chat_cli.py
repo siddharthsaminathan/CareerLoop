@@ -124,6 +124,10 @@ def get_profile_data(session) -> dict:
                 "salary_expectations": prefs.get("salary_expectations", ""),
                 "notice_period": prefs.get("notice_period", ""),
                 "aggressiveness": prefs.get("aggressiveness", ""),
+                "current_ctc": prefs.get("current_ctc", ""),
+                "current_company": prefs.get("current_company", ""),
+                "current_title": prefs.get("current_title", ""),
+                "linkedin_url": prefs.get("linkedin_url", ""),
             }
             return data
     except Exception as e:

@@ -46,6 +46,10 @@ fi
   echo "========================================"
 } >> "$LOGFILE"
 
+# --reload is for LOCAL DEV only. Removes it for production:
+# Production start (no reload, 4 workers):
+# .venv/bin/uvicorn careerloop_api.main:app --host 0.0.0.0 --port 8001 --workers 4 --log-level info >> "$LOGFILE" 2>&1 &
+
 # Start uvicorn, pipe stdout+stderr to log
 .venv/bin/uvicorn careerloop_api.main:app \
   --host 0.0.0.0 \

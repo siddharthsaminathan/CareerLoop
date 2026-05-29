@@ -81,6 +81,10 @@ class SessionStore:
                 "salary_expectations": salary,
                 "notice_period": notice,
                 "aggressiveness": aggro,
+                "current_ctc": prefs.get("current_ctc") or "",
+                "current_company": prefs.get("current_company") or "",
+                "current_title": prefs.get("current_title") or "",
+                "linkedin_url": prefs.get("linkedin_url") or row.get("linkedin_url") or "",
             }
         except Exception as e:
             logger.error(f"Failed to load profile data for state recovery: {e}")
@@ -170,6 +174,23 @@ class SessionStore:
                                 temp_profile_data = profile_data
                         except Exception as e:
                             logger.error(f"Profile recovery check failed: {e}")
+
+                    # Also check the explicit onboarding_complete flag (P1-06)
+                    if default_state == UserJourneyState.NEW_USER:
+                        try:
+                            with self.db_manager.get_connection() as conn:
+                                with conn.cursor() as cursor:
+                                    cursor.execute(
+                                        f"SELECT onboarding_complete FROM {self._tbl('users')} WHERE id = %s",
+                                        (user_id,)
+                                    )
+                                    onboard_row = cursor.fetchone()
+                            if onboard_row and onboard_row.get("onboarding_complete"):
+                                logger.info(f"Session recovery: user {user_id[:12]} has onboarding_complete=TRUE, upgrading to PROFILE_READY")
+                                default_state = UserJourneyState.PROFILE_READY
+                                temp_profile_data = profile_data or {}
+                        except Exception as e:
+                            logger.warning(f"Onboarding-complete check failed (non-fatal): {e}")
 
                     default_session = Session(
                         user_id=user_id,

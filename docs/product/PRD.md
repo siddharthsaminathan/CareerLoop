@@ -362,7 +362,7 @@ working together to turn openings into interviews.
 | System | Completion | Status | Notes |
 |--------|------------|--------|-------|
 | **Transport abstraction layer** | **65%** | 🟡 | Base + Terminal stubs. Echo fallback removed. Safe error messages. /brief + /scan + CommandRouter wired. |
-| **Multi-user onboarding** | **75%** | 🟢 | 3-user real E2E verified against Supabase + DeepSeek. 5 pillars extracted, CV→profile flow works, PROFILE_READY reached. _load_profile_data returns master_cv_markdown + has_cv. |
+| **Multi-user onboarding** | **75%** | 🟢 | 7-step name-first flow (see §22.5). Name → LinkedIn lookup → identity card → CV → LLM extraction → gap-fill (CTC + notice) → PROFILE_READY. 3-user E2E verified. CTC (current + expected) + notice_period + work_style_prefs stored in careerloop.users columns. |
 | **LangGraph Chatbot Orchestrator** | **85%** | 🟢 | 2-node pipeline. GENERAL_CHAT returns real LLM. ActionResolver context injection. Live scan rendering. Supabase-only. |
 | **PostgresSaver Checkpointer** | **20%** | 🔴 | SQLite sessions functional without Postgres. Dual-mode verified. Interrupt/resume proof still needed. |
 | **Application pack delivery** | **95%** | 🟢 | PackageAssembler + Playwright PDFs. E2E validated on real job. |
@@ -672,9 +672,15 @@ Every user has exactly one current state. The state machine is P0 — without it
 ### States
 
 ```
-IDLE
-ONBOARDING_WAITING_CV
-ONBOARDING_PROFILE_QUESTIONS
+IDLE                         — first message; asks "What's your full name?"
+ONBOARDING_WAITING_NAME      — waiting for user's full name
+ONBOARDING_LINKEDIN_LOOKUP   — running SerpAPI LinkedIn search
+ONBOARDING_IDENTITY_CONFIRM  — "Is this you?" card shown
+ONBOARDING_WAITING_CV        — waiting for CV paste or upload
+ONBOARDING_PROFILE_EXTRACT   — LLM extracts target_roles, cities, salary, notice_period
+ONBOARDING_EXTRACTION_CONFIRM — "Here's what I extracted. Correct?"
+ONBOARDING_GAP_FILL          — collecting current CTC, expected CTC, notice period
+PROFILE_READY                — onboarding complete; user enters daily brief
 DAILY_BRIEF_SENT
 REVIEWING_JOB
 AWAITING_JOB_DECISION
@@ -723,6 +729,96 @@ Daily brief sent
 - `PACK_GENERATING` invokes the Council subgraph with a complete `council_state`
 - interrupts pause and resume on a stable `thread_id`
 - failed subprocess tools return safe user-facing errors
+
+---
+
+## 22.5. Onboarding Flow (Canonical — 7 Steps)
+
+The onboarding flow is the first experience every user has with CareerLoop. It is strictly name-first, LinkedIn-lookup mandatory, with CV collection and CTC gap-fill following in deterministic order.
+
+### The 7-Step Flow
+
+```
+Step 1 — Name
+  System: "What's your full name?"
+  Action: User sends full name
+  → state = ONBOARDING_WAITING_NAME
+
+Step 2 — LinkedIn Lookup
+  System: Runs SerpAPI search for the name
+  Action: Fetches title, company, location, profile URL
+  Graceful degradation: If SERPAPI_KEY not configured, skip to Step 4 (ask for CV + LinkedIn URL manually)
+  → state = ONBOARDING_LINKEDIN_LOOKUP
+
+Step 3 — Identity Confirmation
+  System: Shows "Is this you?" card with name, headline, company, location, photo
+  Action: User responds YES or NO
+  → YES: pre-fill profile from LinkedIn data, proceed to Step 4 (ask for CV)
+  → NO: ask for CV + LinkedIn URL manually, proceed to Step 4
+  → state = ONBOARDING_IDENTITY_CONFIRM
+
+Step 4 — CV Collection
+  System: "Paste your CV or upload a file"
+  Action: User pastes CV text or uploads file
+  → state = ONBOARDING_WAITING_CV
+
+Step 5 — LLM Profile Extraction
+  System: Extracts structured data from CV via LLM:
+    - target_roles (array)
+    - target_cities (array)
+    - salary_expectations
+    - notice_period
+    - current_ctc
+  → state = ONBOARDING_PROFILE_EXTRACT
+
+Step 6 — Extraction Confirmation
+  System: "Here's what I extracted from your CV. Correct?"
+  Shows extracted fields as a structured card
+  Action: User confirms or corrects
+  → state = ONBOARDING_EXTRACTION_CONFIRM
+
+Step 7 — Gap-Fill (CTC + Notice Period)
+  System: Collects any missing required fields:
+    - current_ctc (numeric)
+    - expected_ctc (numeric)
+    - notice_period (days)
+  Action: User provides missing values
+  → state = ONBOARDING_GAP_FILL
+
+COMPLETE → state = PROFILE_READY
+  System: "Your profile is complete!"
+  All data persisted to careerloop.users (columns + work_style_prefs JSONB)
+```
+
+### Design Rules
+
+| Rule | Rationale |
+|------|-----------|
+| **Name first, always** | The first question is unconditionally "What's your full name?" Never ask for CV first. |
+| **LinkedIn lookup is mandatory** | Always attempt SerpAPI lookup after name. Fall back to manual CV+LinkedIn URL only if the API key is absent or lookup returns zero results. |
+| **CV after LinkedIn confirmation** | CV collection happens only after identity is confirmed. This prevents extracting profile data from a CV before knowing who the user is. |
+| **CTC is required** | Both current_ctc and expected_ctc must be collected before PROFILE_READY. This is not optional — it powers the comp-filtering layer. |
+| **Notice period is required** | Stored as integer days. Used for timeline-aware job matching. |
+| **All data goes to careerloop.users** | No filesystem storage. No session-only memory. Columns: `full_name`, `linkedin_url`, `current_ctc`, `expected_ctc`, `notice_period_days`. Extended preferences in `work_style_prefs` JSONB. |
+| **SERPAPI-configured vs not** | The flow handles both cases gracefully. With SerpAPI: Steps 1→2→3→4. Without SerpAPI: Steps 1→4 (skipping 2-3, asking for LinkedIn URL manually alongside CV). |
+| **No automatic profile creation** | The user must confirm every extracted field. The system never writes profile data without explicit user confirmation. |
+
+### Storage Contract
+
+On `PROFILE_READY`, the following is written to `careerloop.users`:
+
+| Column | Source | Required |
+|--------|--------|----------|
+| `full_name` | Step 1 (user input) | YES |
+| `linkedin_url` | Step 2 (SerpAPI) or Step 3-NO (manual) | YES |
+| `target_roles` | Step 5 (LLM extraction from CV) | YES |
+| `target_cities` | Step 5 (LLM extraction from CV) | YES |
+| `current_ctc` | Step 7 (gap-fill) or Step 5 (if in CV) | YES |
+| `expected_ctc` | Step 7 (gap-fill) or Step 5 (if in CV) | YES |
+| `notice_period_days` | Step 7 (gap-fill) or Step 5 (if in CV) | YES |
+| `master_cv_markdown` | Step 4 (raw CV text) | YES |
+| `work_style_prefs` (JSONB) | Derived from extraction + gap-fill | NO |
+| `onboarding_status` | Set to `profile_ready` | AUTO |
 
 ---
 

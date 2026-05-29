@@ -271,7 +271,7 @@ Turn infrastructure into habit-forming UX.
 |--------|---|--------|
 | Landing page | 20% | 🟡 |
 | Waitlist funnel | 0% | ⚫ |
-| User onboarding | 0% | ⚫ |
+| User onboarding (7-step name-first) | 0% | ⚫ |
 | WhatsApp conversational UX | 15% | 🔴 |
 | Weekly reports | 0% | ⚫ |
 | Daily rituals | 0% | ⚫ |
@@ -358,15 +358,25 @@ The product becomes real only when this loop works end-to-end for one user.
 
 | Build | File |
 |-------|------|
-| Onboarding flow | `careerloop/onboarding/onboarding_flow.py` |
+| Onboarding flow (7-step name-first) | `careerloop/onboarding/onboarding_flow.py` |
+| LinkedIn identity lookup | `careerloop/onboarding/linkedin_lookup.py` |
 | CV upload handler | `careerloop/onboarding/document_upload_handler.py` |
-| Profile questionnaire (5 questions) | `careerloop/onboarding/profile_questionnaire.py` |
+| LLM profile extractor | `careerloop/onboarding/profile_extractor.py` |
+| Gap-fill (CTC + notice) | `careerloop/onboarding/gap_fill.py` |
 | Person config generator | `careerloop/onboarding/person_config_generator.py` |
 
-**5 onboarding questions:** role targets, location, salary floor, notice period, career mode (Hunt/Upgrade/Explore/Emergency)
+**7-step onboarding flow (name-first, canonical):**
+1. Name ("What's your full name?")
+2. LinkedIn lookup via SerpAPI
+3. Identity confirmation ("Is this you?" card)
+4. CV collection (paste or upload)
+5. LLM profile extraction (target_roles, cities, salary, notice_period)
+6. Extraction confirmation ("Correct?")
+7. Gap-fill: current CTC, expected CTC, notice period
 
 **Success criteria:**
-- New WhatsApp/Telegram user sends start → uploads CV → answers 5 questions → profile created → mock brief received
+- New web user logs in → asked for full name → LinkedIn identity card shown → pastes CV → LLM extraction confirmed → CTC gap-fill → PROFILE_READY reached
+- All data persisted to careerloop.users columns + work_style_prefs JSONB
 - No code changes required for new user
 
 ---

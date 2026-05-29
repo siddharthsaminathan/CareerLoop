@@ -11,7 +11,7 @@ logger = logging.getLogger("careerloop.onboarding.onboarding_flow")
 
 REQUIRED_FIELDS = [
     "target_roles", "target_cities", "salary_expectations",
-    "notice_period", "aggressiveness",
+    "notice_period", "current_ctc",
 ]
 
 # Step constants — stored in sessions.onboarding_step
@@ -28,13 +28,16 @@ class OnboardingFlow:
     """
     Handles new-user onboarding from first message through PROFILE_READY.
 
-    LinkedIn-first path (when SERPAPI_KEY is configured):
-        IDLE → ask name → IDENTIFYING → SerpAPI search + name-match filter →
-        PROFILE_CONFIRMATION ("Is this you?") → confirm → WAITING_CV → ... → PROFILE_READY
+    LinkedIn-first path (ALWAYS):
+        IDLE → ask name → IDENTIFYING → SerpAPI LinkedIn lookup →
+        PROFILE_CONFIRMATION ("Is this you?") → confirm → hydrated →
+        WAITING_CV ("paste CV") → extract → CONFIRMING →
+        COLLECTING (current CTC, expected CTC, notice period, etc.) →
+        PROFILE_READY
 
-    CV-first path (fallback when SerpAPI not configured, or no LinkedIn match):
-        IDLE → ask for CV → WAITING_CV → extract → CONFIRMING → confirm → PROFILE_READY
-        Gap-fill loop via COLLECTING if any required field is missing.
+    Manual path (user rejects LinkedIn or lookup fails):
+        IDLE → ask name → IDENTIFYING → lookup fails/rejected →
+        ask for CV + LinkedIn URL → WAITING_CV → ... same as above
 
     Key design decisions:
     - portals.yml is NEVER mutated here (multi-user unsafe)
@@ -61,7 +64,7 @@ class OnboardingFlow:
 
         # Route by step
         if step == STEP_IDLE:
-            return self._handle_idle(session)
+            return self._handle_idle(session, text)
         if step == STEP_WAITING_CV:
             return self._handle_waiting_cv(session, text, data)
         if step == STEP_CONFIRMING:
@@ -79,27 +82,22 @@ class OnboardingFlow:
 
     # ── Step handlers ─────────────────────────────────────────────────────────
 
-    def _handle_idle(self, session: Session) -> Tuple[str, UserJourneyState]:
+    def _handle_idle(self, session: Session, text: str = "") -> Tuple[str, UserJourneyState]:
         session.temp_profile_data = {}
-        # LinkedIn-first when SerpAPI is configured; CV-first otherwise.
-        if self.identity.is_configured:
+        cleaned = text.strip()
+        # P0-04: If user already typed their name in the first message, go straight to identifying
+        if cleaned and len(cleaned) < 80:
             session.onboarding_step = STEP_IDENTIFYING
             self._save(session)
-            reply = (
-                "Welcome to CareerLoop! I'm your AI career execution partner.\n\n"
-                "Let's get you set up in under a minute. **What's your full name?** "
-                "I'll find your LinkedIn profile and pre-fill everything.\n\n"
-                "_(Prefer to skip? Just paste your CV/resume text instead.)_"
-            )
-            return reply, UserJourneyState.NEW_USER
+            return self._handle_identifying(session, cleaned, {})
 
-        session.onboarding_step = STEP_WAITING_CV
+        session.onboarding_step = STEP_IDENTIFYING
         self._save(session)
         reply = (
             "Welcome to CareerLoop! I'm your AI career execution partner.\n\n"
-            "Let's get your profile set up in under a minute.\n\n"
-            "Please paste your CV/resume text here, or upload it as a PDF or DOCX file. "
-            "I'll extract your details automatically."
+            "Let's get you set up in under a minute. **What's your full name?** "
+            "I'll find your LinkedIn profile to pre-fill everything.\n\n"
+            "_(Prefer to skip? Just paste your CV/resume text instead.)_"
         )
         return reply, UserJourneyState.NEW_USER
 
@@ -211,6 +209,9 @@ class OnboardingFlow:
             "target_roles": candidate.target_roles,
             "target_cities": candidate.target_cities,
             "cv_content": candidate.cv_content,
+            "linkedin_url": candidate.linkedin_url,
+            "current_company": candidate.current_company,
+            "current_title": getattr(candidate, "headline", ""),
         }
         data["_identity_card"] = candidate.to_card()
         if candidate.full_name:
@@ -238,9 +239,10 @@ class OnboardingFlow:
 
         if text_lower in affirmative or text_lower.startswith("yes"):
             candidate = data.pop("_identity_candidate", {}) or {}
-            data.pop("_identity_card", None)
-            # Hydrate from the LinkedIn profile
-            for k in ("full_name", "target_roles", "target_cities", "cv_content"):
+            linkedin_card = data.pop("_identity_card", None)
+            # Hydrate from the LinkedIn profile — including linkedin_url, current_company, current_title
+            for k in ("full_name", "target_roles", "target_cities", "cv_content",
+                      "linkedin_url", "current_company", "current_title"):
                 if candidate.get(k):
                     data[k] = candidate[k]
             session.temp_profile_data = data
@@ -248,23 +250,23 @@ class OnboardingFlow:
             self._save(session)
             return (
                 f"Great — I've pre-filled your profile from LinkedIn, {data.get('full_name', 'there')}!\n\n"
-                "To sharpen your applications, **paste your CV/resume** (or upload a PDF/DOCX). "
-                "If you'd rather skip, just reply **skip** and I'll continue with what I have.",
+                "Now, **paste your CV/resume** (or upload a PDF/DOCX) so I can extract your full details.\n\n"
+                "Type **skip** if your LinkedIn profile already covers everything you need.",
                 UserJourneyState.NEW_USER,
             )
 
         if text_lower in {"skip"}:
             return self._proceed_after_linkedin(session, data)
 
-        # Rejected → manual CV path
+        # Rejected → manual path: ask for CV + LinkedIn URL
         data.pop("_identity_candidate", None)
         data.pop("_identity_card", None)
         session.temp_profile_data = data
         session.onboarding_step = STEP_WAITING_CV
         self._save(session)
         return (
-            "No problem. Please paste your CV/resume text or upload a PDF/DOCX, "
-            "and I'll set up your profile from that.",
+            "No problem. Please paste your CV/resume text (or upload a PDF/DOCX) "
+            "**AND your LinkedIn URL** so I can look you up manually.",
             UserJourneyState.NEW_USER,
         )
 
@@ -324,9 +326,9 @@ class OnboardingFlow:
             f"Here's what I've got:\n"
             f"• **Roles:** {data.get('target_roles', 'N/A')}\n"
             f"• **Cities:** {data.get('target_cities', 'N/A')}\n"
-            f"• **Salary:** {data.get('salary_expectations', 'N/A')}\n"
-            f"• **Notice:** {data.get('notice_period', 'N/A')}\n"
-            f"• **Mode:** {data.get('aggressiveness', 'N/A')}\n\n"
+            f"• **Current CTC:** {data.get('current_ctc', 'N/A')}\n"
+            f"• **Expected CTC:** {data.get('salary_expectations', 'N/A')}\n"
+            f"• **Notice Period:** {data.get('notice_period', 'N/A')}\n\n"
             "You're all set! Ask me for your daily briefing or type /scan to find new roles."
         )
         return reply, UserJourneyState.PROFILE_READY
@@ -346,10 +348,18 @@ class OnboardingFlow:
         field_labels = {
             "target_roles": "Roles",
             "target_cities": "Cities",
-            "salary_expectations": "Salary",
-            "notice_period": "Notice",
-            "aggressiveness": "Mode",
+            "salary_expectations": "Expected CTC",
+            "notice_period": "Notice Period",
+            "current_ctc": "Current CTC",
         }
+        # Show LinkedIn-derived fields if available
+        if data.get("linkedin_url"):
+            lines.append(f"• **LinkedIn:** {data['linkedin_url']}")
+        if data.get("current_company"):
+            lines.append(f"• **Current Company:** {data['current_company']}")
+        if data.get("current_title"):
+            lines.append(f"• **Current Role:** {data['current_title']}")
+
         for field, label in field_labels.items():
             val = data.get(field) or extracted.get(field) or "—"
             lines.append(f"• **{label}:** {val}")
@@ -386,7 +396,9 @@ class OnboardingFlow:
 
                     cv_content = clean(profile_data.get("cv_content")) or existing.get("master_cv_markdown") or ""
                     merged_prefs = dict(existing_prefs)
-                    for key in ["target_roles", "target_cities", "salary_expectations", "notice_period", "aggressiveness"]:
+                    for key in ["target_roles", "target_cities", "salary_expectations",
+                                "notice_period", "current_ctc", "linkedin_url",
+                                "current_company", "current_title"]:
                         next_value = clean(profile_data.get(key))
                         if next_value is not None:
                             merged_prefs[key] = next_value
@@ -399,6 +411,7 @@ class OnboardingFlow:
                     """, (user_id, f"user_{user_id}@careerloop.internal", clean(profile_data.get("full_name")) or "User"))
 
                     # Write to both canonical columns AND work_style_prefs JSONB
+                    # current_ctc is stored in JSONB only (not a dedicated column)
                     cur.execute(f"""
                         UPDATE {self.session_store._tbl('users')}
                         SET master_cv_markdown   = %s,
@@ -407,7 +420,7 @@ class OnboardingFlow:
                             target_cities        = %s,
                             salary_expectations  = %s,
                             notice_period        = %s,
-                            career_mode          = %s,
+                            linkedin_url         = %s,
                             onboarding_complete  = TRUE,
                             full_name            = COALESCE(NULLIF(full_name, 'Unknown User'), NULLIF(full_name, 'User'), %s, full_name),
                             updated_at           = CURRENT_TIMESTAMP
@@ -419,7 +432,7 @@ class OnboardingFlow:
                         clean(profile_data.get("target_cities")),
                         clean(profile_data.get("salary_expectations")),
                         clean(profile_data.get("notice_period")),
-                        clean(profile_data.get("aggressiveness")),
+                        clean(profile_data.get("linkedin_url")),
                         clean(profile_data.get("full_name")),
                         user_id,
                     ))
