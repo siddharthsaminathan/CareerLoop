@@ -36,6 +36,8 @@ import time
 import uuid
 from typing import Generator, Optional
 
+from careerloop.policies import is_india_location
+
 from careerloop_api.core.envelope import APIError
 
 logger = logging.getLogger("careerloop_api.services.scan")
@@ -349,6 +351,17 @@ def _build_from_cache(user_id: str, db, limit: int = 10) -> list:
                     LEFT JOIN careerloop.user_job_relationships r
                         ON r.job_id::text = j.job_id::text AND r.user_id::text = %s
                     WHERE COALESCE(j.status, 'active') = 'active'
+                      AND (j.location ILIKE '%india%'
+                           OR j.location ILIKE '%bangalore%'
+                           OR j.location ILIKE '%bengaluru%'
+                           OR j.location ILIKE '%chennai%'
+                           OR j.location ILIKE '%mumbai%'
+                           OR j.location ILIKE '%delhi%'
+                           OR j.location ILIKE '%hyderabad%'
+                           OR j.location ILIKE '%pune%'
+                           OR j.location ILIKE '%gurgaon%'
+                           OR j.location ILIKE '%noida%'
+                           OR j.location IS NULL)
                     ORDER BY COALESCE(r.fit_score, 0) DESC, j.scraped_at DESC NULLS LAST
                     LIMIT %s
                     """,
@@ -397,6 +410,7 @@ def _execute_scan_more(user_id: str, run_id: str, db):
     import json as _json
     import subprocess
     import time as _time
+    # Location filter already imported at module top (careerloop.policies.is_india_location)
 
     root = os.path.realpath(os.path.join(os.path.dirname(__file__), "..", ".."))
 
@@ -487,6 +501,24 @@ def _execute_scan_more(user_id: str, run_id: str, db):
         seen_keys.add(key)
         matched = _matches_targets(title, target_roles)
         if matched:
+            # P0: Location filter — reject non-India jobs
+            loc = (ev.get("location") or "").strip()
+            url = (ev.get("url") or ev.get("apply_url") or "").strip()
+            if loc:
+                is_india, reason = is_india_location(loc)
+                if not is_india:
+                    reject_payload = {
+                        "event": "JOB_EVALUATED",
+                        "job_title": title,
+                        "company": company,
+                        "location": loc,
+                        "fit_score": 0,
+                        "rejection_reason": f"Non-India location: {reason}",
+                    }
+                    with db.get_connection() as conn:
+                        with conn.cursor() as cur:
+                            _emit(cur, run_id, f"✗ {title} @ {company} — non-India location: {loc}", "JOB_EVALUATED", reject_payload)
+                    continue
             net_new.append(ev)
             eval_payload = {
                 "event": "JOB_EVALUATED",
@@ -661,6 +693,20 @@ def _execute_scan(user_id: str, run_id: str, db):
     import re
     from datetime import datetime, timezone
     from careerloop.daily_runner import DailyRunner
+
+    # P0: Prevent duplicate scan while another is running for this user
+    try:
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "SELECT COUNT(*) FROM careerloop.background_runs WHERE user_id = %s AND run_type = 'scan' AND status = 'RUNNING' AND run_id != %s",
+                    (user_id, run_id),
+                )
+                if cur.fetchone()[0] > 0:
+                    _mark_scan_failed(run_id, user_id, "Concurrent scan prevented")
+                    return
+    except Exception:
+        pass
 
     # scan_service.py lives at careerloop_api/services/ → go up 2 levels to repo root
     root = os.path.realpath(os.path.join(os.path.dirname(__file__), "..", ".."))
