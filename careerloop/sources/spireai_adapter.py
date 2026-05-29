@@ -4,6 +4,10 @@ Spire AI career portal adapter.
 Spire AI (spire2grow.com) is used by Indian companies like Myntra.
 Discovery: GET /ies/v1/p/workspaceId?domain={career_page_domain}
 Jobs:       GET /ies/v1/p/requisition/_search with workspaceid header
+
+Phase placement: Phase C (ATS portal scrape) — NOT Phase B (job boards).
+Requires a company career_page_url input — no role/city searchable API.
+Wire via Phase A company discovery → Phase C portal scrape once Phase A is re-enabled.
 """
 
 import logging

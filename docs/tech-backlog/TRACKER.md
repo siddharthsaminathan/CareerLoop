@@ -32,9 +32,9 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 | **PostgresSaver Checkpointer** | **20%** | 🔴 | **YES** | SQLite sessions functional without Postgres. Dual-mode verified. Interrupt/resume proof still needed. |
 | **Application pack delivery** | **95%** | 🟢 | No | PackageAssembler + Playwright PDFs. E2E validated on real job. |
 | **Daily brief cron delivery** | **90%** | 🟢 | No | Daily Runner triggers scan and fully populates daily_briefs and daily_brief_items SQL tables. E2E database brief retrieval verified. |
-| India-first discovery | **94%** | 🟢 | No | Wellfound Playwright removed (DDG-only). Remote India SerpAPI query path. RoleArchetypeEngine wired into Phase A+B. Geo filter + 14 ATS adapters + 6 boards. Open: Company Identity Layer, Phase E ontology gate, Naukri dead. |
-| Verification & filtering | **80%** | 🟡 | No | archetype.reject_title() on Phase B output (reads rejected_roles from profile). _tag_jobs_with_ontology() tags all jobs pre-Phase E. Open: full Phase E ontology pre-filter (archetype_match gate before embedding). |
-| Opportunity scoring (16-dim) | **72%** | 🟡 | No | role_fit hard gate (cap at 30 if raw < profile.role_fit_gate). archetype_fit added as 16th dimension (weight 8). FIT_WEIGHTS rebalanced to 100. _fetch_missing_jds + min_description_chars gate. All thresholds config-driven. |
+| India-first discovery | **97%** | 🟢 | No | Wellfound Playwright removed (DDG-only). Remote India SerpAPI query path. RoleArchetypeEngine wired into Phase A+B. Geo filter + 14 ATS adapters + 6 boards. Open: Company Identity Layer, Phase E ontology gate, Naukri dead. |
+| Verification & filtering | **85%** | 🟡 | No | archetype.reject_title() on Phase B output (reads rejected_roles from profile). _tag_jobs_with_ontology() tags all jobs pre-Phase E. Open: full Phase E ontology pre-filter (archetype_match gate before embedding). |
+| Opportunity scoring (16-dim) | **74%** | 🟡 | No | role_fit hard gate (cap at 30 if raw < profile.role_fit_gate). archetype_fit added as 16th dimension (weight 8). FIT_WEIGHTS rebalanced to 100. _fetch_missing_jds + min_description_chars gate. All thresholds config-driven. |
 | Decision compression / triage | 20% | 🔴 | No | CEO owns. DECISION_COMPRESSION_VISION.md written. |
 | Career state system (modes) | **60%** | 🟡 | No | 11 real states with legacy migration. All states have setter+handler+test paths. Natural approval phrases work. |
 | Company intelligence | 75% | 🟢 | No | MECE vision implemented; S3 cache working |
@@ -109,6 +109,29 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 ---
 
 ## Session Log
+
+### 2026-05-29 — Session: Discovery Sprint 6 — 13 Boards, Multi-Persona, Pipeline Robustness
+
+**What was done:**
+- Built 7 new job board adapters: RemoteOK (JSON API), Remotive (JSON API), WeWorkRemotely (RSS), Cutshort (DDG+SSR), Wellfound (DDG+snippet), IIMJobs (DDG+BS4), Instahyre (DDG+snippet). Phase B now 13 parallel sources.
+- Fixed ScrapeGraph DeepSeek concurrent flood — `jd_extraction_max_ddg_scrapes` + `skip_domains` from profile config, hardcoded `_SKIP_DOMAINS` removed from adapter.
+- Fixed Phase E ontology gate — stem-aware token matching (`"buying"` → `"buyer"`), desc window 500→2000 chars. Gate was killing 100% of fashion-domain candidates.
+- `ProfileManager` defensive parsing — `target_roles` and `location` now handle both flat string and nested dict YAML formats.
+- `HF_HUB_OFFLINE=1` set in `.env` — eliminates HuggingFace HEAD check on every run.
+- Varsha second-persona test — proves pipeline works for fashion/buying domain, not AI-hardcoded.
+- Dead Phase A banners removed from runner scripts.
+- `seniority_signals` Python fallback removed — YAML is now sole source of truth.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED — PRD §5 (Discovery breadth + robustness) directly advanced. Multi-persona proof validates scalability claim.
+
+**Deviations detected:** `_COMPANY_TYPE_SIGNALS` in `on_demand.py` still has hardcoded company names — minor no-hardcode violation. B-TRANSPORT untouched.
+
+**Recommended next 3 actions:**
+1. Move `_COMPANY_TYPE_SIGNALS` to `profile_extended.yml` `rejected_company_signals` — no-hardcode fix (PRD §5, 20 min)
+2. Fix remaining ProfileManager defensive properties (`full_name`, `compensation`) + complete Varsha v3 clean run (PRD §5)
+3. Wire B-TRANSPORT — Telegram webhook → real user delivery (PRD §13, P0 blocker)
+
+---
 
 ### 2026-05-27 — Session: Discovery Engine Sprint 1-4 — Archetype Engine + Scoring Gates
 

@@ -40,11 +40,6 @@ EXTRACTION_PROMPT = """Extract job posting details from this page text. Return O
 }
 Use empty string or empty list for missing fields. Do NOT invent content."""
 
-# Skip domains that block scrapers and waste time
-_SKIP_DOMAINS = frozenset([
-    "linkedin.com", "glassdoor.com", "ambitionbox.com",
-])
-
 
 def _clean_html(html: str) -> str:
     """Strip tags and collapse whitespace. Returns plain text."""
@@ -83,12 +78,6 @@ class ScrapeGraphAdapter:
         """
         if not self.available:
             logger.debug("[ScrapeGraph] No DEEPSEEK_API_KEY — skipping")
-            return None
-
-        from urllib.parse import urlparse
-        domain = urlparse(url).netloc.lower().lstrip("www.")
-        if any(skip in domain for skip in _SKIP_DOMAINS):
-            logger.debug(f"[ScrapeGraph] Skipping blocked domain: {domain}")
             return None
 
         # 1. Fetch page content

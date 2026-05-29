@@ -41,7 +41,7 @@ def _tag_jobs_with_ontology(jobs: list[dict], archetype: "RoleArchetype", senior
     Tags stored under job['_ontology']. All signals from profile config — zero hardcoding."""
     for job in jobs:
         title_lc = (job.get("title") or "").lower()
-        desc_lc = (job.get("description") or "").lower()[:500]
+        desc_lc = (job.get("description") or "").lower()[:2000]
         combined = title_lc + " " + desc_lc
 
         # Seniority — signals come from profile_extended.yml seniority_signals
@@ -51,10 +51,19 @@ def _tag_jobs_with_ontology(jobs: list[dict], archetype: "RoleArchetype", senior
                 seniority = level
                 break
 
-        # Role archetype match score (fraction of must_have tokens present)
+        # Role archetype match score — stem-aware: "buying" matches "buyer", "merchandising" matches "merchandiser"
         must = archetype.must_have or []
+        def _token_present(token: str, text: str) -> bool:
+            t = token.lower()
+            if t in text:
+                return True
+            # stem: strip trailing -ing/-er/-ment/-ion suffixes for fuzzy match
+            for suffix in ("ing", "er", "ment", "ion", "ise", "ize", "al"):
+                if t.endswith(suffix) and t[:-len(suffix)] and t[:-len(suffix)] in text:
+                    return True
+            return False
         archetype_match = (
-            sum(1 for m in must if m.lower() in combined) / len(must)
+            sum(1 for m in must if _token_present(m, combined)) / len(must)
             if must else 0.5
         )
 
@@ -164,6 +173,7 @@ class OnDemandSearch:
         portal_companies: int = 20,
         include_boards: bool = True,
         force_refresh: bool = False,
+        include_phase_a: bool = True,
     ) -> OnDemandResult:
         """Run a targeted discovery pass. Returns top-N ranked jobs."""
         import time
@@ -223,6 +233,9 @@ class OnDemandSearch:
 
         # Compute archetype once — used for query enrichment, Phase A hint, Phase B filter
         archetype = self._archetype_engine.get_archetype(role)
+        print(f"  [Archetype] role='{role}' | function={archetype.function_type!r} | market={archetype.market_type!r}", flush=True)
+        print(f"  [Archetype] must_have={archetype.must_have}", flush=True)
+        print(f"  [Archetype] avoid={archetype.avoid[:8]}", flush=True)
 
         # Prepend archetype-enriched queries to strengthen board retrieval signal
         arch_constraint = archetype.to_query_constraint()
@@ -232,26 +245,35 @@ class OnDemandSearch:
                 f'{arch_constraint} hiring {city} 2025',
             ]
             queries = archetype_queries + queries
+        print(f"  [Queries] {len(queries)} board queries: {queries[:4]}", flush=True)
 
         all_jobs: list[dict] = []
 
         # 2. Phase A — Employer discovery (primary) + portal scrape
-        try:
-            print(f"  [Phase A] discovering companies for '{role}' in {city}...", flush=True)
-            ranked_companies = self._discover_and_rank(role, city, portal_companies)
-            if ranked_companies:
-                result.notes.append(f"Phase A: live discovery OK — {len(ranked_companies)} companies")
-                print(f"  [Phase A] found {len(ranked_companies)} companies. scraping portals...", flush=True)
-            else:
-                result.notes.append("Phase A: live discovery returned 0 companies — skipping portal layer")
-                print(f"  [Phase A] 0 companies found.", flush=True)
-            result.targeted_companies = [rc.company.name for rc in ranked_companies]
-            portal_jobs = self._scrape_targeted_companies(ranked_companies)
-            print(f"  [Phase A] portal scrape done — {len(portal_jobs)} jobs", flush=True)
-            all_jobs.extend(portal_jobs)
-        except Exception as e:
-            result.notes.append(f"Phase A FAILED: {e}")
-            logger.warning(f"[OnDemand] Phase A failed: {e}")
+        #    Controlled by include_phase_a flag. Set False to run Phase B→G only
+        #    (recommended until Company Identity Layer is built — see SEARCH_VISION.md Sprint 7+)
+        if include_phase_a:
+            try:
+                print(f"  [Phase A] discovering companies for '{role}' in {city}...", flush=True)
+                ranked_companies = self._discover_and_rank(role, city, portal_companies)
+                if ranked_companies:
+                    result.notes.append(f"Phase A: live discovery OK — {len(ranked_companies)} companies")
+                    print(f"  [Phase A] found {len(ranked_companies)} companies. scraping portals...", flush=True)
+                else:
+                    result.notes.append("Phase A: live discovery returned 0 companies — skipping portal layer")
+                    print(f"  [Phase A] 0 companies found.", flush=True)
+                result.targeted_companies = [rc.company.name for rc in ranked_companies]
+                portal_jobs = self._scrape_targeted_companies(ranked_companies)
+                for j in portal_jobs:
+                    j.setdefault("_phase", "A")
+                print(f"  [Phase A] portal scrape done — {len(portal_jobs)} jobs", flush=True)
+                all_jobs.extend(portal_jobs)
+            except Exception as e:
+                result.notes.append(f"Phase A FAILED: {e}")
+                logger.warning(f"[OnDemand] Phase A failed: {e}")
+        else:
+            print(f"  [Phase A] DETACHED — skipping employer discovery (Phase B→G mode)", flush=True)
+            result.notes.append("Phase A: detached (include_phase_a=False)")
 
         # 3. Job boards (DDG + JobSpy) — bounded
         if include_boards and queries:
@@ -259,26 +281,31 @@ class OnDemandSearch:
                 print(f"  [Phase B] searching job boards (parallel)...", flush=True)
                 board_jobs = self._board_search(queries[:6], role=role, city=city)
                 # Archetype filter: reject titles that match the user's avoided role signals
+                for j in board_jobs:
+                    j.setdefault("_phase", "B")
                 pre_arch = len(board_jobs)
                 board_jobs = [j for j in board_jobs if not archetype.reject_title(j.get("title", ""))]
                 arch_dropped = pre_arch - len(board_jobs)
-                print(f"  [Phase B] boards done — {len(board_jobs)} jobs (archetype dropped {arch_dropped})", flush=True)
-                # M2: report per-source health
+                # M2: report per-source health immediately
                 if hasattr(self, "_last_board_health"):
                     health_str = " | ".join(f"{k}:{v}" for k, v in sorted(self._last_board_health.items()))
+                    print(f"  [Phase B] per-source: {health_str}", flush=True)
                     result.notes.append(f"board health: {health_str}")
+                print(f"  [Phase B] boards done — {len(board_jobs)} jobs (archetype title-rejected {arch_dropped})", flush=True)
                 all_jobs.extend(board_jobs)
             except Exception as e:
                 result.notes.append(f"board search error: {e}")
                 logger.warning(f"[OnDemand] Board search failed: {e}")
 
         result.candidate_count = len(all_jobs)
+        print(f"  [Pipeline] total raw candidates: {len(all_jobs)} (A:{sum(1 for j in all_jobs if j.get('_phase')=='A')} + B:{sum(1 for j in all_jobs if j.get('_phase')=='B')})", flush=True)
 
         # Tag all jobs with ontology dimensions (function, market, archetype, seniority)
         _tag_jobs_with_ontology(all_jobs, archetype, self.profile.seniority_signals)
 
         # 4. India filter
         india_filtered, _ = filter_india_jobs(all_jobs)
+        print(f"  [Filter] India filter: {len(all_jobs)} → {len(india_filtered)}", flush=True)
 
         # BUG-006: Drop recruiter/staffing agency postings before role filter
         _RECRUITER_PATTERNS = [
@@ -332,16 +359,19 @@ class OnDemandSearch:
             if j.get("_ontology", {}).get("archetype_match", 0.5) >= arch_gate
         ]
         ont_dropped = pre_ontology - len(ontology_filtered)
+        print(f"  [Phase E] ontology gate (archetype_match>={arch_gate}): {pre_ontology} → {len(ontology_filtered)} ({ont_dropped} dropped)", flush=True)
         if ont_dropped:
             result.notes.append(f"ontology gate: dropped {ont_dropped} jobs (archetype_match<{arch_gate})")
 
         # Phase E — Role relevance filter (embedding similarity + profile rejection)
+        print(f"  [Phase E] role similarity filter: {len(ontology_filtered)} candidates...", flush=True)
         relevant, rejected_count = self._role_filter.filter_jobs(
             ontology_filtered,
             target_role=role,
             target_functions=self.profile.target_functions or [],
             rejected_roles=self.profile.rejected_roles or [],
         )
+        print(f"  [Phase E] role filter done: {len(ontology_filtered)} → {len(relevant)} relevant ({rejected_count} rejected)", flush=True)
         result.notes.append(f"role filter: {len(ontology_filtered)} → {len(relevant)} relevant ({rejected_count} rejected)")
 
         # 5. Canonical dedup
@@ -411,9 +441,13 @@ class OnDemandSearch:
 
         # 9. FIX 20: LLM validator — DeepSeek pass to reject hardware/intern/bodyshop jobs
         #    that slipped past embedding filter. Runs on pre-filtered top-60 to save tokens.
+        print(f"  [Phase F] LLM validator (DeepSeek): validating top-{min(60, len(capped))} jobs...", flush=True)
+        pre_llm = len(capped)
         try:
             capped = self._llm_validate(capped[:60], role=role) + capped[60:]
+            print(f"  [Phase F] LLM validator done: {pre_llm} → {len(capped)}", flush=True)
         except Exception as e:
+            print(f"  [Phase F] LLM validator skipped: {e}", flush=True)
             logger.debug(f"[OnDemand] LLM validator skipped: {e}")
 
         # 10. Trim to max_results
@@ -918,11 +952,15 @@ class OnDemandSearch:
         from concurrent.futures import ThreadPoolExecutor, as_completed
 
         def _run_ddg_search() -> list[dict]:
+            from urllib.parse import urlparse
             search_results = (
                 self.search.search_queries(queries)
                 if hasattr(self.search, "search_queries")
                 else self.search.search_all([{"query": q, "city": "", "site": ""} for q in queries])
             )
+            _skip_domains = set(self.profile.jd_extraction_skip_domains)
+            _max_scrapes = self.profile.jd_extraction_max_ddg_scrapes
+            _scrape_count = 0
             out: list[dict] = []
             for r in search_results:
                 url = r.get("url", "")
@@ -931,7 +969,12 @@ class OnDemandSearch:
                 url_type = classify_url_type(url).value
                 if url_type != URLType.INDIVIDUAL_JOB.value:
                     continue
-                data = self.scraper.extract(url) if self.scraper.available else None
+                _domain = urlparse(url).netloc.lower().lstrip("www.")
+                _skip = any(s in _domain for s in _skip_domains)
+                _can_scrape = self.scraper.available and not _skip and _scrape_count < _max_scrapes
+                if _can_scrape:
+                    _scrape_count += 1
+                data = self.scraper.extract(url) if _can_scrape else None
                 if not data and self._indeed.can_handle(url):
                     data = self._indeed.extract(url)
                 if not data:
@@ -1030,6 +1073,76 @@ class OnDemandSearch:
                 logger.debug(f"[OnDemand] GoogleJobs: {e}")
                 return []
 
+        def _run_cutshort() -> list[dict]:
+            try:
+                from careerloop.sources.cutshort_adapter import search_cutshort
+                results = search_cutshort(role, city, max_results=50)
+                logger.info(f"[OnDemand] Cutshort: {len(results)} jobs")
+                return results
+            except Exception as e:
+                logger.debug(f"[OnDemand] Cutshort: {e}")
+                return []
+
+        def _run_wellfound() -> list[dict]:
+            try:
+                from careerloop.sources.wellfound_adapter import search_wellfound
+                results = search_wellfound(role, city, max_results=30)
+                logger.info(f"[OnDemand] Wellfound: {len(results)} jobs")
+                return results
+            except Exception as e:
+                logger.debug(f"[OnDemand] Wellfound: {e}")
+                return []
+
+        def _run_iimjobs() -> list[dict]:
+            try:
+                from careerloop.sources.iimjobs_adapter import search_iimjobs
+                results = search_iimjobs(role, city, max_results=30)
+                logger.info(f"[OnDemand] IIMJobs: {len(results)} jobs")
+                return results
+            except Exception as e:
+                logger.debug(f"[OnDemand] IIMJobs: {e}")
+                return []
+
+        def _run_instahyre() -> list[dict]:
+            try:
+                from careerloop.sources.instahyre_adapter import search_instahyre
+                results = search_instahyre(role, city, max_results=30)
+                logger.info(f"[OnDemand] Instahyre: {len(results)} jobs")
+                return results
+            except Exception as e:
+                logger.debug(f"[OnDemand] Instahyre: {e}")
+                return []
+
+        def _run_remoteok() -> list[dict]:
+            try:
+                from careerloop.sources.remoteok_adapter import search_remoteok
+                results = search_remoteok(role, city, max_results=30)
+                logger.info(f"[OnDemand] RemoteOK: {len(results)} jobs")
+                return results
+            except Exception as e:
+                logger.debug(f"[OnDemand] RemoteOK: {e}")
+                return []
+
+        def _run_remotive() -> list[dict]:
+            try:
+                from careerloop.sources.remotive_adapter import search_remotive
+                results = search_remotive(role, city, max_results=30)
+                logger.info(f"[OnDemand] Remotive: {len(results)} jobs")
+                return results
+            except Exception as e:
+                logger.debug(f"[OnDemand] Remotive: {e}")
+                return []
+
+        def _run_weworkremotely() -> list[dict]:
+            try:
+                from careerloop.sources.weworkremotely_adapter import search_weworkremotely
+                results = search_weworkremotely(role, city, max_results=30)
+                logger.info(f"[OnDemand] WeWorkRemotely: {len(results)} jobs")
+                return results
+            except Exception as e:
+                logger.debug(f"[OnDemand] WeWorkRemotely: {e}")
+                return []
+
         board_fns = [
             ("ddg", _run_ddg_search),
             ("jobspy", _run_jobspy),
@@ -1037,6 +1150,13 @@ class OnDemandSearch:
             ("monster", _run_monster),
             ("glassdoor", _run_glassdoor),
             ("google_jobs", _run_google_jobs),
+            ("cutshort", _run_cutshort),
+            ("wellfound", _run_wellfound),
+            ("iimjobs", _run_iimjobs),
+            ("instahyre", _run_instahyre),
+            ("remoteok", _run_remoteok),
+            ("remotive", _run_remotive),
+            ("weworkremotely", _run_weworkremotely),
         ]
 
         # M2: track per-source results for health monitoring

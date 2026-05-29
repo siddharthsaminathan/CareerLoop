@@ -1,5 +1,5 @@
 """
-Siddharth job search runner — full Phase A-G pipeline with live audit output.
+Varsha job search runner — full Phase A-G pipeline with live audit output.
 Every phase prints clearly so you can watch exactly what's happening.
 """
 import json
@@ -16,12 +16,12 @@ try:
 except ImportError:
     pass
 
-PROFILE_PATH = os.path.join(ROOT, "test data/siddharth/profile.yml")
-EXTENDED_PATH = os.path.join(ROOT, "test data/siddharth/profile_extended.yml")
-OUTPUT_DIR = os.path.join(ROOT, "test data/output/siddharth")
+PROFILE_PATH = os.path.join(ROOT, "test data/varsha/profile.yml")
+EXTENDED_PATH = os.path.join(ROOT, "test data/varsha/profile_extended.yml")
+OUTPUT_DIR = os.path.join(ROOT, "test data/output/varsha")
 
-ROLES = ["AI Product Engineer", "Applied AI Engineer", "AI Product Manager"]
-CITIES = ["Bangalore", "Chennai"]
+ROLES = ["Fashion Buyer", "Fashion Merchandiser", "Category Manager Fashion", "Buying Merchandising Manager", "Assortment Planner"]
+CITIES = ["Chennai", "Bangalore"]
 MAX_RESULTS = 30  # per role×city — 3 roles × 2 cities × 30 = up to 180 candidates
 
 TS = datetime.now().strftime("%Y%m%d_%H%M")
@@ -213,7 +213,7 @@ def main():
     for r in all_results:
         print(f"  {r['role']}: {r['stats']['ranked']} ranked ({r['stats']['elapsed_s']:.1f}s)", flush=True)
 
-    out_path = os.path.join(OUTPUT_DIR, f"siddharth_bangalore_{label}_{TS}.json")
+    out_path = os.path.join(OUTPUT_DIR, f"varsha_bangalore_{label}_{TS}.json")
     with open(out_path, "w") as f:
         json.dump(all_results, f, indent=2, default=str)
     tick(f"Results saved: {out_path}")

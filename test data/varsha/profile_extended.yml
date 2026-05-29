@@ -1,0 +1,76 @@
+confirmed_skills:
+  - Fashion Buying
+  - Merchandising
+  - Assortment Planning
+  - Vendor Management
+  - PO/PI Coordination
+  - Category Management
+  - P&L Management
+  - Inventory Control
+  - Excel
+
+weak_skills:
+  - luxury fashion
+  - haute couture
+  - technical design
+
+rejected_roles:
+  - Fashion Designer
+  - Graphic Designer
+  - Social Media Manager
+  - Content Creator
+  - Garment Technologist
+  - Pattern Maker
+  - Textile Engineer
+
+rejected_company_types:
+  - body_shop
+  - mass_recruiter
+
+sector_preferences:
+  - Retail & E-commerce
+  - Fashion & Apparel
+  - FMCG
+
+sector_rejections:
+  - Manufacturing & Industrial
+  - Government & Public Sector
+  - IT & Software (pure)
+
+target_functions:
+  - fashion buyer
+  - fashion merchandiser
+  - category manager fashion
+  - assortment planner
+  - buying and merchandising
+  - fashion planner
+  - product manager fashion
+
+willing_to_relocate: true
+startup_tolerance: 6
+
+resume_tone: confident
+
+scoring:
+  role_fit_gate: 2.5
+  min_description_chars: 150
+  archetype_gate: 0.1
+
+seniority_signals:
+  senior: ["senior", "sr", "lead", "head of", "director", "principal"]
+  mid: ["mid", "associate", "assistant", "ii", "2"]
+  junior: ["junior", "jr", "entry", "fresher", "trainee", "intern"]
+  executive: ["vp", "chief", "gm", "cxo", "founder"]
+
+jd_extraction:
+  max_ddg_scrapes: 8
+  skip_domains:
+    - linkedin.com
+    - glassdoor.com
+    - ambitionbox.com
+    - weloveproduct.co
+    - whatjobs.com
+    - indeed.com
+    - monster.com
+    - foundit.in
+    - naukri.com

@@ -80,7 +80,10 @@ class ProfileManager:
 
     @property
     def full_name(self):
-        return self.base.get("candidate", {}).get("full_name", "")
+        val = self.base.get("candidate", {})
+        if isinstance(val, dict):
+            return val.get("full_name", "")
+        return self.base.get("name", "")
 
     @property
     def notice_period_days(self):
@@ -91,26 +94,42 @@ class ProfileManager:
         return self.extended.get("salary_floor_lakhs") or self._parse_min_comp()
 
     def _parse_min_comp(self):
-        """Extract minimum from profile.yml comp string like '₹35L-60L'"""
+        """Extract minimum from profile.yml — handles compensation dict, salary_target_lpa dict, or plain string."""
+        import re
+        # Format: salary_target_lpa: {min: 11, max: 13}
+        lpa = self.base.get("salary_target_lpa", {})
+        if isinstance(lpa, dict) and lpa.get("min"):
+            return float(lpa["min"])
+        # Format: compensation: {minimum: '₹35L'}
         comp = self.base.get("compensation", {})
+        if not isinstance(comp, dict):
+            return None
         minimum = comp.get("minimum", "")
         if not minimum:
             return None
-        import re
         match = re.search(r'[\d.]+', str(minimum).replace("₹", "").replace("L", ""))
         return float(match.group()) if match else None
 
     @property
     def target_roles(self):
-        return self.base.get("target_roles", {}).get("primary", [])
+        val = self.base.get("target_roles", {})
+        if isinstance(val, list):
+            return val  # flat list format
+        return val.get("primary", [])
 
     @property
     def archetypes(self):
-        return self.base.get("target_roles", {}).get("archetypes", [])
+        val = self.base.get("target_roles", {})
+        if isinstance(val, list):
+            return []
+        return val.get("archetypes", [])
 
     @property
     def location_city(self):
-        return self.base.get("location", {}).get("city", "")
+        val = self.base.get("location", {})
+        if isinstance(val, str):
+            return val.split(",")[0].strip()
+        return val.get("city", "")
 
     @property
     def confirmed_skills(self):
@@ -178,12 +197,24 @@ class ProfileManager:
 
     @property
     def seniority_signals(self) -> dict:
-        return self.extended.get("seniority_signals", {
-            "senior": ["senior", "sr", "lead", "principal", "staff"],
-            "mid": ["mid", "ii", "associate"],
-            "junior": ["junior", "jr", "entry", "fresher", "trainee"],
-            "executive": ["vp", "chief", "cto", "cpo", "founder"],
-        })
+        """Seniority level signals — sourced entirely from profile_extended.yml seniority_signals.
+        No Python-level defaults: if missing from YAML, callers get empty dict and should skip seniority tagging."""
+        return self.extended.get("seniority_signals", {})
+
+    @property
+    def jd_extraction_max_ddg_scrapes(self) -> int:
+        """Max URLs to send to LLM extractor per DDG search run. Prevents API flood."""
+        return int(self.extended.get("jd_extraction", {}).get("max_ddg_scrapes", 8))
+
+    @property
+    def jd_extraction_skip_domains(self) -> list:
+        """Domains to skip in LLM extraction — useless pages, aggregators, paywalls."""
+        defaults = [
+            "linkedin.com", "glassdoor.com", "ambitionbox.com",
+            "weloveproduct.co", "whatjobs.com", "welcometothejungle.com",
+            "indeed.com", "monster.com", "foundit.in", "naukri.com",
+        ]
+        return self.extended.get("jd_extraction", {}).get("skip_domains", defaults)
 
     # ── Mutators ─────────────────────────────────────────────────────
 
@@ -211,10 +242,12 @@ class ProfileManager:
 
     def get_full_profile(self) -> dict:
         """Merge base + extended into single profile dict."""
+        def _safe_dict(val) -> dict:
+            return val if isinstance(val, dict) else {}
         return {
-            **self.base.get("candidate", {}),
-            **self.base.get("narrative", {}),
-            **self.base.get("location", {}),
+            **_safe_dict(self.base.get("candidate")),
+            **_safe_dict(self.base.get("narrative")),
+            **_safe_dict(self.base.get("location")),
             "target_roles": self.target_roles,
             "archetypes": self.archetypes,
             **self.extended,

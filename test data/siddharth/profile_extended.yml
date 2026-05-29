@@ -143,3 +143,17 @@ seniority_signals:
   mid: ["mid", "ii", "2", "associate"]
   junior: ["junior", "jr", "entry", "fresher", "trainee", "intern"]
   executive: ["vp", "chief", "cto", "cpo", "founder"]
+
+jd_extraction:
+  max_ddg_scrapes: 8       # max URLs sent to LLM extractor per DDG run (prevents DeepSeek flood)
+  skip_domains:            # skip LLM extraction for these domains (useless pages, aggregators)
+    - linkedin.com
+    - glassdoor.com
+    - ambitionbox.com
+    - weloveproduct.co
+    - whatjobs.com
+    - welcometothejungle.com
+    - indeed.com
+    - monster.com
+    - foundit.in
+    - naukri.com
