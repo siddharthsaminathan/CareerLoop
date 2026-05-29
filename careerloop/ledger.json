@@ -1582,7 +1582,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.237598+00:00",
-    "updated_at": "2026-05-29T08:59:55.582148+00:00",
+    "updated_at": "2026-05-29T18:41:02.293073+00:00",
     "fit_result": {
       "overall_score": 25,
       "recommendation": "SKIP",
@@ -1725,7 +1725,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.248272+00:00",
-    "updated_at": "2026-05-29T08:59:55.608479+00:00",
+    "updated_at": "2026-05-29T18:41:02.324404+00:00",
     "fit_result": {
       "overall_score": 25,
       "recommendation": "SKIP",
@@ -1867,7 +1867,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.312689+00:00",
-    "updated_at": "2026-05-29T08:59:55.629795+00:00",
+    "updated_at": "2026-05-29T18:41:02.345990+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
@@ -2010,7 +2010,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.322622+00:00",
-    "updated_at": "2026-05-29T08:59:55.650802+00:00",
+    "updated_at": "2026-05-29T18:41:02.366796+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -2351,7 +2351,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.411849+00:00",
-    "updated_at": "2026-05-29T08:59:55.671142+00:00",
+    "updated_at": "2026-05-29T18:41:02.390530+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -2493,7 +2493,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.429326+00:00",
-    "updated_at": "2026-05-29T08:59:55.692141+00:00",
+    "updated_at": "2026-05-29T18:41:02.410237+00:00",
     "fit_result": {
       "overall_score": 25,
       "recommendation": "SKIP",
@@ -2774,7 +2774,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.535017+00:00",
-    "updated_at": "2026-05-29T08:59:55.713318+00:00",
+    "updated_at": "2026-05-29T18:41:02.430382+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -2916,7 +2916,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.551557+00:00",
-    "updated_at": "2026-05-29T08:59:55.734536+00:00",
+    "updated_at": "2026-05-29T18:41:02.449924+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
@@ -3131,7 +3131,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.587254+00:00",
-    "updated_at": "2026-05-29T08:59:55.756469+00:00",
+    "updated_at": "2026-05-29T18:41:02.472432+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -3348,7 +3348,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.653426+00:00",
-    "updated_at": "2026-05-29T08:59:55.777864+00:00",
+    "updated_at": "2026-05-29T18:41:02.492476+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -3490,7 +3490,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.672884+00:00",
-    "updated_at": "2026-05-29T08:59:55.798772+00:00",
+    "updated_at": "2026-05-29T18:41:02.513793+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -3633,7 +3633,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.695491+00:00",
-    "updated_at": "2026-05-29T08:59:55.820027+00:00",
+    "updated_at": "2026-05-29T18:41:02.533340+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -3841,7 +3841,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.737452+00:00",
-    "updated_at": "2026-05-29T08:59:55.841511+00:00",
+    "updated_at": "2026-05-29T18:41:02.553102+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
@@ -3985,7 +3985,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.754008+00:00",
-    "updated_at": "2026-05-29T08:59:55.862466+00:00",
+    "updated_at": "2026-05-29T18:41:02.575864+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
@@ -4128,7 +4128,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:41.879325+00:00",
-    "updated_at": "2026-05-29T08:59:55.883097+00:00",
+    "updated_at": "2026-05-29T18:41:02.597455+00:00",
     "fit_result": {
       "overall_score": 30,
       "recommendation": "SKIP",
@@ -4482,7 +4482,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.020539+00:00",
-    "updated_at": "2026-05-29T08:59:55.903849+00:00",
+    "updated_at": "2026-05-29T18:41:02.616685+00:00",
     "fit_result": {
       "overall_score": 50,
       "recommendation": "MAYBE",
@@ -4625,7 +4625,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.048372+00:00",
-    "updated_at": "2026-05-29T08:59:55.924614+00:00",
+    "updated_at": "2026-05-29T18:41:02.636626+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
@@ -4769,7 +4769,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.074880+00:00",
-    "updated_at": "2026-05-29T08:59:55.944771+00:00",
+    "updated_at": "2026-05-29T18:41:02.656641+00:00",
     "fit_result": {
       "overall_score": 42,
       "recommendation": "SKIP",
@@ -4911,7 +4911,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.099108+00:00",
-    "updated_at": "2026-05-29T08:59:55.965621+00:00",
+    "updated_at": "2026-05-29T18:41:02.676637+00:00",
     "fit_result": {
       "overall_score": 15,
       "recommendation": "SKIP",
@@ -5053,7 +5053,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.122439+00:00",
-    "updated_at": "2026-05-29T08:59:55.987082+00:00",
+    "updated_at": "2026-05-29T18:41:02.696604+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -5196,7 +5196,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.139333+00:00",
-    "updated_at": "2026-05-29T08:59:56.007463+00:00",
+    "updated_at": "2026-05-29T18:41:02.716495+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
@@ -5403,7 +5403,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.180679+00:00",
-    "updated_at": "2026-05-29T08:59:56.027853+00:00",
+    "updated_at": "2026-05-29T18:41:02.736148+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
@@ -5546,7 +5546,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.209134+00:00",
-    "updated_at": "2026-05-29T08:59:56.048518+00:00",
+    "updated_at": "2026-05-29T18:41:02.757361+00:00",
     "fit_result": {
       "overall_score": 30,
       "recommendation": "SKIP",
@@ -5688,7 +5688,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.233357+00:00",
-    "updated_at": "2026-05-29T08:59:56.069209+00:00",
+    "updated_at": "2026-05-29T18:41:02.777057+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
@@ -5830,7 +5830,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.249592+00:00",
-    "updated_at": "2026-05-29T08:59:56.089247+00:00",
+    "updated_at": "2026-05-29T18:41:02.796485+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
@@ -5973,7 +5973,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.269702+00:00",
-    "updated_at": "2026-05-29T08:59:56.109851+00:00",
+    "updated_at": "2026-05-29T18:41:02.816302+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
@@ -6265,7 +6265,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.337640+00:00",
-    "updated_at": "2026-05-29T08:59:56.131683+00:00",
+    "updated_at": "2026-05-29T18:41:02.836356+00:00",
     "fit_result": {
       "overall_score": 30,
       "recommendation": "SKIP",
@@ -6408,7 +6408,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.371556+00:00",
-    "updated_at": "2026-05-29T08:59:56.152738+00:00",
+    "updated_at": "2026-05-29T18:41:02.857520+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
@@ -6550,7 +6550,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.395002+00:00",
-    "updated_at": "2026-05-29T08:59:56.173590+00:00",
+    "updated_at": "2026-05-29T18:41:02.880200+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -6694,7 +6694,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.425609+00:00",
-    "updated_at": "2026-05-29T08:59:56.194055+00:00",
+    "updated_at": "2026-05-29T18:41:02.899844+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
@@ -6911,7 +6911,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.487239+00:00",
-    "updated_at": "2026-05-29T08:59:56.214813+00:00",
+    "updated_at": "2026-05-29T18:41:02.921075+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
@@ -7054,7 +7054,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.515683+00:00",
-    "updated_at": "2026-05-29T08:59:56.235763+00:00",
+    "updated_at": "2026-05-29T18:41:02.943164+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
@@ -7197,7 +7197,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.535961+00:00",
-    "updated_at": "2026-05-29T08:59:56.256320+00:00",
+    "updated_at": "2026-05-29T18:41:02.965307+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
@@ -7404,7 +7404,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.570792+00:00",
-    "updated_at": "2026-05-29T08:59:56.276713+00:00",
+    "updated_at": "2026-05-29T18:41:02.985087+00:00",
     "fit_result": {
       "overall_score": 55,
       "recommendation": "MAYBE",
@@ -7546,7 +7546,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.586648+00:00",
-    "updated_at": "2026-05-29T08:59:56.297390+00:00",
+    "updated_at": "2026-05-29T18:41:03.014777+00:00",
     "fit_result": {
       "overall_score": 35,
       "recommendation": "SKIP",
@@ -7688,7 +7688,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.604310+00:00",
-    "updated_at": "2026-05-29T08:59:56.318052+00:00",
+    "updated_at": "2026-05-29T18:41:03.035179+00:00",
     "fit_result": {
       "overall_score": 42,
       "recommendation": "SKIP",
@@ -7961,7 +7961,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:25:42.701049+00:00",
-    "updated_at": "2026-05-29T08:59:56.358574+00:00",
+    "updated_at": "2026-05-29T18:41:03.056236+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -8313,7 +8313,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T07:33:50.941899+00:00",
-    "updated_at": "2026-05-29T08:59:56.379858+00:00",
+    "updated_at": "2026-05-29T18:41:03.076631+00:00",
     "fit_result": {
       "overall_score": 45,
       "recommendation": "SKIP",
@@ -8463,7 +8463,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:26.722279+00:00",
-    "updated_at": "2026-05-29T08:59:57.290519+00:00",
+    "updated_at": "2026-05-29T18:41:03.377512+00:00",
     "heuristic_score": 59.2,
     "heuristic_breakdown": {
       "role_fit": {
@@ -8685,7 +8685,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:26.751682+00:00",
-    "updated_at": "2026-05-29T08:59:58.177096+00:00",
+    "updated_at": "2026-05-29T18:41:03.708820+00:00",
     "heuristic_score": 67.0,
     "heuristic_breakdown": {
       "role_fit": {
@@ -8907,7 +8907,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:26.777185+00:00",
-    "updated_at": "2026-05-29T08:59:59.024911+00:00",
+    "updated_at": "2026-05-29T18:41:04.070904+00:00",
     "heuristic_score": 53.2,
     "heuristic_breakdown": {
       "role_fit": {
@@ -9131,7 +9131,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:26.808077+00:00",
-    "updated_at": "2026-05-29T08:59:59.953601+00:00",
+    "updated_at": "2026-05-29T18:41:04.330543+00:00",
     "heuristic_score": 63.2,
     "heuristic_breakdown": {
       "role_fit": {
@@ -9352,7 +9352,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:26.837449+00:00",
-    "updated_at": "2026-05-29T09:00:00.879614+00:00",
+    "updated_at": "2026-05-29T18:41:04.676156+00:00",
     "heuristic_score": 67.0,
     "heuristic_breakdown": {
       "role_fit": {
@@ -9572,7 +9572,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:26.867449+00:00",
-    "updated_at": "2026-05-29T09:00:01.693884+00:00",
+    "updated_at": "2026-05-29T18:41:04.949487+00:00",
     "heuristic_score": 63.2,
     "heuristic_breakdown": {
       "role_fit": {
@@ -9793,7 +9793,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:26.897171+00:00",
-    "updated_at": "2026-05-29T09:00:01.736985+00:00",
+    "updated_at": "2026-05-29T18:41:04.976580+00:00",
     "heuristic_score": 67.0,
     "heuristic_breakdown": {
       "role_fit": {
@@ -10014,7 +10014,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:26.928318+00:00",
-    "updated_at": "2026-05-29T09:00:01.762672+00:00",
+    "updated_at": "2026-05-29T18:41:04.998738+00:00",
     "heuristic_score": 59.2,
     "heuristic_breakdown": {
       "role_fit": {
@@ -10808,7 +10808,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:27.079955+00:00",
-    "updated_at": "2026-05-29T09:00:02.652698+00:00",
+    "updated_at": "2026-05-29T18:41:05.348490+00:00",
     "heuristic_score": 47.2,
     "heuristic_breakdown": {
       "role_fit": {
@@ -10995,7 +10995,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:27.110883+00:00",
-    "updated_at": "2026-05-29T09:00:03.596206+00:00",
+    "updated_at": "2026-05-29T18:41:05.688147+00:00",
     "heuristic_score": 53.2,
     "heuristic_breakdown": {
       "role_fit": {
@@ -11215,7 +11215,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:27.139280+00:00",
-    "updated_at": "2026-05-29T09:00:04.699382+00:00",
+    "updated_at": "2026-05-29T18:41:05.958321+00:00",
     "heuristic_score": 53.2,
     "heuristic_breakdown": {
       "role_fit": {
@@ -11436,7 +11436,7 @@
     "recruiter_email": null,
     "notes": "",
     "created_at": "2026-05-14T09:04:27.171001+00:00",
-    "updated_at": "2026-05-29T09:00:05.593410+00:00",
+    "updated_at": "2026-05-29T18:41:06.290056+00:00",
     "heuristic_score": 73.0,
     "heuristic_breakdown": {
       "role_fit": {

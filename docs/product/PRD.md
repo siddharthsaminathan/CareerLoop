@@ -2,7 +2,7 @@
 
 **Author:** Siddharth Saminathan  
 **Status:** Canonical Vision v1.0 — Active  
-**Last Updated:** 2026-05-29  
+**Last Updated:** 2026-05-30  
 
 > This is the single source of truth for what CareerLoop is, who it's for, and what it must do.  
 > All engineering, design, and agent work must align to this document.  
@@ -357,7 +357,7 @@ working together to turn openings into interviews.
 
 ## 17. Product Engineering Tracker
 
-> Updated by the `careerloop-product-lead` skill. Last updated: 2026-05-26.
+> Updated by the `careerloop-product-lead` skill. Last updated: 2026-05-30.
 
 | System | Completion | Status | Notes |
 |--------|------------|--------|-------|
@@ -367,6 +367,7 @@ working together to turn openings into interviews.
 | **PostgresSaver Checkpointer** | **20%** | 🔴 | SQLite sessions functional without Postgres. Dual-mode verified. Interrupt/resume proof still needed. |
 | **Application pack delivery** | **95%** | 🟢 | PackageAssembler + Playwright PDFs. E2E validated on real job. |
 | **Daily brief cron delivery** | **90%** | 🟢 | Daily Runner triggers scan and fully populates daily_briefs and daily_brief_items SQL tables. E2E database brief retrieval verified. |
+| OnDemandSearch unified discovery | **85%** | 🟢 | `careerloop/on_demand.py::OnDemandSearch` is the canonical discovery engine. Unified SSE event streaming. Deprecates `scan.mjs` and `DailyRunner.run()` discovery path. |
 | India-first discovery | 92% | 🟢 | Geo filter on all ATS adapters. Location spoofing fixed. CSV India filter. 14 ATS adapters + 6 boards. |
 | Verification & filtering | 78% | 🟡 | India filter enforced at 3 choke points. Block G not hoisted. |
 | Opportunity scoring (14-dim) | 62% | 🟡 | Scoring caps (CPU=50, LLM=15). Token accounting per call. _get_score() unified schema. |
@@ -396,7 +397,7 @@ working together to turn openings into interviews.
 | **Chat quality (known issues)** | **⚠️** | 🟡 | Polite closings misclassified as HELP (2/7 E2E turns). Fix: 1-line ActionResolver prompt update. |
 | Job persistence engine | **75%** | 🟡 | Global cache + user relationships. Fingerprint dedup. TTL strategy. Cache-hit check wired, companies linked via FK, Cutshort parsing. |
  
-**Overall product maturity: ~77-80% of vision.** Data engineering V3 at 95%. Multi-user onboarding E2E verified (3/3 real Supabase + DeepSeek). E2E at 90%. B-ONBOARD blocker closing. Remaining: transport deployment, async scan, chat fallback.
+**Overall product maturity: ~78-81% of vision.** Data engineering V3 at 95%. Multi-user onboarding E2E verified (3/3 real Supabase + DeepSeek). E2E at 90%. B-ONBOARD blocker closing. Remaining: transport deployment, async scan, chat fallback.
  
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 

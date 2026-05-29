@@ -15,7 +15,7 @@ Returns a small ranked list with full breakdown.
 import logging
 import os
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import Callable, Optional
 
 from careerloop.apply_route import deduplicate_canonical, resolve_apply_route
 from careerloop.india_filter import filter_india_jobs
@@ -174,13 +174,19 @@ class OnDemandSearch:
         include_boards: bool = True,
         force_refresh: bool = False,
         include_phase_a: bool = True,
+        event_emitter: Optional[Callable] = None,
     ) -> OnDemandResult:
         """Run a targeted discovery pass. Returns top-N ranked jobs."""
         import time
         t0 = time.time()
         city = city or self.profile.location_city
         self._current_role = role  # used by post-ATS filter
+        self._event_emitter = event_emitter
         result = OnDemandResult(role=role, city=city)
+
+        self._emit_event("SCAN_STARTED", f"Searching for {role} in {city}...", {
+            "event_type": "SCAN_STARTED", "role": role, "city": city, "mode": "on_demand",
+        })
 
         # Check shared crawl cache first (skip when force_refresh=True)
         try:
@@ -227,6 +233,26 @@ class OnDemandSearch:
                 result.ranked_jobs = _capped[:max_results]
                 result.after_dedup_count = len(deduped)
                 result.elapsed_seconds = round(time.time() - t0, 2)
+                # Emit events for cache-hit path
+                self._emit_event("SOURCE_SCANNING",
+                    f"Cache hit: {len(cached)} jobs from crawl cache ({role} / {city})",
+                    {"event_type": "SOURCE_SCANNING", "source": "crawl_cache",
+                     "roles_found": len(cached), "stage": "cache"})
+                for idx, item in enumerate(result.ranked_jobs, 1):
+                    j = item.get("job", item)
+                    comp = (j.get("company") or j.get("company_name") or "")
+                    title = j.get("title") or ""
+                    loc = j.get("location") or ""
+                    self._emit_event("CANDIDATE_MATCHED",
+                        f"MATCH #{idx} — {title} @ {comp} ({loc}) [cached]",
+                        {"event_type": "CANDIDATE_MATCHED", "job_title": title,
+                         "company": comp, "location": loc, "fit_score": item.get("score", 0),
+                         "match_index": idx, "status": "matched"})
+                self._emit_event("SCAN_COMPLETED",
+                    f"Cached: {len(result.ranked_jobs)} matches in {result.elapsed_seconds}s",
+                    {"event_type": "SCAN_COMPLETED", "candidate_count": len(cached),
+                     "matched_count": len(result.ranked_jobs), "elapsed_seconds": result.elapsed_seconds,
+                     "source": "cache"})
                 return result
         except Exception:
             _cache = None
@@ -268,10 +294,19 @@ class OnDemandSearch:
                     result.notes.append("Phase A: live discovery returned 0 companies — skipping portal layer")
                     print(f"  [Phase A] 0 companies found.", flush=True)
                 result.targeted_companies = [rc.company.name for rc in ranked_companies]
+                self._emit_event("SOURCE_SCANNING",
+                    f"Company discovery: {len(ranked_companies)} companies found for {role}",
+                    {"event_type": "SOURCE_SCANNING", "source": "company_discovery",
+                     "companies_found": len(ranked_companies), "stage": "phase_a"})
                 portal_jobs = self._scrape_targeted_companies(ranked_companies)
                 for j in portal_jobs:
                     j.setdefault("_phase", "A")
                 print(f"  [Phase A] portal scrape done — {len(portal_jobs)} jobs", flush=True)
+                if portal_jobs:
+                    self._emit_event("SOURCE_SCANNING",
+                        f"Portal scraping: {len(portal_jobs)} jobs from company portals",
+                        {"event_type": "SOURCE_SCANNING", "source": "company_portals",
+                         "jobs_found": len(portal_jobs), "stage": "phase_a"})
                 all_jobs.extend(portal_jobs)
             except Exception as e:
                 result.notes.append(f"Phase A FAILED: {e}")
@@ -298,6 +333,18 @@ class OnDemandSearch:
                     result.notes.append(f"board health: {health_str}")
                 print(f"  [Phase B] boards done — {len(board_jobs)} jobs (archetype title-rejected {arch_dropped})", flush=True)
                 all_jobs.extend(board_jobs)
+                # Emit per-source SCANNING events and aggregate JOB_FOUND
+                if hasattr(self, "_last_board_health"):
+                    for src_name, src_count in sorted(self._last_board_health.items()):
+                        if src_count > 0:
+                            self._emit_event("SOURCE_SCANNING",
+                                f"{src_name}: {src_count} roles found",
+                                {"event_type": "SOURCE_SCANNING", "source": src_name,
+                                 "roles_found": src_count, "stage": "phase_b"})
+                self._emit_event("JOB_FOUND",
+                    f"Board search: {len(board_jobs)} jobs from {len(getattr(self, '_last_board_health', {}))} sources",
+                    {"event_type": "JOB_FOUND", "source": "board_search",
+                     "job_count": len(board_jobs), "total_candidates": len(all_jobs)})
             except Exception as e:
                 result.notes.append(f"board search error: {e}")
                 logger.warning(f"[OnDemand] Board search failed: {e}")
@@ -310,7 +357,13 @@ class OnDemandSearch:
 
         # 4. India filter
         india_filtered, _ = filter_india_jobs(all_jobs)
+        non_india_count = len(all_jobs) - len(india_filtered)
         print(f"  [Filter] India filter: {len(all_jobs)} → {len(india_filtered)}", flush=True)
+        if non_india_count > 0:
+            self._emit_event("JOB_REJECTED",
+                f"India location filter: {non_india_count} non-India jobs rejected",
+                {"event_type": "JOB_REJECTED", "filter": "india_location",
+                 "rejected_count": non_india_count, "remaining": len(india_filtered)})
 
         # BUG-006: Drop recruiter/staffing agency postings before role filter
         _RECRUITER_PATTERNS = [
@@ -367,6 +420,10 @@ class OnDemandSearch:
         print(f"  [Phase E] ontology gate (archetype_match>={arch_gate}): {pre_ontology} → {len(ontology_filtered)} ({ont_dropped} dropped)", flush=True)
         if ont_dropped:
             result.notes.append(f"ontology gate: dropped {ont_dropped} jobs (archetype_match<{arch_gate})")
+            self._emit_event("JOB_REJECTED",
+                f"Ontology gate: {ont_dropped} jobs rejected (archetype mismatch)",
+                {"event_type": "JOB_REJECTED", "filter": "ontology_archetype",
+                 "rejected_count": ont_dropped, "remaining": len(ontology_filtered)})
 
         # Phase E — Role relevance filter (embedding similarity + profile rejection)
         print(f"  [Phase E] role similarity filter: {len(ontology_filtered)} candidates...", flush=True)
@@ -378,6 +435,11 @@ class OnDemandSearch:
         )
         print(f"  [Phase E] role filter done: {len(ontology_filtered)} → {len(relevant)} relevant ({rejected_count} rejected)", flush=True)
         result.notes.append(f"role filter: {len(ontology_filtered)} → {len(relevant)} relevant ({rejected_count} rejected)")
+        if rejected_count > 0:
+            self._emit_event("JOB_REJECTED",
+                f"Role relevance filter: {rejected_count} jobs rejected",
+                {"event_type": "JOB_REJECTED", "filter": "role_relevance",
+                 "rejected_count": rejected_count, "remaining": len(relevant)})
 
         # 5. Canonical dedup
         deduped = deduplicate_canonical(relevant)
@@ -458,9 +520,144 @@ class OnDemandSearch:
         # 10. Trim to max_results
         result.ranked_jobs = capped[:max_results]
         result.elapsed_seconds = round(time.time() - t0, 2)
+
+        # 11. Emit CANDIDATE_MATCHED for each ranked job
+        for idx, item in enumerate(result.ranked_jobs, 1):
+            j = item.get("job", item)
+            comp = (j.get("company") or j.get("company_name") or "")
+            title = j.get("title") or ""
+            loc = j.get("location") or ""
+            self._emit_event("CANDIDATE_MATCHED",
+                f"MATCH #{idx} — {title} @ {comp} ({loc})",
+                {"event_type": "CANDIDATE_MATCHED", "job_title": title,
+                 "company": comp, "location": loc, "fit_score": item.get("score", 0),
+                 "match_index": idx, "status": "matched"})
+
+        # 12. Pipeline complete
+        self._emit_event("SCAN_COMPLETED",
+            f"Pipeline complete: {len(result.ranked_jobs)} matches from {result.candidate_count} candidates in {result.elapsed_seconds}s",
+            {"event_type": "SCAN_COMPLETED", "candidate_count": result.candidate_count,
+             "matched_count": len(result.ranked_jobs), "elapsed_seconds": result.elapsed_seconds})
+
         return result
 
-    # ── Internals ─────────────────────────────────────────────────────
+    def persist_to_db(self, result: OnDemandResult, user_id: str,
+                      run_id: str = "", db=None) -> int:
+        """Persist OnDemandResult to careerloop.jobs and user_job_relationships.
+
+        Call after run() to ensure discovered jobs are stored in the global
+        jobs cache and linked to the user. Idempotent — safe to call multiple
+        times on the same result.
+
+        Args:
+            result: The OnDemandResult from run().
+            user_id: The UUID of the user these jobs belong to.
+            run_id: Optional run_id for audit trail (daily_briefs FK).
+            db: DatabaseManager instance. If None, creates one via get_db_manager().
+
+        Returns:
+            Number of jobs persisted.
+        """
+        import hashlib, uuid as _uuid, logging as _logging
+        from careerloop.memory.connection import get_db_manager
+        _log = _logging.getLogger("careerloop.on_demand.persist")
+
+        if not result.ranked_jobs:
+            return 0
+
+        if db is None:
+            db = get_db_manager(self.root)
+
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                for item in result.ranked_jobs:
+                    job = item.get("job", item)
+                    score = item.get("score")
+
+                    title = (job.get("title") or "")[:500]
+                    company = (job.get("company") or job.get("company_name") or "")[:300]
+                    location = (job.get("location") or "")[:300]
+                    apply_url = (job.get("apply_url") or job.get("url") or "")[:1000]
+                    canonical_url = (job.get("url") or apply_url)[:1000]
+                    jd_text = (
+                        job.get("description") or job.get("jd_text") or ""
+                    )[:50000]
+
+                    # Content fingerprint for dedup
+                    raw_fp = f"{title}|{company}|{apply_url}".encode("utf-8")
+                    fingerprint = hashlib.sha256(raw_fp).hexdigest()[:40]
+
+                    # India role detection
+                    loc_lc = location.lower()
+                    is_india = any(kw in loc_lc for kw in [
+                        "india", "bangalore", "bengaluru", "mumbai", "chennai",
+                        "delhi", "hyderabad", "pune", "gurgaon", "noida",
+                        "remote", "pan india",
+                    ])
+
+                    cur.execute(
+                        """
+                        INSERT INTO careerloop.jobs (
+                            job_id, source, title, company_name, location,
+                            location_raw, apply_url, canonical_url, jd_text,
+                            content_fingerprint, is_india_role, status
+                        ) VALUES (
+                            gen_random_uuid(), %s, %s, %s, %s,
+                            %s, %s, %s, %s,
+                            %s, %s, 'active'
+                        )
+                        ON CONFLICT (content_fingerprint) DO UPDATE SET
+                            title            = EXCLUDED.title,
+                            company_name     = EXCLUDED.company_name,
+                            location         = EXCLUDED.location,
+                            location_raw     = EXCLUDED.location_raw,
+                            apply_url        = EXCLUDED.apply_url,
+                            jd_text          = EXCLUDED.jd_text,
+                            last_seen_at     = NOW(),
+                            updated_at       = NOW()
+                        RETURNING job_id
+                        """,
+                        (
+                            "on_demand",
+                            title, company, location,
+                            location, apply_url, canonical_url, jd_text,
+                            fingerprint, is_india,
+                        ),
+                    )
+                    row = cur.fetchone()
+                    job_id = str(row["job_id"]) if row else str(_uuid.uuid4())
+
+                    # Stamp the real UUID onto the job dict
+                    job["job_id"] = job_id
+                    job["id"] = job_id
+
+                    # User-job relationship
+                    cur.execute(
+                        """
+                        INSERT INTO careerloop.user_job_relationships
+                            (user_id, job_id, match_status, fit_score,
+                             user_seen_at, created_at, updated_at)
+                        VALUES (%s, %s, 'discovered', %s, NOW(), NOW(), NOW())
+                        ON CONFLICT (user_id, job_id) DO UPDATE SET
+                            fit_score  = EXCLUDED.fit_score,
+                            updated_at = NOW()
+                        """,
+                        (user_id, job_id, score),
+                    )
+
+        count = len(result.ranked_jobs)
+        _log.info("persist_to_db: %d jobs persisted to careerloop.jobs for user %s", count, user_id[:8])
+        return count
+
+    # ── Internal helpers ──────────────────────────────────────────────
+
+    def _emit_event(self, event_type: str, message: str, payload: dict = None):
+        """Emit a pipeline event via the registered event emitter (if any)."""
+        if self._event_emitter is not None:
+            try:
+                self._event_emitter(event_type, message, payload or {})
+            except Exception as e:
+                logger.warning(f"[OnDemand] event emitter error: {e}")
 
     _PORTAL_WORKERS = 6  # P2: concurrent browser sessions
 

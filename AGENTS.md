@@ -538,3 +538,13 @@ These are architectural invariants. Do NOT violate them in any session.
 - **Daily briefs are permanent.** Application packs are permanent.
 - **Full schema in `docs/DATA_ENGINEERING_ARCHITECTURE.md`.**
 - **Memory is operational, not conversational.** CareerLoop memory = identity + preferences + evidence + opportunities + user-opportunity relationships + execution tracking + outcome learning. See `docs/MEMORY_SYSTEMS_ARCHITECTURE.md`.
+
+## Discovery Architecture (LOCKED — NEVER VIOLATE)
+
+**Canonical engine:** `careerloop/on_demand.py::OnDemandSearch`
+**Scoring:** `careerloop/india_fit_engine.py::IndiaFitEngine` + `careerloop/india_fit_llm.py::LLMIndiaFitEngine`
+**SSE contract:** `careerloop_api/services/scan_service.py::stream_scan_events()`
+
+Every job discovery flow (Daily Brief, Scan More, Copilot Discovery, future search APIs) MUST use `OnDemandSearch.run()`.
+
+No other discovery implementation may exist. `scan.mjs` is deprecated. `DailyRunner.run()` discovery path is deprecated. Direct ATS API calls outside OnDemandSearch are forbidden.

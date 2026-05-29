@@ -39,7 +39,7 @@ from careerloop.profile_manager import ProfileManager
 from careerloop.scan_funnel import ScanFunnel
 from careerloop.india_fit_engine import IndiaFitEngine
 from careerloop.application_ledger import ApplicationLedger
-from careerloop.india_filter import filter_india_jobs
+from careerloop.policies import filter_india_jobs, is_india_location
 from careerloop.shortlist_formatter import (
     format_daily_shortlist,
     format_job_detail,
@@ -64,7 +64,19 @@ class DailyRunner:
         self.scan_script = os.path.join(self.root, "scan.mjs")
 
     def run(self, do_scan: bool = True) -> dict:
-        """Run the full daily pipeline. Returns summary dict."""
+        """
+        DEPRECATED: Use OnDemandSearch in careerloop/on_demand.py instead.
+
+        Run the full daily pipeline. Returns summary dict.
+
+        This method's discovery path (scan.mjs subprocess, pipeline.md parsing,
+        India fit scoring) is deprecated. All job discovery should go through
+        careerloop/on_demand.py::OnDemandSearch.run() for unified event streaming,
+        dedup, caching, and scoring.
+
+        This method is retained only for backward compatibility with existing
+        CLI workflows. It will be removed in v2.
+        """
 
         # ── Pipeline observability: run_id + start timestamp ──────
         run_id = uuid.uuid4().hex[:12]
@@ -76,10 +88,11 @@ class DailyRunner:
             from careerloop.memory.connection import get_db_manager
             _funnel_email = self.profile.base.get("candidate", {}).get("email", "") or self.profile.base.get("email", "")
             _funnel_ns = uuid.UUID('12345678-1234-5678-1234-567812345678')
-            _funnel_uid = str(uuid.uuid5(_funnel_ns, _funnel_email))[:12] if _funnel_email else "unknown"
-            self.funnel = ScanFunnel(run_id, _funnel_uid, get_db_manager(self.root))
+            brief_user_id = str(uuid.uuid5(_funnel_ns, _funnel_email))[:12] if _funnel_email else "unknown"
+            self.funnel = ScanFunnel(run_id, brief_user_id, get_db_manager(self.root))
         except Exception:
             self.funnel = None
+            brief_user_id = "unknown"
 
         print("=" * 60)
         print("🔁 CareerLoop Daily Runner")
@@ -253,7 +266,6 @@ class DailyRunner:
         # scored entries in the ledger may have been added during a
         # previous run with different geo criteria, or may lack location
         # data that is now available.
-        from careerloop.india_filter import is_india_job as _india_guard
         scored_jobs = [
             {
                 "job": e,
@@ -264,7 +276,7 @@ class DailyRunner:
             for e in self.ledger.entries
             if e.get("fit_score") is not None
             and e["status"] in ("DISCOVERED", "SHORTLISTED", "SENT_TO_USER")
-            and _india_guard(e.get("location", ""), "", e.get("source_url", "") or e.get("url", ""))[0]
+            and is_india_location(e.get("location", ""))[0]
         ]
         scored_jobs.sort(key=lambda x: x["score"], reverse=True)
 
@@ -306,8 +318,7 @@ class DailyRunner:
         )
 
         # Structured logging: brief generated
-        email = self.profile.base.get("candidate", {}).get("email", "") or self.profile.base.get("email", "")
-        brief_user_id = str(uuid.uuid5(uuid.UUID('12345678-1234-5678-1234-567812345678'), email))[:12] if email else "unknown"
+        # brief_user_id computed at function entry (funnel init block)
         elapsed_ms = int((datetime.now(timezone.utc) - datetime.fromisoformat(started_at)).total_seconds() * 1000)
         logger.info(
             "BRIEF_GENERATED user_id=%s date=%s items=%d run_id=%s elapsed_ms=%d",

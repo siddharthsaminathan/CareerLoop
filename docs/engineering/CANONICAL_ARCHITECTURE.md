@@ -49,7 +49,7 @@ No independent CV generator. Council owns all content generation. Renderer owns 
 
 | System | File(s) | % Complete |
 |--------|---------|------------|
-| Discovery Engine | `careerloop/discovery.py` | 70% |
+| Discovery Engine | `careerloop/on_demand.py::OnDemandSearch` | 85% |
 | India Fit Engine (14-dim) | `careerloop/india_fit_engine.py` | 55% |
 | Verification | `careerloop/verification.py` | 60% |
 | Apply Route | `careerloop/apply_route.py` | 60% |
@@ -94,6 +94,9 @@ No independent CV generator. Council owns all content generation. Renderer owns 
 
 | Item | Reason | Replacement |
 |------|--------|-------------|
+| `scan.mjs` | Legacy ATS scanner, no SSE streaming, filesystem-only output | `OnDemandSearch` in `careerloop/on_demand.py` |
+| `careerloop/discovery.py` | Older discovery engine, no unified event streaming | `OnDemandSearch` in `careerloop/on_demand.py` |
+| `daily_runner.py::run()` discovery path | Subprocess-based, no SSE, no cache-first strategy | `OnDemandSearch` in `careerloop/on_demand.py` |
 | `modes/deep.md` (research engine) | Prompt generator, not intelligence | `company_intel.py` |
 | `modes/batch.md` | Runs A-G on all jobs — anti-pattern | India Fit pre-filter |
 | `batch/` directory | Batch orchestration for mass A-G | Not needed with lazy evaluation |
@@ -110,9 +113,11 @@ No independent CV generator. Council owns all content generation. Renderer owns 
 ```
 Discover (50+ jobs)
     │
-    ├── scan.mjs (ATS APIs: Greenhouse, Lever, Ashby)
-    ├── discovery.py (DDG search + ScrapeGraphAI extraction)
-    └── Future: Naukri/Instahyre/Cutshort/Hirist adapters
+    ├── OnDemandSearch (careerloop/on_demand.py) — Canonical path
+    │   ├── scan.mjs (ATS APIs: Greenhouse, Lever, Ashby — DEPRECATED, use on_demand)
+    │   ├── discovery.py (DDG search + ScrapeGraphAI extraction — DEPRECATED, use on_demand)
+    │   └── Future: Naukri/Instahyre/Cutshort/Hirist adapters
+    └── SSE streaming via scan_service.py::stream_scan_events()
     │
     ▼
 Verify
@@ -202,7 +207,7 @@ Learn
 
 ```
                     ┌──────────────┐
-                    │  DISCOVERED   │  ← scan.mjs, discovery.py add jobs here
+                    │  DISCOVERED   │  ← OnDemandSearch adds jobs here
                     └──────┬───────┘
                            │ India Fit Engine scores job
                            ▼
@@ -305,7 +310,7 @@ ACTIVE STATES:    All non-terminal, non-dormant
 ```
 ~/Projects/CareerLoop/
 ├── careerloop/                           ← CareerLoop owns this
-│   ├── discovery.py                      ✅ Discovery engine
+│   ├── on_demand.py                      ✅ Unified discovery engine (OnDemandSearch)
 │   ├── india_fit_engine.py               ✅ 14-dim pre-filter
 │   ├── india_fit_llm.py                  ✅ LLM scoring alternative
 │   ├── india_filter.py                   ✅ Geographic hardening
@@ -424,3 +429,39 @@ ACTIVE STATES:    All non-terminal, non-dormant
 ---
 
 *Architecture locked 2026-05-18. Amendments require PRD §17 update + this document update.*
+
+---
+
+## 9. Discovery Architecture (Addendum — 2026-05-29)
+
+### Canonical Engine
+
+**`careerloop/on_demand.py::OnDemandSearch`** is the single, unified job discovery engine. Every discovery flow — Daily Brief, Scan More, Copilot Discovery, or future search APIs — MUST route through `OnDemandSearch.run()`.
+
+### SSE Event Contract
+
+The discovery pipeline emits structured events via Server-Sent Events (SSE). The canonical producer is `careerloop_api/services/scan_service.py::stream_scan_events()`, which polls the `careerloop.run_events` table. The canonical consumer is the frontend `EventSource` in `ChatPage.tsx`.
+
+#### Event Types
+
+| Event Type | Stage | Description |
+|------------|-------|-------------|
+| `QUEUED` | Init | Scan accepted into the worker queue |
+| `SCAN_STARTED` | Discovery | Discovery pipeline initialized |
+| `SCAN_COMPLETED` | Terminal | All sources scanned, results aggregated |
+| `SCAN_FAILED` | Terminal | Scan worker crashed or timed out |
+| `SOURCE_SCANNING` | In-flight | Per-company/portal progress: `{ source: string, roles_found: int }` |
+| `JOB_FOUND` | Raw | Raw job listing found: `{ job_title, company, location, source, apply_url }` |
+| `JOB_EVALUATED` | Filtered | Job scored against targets: `{ job_title, company, fit_score, reason }` |
+| `JOB_REJECTED` | Filtered | Job rejected by a filter stage: `{ job_title, company, reason, rejection_stage }` |
+| `CANDIDATE_MATCHED` | Scored | Final candidate passed all filters: `{ job_title, company, location, fit_score, match_index }` |
+| `BRIEF_ADDED` | Output | Brief updated in DB: `{ jobs_added: int }` |
+| `FILTER_SUMMARY` | Summary | Aggregated filter stats: `{ raw, new, scored }` |
+| `BRIEF_CREATED` | Terminal | Brief persisted and ready for retrieval |
+| `DONE` | Terminal | SSE stream complete — EventSource should close |
+| `TIMEOUT` | Terminal | Hard timeout (5 min) reached |
+| `ERROR` | Terminal | Stream error |
+
+#### Transport
+
+Events are stored in `careerloop.run_events` (PostgreSQL) and polled by `stream_scan_events()` every 1 second. The producer writes to `run_events` directly; no message broker is involved.

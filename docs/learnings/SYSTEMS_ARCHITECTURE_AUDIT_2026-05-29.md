@@ -1104,7 +1104,23 @@ careerloop.daily_runner (CLI pipeline)
 
 ---
 
-## 10. Top 10 Architectural Risks
+## 10a. Discovery Unification (2026-05-29)
+
+**Change:** All job discovery now unified through `careerloop/on_demand.py::OnDemandSearch`.
+
+**What was unified:**
+- `scan.mjs` (Node.js ATS scanner) — deprecated, use `OnDemandSearch`
+- `careerloop/discovery.py` (Python DDG search) — deprecated, use `OnDemandSearch`
+- `careerloop/daily_runner.py::run()` (discovery path) — deprecated, use `OnDemandSearch`
+
+**SSE contract canonicalized:**
+- `careerloop_api/services/scan_service.py::stream_scan_events()` is the sole producer
+- Frontend `EventSource` in `ChatPage.tsx` is the sole consumer
+- 15 event types defined: SCAN_STARTED, SCAN_COMPLETED, SCAN_FAILED, SOURCE_SCANNING, JOB_FOUND, JOB_EVALUATED, JOB_REJECTED, CANDIDATE_MATCHED, BRIEF_ADDED, QUEUED, CACHE_HIT, FILTER_SUMMARY, BRIEF_CREATED, DONE, TIMEOUT, ERROR. See CANONICAL_ARCHITECTURE.md §9 for the full contract.
+
+**Impact:** This eliminates Risk 3 (`scan.mjs` as Node.js dependency in Python backend) by making `OnDemandSearch` the canonical entry point. The Node.js subprocess still runs under the hood but is no longer a direct dependency of any production path — it is wrapped by `OnDemandSearch`.
+
+## 11. Top 10 Architectural Risks
 
 ### Risk 1: Four Independent Persistence Stacks
 

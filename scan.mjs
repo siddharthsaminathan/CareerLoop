@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
+# DEPRECATED: Use OnDemandSearch in careerloop/on_demand.py instead.
+# This file will be removed in v2.
+
 /**
- * scan.mjs — Zero-token portal scanner
+ * scan.mjs — Zero-token portal scanner (DEPRECATED)
  *
  * Fetches Greenhouse, Ashby, and Lever APIs directly, applies title
  * filters from portals.yml, deduplicates against existing history,
@@ -13,6 +16,9 @@
  *   node scan.mjs                  # scan all enabled companies
  *   node scan.mjs --dry-run        # preview without writing files
  *   node scan.mjs --company Cohere # scan a single company
+ *
+ * DEPRECATION: Use careerloop/on_demand.py::OnDemandSearch.run() instead.
+ * See docs/learnings/SYSTEMS_ARCHITECTURE_AUDIT.md for the unified discovery architecture.
  */
 
 import { readFileSync, writeFileSync, appendFileSync, existsSync, mkdirSync } from 'fs';

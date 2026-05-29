@@ -19,15 +19,23 @@ Thread Safety (FIXED 2026-05-29):
   - Connection pool maxconn set to 3 for workers to avoid Supabase 15-conn limit
 
 Event types emitted during a scan:
-  SCAN_STARTED     — "Starting job discovery..."
-  SOURCE_STARTED   — "Searching configured portals..."
-  CACHE_HIT        — "X fresh jobs found in global cache"
-  CANDIDATE_MATCHED— "MATCH #1 — Title @ Company — Location — Score/100"
-  FILTER_SUMMARY   — "X raw, Y new, Z scored"
-  BRIEF_CREATED    — "Brief created with top matches."
-  SCAN_FAILED      — error message
+  SCAN_STARTED        — "Starting job discovery..."
+  SOURCE_STARTED      — "Searching configured portals..."
+  CACHE_HIT           — "X fresh jobs found in global cache"
+  JD_ENRICHED         — "Fetched full JD text for a job"
+  JD_SNIPPET          — "Snippet only — full JD not available"
+  SCORING_STARTED     — "Scoring N net-new jobs..."
+  HEURISTIC_SCORING   — "Running IndiaFitEngine on N jobs..."
+  HEURISTIC_SCORING_DONE — "N jobs scored"
+  LLM_VALIDATION       — "Validating top N jobs with LLM..."
+  LLM_VALIDATION_DONE  — "M/N jobs passed LLM validation"
+  CANDIDATE_MATCHED   — "MATCH #1 — Title @ Company — Location — Score/100"
+  FILTER_SUMMARY      — "X raw, Y new, Z scored"
+  BRIEF_CREATED       — "Brief created with top matches."
+  SCAN_FAILED         — error message
 """
 
+import hashlib
 import json
 import logging
 import os
@@ -37,12 +45,152 @@ import uuid
 from typing import Generator, Optional
 
 from careerloop.policies import is_india_location
+from careerloop.india_fit_llm import LLMIndiaFitEngine
 
 from careerloop_api.core.envelope import APIError
 
 logger = logging.getLogger("careerloop_api.services.scan")
 
-# ── Concurrency guards ──────────────────────────────────────────────────────────
+# ── Job persistence helpers ──────────────────────────────────────────────────────
+
+# India city keywords used to tag is_india_role during job persistence.
+_INDIA_CITY_KEYWORDS = frozenset([
+    "india", "bangalore", "bengaluru", "mumbai", "bombay", "chennai", "madras",
+    "delhi", "new delhi", "hyderabad", "pune", "gurgaon", "gurugram", "noida",
+    "kolkata", "calcutta", "ahmedabad", "remote", "pan india", "pan-india",
+    "anywhere in india",
+])
+
+
+def _compute_job_fingerprint(job: dict) -> str:
+    """Deterministic SHA-256 fingerprint from identity fields for dedup.
+
+    Uses title + company_name + apply_url + url. Strips whitespace/lowercases.
+    Returns first 40 hex chars — sufficient uniqueness for gigascale.
+    """
+    title = (job.get("title") or "").strip().lower()
+    company = (job.get("company") or job.get("company_name") or "").strip().lower()
+    apply_url = (job.get("apply_url") or job.get("url") or "").strip().lower()
+    url = (job.get("url") or "").strip().lower()
+    raw = f"{title}|{company}|{apply_url}|{url}"
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()[:40]
+
+
+def _is_india_location(location: str) -> bool:
+    """Check if a location string indicates an India-based role."""
+    loc = (location or "").lower().strip()
+    if not loc:
+        return False
+    return any(kw in loc for kw in _INDIA_CITY_KEYWORDS)
+
+
+def _persist_scan_jobs(db, user_id: str, top_jobs: list) -> list:
+    """Persist every discovered job to careerloop.jobs and create user_job_relationships.
+
+    Each job is upserted by content_fingerprint (SHA-256 of title|company|url).
+    Existing jobs get their metadata refreshed (last_seen_at, title, apply_url).
+    Returns the same top_jobs list with real UUID ``job_id`` and ``id`` fields set
+    on each job dict, so downstream brief creation uses correct FK references.
+
+    Called once per scan run, BEFORE brief items are created.
+    """
+    from datetime import datetime, timezone
+    log = logging.getLogger("careerloop_api.services.scan.persist")
+    if not top_jobs:
+        return top_jobs
+
+    with db.get_connection() as conn:
+        with conn.cursor() as cur:
+            for item in top_jobs:
+                job = item.get("job", item)
+                score = item.get("score")
+
+                fp = _compute_job_fingerprint(job)
+                title = (job.get("title") or "")[:500]
+                company = (job.get("company") or job.get("company_name") or "")[:300]
+                location = (job.get("location") or "")[:300]
+                apply_url = (job.get("apply_url") or job.get("url") or "")[:1000]
+                canonical_url = (job.get("url") or apply_url)[:1000]
+                jd_text = (
+                    job.get("description")
+                    or job.get("jd_text")
+                    or job.get("raw_jd_text")
+                    or ""
+                )[:50000]
+                is_india = _is_india_location(location)
+
+                cur.execute(
+                    """
+                    INSERT INTO careerloop.jobs (
+                        job_id, source, title, company_name, location,
+                        location_raw, apply_url, canonical_url, jd_text,
+                        content_fingerprint, is_india_role, status
+                    ) VALUES (
+                        gen_random_uuid(), %s, %s, %s, %s,
+                        %s, %s, %s, %s,
+                        %s, %s, 'active'
+                    )
+                    ON CONFLICT (content_fingerprint) DO UPDATE SET
+                        title            = EXCLUDED.title,
+                        company_name     = EXCLUDED.company_name,
+                        location         = EXCLUDED.location,
+                        location_raw     = EXCLUDED.location_raw,
+                        apply_url        = EXCLUDED.apply_url,
+                        jd_text          = EXCLUDED.jd_text,
+                        last_seen_at     = NOW(),
+                        updated_at       = NOW()
+                    RETURNING job_id
+                    """,
+                    (
+                        "on_demand",
+                        title,
+                        company,
+                        location,
+                        location,
+                        apply_url,
+                        canonical_url,
+                        jd_text,
+                        fp,
+                        is_india,
+                    ),
+                )
+                row = cur.fetchone()
+                if row:
+                    job_id = str(row["job_id"])
+                else:
+                    # Fallback: query by fingerprint (should not normally happen)
+                    cur.execute(
+                        "SELECT job_id FROM careerloop.jobs WHERE content_fingerprint = %s",
+                        (fp,),
+                    )
+                    r2 = cur.fetchone()
+                    job_id = str(r2["job_id"]) if r2 else str(uuid.uuid4())
+
+                # Stamp the real UUID onto the job dict so downstream brief_items
+                # and event emission use the canonical FK.
+                job["job_id"] = job_id
+                job["id"] = job_id  # v1 compat
+
+                # Create user_job_relationship row
+                cur.execute(
+                    """
+                    INSERT INTO careerloop.user_job_relationships
+                        (user_id, job_id, match_status, fit_score,
+                         user_seen_at, created_at, updated_at)
+                    VALUES (%s, %s, 'discovered', %s, NOW(), NOW(), NOW())
+                    ON CONFLICT (user_id, job_id) DO UPDATE SET
+                        fit_score  = EXCLUDED.fit_score,
+                        updated_at = NOW()
+                    """,
+                    (user_id, job_id, score),
+                )
+
+    log.info(
+        "Persisted %d jobs to careerloop.jobs for user %s",
+        len(top_jobs),
+        user_id[:8],
+    )
+    return top_jobs
 
 # Per-user scan lock: prevents initiating a new scan while another is RUNNING.
 _active_scans_lock = threading.Lock()
@@ -377,8 +525,8 @@ def _build_from_cache(user_id: str, db, limit: int = 10) -> list:
         r = dict(row)
         score = float(r["fit_score"]) if r.get("fit_score") is not None else None
         if score is None:
-            logger.warning("_build_from_cache: job '%s' has no fit_score — using default 65.0", r.get("title", "?"))
-            score = 65.0
+            logger.warning("_build_from_cache: job '%s' has no fit_score — skipping (will be rescored on next full scan)", r.get("title", "?"))
+            continue  # skip unscored; IndiaFitEngine will score on next full scan
         top.append({
             "job": {
                 "job_id": str(r.get("job_id")) if r.get("job_id") else r.get("legacy_id"),
@@ -399,40 +547,48 @@ def _build_from_cache(user_id: str, db, limit: int = 10) -> list:
 
 
 def _execute_scan_more(user_id: str, run_id: str, db):
-    """Forced fresh discovery for "Scan More" — streamed live, deduped, no cache.
+    """Forced fresh discovery for "Scan More" — via OnDemandSearch pipeline.
 
-    Runs scan.mjs across the configured job portals and streams each company as
-    it's scanned + each role found, in real time. Then scores net-new roles
-    against the user's target roles and appends matches to today's brief.
-    NO cache-hit shortcut — the user explicitly wants jobs beyond their brief.
+    Replaces the old subprocess-based scan.mjs path. Uses the canonical
+    OnDemandSearch discovery engine (Phase A + Phase B + filtering + scoring)
+    and streams structured SSE events from each pipeline stage. Net-new matches
+    are appended to today's brief (append, never wipe). NO cache shortcut —
+    the user explicitly wants jobs beyond their brief.
     """
-    import os
-    import json as _json
-    import subprocess
+    import json
     import time as _time
-    # Location filter already imported at module top (careerloop.policies.is_india_location)
 
     root = os.path.realpath(os.path.join(os.path.dirname(__file__), "..", ".."))
 
-    # 1. User's target roles (for real match/skip decisions) + existing brief dedupe set.
+    # 1. User's target roles + existing brief dedupe set
     target_roles, seen_keys = _load_targets_and_seen(user_id, db)
+    if not target_roles:
+        target_roles = ["AI Engineer"]  # sensible fallback
 
-    with db.get_connection() as conn:
-        with conn.cursor() as cur:
-            scan_started_payload = {"event": "SCAN_STARTED", "mode": "scan_more"}
-            _emit(cur, run_id, "Hunting for fresh roles beyond your brief…", "SCAN_STARTED", scan_started_payload)
-            source_started_payload = {"event": "SOURCE_STARTED", "target_roles": target_roles, "mode": "scan_more"}
-            _emit(cur, run_id, f"Scanning live job portals for: {', '.join(target_roles) or 'your targets'}", "SOURCE_STARTED", source_started_payload)
+    # 2. Preferred city from user profile (work_style_prefs)
+    city = ""
+    try:
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "SELECT work_style_prefs FROM careerloop.users WHERE id = %s",
+                    (user_id,),
+                )
+                row = cur.fetchone()
+                if row and row.get("work_style_prefs"):
+                    raw = row["work_style_prefs"]
+                    prefs = json.loads(raw) if isinstance(raw, str) else raw
+                    city = prefs.get("city", "") or prefs.get("location", "") or ""
+    except Exception:
+        pass
+    if not city:
+        city = "Bangalore"
 
-    # 2. Run scan.mjs and stream its per-company output live.
-    found_jobs = []
-    scanned_count = 0
-    emitted_scanned = 0
-    SCANNED_EMIT_CAP = 60   # bound run_events rows; counter keeps progress honest
-    buffer = []             # batched (event_type, message, payload) for throttled writes
+    # 3. Buffered event emitter — same throttled DB-write pattern as old scan_more
+    buffer = []
     last_flush = _time.time()
 
-    def flush():
+    def _flush():
         nonlocal buffer, last_flush
         if not buffer:
             return
@@ -442,121 +598,74 @@ def _execute_scan_more(user_id: str, run_id: str, db):
                     for et, msg, pl in buffer:
                         _emit(cur, run_id, msg, et, pl)
         except Exception as e:
-            logger.error("scan_more flush failed for run %s: %s", run_id, e)
+            logger.error("scan_more emit flush failed: %s", e)
         buffer = []
         last_flush = _time.time()
 
-    try:
-        proc = subprocess.Popen(
-            ["node", "scan.mjs"], cwd=root,
-            stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-            text=True, bufsize=1,
-        )
-        for line in proc.stdout:
-            line = line.strip()
-            if not line.startswith("SCAN_EVENT::"):
-                continue
-            try:
-                ev = _json.loads(line[len("SCAN_EVENT::"):])
-            except Exception:
-                continue
-            if ev.get("t") == "scanned":
-                scanned_count += 1
-                if emitted_scanned < SCANNED_EMIT_CAP:
-                    emitted_scanned += 1
-                    source_payload = {
-                        "event": "SOURCE_SCANNING",
-                        "source": ev.get("company", ""),
-                        "roles_found": ev.get("found", 0),
-                        "source_type": ev.get("source_type", "ats"),
-                    }
-                    buffer.append(("SOURCE_SCANNING", f"🔍 Scanned {ev.get('company','?')} — {ev.get('found',0)} roles", source_payload))
-            elif ev.get("t") == "found":
-                found_jobs.append(ev)
-                job_payload = {
-                    "event": "JOB_FOUND",
-                    "job_title": ev.get("title", ""),
-                    "company": ev.get("company", ""),
-                    "location": ev.get("location", ""),
-                    "source": ev.get("source", ""),
-                    "apply_url": ev.get("url", "") or ev.get("apply_url", ""),
-                }
-                buffer.append(("JOB_FOUND", f"Found: {ev.get('title','?')} @ {ev.get('company','?')}", job_payload))
-            # Throttle DB writes: flush every ~0.5s or every 12 buffered events.
-            if len(buffer) >= 12 or (_time.time() - last_flush) > 0.5:
-                flush()
-        proc.wait(timeout=120)
-    except Exception as e:
-        logger.error("scan_more discovery failed: %s", e)
-    flush()
+    def _event_emitter(event_type: str, message: str, payload: dict = None):
+        """OnDemandSearch calls this at each pipeline stage."""
+        nonlocal buffer
+        buffer.append((event_type, message, payload or {}))
+        if len(buffer) >= 12 or (_time.time() - last_flush) > 0.5:
+            _flush()
 
-    # 3. Score net-new roles against target roles; dedupe vs existing brief.
-    net_new = []
-    for ev in found_jobs:
-        title = (ev.get("title") or "").strip()
-        company = (ev.get("company") or "").strip()
-        key = f"{company.lower()}::{title.lower()}"
+    # 4. Kick off SCAN_STARTED
+    _event_emitter("SCAN_STARTED",
+        f"Scanning for: {', '.join(target_roles)} in {city}",
+        {"event_type": "SCAN_STARTED", "mode": "scan_more",
+         "target_roles": target_roles, "city": city})
+
+    # 5. Run OnDemandSearch — the canonical discovery engine
+    from careerloop.on_demand import OnDemandSearch
+
+    primary_role = target_roles[0]
+    ods = OnDemandSearch(root)
+    try:
+        result = ods.run(
+            role=primary_role,
+            city=city,
+            max_results=10,
+            portal_companies=20,
+            include_boards=True,
+            include_phase_a=True,
+            event_emitter=_event_emitter,
+        )
+    except Exception as e:
+        _flush()
+        logger.exception("OnDemandSearch failed for scan_more run %s: %s", run_id, e)
+        _mark_scan_failed(run_id, user_id, f"Scan failed: {str(e)[:200]}")
+        return
+    finally:
+        _flush()
+
+    # 6. Dedupe ranked jobs against existing brief items (keep full scored items)
+    net_new_items = []
+    for item in result.ranked_jobs:
+        job = item.get("job", item)
+        comp = (job.get("company") or job.get("company_name") or "").lower().strip()
+        title = (job.get("title") or "").lower().strip()
+        key = f"{comp}::{title}"
         if key in seen_keys:
             continue
         seen_keys.add(key)
-        matched = _matches_targets(title, target_roles)
-        if matched:
-            # P0: Location filter — reject non-India jobs
-            loc = (ev.get("location") or "").strip()
-            url = (ev.get("url") or ev.get("apply_url") or "").strip()
-            if loc:
-                is_india, reason = is_india_location(loc)
-                if not is_india:
-                    reject_payload = {
-                        "event": "JOB_EVALUATED",
-                        "job_title": title,
-                        "company": company,
-                        "location": loc,
-                        "fit_score": 0,
-                        "rejection_reason": f"Non-India location: {reason}",
-                    }
-                    with db.get_connection() as conn:
-                        with conn.cursor() as cur:
-                            _emit(cur, run_id, f"✗ {title} @ {company} — non-India location: {loc}", "JOB_EVALUATED", reject_payload)
-                    continue
-            net_new.append(ev)
-            eval_payload = {
-                "event": "JOB_EVALUATED",
-                "job_title": title,
-                "company": company,
-                "location": ev.get("location", ""),
-                "fit_score": _compute_title_match_score(title, target_roles),
-                "rejection_reason": None,
-            }
-            with db.get_connection() as conn:
-                with conn.cursor() as cur:
-                    _emit(cur, run_id, f"✓ {title} @ {company} — matches your targets", "JOB_EVALUATED", eval_payload)
-        else:
-            reject_payload = {
-                "event": "JOB_EVALUATED",
-                "job_title": title,
-                "company": company,
-                "location": ev.get("location", ""),
-                "fit_score": 0,
-                "rejection_reason": "off-target role",
-            }
-            with db.get_connection() as conn:
-                with conn.cursor() as cur:
-                    _emit(cur, run_id, f"✗ {title} @ {company} — off-target, skipped", "JOB_EVALUATED", reject_payload)
+        net_new_items.append(item)  # keep score + breakdown
 
-    # 4. Append net-new matches to today's brief (append, never wipe).
-    appended = _append_to_brief(user_id, run_id, net_new, db)
+    # 7. Append net-new matches to today's brief (pre-scored by IndiaFitEngine + LLM)
+    appended = _append_to_brief(user_id, run_id, net_new_items, db)
 
+    # 8. Finalize — summary event + mark COMPLETED
     with db.get_connection() as conn:
         with conn.cursor() as cur:
             filter_payload = {
                 "event": "FILTER_SUMMARY",
-                "scanned_companies": scanned_count,
-                "roles_seen": len(found_jobs),
-                "new_matches": appended,
+                "candidates": result.candidate_count,
+                "after_dedup": result.after_dedup_count,
+                "net_new_matches": appended,
+                "source": "on_demand_search",
             }
             _emit(cur, run_id,
-                  f"Scanned {scanned_count} companies · {len(found_jobs)} roles seen · {appended} new matches added",
+                  f"Discovery: {result.candidate_count} candidates · "
+                  f"{result.after_dedup_count} after dedup · {appended} net-new matches",
                   "FILTER_SUMMARY", filter_payload)
             if appended == 0:
                 _emit(cur, run_id, "No new matches beyond your current brief right now.", "BRIEF_CREATED",
@@ -568,7 +677,9 @@ def _execute_scan_more(user_id: str, run_id: str, db):
                 "UPDATE careerloop.background_runs SET status = 'COMPLETED', updated_at = NOW() WHERE run_id = %s",
                 (run_id,),
             )
-    logger.info("scan_more done: run=%s scanned=%d found=%d appended=%d", run_id, scanned_count, len(found_jobs), appended)
+    logger.info("scan_more (OnDemandSearch) done: run=%s candidates=%d appended=%d",
+                run_id, result.candidate_count, appended)
+
 
 
 def _load_targets_and_seen(user_id: str, db):
@@ -618,39 +729,132 @@ def _matches_targets(title: str, target_roles: list) -> bool:
     return False
 
 
-def _compute_title_match_score(title: str, target_roles: list) -> float:
-    """Compute a quick heuristic score (0-100) from title/target-role keyword overlap.
-
-    Used in scan_more path where full job data (JD, salary, etc.) isn't available
-    for the 15-dimension heuristic scorer.
+def _score_scan_more_jobs(jobs: list[dict], run_id: str, root: str, db, role: str = "") -> list[dict]:
     """
-    if not target_roles or not title:
-        return 65.0  # neutral default — no targets to match against
-    t = title.lower()
-    # Collect all non-trivial keywords from target roles
-    all_keywords = set()
-    for role in target_roles:
-        for tok in str(role).lower().split():
-            if len(tok) > 3:
-                all_keywords.add(tok)
-    if not all_keywords:
-        return 65.0
-    # How many target keywords appear in the title?
-    matched = sum(1 for kw in all_keywords if kw in t)
-    ratio = matched / len(all_keywords)
-    # Scale: 0% match = 50, 50% match = 65, 100% match = 85
-    return round(50.0 + ratio * 35.0, 1)
+    Score scan_more net-new jobs with IndiaFitEngine heuristic + LLM DeepSeek validation.
 
+    For each job from scan.mjs (title/company/location/URL only), attempts to fetch
+    full JD text via generic HTTP extraction. Jobs that lack JD text receive a
+    conservative default score from IndiaFitEngine on title+company+location alone.
 
-def _append_to_brief(user_id: str, run_id: str, jobs: list, db) -> int:
-    """Append net-new matched jobs to today's brief (creating it if absent). Returns count added."""
+    Returns scored_items in format [{"job": {...}, "score": N, "breakdown": {...}}, ...].
+    """
     if not jobs:
+        return []
+
+    # SSE: scoring started
+    try:
+        from careerloop.on_demand import OnDemandSearch
+        on_demand = OnDemandSearch(root)
+    except Exception as e:
+        logger.error("_score_scan_more_jobs: failed to create OnDemandSearch: %s", e)
+        # Fallback: return jobs with a neutral score so brief creation still works
+        return [{"job": j, "score": 50.0, "breakdown": {}} for j in jobs]
+
+    with db.get_connection() as conn:
+        with conn.cursor() as cur:
+            _emit(cur, run_id, f"Scoring {len(jobs)} net-new roles with IndiaFitEngine...",
+                  "SCORING_STARTED", {"event": "SCORING_STARTED", "candidates": len(jobs)})
+
+    # Step 1: Enrich each job with JD text (fetch URL → generic HTTP extraction)
+    enriched = []
+    enrich_ok = 0
+    for ev in jobs:
+        url = (ev.get("url") or ev.get("apply_url") or "").strip()
+        enriched_jd = None
+        if url and url.startswith("http"):
+            enriched_jd = on_demand._extract_generic_jd(url, fallback_title=ev.get("title", ""))
+        if enriched_jd:
+            enriched_jd["company"] = ev.get("company", enriched_jd.get("company", ""))
+            enriched_jd["location"] = ev.get("location", enriched_jd.get("location", ""))
+            enriched_jd["apply_url"] = url
+            enriched_jd["url"] = url
+            enriched_jd["_source_type"] = "scan_more_enriched"
+            job_dict = enriched_jd
+            enrich_ok += 1
+        else:
+            # Keep as-is with available fields — IndiaFitEngine scores conservatively on partial data
+            job_dict = {
+                "title": ev.get("title", ""),
+                "company": ev.get("company", ""),
+                "location": ev.get("location", ""),
+                "url": url,
+                "apply_url": url,
+                "_source_type": "scan_more_snippet",
+            }
+        enriched.append(job_dict)
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                _emit(cur, run_id,
+                      f"{'Enriched' if enriched_jd else 'Snippet'}: {ev.get('title','?')} @ {ev.get('company','?')}",
+                      "JD_ENRICHED" if enriched_jd else "JD_SNIPPET",
+                      {"event": "JD_ENRICHED" if enriched_jd else "JD_SNIPPET",
+                       "job_title": ev.get("title", ""),
+                       "company": ev.get("company", "")})
+
+    # SSE: heuristic scoring
+    with db.get_connection() as conn:
+        with conn.cursor() as cur:
+            _emit(cur, run_id, f"Running IndiaFitEngine on {len(enriched)} jobs ({enrich_ok} with full JD)...",
+                  "HEURISTIC_SCORING",
+                  {"event": "HEURISTIC_SCORING", "candidates": len(enriched), "full_jd": enrich_ok})
+
+    # Step 2: Score with IndiaFitEngine
+    scored = on_demand.fit_engine.score_jobs_batch(enriched)
+
+    # SSE: heuristic scoring complete
+    with db.get_connection() as conn:
+        with conn.cursor() as cur:
+            _emit(cur, run_id, f"IndiaFitEngine scored {len(scored)} jobs.",
+                  "HEURISTIC_SCORING_DONE",
+                  {"event": "HEURISTIC_SCORING_DONE", "scored": len(scored)})
+
+    # Step 3: LLM validation on top 60 (single batch call, fast — ~5-10s)
+    if role and scored:
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                _emit(cur, run_id, f"Validating top {min(60, len(scored))} jobs with LLM...",
+                      "LLM_VALIDATION",
+                      {"event": "LLM_VALIDATION", "candidates": min(60, len(scored))})
+        try:
+            pre_llm = len(scored)
+            validated = on_demand._llm_validate(scored[:60], role=role) + scored[60:]
+            llm_rejected = pre_llm - len(validated)
+        except Exception as e:
+            logger.debug("_score_scan_more_jobs: LLM validate skipped: %s", e)
+            validated = scored
+            llm_rejected = 0
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                _emit(cur, run_id,
+                      f"LLM validation: {len(validated)}/{len(scored)} jobs passed (rejected {llm_rejected}).",
+                      "LLM_VALIDATION_DONE",
+                      {"event": "LLM_VALIDATION_DONE", "input": len(scored), "output": len(validated)})
+    else:
+        validated = scored
+
+    return validated
+
+
+def _append_to_brief(user_id: str, run_id: str, scored_items: list, db) -> int:
+    """Append net-new matched jobs to today's brief (creating it if absent). Returns count added.
+
+    Accepts scored_items in the same format as IndiaFitEngine.score_jobs_batch output:
+        [{"job": {..., "job_id": ...}, "score": 85.0, "breakdown": {...}}, ...]
+    Each item must have a "job" dict and a "score" float.
+    Persists each job to careerloop.jobs (idempotent by content_fingerprint)
+    and creates user_job_relationships before appending to the brief.
+    """
+    if not scored_items:
         return 0
     from datetime import datetime, timezone
     today = datetime.now(timezone.utc).date().isoformat()
     added = 0
-    # Load target roles so we can compute real scores
-    target_roles, _ = _load_targets_and_seen(user_id, db)
+
+    # ── Persist each job to careerloop.jobs ────────────────────────────────
+    scan_more_items = _persist_scan_jobs(db, user_id, scored_items)
+    # After _persist_scan_jobs, each job dict has real job_id set.
+
     try:
         with db.get_connection() as conn:
             with conn.cursor() as cur:
@@ -669,16 +873,18 @@ def _append_to_brief(user_id: str, run_id: str, jobs: list, db) -> int:
                     )
                 cur.execute("SELECT COALESCE(MAX(item_index),0) AS mx FROM careerloop.daily_brief_items WHERE brief_id = %s", (brief_id,))
                 idx = (cur.fetchone() or {}).get("mx", 0)
-                for ev in jobs:
+                for item in scan_more_items:
+                    ev = item["job"]
+                    score = item["score"]
                     idx += 1
                     added += 1
-                    score = _compute_title_match_score(ev.get("title", ""), target_roles)
+                    job_id = ev.get("job_id") or ev.get("id") or str(uuid.uuid4())
                     cur.execute(
                         "INSERT INTO careerloop.daily_brief_items "
                         "(id, brief_id, item_index, job_id, title, company, location, fit_score, recommendation_reason, risk_summary, route_recommendation) "
                         "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                         (
-                            str(uuid.uuid4()), brief_id, idx, str(uuid.uuid4()),
+                            str(uuid.uuid4()), brief_id, idx, str(job_id),
                             ev.get("title", ""), ev.get("company", ""), ev.get("location", ""),
                             score, "Fresh match from live portal scan.", "Newly discovered — verify details.", "APPLY",
                         ),
@@ -692,7 +898,7 @@ def _execute_scan(user_id: str, run_id: str, db):
     """Core scan logic — runs synchronously inside the worker thread."""
     import re
     from datetime import datetime, timezone
-    from careerloop.daily_runner import DailyRunner
+    from careerloop.on_demand import OnDemandSearch
 
     # P0: Prevent duplicate scan while another is running for this user
     try:
@@ -710,14 +916,178 @@ def _execute_scan(user_id: str, run_id: str, db):
 
     # scan_service.py lives at careerloop_api/services/ → go up 2 levels to repo root
     root = os.path.realpath(os.path.join(os.path.dirname(__file__), "..", ".."))
-    runner = DailyRunner(root)
+    today_str = datetime.now(timezone.utc).date().isoformat()
 
+    # ── SCAN STARTED event ──────────────────────────────────────────────
     with db.get_connection() as conn:
         with conn.cursor() as cur:
             _emit(cur, run_id, "Starting job discovery...", "SCAN_STARTED", {"event": "SCAN_STARTED", "mode": "default"})
-            _emit(cur, run_id, "Searching configured portals for new job postings...", "SOURCE_STARTED", {"event": "SOURCE_STARTED", "mode": "default"})
 
-    # Cache-hit check
+    # ── Load user profile from DB ───────────────────────────────────────
+    import json as _json
+    target_role = ""
+    target_city = ""
+    try:
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "SELECT target_roles, location_city FROM careerloop.users WHERE id = %s",
+                    (user_id,),
+                )
+                row = cur.fetchone()
+                if row:
+                    raw_roles = row.get("target_roles", [])
+                    if isinstance(raw_roles, list) and len(raw_roles) > 0:
+                        target_role = raw_roles[0]
+                    elif isinstance(raw_roles, str):
+                        try:
+                            parsed = _json.loads(raw_roles)
+                            target_role = parsed[0] if isinstance(parsed, list) and len(parsed) > 0 else raw_roles
+                        except Exception:
+                            target_role = raw_roles.split(",")[0].strip()
+                    target_city = row.get("location_city") or ""
+    except Exception as e:
+        logger.error("_execute_scan: failed to load user profile from DB: %s", e)
+
+    if not target_role:
+        logger.warning("_execute_scan: no target role found for user %s", user_id[:8])
+        # Fallback: try the current file-based profile
+        try:
+            from careerloop.profile_manager import ProfileManager as _PM
+            _pm = _PM(root)
+            target_role = (_pm.target_roles or ["software engineer"])[0]
+            target_city = _pm.location_city or ""
+        except Exception:
+            target_role = "software engineer"
+
+    # ── SOURCE STARTED event ────────────────────────────────────────────
+    with db.get_connection() as conn:
+        with conn.cursor() as cur:
+            _emit(cur, run_id,
+                  f"Searching job portals for: {target_role} in {target_city}",
+                  "SOURCE_STARTED",
+                  {"event": "SOURCE_STARTED", "role": target_role, "city": target_city, "mode": "default"})
+
+    # ── Run canonical discovery engine ──────────────────────────────────
+    with db.get_connection() as conn:
+        with conn.cursor() as cur:
+            _emit(cur, run_id,
+                  f"Phase A: discovering employers for '{target_role}' in {target_city}...",
+                  "PHASE_A_STARTED",
+                  {"event": "PHASE_A_STARTED", "role": target_role, "city": target_city})
+
+    searcher = OnDemandSearch(root)
+    result = searcher.run(
+        role=target_role,
+        city=target_city,
+        max_results=25,
+        include_phase_a=True,
+    )
+
+    with db.get_connection() as conn:
+        with conn.cursor() as cur:
+            _emit(cur, run_id,
+                  f"Phase A complete: discovered {len(result.targeted_companies)} employers with {result.candidate_count} raw jobs",
+                  "PHASE_A_COMPLETED",
+                  {"event": "PHASE_A_COMPLETED", "companies_found": len(result.targeted_companies), "raw_jobs": result.candidate_count,
+                   "elapsed_seconds": result.elapsed_seconds})
+
+    # ── Extract results ─────────────────────────────────────────────────
+    top_jobs = result.ranked_jobs
+    new_jobs = result.candidate_count
+    unique_added = result.after_dedup_count
+    scored = len(top_jobs)
+
+    # ── Emit JOB_FOUND + JOB_EVALUATED for each ranked job ───────────────
+    for item in top_jobs:
+        job = item.get("job", item)
+        title = job.get("title", "?")
+        company = job.get("company", "") or job.get("company_name", "") or "?"
+        loc = job.get("location", "?")
+        score = item.get("score", 0)
+        job_payload = {
+            "event": "JOB_FOUND",
+            "job_title": title,
+            "company": company,
+            "location": loc,
+        }
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                _emit(cur, run_id, f"Found: {title} @ {company}", "JOB_FOUND", job_payload)
+                eval_payload = {
+                    "event": "JOB_EVALUATED",
+                    "job_title": title,
+                    "company": company,
+                    "location": loc,
+                    "fit_score": score,
+                    "rejection_reason": None,
+                }
+                _emit(cur, run_id, f"MATCH: {title} @ {company} — score: {score:.0f}/100", "JOB_EVALUATED", eval_payload)
+
+    # ── LLMIndiaFitEngine deep scoring (top 5 only — single calls, ~15s total) ─
+    if top_jobs and target_role:
+        from careerloop.models import JobPosting
+        _llm_profile = {
+            "target_roles": [target_role],
+            "confirmed_skills": getattr(searcher.profile, "confirmed_skills", []),
+            "weak_skills": getattr(searcher.profile, "weak_skills", []),
+            "rejected_roles": getattr(searcher.profile, "rejected_roles", []),
+            "rejected_company_types": getattr(searcher.profile, "rejected_company_types", []),
+            "preferred_company_types": getattr(searcher.profile, "preferred_company_types", []),
+            "notice_period_days": getattr(searcher.profile, "notice_period_days", 30),
+            "salary_floor_lakhs": getattr(searcher.profile, "salary_floor_lakhs", 0),
+            "expected_ctc_lakhs": getattr(searcher.profile, "expected_ctc_lakhs", 0),
+            "startup_tolerance": getattr(searcher.profile, "startup_tolerance", 5),
+            "assignment_burden_tolerance": getattr(searcher.profile, "assignment_burden_tolerance", 5),
+            "location_city": target_city,
+            "location_flexibility": getattr(searcher.profile, "location_flexibility", ""),
+        }
+        _llm_candidates = top_jobs[:5]
+        _llm_posting_list = []
+        for item in _llm_candidates:
+            j = item.get("job", item)
+            _llm_posting_list.append(JobPosting(
+                source=j.get("_source_type", "on_demand_scan"),
+                source_url=j.get("url", "") or j.get("apply_url", ""),
+                company=j.get("company", "") or j.get("company_name", ""),
+                role_title=j.get("title", ""),
+                location=j.get("location", ""),
+                application_url=j.get("apply_url", "") or j.get("url", ""),
+                raw_description=j.get("description", "") or j.get("jd_text", "") or "",
+                work_mode=j.get("work_mode", ""),
+                salary_range=j.get("salary", "") or j.get("salary_text", ""),
+                skills_required=j.get("skills", []),
+            ))
+        try:
+            _llm_engine = LLMIndiaFitEngine()
+            with db.get_connection() as conn:
+                with conn.cursor() as cur:
+                    _emit(cur, run_id, f"Deep LLM scoring {len(_llm_posting_list)} top jobs...",
+                          "LLM_VALIDATION",
+                          {"event": "LLM_VALIDATION", "candidates": len(_llm_posting_list), "mode": "deep_score"})
+            _llm_results = _llm_engine.score_batch(_llm_posting_list, _llm_profile,
+                                                    min_heuristic_score=50)
+            # Merge LLM scores back into top_jobs
+            for llm_r in _llm_results:
+                fp = llm_r.get("_job_fingerprint", "")
+                for item in _llm_candidates:
+                    j = item.get("job", item)
+                    if fp and (j.get("url", "") + j.get("title", "")).encode("utf-8").hex()[:16] == fp:
+                        item["llm_score"] = llm_r.get("overall_score", item.get("score", 0))
+                        item["llm_detail"] = llm_r
+                        break
+            with db.get_connection() as conn:
+                with conn.cursor() as cur:
+                    _emit(cur, run_id, f"Deep LLM scoring complete for {len(_llm_results)} jobs.",
+                          "LLM_VALIDATION_DONE",
+                          {"event": "LLM_VALIDATION_DONE", "scored": len(_llm_results)})
+        except Exception as e:
+            logger.debug("_execute_scan: LLMIndiaFitEngine deep scoring skipped: %s", e)
+
+    # ── Persist jobs to careerloop.jobs + user_job_relationships ──────────
+    _persist_scan_jobs(db, user_id, top_jobs)
+
+    # ── Cache-hit check (supplementary — may surface additional cached jobs) ──
     try:
         from careerloop.memory.repository_v2 import get_fresh_cached_jobs
         prefs = {}
@@ -730,7 +1100,6 @@ def _execute_scan(user_id: str, run_id: str, db):
                     )
                     row = cur.fetchone()
                     if row and row.get("work_style_prefs"):
-                        import json as _json
                         raw = row["work_style_prefs"]
                         prefs = _json.loads(raw) if isinstance(raw, str) else raw
                 except Exception:
@@ -749,14 +1118,6 @@ def _execute_scan(user_id: str, run_id: str, db):
     except Exception as e:
         logger.debug("Cache-hit check skipped: %s", e)
 
-    # Run the actual scan
-    res = runner.run(do_scan=True)
-    today_str = datetime.now(timezone.utc).date().isoformat()
-    new_jobs = res.get("new_jobs_found", 0)
-    unique_added = res.get("unique_added", 0)
-    scored = res.get("scored", 0)
-    top_jobs = res.get("top_jobs") or []
-
     # Cache-first fallback: if the runner produced no fresh shortlist (already
     # generated today, or no NEW external jobs found), build the brief from the
     # global jobs cache so the user always sees real jobs from the DB.
@@ -771,6 +1132,9 @@ def _execute_scan(user_id: str, run_id: str, db):
             with db.get_connection() as conn:
                 with conn.cursor() as cur:
                     _emit(cur, run_id, f"Surfacing {len(top_jobs)} matching roles from cache", "CACHE_HIT", cache_fallback_payload)
+            # Cache-fallback jobs already exist in careerloop.jobs but need
+            # user_job_relationships rows created. Idempotent ON CONFLICT.
+            _persist_scan_jobs(db, user_id, top_jobs)
 
     # If there is genuinely nothing to show, keep any existing brief intact and stop.
     if not top_jobs:
@@ -800,7 +1164,7 @@ def _execute_scan(user_id: str, run_id: str, db):
             )
             cur.execute(
                 "INSERT INTO careerloop.daily_briefs (id, user_id, date_str, run_id, summary) VALUES (%s, %s, %s, %s, %s)",
-                (brief_id, user_id, today_str, run_id, res.get("shortlist_text", "")),
+                (brief_id, user_id, today_str, run_id, f"On-demand search: {target_role} in {target_city} — {len(top_jobs)} matches"),
             )
 
             for idx, item in enumerate(top_jobs, 1):

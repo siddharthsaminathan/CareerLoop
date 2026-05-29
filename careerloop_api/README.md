@@ -98,3 +98,69 @@ On the first authenticated API call:
 - Subsequent calls hit `ON CONFLICT (id) DO UPDATE SET last_active_at = NOW()` (fast)
 
 Identity is universal — same JWT works for web, iOS, Android.
+
+## SSE Event Contract
+
+The scan pipeline emits real-time events via Server-Sent Events (SSE). The canonical producer is `scan_service.py::stream_scan_events()` and the consumer is the frontend `EventSource` in `ChatPage.tsx`.
+
+### SSE Endpoint
+
+```
+GET /v1/scans/{run_id}/events
+Authorization: Bearer <supabase_jwt>
+Accept: text/event-stream
+```
+
+Returns a `text/event-stream` response. The frontend should use `EventSource` or `@microsoft/fetch-event-source`.
+
+### Event Types
+
+| Event | When | Payload |
+|-------|------|---------|
+| `QUEUED` | Scan accepted | `{"run_id": "..."}` |
+| `SCAN_STARTED` | Discovery begins | `{"mode": "default"\|"scan_more"}` |
+| `SCAN_COMPLETED` | All sources done | `{"jobs_found": int, "jobs_added": int}` |
+| `SCAN_FAILED` | Worker crashed | `{"error": "..."}` |
+| `SOURCE_SCANNING` | Per-portal progress | `{"source": "greenhouse", "roles_found": 5}` |
+| `JOB_FOUND` | Raw job found | `{"job_title": "...", "company": "...", "location": "...", "source": "...", "apply_url": "..."}` |
+| `JOB_EVALUATED` | Job scored | `{"job_title": "...", "company": "...", "fit_score": 0-100, "reason": "..."}` |
+| `JOB_REJECTED` | Filter rejected | `{"job_title": "...", "company": "...", "reason": "...", "rejection_stage": "location\|role\|dedup"}` |
+| `CANDIDATE_MATCHED` | Passed all filters | `{"job_title": "...", "company": "...", "location": "...", "fit_score": 85, "match_index": 1}` |
+| `BRIEF_ADDED` | Brief updated | `{"jobs_added": 3}` |
+| `CACHE_HIT` | Used cached results | `{"cached_count": 5}` |
+| `FILTER_SUMMARY` | Aggregated stats | `{"raw": 100, "new": 20, "scored": 12}` |
+| `BRIEF_CREATED` | Brief persisted | `{"brief_id": "..."}` |
+| `DONE` | Stream complete | `{"status": "completed"}` |
+| `TIMEOUT` | 5-min hard limit | `{"elapsed_s": 300}` |
+| `ERROR` | Stream error | `{"message": "..."}` |
+
+### Frontend Integration
+
+```typescript
+import { fetchEventSource } from '@microsoft/fetch-event-source';
+
+const ctrl = new AbortController();
+fetchEventSource(`/v1/scans/${runId}/events`, {
+  method: 'GET',
+  headers: { Authorization: `Bearer ${token}` },
+  onmessage(event) {
+    const data = JSON.parse(event.data);
+    switch (data.event_type) {
+      case 'CANDIDATE_MATCHED':
+        // Append to visible list
+        break;
+      case 'DONE':
+      case 'TIMEOUT':
+      case 'ERROR':
+        ctrl.abort();
+        break;
+    }
+  },
+  signal: ctrl.signal,
+});
+```
+
+### Polling Mechanism
+
+Events are NOT pushed via a message broker. `stream_scan_events()` polls `careerloop.run_events` every 1 second (configurable). Events are batched: flushed every 12 events or 0.5 seconds, whichever comes first.
+
