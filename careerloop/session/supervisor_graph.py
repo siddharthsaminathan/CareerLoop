@@ -86,7 +86,39 @@ def execute_action_node(state: ConversationState) -> dict:
 
     # For GENERAL_CHAT with empty tool output, call LLM for conversational response
     if action.action_type.value == "GENERAL_CHAT" and not response_text.strip():
-        response_text = _generate_chat_reply(state.get("messages", []))
+        # Load user profile for context to avoid hallucinating about missing CV/profile
+        profile_summary = ""
+        try:
+            with db.get_connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        "SELECT email, full_name, master_cv_markdown, onboarding_complete, work_style_prefs FROM careerloop.users WHERE id = %s",
+                        (user_id,)
+                    )
+                    user_row = cur.fetchone()
+                    if user_row:
+                        has_cv = bool(user_row.get("master_cv_markdown"))
+                        full_name = user_row.get("full_name") or "User"
+                        email = user_row.get("email") or ""
+                        prefs = {}
+                        if user_row.get("work_style_prefs"):
+                            try:
+                                prefs = json.loads(user_row["work_style_prefs"]) if isinstance(user_row["work_style_prefs"], str) else user_row["work_style_prefs"]
+                            except Exception:
+                                pass
+                        profile_summary = (
+                            f"User Info:\n"
+                            f"- Name: {full_name}\n"
+                            f"- Email: {email}\n"
+                            f"- Has CV/Resume uploaded: {has_cv}\n"
+                            f"- Onboarding Complete: {user_row.get('onboarding_complete')}\n"
+                            f"- Target Roles: {prefs.get('target_roles', 'N/A')}\n"
+                            f"- Target Cities: {prefs.get('target_cities', 'N/A')}\n"
+                        )
+        except Exception as pe:
+            logger.warning(f"Failed to load profile summary for general chat: {pe}")
+
+        response_text = _generate_chat_reply(state.get("messages", []), profile_summary=profile_summary)
 
     return {
         "response_envelope": envelope,
@@ -121,10 +153,11 @@ def _format_envelope(envelope: ResponseEnvelope) -> str:
     return "\n\n".join(parts) if parts else ""
 
 
-def _generate_chat_reply(messages: list) -> str:
+def _generate_chat_reply(messages: list, profile_summary: str = "") -> str:
     """Generate a conversational reply when no tool handles the input."""
     try:
         from careerloop.llm_chat import LLMChatAgent
+        import json as _json
         agent = LLMChatAgent()
         # Build conversation context from last 6 messages
         history_parts = []
@@ -138,13 +171,15 @@ def _generate_chat_reply(messages: list) -> str:
             "Be helpful, concise, and conversational. Keep responses to 2-3 sentences. "
             "Never output JSON — always respond in natural English."
         )
-        user = f"Conversation:\n{context}\n\nRespond naturally to the last message."
+        user = ""
+        if profile_summary:
+            user += f"{profile_summary}\n\n"
+        user += f"Conversation:\n{context}\n\nRespond naturally to the last message."
         raw = agent._call_api(system, user)
 
         # Strip JSON if the model accidentally returned structured output
         text = (raw or "").strip()
         if text.startswith("{") and text.endswith("}"):
-            import json as _json
             try:
                 parsed = _json.loads(text)
                 text = parsed.get("reply") or parsed.get("text") or parsed.get("reasoning") or ""

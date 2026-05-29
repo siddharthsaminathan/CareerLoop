@@ -121,11 +121,19 @@ class ToolRegistry:
     def show_profile(self, action: Action, state: UserJourneyState, context: Dict[str, Any]) -> ResponseEnvelope:
         cv = ""
         prefs = {}
+        roles_val = "N/A"
+        cities_val = "N/A"
+        salary_val = "N/A"
+        notice_val = "N/A"
+        mode_val = "N/A"
         try:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
-                        "SELECT master_cv_markdown, work_style_prefs FROM careerloop.users WHERE id = %s",
+                        "SELECT master_cv_markdown, work_style_prefs, "
+                        "target_roles, target_cities, salary_expectations, "
+                        "notice_period, career_mode "
+                        "FROM careerloop.users WHERE id = %s",
                         (action.user_id,)
                     )
                     row = cur.fetchone()
@@ -139,6 +147,13 @@ class ToolRegistry:
                                 prefs = {}
                         else:
                             prefs = prefs_raw or {}
+
+                        # Read from JSONB first, fall back to top-level columns
+                        roles_val = prefs.get("target_roles", None) or row.get("target_roles") or "N/A"
+                        cities_val = prefs.get("target_cities", None) or prefs.get("locations", None) or row.get("target_cities") or "N/A"
+                        salary_val = prefs.get("salary_expectations", None) or row.get("salary_expectations") or "N/A"
+                        notice_val = prefs.get("notice_period", None) or row.get("notice_period") or "N/A"
+                        mode_val = prefs.get("aggressiveness", None) or row.get("career_mode") or "N/A"
         except Exception as e:
             logger.error(f"Error loading profile: {e}")
 
@@ -148,11 +163,11 @@ class ToolRegistry:
             text="",
             cards=[
                 {"label": "CV Preview", "value": cv_preview},
-                {"label": "Target Roles", "value": prefs.get("target_roles", "N/A")},
-                {"label": "Target Cities", "value": prefs.get("target_cities", "N/A")},
-                {"label": "Salary", "value": prefs.get("salary_expectations", "N/A")},
-                {"label": "Notice Period", "value": prefs.get("notice_period", "N/A")},
-                {"label": "Mode", "value": prefs.get("aggressiveness", "N/A")},
+                {"label": "Target Roles", "value": str(roles_val)},
+                {"label": "Target Cities", "value": str(cities_val)},
+                {"label": "Salary", "value": str(salary_val)},
+                {"label": "Notice Period", "value": str(notice_val)},
+                {"label": "Mode", "value": str(mode_val)},
             ]
         )
 

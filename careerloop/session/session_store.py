@@ -53,7 +53,10 @@ class SessionStore:
             with self.db_manager.get_connection() as conn:
                 with conn.cursor() as cursor:
                     cursor.execute(
-                        f"SELECT master_cv_markdown, work_style_prefs FROM {self._tbl('users')} WHERE id = %s",
+                        f"SELECT master_cv_markdown, work_style_prefs, "
+                        f"target_roles, target_cities, salary_expectations, "
+                        f"notice_period, career_mode "
+                        f"FROM {self._tbl('users')} WHERE id = %s",
                         (user_id,),
                     )
                     row = cursor.fetchone()
@@ -61,15 +64,23 @@ class SessionStore:
                 return {}
             prefs = self._parse_profile_prefs(row.get("work_style_prefs"))
             cv_md = row.get("master_cv_markdown") or ""
+
+            # Read from JSONB first, fall back to top-level columns
+            roles = prefs.get("target_roles") or row.get("target_roles") or ""
+            cities = prefs.get("target_cities") or prefs.get("locations") or row.get("target_cities") or ""
+            salary = prefs.get("salary_expectations") or row.get("salary_expectations") or ""
+            notice = prefs.get("notice_period") or row.get("notice_period") or ""
+            aggro = prefs.get("aggressiveness") or row.get("career_mode") or ""
+
             return {
                 "cv_content": cv_md,
                 "master_cv_markdown": cv_md,
                 "has_cv": bool(cv_md),
-                "target_roles": prefs.get("target_roles") or "",
-                "target_cities": prefs.get("target_cities") or prefs.get("locations") or "",
-                "salary_expectations": prefs.get("salary_expectations") or "",
-                "notice_period": prefs.get("notice_period") or "",
-                "aggressiveness": prefs.get("aggressiveness") or "",
+                "target_roles": roles,
+                "target_cities": cities,
+                "salary_expectations": salary,
+                "notice_period": notice,
+                "aggressiveness": aggro,
             }
         except Exception as e:
             logger.error(f"Failed to load profile data for state recovery: {e}")
