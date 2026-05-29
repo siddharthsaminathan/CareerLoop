@@ -34,7 +34,14 @@ _provision_lock = threading.Lock()
 def _provision_user(db, user_id: str, email: str, full_name: str, provider: str) -> None:
     """Ensure careerloop.users row exists for this Supabase user. Idempotent.
 
-    Raises the database exception if the insert/update fails.
+    IMPORTANT: The ON CONFLICT clause NEVER overwrites email/full_name with empty
+    values. When a user refreshes the page, Supabase restores the JWT from local
+    storage — restored tokens may have empty user_metadata. If we blindly set
+    `email = EXCLUDED.email`, the real email gets wiped to '' every TTL window
+    and the frontend shows "user@example.com".
+
+    Fix: COALESCE(NULLIF(new_value, ''), existing_column) preserves existing data
+    when the JWT doesn't carry the full payload on session restore.
     """
     with db.get_connection() as conn:
         with conn.cursor() as cur:
@@ -49,7 +56,8 @@ def _provision_user(db, user_id: str, email: str, full_name: str, provider: str)
                 )
                 ON CONFLICT (id) DO UPDATE SET
                     last_active_at = NOW(),
-                    email          = EXCLUDED.email
+                    email          = COALESCE(NULLIF(EXCLUDED.email, ''), careerloop.users.email),
+                    full_name      = COALESCE(NULLIF(EXCLUDED.full_name, ''), careerloop.users.full_name)
                 """,
                 (user_id, email, full_name or email, provider or "web"),
             )

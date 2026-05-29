@@ -1,9 +1,13 @@
 """Brief service — orchestrates brief reads + item selection."""
 
+import logging
+
 from careerloop_api.core.envelope import APIError
 from careerloop_api.repositories.briefs_repo import BriefsRepo
 from careerloop_api.services import serializers
 from careerloop.session.session_store import SessionStore
+
+logger = logging.getLogger("careerloop_api.services.brief")
 
 
 class BriefService:
@@ -11,13 +15,18 @@ class BriefService:
         self.db = db
         self.repo = BriefsRepo(db)
 
-    def latest(self, user_id: str) -> dict:
-        b = self.repo.get_latest_brief(user_id)
+    def latest(self, user_id: str, offset: int = 0) -> dict:
+        b = self.repo.get_latest_brief(user_id, offset=offset)
         if not b:
-            raise APIError("No brief found. Run a scan to generate your first brief.",
+            raise APIError("No brief found for this offset.",
                            status_code=404, code="no_brief")
         items = self.repo.get_items(b["id"])
-        return serializers.brief(b, items)
+        has_more = self.repo.get_latest_brief(user_id, offset=offset + 1) is not None
+        
+        data = serializers.brief(b, items)
+        data["has_more"] = has_more
+        data["offset"] = offset
+        return data
 
     def select_item(self, user_id: str, brief_id: str, item_index: int) -> dict:
         b = self.repo.get_brief_by_id(brief_id, user_id)
@@ -38,9 +47,10 @@ class BriefService:
             session.active_job_id = job_id
             session.current_selection_index = item_index
             store.save_session(session)
-        except Exception:
+        except Exception as e:
+            logger.warning("Session persistence failed for user %s brief %s item %d: %s",
+                           user_id[:12], brief_id[:12], item_index, e)
             # Selection still succeeds even if session persistence hiccups.
-            pass
 
         return {
             "job_id": job_id,

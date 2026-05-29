@@ -11,6 +11,13 @@ Architecture:
     → sends "event: done" when background_run.status = COMPLETED or FAILED
     → frontend EventSource closes on done, then calls GET /v1/briefs/latest
 
+Thread Safety (FIXED 2026-05-29):
+  - Per-user scan concurrency guard: reject if user already has a RUNNING scan
+  - Workers use the SHARED DatabaseManager pool (not a separate pool per thread)
+  - Hard limit on concurrent scan workers (max 3 globally)
+  - 30-min stale scan recovery runs at module import time
+  - Connection pool maxconn set to 3 for workers to avoid Supabase 15-conn limit
+
 Event types emitted during a scan:
   SCAN_STARTED     — "Starting job discovery..."
   SOURCE_STARTED   — "Searching configured portals..."
@@ -29,7 +36,74 @@ import time
 import uuid
 from typing import Generator, Optional
 
+from careerloop_api.core.envelope import APIError
+
 logger = logging.getLogger("careerloop_api.services.scan")
+
+# ── Concurrency guards ──────────────────────────────────────────────────────────
+
+# Per-user scan lock: prevents initiating a new scan while another is RUNNING.
+_active_scans_lock = threading.Lock()
+_active_scans: dict = {}  # user_id → run_id
+
+# Global semaphore: at most 3 concurrent scan workers across ALL users.
+# This prevents connection pool exhaustion (Supabase free tier = 15 conns).
+_worker_semaphore = threading.BoundedSemaphore(3)
+
+# Stale scan recovery — run once at module import.
+def _recover_stale_scans():
+    """Mark any RUNNING scan older than 30 minutes as FAILED.
+
+    This prevents orphaned scans from blocking new scans after a server restart.
+    Runs automatically at import time.
+    """
+    try:
+        from careerloop.memory.connection import get_db_manager
+        db = get_db_manager()
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    UPDATE careerloop.background_runs
+                    SET status = 'FAILED', updated_at = NOW()
+                    WHERE status = 'RUNNING' AND run_type = 'scan'
+                      AND started_at < NOW() - INTERVAL '30 minutes'
+                    """
+                )
+                recovered = cur.rowcount
+                if recovered:
+                    logger.info("Stale scan recovery: marked %d RUNNING scans as FAILED", recovered)
+    except Exception as e:
+        logger.debug("Stale scan recovery skipped (non-fatal): %s", e)
+
+
+_recover_stale_scans()
+
+
+def _has_running_scan(user_id: str) -> Optional[str]:
+    """Return the run_id of a RUNNING scan for this user, or None."""
+    with _active_scans_lock:
+        run_id = _active_scans.get(user_id)
+        if run_id:
+            return run_id
+    # Fallback: check the DB in case this worker restarted
+    try:
+        from careerloop.memory.connection import get_db_manager
+        db = get_db_manager()
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "SELECT run_id FROM careerloop.background_runs "
+                    "WHERE user_id = %s AND status = 'RUNNING' AND run_type = 'scan' "
+                    "ORDER BY started_at DESC LIMIT 1",
+                    (user_id,),
+                )
+                row = cur.fetchone()
+                if row:
+                    return row["run_id"]
+    except Exception:
+        pass
+    return None
 
 
 def initiate_scan(user_id: str, db, mode: str = "default") -> str:
@@ -38,7 +112,26 @@ def initiate_scan(user_id: str, db, mode: str = "default") -> str:
     mode="default"   → cache-first brief (fast; used for the first/daily brief)
     mode="scan_more" → forced fresh discovery across job portals, streamed live,
                        deduped against the user's existing brief (no cache hit)
+
+    Raises 409 if the user already has a RUNNING scan.
     """
+    # ── Concurrency guard: one active scan per user ───────────────────────
+    existing = _has_running_scan(user_id)
+    if existing:
+        logger.warning("Scan blocked: user %s already has RUNNING scan %s", user_id[:8], existing)
+        raise APIError(
+            f"A scan is already running (ID: {existing}). Please wait for it to complete.",
+            status_code=409, code="scan_already_running",
+        )
+
+    # ── Global semaphore: at most 3 concurrent workers ────────────────────
+    if not _worker_semaphore.acquire(blocking=False):
+        logger.warning("Scan blocked: too many concurrent workers (max 3)")
+        raise APIError(
+            "Our job scanners are busy right now. Please try again in a few minutes.",
+            status_code=503, code="scan_busy",
+        )
+
     run_id = uuid.uuid4().hex[:12]
 
     # Write the initial row synchronously so SSE can start polling immediately.
@@ -52,6 +145,10 @@ def initiate_scan(user_id: str, db, mode: str = "default") -> str:
                 (run_id, user_id),
             )
             _emit(cur, run_id, "Scan queued — starting shortly...", "QUEUED")
+
+    # Register in the active-scans tracker
+    with _active_scans_lock:
+        _active_scans[user_id] = run_id
 
     # Pass DATABASE_URL explicitly — threads don't inherit uvicorn env reliably
     import os as _os
@@ -157,15 +254,43 @@ def _emit(cur, run_id: str, message: str, event_type: str = "info"):
             (str(uuid.uuid4()), run_id, message, event_type),
         )
     except Exception as e:
-        logger.debug("_emit failed: %s", e)
+        logger.error("_emit failed for run %s (event_type=%s): %s", run_id, event_type, e)
+
+
+def _mark_scan_failed(run_id: str, user_id: str, message: str):
+    """Write a SCAN_FAILED event and mark the background_run as FAILED.
+
+    Uses its own connection (called from worker thread or error handlers).
+    """
+    try:
+        from careerloop.memory.connection import get_db_manager
+        db = get_db_manager()
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                _emit(cur, run_id, message[:200], "SCAN_FAILED")
+                cur.execute(
+                    "UPDATE careerloop.background_runs SET status = 'FAILED', updated_at = NOW() WHERE run_id = %s",
+                    (run_id,),
+                )
+    except Exception:
+        pass
+
+
+def _cleanup_scan(run_id: str, user_id: str):
+    """Release concurrency guards after scan completes (success or failure)."""
+    with _active_scans_lock:
+        if _active_scans.get(user_id) == run_id:
+            del _active_scans[user_id]
+    _worker_semaphore.release()
+    logger.info("Scan cleanup: run_id=%s user=%s — guards released", run_id, user_id[:8])
 
 
 def _run_scan_worker(user_id: str, run_id: str, db_url: str = "", mode: str = "default"):
     """
     Runs the scan pipeline in a background thread.
-    Uses its own DB connection (psycopg2 connections are not thread-safe).
+    Uses the SHARED DatabaseManager singleton (not a separate pool per thread).
+    This prevents connection exhaustion — every thread shares the same pool.
     """
-    from careerloop.memory.connection import DatabaseManager
     import os as _os
 
     if not db_url:
@@ -173,14 +298,17 @@ def _run_scan_worker(user_id: str, run_id: str, db_url: str = "", mode: str = "d
 
     if not db_url:
         logger.error("No DATABASE_URL in worker thread")
+        _cleanup_scan(run_id, user_id)
         return
 
     try:
-        # Skip schema init — the schema already exists; re-running DDL on every
-        # scan thread is wasteful. Pool is created lazily on first query.
-        db = DatabaseManager(db_url=db_url, skip_schema_init=True)
+        # Use the shared DatabaseManager singleton — NOT a new instance per thread.
+        # The singleton's ThreadedConnectionPool handles thread safety.
+        from careerloop.memory.connection import get_db_manager
+        db = get_db_manager()
     except Exception as e:
-        logger.error("Worker DB init failed: %s", e)
+        logger.error("Worker DB singleton access failed: %s", e)
+        _cleanup_scan(run_id, user_id)
         return
 
     try:
@@ -190,16 +318,9 @@ def _run_scan_worker(user_id: str, run_id: str, db_url: str = "", mode: str = "d
             _execute_scan(user_id, run_id, db)
     except Exception as e:
         logger.exception("Scan worker fatal error for run %s: %s", run_id, e)
-        try:
-            with db.get_connection() as conn:
-                with conn.cursor() as cur:
-                    _emit(cur, run_id, f"Scan failed: {str(e)[:200]}", "SCAN_FAILED")
-                    cur.execute(
-                        "UPDATE careerloop.background_runs SET status = 'FAILED', updated_at = NOW() WHERE run_id = %s",
-                        (run_id,),
-                    )
-        except Exception:
-            pass
+        _mark_scan_failed(run_id, user_id, f"Scan failed: {str(e)[:200]}")
+    finally:
+        _cleanup_scan(run_id, user_id)
 
 
 def _build_from_cache(user_id: str, db, limit: int = 10) -> list:
@@ -294,7 +415,7 @@ def _execute_scan_more(user_id: str, run_id: str, db):
                     for et, msg in buffer:
                         _emit(cur, run_id, msg, et)
         except Exception as e:
-            logger.debug("scan_more flush failed: %s", e)
+            logger.error("scan_more flush failed for run %s: %s", run_id, e)
         buffer = []
         last_flush = _time.time()
 
