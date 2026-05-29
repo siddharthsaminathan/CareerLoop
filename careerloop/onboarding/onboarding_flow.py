@@ -4,6 +4,7 @@ from typing import Tuple, Optional
 from careerloop.session.states import UserJourneyState
 from careerloop.session.session_store import SessionStore, Session
 from careerloop.llm_chat import OnboardingAgent, CVExtractionAgent
+from careerloop.sources.identity_provider import LinkedInIdentityProvider
 
 logger = logging.getLogger("careerloop.onboarding.onboarding_flow")
 
@@ -13,25 +14,26 @@ REQUIRED_FIELDS = [
 ]
 
 # Step constants — stored in sessions.onboarding_step
-STEP_IDLE         = 0   # First message — greet and ask for CV
+STEP_IDLE         = 0   # First message — greet (LinkedIn-first if configured, else CV)
 STEP_WAITING_CV   = 1   # Waiting for CV text or file
 STEP_CONFIRMING   = 2   # Showing extracted summary — waiting for YES/correction
 STEP_COLLECTING   = 3   # Conversational gap-fill for missing fields
-# Legacy LinkedIn steps — kept for backward-compat with existing DB rows
-STEP_IDENTIFYING          = 10
-STEP_PROFILE_CONFIRMATION = 11
+# LinkedIn-first steps (active when SERPAPI_KEY is configured)
+STEP_IDENTIFYING          = 10  # Waiting for the user's name to look up on LinkedIn
+STEP_PROFILE_CONFIRMATION = 11  # Showing "Is this you?" card — waiting YES/NO
 
 
 class OnboardingFlow:
     """
     Handles new-user onboarding from first message through PROFILE_READY.
 
-    Primary path (all users):
+    LinkedIn-first path (when SERPAPI_KEY is configured):
+        IDLE → ask name → IDENTIFYING → SerpAPI search + name-match filter →
+        PROFILE_CONFIRMATION ("Is this you?") → confirm → WAITING_CV → ... → PROFILE_READY
+
+    CV-first path (fallback when SerpAPI not configured, or no LinkedIn match):
         IDLE → ask for CV → WAITING_CV → extract → CONFIRMING → confirm → PROFILE_READY
         Gap-fill loop via COLLECTING if any required field is missing.
-
-    Legacy LinkedIn path (existing DB rows only — not offered to new users):
-        IDENTIFYING → PROFILE_CONFIRMATION → WAITING_CV → ...
 
     Key design decisions:
     - portals.yml is NEVER mutated here (multi-user unsafe)
@@ -44,6 +46,7 @@ class OnboardingFlow:
         self.session_store = session_store
         self.extraction_agent = CVExtractionAgent()
         self.onboarding_agent = OnboardingAgent()
+        self.identity = LinkedInIdentityProvider()
 
     # ── Main entry point ──────────────────────────────────────────────────────
 
@@ -65,19 +68,31 @@ class OnboardingFlow:
         if step == STEP_COLLECTING:
             return self._handle_collecting(session, text, data)
 
-        # Legacy LinkedIn steps (backward compat)
+        # LinkedIn-first steps (active when SerpAPI configured)
         if step == STEP_IDENTIFYING:
-            return self._handle_legacy_identifying(session, text, data)
+            return self._handle_identifying(session, text, data)
         if step == STEP_PROFILE_CONFIRMATION:
-            return self._handle_legacy_profile_confirmation(session, text, data)
+            return self._handle_profile_confirmation(session, text, data)
 
         return ("I didn't quite catch that. Could you rephrase?", state)
 
     # ── Step handlers ─────────────────────────────────────────────────────────
 
     def _handle_idle(self, session: Session) -> Tuple[str, UserJourneyState]:
-        session.onboarding_step = STEP_WAITING_CV
         session.temp_profile_data = {}
+        # LinkedIn-first when SerpAPI is configured; CV-first otherwise.
+        if self.identity.is_configured:
+            session.onboarding_step = STEP_IDENTIFYING
+            self._save(session)
+            reply = (
+                "Welcome to CareerLoop! I'm your AI career execution partner.\n\n"
+                "Let's get you set up in under a minute. **What's your full name?** "
+                "I'll find your LinkedIn profile and pre-fill everything.\n\n"
+                "_(Prefer to skip? Just paste your CV/resume text instead.)_"
+            )
+            return reply, UserJourneyState.NEW_USER
+
+        session.onboarding_step = STEP_WAITING_CV
         self._save(session)
         reply = (
             "Welcome to CareerLoop! I'm your AI career execution partner.\n\n"
@@ -88,6 +103,10 @@ class OnboardingFlow:
         return reply, UserJourneyState.NEW_USER
 
     def _handle_waiting_cv(self, session: Session, text: str, data: dict) -> Tuple[str, UserJourneyState]:
+        # Allow skipping the CV when we already hydrated from LinkedIn.
+        if text.strip().lower() in {"skip", "no", "later"} and data.get("cv_content"):
+            return self._proceed_after_linkedin(session, data)
+
         if len(text.strip()) < 80:
             return (
                 "That looks too short to be a full CV. Please paste your complete resume text, "
@@ -156,24 +175,109 @@ class OnboardingFlow:
         self._save(session)
         return reply, UserJourneyState.NEW_USER
 
-    # ── Legacy LinkedIn handlers (backward-compat only) ───────────────────────
+    # ── LinkedIn-first handlers (active when SerpAPI is configured) ───────────
 
-    def _handle_legacy_identifying(self, session: Session, text: str, data: dict) -> Tuple[str, UserJourneyState]:
-        """Legacy: user was at LinkedIn name-search step. Redirect to CV upload."""
-        session.onboarding_step = STEP_WAITING_CV
+    def _handle_identifying(self, session: Session, text: str, data: dict) -> Tuple[str, UserJourneyState]:
+        """User sent their name (or pasted a CV). Resolve their LinkedIn profile."""
+        cleaned = text.strip()
+
+        # If they pasted a CV instead of a name, switch to the CV path.
+        if len(cleaned) >= 80:
+            session.onboarding_step = STEP_WAITING_CV
+            self._save(session)
+            return self._handle_waiting_cv(session, cleaned, data)
+
+        candidate = None
+        try:
+            candidate = self.identity.find_by_name(cleaned)
+        except Exception as e:
+            logger.warning("LinkedIn lookup failed for %r: %s", cleaned, e)
+
+        if not candidate:
+            # No match (or lookup failed) → fall back to CV-first gracefully.
+            session.onboarding_step = STEP_WAITING_CV
+            self._save(session)
+            return (
+                f"I couldn't find a confident LinkedIn match for **{cleaned}**.\n\n"
+                "No problem — please paste your CV/resume text or upload a PDF/DOCX "
+                "and I'll set you up from that.",
+                UserJourneyState.NEW_USER,
+            )
+
+        # Stash candidate + render an "Is this you?" card.
+        data["_identity_candidate"] = {
+            "full_name": candidate.full_name,
+            "target_roles": candidate.target_roles,
+            "target_cities": candidate.target_cities,
+            "cv_content": candidate.cv_content,
+        }
+        data["_identity_card"] = candidate.to_card()
+        if candidate.full_name:
+            data["full_name"] = candidate.full_name
+        session.temp_profile_data = data
+        session.onboarding_step = STEP_PROFILE_CONFIRMATION
         self._save(session)
+
+        c = candidate
         return (
-            "Let's continue your setup. Please paste your CV/resume text "
-            "or upload it as a PDF/DOCX file.",
+            "I found this profile — **is this you?**\n\n"
+            f"• **{c.full_name}**\n"
+            f"• {c.headline}\n"
+            f"• {c.current_company}\n"
+            f"• {c.location}\n"
+            f"• {c.linkedin_url}\n\n"
+            "Reply **YES** to use this, or **NO** to enter your details manually.",
             UserJourneyState.NEW_USER,
         )
 
-    def _handle_legacy_profile_confirmation(self, session: Session, text: str, data: dict) -> Tuple[str, UserJourneyState]:
-        """Legacy: user was at LinkedIn confirm step. Redirect to CV upload."""
+    def _handle_profile_confirmation(self, session: Session, text: str, data: dict) -> Tuple[str, UserJourneyState]:
+        """User confirms (or rejects) the resolved LinkedIn profile."""
+        text_lower = text.strip().lower()
+        affirmative = {"yes", "y", "yep", "yeah", "yup", "correct", "that's me", "thats me", "1", "confirm", "ok", "okay"}
+
+        if text_lower in affirmative or text_lower.startswith("yes"):
+            candidate = data.pop("_identity_candidate", {}) or {}
+            data.pop("_identity_card", None)
+            # Hydrate from the LinkedIn profile
+            for k in ("full_name", "target_roles", "target_cities", "cv_content"):
+                if candidate.get(k):
+                    data[k] = candidate[k]
+            session.temp_profile_data = data
+            session.onboarding_step = STEP_WAITING_CV
+            self._save(session)
+            return (
+                f"Great — I've pre-filled your profile from LinkedIn, {data.get('full_name', 'there')}!\n\n"
+                "To sharpen your applications, **paste your CV/resume** (or upload a PDF/DOCX). "
+                "If you'd rather skip, just reply **skip** and I'll continue with what I have.",
+                UserJourneyState.NEW_USER,
+            )
+
+        if text_lower in {"skip"}:
+            return self._proceed_after_linkedin(session, data)
+
+        # Rejected → manual CV path
+        data.pop("_identity_candidate", None)
+        data.pop("_identity_card", None)
+        session.temp_profile_data = data
         session.onboarding_step = STEP_WAITING_CV
         self._save(session)
         return (
-            "Please paste your CV/resume text or upload it as a file to finalize your profile.",
+            "No problem. Please paste your CV/resume text or upload a PDF/DOCX, "
+            "and I'll set up your profile from that.",
+            UserJourneyState.NEW_USER,
+        )
+
+    def _proceed_after_linkedin(self, session: Session, data: dict) -> Tuple[str, UserJourneyState]:
+        """After LinkedIn hydration, either finish or gap-fill missing required fields."""
+        missing = [f for f in REQUIRED_FIELDS if not data.get(f)]
+        if not missing:
+            return self._complete_onboarding(session, data)
+        session.onboarding_step = STEP_COLLECTING
+        session.temp_profile_data = data
+        self._save(session)
+        field_names = ", ".join(f.replace("_", " ") for f in missing)
+        return (
+            f"Almost there! I still need a few details: **{field_names}**.\n\nCould you share those?",
             UserJourneyState.NEW_USER,
         )
 

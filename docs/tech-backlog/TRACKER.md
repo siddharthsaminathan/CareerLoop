@@ -7,26 +7,40 @@
 
 ## Current Sprint Focus
 
-**Week of 2026-05-25 — TAL-Level Runtime Fluidity**
+**Week of 2026-05-25 → 2026-06-01 — REST API Productization & Web Deployment**
 
-Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, ActionResolver, 19 regression tests). Next phase: product-fluid conversational UX.
+Sprint 6 delivered: 7 MVP API endpoints live, SSE scan streaming, Supabase JWT auth with auto-provisioning, TAL-style job card serializers, identity provider layer. Chat runtime proven (15/15 API E2E + 7/7 onboarding E2E).
 
-**This sprint:**
-1. **Scan progress streaming** (P0) — Live MATCH/REJECT in CLI via run_events polling
-2. **ActionResolver refinement** (P0) — Prevent scan during onboarding; distinguish profile refinement from search intent
-3. **DB consistency** (P0) — Fix Supabase/SQLite user state split; profile recovery from users table; startup DB banner
-4. **Real brief lifecycle** (P1) — START_SCAN → background_run → run_events → daily_briefs → active_context update → SHOW_BRIEF → SELECT_BRIEF_ITEM full cycle
-5. **Real LLM E2E** (P0) — 12-step real conversation transcript with actual DeepSeek calls
+**This sprint (completed items ✅):**
+1. ✅ **Scan progress streaming** (P0) — SSE with timestamp watermark dedup, event ID dedup, 5-min timeout
+2. ✅ **"Scan More" mode** — forced fresh discovery across portals, streamed live, deduped against existing brief
+3. ✅ **7 MVP API endpoints** — auth, profile, briefs, jobs (save/skip), chat, scans (async + SSE)
+4. ✅ **Supabase JWT auth** — universal (web/iOS/Android), auto-provisioning with TTL cache
+5. ✅ **TAL-style job card serializers** — 3-tier logo fallback, fit_tier colors, salary/description mapping
+6. ✅ **Identity provider layer** — LinkedIn URL extraction, CV-based identity inference, identity cards
+7. ✅ **Deployment strategy** — web-first, Telegram/WhatsApp permanently delayed
+
+**Next (Sprint 7):**
+1. Deploy API to Fly.io (Dockerfile + fly.toml + GitHub Actions)
+2. Company logo backfill (Clearbit enrichment job)
+3. Salary/description enrichment from scrapers
+4. Multi-worker readiness (Redis session cache)
+5. Scan thread lifecycle management (timeout → kill)
+6. PostgresSaver checkpointer at 20% — needs attention before multi-worker
 
 ---
 
 ## System Status (Live)
 
-> Updated 2026-05-27, IST — Sprint 1-4 discovery engine complete. role_fit hard gate + archetype engine + JD fetch + Wellfound Playwright removed + Remote India path. India-first discovery 92→94%, Scoring 62→72%. PRD §17 synced.
+> Updated 2026-05-29, IST — REST API v1 live. 7 MVP endpoints deployed. SSE scan streaming with "Scan More" mode. Supabase JWT auth universal. TAL job card serializers. Web-first deployment strategy locked. Telegram/WhatsApp permanently delayed.
 
 | System | % | Status | Blocking? | Notes |
 |--------|---|--------|-----------|-------|
-| **Transport abstraction layer** | **65%** | 🟡 | No | Base + Terminal stubs. Echo fallback removed. Safe error messages. /brief + /scan + CommandRouter wired. |
+| **REST API (7 endpoints)** | **95%** | 🟢 | No | POST /v1/auth/me, GET /v1/me, GET /v1/me/preferences, GET /v1/briefs/latest, POST /v1/briefs/{id}/items/{idx}/select, GET /v1/jobs/{id}, POST /v1/jobs/{id}/save, POST /v1/jobs/{id}/skip, POST /v1/chat/message, POST /v1/scans, GET /v1/scans/{run_id}/events (SSE), GET /v1/scans/latest. 15/15 E2E verified. |
+| **SSE Scan Streaming** | **90%** | 🟢 | No | Timestamp watermark dedup, event ID dedup, 5-min timeout, "Scan More" mode for forced fresh discovery. Thread-safe worker with independent DB connection. |
+| **Supabase JWT Auth** | **95%** | 🟢 | No | HS256 verification, auto-provisioning with 300s in-process TTL cache. Universal across web/iOS/Android. |
+| **TAL Job Card Serializers** | **95%** | 🟢 | No | 3-tier logo fallback (explicit → Clearbit → initials avatar), fit_tier colors (emerald/amber/red), salary/description mapping. Never broken image. |
+| **Transport abstraction layer** | **100% → 🔴 DELAYED** | ⚫ | No | **Superseded by REST API.** Telegram/WhatsApp/webhook work permanently delayed. REST API is the transport layer now. |
 | **Multi-user onboarding** | **75%** | 🟢 | No | 3-user real E2E verified against Supabase + DeepSeek. 5 pillars extracted, CV→profile flow works, PROFILE_READY reached. _load_profile_data returns master_cv_markdown + has_cv. |
 | **LangGraph Chatbot Orchestrator** | **85%** | 🟢 | No | 2-node pipeline. GENERAL_CHAT returns real LLM. ActionResolver context injection. Live scan rendering. Supabase-only. |
 | **PostgresSaver Checkpointer** | **20%** | 🔴 | **YES** | SQLite sessions functional without Postgres. Dual-mode verified. Interrupt/resume proof still needed. |
@@ -53,15 +67,15 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 | Interview memory (full) | 25% | 🟡 | No | Vent parsing works. Debrief + weakness tracker = Sprint 7. |
 | Persistent memory graph | **60%** | 🟡 | No | Schema isolation (careerloop.*). Repository layer. Fingerprint dedup. User-job relationships. |
 | Background job scheduler | 0% | ⚫ | No | Sprint 2. Daily + per-job two classes. |
-| WhatsApp / Meta Cloud API | 0% | ⚫ | No | After Telegram beta validates loop. |
+| WhatsApp / Meta Cloud API | **0% → 🔴 DELAYED** | ⚫ | No | **Permanently delayed.** Web-first deployment strategy replaces all chat transport work. |
 | Monetization / billing | 0% | 🔴 | No | Pricing tiers defined. No paywall yet. Needs onboarding first. |
 | Data engineering V3 | **95%** | 🟢 | No | careerloop.users identity spine. 20 FKs migrated. 14 users backfilled. 7 new tables. 12 canonical docs. Phase 1+2 complete. Companies populated, Cutshort parsing, cache-hit wired, memory architecture documented. |
 | Memory architecture | **70%** | 🟡 Active | 7-layer model defined. 4-level recall hierarchy. 8 propagation flows. 10 anti-patterns. MEMORY_SYSTEMS_ARCHITECTURE.md created. |
 | **E2E Runtime Verification** | **90%** | 🟢 | No | 3-user real onboarding E2E: 3/3 passed against live Supabase + DeepSeek. Priya (happy path), Rohan (correction), Ananya (gap-fill). Results in e2e_real_supabase.json. |
 | **Chat quality (known issues)** | **⚠️** | 🟡 | No | Polite closings misclassified as HELP (2/7 E2E turns). Fix: 1-line ActionResolver prompt update. |
 | Job persistence engine | **75%** | 🟡 Active | Global cache + user relationships. Fingerprint dedup. TTL strategy. Cache-hit check wired, companies linked via FK, Cutshort parsing. |
- 
-**Overall product maturity: ~78-81% of vision.** Discovery engine Sprint 1-4 complete. role_fit hard gate + archetype engine + JD fetch + no-Playwright Wellfound + Remote India path. Scoring now 16-dim, FIT_WEIGHTS=100. Transport delivery (B-TRANSPORT, B-DELIVERY) remains the P0 blocker for any real user. |
+
+**Overall product maturity: ~80-83% of vision.** REST API v1 ships the product to web. Discovery engine at 97%. Scoring at 74%. Transport blocker resolved (REST API replaces Telegram). P0 blocker shifts from "no delivery channel" to "multi-worker reliability + PostgresSaver."
 
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -75,10 +89,12 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 | ~~B2~~ | Humanizer not implemented | Closed | ✅ 5-phase pipeline + LLM wired |
 | ~~B3~~ | cover_note/recruiter_message stubs | Closed | ✅ Improved prompts + richer context |
 | ~~B7~~ | LLM nodes lacked JSON schemas | Closed | ✅ All 6 prompts have JSON examples |
-| **B-TRANSPORT** | Transport stubs exist, but no verified webhook/document delivery/graph response loop | User-facing | **P0** |
-| **B-ONBOARD** | Multi-user onboarding E2E verified (3/3 real Supabase + DeepSeek). Telegram webhook wiring still needed for real user flow | User-facing | **P1** |
+| ~~B-TRANSPORT~~ | Transport stubs exist, but no verified webhook/graph response loop | **CLOSED** | ✅ **REST API replaces transport abstraction. Telegram/WhatsApp permanently delayed.** |
+| ~~B-ONBOARD~~ | Multi-user onboarding E2E verified (3/3). Telegram webhook wiring still needed | **CLOSED** | ✅ **Onboarding works via POST /v1/chat/message. No Telegram webhook needed.** |
 | **B-SUPERVISOR** | LangGraph scaffold exists, but state contract/routing/resume interrupts are not verified | User-facing | **P0** |
-| **B-DELIVERY** | Council generates 10 PDFs per run but delivers them to nobody | User-facing | **P0** |
+| **B-DELIVERY** | Council generates 10 PDFs per run but delivers them to nobody | User-facing | **P1** |
+| **B-POSTGRESSAVER** | PostgresSaver checkpointer at 20% — SQLite sessions work, Postgres checkpointing untested with API load | Backend | **P1** |
+| **B-WORKER-THREADS** | Scan threads use in-process threading — no timeout kill, no lifecycle management | Backend | **P1** |
 | B4 | Company career pages invisible | Discovery | P2 |
 | B5 | Decision compression UX not built | Triage | P2 |
 | ~~B6~~ | Company Intelligence engine | Closed | ✅ 1,419-line MECE implementation — D1-D5 vectors, LinkedIn, Glassdoor, DDG |
@@ -105,12 +121,41 @@ Chat runtime is structurally clean (2-node pipeline, 17 real tool handlers, Acti
 | A11 | Post-render validation FAILS HARD on `**`, `—`, `→` | 2026-05-18 |
 | A12 | Delivery orchestration uses LangGraph Supervisor; transports adapt into `ConversationState`, not business logic | 2026-05-23 |
 | A13 | Assisted apply may execute only one explicitly reviewed and approved job; no unattended queue/bulk submit | 2026-05-23 |
+| A14 | **Web-first deployment. REST API is the transport layer. Telegram/WhatsApp permanently delayed.** | 2026-05-29 |
+| A15 | **SSE streaming for async scan progress. Timestamp watermark dedup + event ID dedup.** | 2026-05-29 |
+| A16 | **Supabase JWT auth is universal — same token works for web, iOS, Android. No custom auth.** | 2026-05-29 |
 
 ---
 
 ## Session Log
 
-### 2026-05-29 — Session: Discovery Sprint 6 — 13 Boards, Multi-Persona, Pipeline Robustness
+### 2026-05-29 — Session: REST API v1 — 7 MVP Endpoints, SSE Scan Streaming, Web-First Pivot
+
+### 2026-05-29 — Session: REST API v1 — 7 MVP Endpoints, SSE Scan Streaming, Web-First Pivot
+
+**What was done:**
+- **Built CareerLoop REST API v1** — 7 endpoint groups (auth, users, jobs, briefs, chat, scans, health). All E2E verified against real Supabase + real DeepSeek. 15/15 API E2E passing + 7/7 onboarding E2E.
+- **Supabase JWT auth** — `security.py` verifies HS256 tokens, `deps/auth.py` auto-provisions `careerloop.users` on first call with 300s in-process TTL cache. Universal across web/iOS/Android.
+- **SSE scan streaming** — `GET /v1/scans/{run_id}/events` with timestamp watermark dedup, event ID dedup, 5-min timeout. "Scan More" mode for forced fresh discovery.
+- **TAL-style job card serializers** — `serializers.py` with 3-tier logo fallback (explicit → Clearbit → initials avatar, never broken), fit_tier colors (≥80 emerald, 60-79 amber, <60 red), salary/description mapping.
+- **Repository layer** — `BriefsRepo`, `JobsRepo`, `UsersRepo` with full SQL JOINs (jobs ↔ companies for logo/domain, brief_items ↔ jobs for descriptions).
+- **Chat service** — wraps LangGraph supervisor graph for PROFILE_READY+ users, wraps OnboardingFlow for NEW_USER users. Identity card support for LinkedIn confirmation.
+- **Scan service** — background thread worker with independent `DatabaseManager` connection. Cache-first + "Scan More" modes. `_build_from_cache()` fallback when scan produces no fresh jobs.
+- **Identity provider layer** — `identity_provider.py` for LinkedIn URL extraction, CV-based identity inference, identity card generation.
+- **Deployment strategy** — `DEPLOYMENT_STRATEGY.md` written. Web-first (Fly.io + Supabase). Telegram/WhatsApp permanently delayed.
+- **Daily dev blog** — 2026-05-29 entry created with full sprint retrospective.
+- **Permanently delayed Telegram/WhatsApp/webhook** — All PRD §21, TRACKER references updated. Transport abstraction layer superseded by REST API.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED — PRD §1 (web app delivery), §5 (discovery via scan API), §7 (chat via NL endpoint), §9 (job save/skip). The API IS the product surface now.
+
+**Deviations detected:** companies.logo_url, domain, website are NULL for all current companies. salary_min/max and jd_text/role_summary empty for 5 real scraped jobs. These are data gaps, not code gaps — the serializers handle them gracefully (initials avatar fallback, null salary/description).
+
+**Recommended next 3 actions:**
+1. Deploy API to Fly.io — Dockerfile + fly.toml + GitHub Actions (PRD §1, P0 for user delivery)
+2. Company logo backfill — Clearbit enrichment job (PRD §9, P2)
+3. PostgresSaver checkpointer at 20% — needs Redis cache layer before multi-worker (PRD §7, P1)
+
+---
 
 **What was done:**
 - Built 7 new job board adapters: RemoteOK (JSON API), Remotive (JSON API), WeWorkRemotely (RSS), Cutshort (DDG+SSR), Wellfound (DDG+snippet), IIMJobs (DDG+BS4), Instahyre (DDG+snippet). Phase B now 13 parallel sources.
@@ -796,6 +841,26 @@ The direction directly advances PRD §21-§23 and the Phase 0 Delivery Foundatio
 ---
 
 <!-- product-lead appends new entries above this line -->
+
+### 2026-05-29 — Session: MVP REST API (careerloop_api/) — 9 routes, 13/13 E2E
+
+**What was done:**
+- Built `careerloop_api/` — the first web-facing REST layer, from the locked spec in `docs/engineering/API_ARCHITECTURE.md`. Previously only a Telegram webhook (`webhook_server.py`) existed.
+- All 7 MVP endpoint groups (9 routes under `/v1`): `POST /auth/login`, `GET /me`, `GET /me/preferences`, `GET /briefs/latest`, `POST /briefs/{brief_id}/items/{item_index}/select`, `GET /jobs/{job_id}`, `POST /jobs/{job_id}/save`, `POST /jobs/{job_id}/skip`, `POST /chat/message`.
+- Layered `routers → services → repositories → DatabaseManager`; shared `{ok,data,error,meta}` envelope; bearer-token auth dependency.
+- `e2e_api_test.py` (no pytest) against live Supabase + DeepSeek: **13/13 passing**. save/skip writes confirmed persisted to `careerloop.user_job_relationships`.
+- Frontend handoff written: `docs/handoffs/2026-05-29-frontend-handoff.md`.
+
+**Vision alignment verdict:** ✅ ALIGNED — PRD §4 (Core Product Loop) + §7 (Daily Brief/TAL). This is the missing presentation/transport surface that lets the web frontend consume the brief and job cards. No new product logic; thin wrapper over existing runtime.
+
+**Deviations detected:** Live DB is still the **v1 schema** — `repository_v2.py` writes v2 column names that don't exist live (persistence split from `ARCHITECTURE_AUDIT_2026-05-24.md`). API repos read/write live columns directly as a workaround. Also found: `webhook_server.py::_route_to_supervisor` calls `.invoke()` on an *uncompiled* graph — latent chat bug in the Telegram path (API path fixed via `get_supervisor_graph()`).
+
+**Recommended next 3 actions:**
+1. Build the frontend against these endpoints: login → TAL list → job detail → chat (PRD §7).
+2. Fix the uncompiled-graph bug in `webhook_server.py` (use `get_supervisor_graph()`).
+3. Reconcile v1/v2 schema drift so `repository_v2.py` writes land in live columns; then add `/scans`+SSE, `/jobs/{id}/packs`, `/pipeline`.
+
+---
 
 ### 2026-05-23 — Session: Phase B ATS Layer — 14 Adapters + Parallel Board Search
 

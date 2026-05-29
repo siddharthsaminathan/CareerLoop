@@ -299,6 +299,8 @@ async function main() {
       const json = await fetchJson(url);
       const jobs = PARSERS[type](json, company.name);
       totalFound += jobs.length;
+      // Live progress (consumed by the API scan-more streamer; harmless to humans)
+      process.stdout.write(`SCAN_EVENT::${JSON.stringify({ t: 'scanned', company: company.name, found: jobs.length })}\n`);
 
       for (const job of jobs) {
         if (!titleFilter(job.title)) {
@@ -318,6 +320,7 @@ async function main() {
         seenUrls.add(job.url);
         seenCompanyRoles.add(key);
         newOffers.push({ ...job, source: `${type}-api` });
+        process.stdout.write(`SCAN_EVENT::${JSON.stringify({ t: 'found', company: job.company, title: job.title, location: job.location || '', url: job.url || '' })}\n`);
       }
     } catch (err) {
       errors.push({ company: company.name, error: err.message });

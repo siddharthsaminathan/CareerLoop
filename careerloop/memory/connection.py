@@ -137,9 +137,20 @@ def _get_pg_connection(db_url: str):
 
 
 class DatabaseManager:
-    """Thread-safe database manager. PostgreSQL via DATABASE_URL."""
+    """Thread-safe database manager with a connection pool. PostgreSQL via DATABASE_URL.
 
-    def __init__(self, db_url: Optional[str] = None, schema_path: Optional[str] = None):
+    Connections are borrowed from a ThreadedConnectionPool and returned, instead of
+    opening/closing a fresh TCP+SSL connection on every call. This is the difference
+    between ~2.5s per cold connection to the remote Supabase pooler and <5ms to borrow
+    a warm one — critical for 100 concurrent users.
+
+    Schema init (DDL) runs once per process unless CAREERLOOP_SKIP_SCHEMA_INIT is set
+    (the API server skips it — the schema already exists in prod).
+    """
+
+    def __init__(self, db_url: Optional[str] = None, schema_path: Optional[str] = None,
+                 skip_schema_init: Optional[bool] = None,
+                 minconn: int = 1, maxconn: Optional[int] = None):
         base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
         self.db_url = db_url or os.getenv("DATABASE_URL")
         if not self.db_url:
@@ -148,7 +159,29 @@ class DatabaseManager:
         self.schema_path = schema_path or os.path.join(
             base_dir, "careerloop", "memory", "supabase_schema.sql"
         )
-        self._init_pg_schema()
+        self._minconn = minconn
+        self._maxconn = maxconn or int(os.getenv("CAREERLOOP_DB_POOL_MAX", "20"))
+        self._pool = None
+        self._pool_lock = threading.Lock()
+
+        if skip_schema_init is None:
+            skip_schema_init = os.getenv("CAREERLOOP_SKIP_SCHEMA_INIT", "").lower() in ("1", "true", "yes")
+        if not skip_schema_init:
+            self._init_pg_schema()
+
+    def _get_pool(self):
+        """Lazily create the thread-safe connection pool (first use)."""
+        if self._pool is None:
+            with self._pool_lock:
+                if self._pool is None:
+                    from psycopg2.pool import ThreadedConnectionPool
+                    from psycopg2.extras import RealDictCursor
+                    self._pool = ThreadedConnectionPool(
+                        self._minconn, self._maxconn,
+                        dsn=self.db_url, cursor_factory=RealDictCursor,
+                    )
+                    logger.info("DB pool created (min=%d max=%d)", self._minconn, self._maxconn)
+        return self._pool
 
     def _init_pg_schema(self):
         if not os.path.exists(self.schema_path):
@@ -177,15 +210,27 @@ class DatabaseManager:
 
     @contextmanager
     def get_connection(self) -> Generator:
-        conn = _get_pg_connection(self.db_url)
+        pool = self._get_pool()
+        conn = pool.getconn()
+        broken = False
         try:
             yield conn
             conn.commit()
         except Exception:
-            conn.rollback()
+            try:
+                conn.rollback()
+            except Exception:
+                broken = True
             raise
         finally:
-            conn.close()
+            # Return to pool; discard if the connection is dead.
+            try:
+                pool.putconn(conn, close=broken or conn.closed != 0)
+            except Exception:
+                try:
+                    conn.close()
+                except Exception:
+                    pass
 
 
 # ─── Module-level singleton ───────────────────────────────────────────────────

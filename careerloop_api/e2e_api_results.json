@@ -1,0 +1,82 @@
+{
+  "total": 15,
+  "passed": 15,
+  "failed": 0,
+  "results": [
+    {
+      "test": "health",
+      "passed": true,
+      "detail": "200 {\"status\":\"ok\",\"service\":\"careerloop-api\",\"version\":\"v1\"}"
+    },
+    {
+      "test": "no_token_401",
+      "passed": true,
+      "detail": "401 (expected 401)"
+    },
+    {
+      "test": "bad_token_401",
+      "passed": true,
+      "detail": "401 (expected 401)"
+    },
+    {
+      "test": "expired_token_401",
+      "passed": true,
+      "detail": "401 (expected 401)"
+    },
+    {
+      "test": "anon_role_401",
+      "passed": true,
+      "detail": "401 (expected 401, role=anon)"
+    },
+    {
+      "test": "POST /auth/me",
+      "passed": true,
+      "detail": "200 id=9c512f87 name=siddharthsaminathan99"
+    },
+    {
+      "test": "GET /me",
+      "passed": true,
+      "detail": "200 id_match=True"
+    },
+    {
+      "test": "GET /me/preferences",
+      "passed": true,
+      "detail": "200 keys=['target_roles', 'target_cities', 'salary_expectations', 'notice_period', 'work_mode', 'aggressiveness', 'source']"
+    },
+    {
+      "test": "GET /briefs/latest",
+      "passed": true,
+      "detail": "200 brief=11994aae items=5"
+    },
+    {
+      "test": "POST select item",
+      "passed": true,
+      "detail": "200 job_id=loop-0122"
+    },
+    {
+      "test": "GET /jobs/{id}",
+      "passed": true,
+      "detail": "200 title=AI Engineer"
+    },
+    {
+      "test": "POST /jobs/{id}/save",
+      "passed": true,
+      "detail": "200 {'job_id': '3d10a92f-b6af-4e6f-b15e-3e39c2cfe77e', 'match_status': 'saved', 'swiped_action': 'right'}"
+    },
+    {
+      "test": "POST /jobs/{id}/skip",
+      "passed": true,
+      "detail": "200 {'job_id': '3d10a92f-b6af-4e6f-b15e-3e39c2cfe77e', 'match_status': 'skipped', 'swiped_action': 'left'}"
+    },
+    {
+      "test": "GET /jobs/{id} 404",
+      "passed": true,
+      "detail": "404 (expected 404)"
+    },
+    {
+      "test": "POST /chat/message",
+      "passed": true,
+      "detail": "200 reply=\"**Today's matches:** Show your latest job brief\\n**Scan for j\""
+    }
+  ]
+}

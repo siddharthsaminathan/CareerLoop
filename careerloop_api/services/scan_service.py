@@ -32,8 +32,13 @@ from typing import Generator, Optional
 logger = logging.getLogger("careerloop_api.services.scan")
 
 
-def initiate_scan(user_id: str, db) -> str:
-    """Create a background_run row and start the scan in a thread. Returns run_id."""
+def initiate_scan(user_id: str, db, mode: str = "default") -> str:
+    """Create a background_run row and start the scan in a thread. Returns run_id.
+
+    mode="default"   → cache-first brief (fast; used for the first/daily brief)
+    mode="scan_more" → forced fresh discovery across job portals, streamed live,
+                       deduped against the user's existing brief (no cache hit)
+    """
     run_id = uuid.uuid4().hex[:12]
 
     # Write the initial row synchronously so SSE can start polling immediately.
@@ -56,11 +61,11 @@ def initiate_scan(user_id: str, db) -> str:
 
     thread = threading.Thread(
         target=_run_scan_worker,
-        args=(user_id, run_id, db_url),
+        args=(user_id, run_id, db_url, mode),
         daemon=True,
     )
     thread.start()
-    logger.info("Scan thread started for user %s run_id %s", user_id[:8], run_id)
+    logger.info("Scan thread started for user %s run_id %s mode=%s", user_id[:8], run_id, mode)
     return run_id
 
 
@@ -83,29 +88,37 @@ def stream_scan_events(run_id: str, db) -> Generator[str, None, None]:
     Polls run_events every 1s and pushes any new events. Stops when
     background_run.status becomes COMPLETED or FAILED (or after 5-minute timeout).
     """
-    seen_event_ids: set = set()
     deadline = time.time() + 300  # 5-minute hard timeout
+    # Watermark + dedupe: query only events at/after the last timestamp (bounds each
+    # poll to O(new events), critical when scan_more emits dozens of events and for
+    # many concurrent streams), and dedupe by event_id to handle equal timestamps.
+    last_ts = None
+    seen_event_ids: set = set()
 
     while time.time() < deadline:
         try:
             with db.get_connection() as conn:
                 with conn.cursor() as cur:
-                    # Get new events since last poll
-                    cur.execute(
-                        """
-                        SELECT event_id, event_type, message, timestamp
-                        FROM careerloop.run_events
-                        WHERE run_id = %s
-                        ORDER BY timestamp ASC
-                        """,
-                        (run_id,),
-                    )
+                    if last_ts is None:
+                        cur.execute(
+                            "SELECT event_id, event_type, message, timestamp FROM careerloop.run_events "
+                            "WHERE run_id = %s ORDER BY timestamp ASC",
+                            (run_id,),
+                        )
+                    else:
+                        cur.execute(
+                            "SELECT event_id, event_type, message, timestamp FROM careerloop.run_events "
+                            "WHERE run_id = %s AND timestamp >= %s ORDER BY timestamp ASC",
+                            (run_id, last_ts),
+                        )
                     rows = cur.fetchall()
                     for row in rows:
                         eid = str(row["event_id"])
                         if eid in seen_event_ids:
                             continue
                         seen_event_ids.add(eid)
+                        if row.get("timestamp") is not None:
+                            last_ts = row["timestamp"]
                         payload = {
                             "event_type": row.get("event_type") or "info",
                             "message": row.get("message") or "",
@@ -147,9 +160,9 @@ def _emit(cur, run_id: str, message: str, event_type: str = "info"):
         logger.debug("_emit failed: %s", e)
 
 
-def _run_scan_worker(user_id: str, run_id: str, db_url: str = ""):
+def _run_scan_worker(user_id: str, run_id: str, db_url: str = "", mode: str = "default"):
     """
-    Runs the full scan pipeline in a background thread.
+    Runs the scan pipeline in a background thread.
     Uses its own DB connection (psycopg2 connections are not thread-safe).
     """
     from careerloop.memory.connection import DatabaseManager
@@ -163,13 +176,18 @@ def _run_scan_worker(user_id: str, run_id: str, db_url: str = ""):
         return
 
     try:
-        db = DatabaseManager(db_url=db_url)
+        # Skip schema init — the schema already exists; re-running DDL on every
+        # scan thread is wasteful. Pool is created lazily on first query.
+        db = DatabaseManager(db_url=db_url, skip_schema_init=True)
     except Exception as e:
         logger.error("Worker DB init failed: %s", e)
         return
 
     try:
-        _execute_scan(user_id, run_id, db)
+        if mode == "scan_more":
+            _execute_scan_more(user_id, run_id, db)
+        else:
+            _execute_scan(user_id, run_id, db)
     except Exception as e:
         logger.exception("Scan worker fatal error for run %s: %s", run_id, e)
         try:
@@ -182,6 +200,261 @@ def _run_scan_worker(user_id: str, run_id: str, db_url: str = ""):
                     )
         except Exception:
             pass
+
+
+def _build_from_cache(user_id: str, db, limit: int = 10) -> list:
+    """Build a top_jobs list from the global jobs cache (cache-first behavior).
+
+    Returns the same shape as DailyRunner's top_jobs: [{"job":..., "score":..., "breakdown":...}].
+    Pulls fit_score / reasons from user_job_relationships when present, else sensible defaults.
+    """
+    rows = []
+    try:
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT j.job_id, j.id AS legacy_id, j.title, j.company_name, j.location,
+                           j.apply_url, j.role_summary, j.jd_text,
+                           r.fit_score, r.route_recommendation
+                    FROM careerloop.jobs j
+                    LEFT JOIN careerloop.user_job_relationships r
+                        ON r.job_id::text = j.job_id::text AND r.user_id::text = %s
+                    WHERE COALESCE(j.status, 'active') = 'active'
+                    ORDER BY COALESCE(r.fit_score, 0) DESC, j.scraped_at DESC NULLS LAST
+                    LIMIT %s
+                    """,
+                    (user_id, limit),
+                )
+                rows = cur.fetchall()
+    except Exception as e:
+        logger.error("_build_from_cache failed: %s", e)
+        return []
+
+    top = []
+    for row in rows:
+        r = dict(row)
+        top.append({
+            "job": {
+                "job_id": str(r.get("job_id")) if r.get("job_id") else r.get("legacy_id"),
+                "id": r.get("legacy_id"),
+                "title": r.get("title") or "",
+                "company": r.get("company_name") or "",
+                "location": r.get("location") or "",
+                "apply_url": r.get("apply_url") or "",
+            },
+            "score": float(r["fit_score"]) if r.get("fit_score") is not None else 65.0,
+            "breakdown": {
+                "recommendation_reason": r.get("recommendation_reason") or "Matches your target roles and location.",
+                "risk_summary": r.get("risk_summary") or "No critical risks identified.",
+                "route_recommendation": r.get("route_recommendation") or "APPLY",
+            },
+        })
+    return top
+
+
+def _execute_scan_more(user_id: str, run_id: str, db):
+    """Forced fresh discovery for "Scan More" — streamed live, deduped, no cache.
+
+    Runs scan.mjs across the configured job portals and streams each company as
+    it's scanned + each role found, in real time. Then scores net-new roles
+    against the user's target roles and appends matches to today's brief.
+    NO cache-hit shortcut — the user explicitly wants jobs beyond their brief.
+    """
+    import os
+    import json as _json
+    import subprocess
+    import time as _time
+
+    root = os.path.realpath(os.path.join(os.path.dirname(__file__), "..", ".."))
+
+    # 1. User's target roles (for real match/skip decisions) + existing brief dedupe set.
+    target_roles, seen_keys = _load_targets_and_seen(user_id, db)
+
+    with db.get_connection() as conn:
+        with conn.cursor() as cur:
+            _emit(cur, run_id, "Hunting for fresh roles beyond your brief…", "SCAN_STARTED")
+            _emit(cur, run_id, f"Scanning live job portals for: {', '.join(target_roles) or 'your targets'}", "SOURCE_STARTED")
+
+    # 2. Run scan.mjs and stream its per-company output live.
+    found_jobs = []
+    scanned_count = 0
+    emitted_scanned = 0
+    SCANNED_EMIT_CAP = 60   # bound run_events rows; counter keeps progress honest
+    buffer = []             # batched (event_type, message) for throttled writes
+    last_flush = _time.time()
+
+    def flush():
+        nonlocal buffer, last_flush
+        if not buffer:
+            return
+        try:
+            with db.get_connection() as conn:
+                with conn.cursor() as cur:
+                    for et, msg in buffer:
+                        _emit(cur, run_id, msg, et)
+        except Exception as e:
+            logger.debug("scan_more flush failed: %s", e)
+        buffer = []
+        last_flush = _time.time()
+
+    try:
+        proc = subprocess.Popen(
+            ["node", "scan.mjs"], cwd=root,
+            stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+            text=True, bufsize=1,
+        )
+        for line in proc.stdout:
+            line = line.strip()
+            if not line.startswith("SCAN_EVENT::"):
+                continue
+            try:
+                ev = _json.loads(line[len("SCAN_EVENT::"):])
+            except Exception:
+                continue
+            if ev.get("t") == "scanned":
+                scanned_count += 1
+                if emitted_scanned < SCANNED_EMIT_CAP:
+                    emitted_scanned += 1
+                    buffer.append(("SOURCE_SCANNING", f"🔍 Scanned {ev.get('company','?')} — {ev.get('found',0)} roles"))
+            elif ev.get("t") == "found":
+                found_jobs.append(ev)
+                buffer.append(("JOB_FOUND", f"Found: {ev.get('title','?')} @ {ev.get('company','?')}"))
+            # Throttle DB writes: flush every ~0.5s or every 12 buffered events.
+            if len(buffer) >= 12 or (_time.time() - last_flush) > 0.5:
+                flush()
+        proc.wait(timeout=120)
+    except Exception as e:
+        logger.error("scan_more discovery failed: %s", e)
+    flush()
+
+    # 3. Score net-new roles against target roles; dedupe vs existing brief.
+    net_new = []
+    for ev in found_jobs:
+        title = (ev.get("title") or "").strip()
+        company = (ev.get("company") or "").strip()
+        key = f"{company.lower()}::{title.lower()}"
+        if key in seen_keys:
+            continue
+        seen_keys.add(key)
+        matched = _matches_targets(title, target_roles)
+        if matched:
+            net_new.append(ev)
+            with db.get_connection() as conn:
+                with conn.cursor() as cur:
+                    _emit(cur, run_id, f"✓ {title} @ {company} — matches your targets", "JOB_EVALUATED")
+        else:
+            with db.get_connection() as conn:
+                with conn.cursor() as cur:
+                    _emit(cur, run_id, f"✗ {title} @ {company} — off-target, skipped", "JOB_EVALUATED")
+
+    # 4. Append net-new matches to today's brief (append, never wipe).
+    appended = _append_to_brief(user_id, run_id, net_new, db)
+
+    with db.get_connection() as conn:
+        with conn.cursor() as cur:
+            _emit(cur, run_id,
+                  f"Scanned {scanned_count} companies · {len(found_jobs)} roles seen · {appended} new matches added",
+                  "FILTER_SUMMARY")
+            if appended == 0:
+                _emit(cur, run_id, "No new matches beyond your current brief right now.", "BRIEF_CREATED")
+            else:
+                _emit(cur, run_id, f"{appended} fresh roles added to your brief.", "BRIEF_CREATED")
+            cur.execute(
+                "UPDATE careerloop.background_runs SET status = 'COMPLETED', updated_at = NOW() WHERE run_id = %s",
+                (run_id,),
+            )
+    logger.info("scan_more done: run=%s scanned=%d found=%d appended=%d", run_id, scanned_count, len(found_jobs), appended)
+
+
+def _load_targets_and_seen(user_id: str, db):
+    """Return (target_roles list, set of 'company::title' keys already in the user's brief)."""
+    target_roles, seen = [], set()
+    try:
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute("SELECT target_roles FROM careerloop.users WHERE id = %s", (user_id,))
+                row = cur.fetchone()
+                if row and row.get("target_roles"):
+                    raw = row["target_roles"]
+                    if isinstance(raw, list):
+                        target_roles = raw
+                    elif isinstance(raw, str):
+                        try:
+                            import json as _j
+                            parsed = _j.loads(raw)
+                            target_roles = parsed if isinstance(parsed, list) else [p.strip() for p in raw.split(",") if p.strip()]
+                        except Exception:
+                            target_roles = [p.strip() for p in raw.split(",") if p.strip()]
+                # existing brief items → dedupe set
+                cur.execute(
+                    """
+                    SELECT bi.title, bi.company FROM careerloop.daily_brief_items bi
+                    JOIN careerloop.daily_briefs b ON b.id = bi.brief_id
+                    WHERE b.user_id = %s
+                    """,
+                    (user_id,),
+                )
+                for r in cur.fetchall():
+                    seen.add(f"{(r.get('company') or '').lower()}::{(r.get('title') or '').lower()}")
+    except Exception as e:
+        logger.debug("_load_targets_and_seen failed: %s", e)
+    return target_roles, seen
+
+
+def _matches_targets(title: str, target_roles: list) -> bool:
+    """Lightweight, real relevance check: title shares a keyword with a target role."""
+    if not target_roles:
+        return True  # no targets set → don't reject
+    t = title.lower()
+    for role in target_roles:
+        for tok in str(role).lower().split():
+            if len(tok) > 3 and tok in t:
+                return True
+    return False
+
+
+def _append_to_brief(user_id: str, run_id: str, jobs: list, db) -> int:
+    """Append net-new matched jobs to today's brief (creating it if absent). Returns count added."""
+    if not jobs:
+        return 0
+    from datetime import datetime, timezone
+    today = datetime.now(timezone.utc).date().isoformat()
+    added = 0
+    try:
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "SELECT id FROM careerloop.daily_briefs WHERE user_id = %s AND date_str = %s ORDER BY created_at DESC LIMIT 1",
+                    (user_id, today),
+                )
+                row = cur.fetchone()
+                if row:
+                    brief_id = row["id"]
+                else:
+                    brief_id = str(uuid.uuid4())
+                    cur.execute(
+                        "INSERT INTO careerloop.daily_briefs (id, user_id, date_str, run_id, summary) VALUES (%s,%s,%s,%s,%s)",
+                        (brief_id, user_id, today, run_id, ""),
+                    )
+                cur.execute("SELECT COALESCE(MAX(item_index),0) AS mx FROM careerloop.daily_brief_items WHERE brief_id = %s", (brief_id,))
+                idx = (cur.fetchone() or {}).get("mx", 0)
+                for ev in jobs:
+                    idx += 1
+                    added += 1
+                    cur.execute(
+                        "INSERT INTO careerloop.daily_brief_items "
+                        "(id, brief_id, item_index, job_id, title, company, location, fit_score, recommendation_reason, risk_summary, route_recommendation) "
+                        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                        (
+                            str(uuid.uuid4()), brief_id, idx, str(uuid.uuid4()),
+                            ev.get("title", ""), ev.get("company", ""), ev.get("location", ""),
+                            70.0, "Fresh match from live portal scan.", "Newly discovered — verify details.", "APPLY",
+                        ),
+                    )
+    except Exception as e:
+        logger.error("_append_to_brief failed: %s", e)
+    return added
 
 
 def _execute_scan(user_id: str, run_id: str, db):
@@ -234,11 +507,33 @@ def _execute_scan(user_id: str, run_id: str, db):
     scored = res.get("scored", 0)
     top_jobs = res.get("top_jobs") or []
 
+    # Cache-first fallback: if the runner produced no fresh shortlist (already
+    # generated today, or no NEW external jobs found), build the brief from the
+    # global jobs cache so the user always sees real jobs from the DB.
+    if not top_jobs:
+        top_jobs = _build_from_cache(user_id, db)
+        if top_jobs:
+            with db.get_connection() as conn:
+                with conn.cursor() as cur:
+                    _emit(cur, run_id, f"Surfacing {len(top_jobs)} matching roles from cache", "CACHE_HIT")
+
+    # If there is genuinely nothing to show, keep any existing brief intact and stop.
+    if not top_jobs:
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                _emit(cur, run_id, "No matching roles found right now — try again later.", "FILTER_SUMMARY")
+                cur.execute(
+                    "UPDATE careerloop.background_runs SET status = 'COMPLETED', updated_at = NOW() WHERE run_id = %s",
+                    (run_id,),
+                )
+        logger.info("Scan produced no jobs (cache empty): run_id=%s", run_id)
+        return
+
     brief_id = str(uuid.uuid4())
 
     with db.get_connection() as conn:
         with conn.cursor() as cur:
-            # Clear old brief for today
+            # Only now (we have items to write) clear today's old brief and rewrite.
             cur.execute(
                 "DELETE FROM careerloop.daily_brief_items WHERE brief_id IN (SELECT id FROM careerloop.daily_briefs WHERE user_id = %s AND date_str = %s)",
                 (user_id, today_str),

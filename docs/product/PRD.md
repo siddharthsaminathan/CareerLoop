@@ -2,7 +2,7 @@
 
 **Author:** Siddharth Saminathan  
 **Status:** Canonical Vision v1.0 — Active  
-**Last Updated:** 2026-05-21  
+**Last Updated:** 2026-05-29  
 
 > This is the single source of truth for what CareerLoop is, who it's for, and what it must do.  
 > All engineering, design, and agent work must align to this document.  
@@ -357,35 +357,46 @@ working together to turn openings into interviews.
 
 ## 17. Product Engineering Tracker
 
-> Updated by the `careerloop-product-lead` skill. Last updated: 2026-05-27.
+> Updated by the `careerloop-product-lead` skill. Last updated: 2026-05-26.
 
 | System | Completion | Status | Notes |
-|--------|-----------|--------|-------|
-| India-first discovery | **94%** | 🟢 Active | Wellfound Playwright removed. Remote India SerpAPI path. RoleArchetypeEngine wired (Phase A+B). 14 ATS adapters + 6 boards. Open: Company Identity Layer, Phase E ontology gate, Naukri dead. |
-| Verification & filtering | **80%** | 🟡 Active | archetype.reject_title() + _tag_jobs_with_ontology() on all jobs. Open: full Phase E ontology pre-filter. |
-| Opportunity scoring (16-dim) | **72%** | 🟡 Active | role_fit hard gate (cap 30). archetype_fit 16th dim (weight 8). FIT_WEIGHTS=100. JD fetch + min_description_chars gate. All thresholds config-driven. |
-| Decision compression / triage | 20% | 🔴 Gap | DECISION_COMPRESSION_VISION.md written. CEO owns UX build. |
-| Career state system (modes) | 60% | 🟡 Active | 11 real states with legacy migration. All have setter+handler+test. Natural approval phrases. No echo. |
-| Company intelligence | 75% | 🟢 Active | MECE D1-D5 vectors; S3 cache; JD_ONLY fallback |
-| Positioning engine | 38% | 🟡 Active | S6 wired; narrative angle, objection preempt, must_haves all reach S7 |
-| Resume Council (v3) | 93% | 🟢 Active | Job-aware chunking; prose fallback; 42 tests; ceiling hit |
-| Humanizer layer | 65% | 🟡 Active | LLM rewrite active; Truth Guard UNSUPPORTED matching too aggressive |
-| Resume rendering (templates) | 90% | 🟢 Active | 10 templates; normalizer handles 3 user CV formats; automated validation; PackageAssembler renders high-fidelity PDFs |
-| Validator / QA | 83% | 🟢 Active | 42 stabilization + 22 integration + 14 chat runtime regression. All passing. |
-| Application execution | 18% | 🔴 Gap | modes/apply.md prototype; Kimi bridge scaffold exists; real browser/Webbridge integration not verified |
-| Assisted apply bridge | 5% | ⚫ Scaffold | Kimi/Hermes executor mock only; no unattended submit |
-| Follow-up system | 25% | 🔴 Gap | Ledger auto-schedules; no message generation yet |
-| Interview memory | 25% | 🟡 Active | interview-playbook skill; auto-extracts from venting; no rejection post-mortem |
-| Persistent memory graph | 48% | 🟡 Active | Single session load. Profile hydration from DB. add_messages conversation history. Ledger UUID-IDs deduped. |
-| Data engineering V3 | **95%** | 🟢 Active | careerloop.users identity spine. 20 FKs migrated. 14 users backfilled. 7 new tables. 12 canonical docs. Phase 1+2 complete. |
-| Memory architecture | 35% | 🟡 Active | 6-layer model defined. memory_events table created. Propagation architecture documented. |
-| Job persistence engine | 60% | 🟡 Active | Global cache + user relationships. Fingerprint dedup. TTL strategy. Cache-hit path pending. |
-| WhatsApp/transport UX | 65% | 🟡 Active | Echo fallback removed. Safe errors. CommandRouter unified routing. /brief + /scan + /pipeline + /status. |
-| Gmail memory | 0% | ⚫ Not started | ROI Vision's #1 priority — never touched |
-| Multi-user onboarding | **75%** | 🟢 Active | 3-user real E2E verified (Supabase + DeepSeek). 5 pillars extracted, CV→profile flow, PROFILE_READY reached. Telegram webhook wiring still needed. |
-| Monetization logic | 30% | 🟡 Active | Strategic understanding solid; no billing/paywall |
+|--------|------------|--------|-------|
+| **Transport abstraction layer** | **65%** | 🟡 | Base + Terminal stubs. Echo fallback removed. Safe error messages. /brief + /scan + CommandRouter wired. |
+| **Multi-user onboarding** | **75%** | 🟢 | 3-user real E2E verified against Supabase + DeepSeek. 5 pillars extracted, CV→profile flow works, PROFILE_READY reached. _load_profile_data returns master_cv_markdown + has_cv. |
+| **LangGraph Chatbot Orchestrator** | **85%** | 🟢 | 2-node pipeline. GENERAL_CHAT returns real LLM. ActionResolver context injection. Live scan rendering. Supabase-only. |
+| **PostgresSaver Checkpointer** | **20%** | 🔴 | SQLite sessions functional without Postgres. Dual-mode verified. Interrupt/resume proof still needed. |
+| **Application pack delivery** | **95%** | 🟢 | PackageAssembler + Playwright PDFs. E2E validated on real job. |
+| **Daily brief cron delivery** | **90%** | 🟢 | Daily Runner triggers scan and fully populates daily_briefs and daily_brief_items SQL tables. E2E database brief retrieval verified. |
+| India-first discovery | 92% | 🟢 | Geo filter on all ATS adapters. Location spoofing fixed. CSV India filter. 14 ATS adapters + 6 boards. |
+| Verification & filtering | 78% | 🟡 | India filter enforced at 3 choke points. Block G not hoisted. |
+| Opportunity scoring (14-dim) | 62% | 🟡 | Scoring caps (CPU=50, LLM=15). Token accounting per call. _get_score() unified schema. |
+| Decision compression / triage | 20% | 🔴 | CEO owns. DECISION_COMPRESSION_VISION.md written. |
+| Career state system (modes) | **60%** | 🟡 | 11 real states with legacy migration. All states have setter+handler+test paths. Natural approval phrases work. |
+| Company intelligence | 75% | 🟢 | MECE vision implemented; S3 cache working |
+| Positioning engine | 38% | 🟡 | S6 wired; tailoring delta substantial; narrative angle reaches S7 |
+| Resume Council (v3) | 93% | 🟢 | Job-aware chunking; prose fallback; 42 tests; ceiling hit |
+| Humanizer layer | 65% | 🟡 | LLM rewrite active; Truth Guard UNSUPPORTED matching too aggressive |
+| Resume rendering (templates) | 90% | 🟢 | 10 templates; normalizer handles 3 user CV formats; automated validation |
+| ATS validator layer | 0% | ⚫ | Spec written (PRD §26). Sprint 4. |
+| Resume editing layer | 0% | ⚫ | Spec written (PRD §25). Surgical edits without full Council rerun. Sprint 4. |
+| Validator / QA | **83%** | 🟢 | 42 stabilization + 22 integration + 14 chat runtime regression. All passing. |
+| Application execution | 18% | 🔴 | modes/apply.md prototype; Kimi bridge scaffold. Real Webbridge/Hermes integration not verified. |
+| Assisted apply bridge | 5% | ⚫ | `kimi_bridge.py` mock only. Must never run queue-based or unattended submission. |
+| Follow-up engine (full) | 25% | 🔴 | Scheduling exists. Message generation + delivery = Sprint 5. |
+| Gmail integration | 0% | ⚫ | Sprint 6. Needs transport first. |
+| Calendar integration | 0% | ⚫ | Sprint 6. Needs transport first. |
+| Interview memory (full) | 25% | 🟡 | Vent parsing works. Debrief + weakness tracker = Sprint 7. |
+| Persistent memory graph | **60%** | 🟡 | Schema isolation (careerloop.*). Repository layer. Fingerprint dedup. User-job relationships. |
+| Background job scheduler | 0% | ⚫ | Sprint 2. Daily + per-job two classes. |
+| WhatsApp / Meta Cloud API | 0% | ⚫ | After Telegram beta validates loop. |
+| Monetization / billing | 0% | 🔴 | Pricing tiers defined. No paywall yet. Needs onboarding first. |
+| Data engineering V3 | **95%** | 🟢 | careerloop.users identity spine. 20 FKs migrated. 14 users backfilled. 7 new tables. 12 canonical docs. Phase 1+2 complete. Companies populated, Cutshort parsing, cache-hit wired, memory architecture documented. |
+| Memory architecture | **70%** | 🟡 | 7-layer model defined. 4-level recall hierarchy. 8 propagation flows. 10 anti-patterns. MEMORY_SYSTEMS_ARCHITECTURE.md created. |
+| **E2E Runtime Verification** | **90%** | 🟢 | 3-user real onboarding E2E: 3/3 passed against live Supabase + DeepSeek. Priya (happy path), Rohan (correction), Ananya (gap-fill). Results in e2e_real_supabase.json. |
+| **Chat quality (known issues)** | **⚠️** | 🟡 | Polite closings misclassified as HELP (2/7 E2E turns). Fix: 1-line ActionResolver prompt update. |
+| Job persistence engine | **75%** | 🟡 | Global cache + user relationships. Fingerprint dedup. TTL strategy. Cache-hit check wired, companies linked via FK, Cutshort parsing. |
  
-**Overall product maturity: ~73-75% of vision.** Data engineering V3 complete (careerloop.users identity spine, all FKs migrated, UUID standardized, 6 new tables). Chat runtime real (no echo, no slop). Supabase-only. Council ceiling hit (93%). Geo filter proven. Critical gap remains: full scan E2E + multi-user onboarding.
+**Overall product maturity: ~77-80% of vision.** Data engineering V3 at 95%. Multi-user onboarding E2E verified (3/3 real Supabase + DeepSeek). E2E at 90%. B-ONBOARD blocker closing. Remaining: transport deployment, async scan, chat fallback.
  
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 
@@ -607,37 +618,50 @@ All engineering and agent work must align to both this PRD (what we build) and t
 
 ---
 
-## 21. Transport Abstraction Layer (Addendum — 2026-05-22)
+## 21. Delivery Surface Strategy (Updated — 2026-05-29)
 
-> The delivery surface is the product. Intelligence without delivery is a CLI tool.
+> The API is the transport layer. The web app is the delivery surface.
 
-### The Decision: Telegram-First, WhatsApp Later
+### 🔴 Updated Decision: Web-First, Telegram/WhatsApp — PERMANENTLY DELAYED
 
-For internal beta (next 7–30 days): **Telegram.** Fast setup, no approval process, clean file/button support, stable webhooks. WhatsApp in production once the loop is validated.
+**Decision (2026-05-29):** All Telegram webhook, WhatsApp webhook, and transport abstraction layer work is **permanently delayed until further notice.**
 
-Do not hardcode business logic into any transport. Every product function must work through an abstract interface managed by the LangGraph Supervisor:
+**Rationale for the pivot:**
+1. The REST API (7 endpoints, live) is now the transport layer — same API serves web, iOS, Android
+2. A web app provides richer UI (TAL-style cards, swipe gestures, color-coded fit scores, real-time SSE streaming)
+3. Telegram Bot API limits rich card rendering; WhatsApp 24hr messaging window breaks async workflows
+4. No platform approval process needed (Google OAuth via Supabase is universal)
+5. Deployment cycle: minutes vs days for bot updates
+
+**Historical reference (superseded):**
+The original Telegram-first/WhatsApp-later strategy was correct for the CLI/Telegram era (2026-05-22 → 2026-05-28). With the REST API now live (2026-05-29), the correct transport is **HTTP from a web frontend**.
+
+**What this means for existing code:**
+- `careerloop/transport/` — archived, not deleted. Code kept as reference for the pattern.
+- `webhook_server.py` — deprecated for user-facing use. Retained as reference for the supervisor graph invocation pattern.
+- All references to Telegram/WhatsApp as primary delivery channels in the PRD and TRACKER are superseded.
+- The REST API (`careerloop_api/`) IS the production transport layer.
+
+### Canonical Transport Path (Updated)
 
 ```
-TransportAdapter (base)
-├── converts payloads into a UserEvent schema
-├── maps UserEvent into ConversationState
-├── ChatbotGraph.invoke(ConversationState)
-└── returns AgentAction → TransportAdapter.send()
+REST API (careerloop_api/)
+├── /v1/auth/*        — Supabase JWT auth, auto-provisioning
+├── /v1/me/*          — User profile + preferences
+├── /v1/briefs/*      — Daily brief + TAL-style job cards
+├── /v1/jobs/*        — Job detail + save/skip (swipe)
+├── /v1/chat/*        — NL interface (onboarding + supervisor graph)
+├── /v1/scans/*       — Async scan + SSE event streaming
+└── /health           — Health check
 
-Implementations:
-├── TelegramAdapter        — internal beta (Telegram Bot API)
-├── WhatsAppWebAdapter     — experimental (brittle, account risk)
-├── MetaWhatsAppAdapter    — production WhatsApp (later)
-└── TerminalChatAdapter    — CLI interface re-wired to push events into the Supervisor
+Frontend (React/TS)
+├── consumes JSON from all endpoints
+├── renders TAL cards with fit_tier colors
+├── SSE stream for live scan progress
+└── Supabase Google OAuth for auth
 ```
 
-**Canonical path:** `careerloop/transport/`
-
-**Current implementation status (2026-05-23):** scaffold only. `careerloop/transport/base.py`, `telegram.py`, and `terminal_chat.py` exist, but no production webhook or document delivery path is verified. The next implementation pass must make the adapter convert `UserEvent` into the supervisor graph's state contract before invoking the graph.
-
-### Why This Matters
-
-If transport logic bleeds into business logic, switching from Telegram to WhatsApp requires touching every file. The adapter pattern means the product layer never knows which channel it's talking through.
+**The adapter pattern is now: HTTP request → JSON response.** The product layer never changes — the supervisor graph, onboarding flow, and scan pipeline are all invoked identically whether the input came from a web app, CLI, or (future) native app.
 
 ---
 

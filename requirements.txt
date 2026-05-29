@@ -23,6 +23,12 @@ psycopg2-binary>=2.9
 langgraph>=0.2
 langchain-core>=0.3
 
+# REST API layer (careerloop_api/) — backend for the web frontend
+fastapi>=0.110
+uvicorn[standard]>=0.27
+httpx>=0.27       # used by careerloop_api E2E tests
+PyJWT>=2.8        # Supabase JWT verification (careerloop_api/core/security.py)
+
 # CLI UX
 prompt_toolkit>=3.0
 rich>=13.0

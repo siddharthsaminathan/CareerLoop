@@ -168,9 +168,17 @@ def build_supervisor_graph():
     return builder
 
 
+import functools
+
+
+@functools.lru_cache(maxsize=2)
 def get_supervisor_graph(checkpointer=None):
     """
     Returns the compiled LangGraph supervisor.
+
+    Cached: graph compilation is CPU-bound (50–200ms) and the result is reusable.
+    Without this, every chat request rebuilt + recompiled the whole graph.
+    The API always calls with checkpointer=None, so the cache key is stable.
     """
     builder = build_supervisor_graph()
     return builder.compile(checkpointer=checkpointer)
