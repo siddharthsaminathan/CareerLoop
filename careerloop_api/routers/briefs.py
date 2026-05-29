@@ -11,8 +11,12 @@ router = APIRouter(prefix="/briefs", tags=["briefs"])
 
 
 @router.get("/latest")
-def latest(user_id: str = Depends(get_current_user), db=Depends(get_db)):
-    return ok(BriefService(db).latest(user_id))
+def latest(
+    offset: int = 0,
+    user_id: str = Depends(get_current_user),
+    db=Depends(get_db),
+):
+    return ok(BriefService(db).latest(user_id, offset=offset))
 
 
 @router.post("/{brief_id}/items/{item_index}/select")

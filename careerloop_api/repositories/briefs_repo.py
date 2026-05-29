@@ -35,7 +35,7 @@ class BriefsRepo:
     def __init__(self, db):
         self.db = db
 
-    def get_latest_brief(self, user_id: str) -> Optional[dict]:
+    def get_latest_brief(self, user_id: str, offset: int = 0) -> Optional[dict]:
         with self.db.get_connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
@@ -44,9 +44,9 @@ class BriefsRepo:
                     FROM careerloop.daily_briefs
                     WHERE user_id = %s
                     ORDER BY created_at DESC
-                    LIMIT 1
+                    LIMIT 1 OFFSET %s
                     """,
-                    (user_id,),
+                    (user_id, offset),
                 )
                 row = cur.fetchone()
                 return dict(row) if row else None
