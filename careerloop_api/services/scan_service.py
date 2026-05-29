@@ -355,6 +355,10 @@ def _build_from_cache(user_id: str, db, limit: int = 10) -> list:
     top = []
     for row in rows:
         r = dict(row)
+        score = float(r["fit_score"]) if r.get("fit_score") is not None else None
+        if score is None:
+            logger.warning("_build_from_cache: job '%s' has no fit_score — using default 65.0", r.get("title", "?"))
+            score = 65.0
         top.append({
             "job": {
                 "job_id": str(r.get("job_id")) if r.get("job_id") else r.get("legacy_id"),
@@ -364,7 +368,7 @@ def _build_from_cache(user_id: str, db, limit: int = 10) -> list:
                 "location": r.get("location") or "",
                 "apply_url": r.get("apply_url") or "",
             },
-            "score": float(r["fit_score"]) if r.get("fit_score") is not None else 65.0,
+            "score": score,
             "breakdown": {
                 "recommendation_reason": r.get("recommendation_reason") or "Matches your target roles and location.",
                 "risk_summary": r.get("risk_summary") or "No critical risks identified.",
@@ -535,6 +539,30 @@ def _matches_targets(title: str, target_roles: list) -> bool:
     return False
 
 
+def _compute_title_match_score(title: str, target_roles: list) -> float:
+    """Compute a quick heuristic score (0-100) from title/target-role keyword overlap.
+
+    Used in scan_more path where full job data (JD, salary, etc.) isn't available
+    for the 15-dimension heuristic scorer.
+    """
+    if not target_roles or not title:
+        return 65.0  # neutral default — no targets to match against
+    t = title.lower()
+    # Collect all non-trivial keywords from target roles
+    all_keywords = set()
+    for role in target_roles:
+        for tok in str(role).lower().split():
+            if len(tok) > 3:
+                all_keywords.add(tok)
+    if not all_keywords:
+        return 65.0
+    # How many target keywords appear in the title?
+    matched = sum(1 for kw in all_keywords if kw in t)
+    ratio = matched / len(all_keywords)
+    # Scale: 0% match = 50, 50% match = 65, 100% match = 85
+    return round(50.0 + ratio * 35.0, 1)
+
+
 def _append_to_brief(user_id: str, run_id: str, jobs: list, db) -> int:
     """Append net-new matched jobs to today's brief (creating it if absent). Returns count added."""
     if not jobs:
@@ -542,6 +570,8 @@ def _append_to_brief(user_id: str, run_id: str, jobs: list, db) -> int:
     from datetime import datetime, timezone
     today = datetime.now(timezone.utc).date().isoformat()
     added = 0
+    # Load target roles so we can compute real scores
+    target_roles, _ = _load_targets_and_seen(user_id, db)
     try:
         with db.get_connection() as conn:
             with conn.cursor() as cur:
@@ -563,6 +593,7 @@ def _append_to_brief(user_id: str, run_id: str, jobs: list, db) -> int:
                 for ev in jobs:
                     idx += 1
                     added += 1
+                    score = _compute_title_match_score(ev.get("title", ""), target_roles)
                     cur.execute(
                         "INSERT INTO careerloop.daily_brief_items "
                         "(id, brief_id, item_index, job_id, title, company, location, fit_score, recommendation_reason, risk_summary, route_recommendation) "
@@ -570,7 +601,7 @@ def _append_to_brief(user_id: str, run_id: str, jobs: list, db) -> int:
                         (
                             str(uuid.uuid4()), brief_id, idx, str(uuid.uuid4()),
                             ev.get("title", ""), ev.get("company", ""), ev.get("location", ""),
-                            70.0, "Fresh match from live portal scan.", "Newly discovered — verify details.", "APPLY",
+                            score, "Fresh match from live portal scan.", "Newly discovered — verify details.", "APPLY",
                         ),
                     )
     except Exception as e:

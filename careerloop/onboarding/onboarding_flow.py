@@ -102,9 +102,18 @@ class OnboardingFlow:
         return reply, UserJourneyState.NEW_USER
 
     def _handle_waiting_cv(self, session: Session, text: str, data: dict) -> Tuple[str, UserJourneyState]:
-        # Allow skipping the CV when we already hydrated from LinkedIn.
-        if text.strip().lower() in {"skip", "no", "later"} and data.get("cv_content"):
-            return self._proceed_after_linkedin(session, data)
+        # P0-5: Skip only allowed when we ALREADY have real CV content (not LinkedIn placeholder)
+        if text.strip().lower() in {"skip", "no", "later"}:
+            cv = (data.get("cv_content") or "").strip()
+            if cv and len(cv) >= 50:
+                return self._proceed_after_linkedin(session, data)
+            # No real CV — insist on it
+            return (
+                "I really need your CV to help you effectively. Without it, I can't generate "
+                "tailored resumes, cover letters, or application packs.\n\n"
+                "Please paste your CV text here, or upload a PDF/DOCX file.",
+                UserJourneyState.NEW_USER,
+            )
 
         if len(text.strip()) < 80:
             return (
@@ -256,7 +265,19 @@ class OnboardingFlow:
             )
 
         if text_lower in {"skip"}:
-            return self._proceed_after_linkedin(session, data)
+            # P0-5: Skip only allowed with real CV content
+            cv = (data.get("cv_content") or "").strip()
+            if cv and len(cv) >= 50:
+                return self._proceed_after_linkedin(session, data)
+            # No real CV — redirect back to CV collection
+            session.onboarding_step = STEP_WAITING_CV
+            self._save(session)
+            return (
+                "I still need your CV before we proceed. Without it, I can't generate "
+                "tailored resumes, cover letters, or application packs.\n\n"
+                "Please paste your CV text here, or upload a PDF/DOCX file.",
+                UserJourneyState.NEW_USER,
+            )
 
         # Rejected → manual path: ask for CV + LinkedIn URL
         data.pop("_identity_candidate", None)
@@ -308,6 +329,19 @@ class OnboardingFlow:
     # ── Completion ────────────────────────────────────────────────────────────
 
     def _complete_onboarding(self, session: Session, data: dict) -> Tuple[str, UserJourneyState]:
+        # P0-5: CV Gate — user cannot reach PROFILE_READY without real CV content.
+        # LinkedIn-only onboarding fills profile fields but may not provide CV text.
+        cv = (data.get("cv_content") or "").strip()
+        if not cv or len(cv) < 50:
+            session.onboarding_step = STEP_WAITING_CV
+            self._save(session)
+            return (
+                "Almost done! I still need your CV/resume to complete your profile.\n\n"
+                "Please paste your CV text here or upload a PDF/DOCX file. "
+                "I need this to generate tailored resumes and application packs for you.",
+                UserJourneyState.NEW_USER,
+            )
+
         self._commit_profile_to_db(session.user_id, data)
         self._seed_welcome_brief(session.user_id)
         full_name = data.get("full_name") or "there"

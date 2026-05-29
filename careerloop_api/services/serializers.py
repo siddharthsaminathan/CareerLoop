@@ -69,8 +69,13 @@ def company_logo(row: dict, company_name: Optional[str]) -> Optional[str]:
 
 
 def description_snippet(row: dict, max_len: int = 280) -> Optional[str]:
-    """A short job description for the card, from role_summary or jd_text."""
-    text = (row.get("role_summary") or row.get("jd_text") or "").strip()
+    """A short job description for the card, from role_summary / raw_jd_text / jd_text."""
+    text = (
+        row.get("role_summary")
+        or row.get("raw_jd_text")
+        or row.get("jd_text")
+        or ""
+    ).strip()
     if not text:
         return None
     text = re.sub(r"\s+", " ", text)
@@ -148,6 +153,10 @@ def job_detail(row: dict, relationship: Optional[dict] = None) -> dict:
         "source_url": row.get("source_url"),
         "apply_url": row.get("apply_url"),
         "role_summary": row.get("role_summary"),
+        "raw_jd_text": row.get("raw_jd_text"),
+        "responsibilities": row.get("responsibilities"),
+        "requirements": row.get("requirements"),
+        "benefits": row.get("benefits"),
         "description": description_snippet(row, max_len=1200),
         "is_india_role": row.get("is_india_role"),
         "verified_active": bool(row.get("verified_active")),

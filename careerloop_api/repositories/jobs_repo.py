@@ -17,6 +17,7 @@ _JOB_SELECT = """
     j.location_city, j.location_country, j.work_mode, j.salary_min, j.salary_max,
     j.salary_currency, j.source, j.source_url, j.apply_url, j.role_summary,
     j.is_india_role, j.verified_active, j.status, j.posted_at, j.scraped_at, j.jd_text,
+    j.raw_jd_text, j.responsibilities, j.requirements, j.benefits,
     c.logo_url AS company_logo_url, c.website AS company_website,
     c.domain AS company_domain, c.linkedin_url AS company_linkedin_url
 """

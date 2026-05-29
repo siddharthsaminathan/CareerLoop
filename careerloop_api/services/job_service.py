@@ -33,10 +33,45 @@ class JobService:
         return str(job_uuid), job
 
     def save(self, user_id: str, job_ident: str) -> dict:
-        job_uuid, job = self._resolve_uuid(job_ident)
-        okw = self.repo.set_match_status(user_id, job_uuid, "saved", swiped_action="right")
-        if not okw:
-            raise APIError("Could not save job.", status_code=500, code="save_failed")
+        """Save (approve) a job: validate existence, then upsert user_job_relationships."""
+        with self.db.get_connection() as conn:
+            with conn.cursor() as cur:
+                # Validate job exists — try id (v1 text PK) or job_id::text (v2 UUID)
+                cur.execute(
+                    "SELECT id, job_id FROM careerloop.jobs WHERE id = %s OR job_id::text = %s LIMIT 1",
+                    (job_ident, job_ident),
+                )
+                row = cur.fetchone()
+                if not row:
+                    raise APIError(
+                        "Job not found. Run a scan first to discover jobs.",
+                        status_code=404, code="job_not_found",
+                    )
+
+                job_uuid = row.get("job_id")
+                if not job_uuid:
+                    # Job exists but has no UUID PK yet — backfill one so the FK insert works
+                    import uuid
+                    job_uuid = str(uuid.uuid4())
+                    cur.execute(
+                        "UPDATE careerloop.jobs SET job_id = %s::uuid WHERE id = %s",
+                        (job_uuid, row["id"]),
+                    )
+
+                # Upsert user-job relationship
+                cur.execute(
+                    """
+                    INSERT INTO careerloop.user_job_relationships
+                        (user_id, job_id, match_status, swiped_action, created_at, updated_at)
+                    VALUES (%s, %s, 'saved', 'right', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                    ON CONFLICT (user_id, job_id) DO UPDATE SET
+                        match_status = EXCLUDED.match_status,
+                        swiped_action = EXCLUDED.swiped_action,
+                        updated_at   = CURRENT_TIMESTAMP
+                    """,
+                    (user_id, job_uuid),
+                )
+
         return {"job_id": job_uuid, "match_status": "saved", "swiped_action": "right"}
 
     def skip(self, user_id: str, job_ident: str) -> dict:

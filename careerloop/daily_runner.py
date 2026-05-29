@@ -36,6 +36,7 @@ CAREER_OPS_ROOT = os.path.realpath(os.path.dirname(os.path.dirname(os.path.abspa
 sys.path.insert(0, CAREER_OPS_ROOT)
 
 from careerloop.profile_manager import ProfileManager
+from careerloop.scan_funnel import ScanFunnel
 from careerloop.india_fit_engine import IndiaFitEngine
 from careerloop.application_ledger import ApplicationLedger
 from careerloop.india_filter import filter_india_jobs
@@ -69,6 +70,16 @@ class DailyRunner:
         run_id = uuid.uuid4().hex[:12]
         started_at = datetime.now(timezone.utc).isoformat()
         logger.info("daily_run_started", extra={"extra": {"run_id": run_id, "event": "pipeline_start"}})
+
+        # ── Discovery funnel tracking (non-blocking) ─────────────
+        try:
+            from careerloop.memory.connection import get_db_manager
+            _funnel_email = self.profile.base.get("candidate", {}).get("email", "") or self.profile.base.get("email", "")
+            _funnel_ns = uuid.UUID('12345678-1234-5678-1234-567812345678')
+            _funnel_uid = str(uuid.uuid5(_funnel_ns, _funnel_email))[:12] if _funnel_email else "unknown"
+            self.funnel = ScanFunnel(run_id, _funnel_uid, get_db_manager(self.root))
+        except Exception:
+            self.funnel = None
 
         print("=" * 60)
         print("🔁 CareerLoop Daily Runner")
@@ -108,12 +119,28 @@ class DailyRunner:
 
         logger.info("scan_completed", extra={"extra": {"run_id": run_id, "event": "scan_completed", "jobs_found": len(new_raw_jobs), "do_scan": do_scan}})
 
+        # ── Funnel: DISCOVERED ──
+        if self.funnel:
+            self.funnel.record_stage("discovered", 0, len(new_raw_jobs))
+
         # ── Step 2: Geo & Role Family Filters ────────────────────────
         print("📍 Step 2: Applying India geo filter & role family filter...")
         india_jobs, rejected_india = filter_india_jobs(new_raw_jobs)
         print(f"   India filter: {len(india_jobs)} passed, {len(rejected_india)} rejected")
         for rj in rejected_india[:3]:
             print(f"     ✗ {rj.get('title','?')} @ {rj.get('company','?')} — {rj.get('_rejection_reason','?')}")
+
+        # ── Funnel: LOCATION ──
+        if self.funnel:
+            self.funnel.record_stage("location", len(new_raw_jobs), len(india_jobs))
+            for rj in rejected_india:
+                self.funnel.record_rejection(
+                    rj.get("title", ""), rj.get("company", ""), rj.get("url", ""),
+                    "LOCATION", f"Location {rj.get('location','unknown')} not India"
+                )
+
+        # ── Save pre-role count for funnel ──
+        _funnel_role_before = len(india_jobs)
 
         # Role family filter: keep only jobs matching target roles
         target_roles = self.profile.target_roles or []
@@ -125,6 +152,10 @@ class DailyRunner:
                     role_filtered.append(job)
             print(f"   Role filter: {len(role_filtered)} of {len(india_jobs)} match target roles {target_roles}")
             india_jobs = role_filtered
+
+        # ── Funnel: ROLE ──
+        if self.funnel:
+            self.funnel.record_stage("role", _funnel_role_before, len(india_jobs))
 
         logger.info("filter_completed", extra={"extra": {"run_id": run_id, "event": "filter_completed", "india_passed": len(india_jobs), "rejected": len(rejected_india)}})
 
@@ -139,9 +170,18 @@ class DailyRunner:
 
             if self.ledger.is_duplicate(url=url, company=company, title=title):
                 dupes += 1
+                if self.funnel:
+                    self.funnel.record_rejection(
+                        title, company, url,
+                        "DUPLICATE", "Duplicate job already in ledger"
+                    )
                 continue
             unique_jobs.append(job)
         print(f"   {len(unique_jobs)} unique roles survived deduplication")
+
+        # ── Funnel: DEDUPED ──
+        if self.funnel:
+            self.funnel.record_stage("deduped", len(india_jobs), len(unique_jobs))
 
         logger.info("dedup_completed", extra={"extra": {"run_id": run_id, "event": "dedup_completed", "unique": len(unique_jobs), "dupes": dupes}})
 
@@ -200,6 +240,10 @@ class DailyRunner:
 
         print(f"   {scored_count} jobs scored, {rejected_count} rejected (search pages/articles)")
 
+        # ── Funnel: SCORED ──
+        if self.funnel:
+            self.funnel.record_stage("scored", len(unscored), scored_count)
+
         logger.info("scoring_completed", extra={"extra": {"run_id": run_id, "event": "scoring_completed", "scored_count": scored_count, "rejected_count": rejected_count}})
 
         # ── Step 6: Shortlist ────────────────────────────────────────
@@ -225,6 +269,19 @@ class DailyRunner:
         scored_jobs.sort(key=lambda x: x["score"], reverse=True)
 
         shortlist_count = len([j for j in scored_jobs if j["score"] >= 60])
+
+        # ── Funnel: THRESHOLD ──
+        if self.funnel:
+            self.funnel.record_stage("threshold", len(scored_jobs), shortlist_count)
+            # Track jobs rejected by fit score threshold
+            for j in scored_jobs:
+                if j["score"] < 60:
+                    self.funnel.record_rejection(
+                        j["job"].get("title", ""), j["job"].get("company", ""),
+                        j["job"].get("source_url", "") or j["job"].get("url", ""),
+                        "FIT_SCORE", f"Score {j['score']} below threshold"
+                    )
+
         logger.info("shortlist_completed", extra={"extra": {"run_id": run_id, "event": "shortlist_completed", "total_scored": len(scored_jobs), "shortlist_count": shortlist_count}})
 
         follow_ups = self.ledger.get_follow_ups_due()
@@ -237,6 +294,10 @@ class DailyRunner:
                     self.ledger.transition(job["job_id"], "SHORTLISTED", "Auto-shortlisted by daily runner")
                 except Exception:
                     pass
+
+        # ── Funnel: BRIEFED ──
+        if self.funnel:
+            self.funnel.record_stage("briefed", shortlist_count, len(scored_jobs[:5]))
 
         # ── Step 8: Output ───────────────────────────────────────────
         shortlist_text = format_daily_shortlist(
@@ -264,6 +325,57 @@ class DailyRunner:
         with open(brief_path, 'w') as f:
             f.write(f"# Daily Brief — {today_str}\n\n")
             f.write(shortlist_text)
+
+        # P0-1: Persist every discovered job to careerloop.jobs so API can serve them
+        try:
+            import hashlib
+            from careerloop.memory.connection import get_db_manager
+            email = self.profile.base.get("candidate", {}).get("email", "") or self.profile.base.get("email", "")
+            if email:
+                db = get_db_manager(self.root)
+                with db.get_connection() as conn:
+                    with conn.cursor() as cur:
+                        persisted = 0
+                        for entry in self.ledger.entries:
+                            job_id = entry.get("job_id")
+                            if not job_id:
+                                continue
+                            source_url = entry.get("source_url") or ""
+                            fingerprint = hashlib.md5(
+                                (source_url + (entry.get("title") or "")).encode()
+                            ).hexdigest()
+                            cur.execute("""
+                                INSERT INTO careerloop.jobs
+                                    (job_id, source, title, company_name, location_raw,
+                                     jd_text, canonical_url, apply_url, content_fingerprint)
+                                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                ON CONFLICT (job_id) DO UPDATE SET
+                                    title           = EXCLUDED.title,
+                                    company_name    = EXCLUDED.company_name,
+                                    location_raw    = EXCLUDED.location_raw,
+                                    jd_text         = COALESCE(EXCLUDED.jd_text, careerloop.jobs.jd_text),
+                                    canonical_url   = COALESCE(EXCLUDED.canonical_url, careerloop.jobs.canonical_url),
+                                    apply_url       = COALESCE(EXCLUDED.apply_url, careerloop.jobs.apply_url),
+                                    source          = EXCLUDED.source,
+                                    updated_at      = CURRENT_TIMESTAMP
+                            """, (
+                                job_id,
+                                (entry.get("source") or "unknown")[:50],
+                                (entry.get("title") or "")[:500],
+                                (entry.get("company") or "")[:255],
+                                (entry.get("location") or "")[:255],
+                                (entry.get("raw_description") or entry.get("description") or "")[:10000],
+                                source_url[:2048],
+                                (entry.get("application_url") or "")[:2048],
+                                fingerprint,
+                            ))
+                            persisted += 1
+                    conn.commit()
+                logger.info(f"Persisted {persisted} jobs to careerloop.jobs")
+            else:
+                logger.warning("No email in profile — cannot persist jobs to DB")
+        except Exception as e:
+            logger.warning(f"Failed to persist jobs to DB: {e}")
 
         # Persist brief to DB so API can serve it (careerloop.daily_briefs table)
         try:
@@ -310,6 +422,20 @@ class DailyRunner:
         # ── Pipeline end: elapsed time ──────────────────────────
         elapsed = (datetime.now(timezone.utc) - datetime.fromisoformat(started_at)).total_seconds()
         logger.info("daily_run_completed", extra={"extra": {"run_id": run_id, "event": "pipeline_end", "elapsed_s": elapsed}})
+
+        # ── Funnel: emit final summary ──────────────────────────
+        if self.funnel:
+            self.funnel.emit_funnel_complete({
+                "run_id": run_id,
+                "user_id": _funnel_uid,
+                "discovered": len(new_raw_jobs),
+                "deduped": len(unique_jobs),
+                "location_passed": _funnel_role_before,
+                "role_passed": len(india_jobs),
+                "scored": scored_count,
+                "above_threshold": shortlist_count,
+                "briefed": len(scored_jobs[:5]),
+            })
 
         return {
             "new_jobs_found": len(new_raw_jobs),
