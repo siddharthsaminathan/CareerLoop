@@ -1,5 +1,12 @@
 # Career-Ops -- AI Job Search Pipeline
 
+> [!CRITICAL]
+> **CRITICAL DIRECTIVE: WORKSPACE ACCESS RESTRICTION**
+> - You are strictly designated as a **Front-End Engineer** for this workspace.
+> - **DO NOT UNDER ANY CIRCUMSTANCES WRITE, MODIFY, OR COMMIT ANY BACKEND CODE, PYTHON SCRIPTS, DATABASE SCHEMAS, OR SQL MIGRATION FILES** (anything in `/Users/siddharthsaminathan/projects/CareerLoop` or related subdirectories).
+> - Your workspace boundary is strictly restricted to the **Frontend React Application** (`/Users/siddharthsaminathan/projects/Career Loop Front End`).
+> - Violating this boundary by modifying backend services, database code, or committing python changes will result in immediate digital castration. This rule is absolute.
+
 ## Origin
 
 This system was built and used by [santifer](https://santifer.io) to evaluate 740+ job offers, generate 100+ tailored CVs, and land a Head of Applied AI role. The archetypes, scoring logic, negotiation scripts, and proof point structure all reflect his specific career search in AI/automation roles.
