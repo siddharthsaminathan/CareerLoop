@@ -4,6 +4,7 @@ Mirrors careerloop/transport/webhook_server.py::_route_to_supervisor, but return
 structured payload for HTTP instead of pushing to Telegram.
 """
 
+import json
 import logging
 import threading
 import uuid
@@ -18,11 +19,7 @@ _CHAT_TIMEOUT = 120  # seconds — hard limit for any single chat turn
 
 
 def _run_with_timeout(fn, timeout=_CHAT_TIMEOUT, label="Chat turn"):
-    """Run fn() in a daemon thread with a hard timeout.
-
-    If the LLM call hangs (DeepSeek slow, DB pool exhausted), we don't leave
-    the HTTP request hanging forever — the user gets a clean error after 120s.
-    """
+    """Run fn() in a daemon thread with a hard timeout."""
     result = [None]
     error = [None]
     done = threading.Event()
@@ -57,7 +54,7 @@ class ChatService:
 
         session = self.store.get_session(user_id)
 
-        # P0-01: Persist the user's message
+        # Persist the user's message
         conv_id = self._ensure_conversation(user_id)
         self.store.save_message(
             user_id=user_id,
@@ -71,7 +68,6 @@ class ChatService:
             from careerloop.onboarding.onboarding_flow import OnboardingFlow
             flow = OnboardingFlow(self.store)
             try:
-                # P0-03: Wrap onboarding with a hard timeout to prevent 330-minute hangs
                 reply, _new_state = _run_with_timeout(
                     lambda: flow.handle_message(session, text),
                     timeout=_CHAT_TIMEOUT,
@@ -88,7 +84,6 @@ class ChatService:
                 raise APIError("Onboarding hit an issue. Your data is safe — try again.",
                                status_code=500, code="onboarding_error")
 
-            # P0-01: Persist the assistant's onboarding reply
             self.store.save_message(
                 user_id=user_id,
                 conversation_id=conv_id,
@@ -96,7 +91,6 @@ class ChatService:
                 content=reply,
             )
 
-            # Surface the "Is this you?" LinkedIn identity card if the flow staged one.
             cards = []
             response_type = "text"
             updated = self.store.get_session(user_id)
@@ -119,16 +113,10 @@ class ChatService:
             from careerloop.session.supervisor_graph import get_supervisor_graph
             from careerloop.memory.checkpointer import get_checkpointer
 
-            # P0-02: Wire PostgresSaver checkpointer so conversation history survives
-            # across API calls. Falls back to MemorySaver if DATABASE_URL is not set.
             checkpointer = get_checkpointer()
             graph = get_supervisor_graph(checkpointer=checkpointer)
 
-            # P1-02: Load previous conversation history from DB and inject into
-            # graph's messages array so the LLM has full context.
             history_messages = self._load_conversation_history(user_id, conv_id)
-
-            # Build the message list: history (from DB) + current message
             all_messages = history_messages + [HumanMessage(content=text)]
             graph_input = {
                 "user_id": user_id,
@@ -143,15 +131,13 @@ class ChatService:
                 },
             }
             config = {"configurable": {"thread_id": user_id}}
-            # Run with a hard 120s timeout — never hang forever
             result = _run_with_timeout(
                 lambda: graph.invoke(graph_input, config=config),
                 timeout=_CHAT_TIMEOUT,
                 label="Chat turn",
             )
 
-            # P1-03: Persist artifact context updates from the graph result back to
-            # the DB session so active_context survives between turns.
+            # Persist artifact context updates back to DB
             result_context = result.get("artifact_context")
             if result_context:
                 try:
@@ -185,7 +171,6 @@ class ChatService:
 
         reply = result.get("assistant_response") or "Something went wrong. Try again."
 
-        # P0-01: Persist the assistant's reply
         self.store.save_message(
             user_id=user_id,
             conversation_id=conv_id,
@@ -194,7 +179,6 @@ class ChatService:
             action_type=result.get("action_taken", {}).get("action_type") if hasattr(result.get("action_taken", {}), "get") else None,
         )
 
-        # Re-read the session for the updated active context after the turn.
         updated = self.store.get_session(user_id)
         return {
             "message": reply,
@@ -205,22 +189,54 @@ class ChatService:
             "state": updated.state.value if hasattr(updated.state, "value") else str(updated.state),
         }
 
-    def _ensure_conversation(self, user_id: str) -> str:
-        """Get or create an active conversation for this user.
-
-        Uses a single conversation per user session (stored on the session object).
-        Creates one if it doesn't exist yet.
-        """
+    def get_history(self, user_id: str) -> dict:
+        """Return the user's recent chat history so the frontend can restore on login."""
         session = self.store.get_session(user_id)
-        # Reuse existing conversation_id from session if available
+        conv_id = (session.temp_profile_data or {}).get("_active_conversation_id") if session.temp_profile_data else None
+        if not conv_id:
+            return {
+                "messages": [],
+                "state": session.state.value if hasattr(session.state, "value") else str(session.state),
+            }
+
+        try:
+            with self.db.get_connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        "SELECT role, content, action_type, created_at "
+                        "FROM careerloop.messages "
+                        "WHERE conversation_id = %s AND user_id = %s "
+                        "ORDER BY created_at ASC LIMIT 50",
+                        (conv_id, user_id),
+                    )
+                    rows = cur.fetchall()
+            messages = []
+            for row in (rows or []):
+                msg = {
+                    "role": row.get("role", ""),
+                    "text": row.get("content", ""),
+                    "response_type": "text",
+                }
+                if row.get("action_type"):
+                    msg["action_type"] = row["action_type"]
+                messages.append(msg)
+            return {
+                "messages": messages,
+                "state": session.state.value if hasattr(session.state, "value") else str(session.state),
+                "conversation_id": conv_id,
+            }
+        except Exception as e:
+            logger.warning("Failed to load chat history for %s: %s", user_id[:12], e)
+            return {"messages": [], "state": "PROFILE_READY"}
+
+    def _ensure_conversation(self, user_id: str) -> str:
+        session = self.store.get_session(user_id)
         existing = (session.temp_profile_data or {}).get("_active_conversation_id") if session.temp_profile_data else None
         if existing:
             return existing
 
         conv_id = str(uuid.uuid4())
-        # Persist the conversation row
         self.store.save_conversation(user_id=user_id, conversation_id=conv_id)
-        # Stash on session for reuse
         tp = session.temp_profile_data or {}
         tp["_active_conversation_id"] = conv_id
         session.temp_profile_data = tp
@@ -228,11 +244,6 @@ class ChatService:
         return conv_id
 
     def _load_conversation_history(self, user_id: str, conversation_id: str) -> list:
-        """Load previous messages from careerloop.messages for LLM context.
-
-        Returns a list of HumanMessage/AIMessage objects suitable for the LangGraph
-        messages array. Limits to last 20 messages to avoid context overflow.
-        """
         from langchain_core.messages import HumanMessage, AIMessage
         try:
             with self.db.get_connection() as conn:

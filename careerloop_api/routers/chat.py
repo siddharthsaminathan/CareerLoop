@@ -20,3 +20,9 @@ class ChatMessage(BaseModel):
 @router.post("/message")
 def message(body: ChatMessage, user_id: str = Depends(get_current_user), db=Depends(get_db)):
     return ok(ChatService(db).message(user_id, body.text))
+
+
+@router.get("/history")
+def history(user_id: str = Depends(get_current_user), db=Depends(get_db)):
+    """Return the user's recent chat history so the frontend can restore it on login."""
+    return ok(ChatService(db).get_history(user_id))
