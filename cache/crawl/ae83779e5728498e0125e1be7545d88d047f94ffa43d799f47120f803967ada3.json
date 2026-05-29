@@ -1,478 +1,312 @@
 {
   "role": "ai product engineer",
   "city": "bangalore",
-  "cached_at": 1779822369.468458,
-  "expires_at": 1779851169.468458,
-  "job_count": 17,
+  "cached_at": 1779971397.695019,
+  "expires_at": 1780000197.695019,
+  "job_count": 10,
   "jobs": [
     {
-      "title": "AI Product Engineer with 3",
-      "company": "Mindtickle",
+      "title": "Software Engineer, AI Agents, Tools and Productivity",
+      "company": "",
       "location": "Bangalore",
-      "url": "https://www.foundit.in/job/ai-product-engineer-mindtickle-bengaluru-bangalore-48103684",
-      "apply_url": "https://www.foundit.in/job/ai-product-engineer-mindtickle-bengaluru-bangalore-48103684",
-      "description": "AI Product Engineer with 3 - 5 Years of Experience at Mindtickle in Bengaluru / Bangalore,India | Position Closed Jobs Services Career Solutions Featured profile Profile highlighter Career Booster Best Seller Resume Writing Resume builder Linkedin Makeover Prep Interview Preparation Learn Degree Programs Certification GenAI Course Career Advice Search Jobs Please enter a job title/role/skill to search Please enter a job title/role/skill to search Please enter a job title/role/skill to search Fresher (< 1 year) Recent Searches Search Search by job, company or skills Login Register AI Product Engineer Mindtickle Apply Now Save AI Product Engineer Mindtickle Bengaluru , India 3-5 Years This job is no longer accepting applications Posted 2 months ago Job Description Role Overview We are transitioning our organization to an AI-first operational model. We are seeking an AI Product Engineer to architect and build the company's central intelligence engine. In this role, you will be the primary builder of automated intelligence systems—tools that not only retrieve insights but actively trigger workflows, and synthesize strategic intel across our entire business landscape. Role Profile This is a high-impact, hands-on engineering role requiring a convergence of three distinct skill sets: Software Engineering (50%): Building scalable middleware, API integrations, and production-grade applications that connect our data stack to business tools (CRM, Marketing Automation, Support/Ticketing). AI Engineering (30%): Implementing Agentic workflows, RAG architectures, and LLMs to process unstructured data at scale. Data Analytics (20%): Leveraging SQL and B2B SaaS metrics to ensure all automation is grounded in accurate, governed data. Key Responsibilities Building the Enterprise Brain (Architecture & Integration) Develop a unified intelligence layer that ingests signals from disparate sources (Product Telemetry, CRM, Call Transcripts, Marketing inputs) and processes them into actionable outputs. Build robust integrations/webhooks to push AI-generated insights directly into workflow tools (e.g., pushing Churn Risk alerts into Salesforce AI Logic & Agent Implementation Architect Agentic workflows where LLMs are granted permission to perform tasks Implement advanced RAG to ground AI outputs in company documentation, historical data, and strategic context. Ensure rigorous evaluation and guardrails for non-deterministic models to prevent hallucinations in critical business workflows. Data Engineering & Governance Collaborate with Analytics Engineers to ensure the underlying data pipelines support real-time or near-real-time AI applications. Maintain security and privacy standards, ensuring that AI agents respect data access permissions across different departments. Qualifications Minimum Qualifications: Education: Bachelor's degree in Computer Science, Engineering, or equivalent practical experience. Software Engineering: 3+ years of experience in Python development, with strong proficiency in API development (FastAPI/Django) and building integrations between SaaS platforms. AI/ML Application: Proven experience building applications using LLM APIs and orchestration frameworks, Experience with Agent concepts. Data Proficiency: Strong SQL skills and familiarity with cloud data warehouses (Snowflake/BigQuery). Preferred Qualifications: Business Systems Knowledge: Experience working with APIs for major B2B tools (Salesforce, HubSpot, Zendesk, Jira, Marketo). Workflow Automation: Experience with tools like Airflow, Zapier/Make (advanced usage), or custom workflow engines. B2B Domain Expertise: Understanding of the interplay between Sales, Product, and Customer Success. Competencies The Builder Mindset: You are comfortable taking a high-level strategic requirement from leadership (e.g., We need to automate lead qualification) and independently architecting and coding the solution. Systemic Thinking: You understand how a change in product data schema impacts the downstream marketing automation flow. Adaptability: You can switch contexts rapidly—from debugging a SQL query for Strategy to refining a prompt for Customer Support automation. We may use artificial intelligence (AI) tools to support parts of the hiring process, such as reviewing applications, analyzing resumes, or assessing responses. These tools assist our recruitment team but do not replace human judgment. Final hiring decisions are ultimately made by humans. If you would like more information about how your data is processed, please contact us. More Info Job Type: Permanent Job Industry: Other Function: Ai Engineering Employment Type: Full time About Company Mindtickle Job Source: www.linkedin.com Job ID: 144833353 Report Job Jobs by Skill - IT Biotechnology Jobs Digital Marketing Jobs Graphic Design Jobs Networking Jobs Oracle Jobs SEO Jobs Software Testing Jobs Sql Jobs Web Design Jobs PHP Jobs Jobs by Skill - Non IT Accounting Jobs BPO Jobs Call Center Jobs Civil Engineering Jobs Content Writing Jobs Electrical Engineering Jobs Event Management Jobs Hotel Management Jobs HR Jobs Sales Jobs International Jobs Jobs in Gulf Jobs in Singapore Jobs in Malaysia Jobs in Philippines Jobs in Hong Kong Jobs in Vietnam Jobs in Indonesia Jobs in Thailand Jobs in Dubai Jobs in UAE Last Updated: 27-04-2026 08:11:10 PM Home jobs in Bengaluru / Bangalore AI Product Engineer Similar Jobs View All Lead AI Product Engineer Aspire A 6-10 yrs Bengaluru, India Skills: Apis , Java , Golang , Cursor , Php , Python , LLMs , GPT , software architecture principles , RAG agents , distributed systems design patterns , modern AI tools , domain-driven design Save Quick Apply Machine Learning Engineer - Application AI Apps Product Engineering SAP 4-6 yrs Bengaluru, India Skills: Java , Postgres , Kafka , Python , Hana , Go , GRPC , AI ML frameworks Save Apply Now Machine Learning Engineer - Application AI Apps Product Engineering Hybris H 4-6 yrs Bengaluru, India Skills: Java , Python , Hana , Postgres , Kafka , Go , AI ML frameworks , GRPC Save Apply Now Full-Stack Engineer (Healthcare AI SaaS Product) SkyPoint 4-6 yrs Bengaluru, India Skills: APIM , Cosmos DB , Functions , Python , Azure , Devops , Git , Agile Methodologies , Typescript , Javascript , React , Fluent UI Save Apply Now AI & Analytics Product Engineer Swiss Re 5-7 yrs Bengaluru, India Skills: data engineering , Sql , Python , Pyspark , Machine Learning , Ai , Analytics Engineering , Palantir Foundry Save Apply Now View All Do you want to see more relevant and perfect job for you? Login Register Beware of Scammers We don’t charge any money for job offers What it feels like to have 48% more interview calls? To get 5X more recruiter views on your profile Ask here Real-time notifications Discover new jobs, get recruiter notifications, track applications & more with the foundit App. Scan to download foundit App",
+      "url": "https://www.foundit.in/job/software-engineer-ai-agents-tools-and-productivity-google-india-bengaluru-bangalore-49762289",
+      "apply_url": "https://www.foundit.in/job/software-engineer-ai-agents-tools-and-productivity-google-india-bengaluru-bangalore-49762289",
+      "description": "6 days ago · Posted 06:40:29 PM Google India is hiring an Software Engineer, AI Agents, Tools and Productivity with 5 - 7 Years of Experience in Bengaluru / Bangalore,India. Explore required skills, salary, responsibilities & similar job roles on Foundit.",
       "_source_type": "foundit",
+      "_phase": "B",
       "_ontology": {
         "seniority": "unknown",
-        "archetype_match": 0.2,
-        "biz_model": "b2b",
-        "preferred_company_match": true
-      },
-      "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "2a83085264f76dbb",
-      "canonical": true,
-      "canonical_id": "2a83085264f76dbb",
-      "apply_route": {
-        "best_apply_route": "foundit",
-        "apply_url": "https://www.foundit.in/job/ai-product-engineer-mindtickle-bengaluru-bangalore-48103684",
-        "backup_urls": [],
-        "reason": "best route: foundit (priority 4)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "Senior Applied AI Engineer with 4",
-      "company": "",
-      "location": "Bangalore",
-      "url": "https://www.foundit.in/job/senior-applied-ai-engineer-microsoft-bengaluru-bangalore-46987202",
-      "apply_url": "https://www.foundit.in/job/senior-applied-ai-engineer-microsoft-bengaluru-bangalore-46987202",
-      "description": "Monitor model behavior, , guide product monitoring and alerting, and adapt to changes in data streams. Qualifications Required Qualifications · Bachelor's degree in Computer Science, Statistics, Electrical/Computer Engineering, Physics, Mathematics or related field AND 4+ years of experience in AI/ML, predictive analytics, or research",
-      "_source_type": "foundit",
-      "_ontology": {
-        "seniority": "senior",
-        "archetype_match": 0.2,
-        "biz_model": "b2b",
-        "preferred_company_match": true
-      },
-      "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "4376873aec11c578",
-      "canonical": true,
-      "canonical_id": "4376873aec11c578",
-      "apply_route": {
-        "best_apply_route": "foundit",
-        "apply_url": "https://www.foundit.in/job/senior-applied-ai-engineer-microsoft-bengaluru-bangalore-46987202",
-        "backup_urls": [],
-        "reason": "best route: foundit (priority 4)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "Senior AI Engineer with 5",
-      "company": "",
-      "location": "Bangalore",
-      "url": "https://www.foundit.in/job/senior-ai-engineer-applied-systems-india-bengaluru-bangalore-52572878",
-      "apply_url": "https://www.foundit.in/job/senior-ai-engineer-applied-systems-india-bengaluru-bangalore-52572878",
-      "description": "1 week ago - AI Engineer to join our AI Engineering in Bengaluru location.In this role, you will design, build, deploy, and operate Generative AI solutions end to end—LLM-powered applications, retrieval-augmented generation (RAG), and agentic workflows—integrated with enterprise data and systems.",
-      "_source_type": "foundit",
-      "_ontology": {
-        "seniority": "senior",
-        "archetype_match": 0.2,
-        "biz_model": "b2b",
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
         "preferred_company_match": false
       },
       "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "240b02c9b2f34340",
+      "_canonical_fp": "2eab8b16968ae5b1",
       "canonical": true,
-      "canonical_id": "240b02c9b2f34340",
+      "canonical_id": "2eab8b16968ae5b1",
       "apply_route": {
         "best_apply_route": "foundit",
-        "apply_url": "https://www.foundit.in/job/senior-ai-engineer-applied-systems-india-bengaluru-bangalore-52572878",
+        "apply_url": "https://www.foundit.in/job/software-engineer-ai-agents-tools-and-productivity-google-india-bengaluru-bangalore-49762289",
         "backup_urls": [],
         "reason": "best route: foundit (priority 4)",
         "risk": "medium"
       }
     },
     {
-      "title": "Sr. AI Engineer with 7",
+      "title": "Director of Product",
       "company": "",
       "location": "Bangalore",
-      "url": "https://www.foundit.in/job/sr-ai-engineer-applied-systems-bengaluru-bangalore-52439440",
-      "apply_url": "https://www.foundit.in/job/sr-ai-engineer-applied-systems-bengaluru-bangalore-52439440",
-      "description": "5 days ago - AI Engineer In this role, you will design, build, deploy, and operate Generative AI solutions end to end—LLM-powered applications, retrieval-augmented generation (RAG), and agentic workflows—integrated with enterprise data and systems. You'll collaborate with product, engineering, and security ...",
+      "url": "https://www.foundit.in/job/director-of-product-ai-platform-aurigo-software-technologies-bengaluru-bangalore-49482285",
+      "apply_url": "https://www.foundit.in/job/director-of-product-ai-platform-aurigo-software-technologies-bengaluru-bangalore-49482285",
+      "description": "May 19, 2026 · Electrical Engineering Jobs Event Management Jobs Hotel Management Jobs HR Jobs Sales Jobs Jobs in Gulf Jobs in Singapore Jobs in Malaysia Jobs in Philippines Jobs in Hong Kong Jobs in Vietnam Jobs in Indonesia Jobs in Thailand Jobs in Dubai Jobs in UAE Last Updated: 19-05-2026 09:05:11 AM Home jobs in Bengaluru / Bangalore Director of Product - AI Platform",
       "_source_type": "foundit",
+      "_phase": "B",
       "_ontology": {
         "seniority": "senior",
-        "archetype_match": 0.2,
-        "biz_model": "b2b",
-        "preferred_company_match": true
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
       },
       "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "616643417bbe7127",
+      "_canonical_fp": "82341edb4cacfe0c",
       "canonical": true,
-      "canonical_id": "616643417bbe7127",
+      "canonical_id": "82341edb4cacfe0c",
       "apply_route": {
         "best_apply_route": "foundit",
-        "apply_url": "https://www.foundit.in/job/sr-ai-engineer-applied-systems-bengaluru-bangalore-52439440",
+        "apply_url": "https://www.foundit.in/job/director-of-product-ai-platform-aurigo-software-technologies-bengaluru-bangalore-49482285",
         "backup_urls": [],
         "reason": "best route: foundit (priority 4)",
         "risk": "medium"
       }
     },
     {
-      "title": "AI Engineer (Accel Company) with 5",
+      "title": "AI Product Engineer (Agentic AI / Vibe Coding) with 0",
       "company": "",
       "location": "Bangalore",
-      "url": "https://www.foundit.in/job/ai-engineer-accel-company-accel-in-india-bengaluru-bangalore-40588139",
-      "apply_url": "https://www.foundit.in/job/ai-engineer-accel-company-accel-in-india-bengaluru-bangalore-40588139",
-      "description": "February 24, 2026 - Key Responsibilities: Architect and develop our core AI shopping assistant Lead the implementation of natural language processing for shopping interactions Design and implement recommendation systems for products and deals Develop AI models for price optimization and reward maximization Work ...",
+      "url": "https://www.foundit.in/job/ai-product-engineer-agentic-ai-vibe-coding-kuubiik-india-47494538",
+      "apply_url": "https://www.foundit.in/job/ai-product-engineer-agentic-ai-vibe-coding-kuubiik-india-47494538",
+      "description": "Key Responsibilities. Build AI-native product features using modern AI development tools such as Cursor, Claude Code, Lovable, or similar environments. Design and develop AI agents and multi-agent systems capable of performing complex workflows.",
       "_source_type": "foundit",
+      "_phase": "B",
       "_ontology": {
         "seniority": "unknown",
-        "archetype_match": 0.27,
-        "biz_model": "b2b",
-        "preferred_company_match": true
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
       },
       "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "7e968a91a3d20c77",
+      "_canonical_fp": "813c5c94e3c98008",
       "canonical": true,
-      "canonical_id": "7e968a91a3d20c77",
+      "canonical_id": "813c5c94e3c98008",
       "apply_route": {
         "best_apply_route": "foundit",
-        "apply_url": "https://www.foundit.in/job/ai-engineer-accel-company-accel-in-india-bengaluru-bangalore-40588139",
+        "apply_url": "https://www.foundit.in/job/ai-product-engineer-agentic-ai-vibe-coding-kuubiik-india-47494538",
         "backup_urls": [],
         "reason": "best route: foundit (priority 4)",
         "risk": "medium"
       }
     },
     {
-      "title": "Senior Product Engineer-SFDC with 6",
+      "title": "AI Product Engineer with 4",
       "company": "",
       "location": "Bangalore",
-      "url": "https://www.foundit.in/job/senior-product-engineer-sfdc-zapcom-group-inc-bengaluru-bangalore-50773355",
-      "apply_url": "https://www.foundit.in/job/senior-product-engineer-sfdc-zapcom-group-inc-bengaluru-bangalore-50773355",
-      "description": "April 21, 2026 - About Us Zapcom is a global Product Engineering and Technology Services company, specializing in bespoke, customer-centric solutions across industries like BFSI, e-commerce, retail, travel, transportation, and hospitality. Headquartered in the US, with a presence in India, Europe, Canada, and MENA, we excel in transforming ideas into tangible outcomes using AI, ML, Cloud solutions, and full-stack development.",
+      "url": "https://www.foundit.in/job/ai-product-engineer-fh-daata-gurugram-49289576",
+      "apply_url": "https://www.foundit.in/job/ai-product-engineer-fh-daata-gurugram-49289576",
+      "description": "We are building an AI-native document intelligence platform that transforms unstructured chaos into structured, auditable truth powered by multi-agent systems, human-in-the-loop workflows, and both frontier and open-source AI models.",
       "_source_type": "foundit",
+      "_phase": "B",
       "_ontology": {
-        "seniority": "senior",
-        "archetype_match": 0.4,
-        "biz_model": "b2b",
-        "preferred_company_match": true
+        "seniority": "unknown",
+        "archetype_match": 0.38,
+        "biz_model": "unknown",
+        "preferred_company_match": false
       },
       "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "58d4bb16626f1e81",
+      "_canonical_fp": "73389550cf829150",
       "canonical": true,
-      "canonical_id": "58d4bb16626f1e81",
+      "canonical_id": "73389550cf829150",
       "apply_route": {
         "best_apply_route": "foundit",
-        "apply_url": "https://www.foundit.in/job/senior-product-engineer-sfdc-zapcom-group-inc-bengaluru-bangalore-50773355",
+        "apply_url": "https://www.foundit.in/job/ai-product-engineer-fh-daata-gurugram-49289576",
         "backup_urls": [],
         "reason": "best route: foundit (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "AI Engineer",
+      "company": "Reltio",
+      "location": "KA, IN",
+      "url": "https://in.indeed.com/viewjob?jk=c5fb16c7dfe41a22",
+      "apply_url": "https://in.indeed.com/viewjob?jk=c5fb16c7dfe41a22",
+      "url_type": "UNKNOWN",
+      "description": "At Reltio®, an SAP Company, we believe data should fuel your success in the enterprise AI era. Our Context Intelligence Platform turns fragmented data into a trusted, connected context so AI agents and systems can act with expert\\-level judgement at enterprise scale. Reltio’s cloud\\-native SaaS platform harmonizes, unifies, and governs data across sources and formats—including unstructured data—in real time, turning them into data assets that can be mobilized in milliseconds to any application, ",
+      "_source_type": "jobspy",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.25,
+        "biz_model": "b2b",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "f0242fa81695b963",
+      "canonical": true,
+      "canonical_id": "f0242fa81695b963",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=c5fb16c7dfe41a22",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
         "risk": "medium"
       }
     },
     {
       "title": "Senior AI Engineer",
-      "company": "",
-      "location": "Bangalore",
-      "url": "https://www.foundit.in/job/senior-ai-engineer-machine-learning-zs-associates-bengaluru-bangalore-39803259",
-      "apply_url": "https://www.foundit.in/job/senior-ai-engineer-machine-learning-zs-associates-bengaluru-bangalore-39803259",
-      "description": "December 20, 2025 - We partner collaboratively with our clients to develop custom solutions and technology products that create value and deliver company results across critical areas of their business. Bring your curiosity for learning, bold ideas, courage and passion to drive life-changing impact to ZS. ... Build, Refine and Use ML Engineering platforms and components.",
-      "_source_type": "foundit",
-      "_ontology": {
-        "seniority": "senior",
-        "archetype_match": 0.2,
-        "biz_model": "b2b",
-        "preferred_company_match": true
-      },
-      "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "456ceb611b603256",
-      "canonical": true,
-      "canonical_id": "456ceb611b603256",
-      "apply_route": {
-        "best_apply_route": "foundit",
-        "apply_url": "https://www.foundit.in/job/senior-ai-engineer-machine-learning-zs-associates-bengaluru-bangalore-39803259",
-        "backup_urls": [],
-        "reason": "best route: foundit (priority 4)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "Senior AI Engineer with 6",
-      "company": "",
-      "location": "Bangalore",
-      "url": "https://www.foundit.in/job/senior-ai-engineer-get-well-bengaluru-bangalore-43451502",
-      "apply_url": "https://www.foundit.in/job/senior-ai-engineer-get-well-bengaluru-bangalore-43451502",
-      "description": "January 27, 2026 - As a Senior AI Engineer, you will drive end-to-end AI developmentfrom ideation and training data pipelines to model deployment and continuous improvementwhile addressing unique healthcare data challenges. You'll collaborate across functions including product, engineering, data science, and clinical experts to deliver high-impact AI applications, including voice assistants and multimodal systems tailored to real-world care settings.",
-      "_source_type": "foundit",
-      "_ontology": {
-        "seniority": "senior",
-        "archetype_match": 0.27,
-        "biz_model": "b2b",
-        "preferred_company_match": true
-      },
-      "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "991695ad60d82cad",
-      "canonical": true,
-      "canonical_id": "991695ad60d82cad",
-      "apply_route": {
-        "best_apply_route": "foundit",
-        "apply_url": "https://www.foundit.in/job/senior-ai-engineer-get-well-bengaluru-bangalore-43451502",
-        "backup_urls": [],
-        "reason": "best route: foundit (priority 4)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "0 Ai Enabled Product Management Jobs in India: Latest Ai ...",
-      "company": "",
-      "location": "Bangalore",
-      "url": "https://www.foundit.in/search/ai-enabled-product-management-jobs",
-      "apply_url": "https://www.foundit.in/search/ai-enabled-product-management-jobs",
-      "description": "5 days ago · Senior AI Product Engineer (Vertex AI) 7 + Years mindbrain India Skills: Google Cloud Vertex AI, Rest Apis, Python, Stripe integrations, Full-stack integrations, OAuth authentication flows",
-      "_source_type": "foundit",
-      "_ontology": {
-        "seniority": "unknown",
-        "archetype_match": 0.33,
-        "biz_model": "b2b",
-        "preferred_company_match": true
-      },
-      "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "254ef4afd0cb9c62",
-      "canonical": true,
-      "canonical_id": "254ef4afd0cb9c62",
-      "apply_route": {
-        "best_apply_route": "foundit",
-        "apply_url": "https://www.foundit.in/search/ai-enabled-product-management-jobs",
-        "backup_urls": [],
-        "reason": "best route: foundit (priority 4)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "Senior AI Product Engineer with 5",
-      "company": "",
-      "location": "Bangalore",
-      "url": "https://www.foundit.in/job/senior-ai-product-engineer-uplers-bengaluru-bangalore-37005874",
-      "apply_url": "https://www.foundit.in/job/senior-ai-product-engineer-uplers-bengaluru-bangalore-37005874",
-      "description": "Senior AI Product Engineer with 5 - 7 Years of Experience at Uplers in Bengaluru / Bangalore,India | Position Closed Jobs Services Career Solutions Featured profile Profile highlighter Career Booster Best Seller Resume Writing Resume builder Linkedin Makeover Prep Interview Preparation Learn Degree Programs Certification GenAI Course Career Advice Search Jobs Please enter a job title/role/skill to search Please enter a job title/role/skill to search Please enter a job title/role/skill to search Fresher (< 1 year) Recent Searches Search Search by job, company or skills Login Register Senior AI Product Engineer Uplers Apply Now Save Senior AI Product Engineer Uplers Bengaluru , India 5-7 Years This job is no longer accepting applications Posted 7 months ago Job Description Experience : 5.00 + years Salary : Confidential (based on experience) Shift : (GMT+05:30) Asia/Kolkata (IST) Opportunity Type : Hybrid (Bengaluru) Placement Type : Full time Permanent Position (*Note: This is a requirement for one of Uplers client - AlphaSense) What do you need for this opportunity Must have skills required: NLP, LLMs, Kubernetes, Redis, Kafka, RabbitMQ, Terraform, Microservices AlphaSense is Looking for: About AlphaSense: The world's most sophisticated companies rely on AlphaSense to remove uncertainty from decision-making. With market intelligence and search built on proven AI, AlphaSense delivers insights that matter from content you can trust. Our universe of public and private content includes equity research, company filings, event transcripts, expert calls, news, trade journals, and clients own research content. The acquisition of Tegus by AlphaSense in 2024 advances our shared mission to empower professionals to make smarter decisions through AI-driven market intelligence. Together, AlphaSense and Tegus will accelerate growth, innovation, and content expansion, with complementary product and content capabilities that enable users to unearth even more comprehensive insights from thousands of content sets. Our platform is trusted by over 6,000 enterprise customers, including a majority of the S&P 500. Founded in 2011, AlphaSense is headquartered in New York City with more than 2,000 employees across the globe and offices in the U.S., U.K., Finland, India, Singapore, Canada, and Ireland. Come join us! About the Role: AlphaSense is seeking a passionate Senior AI engineer to join our AI & Search mission. This cluster of teams is responsible for developing cutting edge deep learning, NLP, search, and next-generation Generative AI platform powering AlphaSense's AI & Search product features. As part of this team, you will collaborate with talented engineers to deliver scalable solutions for our world-class AI-powered search platform. What You'll Do: Architect, design, and implement highly scalable services for AlphaSense AI and Search products Improve the reliability, latency, and cost-efficiency of AI and search services in cloud environments. Deploy AI and Search services to both SaaS and single-tenant cloud environments. Translate product requirements into software architectures in collaboration with Product Management. Solve challenges that come along with working with large language models (high latency, variance, etc.), leading to a defensive, fault-first mindset. Provide technical leadership and implement best practices for software development. Who You Are: Strong software engineering skills in back-end engineering on complex, data-intensive applications with professional, real-world experience with applications at scale Extremely proficient in Applied LLM/NLP, developing and deploying solutions using NLP frameworks like LangChain, HuggingFace, back-end web frameworks like FastAPI Hands on experience building and deploying Open Source and Commercial LLMs like Llama, Claude etc., deep understanding of Prompt Engineering Deep, hands-on experience across a few back-end web frameworks like FastAPI, Django, Sanic etc Experience in leading teams and/or projects in a full-stack environment Excellent communication, organizational, problem-solving, debugging, and analytical skills. Experience designing large-scale software systems and writing high-quality code and tests. Which includes handling error cases, asynchronous code, streaming data, caching, logging and analytics for understanding behavior in production. Familiarity with Kubernetes, Docker, and cloud platforms such as AWS, GCP, or Azure. Experience in deploying AI and search services (e.g. vector search) to single-tenant cloud environments. Knowledge of modern development practices, including CI/CD pipelines and automated testing frameworks. Experience in optimizing the performance and cost of cloud services. AlphaSense is an equal-opportunity employer. We are committed to a work environment that supports, inspires, and respects all individuals. All employees share in the responsibility for fulfilling AlphaSense's commitment to equal employment opportunity. AlphaSense does not discriminate against any employee or applicant on the basis of race, color, sex (including pregnancy), national origin, age, religion, marital status, sexual orientation, gender identity, gender expression, military or veteran status, disability, or any other non-merit factor. This policy applies to every aspect of employment at AlphaSense, including recruitment, hiring, training, advancement, and termination. In addition, it is the policy of AlphaSense to provide reasonable accommodation to qualified employees who have protected disabilities to the extent required by applicable laws, regulations, and ordinances where a particular employee works. Recruiting Scams and Fraud: We at AlphaSense have been made aware of fraudulent job postings and individuals impersonating AlphaSense recruiters. These scams may involve fake job offers, requests for sensitive personal information, or demands for payment. Please note: AlphaSense never asks candidates to pay for job applications, equipment, or training. All official communications will come from an @alpha-sense.com email address. If you're unsure about a job posting or recruiter, verify it on our Careers page. If you believe you've been targeted by a scam or have any doubts regarding the authenticity of any job listing purportedly from or on behalf of AlphaSense please contact us. Your security and trust matter to us. How to apply for this opportunity Step 1: Click On Apply! And Register or Login on our portal. Step 2: Complete the Screening Form & Upload updated Resume Step 3: Increase your chances to get shortlisted & meet the client for the Interview! About Uplers: Our goal is to make hiring reliable, simple, and fast. Our role will be to help all our talents find and apply for relevant contractual onsite opportunities and progress in their career. We will support any grievances or challenges you may face during the engagement. (Note: There are many more opportunities apart from this on the portal. Depending on the assessments you clear, you can apply for them as well). So, if you are ready for a new challenge, a great work environment, and an opportunity to take your career to the next level, don't hesitate to apply today. We are waiting for you! More Info Job Type: Permanent Job Industry: Other Function: Ai/Technology Employment Type: Full time About Company Uplers Job Source: www.linkedin.com Job ID: 129102701 Report Job Jobs by Skill - IT Biotechnology Jobs Digital Marketing Jobs Graphic Design Jobs Networking Jobs Oracle Jobs SEO Jobs Software Testing Jobs Sql Jobs Web Design Jobs PHP Jobs Jobs by Skill - Non IT Accounting Jobs BPO Jobs Call Center Jobs Civil Engineering Jobs Content Writing Jobs Electrical Engineering Jobs Event Management Jobs Hotel Management Jobs HR Jobs Sales Jobs International Jobs Jobs in Gulf Jobs in Singapore Jobs in Malaysia Jobs in Philippines Jobs in Hong Kong Jobs in Vietnam Jobs in Indonesia Jobs in Thailand Jobs in Dubai Jobs in UAE Last Updated: 26-11-2",
-      "_source_type": "foundit",
-      "_ontology": {
-        "seniority": "senior",
-        "archetype_match": 0.2,
-        "biz_model": "b2b",
-        "preferred_company_match": true
-      },
-      "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "fc8ed755c8d6134e",
-      "canonical": true,
-      "canonical_id": "fc8ed755c8d6134e",
-      "apply_route": {
-        "best_apply_route": "foundit",
-        "apply_url": "https://www.foundit.in/job/senior-ai-product-engineer-uplers-bengaluru-bangalore-37005874",
-        "backup_urls": [],
-        "reason": "best route: foundit (priority 4)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "Product Engineer with 2",
-      "company": "",
-      "location": "Bangalore",
-      "url": "https://www.foundit.in/job/product-engineer-deltax-bengaluru-bangalore-37085220",
-      "apply_url": "https://www.foundit.in/job/product-engineer-deltax-bengaluru-bangalore-37085220",
-      "description": "Product Engineer with 2 - 4 Years of Experience at DeltaX in Bengaluru / Bangalore,India | Position Closed Jobs Services Career Solutions Featured profile Profile highlighter Career Booster Best Seller Resume Writing Resume builder Linkedin Makeover Prep Interview Preparation Learn Degree Programs Certification GenAI Course Career Advice Search Jobs Please enter a job title/role/skill to search Please enter a job title/role/skill to search Please enter a job title/role/skill to search Fresher (< 1 year) Recent Searches Search Search by job, company or skills Login Register Product Engineer DeltaX Apply Now Save Product Engineer DeltaX Bengaluru , India 2-4 Years This job is no longer accepting applications Posted 7 months ago Job Description Position: Product Engineer - .NET Location: Bengaluru, Hyderabad, Pune (Work From Office) Experience Level: 2-4 years About Product Engineer - .Net role: DeltaX is looking for talented product engineers who are problem solvers at heart and are passionate about working on the .NET platform. Our core platform is built on modern .NET, Vue.js, REST APIs, MS SQL Server, and background services, following a modular architecture that supports scalable web applications. We also leverage cutting-edge AI/ML technologies, including LLMs, generative AI, and semantic search, to add intelligence and value to our products. As a full-stack developer, you will have the opportunity to work at web-scale on a wide array of challenges, building features that combine robust software engineering with AI-driven capabilities to enhance user experiences and drive product innovation. Key Responsibilities: Write and test code according to engineering standards and practices. Take ownership of the entire lifecycle of your code — from development and testing to deploying features/modules in production. Participate in design discussions and help shape technical solutions. Review code, share feedback, and mentor junior engineers in best practices. Implement scalable code that is clear, concise, tested, and easily understood by others. Effectively communicate progress and issues with the team. Skills required to succeed in this role: 2–4 years of experience building full-stack web applications. Strong fundamentals in relational databases and SQL. Experience with writing clean, scalable code for web applications using .NET Core (or similar backend technologies like Java Spring, Django, Laravel etc) Experience in developing RESTful APIs. Experience in front-end development using modern javascript frameworks (Vue.js, React, Angular etc). Exposure to database modeling, object-oriented programming, and test-first development (TDD/BDD). Hands-on experience with LLMs and AI/ML systems or integrating AI-driven features into applications. Hands-on experience deploying features or modules to production. Good to have skills: Experience with CI/CD pipelines (Jenkins, GitHub Actions, etc.). Understanding of event-driven systems or messaging queues (Kafka, RabbitMQ, etc.). You'll thrive here if: You have the mindset to learn, grow and shape our engineering team. You are comfortable with and curious about working outside of a traditional narrow engineering role. You are a self-starter: you have started something on your own before - hobby projects, freelance work, a startup, an open-source project, something else. You strive to improve technology stacks by experimenting with new libraries / frameworks / patterns / architectures. Why should you work with DeltaX Opportunity to work on a large-scale product platform used by top agencies and advertisers. Work environment that fosters learning, experimentation, and growth. Collaborate with a highly skilled engineering team passionate about building impactful products. Exposure to modern engineering practices including CI/CD, containerization, and AI-driven solutions. Application Process: Fill the form linked to job post and apply to this position You will receive an email confirmation with the next steps. Our hiring process is a hands-on code assignment that we evaluate seriously. Your submission will be reviewed by our Engineering team. On your assignment shortlisting a technical interview round will be scheduled with you. About us: DeltaX is a Data-Driven Digital Advertising Platform built for Agencies and Advertisers to optimally buy, track, attribute and report media across search, social media, display RTB, Mobile, Video, and other media channels. (www.deltax.com). We are an engineering-focused company and take pride in our culture. You will work alongside like-minded engineers who are passionate about their job. More Info Job Type: Permanent Job Industry: Other Function: Software Development Employment Type: Full time About Company DeltaX Job Source: www.linkedin.com Job ID: 129397737 Report Job Jobs by Skill - IT Biotechnology Jobs Digital Marketing Jobs Graphic Design Jobs Networking Jobs Oracle Jobs SEO Jobs Software Testing Jobs Sql Jobs Web Design Jobs PHP Jobs Jobs by Skill - Non IT Accounting Jobs BPO Jobs Call Center Jobs Civil Engineering Jobs Content Writing Jobs Electrical Engineering Jobs Event Management Jobs Hotel Management Jobs HR Jobs Sales Jobs International Jobs Jobs in Gulf Jobs in Singapore Jobs in Malaysia Jobs in Philippines Jobs in Hong Kong Jobs in Vietnam Jobs in Indonesia Jobs in Thailand Jobs in Dubai Jobs in UAE Last Updated: 30-01-2026 06:18:18 PM Home jobs in Bengaluru / Bangalore Product Engineer Similar Jobs View All Product Engineer (Java) Collabera 5-8 yrs Bengaluru, India Skills: static code analysis , Hibernate , Agile Development Methodologies , Rest Web Services , Json , Java 1.8 , J2EE , Spring , Continuous Integration , Angular , React , DevOps practices Save Apply Now Senior Product Engineer Rapido 5-7 yrs Bengaluru, India Skills: Java , Mongo , Cassandra , Nodejs , Kafka , Redis , MySQL , Elasticsearch , Spark , Postgres , Kubernetes , Airflow , Go , Flink Save Apply Now Senior Product Engineer upgrad rekrut 6-9 yrs Bengaluru, India Skills: Database Design , Performance Tuning , Hibernate , Tdd , Agile , Spring MVC , DevOps practices , Stored procedures , React UI development Save Apply Now Full-Stack Product Engineer xuman.ai 1-5 yrs Bengaluru, India Skills: Websocket , Push Notifications , Typescript , React Native , Nestjs , AI tools , image optimization , mobile performance , Expo , virtualized lists , lazy loading , real-time features Save Apply Now Lead AI Product Engineer Aspire A 6-10 yrs Bengaluru, India Skills: Apis , Java , Golang , Cursor , Php , Python , LLMs , GPT , software architecture principles , RAG agents , distributed systems design patterns , modern AI tools , domain-driven design Save Quick Apply View All Do you want to see more relevant and perfect job for you? Login Register Beware of Scammers We don’t charge any money for job offers What it feels like to have 48% more interview calls? To get 5X more recruiter views on your profile Ask here Real-time notifications Discover new jobs, get recruiter notifications, track applications & more with the foundit App. Scan to download foundit App",
-      "_source_type": "foundit",
-      "_ontology": {
-        "seniority": "mid",
-        "archetype_match": 0.2,
-        "biz_model": "b2b",
-        "preferred_company_match": true
-      },
-      "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "d0aa8d7157b81fcd",
-      "canonical": true,
-      "canonical_id": "d0aa8d7157b81fcd",
-      "apply_route": {
-        "best_apply_route": "foundit",
-        "apply_url": "https://www.foundit.in/job/product-engineer-deltax-bengaluru-bangalore-37085220",
-        "backup_urls": [],
-        "reason": "best route: foundit (priority 4)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "AI Engineer - Tieto Tech Consulting (m/f/d)",
-      "company": "Tieto",
+      "company": "Thoughtworks",
       "location": "KA, IN",
-      "url": "https://in.indeed.com/viewjob?jk=01945c028e5f4f01",
-      "apply_url": "https://in.indeed.com/viewjob?jk=01945c028e5f4f01",
+      "url": "https://in.indeed.com/viewjob?jk=d946d1a75a1d8fc0",
+      "apply_url": "https://in.indeed.com/viewjob?jk=d946d1a75a1d8fc0",
       "url_type": "UNKNOWN",
-      "description": "Bangalore, India\n\n\n* Full\\-time\n* Application and Product Development\n* Onsite\n* Tieto Tech Consulting\n\n  \nJob Description **AI Engineer (3–4 Years)**\n\n**Description**\n\n\nWe are seeking a skilled AI Engineer to design, build, and deploy AI\\-powered applications and intelligent systems for global clients. This role focuses on developing production\\-grade AI solutions using modern AI frameworks, including generative AI, LLM\\-based systems, and agentic AI architectures.\n\n\nYou will work on building s",
+      "description": "AI Engineer : Senior Consultant\n\n\nWe are looking for an AI Engineer who can effectively leverage modern AI\\-powered\n\n\ndevelopment tools (e.g., GitHub Copilot, Cursor, Claude, etc.) and Agentic AI to accelerate\n\n\nsoftware development while maintaining high standards of code quality, scalability, and\n\n\nsecurity. This role sits at the intersection of software engineering and applied AI / Agentic AI\n\n\n— ideal for engineers who not only write code but also know how to collaborate with AI\n\n\nsystems to",
       "_source_type": "jobspy",
-      "_ontology": {
-        "seniority": "unknown",
-        "archetype_match": 0.33,
-        "biz_model": "b2b",
-        "preferred_company_match": true
-      },
-      "_india_filter": "location ends with India country code",
-      "_canonical_fp": "61bbe2e9e3051c24",
-      "canonical": true,
-      "canonical_id": "61bbe2e9e3051c24",
-      "apply_route": {
-        "best_apply_route": "indeed",
-        "apply_url": "https://in.indeed.com/viewjob?jk=01945c028e5f4f01",
-        "backup_urls": [],
-        "reason": "best route: indeed (priority 6)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "Senior Data Engineer",
-      "company": "Bayshore Intelligence Solutions",
-      "location": "KA, IN",
-      "url": "https://in.indeed.com/viewjob?jk=a31f55409fc35f30",
-      "apply_url": "https://in.indeed.com/viewjob?jk=a31f55409fc35f30",
-      "url_type": "UNKNOWN",
-      "description": "Position: Senior Data Engineer\n\nLocation: Bangalore (Hybrid)\n\nExperience: 4 – 7 years\n\nEmployment Type: Full\\-time\n\nNotice Period: Not more than 30 Days\n\n**Role Overview**\n\nWe are looking for an experienced AI Data Engineer to design, build and manage scalable data pipelines and AI\\-ready data platforms. The ideal candidate will work closely with data scientists, AI engineers, product teams and business stakeholders to ensure clean, reliable, secure and well\\-structured data is available for AI,",
-      "_source_type": "jobspy",
+      "_phase": "B",
       "_ontology": {
         "seniority": "senior",
-        "archetype_match": 0.27,
-        "biz_model": "b2b",
-        "preferred_company_match": true
-      },
-      "_india_filter": "location ends with India country code",
-      "_canonical_fp": "3d95dbeb96db0cb8",
-      "canonical": true,
-      "canonical_id": "3d95dbeb96db0cb8",
-      "apply_route": {
-        "best_apply_route": "indeed",
-        "apply_url": "https://in.indeed.com/viewjob?jk=a31f55409fc35f30",
-        "backup_urls": [],
-        "reason": "best route: indeed (priority 6)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "Embedded Linux Power and Performance Engineer",
-      "company": "AMD",
-      "location": "KA, IN",
-      "url": "https://in.indeed.com/viewjob?jk=8b7808fe386939bd",
-      "apply_url": "https://in.indeed.com/viewjob?jk=8b7808fe386939bd",
-      "url_type": "UNKNOWN",
-      "description": "Overview:\n**WHAT YOU DO AT AMD CHANGES EVERYTHING**\nAt AMD, our mission is to build great products that accelerate next\\-generation computing experiences—from AI and data centers, to PCs, gaming and embedded systems. Grounded in a culture of innovation and collaboration, we believe real progress comes from bold ideas, human ingenuity and a shared passion to create something extraordinary. When you join AMD, you’ll discover the real differentiator is our culture. We push the limits of innovation ",
-      "_source_type": "jobspy",
-      "_ontology": {
-        "seniority": "unknown",
-        "archetype_match": 0.2,
-        "biz_model": "b2b",
-        "preferred_company_match": true
-      },
-      "_india_filter": "location ends with India country code",
-      "_canonical_fp": "245216e359e1fef1",
-      "canonical": true,
-      "canonical_id": "245216e359e1fef1",
-      "apply_route": {
-        "best_apply_route": "indeed",
-        "apply_url": "https://in.indeed.com/viewjob?jk=8b7808fe386939bd",
-        "backup_urls": [],
-        "reason": "best route: indeed (priority 6)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "Full Stack Engineer",
-      "company": "Leap Finance",
-      "location": "KA, IN",
-      "url": "https://in.indeed.com/viewjob?jk=9eb3cf348bcf7782",
-      "apply_url": "https://in.indeed.com/viewjob?jk=9eb3cf348bcf7782",
-      "url_type": "UNKNOWN",
-      "description": "#### **About us**\n\n\nWe are building this and this and this  \n\nIn short, we are building the platform to drive global careers for millennials from emerging economies We work at the exciting intersection of the 2 hottest trends around \\- edtech \\& fintech! And we love that we succeed as a business while powering the dreams of talented students!\n\n\n#### **Founder Profile**\n\n\nArnav Kumar is a graduate of IIT Kharagpur. Leap is his second company and he has raised more than $30M in capital for his sta",
-      "_source_type": "jobspy",
-      "_ontology": {
-        "seniority": "unknown",
-        "archetype_match": 0.2,
-        "biz_model": "b2b",
-        "preferred_company_match": true
-      },
-      "_india_filter": "location ends with India country code",
-      "_canonical_fp": "f312e4f58302c2a7",
-      "canonical": true,
-      "canonical_id": "f312e4f58302c2a7",
-      "apply_route": {
-        "best_apply_route": "indeed",
-        "apply_url": "https://in.indeed.com/viewjob?jk=9eb3cf348bcf7782",
-        "backup_urls": [],
-        "reason": "best route: indeed (priority 6)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "AI/ML Software Engineer",
-      "company": "TopGrep Tech Private Limited",
-      "location": "Bengaluru (Bangalore), India",
-      "url": "https://cutshort.io/job/AI-ML-Software-Engineer-Bengaluru-Bangalore-TopGrep-Tech-Private-Limited-mmBr5gfA",
-      "apply_url": "",
-      "url_type": "INDIVIDUAL_JOB",
-      "description": "We are looking for a passionate AI/ML Software Engineer to join our product team and help build intelligent, scalable, and production-ready machine learning solutions. You will work closely with product managers, designers, and backend engineers to integrate AI capabilities into core product features and drive data-driven innovation. Key Responsibilities Design, develop, and deploy machine learning models into production environments Build and maintain scalable ML pipelines for data processing, training, and inference Collaborate with cross-functional teams to identify AI-driven product opportunities Translate business requirements into ML solutions and technical implementations Optimize model performance, accuracy, and latency for real-time applications Integrate AI/ML models with APIs and backend systems Monitor model performance and implement continuous improvement strategies Ensure best practices in data handling, model versioning, and reproducibility Stay updated with the latest advancements in AI/ML and apply them to product innovation Required Skills Qualifications Bachelor’s engineering degree in Computer Science, AI, Data Science, or related field Strong programming skills in Python (experience with Java/Go is a plus) Hands-on experience with ML frameworks such as TensorFlow, PyTorch, or Scikit-learn Solid understanding of machine learning algorithms and statistical concepts Experience in building and deploying ML models in production Familiarity with REST APIs, microservices architecture, and cloud platforms (AWS/GCP/Azure) Experience with data processing tools (Pandas, NumPy, Spark, etc.) Knowledge of version control systems like Git",
-      "skills": [
-        "Artificial Intelligence (AI)",
-        "Data Science",
-        "Machine Learning (ML)",
-        "MERN Stack"
-      ],
-      "salary": "₹3.5L - ₹7L / yr",
-      "work_mode": "onsite",
-      "_source_type": "scrapegraph",
-      "_ontology": {
-        "seniority": "unknown",
-        "archetype_match": 0.2,
-        "biz_model": "b2b",
-        "preferred_company_match": true
-      },
-      "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "81a54ddbb819a6d0",
-      "canonical": true,
-      "canonical_id": "81a54ddbb819a6d0",
-      "apply_route": {
-        "best_apply_route": "cutshort",
-        "apply_url": "https://cutshort.io/job/AI-ML-Software-Engineer-Bengaluru-Bangalore-TopGrep-Tech-Private-Limited-mmBr5gfA",
-        "backup_urls": [],
-        "reason": "best route: cutshort (priority 4)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "Senior Software Engineer",
-      "company": "Amura Health",
-      "location": "Chennai, India",
-      "url": "https://cutshort.io/job/AI-Product-Engineer-Contlo-5LPgdjsM",
-      "apply_url": "",
-      "url_type": "INDIVIDUAL_JOB",
-      "description": "Role Overview We’re hiring a Senior Backend Engineer who can build high-performance backend systems using Node.js. You’ll work on complex engineering problems, optimize for scale, and own features end-to-end. Key Responsibilities ● Develop backend services, APIs, and microservices using Node.js frameworks (Express, Nest.js). ● Own modules end-to-end: design → implementation → testing → deployment. ● Write high-quality, testable, maintainable code. ● Optimize performance, scalability, and reliability across systems. ● Troubleshoot production issues, perform RCA, and improve stability. ● Work with databases (SQL NoSQL), caching, and async processing. ● Collaborate with DevOps for CI/CD, deployments, and automation. ● Contribute to improving engineering standards, documentation, and processes What we’re looking for: ● 4 to 7 years of hands-on backend development experience. ● Strong in Node.js, async patterns, TypeScript (preferred), and REST APIs. ● Solid understanding of: Data modeling Queues background jobs Caching (Redis) API optimization ● Experience with relational DBs (PostgreSQL/MySQL) and NoSQL (DynamoDB/MongoDB/ Redis). ● Experience with messaging/queues: Kafka, RabbitMQ, SQS, or equivalent. ● Familiarity with Docker, Git, and CI/CD pipelines. ● Exposure to AWS or cloud infrastructure. ● Strong debugging and performance tuning skills. ● Ability to work in a fast-paced, startup-like environment. Here are answers to some questions you may have Where is your office? Chennai (Velachery) Work Model Work from Office – because great stories are built in person! Do you have an online presence? https://amura.ai (we are @AmuraHealth on all social media) For better insights: https://drive.google.com/file/d/11UHgXqYc7XSJ3IAdFyEm-EurgOzqsmzA/view?usp=sharing Read more",
-      "skills": [
-        "NodeJS",
-        "NextJs",
-        "DevOps",
-        "API",
-        "SQL"
-      ],
-      "salary": "₹15L - ₹30L / yr",
-      "work_mode": "onsite",
-      "_source_type": "scrapegraph",
-      "_ontology": {
-        "seniority": "senior",
-        "archetype_match": 0.27,
+        "archetype_match": 0.25,
         "biz_model": "unknown",
         "preferred_company_match": false
       },
-      "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "6df911cbe94d1779",
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "9c2207512eaa4213",
       "canonical": true,
-      "canonical_id": "6df911cbe94d1779",
-      "alternate_sources": [
-        "https://cutshort.io/job/Part-Time-Python-Developer-Palcode-ai-zozEzKUc"
-      ],
+      "canonical_id": "9c2207512eaa4213",
       "apply_route": {
-        "best_apply_route": "cutshort",
-        "apply_url": "https://cutshort.io/job/AI-Product-Engineer-Contlo-5LPgdjsM",
-        "backup_urls": [
-          "https://cutshort.io/job/Part-Time-Python-Developer-Palcode-ai-zozEzKUc"
-        ],
-        "reason": "best route: cutshort (priority 4)",
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=d946d1a75a1d8fc0",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
         "risk": "medium"
+      }
+    },
+    {
+      "title": "Product Engineer (Bangalore) @ Bespoke Labs",
+      "company": "Bespokelabs",
+      "location": "Bangalore",
+      "url": "https://jobs.ashbyhq.com/bespokelabs/3751a4cb-bb4d-4113-afe6-9c87341f6739",
+      "apply_url": "https://jobs.ashbyhq.com/bespokelabs/3751a4cb-bb4d-4113-afe6-9c87341f6739",
+      "description": "As a Full Stack Developer, you will own end-to-end platforms powering core Bespoke Labs products. This is a high-agency role with direct impact on production systems used in AI training and execution.",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains bangalore",
+      "_canonical_fp": "edd482c7842159f6",
+      "canonical": true,
+      "canonical_id": "edd482c7842159f6",
+      "apply_route": {
+        "best_apply_route": "ashby",
+        "apply_url": "https://jobs.ashbyhq.com/bespokelabs/3751a4cb-bb4d-4113-afe6-9c87341f6739",
+        "backup_urls": [],
+        "reason": "best route: ashby (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "AI Engineer",
+      "company": "Agentic AI & Automation",
+      "location": "Bangalore",
+      "url": "https://apply.workable.com/luxasia/j/CFF16F4372/",
+      "apply_url": "https://apply.workable.com/luxasia/j/CFF16F4372/",
+      "description": "Define prompt engineering standards, system prompt versioning, and model evaluation frameworks across all AI products Implement guardrails, fallback handling, and monitoring for all production AI agents to ensure safe and reliable operation Stay current on the AI landscape and actively bring relevant ideas and tools to the team's attention",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains bangalore",
+      "_canonical_fp": "b38fa38c74195413",
+      "canonical": true,
+      "canonical_id": "b38fa38c74195413",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://apply.workable.com/luxasia/j/CFF16F4372/",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
+    },
+    {
+      "title": "Gen AI Engineer",
+      "company": "",
+      "location": "Bengaluru, Karnataka, India",
+      "url": "https://aijobs.net/job/gen-ai-engineer-bengaluru-karnataka-india-140607/",
+      "apply_url": "",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "Tasks Build and orchestrate llm based workflows Build document ingestion and extraction workflows Communicate insights using reports and presentations Debug defects and perform root cause analysis Define data requirements and evaluation metrics Design semantic search using vector embeddings Implement Retrieval-Augmented Generation architectures Manage generative ai model production pipelines Mentor junior team members Perform prompt engineering and pipeline design Process unstructured documents using aws extract Perks/Benefits N/A Skills/Tech-stack AWS Textract | Generative AI | Langchain | Language Models | Large Language Models | Machine Learning | Pinecone | Prompt engineering | PyTorch | RAG | Retrieval-Augmented Generation | Scikit-learn | Semantic Search | TensorFlow | Vector Databases | Vector embeddings Education Bachelor of Science | Master of Science Roles Engineer | GenAI Engineer | Learning Engineer | Machine Learning Engineer Regions Asia/Pacific Countries India States Karnataka, IN Cities Bengaluru, Karnataka, IN",
+      "skills": [
+        "AWS Textract",
+        "Generative AI",
+        "Langchain",
+        "Language Models",
+        "Large Language Models",
+        "Machine Learning",
+        "Pinecone",
+        "Prompt engineering",
+        "PyTorch",
+        "RAG",
+        "Retrieval-Augmented Generation",
+        "Scikit-learn",
+        "Semantic Search",
+        "TensorFlow",
+        "Vector Databases",
+        "Vector embeddings"
+      ],
+      "salary": "INR 2500K-4800K (estimate)",
+      "work_mode": "onsite",
+      "_source_type": "scrapegraph",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains bengaluru",
+      "_canonical_fp": "d5c101b6d9a58b73",
+      "canonical": true,
+      "canonical_id": "d5c101b6d9a58b73",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://aijobs.net/job/gen-ai-engineer-bengaluru-karnataka-india-140607/",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
+    },
+    {
+      "title": "Senior AI Product Engineer",
+      "company": "Neemtree",
+      "location": "",
+      "url": "https://www.hirist.tech/j/senior-ai-product-engineer-1639483",
+      "apply_url": "",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "Role Overview : As a Senior AI Product Engineer, you will work across product, engineering, customer workflows, and AI-native systems to rapidly build and scale enterprise applications. You will own problems end-to-end : - Understanding customer pain points - Designing workflows - Building prototypes - Shipping production systems - Iterating based on real-world feedback This is a high-ownership engineering role with strong product involvement. We are looking for engineers who naturally think like builders. What You'll Do : - Design and build end-to-end product experiences and systems - Work directly with customers and internal teams to understand operational workflows - Rapidly prototype and iterate using modern AI development tools - Build production-grade applications and internal platforms - Contribute across frontend, backend, workflows, APIs, automation, and AI-assisted systems - Use AI tools aggressively to accelerate development, experimentation, and iteration - Drive product direction through technical and product intuition - Identify opportunities for automation and simplification across workflows - Help shape the future architecture of AI-native enterprise applications What We're Looking For : We are specifically looking for engineers who : - Have 6+ years of engineering experience Have built products or systems end-to-end - Have worked on projects with real users, customers, or monetization - Build side projects, experiments, tools, or products outside of work - Actively use AI tools in their daily workflow - Have strong product intuition alongside technical depth - Enjoy high ownership and fast execution - Are comfortable working across multiple parts of the stack - Prefer building and shipping over process-heavy environments Strong Signals - We value engineers who have : - Built and launched independent products or startups - Monetized side projects or tools - Created internal tools that improved workflows significantly - Used AI tools to dramatically increase development velocity - Strong curiosity around AI-native software development - Demonstrated ability to move from idea prototype production quickly Technologies Workflows You may work with : - AI-assisted development tools - Large language model workflows - Full-stack product systems - Enterprise SaaS applications - Video AI and operational intelligence platforms - APIs, automation systems, and distributed infrastructure Experience with tools such as : - ChatGPT Claude Cursor Replit Lovable v0 GitHub Copilot - AI coding agents is highly valued. Successful engineers in this role : - Ship quickly and iterate continuously - Think deeply about customer workflows and usability - Build systems with strong product intuition - Use AI to meaningfully improve execution speed - Operate independently with high ownership - Contribute beyond pure implementation into product direction and strategy Experience Range : 6 - 10 years Educational Qualifications : B.Tech/B",
+      "skills": [
+        "AI Integration",
+        "Code Generation Tools",
+        "IT Product Architecture",
+        "System Design",
+        "SaaS Applications",
+        "Workflows"
+      ],
+      "salary": "",
+      "work_mode": "remote",
+      "_source_type": "scrapegraph",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "senior",
+        "archetype_match": 0.25,
+        "biz_model": "b2b",
+        "preferred_company_match": false
+      },
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "b716a1f7b0abab14",
+      "canonical": true,
+      "canonical_id": "b716a1f7b0abab14",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://www.hirist.tech/j/senior-ai-product-engineer-1639483",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
       }
     }
   ]

@@ -226,3 +226,38 @@
 
   [Phase A] discovering companies for 'AI Product Manager' in Bangalore...
     sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+    internet discovery done — querying DB for top companies...
+  [Phase A] 0 companies found.
+  [Phase A] portal scrape done — 0 jobs
+  [Phase B] searching job boards (parallel)...
+  [Phase B] boards done — 46 jobs (archetype dropped 65)
+
+────────────────────────────────────────────────────────────
+  RESULTS: AI Product Manager @ Bangalore
+────────────────────────────────────────────────────────────
+  Keywords   : AI product manager, product manager AI, AI PM, machine learning product manager, ML product manager, AI product lead, product manager - AI/ML, AI product owner, technical product manager AI, AI product strategist
+  Candidates : 46
+  After dedup: 2
+  Ranked     : 0
+  Elapsed    : 21784.6s
+  · Phase A: live discovery returned 0 companies — skipping portal layer
+  · board health: ddg:22 | glassdoor:10 | google_jobs:30 | jobspy:40 | monster:9 | naukri:0
+  · ontology gate: dropped 36 jobs (archetype_match<0.2)
+  · role filter: 7 → 2 relevant (5 rejected)
+  · min-desc gate: dropped 1 jobs (<200c)
+  · city filter (Bangalore): 1 → 0 (1 off-city removed)
+
+    #   SCORE  TITLE                                          COMPANY                         SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ───────────────
+
+============================================================
+  FINAL SUMMARY
+============================================================
+  Roles searched : 3
+  Total jobs     : 9
+  AI Product Engineer: 5 ranked (281.8s)
+  Applied AI Engineer: 4 ranked (253.8s)
+  AI Product Manager: 0 ranked (21784.6s)
+  ✓ Results saved: /Users/hayagreev13/Projects/career-loop/CareerLoop/test data/output/siddharth/siddharth_bangalore_bangalore_v1_20260527_0031.json
+  ✓ Audit log   : /Users/hayagreev13/Projects/career-loop/CareerLoop/test data/output/siddharth/audit_20260527_0031.log
+  ⚠ Only 9 jobs found — may need more roles or broader search

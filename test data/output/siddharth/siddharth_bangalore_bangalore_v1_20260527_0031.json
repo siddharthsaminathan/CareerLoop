@@ -1,0 +1,1119 @@
+[
+  {
+    "role": "AI Product Engineer",
+    "city": "Bangalore",
+    "stats": {
+      "candidates": 142,
+      "after_dedup": 21,
+      "ranked": 5,
+      "elapsed_s": 281.82,
+      "keywords": [
+        "AI product engineer",
+        "AI product developer",
+        "machine learning product engineer",
+        "AI solutions engineer",
+        "AI product manager",
+        "AI engineer",
+        "product engineer AI",
+        "AI product architect",
+        "AI product specialist",
+        "AI product lead"
+      ],
+      "companies_targeted": [],
+      "notes": [
+        "Phase A: live discovery returned 0 companies \u2014 skipping portal layer",
+        "board health: ddg:19 | glassdoor:30 | google_jobs:30 | jobspy:40 | monster:42 | naukri:0",
+        "company-type filter: dropped 4 rejected-type companies",
+        "ontology gate: dropped 71 jobs (archetype_match<0.2)",
+        "role filter: 35 \u2192 22 relevant (13 rejected)",
+        "min-desc gate: dropped 4 jobs (<200c)",
+        "city filter (Bangalore): 17 \u2192 13 (4 off-city removed)",
+        "company cap (max 3): 13 \u2192 6"
+      ]
+    },
+    "ranked_jobs": [
+      {
+        "job": {
+          "title": "Senior AI Product Engineer with 5",
+          "company": "",
+          "location": "Bangalore",
+          "url": "https://www.foundit.in/job/senior-ai-product-engineer-uplers-bengaluru-bangalore-37005874",
+          "apply_url": "https://www.foundit.in/job/senior-ai-product-engineer-uplers-bengaluru-bangalore-37005874",
+          "description": "Senior AI Product Engineer with 5 - 7 Years of Experience at Uplers in Bengaluru / Bangalore,India | Position Closed Jobs Services Career Solutions Featured profile Profile highlighter Career Booster Best Seller Resume Writing Resume builder Linkedin Makeover Prep Interview Preparation Learn Degree Programs Certification GenAI Course Career Advice Search Jobs Please enter a job title/role/skill to search Please enter a job title/role/skill to search Please enter a job title/role/skill to search Fresher (< 1 year) Recent Searches Search Search by job, company or skills Login Register Senior AI Product Engineer Uplers Apply Now Save Senior AI Product Engineer Uplers Bengaluru , India 5-7 Years This job is no longer accepting applications Posted 7 months ago Job Description Experience : 5.00 + years Salary : Confidential (based on experience) Shift : (GMT+05:30) Asia/Kolkata (IST) Opportunity Type : Hybrid (Bengaluru) Placement Type : Full time Permanent Position (*Note: This is a requirement for one of Uplers client - AlphaSense) What do you need for this opportunity Must have skills required: NLP, LLMs, Kubernetes, Redis, Kafka, RabbitMQ, Terraform, Microservices AlphaSense is Looking for: About AlphaSense: The world's most sophisticated companies rely on AlphaSense to remove uncertainty from decision-making. With market intelligence and search built on proven AI, AlphaSense delivers insights that matter from content you can trust. Our universe of public and private content includes equity research, company filings, event transcripts, expert calls, news, trade journals, and clients own research content. The acquisition of Tegus by AlphaSense in 2024 advances our shared mission to empower professionals to make smarter decisions through AI-driven market intelligence. Together, AlphaSense and Tegus will accelerate growth, innovation, and content expansion, with complementary product and content capabilities that enable users to unearth even more comprehensive insights from thousands of content sets. Our platform is trusted by over 6,000 enterprise customers, including a majority of the S&P 500. Founded in 2011, AlphaSense is headquartered in New York City with more than 2,000 employees across the globe and offices in the U.S., U.K., Finland, India, Singapore, Canada, and Ireland. Come join us! About the Role: AlphaSense is seeking a passionate Senior AI engineer to join our AI & Search mission. This cluster of teams is responsible for developing cutting edge deep learning, NLP, search, and next-generation Generative AI platform powering AlphaSense's AI & Search product features. As part of this team, you will collaborate with talented engineers to deliver scalable solutions for our world-class AI-powered search platform. What You'll Do: Architect, design, and implement highly scalable services for AlphaSense AI and Search products Improve the reliability, latency, and cost-efficiency of AI and search services in cloud environments. Deploy AI and Search services to both SaaS and single-tenant cloud environments. Translate product requirements into software architectures in collaboration with Product Management. Solve challenges that come along with working with large language models (high latency, variance, etc.), leading to a defensive, fault-first mindset. Provide technical leadership and implement best practices for software development. Who You Are: Strong software engineering skills in back-end engineering on complex, data-intensive applications with professional, real-world experience with applications at scale Extremely proficient in Applied LLM/NLP, developing and deploying solutions using NLP frameworks like LangChain, HuggingFace, back-end web frameworks like FastAPI Hands on experience building and deploying Open Source and Commercial LLMs like Llama, Claude etc., deep understanding of Prompt Engineering Deep, hands-on experience across a few back-end web frameworks like FastAPI, Django, Sanic etc Experience in leading teams and/or projects in a full-stack environment Excellent communication, organizational, problem-solving, debugging, and analytical skills. Experience designing large-scale software systems and writing high-quality code and tests. Which includes handling error cases, asynchronous code, streaming data, caching, logging and analytics for understanding behavior in production. Familiarity with Kubernetes, Docker, and cloud platforms such as AWS, GCP, or Azure. Experience in deploying AI and search services (e.g. vector search) to single-tenant cloud environments. Knowledge of modern development practices, including CI/CD pipelines and automated testing frameworks. Experience in optimizing the performance and cost of cloud services. AlphaSense is an equal-opportunity employer. We are committed to a work environment that supports, inspires, and respects all individuals. All employees share in the responsibility for fulfilling AlphaSense's commitment to equal employment opportunity. AlphaSense does not discriminate against any employee or applicant on the basis of race, color, sex (including pregnancy), national origin, age, religion, marital status, sexual orientation, gender identity, gender expression, military or veteran status, disability, or any other non-merit factor. This policy applies to every aspect of employment at AlphaSense, including recruitment, hiring, training, advancement, and termination. In addition, it is the policy of AlphaSense to provide reasonable accommodation to qualified employees who have protected disabilities to the extent required by applicable laws, regulations, and ordinances where a particular employee works. Recruiting Scams and Fraud: We at AlphaSense have been made aware of fraudulent job postings and individuals impersonating AlphaSense recruiters. These scams may involve fake job offers, requests for sensitive personal information, or demands for payment. Please note: AlphaSense never asks candidates to pay for job applications, equipment, or training. All official communications will come from an @alpha-sense.com email address. If you're unsure about a job posting or recruiter, verify it on our Careers page. If you believe you've been targeted by a scam or have any doubts regarding the authenticity of any job listing purportedly from or on behalf of AlphaSense please contact us. Your security and trust matter to us. How to apply for this opportunity Step 1: Click On Apply! And Register or Login on our portal. Step 2: Complete the Screening Form & Upload updated Resume Step 3: Increase your chances to get shortlisted & meet the client for the Interview! About Uplers: Our goal is to make hiring reliable, simple, and fast. Our role will be to help all our talents find and apply for relevant contractual onsite opportunities and progress in their career. We will support any grievances or challenges you may face during the engagement. (Note: There are many more opportunities apart from this on the portal. Depending on the assessments you clear, you can apply for them as well). So, if you are ready for a new challenge, a great work environment, and an opportunity to take your career to the next level, don't hesitate to apply today. We are waiting for you! More Info Job Type: Permanent Job Industry: Other Function: Ai/Technology Employment Type: Full time About Company Uplers Job Source: www.linkedin.com Job ID: 129102701 Report Job Jobs by Skill - IT Biotechnology Jobs Digital Marketing Jobs Graphic Design Jobs Networking Jobs Oracle Jobs SEO Jobs Software Testing Jobs Sql Jobs Web Design Jobs PHP Jobs Jobs by Skill - Non IT Accounting Jobs BPO Jobs Call Center Jobs Civil Engineering Jobs Content Writing Jobs Electrical Engineering Jobs Event Management Jobs Hotel Management Jobs HR Jobs Sales Jobs International Jobs Jobs in Gulf Jobs in Singapore Jobs in Malaysia Jobs in Philippines Jobs in Hong Kong Jobs in Vietnam Jobs in Indonesia Jobs in Thailand Jobs in Dubai Jobs in UAE Last Updated: 26-11-2",
+          "_source_type": "foundit",
+          "_ontology": {
+            "seniority": "senior",
+            "archetype_match": 0.2,
+            "biz_model": "b2b",
+            "preferred_company_match": true
+          },
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "fc8ed755c8d6134e",
+          "canonical": true,
+          "canonical_id": "fc8ed755c8d6134e",
+          "apply_route": {
+            "best_apply_route": "foundit",
+            "apply_url": "https://www.foundit.in/job/senior-ai-product-engineer-uplers-bengaluru-bangalore-37005874",
+            "backup_urls": [],
+            "reason": "best route: foundit (priority 4)",
+            "risk": "medium"
+          }
+        },
+        "score": 58.9,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 12,
+            "weighted": 7.2
+          },
+          "archetype_fit": {
+            "raw": 3.0,
+            "weight": 8,
+            "weighted": 2.4
+          },
+          "skill_fit": {
+            "raw": 4.6,
+            "weight": 12,
+            "weighted": 5.5
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 4,
+            "weighted": 2.8
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 4,
+            "weighted": 3.4
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 5,
+            "weighted": 2.0
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 3,
+            "weighted": 2.4
+          },
+          "response_likelihood": {
+            "raw": 6.5,
+            "weight": 3,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.7,
+            "weight": 1,
+            "weighted": 0.6
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Product Engineer with 3",
+          "company": "Mindtickle",
+          "location": "Bangalore",
+          "url": "https://www.foundit.in/job/ai-product-engineer-mindtickle-bengaluru-bangalore-48103684",
+          "apply_url": "https://www.foundit.in/job/ai-product-engineer-mindtickle-bengaluru-bangalore-48103684",
+          "description": "AI Product Engineer with 3 - 5 Years of Experience at Mindtickle in Bengaluru / Bangalore,India | Position Closed Jobs Services Career Solutions Featured profile Profile highlighter Career Booster Best Seller Resume Writing Resume builder Linkedin Makeover Prep Interview Preparation Learn Degree Programs Certification GenAI Course Career Advice Search Jobs Please enter a job title/role/skill to search Please enter a job title/role/skill to search Please enter a job title/role/skill to search Fresher (< 1 year) Recent Searches Search Search by job, company or skills Login Register AI Product Engineer Mindtickle Apply Now Save AI Product Engineer Mindtickle Bengaluru , India 3-5 Years This job is no longer accepting applications Posted 2 months ago Job Description Role Overview We are transitioning our organization to an AI-first operational model. We are seeking an AI Product Engineer to architect and build the company's central intelligence engine. In this role, you will be the primary builder of automated intelligence systems\u2014tools that not only retrieve insights but actively trigger workflows, and synthesize strategic intel across our entire business landscape. Role Profile This is a high-impact, hands-on engineering role requiring a convergence of three distinct skill sets: Software Engineering (50%): Building scalable middleware, API integrations, and production-grade applications that connect our data stack to business tools (CRM, Marketing Automation, Support/Ticketing). AI Engineering (30%): Implementing Agentic workflows, RAG architectures, and LLMs to process unstructured data at scale. Data Analytics (20%): Leveraging SQL and B2B SaaS metrics to ensure all automation is grounded in accurate, governed data. Key Responsibilities Building the Enterprise Brain (Architecture & Integration) Develop a unified intelligence layer that ingests signals from disparate sources (Product Telemetry, CRM, Call Transcripts, Marketing inputs) and processes them into actionable outputs. Build robust integrations/webhooks to push AI-generated insights directly into workflow tools (e.g., pushing Churn Risk alerts into Salesforce AI Logic & Agent Implementation Architect Agentic workflows where LLMs are granted permission to perform tasks Implement advanced RAG to ground AI outputs in company documentation, historical data, and strategic context. Ensure rigorous evaluation and guardrails for non-deterministic models to prevent hallucinations in critical business workflows. Data Engineering & Governance Collaborate with Analytics Engineers to ensure the underlying data pipelines support real-time or near-real-time AI applications. Maintain security and privacy standards, ensuring that AI agents respect data access permissions across different departments. Qualifications Minimum Qualifications: Education: Bachelor's degree in Computer Science, Engineering, or equivalent practical experience. Software Engineering: 3+ years of experience in Python development, with strong proficiency in API development (FastAPI/Django) and building integrations between SaaS platforms. AI/ML Application: Proven experience building applications using LLM APIs and orchestration frameworks, Experience with Agent concepts. Data Proficiency: Strong SQL skills and familiarity with cloud data warehouses (Snowflake/BigQuery). Preferred Qualifications: Business Systems Knowledge: Experience working with APIs for major B2B tools (Salesforce, HubSpot, Zendesk, Jira, Marketo). Workflow Automation: Experience with tools like Airflow, Zapier/Make (advanced usage), or custom workflow engines. B2B Domain Expertise: Understanding of the interplay between Sales, Product, and Customer Success. Competencies The Builder Mindset: You are comfortable taking a high-level strategic requirement from leadership (e.g., We need to automate lead qualification) and independently architecting and coding the solution. Systemic Thinking: You understand how a change in product data schema impacts the downstream marketing automation flow. Adaptability: You can switch contexts rapidly\u2014from debugging a SQL query for Strategy to refining a prompt for Customer Support automation. We may use artificial intelligence (AI) tools to support parts of the hiring process, such as reviewing applications, analyzing resumes, or assessing responses. These tools assist our recruitment team but do not replace human judgment. Final hiring decisions are ultimately made by humans. If you would like more information about how your data is processed, please contact us. More Info Job Type: Permanent Job Industry: Other Function: Ai Engineering Employment Type: Full time About Company Mindtickle Job Source: www.linkedin.com Job ID: 144833353 Report Job Jobs by Skill - IT Biotechnology Jobs Digital Marketing Jobs Graphic Design Jobs Networking Jobs Oracle Jobs SEO Jobs Software Testing Jobs Sql Jobs Web Design Jobs PHP Jobs Jobs by Skill - Non IT Accounting Jobs BPO Jobs Call Center Jobs Civil Engineering Jobs Content Writing Jobs Electrical Engineering Jobs Event Management Jobs Hotel Management Jobs HR Jobs Sales Jobs International Jobs Jobs in Gulf Jobs in Singapore Jobs in Malaysia Jobs in Philippines Jobs in Hong Kong Jobs in Vietnam Jobs in Indonesia Jobs in Thailand Jobs in Dubai Jobs in UAE Last Updated: 27-04-2026 08:11:10 PM Home jobs in Bengaluru / Bangalore AI Product Engineer Similar Jobs View All Lead AI Product Engineer Aspire A 6-10 yrs Bengaluru, India Skills: Apis , Java , Golang , Cursor , Php , Python , LLMs , GPT , software architecture principles , RAG agents , distributed systems design patterns , modern AI tools , domain-driven design Save Quick Apply Machine Learning Engineer - Application AI Apps Product Engineering SAP 4-6 yrs Bengaluru, India Skills: Java , Postgres , Kafka , Python , Hana , Go , GRPC , AI ML frameworks Save Apply Now Machine Learning Engineer - Application AI Apps Product Engineering Hybris H 4-6 yrs Bengaluru, India Skills: Java , Python , Hana , Postgres , Kafka , Go , AI ML frameworks , GRPC Save Apply Now Full-Stack Engineer (Healthcare AI SaaS Product) SkyPoint 4-6 yrs Bengaluru, India Skills: APIM , Cosmos DB , Functions , Python , Azure , Devops , Git , Agile Methodologies , Typescript , Javascript , React , Fluent UI Save Apply Now AI & Analytics Product Engineer Swiss Re 5-7 yrs Bengaluru, India Skills: data engineering , Sql , Python , Pyspark , Machine Learning , Ai , Analytics Engineering , Palantir Foundry Save Apply Now View All Do you want to see more relevant and perfect job for you? Login Register Beware of Scammers We don\u2019t charge any money for job offers What it feels like to have 48% more interview calls? To get 5X more recruiter views on your profile Ask here Real-time notifications Discover new jobs, get recruiter notifications, track applications & more with the foundit App. Scan to download foundit App",
+          "_source_type": "foundit",
+          "_ontology": {
+            "seniority": "unknown",
+            "archetype_match": 0.2,
+            "biz_model": "b2b",
+            "preferred_company_match": true
+          },
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "2a83085264f76dbb",
+          "canonical": true,
+          "canonical_id": "2a83085264f76dbb",
+          "apply_route": {
+            "best_apply_route": "foundit",
+            "apply_url": "https://www.foundit.in/job/ai-product-engineer-mindtickle-bengaluru-bangalore-48103684",
+            "backup_urls": [],
+            "reason": "best route: foundit (priority 4)",
+            "risk": "medium"
+          }
+        },
+        "score": 58.2,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 12,
+            "weighted": 7.2
+          },
+          "archetype_fit": {
+            "raw": 3.0,
+            "weight": 8,
+            "weighted": 2.4
+          },
+          "skill_fit": {
+            "raw": 4.1,
+            "weight": 12,
+            "weighted": 4.9
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 4,
+            "weighted": 2.8
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 4,
+            "weighted": 3.4
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 5,
+            "weighted": 2.0
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 3,
+            "weighted": 2.4
+          },
+          "response_likelihood": {
+            "raw": 6.5,
+            "weight": 3,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 1,
+            "weighted": 0.5
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Senior AI Engineer with 6",
+          "company": "",
+          "location": "Bangalore",
+          "url": "https://www.foundit.in/job/senior-ai-engineer-get-well-bengaluru-bangalore-43451502",
+          "apply_url": "https://www.foundit.in/job/senior-ai-engineer-get-well-bengaluru-bangalore-43451502",
+          "description": "January 27, 2026 - As a Senior AI Engineer, you will drive end-to-end AI developmentfrom ideation and training data pipelines to model deployment and continuous improvementwhile addressing unique healthcare data challenges. You'll collaborate across functions including product, engineering, data science, and clinical experts to deliver high-impact AI applications, including voice assistants and multimodal systems tailored to real-world care settings.",
+          "_source_type": "foundit",
+          "_ontology": {
+            "seniority": "senior",
+            "archetype_match": 0.27,
+            "biz_model": "b2b",
+            "preferred_company_match": true
+          },
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "991695ad60d82cad",
+          "canonical": true,
+          "canonical_id": "991695ad60d82cad",
+          "apply_route": {
+            "best_apply_route": "foundit",
+            "apply_url": "https://www.foundit.in/job/senior-ai-engineer-get-well-bengaluru-bangalore-43451502",
+            "backup_urls": [],
+            "reason": "best route: foundit (priority 4)",
+            "risk": "medium"
+          }
+        },
+        "score": 56.3,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 12,
+            "weighted": 7.2
+          },
+          "archetype_fit": {
+            "raw": 3.7,
+            "weight": 8,
+            "weighted": 3.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 12,
+            "weighted": 2.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 4,
+            "weighted": 2.8
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 4,
+            "weighted": 3.4
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 5,
+            "weighted": 2.0
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 3,
+            "weighted": 2.4
+          },
+          "response_likelihood": {
+            "raw": 6.5,
+            "weight": 3,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.7,
+            "weight": 1,
+            "weighted": 0.6
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Engineer (Accel Company) with 5",
+          "company": "",
+          "location": "Bangalore",
+          "url": "https://www.foundit.in/job/ai-engineer-accel-company-accel-in-india-bengaluru-bangalore-40588139",
+          "apply_url": "https://www.foundit.in/job/ai-engineer-accel-company-accel-in-india-bengaluru-bangalore-40588139",
+          "description": "February 24, 2026 - Key Responsibilities: Architect and develop our core AI shopping assistant Lead the implementation of natural language processing for shopping interactions Design and implement recommendation systems for products and deals Develop AI models for price optimization and reward maximization Work ...",
+          "_source_type": "foundit",
+          "_ontology": {
+            "seniority": "unknown",
+            "archetype_match": 0.27,
+            "biz_model": "b2b",
+            "preferred_company_match": true
+          },
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "7e968a91a3d20c77",
+          "canonical": true,
+          "canonical_id": "7e968a91a3d20c77",
+          "apply_route": {
+            "best_apply_route": "foundit",
+            "apply_url": "https://www.foundit.in/job/ai-engineer-accel-company-accel-in-india-bengaluru-bangalore-40588139",
+            "backup_urls": [],
+            "reason": "best route: foundit (priority 4)",
+            "risk": "medium"
+          }
+        },
+        "score": 56.2,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 12,
+            "weighted": 7.2
+          },
+          "archetype_fit": {
+            "raw": 3.7,
+            "weight": 8,
+            "weighted": 3.0
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 12,
+            "weighted": 2.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 4,
+            "weighted": 2.8
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 4,
+            "weighted": 3.4
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 5,
+            "weighted": 2.0
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 3,
+            "weighted": 2.4
+          },
+          "response_likelihood": {
+            "raw": 6.5,
+            "weight": 3,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 1,
+            "weighted": 0.5
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI/ML Software Engineer",
+          "company": "TopGrep Tech Private Limited",
+          "location": "Bengaluru (Bangalore), India",
+          "url": "https://cutshort.io/job/AI-ML-Software-Engineer-Bengaluru-Bangalore-TopGrep-Tech-Private-Limited-mmBr5gfA",
+          "apply_url": "",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "We are looking for a passionate AI/ML Software Engineer to join our product team and help build intelligent, scalable, and production-ready machine learning solutions. You will work closely with product managers, designers, and backend engineers to integrate AI capabilities into core product features and drive data-driven innovation. Key Responsibilities Design, develop, and deploy machine learning models into production environments Build and maintain scalable ML pipelines for data processing, training, and inference Collaborate with cross-functional teams to identify AI-driven product opportunities Translate business requirements into ML solutions and technical implementations Optimize model performance, accuracy, and latency for real-time applications Integrate AI/ML models with APIs and backend systems Monitor model performance and implement continuous improvement strategies Ensure best practices in data handling, model versioning, and reproducibility Stay updated with the latest advancements in AI/ML and apply them to product innovation Required Skills Qualifications Bachelor\u2019s engineering degree in Computer Science, AI, Data Science, or related field Strong programming skills in Python (experience with Java/Go is a plus) Hands-on experience with ML frameworks such as TensorFlow, PyTorch, or Scikit-learn Solid understanding of machine learning algorithms and statistical concepts Experience in building and deploying ML models in production Familiarity with REST APIs, microservices architecture, and cloud platforms (AWS/GCP/Azure) Experience with data processing tools (Pandas, NumPy, Spark, etc.) Knowledge of version control systems like Git",
+          "skills": [
+            "Artificial Intelligence (AI)",
+            "Data Science",
+            "Machine Learning (ML)",
+            "MERN Stack"
+          ],
+          "salary": "\u20b93.5L - \u20b97L / yr",
+          "work_mode": "onsite",
+          "_source_type": "scrapegraph",
+          "_ontology": {
+            "seniority": "unknown",
+            "archetype_match": 0.2,
+            "biz_model": "b2b",
+            "preferred_company_match": true
+          },
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "81a54ddbb819a6d0",
+          "canonical": true,
+          "canonical_id": "81a54ddbb819a6d0",
+          "apply_route": {
+            "best_apply_route": "cutshort",
+            "apply_url": "https://cutshort.io/job/AI-ML-Software-Engineer-Bengaluru-Bangalore-TopGrep-Tech-Private-Limited-mmBr5gfA",
+            "backup_urls": [],
+            "reason": "best route: cutshort (priority 4)",
+            "risk": "medium"
+          }
+        },
+        "score": 54.6,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 12,
+            "weighted": 7.2
+          },
+          "archetype_fit": {
+            "raw": 3.0,
+            "weight": 8,
+            "weighted": 2.4
+          },
+          "skill_fit": {
+            "raw": 2.9,
+            "weight": 12,
+            "weighted": 3.5
+          },
+          "salary_fit": {
+            "raw": 1.4,
+            "weight": 10,
+            "weighted": 1.4
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 7.0,
+            "weight": 7,
+            "weighted": 4.9
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 4,
+            "weighted": 2.8
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 4,
+            "weighted": 3.4
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 5,
+            "weighted": 2.0
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 3,
+            "weighted": 2.4
+          },
+          "response_likelihood": {
+            "raw": 6.5,
+            "weight": 3,
+            "weighted": 2.0
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 1,
+            "weighted": 0.5
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "Applied AI Engineer",
+    "city": "Bangalore",
+    "stats": {
+      "candidates": 124,
+      "after_dedup": 9,
+      "ranked": 4,
+      "elapsed_s": 253.78,
+      "keywords": [
+        "applied AI engineer",
+        "applied machine learning engineer",
+        "AI engineer",
+        "machine learning engineer",
+        "deep learning engineer",
+        "AI/ML engineer",
+        "applied scientist",
+        "AI researcher",
+        "ML engineer",
+        "AI developer"
+      ],
+      "companies_targeted": [],
+      "notes": [
+        "Phase A: live discovery returned 0 companies \u2014 skipping portal layer",
+        "board health: ddg:17 | glassdoor:20 | google_jobs:30 | jobspy:40 | monster:20 | naukri:0",
+        "company-type filter: dropped 7 rejected-type companies",
+        "ontology gate: dropped 90 jobs (archetype_match<0.2)",
+        "role filter: 11 \u2192 9 relevant (2 rejected)",
+        "city filter (Bangalore): 9 \u2192 6 (3 off-city removed)",
+        "company cap (max 3): 6 \u2192 5"
+      ]
+    },
+    "ranked_jobs": [
+      {
+        "job": {
+          "title": "Tech Lead (Platform Architect + Applied AI Engineer)- Digital Twin...",
+          "company": "Shae Group",
+          "location": "Bangalore",
+          "url": "https://apply.workable.com/shae-group/j/116BEEDFE9",
+          "apply_url": "https://apply.workable.com/shae-group/j/116BEEDFE9",
+          "description": "Lead architecture for digital twin + clinical AI platforms \u2014 senior applied AI technical leadership roleTitle: Tech Lead (Platform Architect + Applied AI Engineering Lead) \u2014 Digital Twin & Clinical AI \u2014 Remote (Contractor)Location: Remote \u2014 Off...",
+          "_source_type": "google_jobs",
+          "_ontology": {
+            "seniority": "senior",
+            "archetype_match": 0.2,
+            "biz_model": "unknown",
+            "preferred_company_match": false
+          },
+          "_india_filter": "location contains bangalore",
+          "_canonical_fp": "90e41bf38176cea1",
+          "canonical": true,
+          "canonical_id": "90e41bf38176cea1",
+          "apply_route": {
+            "best_apply_route": "unknown",
+            "apply_url": "https://apply.workable.com/shae-group/j/116BEEDFE9",
+            "backup_urls": [],
+            "reason": "best route: unknown (priority 9)",
+            "risk": "high"
+          }
+        },
+        "score": 57.1,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 12,
+            "weighted": 9.6
+          },
+          "archetype_fit": {
+            "raw": 2.0,
+            "weight": 8,
+            "weighted": 1.6
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 12,
+            "weighted": 2.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 4,
+            "weighted": 2.8
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 4,
+            "weighted": 3.4
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 5,
+            "weighted": 2.0
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 3,
+            "weighted": 2.4
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 3,
+            "weighted": 1.5
+          },
+          "career_trajectory": {
+            "raw": 7.8,
+            "weight": 1,
+            "weighted": 0.8
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Applied AI Engineer - MERN Stack",
+          "company": "",
+          "location": "",
+          "url": "https://cutshort.io/job/Applied-AI-Engineer-MERN-Stack-Procedure-osZhIuIE",
+          "apply_url": "https://cutshort.io/job/Applied-AI-Engineer-MERN-Stack-Procedure-osZhIuIE",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Applied AI Engineer - MERN Stack\nat\nProcedure\nApply to this job\nApplied AI Engineer - MERN Stack\nProcedure\nCompany\nHome\nApplied AI Engineer - MERN Stack\nat\nProcedure\nPosted by\nAdithya K\nApply to this job\n4\n- 10 yrs\n\u20b910L - \u20b920L / yr (ESOP available)\nRemote only\nSkills\nMERN Stack\nArtificial Intelligence (AI)\nAI Agents\nTypeScript\nLarge Language Models (LLM)\nProcedure is hiring for WorkHero.\nAcross the U.S., thousands of small HVAC businesses are drowning in admin. WorkHero pairs seasoned office managers with AI workflows to free up their time, unlock growth, and modernize the trades. We handle everything that touches the back office of a small HVAC operation: billing, rebates, permits, warranties, marketing, and more. Our customers save dozens of hours every week, allowing them to focus on growing their business.\nWe are building at the intersection of Human and AI automation, and that\u2019s where you come in!\nHow you will help us achieve it\nAs an Applied AI Engineer, you will collaborate with the company founders, product team, and office managers to develop agentic workflows for many of their daily processes. You will ideate, design, implement, and maintain the software side of the product. You will design the UX, develop the front end interfaces, build backend routes and design database models. The bulk of this role is interacting with office managers to understand their workflows and then creating and managing AI agents & workflows to make them more efficient.\nIn your day to day, you will:\nPartner with our frontline staff to understand their work so you can automate it with AI and save them time\nLive on the cutting edge of Human & AI interactions, keeping up to date with the latest patterns and how they apply to WorkHero and our workflows\nContribute to exceptional code quality and performance of the code base\nMentor young engineer(s) to be great at their craft, as our team grows\nKey Details\nYou can work remotely from anywhere with an overlap of\nat least four hours with the product team (6 pm to 10 pm IST)\nThis role involves participating in calls with US-based stakeholders\nThe compensation comes with a\nsalary and an equity component\nLocation - Remote\nYOE - 5 to 10 years\nNP - Immediate to 30 days\nYou\u2019ll thrive if you\nCare about your craft and the mission of the software you are developing\nAre enterprising and can figure out how to convert workflows/playbooks to AI agents\nWork with cutting-edge AI tools and APIs\nDon\u2019t just complete tickets that are assigned to you; you think deeply about the product and how you can make it great, then put that into action\nEnjoy developing 0-1 software products iteratively\nAre proficient in the Typescript ecosystem, including monorepos.\nAre skilled in React and Express (Koa is a plus) or similar tech\nAre pragmatic and understand trade-offs in software engineering\nRequirements\n4+ years of experience in\nbuilding software products\nHave created applications using\nAI and LLMs.\nCan understand when to prompt, use RAG, create agents or fine-tune an LLM\nHave solid experience with the\nMERN stack\nAbility to\ndebug and optimize complex systems\nExcellent communication and collaboration skills\nBonus points if you have\nExperience in mentoring junior team members. Better if they had gone to replace you in your team, allowing you to take up a more meaningful role\nFamiliarity with our\ntech stack (React, Koa, Mongo, AWS, React Native)\nA good understanding of UX best practices for SaaS based interfaces & AI\nBuilt apps using\nReact Native\nA deep understanding of infrastructure and can optimize for cost\nSet up evaluation frameworks for agentic workflows\nContributed to open-source projects\nYour First Six Months\nYou will be working on creating AI Agents/Workflows based on the playbooks for some of the crucial workflows of HVAC office managers\nYou will work on building the frontend, APIs and apply AI knowledge to add features to the office manager and admin portal, as well as the mobile app\nYou will be using Vercel AI SDK to c",
+          "skills": [],
+          "salary": "",
+          "work_mode": "",
+          "_source_type": "generic_http",
+          "_ontology": {
+            "seniority": "unknown",
+            "archetype_match": 0.2,
+            "biz_model": "unknown",
+            "preferred_company_match": false
+          },
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "7f0962fa462e0c60",
+          "canonical": true,
+          "canonical_id": "7f0962fa462e0c60",
+          "apply_route": {
+            "best_apply_route": "cutshort",
+            "apply_url": "https://cutshort.io/job/Applied-AI-Engineer-MERN-Stack-Procedure-osZhIuIE",
+            "backup_urls": [],
+            "reason": "best route: cutshort (priority 4)",
+            "risk": "medium"
+          }
+        },
+        "score": 55.8,
+        "breakdown": {
+          "role_fit": {
+            "raw": 8.0,
+            "weight": 12,
+            "weighted": 9.6
+          },
+          "archetype_fit": {
+            "raw": 2.0,
+            "weight": 8,
+            "weighted": 1.6
+          },
+          "skill_fit": {
+            "raw": 2.3,
+            "weight": 12,
+            "weighted": 2.8
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 4,
+            "weighted": 2.8
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 4,
+            "weighted": 3.4
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 5,
+            "weighted": 2.0
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 3,
+            "weighted": 3.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 3,
+            "weighted": 1.5
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 1,
+            "weighted": 0.5
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "AI Engineer",
+          "company": "Agentic AI & Automation",
+          "location": "Bangalore",
+          "url": "https://apply.workable.com/luxasia/j/CFF16F4372/",
+          "apply_url": "https://apply.workable.com/luxasia/j/CFF16F4372/",
+          "description": "2\u20135 years in software or ML engineering with at least 1\u20132 years of hands-on production experience building LLM-based or agentic AI systems. Experience shipping AI features to real end users is essential.",
+          "_source_type": "google_jobs",
+          "_ontology": {
+            "seniority": "unknown",
+            "archetype_match": 0.2,
+            "biz_model": "b2b",
+            "preferred_company_match": true
+          },
+          "_india_filter": "location contains bangalore",
+          "_canonical_fp": "b38fa38c74195413",
+          "canonical": true,
+          "canonical_id": "b38fa38c74195413",
+          "apply_route": {
+            "best_apply_route": "unknown",
+            "apply_url": "https://apply.workable.com/luxasia/j/CFF16F4372/",
+            "backup_urls": [],
+            "reason": "best route: unknown (priority 9)",
+            "risk": "high"
+          }
+        },
+        "score": 55.2,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 12,
+            "weighted": 7.2
+          },
+          "archetype_fit": {
+            "raw": 3.0,
+            "weight": 8,
+            "weighted": 2.4
+          },
+          "skill_fit": {
+            "raw": 2.0,
+            "weight": 12,
+            "weighted": 2.4
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "location_fit": {
+            "raw": 7.0,
+            "weight": 10,
+            "weighted": 7.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 4,
+            "weighted": 2.8
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 4,
+            "weighted": 3.4
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 5,
+            "weighted": 2.0
+          },
+          "commute_risk": {
+            "raw": 8.0,
+            "weight": 3,
+            "weighted": 2.4
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 3,
+            "weighted": 1.5
+          },
+          "career_trajectory": {
+            "raw": 5.0,
+            "weight": 1,
+            "weighted": 0.5
+          }
+        }
+      },
+      {
+        "job": {
+          "title": "Senior Voice AI Engineer \u2014 HIPAA-Compliant AI Receptionist Platform",
+          "company": "",
+          "location": "",
+          "url": "https://cutshort.io/job/Senior-Voice-AI-Engineer-HIPAA-Compliant-AI-Receptionist-Platform-AIspire360-Inc-kZdHhQTd",
+          "apply_url": "https://cutshort.io/job/Senior-Voice-AI-Engineer-HIPAA-Compliant-AI-Receptionist-Platform-AIspire360-Inc-kZdHhQTd",
+          "url_type": "INDIVIDUAL_JOB",
+          "description": "Senior Voice AI Engineer \u2014 HIPAA-Compliant AI Receptionist Platform\nat\nAIspire360 Inc\nApply to this job\nSenior Voice AI Engineer \u2014 HIPAA-Compliant AI Receptionist Platform\nAIspire360 Inc\nCompany\nHome\nSenior Voice AI Engineer \u2014 HIPAA-Compliant AI Receptionist Platform\nat\nAIspire360 Inc\nPosted by\nAmit Mohan\nApply to this job\n3\n- 10 yrs\n\u20b910L - \u20b930L / yr\nRemote only\nSkills\nArtificial Intelligence (AI)\nHIPAA\nBackend testing\nAPI management\nCompany:\nAISpire360\nRole:\nSenior Voice AI Engineer (Independent Contractor, Full-Time Engagement)\nLocation:\nRemote (India-based preferred; must overlap 4\u20136 hours daily with London + US Eastern)\nEngagement:\nFull-time independent contractor \u2014 long-term\nCompensation:\nCompetitive, paid in USD, monthly. Senior staff-level rates.\nAbout AISpire360\nWe are building the operating system for medical practices in the US. Our flagship product is\nARIA\n, an AI receptionist that handles inbound and outbound calls, intake, scheduling, eligibility, prior authorization workflows, and after-hours coverage for medical practices. We are in active production deployment with our first practice \u2014 a spine surgery practice at the Hospital for Special Surgery in New York. Multiple specialty practices are in our deployment pipeline.\nThe platform is built to be specialty-agnostic. The voice agent stack is the universal foundation. Knowledge layers (spine surgery, primary care, behavioral health, dermatology, cardiology, pediatrics, etc.) plug in as configuration. One platform, many specialties.\nWe are venture-backed, founder-led, and shipping. The technical decisions you make here will be in production within weeks.\nWhat You'll Own\nYou are the technical anchor for the voice agent. You will be responsible for:\nReal-time voice system\nVoice agent stack on ElevenLabs Conversational AI (and evaluation of Retell, Vapi, LiveKit alternatives as we scale)\nSTT and TTS configuration, voice tuning, language and accent handling\nTurn-taking, barge-in, end-of-speech detection, latency budgets\nDriving end-to-end voice latency below 700ms (we currently target 600ms)\nQuality vs. cost tradeoffs across voice tier selection (Premium / Turbo / Standard)\nSilence-detection optimization for outbound calls (95% silence-discount realization)\nHIPAA + PHI infrastructure\nBAA-compliant hosting architecture (AWS-based, BAA in place)\nPHI detection and redaction pipeline (AWS Comprehend Medical + custom pre-filters)\nEncryption in transit and at rest, audit logging, 7-year retention compliance\nAccess controls, RBAC, kill-switch infrastructure\nHIPAA Security Rule compliance for technical safeguards\nAgent orchestration and tools\nLLM integration (GPT-4o, Claude Sonnet, with model routing for cost optimization)\nTool calling for scheduling, eligibility checks, prior auth lookups, calendar booking, task creation\nMulti-turn conversation state management\nMulti-topic call handling and structured task generation\nSafety-critical keyword detection and escalation routing\nIntegrations\nEHR integration (Epic, Athena, eClinicalWorks \u2014 at least one in V1)\nInsurance eligibility APIs (Availity, Change Healthcare, payer-specific)\nCalendar integration (Google Calendar, Microsoft 365, Cal.com)\nSMS and email gateways (Twilio, SendGrid)\nPractice-specific webhooks for task manager surfacing\nMulti-tenant platform foundations\nPer-practice configuration loading (specialty profile + practice profile)\nPer-tenant isolation, data segregation\nSpecialty-specific intake schemas, triage rules, safety keywords\nProduction observability (tracing, metrics, latency monitoring per practice)\nRequired Experience\nYou should be able to demonstrate, in a live walkthrough with code in hand, that you have shipped production voice AI systems. Specifically:\n3+ years of production voice/conversational AI experience.\nNot chatbots \u2014 actual real-time voice agents handling live phone calls. ElevenLabs, Retell, Vapi, LiveKit, OpenAI Realtime, Deepgram, or equivalent.\nDeep familiarity with at least 2 of: ElevenLabs Con",
+          "skills": [],
+          "salary": "",
+          "work_mode": "",
+          "_source_type": "generic_http",
+          "_ontology": {
+            "seniority": "senior",
+            "archetype_match": 0.27,
+            "biz_model": "unknown",
+            "preferred_company_match": false
+          },
+          "_india_filter": "India-specific job board URL",
+          "_canonical_fp": "9aa0cdcdbe727295",
+          "canonical": true,
+          "canonical_id": "9aa0cdcdbe727295",
+          "apply_route": {
+            "best_apply_route": "cutshort",
+            "apply_url": "https://cutshort.io/job/Senior-Voice-AI-Engineer-HIPAA-Compliant-AI-Receptionist-Platform-AIspire360-Inc-kZdHhQTd",
+            "backup_urls": [],
+            "reason": "best route: cutshort (priority 4)",
+            "risk": "medium"
+          }
+        },
+        "score": 55.2,
+        "breakdown": {
+          "role_fit": {
+            "raw": 6.0,
+            "weight": 12,
+            "weighted": 7.2
+          },
+          "archetype_fit": {
+            "raw": 2.7,
+            "weight": 8,
+            "weighted": 2.2
+          },
+          "skill_fit": {
+            "raw": 3.3,
+            "weight": 12,
+            "weighted": 4.0
+          },
+          "salary_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "equity_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "benefits_fit": {
+            "raw": 10.0,
+            "weight": 4,
+            "weighted": 4.0
+          },
+          "location_fit": {
+            "raw": 5.0,
+            "weight": 10,
+            "weighted": 5.0
+          },
+          "work_mode_fit": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "notice_period_fit": {
+            "raw": 7.0,
+            "weight": 4,
+            "weighted": 2.8
+          },
+          "sector_fit": {
+            "raw": 6.0,
+            "weight": 6,
+            "weighted": 3.6
+          },
+          "company_stability": {
+            "raw": 5.0,
+            "weight": 7,
+            "weighted": 3.5
+          },
+          "startup_risk": {
+            "raw": 8.6,
+            "weight": 4,
+            "weighted": 3.4
+          },
+          "brand_value": {
+            "raw": 4.0,
+            "weight": 5,
+            "weighted": 2.0
+          },
+          "commute_risk": {
+            "raw": 10.0,
+            "weight": 3,
+            "weighted": 3.0
+          },
+          "response_likelihood": {
+            "raw": 5.0,
+            "weight": 3,
+            "weighted": 1.5
+          },
+          "career_trajectory": {
+            "raw": 5.7,
+            "weight": 1,
+            "weighted": 0.6
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "AI Product Manager",
+    "city": "Bangalore",
+    "stats": {
+      "candidates": 46,
+      "after_dedup": 2,
+      "ranked": 0,
+      "elapsed_s": 21784.58,
+      "keywords": [
+        "AI product manager",
+        "product manager AI",
+        "AI PM",
+        "machine learning product manager",
+        "ML product manager",
+        "AI product lead",
+        "product manager - AI/ML",
+        "AI product owner",
+        "technical product manager AI",
+        "AI product strategist"
+      ],
+      "companies_targeted": [],
+      "notes": [
+        "Phase A: live discovery returned 0 companies \u2014 skipping portal layer",
+        "board health: ddg:22 | glassdoor:10 | google_jobs:30 | jobspy:40 | monster:9 | naukri:0",
+        "ontology gate: dropped 36 jobs (archetype_match<0.2)",
+        "role filter: 7 \u2192 2 relevant (5 rejected)",
+        "min-desc gate: dropped 1 jobs (<200c)",
+        "city filter (Bangalore): 1 \u2192 0 (1 off-city removed)"
+      ]
+    },
+    "ranked_jobs": []
+  }
+]

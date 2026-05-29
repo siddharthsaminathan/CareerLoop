@@ -1,0 +1,32 @@
+[
+  {
+    "role": "Fashion Buyer",
+    "city": "Chennai",
+    "stats": {
+      "candidates": 75,
+      "after_dedup": 0,
+      "ranked": 0,
+      "elapsed_s": 87.01,
+      "keywords": [
+        "fashion buyer",
+        "merchandiser",
+        "category manager",
+        "sourcing manager",
+        "buying manager",
+        "assistant buyer",
+        "senior buyer",
+        "fashion merchandiser",
+        "retail buyer",
+        "product buyer"
+      ],
+      "companies_targeted": [],
+      "notes": [
+        "Phase A: detached (include_phase_a=False)",
+        "board health: cutshort:0 | ddg:7 | glassdoor:13 | google_jobs:30 | iimjobs:0 | instahyre:0 | jobspy:16 | monster:9 | naukri:0 | remoteok:0 | remotive:0 | wellfound:0 | weworkremotely:2",
+        "ontology gate: dropped 53 jobs (archetype_match<0.15)",
+        "role filter: 0 \u2192 0 relevant (0 rejected)"
+      ]
+    },
+    "ranked_jobs": []
+  }
+]

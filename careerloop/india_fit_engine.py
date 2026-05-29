@@ -90,24 +90,24 @@ def _company_memory_lookup(company_name: str, conn=None) -> dict:
         normalized = re.sub(r"[^a-z0-9]+", "", company_name.lower())
         
         if conn is not None:
-            with conn.cursor() as cur:
+            cur = conn.cursor()
+            cur.execute(
+                "SELECT startup_risk, company_maturity, company_intelligence "
+                "FROM careerloop.company_memory WHERE company_normalized = %s",
+                [normalized],
+            )
+            row = cur.fetchone()
+            return dict(row) if row else {}
+        else:
+            with db.get_connection() as c:
+                cur = c.cursor()
                 cur.execute(
                     "SELECT startup_risk, company_maturity, company_intelligence "
                     "FROM careerloop.company_memory WHERE company_normalized = %s",
                     [normalized],
                 )
                 row = cur.fetchone()
-            return dict(row) if row else {}
-        else:
-            with db.get_connection() as c:
-                with c.cursor() as cur:
-                    cur.execute(
-                        "SELECT startup_risk, company_maturity, company_intelligence "
-                        "FROM careerloop.company_memory WHERE company_normalized = %s",
-                        [normalized],
-                    )
-                    row = cur.fetchone()
-            return dict(row) if row else {}
+                return dict(row) if row else {}
     except Exception as e:
         import logging
         logging.getLogger(__name__).warning(
@@ -133,24 +133,24 @@ def _company_registry_lookup(company_name: str, conn=None) -> dict:
         normalized = re.sub(r"[^a-z0-9]+", "-", company_name.lower()).strip("-")
 
         if conn is not None:
-            with conn.cursor() as cur:
+            cur = conn.cursor()
+            cur.execute(
+                "SELECT employee_estimate, sector, ats_provider, last_job_count "
+                "FROM careerloop.companies WHERE id = %s OR LOWER(name) = LOWER(%s)",
+                [normalized, company_name],
+            )
+            row = cur.fetchone()
+            return dict(row) if row else {}
+        else:
+            with db.get_connection() as c:
+                cur = c.cursor()
                 cur.execute(
                     "SELECT employee_estimate, sector, ats_provider, last_job_count "
                     "FROM careerloop.companies WHERE id = %s OR LOWER(name) = LOWER(%s)",
                     [normalized, company_name],
                 )
                 row = cur.fetchone()
-            return dict(row) if row else {}
-        else:
-            with db.get_connection() as c:
-                with c.cursor() as cur:
-                    cur.execute(
-                        "SELECT employee_estimate, sector, ats_provider, last_job_count "
-                        "FROM careerloop.companies WHERE id = %s OR LOWER(name) = LOWER(%s)",
-                        [normalized, company_name],
-                    )
-                    row = cur.fetchone()
-            return dict(row) if row else {}
+                return dict(row) if row else {}
     except Exception as e:
         import logging
         logging.getLogger(__name__).warning(

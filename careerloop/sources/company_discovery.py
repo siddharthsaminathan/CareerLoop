@@ -155,7 +155,9 @@ class GoogleMapsDiscovery:
         seen = set()
 
         for query in queries:
+            logger.info(f"[GoogleMaps/DDG] query: {query!r}")
             companies = self._search_ddg(query, city, sector)
+            logger.info(f"[GoogleMaps/DDG] → {len(companies)} results")
             for c in companies:
                 key = _normalize_id(c.domain or c.name)
                 if key not in seen:
@@ -163,7 +165,7 @@ class GoogleMapsDiscovery:
                     results.append(c)
             time.sleep(1.5)
 
-        logger.info(f"[GoogleMaps] {city}/{sector}: {len(results)} companies")
+        logger.info(f"[GoogleMaps] {city}/{sector}: {len(results)} companies total")
         return results
 
     def _build_queries(self, city: str, sector: str, function_hint: str) -> list[str]:
@@ -261,7 +263,9 @@ class SerpAPIDiscovery:
         seen: set[str] = set()
 
         for query in queries:
+            logger.info(f"[SerpAPI] query: {query!r}")
             companies = self._search_one(query, city, sector)
+            logger.info(f"[SerpAPI] → {len(companies)} results")
             for c in companies:
                 key = _normalize_id(c.domain or c.name)
                 if key and key not in seen:
@@ -269,7 +273,7 @@ class SerpAPIDiscovery:
                     results.append(c)
             time.sleep(0.5)
 
-        logger.info(f"[SerpAPI] {city}/{sector}: {len(results)} companies")
+        logger.info(f"[SerpAPI] {city}/{sector}: {len(results)} companies total")
         return results
 
     def _build_queries(self, city: str, sector: str, function_hint: str) -> list[str]:
@@ -460,8 +464,10 @@ class WellfoundDiscovery:
             from ddgs import DDGS
             sector_short = sector.split("&")[0].strip()
             query = f"site:wellfound.com/company {sector_short.lower()} {city.lower()}"
+            logger.info(f"[Wellfound/DDG] query: {query!r}")
             with DDGS() as ddgs:
                 raw = list(ddgs.text(query, max_results=20, region="in-en"))
+            logger.info(f"[Wellfound/DDG] → {len(raw)} results")
         except Exception:
             return []
 
@@ -510,8 +516,10 @@ class CrunchbaseDiscovery:
         for query in queries:
             try:
                 from ddgs import DDGS
+                logger.info(f"[Crunchbase/DDG] query: {query!r}")
                 with DDGS() as ddgs:
                     raw = list(ddgs.text(query, max_results=15, region="in-en"))
+                logger.info(f"[Crunchbase/DDG] → {len(raw)} results")
             except Exception:
                 continue
 
@@ -566,8 +574,10 @@ class Inc42Discovery:
         for query in queries:
             try:
                 from ddgs import DDGS
+                logger.info(f"[Inc42/DDG] query: {query!r}")
                 with DDGS() as ddgs:
                     raw = list(ddgs.text(query, max_results=10, region="in-en"))
+                logger.info(f"[Inc42/DDG] → {len(raw)} results")
             except Exception:
                 continue
 

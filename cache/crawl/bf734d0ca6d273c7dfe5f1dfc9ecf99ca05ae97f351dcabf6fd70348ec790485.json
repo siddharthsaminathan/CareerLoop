@@ -1,0 +1,126 @@
+{
+  "role": "ai product manager",
+  "city": "bangalore",
+  "cached_at": 1779971924.7075882,
+  "expires_at": 1780000724.7075882,
+  "job_count": 4,
+  "jobs": [
+    {
+      "title": "AI",
+      "company": "",
+      "location": "Bangalore",
+      "url": "https://www.foundit.in/job/ai-product-manager-delta-exchange-india-48692775",
+      "apply_url": "https://www.foundit.in/job/ai-product-manager-delta-exchange-india-48692775",
+      "description": "Job Description- AI Product Manager. Company Overview: Delta Exchange is a fast-growing global crypto derivatives exchange focused on options and futures trading. We are India's largest and the world's second-largest crypto options exchange, processing over $200M in daily trading...",
+      "_source_type": "foundit",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.29,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "1cb0033a761db92f",
+      "canonical": true,
+      "canonical_id": "1cb0033a761db92f",
+      "apply_route": {
+        "best_apply_route": "foundit",
+        "apply_url": "https://www.foundit.in/job/ai-product-manager-delta-exchange-india-48692775",
+        "backup_urls": [],
+        "reason": "best route: foundit (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Staff Product Designer, Platform",
+      "company": "Adobe",
+      "location": "KA, IN",
+      "url": "https://in.indeed.com/viewjob?jk=86be6a7d8bc09182",
+      "apply_url": "https://in.indeed.com/viewjob?jk=86be6a7d8bc09182",
+      "url_type": "UNKNOWN",
+      "description": "The opportunity\n  \nThe Platform Design team is focused on building foundational platform experiences that power how individuals and enterprises access, manage, and use their Adobe products and services. This includes identity, enterprise administration, and developer workflows that support millions of users and organizations.\n  \nWe are seeking a systems\\-minded, proactive designer to join our team. You’ll craft end\\-to\\-end experiences for developer and administrative experiences within the Adob",
+      "_source_type": "jobspy",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "senior",
+        "archetype_match": 0.29,
+        "biz_model": "b2b",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "ce0dd5608ea4ad6a",
+      "canonical": true,
+      "canonical_id": "ce0dd5608ea4ad6a",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=86be6a7d8bc09182",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Senior Advanced Analyst – Digital & AI Products",
+      "company": "Airbnb",
+      "location": "KA, IN",
+      "url": "https://in.indeed.com/viewjob?jk=900a80b19745b9de",
+      "apply_url": "https://in.indeed.com/viewjob?jk=900a80b19745b9de",
+      "url_type": "UNKNOWN",
+      "description": "Airbnb was born in 2007 when two hosts welcomed three guests to their San Francisco home, and has since grown to over 5 million hosts who have welcomed over 2 billion guest arrivals in almost every country across the globe. Every day, hosts offer unique stays and experiences that make it possible for guests to connect with communities in a more authentic way.\n\n\n\n**Description**\n\n\n\nAirbnb was born in 2007 when two Hosts welcomed three guests to their San Francisco home, and has since grown to ove",
+      "_source_type": "jobspy",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "senior",
+        "archetype_match": 0.29,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "ceb9f209f1bb4c23",
+      "canonical": true,
+      "canonical_id": "ceb9f209f1bb4c23",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=900a80b19745b9de",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Product Marketing Manager",
+      "company": "Bangalore @ Protect AI",
+      "location": "Bangalore",
+      "url": "https://jobs.ashbyhq.com/protectai/d8f8c496-d519-4d0a-bb03-cb6076fef35a?embed=js",
+      "apply_url": "https://jobs.ashbyhq.com/protectai/d8f8c496-d519-4d0a-bb03-cb6076fef35a?embed=js",
+      "description": "Protect AI is seeking a Product Marketing Manager to drive technical marketing strategies for our AI Security platform.What We Offer: An exciting, collaborative work environment in a fast-growing startup. Spacious office in the centre of Bangalore.",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.29,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains bangalore",
+      "_canonical_fp": "a69edc1effa89489",
+      "canonical": true,
+      "canonical_id": "a69edc1effa89489",
+      "alternate_sources": [
+        "https://jobs.ashbyhq.com/protectai/d8f8c496-d519-4d0a-bb03-cb6076fef35a",
+        "https://jobs.ashbyhq.com/protectai/d8f8c496-d519-4d0a-bb03-cb6076fef35a/application"
+      ],
+      "apply_route": {
+        "best_apply_route": "ashby",
+        "apply_url": "https://jobs.ashbyhq.com/protectai/d8f8c496-d519-4d0a-bb03-cb6076fef35a?embed=js",
+        "backup_urls": [
+          "https://jobs.ashbyhq.com/protectai/d8f8c496-d519-4d0a-bb03-cb6076fef35a",
+          "https://jobs.ashbyhq.com/protectai/d8f8c496-d519-4d0a-bb03-cb6076fef35a/application"
+        ],
+        "reason": "best route: ashby (priority 2)",
+        "risk": "low"
+      }
+    }
+  ]
+}

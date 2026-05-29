@@ -1,167 +1,338 @@
 {
   "role": "applied ai engineer",
   "city": "bangalore",
-  "cached_at": 1779822623.310997,
-  "expires_at": 1779851423.310997,
-  "job_count": 9,
+  "cached_at": 1779971660.104029,
+  "expires_at": 1780000460.104029,
+  "job_count": 12,
   "jobs": [
     {
-      "title": "35487 Applied Ai Techniques Jobs vacancies in India",
+      "title": "4051 Agentic Ai Tools For Vibe Coding Prototypes Jobs in India: Latest...",
       "company": "",
       "location": "Bangalore",
-      "url": "https://www.foundit.in/search/applied-ai-techniques-jobs",
-      "apply_url": "https://www.foundit.in/search/applied-ai-techniques-jobs",
-      "description": "Apply to the latest Applied Ai Techniques Jobs Vacancies in India on foundit.in. Explore competitive salaries, top companies, and openings in your preferred location.Senior Applied AI Engineer – AI Systems for Business Operations (GTM Platform). Securly.",
+      "url": "https://www.foundit.in/search/agentic-ai-tools-for-vibe-coding-prototypes-jobs",
+      "apply_url": "https://www.foundit.in/search/agentic-ai-tools-for-vibe-coding-prototypes-jobs",
+      "description": "Generative AI, automation for AI applications, Agentic AI, Apis, Microservices, MLops, Containers, AWS, Memory, embeddings, multi-agent systems, feedback loops, LLMs, cloud-native application design, cloud platforms, prompt engineering, Compliance, planning, security...",
       "_source_type": "foundit",
+      "_phase": "B",
       "_ontology": {
         "seniority": "unknown",
-        "archetype_match": 0.2,
+        "archetype_match": 0.38,
         "biz_model": "unknown",
         "preferred_company_match": false
       },
       "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "1392e261aed9e429",
+      "_canonical_fp": "04a97a538e0cdd74",
       "canonical": true,
-      "canonical_id": "1392e261aed9e429",
+      "canonical_id": "04a97a538e0cdd74",
       "apply_route": {
         "best_apply_route": "foundit",
-        "apply_url": "https://www.foundit.in/search/applied-ai-techniques-jobs",
+        "apply_url": "https://www.foundit.in/search/agentic-ai-tools-for-vibe-coding-prototypes-jobs",
         "backup_urls": [],
         "reason": "best route: foundit (priority 4)",
         "risk": "medium"
       }
     },
     {
-      "title": "Senior Software Engineer",
-      "company": "GE Vernova",
+      "title": "Applied AI Engineer - MERN Stack",
+      "company": "",
+      "location": "India",
+      "url": "https://cutshort.io/job/Applied-AI-Engineer-MERN-Stack-Procedure-osZhIuIE",
+      "apply_url": "https://cutshort.io/job/Applied-AI-Engineer-MERN-Stack-Procedure-osZhIuIE",
+      "description": "Procedure is hiring Applied AI Engineer - MERN Stack job (Remote only) | Cutshort Pricing FAQs For employers Applied AI Engineer - MERN Stack at Procedure Apply to this job Applied AI Engineer - MERN Stack Procedure Company Home Applied AI Engineer - MERN Stack at Procedure Posted by Adithya K Apply to this job 4 - 10 yrs ₹10L - ₹20L / yr (ESOP available) Remote only Skills MERN Stack Artificial Intelligence (AI) AI Agents TypeScript Large Language Models (LLM) Procedure is hiring for WorkHero. Across the U.S., thousands of small HVAC businesses are drowning in admin. WorkHero pairs seasoned office managers with AI workflows to free up their time, unlock growth, and modernize the trades. We handle everything that touches the back office of a small HVAC operation: billing, rebates, permits, warranties, marketing, and more. Our customers save dozens of hours every week, allowing them to focus on growing their business. We are building at the intersection of Human and AI automation, and that’s where you come in! How you will help us achieve it As an Applied AI Engineer, you will collaborate with the company founders, product team, and office managers to develop agentic workflows for many of their daily processes. You will ideate, design, implement, and maintain the software side of the product. You will design the UX, develop the front end interfaces, build backend routes and design database models. The bulk of this role is interacting with office managers to understand their workflows and then creating and managing AI agents & workflows to make them more efficient. In your day to day, you will: Partner with our frontline staff to understand their work so you can automate it with AI and save them time Live on the cutting edge of Human & AI interactions, keeping up to date with the latest patterns and how they apply to WorkHero and our workflows Contribute to exceptional code quality and performance of the code base Mentor young engineer(s) to be great at their craft, as our team grows Key Details You can work remotely from anywhere with an overlap of at least four hours with the product team (6 pm to 10 pm IST) This role involves participating in calls with US-based stakeholders The compensation comes with a salary and an equity component Location - Remote YOE - 5 to 10 years NP - Immediate to 30 days You’ll thrive if you Care about your craft and the mission of the software you are developing Are enterprising and can figure out how to convert workflows/playbooks to AI agents Work with cutting-edge AI tools and APIs Don’t just complete tickets that are assigned to you; you think deeply about the product and how you can make it great, then put that into action Enjoy developing 0-1 software products iteratively Are proficient in the Typescript ecosystem, including monorepos. Are skilled in React and Express (Koa is a plus) or similar tech Are pragmatic and understand trade-offs in software engineering Requirements 4+ years of experience in building software products Have created applications using AI and LLMs. Can understand when to prompt, use RAG, create agents or fine-tune an LLM Have solid experience with the MERN stack Ability to debug and optimize complex systems Excellent communication and collaboration skills Bonus points if you have Experience in mentoring junior team members. Better if they had gone to replace you in your team, allowing you to take up a more meaningful role Familiarity with our tech stack (React, Koa, Mongo, AWS, React Native) A good understanding of UX best practices for SaaS based interfaces & AI Built apps using React Native A deep understanding of infrastructure and can optimize for cost Set up evaluation frameworks for agentic workflows Contributed to open-source projects Your First Six Months You will be working on creating AI Agents/Workflows based on the playbooks for some of the crucial workflows of HVAC office managers You will work on building the frontend, APIs and apply AI knowledge to add features to the office manager and admin portal, as well as the mobile app You will be using Vercel AI SDK to create abstracted AI agents and workflows with the capability of falling back to different providers You will demo the agentic workflows to US-based stakeholders—small HVAC business owners, product team and office managers You will monitor and manage the AI Workflows, ensuring quality and accuracy, improving them over time About engineering at WorkHero We value: High ownership and fast iteration Deep understanding our tools and systems Continuous improvement, both technically and interpersonal Our technology stack: Full Stack TypeScript (React, React Native, KoaJS Backend, CRXJS Browser Extension) NX Monorepo with shared typing & libraries Infrastructure: AWS (ECS, Hosted RMQ) MongoDB Atlas Firebase & GCP services AI Tooling (Anthropic, OpenAI, Gemini, Deepgram) Our team The Company is funded by Workshop Ventures Partners, a US-based venture studio focused on building great companies in Climate Tech The team consists of founding members from Harvard Business School and the Workshop Ventures team — Kyler, Furman, Chad, Jason, and Ulhas Interview Process: Screening: Review of your open source contributions and past projects. First Round of Technical Evaluation: Assessing your problem-solving and AI integration skills. Technical Evaluation + Cultural Fit: Understanding your alignment with our team. Procedure is hiring for WorkHero. Across the U.S., thousands of small HVAC businesses are drowning in admin. WorkHero pairs seasoned office managers with AI workflows to free up their time, unlock growth, and modernize the trades. We handle everything that touches the back office of a small HVAC operation: billing, rebates, permits, warranties, marketing, and more. Our customers save dozens of hours every week, allowing them to focus on growing their business. We are building at the intersection of Human and AI automation, and that’s where you come in! How you will hel",
+      "skills": [],
+      "_source_type": "cutshort",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "95b269f0bde870be",
+      "canonical": true,
+      "canonical_id": "95b269f0bde870be",
+      "apply_route": {
+        "best_apply_route": "cutshort",
+        "apply_url": "https://cutshort.io/job/Applied-AI-Engineer-MERN-Stack-Procedure-osZhIuIE",
+        "backup_urls": [],
+        "reason": "best route: cutshort (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Applied AI Engineer (AI/ML & LLM Deployment)",
+      "company": "",
+      "location": "India",
+      "url": "https://cutshort.io/job/Applied-AI-Engineer-AI-ML-LLM-Deployment-NeoGenCode-Technologies-Pvt-Ltd-oliI22ix",
+      "apply_url": "https://cutshort.io/job/Applied-AI-Engineer-AI-ML-LLM-Deployment-NeoGenCode-Technologies-Pvt-Ltd-oliI22ix",
+      "description": "NeoGenCode Technologies Pvt Ltd is hiring Applied AI Engineer (AI/ML & LLM Deployment) job (Remote only) | Cutshort Pricing FAQs For employers Applied AI Engineer (AI/ML & LLM Deployment) at NeoGenCode Technologies Pvt Ltd Apply to this job Applied AI Engineer (AI/ML & LLM Deployment) NeoGenCode Technologies Pvt Ltd Company Home Applied AI Engineer (AI/ML & LLM Deployment) at NeoGenCode Technologies Pvt Ltd Posted by Akshay Patil Apply to this job 3 - 6 yrs ₹8L - ₹15L / yr Remote only Skills Artificial Intelligence (AI) Machine Learning (ML) Large Language Models (LLM) Prompt engineering LangChain Llama Model Quantization Software deployment Tokenizers Web performance optimization Job Title : Applied AI Engineer (AI/ML & LLM Deployment) Experience : 4+ Years Location : Remote Job Summary : We are looking for an Applied AI Engineer with strong expertise in Large Language Models (LLMs) to design, optimize, and deploy advanced AI solutions. The role focuses on LLM integration, fine-tuning, and performance optimization for scalable production use. Mandatory Skills : LLM Integration, Prompt Engineering, LangChain/LlamaIndex, Fine-tuning & LoRA, Model Quantization, Local Deployment, Tokenizers, Performance Optimization. Key Responsibilities : Integrate GPT-4, Claude, and open-source LLMs into applications. Design and implement prompt engineering for context-specific, tone-appropriate outputs. Build AI pipelines using LangChain, LlamaIndex, or similar frameworks . Perform fine-tuning and LoRA (Low-Rank Adaptation) to customize models. Apply model quantization (GGML, GPTQ, bitsandbytes) for efficient deployment. Deploy models with Hugging Face Transformers, vLLM, llama.cpp . Optimize tokenization and inference performance for low latency. Required Skills : Strong hands-on experience with LLMs (OpenAI GPT-4, Claude, open-source models). Proficiency in Prompt Engineering and tone-specific output design. Experience with LangChain, LlamaIndex , or other orchestration frameworks. Knowledge of fine-tuning, LoRA techniques, and quantization methods . Familiarity with deployment frameworks (Transformers, vLLM, llama.cpp). Strong understanding of tokenizers and efficient text preprocessing. Ability to optimize models for real-time, low-latency inference. Solid programming skills in Python and experience with PyTorch/TensorFlow . Nice to Have : Exposure to MLOps tools (Docker, Kubernetes, CI/CD for AI). Experience with evaluation frameworks for LLMs . Knowledge of multi-modal models (text, vision, audio). Job Title : Applied AI Engineer (AI/ML & LLM Deployment) Experience : 4+ Years Location : Remote Job Summary : We are looking for an Applied AI Engineer with strong expertise in Large Language Models (LLMs) to design, optimize, and deploy advanced AI solutions. The role focuses on LLM integration, fine-tuning, and performance optimization for scalable production use. Mandatory Skills : LLM Integration, Prompt Engineering, LangChain/LlamaIndex, Fine-tuning & LoRA, Model Quantization, Local Deployment, Tokenizers, Performance Optimization. Key Responsibilities : Integrate GPT-4, Claude, and open-source LLMs into applications. Design and implement prompt engineering for context-specific, tone-appropriate outputs. Build AI pipelines using LangChain, LlamaIndex, or similar frameworks . Perform fine-tuning and LoRA (Low-Rank Adaptation) to customize models. Apply model quantization (GGML, GPTQ, bitsandbytes) for efficient deployment. Deploy models with Hugging Face Transformers, vLLM, llama.cpp . Optimize tokenization and inference performance for low latency. Required Skills : Strong hands-on experience with LLMs (OpenAI GPT-4, Claude, open-source models). Proficiency in Prompt Engineering and tone-specific output design. Experience with LangChain, LlamaIndex , or other orchestration frameworks. Knowledge of fine-tuning, LoRA techniques, and quantization methods . Familiarity with deployment frameworks (Transformers, vLLM, llama.cpp). Strong understanding of tokenizers and efficient text preprocessing. Ability to optimize models for real-time, low-latency inference. Solid programming skills in Python and experience with PyTorch/TensorFlow . Nice to Have : Exposure to MLOps tools (Docker, Kubernetes, CI/CD for AI). Experience with evaluation frameworks for LLMs . Knowledge of multi-modal models (text, vision, audio). Read more Users love Cutshort Read about what our users have to say about finding their next opportunity on Cutshort. Previous Apoorv Pandey Sr. Mobile Developer - Prismberry Technologies Pvt Ltd The entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team! Shubham Vishwakarma Full Stack Developer - Averlon I had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team. Ashish Gupta Gen AI Engineer - Fractal Analytics The process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless. Parth Lukhi Senior Software Developer - Bits In Glass It was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort. Apoorv Pandey Sr. Mobile Developer - Prismberry Technologies Pvt Ltd The entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team! Shubham Vishwakarma Full Stack Developer - Aver",
+      "skills": [],
+      "_source_type": "cutshort",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "5d4d5b8ce5c88743",
+      "canonical": true,
+      "canonical_id": "5d4d5b8ce5c88743",
+      "apply_route": {
+        "best_apply_route": "cutshort",
+        "apply_url": "https://cutshort.io/job/Applied-AI-Engineer-AI-ML-LLM-Deployment-NeoGenCode-Technologies-Pvt-Ltd-oliI22ix",
+        "backup_urls": [],
+        "reason": "best route: cutshort (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Senior AI Engineer",
+      "company": "Thoughtworks",
       "location": "KA, IN",
-      "url": "https://in.indeed.com/viewjob?jk=5fff079843fb8636",
-      "apply_url": "https://in.indeed.com/viewjob?jk=5fff079843fb8636",
+      "url": "https://in.indeed.com/viewjob?jk=d946d1a75a1d8fc0",
+      "apply_url": "https://in.indeed.com/viewjob?jk=d946d1a75a1d8fc0",
       "url_type": "UNKNOWN",
-      "description": "Responsible for designing, building, delivering and maintaining software applications \\& services. Working in the areas of machine, cloud, platform and/or application. Responsible for software lifecycle including activities such as requirement analysis, documentation/procedures and implementation.\n**Job Description**\n===================\n\n\n**Roles and Responsibilities**\n\n\nIn this role, you will:\n  \n\n* Have awareness of SDLC and methodologies like Lean/Agile/XP, CI, Software and Product Security, ",
+      "description": "AI Engineer : Senior Consultant\n\n\nWe are looking for an AI Engineer who can effectively leverage modern AI\\-powered\n\n\ndevelopment tools (e.g., GitHub Copilot, Cursor, Claude, etc.) and Agentic AI to accelerate\n\n\nsoftware development while maintaining high standards of code quality, scalability, and\n\n\nsecurity. This role sits at the intersection of software engineering and applied AI / Agentic AI\n\n\n— ideal for engineers who not only write code but also know how to collaborate with AI\n\n\nsystems to",
       "_source_type": "jobspy",
+      "_phase": "B",
       "_ontology": {
         "seniority": "senior",
-        "archetype_match": 0.2,
-        "biz_model": "b2b",
-        "preferred_company_match": true
-      },
-      "_india_filter": "location ends with India country code",
-      "_canonical_fp": "99cb47ca5a34f093",
-      "canonical": true,
-      "canonical_id": "99cb47ca5a34f093",
-      "apply_route": {
-        "best_apply_route": "indeed",
-        "apply_url": "https://in.indeed.com/viewjob?jk=5fff079843fb8636",
-        "backup_urls": [],
-        "reason": "best route: indeed (priority 6)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "AI Engineer Generative AI & Cloud Deployment",
-      "company": "Basebiz The Consulting Company",
-      "location": "KA, IN",
-      "url": "https://in.indeed.com/viewjob?jk=7e418169b059fe05",
-      "apply_url": "https://in.indeed.com/viewjob?jk=7e418169b059fe05",
-      "url_type": "UNKNOWN",
-      "description": "**Job Title**: AI Engineer\n\n**Location**: Bangalore\n\n**Experience**: 7\\-12 years (7\\-9 for AM) \\& (9\\.5\\-12 for Manager)\n\n**Notice**: 0\\-15 Days\n\n**Qualification required**: BCA, BSC, MCA, B.Tech, M.Tech, BE.\n\n**Role Summary**\n\nAn AI Engineer designs, develops, and deploys AI models and solutions, including Generative AI applications, to solve real\\-world business problems. This role involves hands\\-on coding, model training, and integration into production systems.\n\n\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_",
-      "_source_type": "jobspy",
-      "_ontology": {
-        "seniority": "unknown",
-        "archetype_match": 0.2,
-        "biz_model": "b2b",
-        "preferred_company_match": true
-      },
-      "_india_filter": "location ends with India country code",
-      "_canonical_fp": "243d05c527218ba3",
-      "canonical": true,
-      "canonical_id": "243d05c527218ba3",
-      "apply_route": {
-        "best_apply_route": "indeed",
-        "apply_url": "https://in.indeed.com/viewjob?jk=7e418169b059fe05",
-        "backup_urls": [],
-        "reason": "best route: indeed (priority 6)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "Full Stack Developer (Night Shift)",
-      "company": "Reveal Health Tech",
-      "location": "KA, IN",
-      "url": "https://in.indeed.com/viewjob?jk=2bbde3817e699dd0",
-      "apply_url": "https://in.indeed.com/viewjob?jk=2bbde3817e699dd0",
-      "url_type": "UNKNOWN",
-      "description": "**About Reveal HealthTech**\n\n\nReveal Healthtech is a healthcare and life sciences focused data, AI and engineering services company head\\- quartered in New York with offices in San Francisco and Bangalore, India.\n\n\nReveal was founded in February 2023 by Sanchit Mullick(Founder \\& CEO). Reveal has been involved in custom\\- building healthcare solutions for its customers.\n\n **Requirements** **What do we need?**\n\n\nWe are looking for passionate and motivated Full Stack engineers who will build revol",
-      "_source_type": "jobspy",
-      "_ontology": {
-        "seniority": "unknown",
-        "archetype_match": 0.2,
+        "archetype_match": 0.25,
         "biz_model": "unknown",
         "preferred_company_match": false
       },
       "_india_filter": "location ends with India country code",
-      "_canonical_fp": "146415f8968a1afb",
+      "_canonical_fp": "9c2207512eaa4213",
       "canonical": true,
-      "canonical_id": "146415f8968a1afb",
+      "canonical_id": "9c2207512eaa4213",
       "apply_route": {
         "best_apply_route": "indeed",
-        "apply_url": "https://in.indeed.com/viewjob?jk=2bbde3817e699dd0",
+        "apply_url": "https://in.indeed.com/viewjob?jk=d946d1a75a1d8fc0",
         "backup_urls": [],
         "reason": "best route: indeed (priority 6)",
         "risk": "medium"
       }
     },
     {
-      "title": "Tech Lead (Platform Architect + Applied AI Engineer)- Digital Twin...",
-      "company": "Shae Group",
-      "location": "Bangalore",
-      "url": "https://apply.workable.com/shae-group/j/116BEEDFE9",
-      "apply_url": "https://apply.workable.com/shae-group/j/116BEEDFE9",
-      "description": "Lead architecture for digital twin + clinical AI platforms — senior applied AI technical leadership roleTitle: Tech Lead (Platform Architect + Applied AI Engineering Lead) — Digital Twin & Clinical AI — Remote (Contractor)Location: Remote — Off...",
-      "_source_type": "google_jobs",
+      "title": "Applied AI Engineer, Sarvam Agents",
+      "company": "Sarvam",
+      "location": "KA, IN",
+      "url": "https://in.indeed.com/viewjob?jk=d0f2342315b6093a",
+      "apply_url": "https://in.indeed.com/viewjob?jk=d0f2342315b6093a",
+      "url_type": "UNKNOWN",
+      "description": "**About Sarvam**\n\n\nSarvam is building the bedrock of Sovereign AI for India. The company is developing India’s full\\-stack sovereign AI platform, building across research, models, infrastructure and applications with a singular focus on making AI genuinely work for India. Sarvam works with leading enterprises and public institutions and is backed by Lightspeed, Peak XV, and Khosla Ventures. Sarvam partners with India’s leading brands, including Tata Capital, SBI Life, CRED, IDFC, and LIC.\n\n**Abo",
+      "_source_type": "jobspy",
+      "_phase": "B",
       "_ontology": {
-        "seniority": "senior",
-        "archetype_match": 0.2,
+        "seniority": "unknown",
+        "archetype_match": 0.25,
+        "biz_model": "b2b",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "38bdf90606b19ee0",
+      "canonical": true,
+      "canonical_id": "38bdf90606b19ee0",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=d0f2342315b6093a",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Applied AI Engineer",
+      "company": "HackerRank",
+      "location": "KA, IN",
+      "url": "https://in.indeed.com/viewjob?jk=5b0a95d100fa5edd",
+      "apply_url": "https://in.indeed.com/viewjob?jk=5b0a95d100fa5edd",
+      "url_type": "UNKNOWN",
+      "description": "HackerRank helps companies like NVIDIA, Amazon, and Microsoft hire and upskill the next generation of developers based on skills, not pedigree. Our platform is trusted by over 2,500 of the world’s most innovative companies to build strong engineering teams ready for what’s next.  \n\n  \n\nSoftware has entered an era where humans and AI build side by side. As this shift accelerates, the definition of strong technical talent is changing. We give companies better ways to identify and invest in next\\-g",
+      "_source_type": "jobspy",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "66b6674470491f69",
+      "canonical": true,
+      "canonical_id": "66b6674470491f69",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=5b0a95d100fa5edd",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Applied AI Engineer @ Taktile",
+      "company": "Taktile",
+      "location": "Bangalore",
+      "url": "https://jobs.ashbyhq.com/taktile/43ea8326-f737-49af-8310-368fa03b3a8e",
+      "apply_url": "https://jobs.ashbyhq.com/taktile/43ea8326-f737-49af-8310-368fa03b3a8e",
+      "description": "As an Applied AI Engineer, you'll be at the heart of that transformation, helping to build advanced agentic products that solve high-value problems. You will take ownership of the AI agents you create, turning them into reusable applications that solve concrete customer problems at scale in...",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.38,
         "biz_model": "unknown",
         "preferred_company_match": false
       },
       "_india_filter": "location contains bangalore",
-      "_canonical_fp": "90e41bf38176cea1",
+      "_canonical_fp": "160c916f1e011b9a",
       "canonical": true,
-      "canonical_id": "90e41bf38176cea1",
+      "canonical_id": "160c916f1e011b9a",
+      "apply_route": {
+        "best_apply_route": "ashby",
+        "apply_url": "https://jobs.ashbyhq.com/taktile/43ea8326-f737-49af-8310-368fa03b3a8e",
+        "backup_urls": [],
+        "reason": "best route: ashby (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Applied AI Engineer",
+      "company": "Air",
+      "location": "Bangalore",
+      "url": "https://apply.workable.com/air/j/EB172BBC35",
+      "apply_url": "https://apply.workable.com/air/j/EB172BBC35",
+      "description": "Air is a Creative Ops System for creative teams. Our product automates the mindless tasks that creatives and marketers do every day to manage content and unlocks creativity through image recognition, automated versioning, and approval workflows. We l...",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains bangalore",
+      "_canonical_fp": "2155f46dd9fb7ff6",
+      "canonical": true,
+      "canonical_id": "2155f46dd9fb7ff6",
       "apply_route": {
         "best_apply_route": "unknown",
-        "apply_url": "https://apply.workable.com/shae-group/j/116BEEDFE9",
+        "apply_url": "https://apply.workable.com/air/j/EB172BBC35",
         "backup_urls": [],
         "reason": "best route: unknown (priority 9)",
         "risk": "high"
       }
     },
     {
-      "title": "AI Engineer",
-      "company": "Agentic AI & Automation",
+      "title": "Applied AI Engineer",
+      "company": "CheQ",
       "location": "Bangalore",
-      "url": "https://apply.workable.com/luxasia/j/CFF16F4372/",
-      "apply_url": "https://apply.workable.com/luxasia/j/CFF16F4372/",
-      "description": "2–5 years in software or ML engineering with at least 1–2 years of hands-on production experience building LLM-based or agentic AI systems. Experience shipping AI features to real end users is essential.",
-      "_source_type": "google_jobs",
+      "url": "https://www.instahyre.com/job-336694-applied-ai-engineer-at-cheq-2-bangalore/",
+      "apply_url": "",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "Function: Data Science and Analysis → Data Science / Machine Learning LLMs Machine Learning OpenAI NLP Generative AI We are seeking an AI Engineer with specialized skills in Large Language Models (LLMs) to enhance our platform's AI capabilities. The role involves integrating and fine-tuning existing LLMs provided by vendors such as Amazon and Google to meet our specific business needs. Responsibilities: Collaborate with AI vendors to obtain and adapt Large Language Models (LLMs). Tweak LLM configurations to align with our specific requirements without developing or training models from scratch. Handle the integration of these models into our existing systems, ensuring seamless functionality and performance. Contribute to both the strategic and hands-on aspects of AI deployment, from concept through to execution. Provide deeper insights than typical API integration, involving detailed customization and operational deployment of AI models. Requirements: Proficient in Python and familiar with LLMs and machine learning technologies. Experience with model fine-tuning, transformers, and inference. Background in data science with hands-on experience in deploying models to production. Ability to work with complex AI models and adjust their configurations for optimal results. Excellent problem-solving skills and the capability to work independently or as part of a team. Previous experience in a similar role, ideally within a technology-driven business environment.",
+      "skills": [
+        "Python",
+        "LLMs",
+        "Machine Learning",
+        "OpenAI",
+        "NLP",
+        "Generative AI",
+        "Node.js",
+        "MongoDB"
+      ],
+      "salary": "",
+      "work_mode": "onsite",
+      "_source_type": "scrapegraph",
+      "_phase": "B",
       "_ontology": {
         "seniority": "unknown",
-        "archetype_match": 0.2,
-        "biz_model": "b2b",
-        "preferred_company_match": true
+        "archetype_match": 0.38,
+        "biz_model": "unknown",
+        "preferred_company_match": false
       },
-      "_india_filter": "location contains bangalore",
-      "_canonical_fp": "b38fa38c74195413",
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "6fa498616d20fa48",
       "canonical": true,
-      "canonical_id": "b38fa38c74195413",
+      "canonical_id": "6fa498616d20fa48",
       "apply_route": {
-        "best_apply_route": "unknown",
-        "apply_url": "https://apply.workable.com/luxasia/j/CFF16F4372/",
+        "best_apply_route": "instahyre",
+        "apply_url": "https://www.instahyre.com/job-336694-applied-ai-engineer-at-cheq-2-bangalore/",
         "backup_urls": [],
-        "reason": "best route: unknown (priority 9)",
-        "risk": "high"
+        "reason": "best route: instahyre (priority 3)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Applied AI Engineer with 1 - 4 Years of Experience at I2E Consulting...",
+      "company": "",
+      "location": "",
+      "url": "https://www.foundit.in/job/applied-ai-engineer-i2e-consulting-private-limited-remote-47165204",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "Job Description. Join i2e Consulting as an Applied AI Engineer in our AI Labs team! If youre someone who builds with AI-native tools, ships fast, and brings deep expertise in production-grade agentic workflows and AI-powered applications this opportunity is for you.",
+      "_source_type": "search",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "mid",
+        "archetype_match": 0.5,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "80f022e9ac2c6153",
+      "canonical": true,
+      "canonical_id": "80f022e9ac2c6153",
+      "apply_route": {
+        "best_apply_route": "foundit",
+        "apply_url": "https://www.foundit.in/job/applied-ai-engineer-i2e-consulting-private-limited-remote-47165204",
+        "backup_urls": [],
+        "reason": "best route: foundit (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Applied AI Engineer (AI/ML LLM Deployment)",
+      "company": "NeoGenCode Technologies Pvt Ltd",
+      "location": "",
+      "url": "https://cutshort.io/job/Applied-AI-Engineer-AI-ML-LLM-Deployment-NeoGenCode-Technologies-Pvt-Ltd-oliI22ix",
+      "apply_url": "",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "Job Title : Applied AI Engineer (AI/ML LLM Deployment) Experience : 4+ Years Location : Remote Job Summary : We are looking for an Applied AI Engineer with strong expertise in Large Language Models (LLMs) to design, optimize, and deploy advanced AI solutions. The role focuses on LLM integration, fine-tuning, and performance optimization for scalable production use. Mandatory Skills : LLM Integration, Prompt Engineering, LangChain/LlamaIndex, Fine-tuning LoRA, Model Quantization, Local Deployment, Tokenizers, Performance Optimization. Key Responsibilities : Integrate GPT-4, Claude, and open-source LLMs into applications. Design and implement prompt engineering for context-specific, tone-appropriate outputs. Build AI pipelines using LangChain, LlamaIndex, or similar frameworks . Perform fine-tuning and LoRA (Low-Rank Adaptation) to customize models. Apply model quantization (GGML, GPTQ, bitsandbytes) for efficient deployment. Deploy models with Hugging Face Transformers, vLLM, llama.cpp . Optimize tokenization and inference performance for low latency. Required Skills : Strong hands-on experience with LLMs (OpenAI GPT-4, Claude, open-source models). Proficiency in Prompt Engineering and tone-specific output design. Experience with LangChain, LlamaIndex , or other orchestration frameworks. Knowledge of fine-tuning, LoRA techniques, and quantization methods . Familiarity with deployment frameworks (Transformers, vLLM, llama.cpp). Strong understanding of tokenizers and efficient text preprocessing. Ability to optimize models for real-time, low-latency inference. Solid programming skills in Python and experience with PyTorch/TensorFlow . Nice to Have : Exposure to MLOps tools (Docker, Kubernetes, CI/CD for AI). Experience with evaluation frameworks for LLMs . Knowledge of multi-modal models (text, vision, audio).",
+      "skills": [
+        "Artificial Intelligence (AI)",
+        "Machine Learning (ML)",
+        "Large Language Models (LLM)",
+        "Prompt engineering",
+        "LangChain",
+        "Llama Model",
+        "Quantization",
+        "Software deployment",
+        "Tokenizers",
+        "Web performance optimization"
+      ],
+      "salary": "₹8L - ₹15L / yr",
+      "work_mode": "remote",
+      "_source_type": "scrapegraph",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.5,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "01e450cb84ee2c8b",
+      "canonical": true,
+      "canonical_id": "01e450cb84ee2c8b",
+      "apply_route": {
+        "best_apply_route": "cutshort",
+        "apply_url": "https://cutshort.io/job/Applied-AI-Engineer-AI-ML-LLM-Deployment-NeoGenCode-Technologies-Pvt-Ltd-oliI22ix",
+        "backup_urls": [],
+        "reason": "best route: cutshort (priority 4)",
+        "risk": "medium"
       }
     },
     {
@@ -176,9 +347,10 @@
       "salary": "",
       "work_mode": "",
       "_source_type": "generic_http",
+      "_phase": "B",
       "_ontology": {
         "seniority": "unknown",
-        "archetype_match": 0.2,
+        "archetype_match": 0.25,
         "biz_model": "unknown",
         "preferred_company_match": false
       },
@@ -189,66 +361,6 @@
       "apply_route": {
         "best_apply_route": "cutshort",
         "apply_url": "https://cutshort.io/job/Applied-AI-Engineer-MERN-Stack-Procedure-osZhIuIE",
-        "backup_urls": [],
-        "reason": "best route: cutshort (priority 4)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "Senior Voice AI Engineer — HIPAA-Compliant AI Receptionist Platform",
-      "company": "",
-      "location": "",
-      "url": "https://cutshort.io/job/Senior-Voice-AI-Engineer-HIPAA-Compliant-AI-Receptionist-Platform-AIspire360-Inc-kZdHhQTd",
-      "apply_url": "https://cutshort.io/job/Senior-Voice-AI-Engineer-HIPAA-Compliant-AI-Receptionist-Platform-AIspire360-Inc-kZdHhQTd",
-      "url_type": "INDIVIDUAL_JOB",
-      "description": "Senior Voice AI Engineer — HIPAA-Compliant AI Receptionist Platform\nat\nAIspire360 Inc\nApply to this job\nSenior Voice AI Engineer — HIPAA-Compliant AI Receptionist Platform\nAIspire360 Inc\nCompany\nHome\nSenior Voice AI Engineer — HIPAA-Compliant AI Receptionist Platform\nat\nAIspire360 Inc\nPosted by\nAmit Mohan\nApply to this job\n3\n- 10 yrs\n₹10L - ₹30L / yr\nRemote only\nSkills\nArtificial Intelligence (AI)\nHIPAA\nBackend testing\nAPI management\nCompany:\nAISpire360\nRole:\nSenior Voice AI Engineer (Independent Contractor, Full-Time Engagement)\nLocation:\nRemote (India-based preferred; must overlap 4–6 hours daily with London + US Eastern)\nEngagement:\nFull-time independent contractor — long-term\nCompensation:\nCompetitive, paid in USD, monthly. Senior staff-level rates.\nAbout AISpire360\nWe are building the operating system for medical practices in the US. Our flagship product is\nARIA\n, an AI receptionist that handles inbound and outbound calls, intake, scheduling, eligibility, prior authorization workflows, and after-hours coverage for medical practices. We are in active production deployment with our first practice — a spine surgery practice at the Hospital for Special Surgery in New York. Multiple specialty practices are in our deployment pipeline.\nThe platform is built to be specialty-agnostic. The voice agent stack is the universal foundation. Knowledge layers (spine surgery, primary care, behavioral health, dermatology, cardiology, pediatrics, etc.) plug in as configuration. One platform, many specialties.\nWe are venture-backed, founder-led, and shipping. The technical decisions you make here will be in production within weeks.\nWhat You'll Own\nYou are the technical anchor for the voice agent. You will be responsible for:\nReal-time voice system\nVoice agent stack on ElevenLabs Conversational AI (and evaluation of Retell, Vapi, LiveKit alternatives as we scale)\nSTT and TTS configuration, voice tuning, language and accent handling\nTurn-taking, barge-in, end-of-speech detection, latency budgets\nDriving end-to-end voice latency below 700ms (we currently target 600ms)\nQuality vs. cost tradeoffs across voice tier selection (Premium / Turbo / Standard)\nSilence-detection optimization for outbound calls (95% silence-discount realization)\nHIPAA + PHI infrastructure\nBAA-compliant hosting architecture (AWS-based, BAA in place)\nPHI detection and redaction pipeline (AWS Comprehend Medical + custom pre-filters)\nEncryption in transit and at rest, audit logging, 7-year retention compliance\nAccess controls, RBAC, kill-switch infrastructure\nHIPAA Security Rule compliance for technical safeguards\nAgent orchestration and tools\nLLM integration (GPT-4o, Claude Sonnet, with model routing for cost optimization)\nTool calling for scheduling, eligibility checks, prior auth lookups, calendar booking, task creation\nMulti-turn conversation state management\nMulti-topic call handling and structured task generation\nSafety-critical keyword detection and escalation routing\nIntegrations\nEHR integration (Epic, Athena, eClinicalWorks — at least one in V1)\nInsurance eligibility APIs (Availity, Change Healthcare, payer-specific)\nCalendar integration (Google Calendar, Microsoft 365, Cal.com)\nSMS and email gateways (Twilio, SendGrid)\nPractice-specific webhooks for task manager surfacing\nMulti-tenant platform foundations\nPer-practice configuration loading (specialty profile + practice profile)\nPer-tenant isolation, data segregation\nSpecialty-specific intake schemas, triage rules, safety keywords\nProduction observability (tracing, metrics, latency monitoring per practice)\nRequired Experience\nYou should be able to demonstrate, in a live walkthrough with code in hand, that you have shipped production voice AI systems. Specifically:\n3+ years of production voice/conversational AI experience.\nNot chatbots — actual real-time voice agents handling live phone calls. ElevenLabs, Retell, Vapi, LiveKit, OpenAI Realtime, Deepgram, or equivalent.\nDeep familiarity with at least 2 of: ElevenLabs Con",
-      "skills": [],
-      "salary": "",
-      "work_mode": "",
-      "_source_type": "generic_http",
-      "_ontology": {
-        "seniority": "senior",
-        "archetype_match": 0.27,
-        "biz_model": "unknown",
-        "preferred_company_match": false
-      },
-      "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "9aa0cdcdbe727295",
-      "canonical": true,
-      "canonical_id": "9aa0cdcdbe727295",
-      "apply_route": {
-        "best_apply_route": "cutshort",
-        "apply_url": "https://cutshort.io/job/Senior-Voice-AI-Engineer-HIPAA-Compliant-AI-Receptionist-Platform-AIspire360-Inc-kZdHhQTd",
-        "backup_urls": [],
-        "reason": "best route: cutshort (priority 4)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "Full Stack Developer",
-      "company": "",
-      "location": "",
-      "url": "https://cutshort.io/job/Full-Stack-Developer-eblity-yWOG4iYW",
-      "apply_url": "https://cutshort.io/job/Full-Stack-Developer-eblity-yWOG4iYW",
-      "url_type": "INDIVIDUAL_JOB",
-      "description": "Full Stack Developer\nat\neblity\nApply to this job\nFull Stack Developer\neblity\nCompany\nHome\nFull Stack Developer\nat\neblity\nPosted by\nRajendran Govindasamy\nApply to this job\n3\n- 5 yrs\n₹9L - ₹12L / yr\nRemote only\nSkills\nReact.js\nPython\nPostgreSQL\nAmazon Web Services (AWS)\nGoogle Cloud Platform (GCP)\nGenerative AI\nRetrieval Augmented Generation (RAG)\nArtificial Intelligence (AI)\nJob Title: Full-Stack Developer\nLocation:\nBangalore/Remote\nType:\nFull-time\nAbout Eblity:\nEblity’s mission is to empower educators and parents to help children facing challenges.\nOver 50% of children in mainstream schools face academic or behavioural challenges, most of which go unnoticed and underserved. By providing the right support at the right time, we could make a world of difference to these children.\nWe serve a community of over 200,000 educators and parents and over 3,000 schools.\nIf you are purpose-driven and want to use your skills in technology to create a positive impact for children facing challenges and their families, we encourage you to apply.\nJoin us in shaping the future of inclusive education and empowering learners of all abilities.\nRole Overview:\nAs a full-stack developer, you will lead the development of critical applications.\nThese applications enable services for parents of children facing various challenges such as Autism, ADHD and Learning Disabilities, and for experts who can make a significant difference in these children’s lives.\nYou will be part of a small, highly motivated team who are constantly working to improve outcomes for children facing challenges like Learning Disabilities, ADHD, Autism, Speech Disorders, etc.\nJob Description:\nWe are seeking a talented and proactive Full Stack Developer with hands-on experience in the\nReact / Python / Postgres\nstack, leveraging\nCursor\nand\nReplit\nfor full-stack development. As part of our product development team, you will work on building responsive, scalable, and user-friendly web applications, utilizing both front-end and back-end technologies. Your expertise with\nCursor\nas an AI agent-based development platform and\nReplit\nwill be crucial for streamlining development processes and accelerating product timelines.\nResponsibilities:\nDesign, develop, and maintain\nfront-end web applications\nusing\nReact\n, ensuring a responsive, intuitive, and high-performance user experience.\nBuild and optimize the\nback-end\nusing\nFastAPI\nor\nFlask\nand\nPostgreSQL\n, ensuring scalability, performance, and maintainability.\nLeverage\nReplit\nfor full-stack development, deploying applications, managing cloud resources, and streamlining collaboration across team members.\nUtilize\nCursor\n, an AI agent-based development platform, to enhance application development, automate processes, and optimize workflows through AI-driven code generation, data management, and integration.\nCollaborate with cross-functional teams (back-end developers, designers, and product managers) to gather requirements, design solutions, and implement them seamlessly across the front-end and back-end.\nDesign and implement\nPostgreSQL\ndatabase schemas, writing optimized queries to ensure efficient data retrieval and integrity.\nIntegrate\nRESTful APIs\nand third-party services across the\nReact\nfront-end and\nFastAPI/Flask/PostgreSQL\nback-end, ensuring smooth data flow.\nImplement and optimize reusable\nReact components\nand\nFastAPI/Flask functions\nto improve code maintainability and application performance.\nConduct thorough testing, including unit, integration, and UI testing, to ensure application stability and reliability.\nOptimize both front-end and back-end applications for maximum speed and scalability, while resolving performance issues in both custom code and integrated services.\nStay up-to-date with emerging technologies to continuously improve the quality and efficiency of our solutions.\nQualifications:\nBachelor’s degree in\nComputer Science\n, Engineering, or a related field, or equivalent practical experience.\n2+ years of experience in\nReact\ndevel",
-      "skills": [],
-      "salary": "",
-      "work_mode": "",
-      "_source_type": "generic_http",
-      "_ontology": {
-        "seniority": "unknown",
-        "archetype_match": 0.27,
-        "biz_model": "unknown",
-        "preferred_company_match": false
-      },
-      "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "87097f2436b24b61",
-      "canonical": true,
-      "canonical_id": "87097f2436b24b61",
-      "apply_route": {
-        "best_apply_route": "cutshort",
-        "apply_url": "https://cutshort.io/job/Full-Stack-Developer-eblity-yWOG4iYW",
         "backup_urls": [],
         "reason": "best route: cutshort (priority 4)",
         "risk": "medium"

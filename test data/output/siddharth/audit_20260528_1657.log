@@ -1,0 +1,1480 @@
+
+============================================================
+  CAREERLOOP SIDDHARTH FULL RUN — v4
+============================================================
+  Started : 2026-05-28 16:57:55
+  Roles   : AI Product Engineer, Applied AI Engineer, AI Product Manager
+  Cities  : Bangalore, Chennai
+  Max/role: 30
+  Audit   : /Users/hayagreev13/Projects/career-loop/CareerLoop/test data/output/siddharth/audit_20260528_1657.log
+  SerpAPI : ✅ ACTIVE
+  DeepSeek: ✅ ACTIVE
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 0: IMPORTS + INIT
+────────────────────────────────────────────────────────────
+  ✓ on_demand.OnDemandSearch imported
+  [careerloop.memory.connection] [DB] SQLite local dev: /Users/hayagreev13/Projects/career-loop/CareerLoop/test data/output/careerloop_local.db
+  ✓ OnDemandSearch ready — profile: profile.yml
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: AI Product Engineer @ Bangalore
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Bangalore | AI Product Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Archetype] role='AI Product Engineer' | function='applied product engineering' | market='B2B SaaS / developer tools'
+  [Archetype] must_have=['product', 'applied AI', 'customer-facing', 'cross-functional', 'platform', 'LLM', 'agent', 'API']
+  [Archetype] avoid=['research', 'data science', 'frontend', 'QA', 'support', 'SAP', 'Java', 'PHP']
+  [Queries] 8 board queries: ['ai product engineer applied product engineering AI product startup Bangalore jobs', 'ai product engineer applied product engineering AI product startup hiring Bangalore 2025', '"AI product engineer" jobs in Bangalore', '"AI product engineer" hiring Bangalore site:linkedin.com/jobs/view']
+  [Phase A] DETACHED — skipping employer discovery (Phase B→G mode)
+  [Phase B] searching job boards (parallel)...
+  [careerloop.sources.search_adapter] Search [1/6]: ai product engineer applied product engineering AI product startup Bangalore jobs
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [careerloop.sources.naukri_adapter] Naukri API returned 406
+  [careerloop.on_demand] [OnDemand] Naukri: 0 jobs
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in&limit=1 200
+  [primp] response: https://search.brave.com/search?q=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in&source=web 429
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%252Fjob-listing%2BAI%2BProduct%2BEngineer%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGL3N4NAGIjCatCjehQgKEGU3ZkmKHqrYAPyT_9Tzit4P5c0DrHmFs-WLoDFC5v9F4NRpcMB9dtkyAnJSWgFD 429
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India 200
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com/job-listing%20AI%20Product%20Engineer%20Bangalore%20India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Ajobs.lever.co%20Bangalore%20India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20Product%20Engineer%22%20Bangalore%20site%3Afoundit.in 200
+  [primp] response: https://search.yahoo.com/search;_ylt=xsP1amucg17u-d_whYMOTat4;_ylu=hLv8btUDGRwUI7tRrwpkBIGXCHeKrjVE_0mPCv2RWcVbBl4?p=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20engineer%20applied%20product%20engineering%20AI%20product%20startup%20Bangalore%20jobs 200
+  [primp] response: https://yandex.com/search/site/?text=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in&web=1&searchid=1184411 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India&limit=1 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=ai+product+engineer+applied+product+engineering+AI+product+startup+Bangalore+jobs&limit=1 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+  [primp] response: https://search.yahoo.com/search;_ylt=nE0HFma4rDoV2y0P9auxua0X;_ylu=BZBaSOcLyNH4x-hZitLlH7uIGiOWhBVMmWEC27blqLk-Bkk?p=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India 200
+  [primp] response: https://www.mojeek.com/search?q=ai+product+engineer+applied+product+engineering+AI+product+startup+Bangalore+jobs 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India&limit=1 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India&web=1&searchid=5378963 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in 403
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India&source=web 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.search_adapter] Search [2/6]: ai product engineer applied product engineering AI product startup hiring Bangalore 2025
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2BProduct%2BEngineer%2522%2BBangalore%2Bsite%253Afoundit.in%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGMHN4NAGIjCarU8m90lPz7m3S-5VCUsriVR1JHQyXgjbALEnZcrcSjTjFPDSWjaKJkXCIkhwULgyAnJSWgFD 429
+  [careerloop.sources.monster_adapter] [Monster/foundit] DDG: AI Product Engineer in Bangalore: 13 jobs
+  [careerloop.on_demand] [OnDemand] Monster/foundit: 13 jobs
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India&web=1&searchid=9926481 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=ai+product+engineer+applied+product+engineering+AI+product+startup+hiring+Bangalore+2025&limit=1 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Ajobs.lever.co%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGMPN4NAGIjA4uRi82PwZOqVjZDttzZCrFZ4USChFkpBRW3d0pAEe_dFlkxNjSbOEbdhWasuQfx4yAnJSWgFD 429
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore&source=web 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20engineer%20applied%20product%20engineering%20AI%20product%20startup%20hiring%20Bangalore%202025 200
+  [primp] response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India&source=web 429
+  [primp] response: https://search.brave.com/search?q=ai+product+engineer+applied+product+engineering+AI+product+startup+hiring+Bangalore+2025&source=web 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com%20%22job-listing%22%20%22AI%20Product%20Engineer%22%20Bangalore 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore&limit=1 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aboards.greenhouse.io%20Bangalore%20India 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&web=1&searchid=3405057 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.jobspy_adapter] JobSpy found 40 jobs for 'AI Product Engineer' in Bangalore
+  [careerloop.on_demand] [OnDemand] JobSpy: 40 jobs
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&source=web 429
+  [careerloop.sources.search_adapter] Search [3/6]: "AI product engineer" jobs in Bangalore
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore&web=1&searchid=6541275 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Aboards.greenhouse.io%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGMfN4NAGIjBsAkPKo0Y2HjipeR87YBLK40z45AtcWYrhw0OyctKw_sC8MOExZliJwopW9rqIMyIyAnJSWgFD 429
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%2B%2522job-listing%2522%2B%2522AI%2BProduct%2BEngineer%2522%2BBangalore%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGMfN4NAGIjDB5tc86nI8j2-tBQys9tsVgtw5RMes99zhzbsevj_gkzfH6vWmJ5cp5gregKAOvwYyAnJSWgFD 429
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India 200
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore 403
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20jobs%20in%20Bangalore 200
+  [primp] response: https://search.yahoo.com/search;_ylt=zVBmumVk7oJQ5JHrMVQakWXe;_ylu=5FzN0raOXFU78QQikyePIK08kxd4KmBEWk6h4HW3us4G8YU?p=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India 200
+  [primp] response: https://search.yahoo.com/search;_ylt=qXEico45qrD5QufakGnxkc9O;_ylu=xPhEyb_YqJrvcs9CEdZatEd7VxLk_NiWCcrfA1IEUHa6yis?p=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore 200
+  [careerloop.sources.glassdoor_adapter] [Glassdoor] AI Product Engineer in Bangalore: 15 jobs
+  [careerloop.on_demand] [OnDemand] Glassdoor: 15 jobs
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+jobs+in+Bangalore&limit=1 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India&limit=1 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Aashbyhq.com%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGMvN4NAGIjCztfY0-4-_Hc_472c3Q7u97dL0jJ2L6xxPaBp7zFV1udJkYH0PyFHoPwpHRpzHh5QyAnJSWgFD 429
+  [primp] response: https://search.yahoo.com/search;_ylt=vEmn08H3vp-FUFG_Q-rZ44TT;_ylu=A9Hos8bXmtImcP50ls9PAxQWqBLmbckkghGoHbk6W1Ttgis?p=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aashbyhq.com%20Bangalore%20India 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://search.brave.com/search?q=%22AI+product+engineer%22+jobs+in+Bangalore&source=web 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+jobs+in+Bangalore&web=1&searchid=1889067 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India&source=web 429
+  [careerloop.sources.search_adapter] Search [4/6]: "AI product engineer" hiring Bangalore site:linkedin.com/jobs/view
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India&web=1&searchid=6127584 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aapply.workable.com+Bangalore+India&source=web 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aapply.workable.com%20Bangalore%20India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20hiring%20Bangalore%20site%3Alinkedin.com/jobs/view 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aapply.workable.com+Bangalore+India&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aapply.workable.com+Bangalore+India&web=1&searchid=1655986 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&limit=1 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aapply.workable.com+Bangalore+India 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.yahoo.com/search;_ylt=5nIuiIGpZLNLXZJvvIGSe66q;_ylu=1sUFhKAay8ifk3qqcwT9NK-t_wwnvo-jARTopGKC-usiY-Y?p=AI+Product+Engineer+site%3Aapply.workable.com+Bangalore+India 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Aapply.workable.com%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGNbN4NAGIjCXPCrFvNmY7kC_oJ06UTNTaw6stVO1s9aJYQ2NrGectzDkL8C4ZLGQmOh_piGAe-0yAnJSWgFD 429
+  [primp] response: https://search.yahoo.com/search;_ylt=lAjS-sOVsjWRZ5vhr-sbgZ4c;_ylu=EXQvIvm8ZF7QyapU2ggyJf3N__1wdJflvej1sln7JxaKOQs?p=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&web=1&searchid=7060400 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.google_jobs_adapter] [GoogleJobs] AI Product Engineer in Bangalore: 24 jobs
+  [careerloop.on_demand] [OnDemand] GoogleJobs: 24 jobs
+  [careerloop.sources.search_adapter] Search [5/6]: "AI product engineer" Bangalore site:naukri.com
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Bangalore%20site%3Anaukri.com 200
+  [primp] response: https://search.yahoo.com/search;_ylt=Z0GLud3IZyfevhaA2fqvlH-A;_ylu=taUx8rNXY5crvARp9965Azdm3lqpWdsGdufnIkynyDg9-tM?p=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com 403
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2BBangalore%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGN3N4NAGIjAEnonmuyYQ3h6Es5KTAYfEuPvylheE8-MR0YpRsZ6ia_a7Y41SFVAR_0goZ-DTFJYyAnJSWgFD 429
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com&web=1&searchid=3670743 200
+  [primp] response: https://search.brave.com/search?q=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com&source=web 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.search_adapter] Search [6/6]: "AI product engineer" Bangalore site:cutshort.io
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Bangalore+site%3Acutshort.io&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Bangalore%20site%3Acutshort.io 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2BBangalore%2Bsite%253Acutshort.io%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGObN4NAGIjCgxgIrVfbDZdGftpzcQaakf9VMxKlLqOhn-hn_ovEjP-RCTrTs8iX2oYiTzskYkI0yAnJSWgFD 429
+  [primp] response: https://search.brave.com/search?q=%22AI+product+engineer%22+Bangalore+site%3Acutshort.io&source=web 429
+  [primp] response: https://search.yahoo.com/search;_ylt=98IyeBqc2iA1fx2I8rl20E1r;_ylu=sffDBlnccudHcB7n0d8n6kEin9Riv4T3xGxRbgSusTDhODQ?p=%22AI+product+engineer%22+Bangalore+site%3Acutshort.io 200
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+Bangalore+site%3Acutshort.io&web=1&searchid=8285865 200
+  [careerloop.sources.search_adapter] Total candidate URLs: 26
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://weloveproduct.co/jobs/product-designer-asaap-5arb0g: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://en-in.whatjobs.com/jobs/ai-engineer: 503 Server Error: Service Unavailable for url: https://api.deepseek.com/v1/chat/completions
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://cutshort.io/job/Full-stack-developer-Recruit-Square-wrN8K60z: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://cutshort.io/job/Software-Developer-SDE2-Bengaluru-Bangalore-Hyderabad-Amazon-India-ygfI9KJf: 503 Server Error: Service Unavailable for url: https://api.deepseek.com/v1/chat/completions
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://app.welcometothejungle.com/jobs/d6SfGGLY: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://hirify.me/jobs/541230-senior-ai-product-engineer-ai: 503 Server Error: Service Unavailable for url: https://api.deepseek.com/v1/chat/completions
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://nofluffjobs.com/job/ai-product-engineer-design-tooploox-remote-1: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.remotery.co/job/remote-internal-ai-product-engineer-at-refurbed-in-united-states-full-time-e85415: 503 Server Error: Service Unavailable for url: https://api.deepseek.com/v1/chat/completions
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.foundit.in/job/ai-product-engineer-fh-daata-gurugram-49289576: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://cutshort.io/job/Gen-AI-Engineer-Top-b2c-product-company-and-tier-1-college-only-Bengaluru-Bangalore-Talent-Pro--fgomCdtN: 503 Server Error: Service Unavailable for url: https://api.deepseek.com/v1/chat/completions
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://cutshort.io/job/AI-Engineer-Bengaluru-Bangalore-Gyrus-AI-Private-Limited-xJWwDG1f: 503 Server Error: Service Unavailable for url: https://api.deepseek.com/v1/chat/completions
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://cutshort.io/job/Generative-AI-Engineer-Bengaluru-Bangalore-Quantiphi-hja2EdHo: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.on_demand] [OnDemand] Board health: {'naukri': 0, 'monster': 13, 'jobspy': 40, 'glassdoor': 15, 'google_jobs': 24, 'ddg': 21}
+  [Phase B] per-source: ddg:21 | glassdoor:15 | google_jobs:24 | jobspy:40 | monster:13 | naukri:0
+  [Phase B] boards done — 102 jobs (archetype title-rejected 11)
+  [Pipeline] total raw candidates: 102 (A:0 + B:102)
+  [careerloop.india_filter] India filter: 80 passed, 22 rejected
+  [Filter] India filter: 102 → 80
+  [Phase E] ontology gate (archetype_match>=0.2): 80 → 14 (66 dropped)
+  [Phase E] role similarity filter: 14 candidates...
+  [sentence_transformers.base.model] No device provided, using mps
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+  [huggingface_hub.utils._http] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+  [sentence_transformers.base.model] Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+  [httpx] HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+  [careerloop.role_similarity] [RoleSimilarity] Using sentence-transformers
+  [Phase E] role filter done: 14 → 9 relevant (5 rejected)
+  [careerloop.apply_route] Canonical dedup: 9 → 9 unique jobs
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Reltio': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Reltio': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Thoughtworks': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Thoughtworks': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Software Engineer, DevOps, Research Platform': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Software Engineer, DevOps, Research Platform': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Bespokelabs': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Bespokelabs': near "%": syntax error — using defaults
+  [Phase F] LLM validator (DeepSeek): validating top-5 jobs...
+  [careerloop.on_demand] [OnDemand] LLM validator: 5 → 4 (1 rejected)
+  [Phase F] LLM validator done: 5 → 4
+
+────────────────────────────────────────────────────────────
+  RESULTS: AI Product Engineer @ Bangalore
+────────────────────────────────────────────────────────────
+  Keywords   : AI product engineer, AI product developer, machine learning product engineer, AI solutions engineer, AI product manager, AI engineer, product engineer AI, AI product architect, AI product specialist, AI product lead
+  Candidates : 102
+  After dedup: 9
+  Ranked     : 4
+  Elapsed    : 339.7s
+  · Phase A: detached (include_phase_a=False)
+  · board health: ddg:21 | glassdoor:15 | google_jobs:24 | jobspy:40 | monster:13 | naukri:0
+  · ontology gate: dropped 66 jobs (archetype_match<0.2)
+  · role filter: 14 → 9 relevant (5 rejected)
+  · city filter (Bangalore): 9 → 7 (2 off-city removed)
+  · company cap (max 3): 7 → 5
+
+    #   SCORE  TITLE                                          COMPANY                         PHASE:SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ──────────────────
+    1    57.2  Generative AI- Machine Learning Engineer       ?                               [B:generic_http]
+         → https://cutshort.io/job/Generative-AI-Engineer-Bengaluru-Bangalore-Quantiphi-hja2EdHo
+    2    55.8  AI Product Engineer (Agentic AI / Vibe Coding  ?                               [B:foundit]
+         → https://www.foundit.in/job/ai-product-engineer-agentic-ai-vibe-coding-kuubiik-india-47494538
+    3    55.3  Software Engineer, AI Agents, Tools and Produ  ?                               [B:foundit]
+         → https://www.foundit.in/job/software-engineer-ai-agents-tools-and-productivity-google-india-beng
+    4    30.0  Product Engineer (Bangalore) @ Bespoke Labs    Bespokelabs                     [B:google_jobs]
+         → https://jobs.ashbyhq.com/bespokelabs/3751a4cb-bb4d-4113-afe6-9c87341f6739
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: AI Product Engineer @ Chennai
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Chennai | AI Product Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Archetype] role='AI Product Engineer' | function='applied product engineering' | market='B2B SaaS / developer tools'
+  [Archetype] must_have=['product', 'applied AI', 'customer-facing', 'cross-functional', 'platform', 'LLM', 'agent', 'API']
+  [Archetype] avoid=['research', 'data science', 'frontend', 'QA', 'support', 'SAP', 'Java', 'PHP']
+  [Queries] 8 board queries: ['ai product engineer applied product engineering AI product startup Chennai jobs', 'ai product engineer applied product engineering AI product startup hiring Chennai 2025', '"AI product engineer" jobs in Chennai', '"AI product engineer" hiring Chennai site:linkedin.com/jobs/view']
+  [Phase A] DETACHED — skipping employer discovery (Phase B→G mode)
+  [Phase B] searching job boards (parallel)...
+  [careerloop.sources.search_adapter] Search [1/6]: ai product engineer applied product engineering AI product startup Chennai jobs
+  [careerloop.sources.naukri_adapter] Naukri API returned 406
+  [careerloop.on_demand] [OnDemand] Naukri: 0 jobs
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com/job-listing%20AI%20Product%20Engineer%20Chennai%20India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20Product%20Engineer%22%20Chennai%20site%3Afoundit.in 200
+  [primp] response: https://search.brave.com/search?q=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in&source=web 429
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India&source=web 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Ajobs.lever.co%20Chennai%20India 200
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in 403
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in&limit=1 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India&web=1&searchid=8640259 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India&limit=1 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20engineer%20applied%20product%20engineering%20AI%20product%20startup%20Chennai%20jobs 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=ai+product+engineer+applied+product+engineering+AI+product+startup+Chennai+jobs&limit=1 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Ajobs.lever.co%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGJHQ4NAGIjBCW2-FIjLHheQLS7Ce7wp-kv4wfSe0pTZ4Xe1plpzdiFJosnPlIeA3iDu-JD1VXdYyAnJSWgFD 429
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India 200
+  [primp] response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India&source=web 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2BProduct%2BEngineer%2522%2BChennai%2Bsite%253Afoundit.in%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGJLQ4NAGIjD7FO5IPNZvd1PcjefPZQ19yCw9SOpaWLXzeDZfCxOlfqtOHDor1ZJzAxWU90tEVggyAnJSWgFD 429
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India&web=1&searchid=8994213 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in&web=1&searchid=2927239 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dai%2Bproduct%2Bengineer%2Bapplied%2Bproduct%2Bengineering%2BAI%2Bproduct%2Bstartup%2BChennai%2Bjobs%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGJPQ4NAGIjB_r0OW9NS7pT2j8okBZsaM4DfgtxcGXnFStOk5Bzcf2MCljlFN39mCkCACWB3jkj8yAnJSWgFD 429
+  [primp] response: https://search.yahoo.com/search;_ylt=6Rk7JQqsdCxQDY10Pbd0ajDg;_ylu=QvaQ10fOCuVKkmhFFvCmApd3Kd6OWMUHndN9fRgDdAUrYD0?p=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.monster_adapter] [Monster/foundit] DDG: AI Product Engineer in Chennai: 6 jobs
+  [careerloop.on_demand] [OnDemand] Monster/foundit: 6 jobs
+  [primp] response: https://search.yahoo.com/search;_ylt=vm5pCmCew02FYIF-YLELlhHL;_ylu=H7Q6QxDEb0mBKTurIOfrVAlXA1oS3hqFf9xwpf16KxYjedM?p=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India 200
+  [primp] response: https://yandex.com/search/site/?text=ai+product+engineer+applied+product+engineering+AI+product+startup+Chennai+jobs&web=1&searchid=5357167 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aboards.greenhouse.io%20Chennai%20India 200
+  [primp] response: https://search.yahoo.com/search;_ylt=Vh9vutOxSISm26tUTPW3fRw8;_ylu=xgLJNYfFZh_NUQVyefn8de_hOtu_m43T1z-pEN5oc60vliI?p=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India 200
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India&web=1&searchid=2483666 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India&limit=1 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%252Fjob-listing%2BAI%2BProduct%2BEngineer%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGJbQ4NAGIjClLxkiWP3MDsyLrhjZsxaKOZ1hxgzW7CxLgpyzQUZIKDKjfbbkoHzXEEpr15WaQ_gyAnJSWgFD 429
+  [careerloop.sources.search_adapter] Search [2/6]: ai product engineer applied product engineering AI product startup hiring Chennai 2025
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com%20%22job-listing%22%20%22AI%20Product%20Engineer%22%20Chennai 200
+  [primp] response: https://search.yahoo.com/search;_ylt=0EZuZbemIhEREN47B9UmC7pW;_ylu=347fC0r0EzaGR7eKb-6edBZ0VEf29oWJHrOmIAKqtthCG6E?p=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai 200
+  [primp] response: https://search.yahoo.com/search;_ylt=4Jn4_cUFwZCeZgpXjUntLesL;_ylu=pJvmAXIMLtXScWoaFj9GjSSqHUBHC8HAPv0BDuEt1e0wd54?p=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India 200
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai 403
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20engineer%20applied%20product%20engineering%20AI%20product%20startup%20hiring%20Chennai%202025 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%2B%2522job-listing%2522%2B%2522AI%2BProduct%2BEngineer%2522%2BChennai%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGJjQ4NAGIjBc7o-zekSRJHyktQKyD2W_qqW4sYFAq8hiuUpKQeA25PGWQvqwuv32Olf-0nBgG5UyAnJSWgFD 429
+  [primp] response: https://grokipedia.com/api/typeahead?query=ai+product+engineer+applied+product+engineering+AI+product+startup+hiring+Chennai+2025&limit=1 200
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India 200
+  [primp] response: https://search.yahoo.com/search;_ylt=8a77gKMbvNYhSd-1lp_7yDI3;_ylu=7IRgvGun8gqbsxqCkcUzIf2rN9nA0rnmSYMk6MOjMB-uGjo?p=ai+product+engineer+applied+product+engineering+AI+product+startup+hiring+Chennai+2025 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai&web=1&searchid=4059510 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Aboards.greenhouse.io%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGJrQ4NAGIjAIRkAIAzB550mUFuYiP0e41uwLKnU29OSGcwA8fXpYHWCho4R9Uw3HnhOkPEcNIXMyAnJSWgFD 429
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai&source=web 429
+  [primp] response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India&source=web 429
+  [careerloop.sources.jobspy_adapter] JobSpy found 40 jobs for 'AI Product Engineer' in Chennai
+  [careerloop.on_demand] [OnDemand] JobSpy: 40 jobs
+  [primp] response: https://yandex.com/search/site/?text=ai+product+engineer+applied+product+engineering+AI+product+startup+hiring+Chennai+2025&web=1&searchid=6906606 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aashbyhq.com%20Chennai%20India 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aashbyhq.com+Chennai+India&web=1&searchid=1155605 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.glassdoor_adapter] [Glassdoor] AI Product Engineer in Chennai: 15 jobs
+  [careerloop.on_demand] [OnDemand] Glassdoor: 15 jobs
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aashbyhq.com+Chennai+India&limit=1 200
+  [careerloop.sources.search_adapter] Search [3/6]: "AI product engineer" jobs in Chennai
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20jobs%20in%20Chennai 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+jobs+in+Chennai&limit=1 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2Bjobs%2Bin%2BChennai%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGJ_Q4NAGIjCaPA-aEFZoAQ5apDs5MJTSPqbzAwbn359McFV6B9SB-C9Rk9ZWNbbpthfaEOW2WUgyAnJSWgFD 429
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Aashbyhq.com%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGKDQ4NAGIjCmRPaqljlxh1EhT5sOlVzAIWadu2J-kho2pTuDgTY9WrUaJyRiIzB7YZc-XDaAaf4yAnJSWgFD 429
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+jobs+in+Chennai&web=1&searchid=8810987 200
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aashbyhq.com+Chennai+India 200
+  [primp] response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aashbyhq.com+Chennai+India&source=web 429
+  [primp] response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aapply.workable.com+Chennai+India&source=web 429
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aapply.workable.com+Chennai+India&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aapply.workable.com%20Chennai%20India 200
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aapply.workable.com+Chennai+India&web=1&searchid=9974233 200
+  [careerloop.sources.search_adapter] Search [4/6]: "AI product engineer" hiring Chennai site:linkedin.com/jobs/view
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20hiring%20Chennai%20site%3Alinkedin.com/jobs/view 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aapply.workable.com+Chennai+India 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Aapply.workable.com%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGKbQ4NAGIjBeuQH6LrwrszvD9ezcBbG9pWEb-xbq8v1tQYeSB4uIS0UC4o8GuKfGqeI1Ua_eqsUyAnJSWgFD 429
+  [primp] response: https://search.yahoo.com/search;_ylt=2-SJSAea7Jurd_SxiIZyXBMo;_ylu=jibTgu_fkMratl_1FTk_zvpdp4TiQ9X0lDf1bx-_7pD7CCM?p=AI+Product+Engineer+site%3Aapply.workable.com+Chennai+India 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&limit=1 200
+  [careerloop.sources.google_jobs_adapter] [GoogleJobs] AI Product Engineer in Chennai: 30 jobs
+  [careerloop.on_demand] [OnDemand] GoogleJobs: 30 jobs
+  [primp] response: https://search.brave.com/search?q=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&source=web 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview 403
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&web=1&searchid=4651785 200
+  [primp] response: https://search.yahoo.com/search;_ylt=R87uKPkryQuEtPhfu7e8QKtK;_ylu=fQCU3x9WmpIOkAamTOlO1EKGrqLanK9Tub_GriEFCupqCAE?p=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2Bhiring%2BChennai%2Bsite%253Alinkedin.com%252Fjobs%252Fview%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGK3Q4NAGIjAMXAOWKYlec0STvtNruXozKjs2MMCJEFootgiCxGwzp0LN6HOEX83juRRNadBmoU8yAnJSWgFD 429
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [careerloop.sources.search_adapter] Search [5/6]: "AI product engineer" Chennai site:naukri.com
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Chennai%20site%3Anaukri.com 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&limit=1 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2BChennai%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGLHQ4NAGIjCzWj04JMj2NcYy7gclr_FzBJr6eWNuUEhwg2Rss_mPfnomENNJ2Z1FZRnFY3ZId3kyAnJSWgFD 429
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&web=1&searchid=2861656 200
+  [primp] response: https://search.brave.com/search?q=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&source=web 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+Chennai+site%3Anaukri.com 403
+  [primp] response: https://search.yahoo.com/search;_ylt=n0YTzKxZQOHj7rZ1MWjOdXiR;_ylu=esMnDgExKwNm9Q8yVFRObah30in08Hne9Ab7gXobl7i0Zyo?p=%22AI+product+engineer%22+Chennai+site%3Anaukri.com 200
+  [careerloop.sources.search_adapter] Search [6/6]: "AI product engineer" Chennai site:cutshort.io
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Chennai%20site%3Acutshort.io 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Chennai+site%3Acutshort.io&limit=1 200
+  [primp] response: https://search.brave.com/search?q=%22AI+product+engineer%22+Chennai+site%3Acutshort.io&source=web 429
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2BChennai%2Bsite%253Acutshort.io%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGLzQ4NAGIjCDeeP-sdRydowf_OiVtLNjKbJ3X5-Re1f6T7SFb5L7lKNkqF9VfGrPrNiVn6XENjoyAnJSWgFD 429
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+Chennai+site%3Acutshort.io&web=1&searchid=3324806 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.yahoo.com/search;_ylt=5Efy_-jtdJS_75eWloaLVmXV;_ylu=jS0IifxDcmMYEOR8XrMZB2d0HVG2G4Z991Yto65MgWq7IQw?p=%22AI+product+engineer%22+Chennai+site%3Acutshort.io 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+Chennai+site%3Acutshort.io 403
+  [careerloop.sources.search_adapter] Total candidate URLs: 16
+  [careerloop.on_demand] [OnDemand] Board health: {'naukri': 0, 'monster': 6, 'jobspy': 40, 'glassdoor': 15, 'google_jobs': 30, 'ddg': 10}
+  [Phase B] per-source: ddg:10 | glassdoor:15 | google_jobs:30 | jobspy:40 | monster:6 | naukri:0
+  [Phase B] boards done — 90 jobs (archetype title-rejected 11)
+  [Pipeline] total raw candidates: 90 (A:0 + B:90)
+  [careerloop.india_filter] India filter: 69 passed, 21 rejected
+  [Filter] India filter: 90 → 69
+  [Phase E] ontology gate (archetype_match>=0.2): 67 → 9 (58 dropped)
+  [Phase E] role similarity filter: 9 candidates...
+  [Phase E] role filter done: 9 → 5 relevant (4 rejected)
+  [careerloop.apply_route] Canonical dedup: 5 → 5 unique jobs
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Anthropic': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Anthropic': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Couchbase, Inc.': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Couchbase, Inc.': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Mathspace': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Mathspace': near "%": syntax error — using defaults
+  [Phase F] LLM validator (DeepSeek): validating top-5 jobs...
+  [Phase F] LLM validator done: 5 → 5
+
+────────────────────────────────────────────────────────────
+  RESULTS: AI Product Engineer @ Chennai
+────────────────────────────────────────────────────────────
+  Keywords   : AI product engineer, AI product developer, machine learning product engineer, AI solutions engineer, AI product manager, AI engineer, product engineer AI, AI product architect, AI product specialist, AI product lead
+  Candidates : 90
+  After dedup: 5
+  Ranked     : 5
+  Elapsed    : 113.9s
+  · Phase A: detached (include_phase_a=False)
+  · board health: ddg:10 | glassdoor:15 | google_jobs:30 | jobspy:40 | monster:6 | naukri:0
+  · company-type filter: dropped 2 rejected-type companies
+  · ontology gate: dropped 58 jobs (archetype_match<0.2)
+  · role filter: 9 → 5 relevant (4 rejected)
+
+    #   SCORE  TITLE                                          COMPANY                         PHASE:SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ──────────────────
+    1    58.5  AI Product Engineer (Agentic AI / Vibe Coding  ?                               [B:foundit]
+         → https://www.foundit.in/job/ai-product-engineer-agentic-ai-vibe-coding-kuubiik-india-47494538
+    2    57.8  Job Application for Lead Software Engineer -   Couchbase, Inc.                 [B:google_jobs]
+         → https://boards.greenhouse.io/couchbaseinc/jobs/4369457006?gh_jid=4369457006
+    3    57.5  Job Application for Applied AI Product Engine  Anthropic                       [B:google_jobs]
+         → https://boards.greenhouse.io/anthropic/jobs/4131823008
+    4    57.5  AI Product Engineer                            Mathspace                       [B:google_jobs]
+         → https://apply.workable.com/mathspace/j/115A926E81
+    5    51.9  Gen AI Engineer                                ?                               [B:scrapegraph]
+         → https://aijobs.net/job/gen-ai-engineer-bengaluru-karnataka-india-140607/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: Applied AI Engineer @ Bangalore
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Bangalore | Applied AI Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Archetype] role='Applied AI Engineer' | function='applied AI engineering' | market='B2B SaaS / developer tools'
+  [Archetype] must_have=['applied AI', 'product', 'cross-functional', 'customer-facing', 'platform', 'agentic', 'LLM', 'production']
+  [Archetype] avoid=['research', 'data science', 'frontend', 'QA', 'support', 'SAP', 'Java', 'PHP']
+  [Queries] 8 board queries: ['applied ai engineer applied AI engineering AI-native startup Bangalore jobs', 'applied ai engineer applied AI engineering AI-native startup hiring Bangalore 2025', '"applied AI engineer" jobs in Bangalore', '"applied AI engineer" hiring Bangalore site:linkedin.com/jobs/view']
+  [Phase A] DETACHED — skipping employer discovery (Phase B→G mode)
+  [Phase B] searching job boards (parallel)...
+  [careerloop.sources.search_adapter] Search [1/6]: applied ai engineer applied AI engineering AI-native startup Bangalore jobs
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [careerloop.sources.naukri_adapter] Naukri API returned 406
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [careerloop.on_demand] [OnDemand] Naukri: 0 jobs
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://search.brave.com/search?q=%22Applied+AI+Engineer%22+Bangalore+site%3Afoundit.in&source=web 429
+  [primp] response: https://search.yahoo.com/search;_ylt=OJsydPpEbyQXNaOqONdwoi4-;_ylu=gUgwNe-LRtn4YE1GUVoVWsi5anaKKCnO5gBDcpN0x4vheuA?p=%22Applied+AI+Engineer%22+Bangalore+site%3Afoundit.in 200
+  [primp] response: https://search.brave.com/search?q=Applied+AI+Engineer+site%3Ajobs.lever.co+Bangalore+India&source=web 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Applied%20AI%20Engineer%20site%3Ajobs.lever.co%20Bangalore%20India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22Applied%20AI%20Engineer%22%20Bangalore%20site%3Afoundit.in 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com/job-listing%20Applied%20AI%20Engineer%20Bangalore%20India 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=Applied+AI+Engineer+site%3Ajobs.lever.co+Bangalore+India&limit=1 200
+  [primp] response: https://www.mojeek.com/search?q=%22Applied+AI+Engineer%22+Bangalore+site%3Afoundit.in 403
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Bangalore+India 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22Applied+AI+Engineer%22+Bangalore+site%3Afoundit.in&limit=1 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=applied+ai+engineer+applied+AI+engineering+AI-native+startup+Bangalore+jobs&limit=1 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Bangalore+India&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=applied%20ai%20engineer%20applied%20AI%20engineering%20AI-native%20startup%20Bangalore%20jobs 200
+  [primp] response: https://yandex.com/search/site/?text=Applied+AI+Engineer+site%3Ajobs.lever.co+Bangalore+India&web=1&searchid=9123406 200
+  [primp] response: https://www.mojeek.com/search?q=applied+ai+engineer+applied+AI+engineering+AI-native+startup+Bangalore+jobs 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Bangalore+India&web=1&searchid=1789640 200
+  [primp] response: https://yandex.com/search/site/?text=%22Applied+AI+Engineer%22+Bangalore+site%3Afoundit.in&web=1&searchid=6045067 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DApplied%2BAI%2BEngineer%2Bsite%253Ajobs.lever.co%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGIPR4NAGIjCbt7D7dGNE19JzNxV7PQ1b-nXuZ9Rt6o1KLYOql7O078QGNU67BtJdqnPCFKWKlTsyAnJSWgFD 429
+  [primp] response: https://www.mojeek.com/search?q=Applied+AI+Engineer+site%3Ajobs.lever.co+Bangalore+India 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%252Fjob-listing%2BApplied%2BAI%2BEngineer%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGIPR4NAGIjB1HSu5x6c7bEz9cn5hwEXEl09lMHNZT4MwAlwXd_8ci10cK4qiWODkpdWV_o_euJwyAnJSWgFD 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.yahoo.com/search;_ylt=7QnJQCnN3bwdh_8WIYbdmRuV;_ylu=rT-3Our_9NoADLyzpetJv5eh4E_K223Y85jGRVtL_C-rzhY?p=Applied+AI+Engineer+site%3Ajobs.lever.co+Bangalore+India 200
+  [careerloop.sources.search_adapter] Search [2/6]: applied ai engineer applied AI engineering AI-native startup hiring Bangalore 2025
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522Applied%2BAI%2BEngineer%2522%2BBangalore%2Bsite%253Afoundit.in%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGIbR4NAGIjAOjPM7-7DsAE2NfDVc2YSNocPA01rEtIUK99JCs8WNFGZTpf-qhcT9Vo_wlhKaZygyAnJSWgFD 429
+  [careerloop.sources.monster_adapter] [Monster/foundit] DDG: Applied AI Engineer in Bangalore: 6 jobs
+  [careerloop.on_demand] [OnDemand] Monster/foundit: 6 jobs
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=applied%20ai%20engineer%20applied%20AI%20engineering%20AI-native%20startup%20hiring%20Bangalore%202025 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=applied+ai+engineer+applied+AI+engineering+AI-native+startup+hiring+Bangalore+2025&limit=1 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Bangalore+India&source=web 429
+  [careerloop.sources.jobspy_adapter] JobSpy found 40 jobs for 'Applied AI Engineer' in Bangalore
+  [careerloop.on_demand] [OnDemand] JobSpy: 40 jobs
+  [primp] response: https://search.yahoo.com/search;_ylt=WLsvsIIAUKKIrhZimKX6CuaY;_ylu=ouQRV_HtdbebAO45XXV6l4AqQvMDjhT7757gyjwb3QpI56Q?p=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Bangalore+India 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=applied+ai+engineer+applied+AI+engineering+AI-native+startup+hiring+Bangalore+2025&web=1&searchid=9856587 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Applied%20AI%20Engineer%20site%3Aboards.greenhouse.io%20Bangalore%20India 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DApplied%2BAI%2BEngineer%2Bsite%253Aboards.greenhouse.io%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGIjR4NAGIjArjWWrfiyOuCpVWmcCv9IjwGSQJ3DZ1xfI1Gl_VJ97Hn6ipRE3cOiXeYijLAhC-LUyAnJSWgFD 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com%20%22job-listing%22%20%22Applied%20AI%20Engineer%22%20Bangalore 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%2B%2522job-listing%2522%2B%2522Applied%2BAI%2BEngineer%2522%2BBangalore%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGIjR4NAGIjD0joztS5SR8wVALOBaiJORI2cH-COL2B-aKJLXvN1EKNrUOnhdlBZ2tu7v7DgYLFsyAnJSWgFD 429
+  [primp] response: https://grokipedia.com/api/typeahead?query=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&limit=1 200
+  [primp] response: https://search.yahoo.com/search;_ylt=T5KBOXH2EciIvxEbVVPWIXnk;_ylu=cpWykZ0Z8TtlXISvi0JbT_2fAj6nnLw9Gcc2FmNMbO_Q1ko?p=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Bangalore+India 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Bangalore&limit=1 200
+  [careerloop.sources.search_adapter] Search [3/6]: "applied AI engineer" jobs in Bangalore
+  [primp] response: https://search.yahoo.com/search;_ylt=Z8FL9VjKfmvSU6L0abMerD1H;_ylu=asS32a3l6IebNKxx_XSJ960KjY16NyZkrmsE1nJZDeotKMY?p=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Bangalore 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20jobs%20in%20Bangalore 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Bangalore&web=1&searchid=8850580 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+jobs+in+Bangalore&limit=1 200
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Bangalore&source=web 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.brave.com/search?q=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&source=web 429
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Bangalore 403
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&web=1&searchid=1065383 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.mojeek.com/search?q=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Bangalore+India 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.mojeek.com/search?q=%22applied+AI+engineer%22+jobs+in+Bangalore 200
+  [careerloop.sources.glassdoor_adapter] [Glassdoor] Applied AI Engineer in Bangalore: 9 jobs
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Applied%20AI%20Engineer%20site%3Aashbyhq.com%20Bangalore%20India 200
+  [careerloop.on_demand] [OnDemand] Glassdoor: 9 jobs
+  [primp] response: https://search.yahoo.com/search;_ylt=nMWUAL9Feozt2mJgGRSw7-hk;_ylu=uL5vgwQkcZeX-TADvCAbKrTsrtz9rXrRt1pXn_zDYuFt-ZA?p=Applied+AI+Engineer+site%3Aashbyhq.com+Bangalore+India 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=Applied+AI+Engineer+site%3Aashbyhq.com+Bangalore+India&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=Applied+AI+Engineer+site%3Aashbyhq.com+Bangalore+India&web=1&searchid=1792353 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DApplied%2BAI%2BEngineer%2Bsite%253Aashbyhq.com%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGJDR4NAGIjCKaDmyf9jcF4V_QcPC1eHB18AYfG_otLdHm-pN9sypN_BhgHrd_tlaFV5sEB-wm2IyAnJSWgFD 429
+  [careerloop.sources.search_adapter] Search [4/6]: "applied AI engineer" hiring Bangalore site:linkedin.com/jobs/view
+  [primp] response: https://search.brave.com/search?q=Applied+AI+Engineer+site%3Aashbyhq.com+Bangalore+India&source=web 429
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.mojeek.com/search?q=Applied+AI+Engineer+site%3Aashbyhq.com+Bangalore+India 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20hiring%20Bangalore%20site%3Alinkedin.com/jobs/view 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&limit=1 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://grokipedia.com/api/typeahead?query=Applied+AI+Engineer+site%3Aapply.workable.com+Bangalore+India&limit=1 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Applied%20AI%20Engineer%20site%3Aapply.workable.com%20Bangalore%20India 200
+  [primp] response: https://yandex.com/search/site/?text=Applied+AI+Engineer+site%3Aapply.workable.com+Bangalore+India&web=1&searchid=4950965 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.yahoo.com/search;_ylt=L1dCmaglJynB1_OARmcuq_kh;_ylu=GF_Vj6MX6BWRWYeORhiTCmYMbvdNB4Y3ITQ_nbZDR0X9nB8?p=%22applied+AI+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.mojeek.com/search?q=%22applied+AI+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview 403
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.brave.com/search?q=Applied+AI+Engineer+site%3Aapply.workable.com+Bangalore+India&source=web 429
+  [primp] response: https://yandex.com/search/site/?text=%22applied+AI+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&web=1&searchid=8708861 200
+  [primp] response: https://www.mojeek.com/search?q=Applied+AI+Engineer+site%3Aapply.workable.com+Bangalore+India 200
+  [primp] response: https://search.brave.com/search?q=%22applied+AI+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&source=web 429
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522applied%2BAI%2Bengineer%2522%2Bhiring%2BBangalore%2Bsite%253Alinkedin.com%252Fjobs%252Fview%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGJnR4NAGIjBZl_tDYe1TvvYMK7b3E-Xz4EDe0bbdnh0iSu__26RcF9YQQ2BYJoCmfvki8J713twyAnJSWgFD 429
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DApplied%2BAI%2BEngineer%2Bsite%253Aapply.workable.com%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGJrR4NAGIjBpTC4hTULFc6TBx5XvFpRfEWOLD2TUzr6JKkIdIUa_biVerlXHstpiMF27SyWQlWMyAnJSWgFD 429
+  [primp] response: https://search.yahoo.com/search;_ylt=cNmMHugyz7EUTbd5fpyPxVDY;_ylu=XnHG8oU8M-Bpx3NbzmVgm2ZjEDQ-7TgsA2FqlbX-hWKkR5k?p=Applied+AI+Engineer+site%3Aapply.workable.com+Bangalore+India 200
+  [careerloop.sources.google_jobs_adapter] [GoogleJobs] Applied AI Engineer in Bangalore: 30 jobs
+  [careerloop.on_demand] [OnDemand] GoogleJobs: 30 jobs
+  [careerloop.sources.search_adapter] Search [5/6]: "applied AI engineer" Bangalore site:naukri.com
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20Bangalore%20site%3Anaukri.com 200
+  [ddgs.ddgs] Error in engine grokipedia: TimeoutException(TimeoutError('error sending request for url (https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+Bangalore+site%3Anaukri.com&limit=1)', 'https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+Bangalore+site%3Anaukri.com&limit=1'))
+  [primp] response: https://yandex.com/search/site/?text=%22applied+AI+engineer%22+Bangalore+site%3Anaukri.com&web=1&searchid=5146711 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522applied%2BAI%2Bengineer%2522%2BBangalore%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGKPR4NAGIjCfkArDvQMUgjwv552XlUqhqdPi6YFQfyTjV-ODr1hDxyvtyNjUqCcAZUR9OJDUQq0yAnJSWgFD 429
+  [primp] response: https://search.brave.com/search?q=%22applied+AI+engineer%22+Bangalore+site%3Anaukri.com&source=web 429
+  [primp] response: https://search.yahoo.com/search;_ylt=EKXrrskrU9W0t2Pe2pTSke2I;_ylu=XrAxYbzicC71mlJEetr6h1Xo9zHqD0KIMLjzFRSy6q70w3s?p=%22applied+AI+engineer%22+Bangalore+site%3Anaukri.com 200
+  [primp] response: https://www.mojeek.com/search?q=%22applied+AI+engineer%22+Bangalore+site%3Anaukri.com 403
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.search_adapter] Search [6/6]: "applied AI engineer" Bangalore site:cutshort.io
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20Bangalore%20site%3Acutshort.io 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+Bangalore+site%3Acutshort.io&limit=1 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522applied%2BAI%2Bengineer%2522%2BBangalore%2Bsite%253Acutshort.io%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGKvR4NAGIjDNPK4yCKWxsMG8Z4dI_QP3Ebj_PeESdCfKUFY6gmBJfTfs3OtADmWfdqgcEaLjmFAyAnJSWgFD 429
+  [primp] response: https://yandex.com/search/site/?text=%22applied+AI+engineer%22+Bangalore+site%3Acutshort.io&web=1&searchid=1039455 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.brave.com/search?q=%22applied+AI+engineer%22+Bangalore+site%3Acutshort.io&source=web 429
+  [primp] response: https://search.yahoo.com/search;_ylt=dHVa4ek2WJ4osBZDR_0KY5k5;_ylu=C8UfVc7t7-XTuwhjNtatrafxLPZRc_MwvhOg86yqmVPlprA?p=%22applied+AI+engineer%22+Bangalore+site%3Acutshort.io 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.mojeek.com/search?q=%22applied+AI+engineer%22+Bangalore+site%3Acutshort.io 403
+  [careerloop.sources.search_adapter] Total candidate URLs: 21
+  [careerloop.on_demand] [OnDemand] Board health: {'naukri': 0, 'monster': 6, 'jobspy': 40, 'glassdoor': 9, 'google_jobs': 30, 'ddg': 16}
+  [Phase B] per-source: ddg:16 | glassdoor:9 | google_jobs:30 | jobspy:40 | monster:6 | naukri:0
+  [Phase B] boards done — 89 jobs (archetype title-rejected 12)
+  [Pipeline] total raw candidates: 89 (A:0 + B:89)
+  [careerloop.india_filter] India filter: 74 passed, 15 rejected
+  [Filter] India filter: 89 → 74
+  [Phase E] ontology gate (archetype_match>=0.2): 66 → 10 (56 dropped)
+  [Phase E] role similarity filter: 10 candidates...
+  [Phase E] role filter done: 10 → 10 relevant (0 rejected)
+  [careerloop.apply_route] Canonical dedup: 10 → 9 unique jobs
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Sarvam': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Sarvam': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'HackerRank': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'HackerRank': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Taktile': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Taktile': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Agentic AI & Automation': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Agentic AI & Automation': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Computer Vision': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Computer Vision': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'NeoGenCode Technologies Pvt Ltd': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'NeoGenCode Technologies Pvt Ltd': near "%": syntax error — using defaults
+  [Phase F] LLM validator (DeepSeek): validating top-5 jobs...
+  [Phase F] LLM validator done: 5 → 5
+
+────────────────────────────────────────────────────────────
+  RESULTS: Applied AI Engineer @ Bangalore
+────────────────────────────────────────────────────────────
+  Keywords   : applied AI engineer, applied machine learning engineer, AI engineer, machine learning engineer, deep learning engineer, AI/ML engineer, applied scientist, AI researcher, ML engineer, AI developer
+  Candidates : 89
+  After dedup: 9
+  Ranked     : 5
+  Elapsed    : 163.3s
+  · Phase A: detached (include_phase_a=False)
+  · board health: ddg:16 | glassdoor:9 | google_jobs:30 | jobspy:40 | monster:6 | naukri:0
+  · company-type filter: dropped 8 rejected-type companies
+  · ontology gate: dropped 56 jobs (archetype_match<0.2)
+  · role filter: 10 → 10 relevant (0 rejected)
+  · min-desc gate: dropped 1 jobs (<200c)
+  · city filter (Bangalore): 8 → 5 (3 off-city removed)
+
+    #   SCORE  TITLE                                          COMPANY                         PHASE:SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ──────────────────
+    1    57.5  Applied AI Engineer (AI/ML LLM Deployment)     NeoGenCode Technologies Pvt Lt  [B:scrapegraph]
+         → https://cutshort.io/job/Applied-AI-Engineer-AI-ML-LLM-Deployment-NeoGenCode-Technologies-Pvt-Lt
+    2    56.8  AI Engineer                                    Agentic AI & Automation         [B:google_jobs]
+         → https://apply.workable.com/luxasia/j/CFF16F4372/
+    3    55.9  Applied AI Engineer @ Taktile                  Taktile                         [B:google_jobs]
+         → https://jobs.ashbyhq.com/taktile/43ea8326-f737-49af-8310-368fa03b3a8e
+    4    54.8  Junior AI Engineer                             Computer Vision                 [B:google_jobs]
+         → https://apply.workable.com/innovationteam/j/51E032B93A/
+    5    54.0  Gen AI Engineer                                ?                               [B:scrapegraph]
+         → https://aijobs.net/job/gen-ai-engineer-bengaluru-karnataka-india-140607/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: Applied AI Engineer @ Chennai
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Chennai | Applied AI Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Archetype] role='Applied AI Engineer' | function='applied AI engineering' | market='B2B SaaS / developer tools'
+  [Archetype] must_have=['applied AI', 'product', 'cross-functional', 'customer-facing', 'platform', 'agentic', 'LLM', 'production']
+  [Archetype] avoid=['research', 'data science', 'frontend', 'QA', 'support', 'SAP', 'Java', 'PHP']
+  [Queries] 8 board queries: ['applied ai engineer applied AI engineering AI-native startup Chennai jobs', 'applied ai engineer applied AI engineering AI-native startup hiring Chennai 2025', '"applied AI engineer" jobs in Chennai', '"applied AI engineer" hiring Chennai site:linkedin.com/jobs/view']
+  [Phase A] DETACHED — skipping employer discovery (Phase B→G mode)
+  [Phase B] searching job boards (parallel)...
+  [careerloop.sources.search_adapter] Search [1/6]: applied ai engineer applied AI engineering AI-native startup Chennai jobs
+  [careerloop.sources.naukri_adapter] Naukri API returned 406
+  [careerloop.on_demand] [OnDemand] Naukri: 0 jobs
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22Applied+AI+Engineer%22+Chennai+site%3Afoundit.in&limit=1 200
+  [primp] response: https://search.brave.com/search?q=%22Applied+AI+Engineer%22+Chennai+site%3Afoundit.in&source=web 429
+  [primp] response: https://search.yahoo.com/search;_ylt=CvDbZLRMyl4g9BFge6NM02Gi;_ylu=xCHSlu6br3MslhloadjX-yHyUF0xspHus8MWcdr7S_eKkms?p=Applied+AI+Engineer+site%3Ajobs.lever.co+Chennai+India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com/job-listing%20Applied%20AI%20Engineer%20Chennai%20India 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Chennai+India&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22Applied%20AI%20Engineer%22%20Chennai%20site%3Afoundit.in 200
+  [primp] response: https://www.mojeek.com/search?q=%22Applied+AI+Engineer%22+Chennai+site%3Afoundit.in 403
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522Applied%2BAI%2BEngineer%2522%2BChennai%2Bsite%253Afoundit.in%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGKTS4NAGIjC-HQVC0nQ_qgLqMh_ToBlsofM_d9MUafZN2epeebHLrxmdtCcYSmd16evc31ULabsyAnJSWgFD 429
+  [primp] response: https://www.mojeek.com/search?q=Applied+AI+Engineer+site%3Ajobs.lever.co+Chennai+India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Applied%20AI%20Engineer%20site%3Ajobs.lever.co%20Chennai%20India 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Chennai+India&source=web 429
+  [primp] response: https://grokipedia.com/api/typeahead?query=Applied+AI+Engineer+site%3Ajobs.lever.co+Chennai+India&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=%22Applied+AI+Engineer%22+Chennai+site%3Afoundit.in&web=1&searchid=2702374 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=applied%20ai%20engineer%20applied%20AI%20engineering%20AI-native%20startup%20Chennai%20jobs 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%252Fjob-listing%2BApplied%2BAI%2BEngineer%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGKXS4NAGIjCSKDlAfmrp25xLe-ftbE79rUd8K2dsZc84QEqYOTGi2r3kB4cXmGOFn-4pGZIYCwsyAnJSWgFD 429
+  [primp] response: https://search.yahoo.com/search;_ylt=jiNGXjbTXJUiuqMwCeA8UN82;_ylu=95IlMIBaDVuCivoe8Hg7fERHaSP9GNIKZGL24Kp0wAzcuV8?p=%22Applied+AI+Engineer%22+Chennai+site%3Afoundit.in 200
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Chennai+India 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Chennai+India&web=1&searchid=3019012 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=applied+ai+engineer+applied+AI+engineering+AI-native+startup+Chennai+jobs&limit=1 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.monster_adapter] [Monster/foundit] DDG: Applied AI Engineer in Chennai: 13 jobs
+  [careerloop.on_demand] [OnDemand] Monster/foundit: 13 jobs
+  [primp] response: https://www.mojeek.com/search?q=applied+ai+engineer+applied+AI+engineering+AI-native+startup+Chennai+jobs 200
+  [primp] response: https://yandex.com/search/site/?text=Applied+AI+Engineer+site%3Ajobs.lever.co+Chennai+India&web=1&searchid=5854976 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.brave.com/search?q=Applied+AI+Engineer+site%3Ajobs.lever.co+Chennai+India&source=web 429
+  [careerloop.sources.jobspy_adapter] JobSpy found 40 jobs for 'Applied AI Engineer' in Chennai
+  [careerloop.on_demand] [OnDemand] JobSpy: 40 jobs
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.yahoo.com/search;_ylt=meqNS3PZUrjx3ArJO11QSM9m;_ylu=RC0Fj0wooOLdGBGRKcJySkTtE9_bJA-mCl06pGVN1J1kI1Y?p=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Chennai+India 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DApplied%2BAI%2BEngineer%2Bsite%253Ajobs.lever.co%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGKrS4NAGIjCqyGsLBEoo33HxRyaErpEqqY5nAYprJOBkFmblU8QjuOF1ST3Jjtj49nqHUn9G8zoyAnJSWgFD 429
+  [careerloop.sources.search_adapter] Search [2/6]: applied ai engineer applied AI engineering AI-native startup hiring Chennai 2025
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Chennai&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com%20%22job-listing%22%20%22Applied%20AI%20Engineer%22%20Chennai 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Chennai 403
+  [primp] response: https://search.brave.com/search?q=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Chennai+India&source=web 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Applied%20AI%20Engineer%20site%3Aboards.greenhouse.io%20Chennai%20India 200
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Chennai&source=web 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=applied%20ai%20engineer%20applied%20AI%20engineering%20AI-native%20startup%20hiring%20Chennai%202025 200
+  [primp] response: https://www.mojeek.com/search?q=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Chennai+India 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=applied+ai+engineer+applied+AI+engineering+AI-native+startup+hiring+Chennai+2025&limit=1 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Chennai+India&limit=1 200
+  [primp] response: https://www.mojeek.com/search?q=applied+ai+engineer+applied+AI+engineering+AI-native+startup+hiring+Chennai+2025 403
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%2B%2522job-listing%2522%2B%2522Applied%2BAI%2BEngineer%2522%2BChennai%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGKzS4NAGIjC06dQ8uLmTQXrqv3lvn7tJsx0pq97VbY5yH6OAgWe3XLjSiOCiXYoOjtCfM4VcEp4yAnJSWgFD 429
+  [primp] response: https://yandex.com/search/site/?text=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Chennai+India&web=1&searchid=9728034 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dapplied%2Bai%2Bengineer%2Bapplied%2BAI%2Bengineering%2BAI-native%2Bstartup%2Bhiring%2BChennai%2B2025%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGK3S4NAGIjBoAFQt5QGI_7Rtzf_s9Jt-NuTv17FWxcsQtdQJHTbO77S6UqYIfCuHWF1JP9HxhwcyAnJSWgFD 429
+  [primp] response: https://search.yahoo.com/search;_ylt=v5_vJTv1SGkGttJ2NITVHTtd;_ylu=yXC4Ny7GDDOeTXh9OSUIl1QiK1yO4mbAA9tp17BO5nx7G9Y?p=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Chennai+India 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Chennai&web=1&searchid=7747625 200
+  [primp] response: https://search.yahoo.com/search;_ylt=s-4by-luIseORN-xJw3IaVZ1;_ylu=OcswCCLVZLAvByFCc2XnV5kuVnyUJ5LveTjTEPkcCUI1ZV0?p=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Chennai 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://yandex.com/search/site/?text=applied+ai+engineer+applied+AI+engineering+AI-native+startup+hiring+Chennai+2025&web=1&searchid=6493752 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DApplied%2BAI%2BEngineer%2Bsite%253Aboards.greenhouse.io%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGK7S4NAGIjBeytroeQNOynJiNN78u9latQpoNjnViSUKJoXrwGod_FdGBr7F9zx7NDPJ1V7YkpoyAnJSWgFD 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.search_adapter] Search [3/6]: "applied AI engineer" jobs in Chennai
+  [careerloop.sources.glassdoor_adapter] [Glassdoor] Applied AI Engineer in Chennai: 11 jobs
+  [careerloop.on_demand] [OnDemand] Glassdoor: 11 jobs
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+jobs+in+Chennai&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20jobs%20in%20Chennai 200
+  [primp] response: https://search.brave.com/search?q=Applied+AI+Engineer+site%3Aashbyhq.com+Chennai+India&source=web 429
+  [primp] response: https://grokipedia.com/api/typeahead?query=Applied+AI+Engineer+site%3Aashbyhq.com+Chennai+India&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Applied%20AI%20Engineer%20site%3Aashbyhq.com%20Chennai%20India 200
+  [primp] response: https://www.mojeek.com/search?q=Applied+AI+Engineer+site%3Aashbyhq.com+Chennai+India 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522applied%2BAI%2Bengineer%2522%2Bjobs%2Bin%2BChennai%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGLLS4NAGIjAU-bgUZ8VpA0cCifB5eaSsEPeITIvWhcYIiq7CXX13mq5CC2saz_ItmhS9APpI-LkyAnJSWgFD 429
+  [primp] response: https://www.mojeek.com/search?q=%22applied+AI+engineer%22+jobs+in+Chennai 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.yahoo.com/search;_ylt=3fqhF1lmpTa_YBPjDehIJUgV;_ylu=pZqTQ-CiDxtBLNFwlLDh9N64IxUMtfKzil9xEmJST0DDApM?p=Applied+AI+Engineer+site%3Aashbyhq.com+Chennai+India 200
+  [careerloop.sources.search_adapter] Search [4/6]: "applied AI engineer" hiring Chennai site:linkedin.com/jobs/view
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DApplied%2BAI%2BEngineer%2Bsite%253Aashbyhq.com%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGLXS4NAGIjDcxGVAfDTC76GZKkRA9RxyE72cQ-SrNRNbd05qg-ux9t98TACatVCa4-LLzzVvKrUyAnJSWgFD 429
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20hiring%20Chennai%20site%3Alinkedin.com/jobs/view 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=Applied+AI+Engineer+site%3Aashbyhq.com+Chennai+India&web=1&searchid=7584453 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://search.yahoo.com/search;_ylt=-Dy_pPtwrjw7J1bGpIiSne8t;_ylu=FYkVboRiCK2EtzUBCAbrc2P1yDW5gH4-_VusxbfrXHFwdBU?p=%22applied+AI+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=Applied+AI+Engineer+site%3Aapply.workable.com+Chennai+India&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Applied%20AI%20Engineer%20site%3Aapply.workable.com%20Chennai%20India 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DApplied%2BAI%2BEngineer%2Bsite%253Aapply.workable.com%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGLjS4NAGIjB0kWrZzUqeGtIQDyahZi7DupyjjIY4-epMIYXnD3YETeEt58oTnPwUYGDs3vAr3MYyAnJSWgFD 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=%22applied+AI+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&web=1&searchid=8882912 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.mojeek.com/search?q=Applied+AI+Engineer+site%3Aapply.workable.com+Chennai+India 200
+  [primp] response: https://search.yahoo.com/search;_ylt=6u6H2qAlzK-5wYyTXSiGyoSK;_ylu=GwPDsnxyUf6edFN575FOQ4Im6zGzxITbWklqLLkNTzRdQko?p=Applied+AI+Engineer+site%3Aapply.workable.com+Chennai+India 200
+  [careerloop.sources.search_adapter] Search [5/6]: "applied AI engineer" Chennai site:naukri.com
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20Chennai%20site%3Anaukri.com 200
+  [primp] response: https://yandex.com/search/site/?text=Applied+AI+Engineer+site%3Aapply.workable.com+Chennai+India&web=1&searchid=5647954 200
+  [primp] response: https://search.brave.com/search?q=Applied+AI+Engineer+site%3Aapply.workable.com+Chennai+India&source=web 429
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+Chennai+site%3Anaukri.com&limit=1 200
+  [careerloop.sources.google_jobs_adapter] [GoogleJobs] Applied AI Engineer in Chennai: 28 jobs
+  [careerloop.on_demand] [OnDemand] GoogleJobs: 28 jobs
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522applied%2BAI%2Bengineer%2522%2BChennai%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGL3S4NAGIjAFILigW892g31-M-UEs1ASEvaV3khBD8avRWy-Tq5d2WVQps3fY9cbBE7EeIJkeX0yAnJSWgFD 429
+  [primp] response: https://search.brave.com/search?q=%22applied+AI+engineer%22+Chennai+site%3Anaukri.com&source=web 429
+  [primp] response: https://search.yahoo.com/search;_ylt=o9b1ZfalpwegsHlB8e8DJSrG;_ylu=SZblDw6xSBEjGr7gu3QA84Z7EaiFwJO90xlYaM7wAgvtKvQ?p=%22applied+AI+engineer%22+Chennai+site%3Anaukri.com 200
+  [primp] response: https://www.mojeek.com/search?q=%22applied+AI+engineer%22+Chennai+site%3Anaukri.com 403
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=%22applied+AI+engineer%22+Chennai+site%3Anaukri.com&web=1&searchid=9947510 200
+  [careerloop.sources.search_adapter] Search [6/6]: "applied AI engineer" Chennai site:cutshort.io
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+Chennai+site%3Acutshort.io&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20Chennai%20site%3Acutshort.io 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522applied%2BAI%2Bengineer%2522%2BChennai%2Bsite%253Acutshort.io%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGMbS4NAGIjB3c-EarPKHerp4tiVZ4orstdlqrRswYdewAwiRpJYQEtkD01d9EEkzcV9LZa8KX_QyAnJSWgFD 429
+  [primp] response: https://www.mojeek.com/search?q=%22applied+AI+engineer%22+Chennai+site%3Acutshort.io 403
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://search.brave.com/search?q=%22applied+AI+engineer%22+Chennai+site%3Acutshort.io&source=web 429
+  [primp] response: https://yandex.com/search/site/?text=%22applied+AI+engineer%22+Chennai+site%3Acutshort.io&web=1&searchid=8522964 200
+  [primp] response: https://search.yahoo.com/search;_ylt=3jk-FsNrx3WisgNMyPDf2nic;_ylu=Vg-JU-lQmJoVtzNfLZwAuzPgkY872UEp3MHmd2ntc353lzQ?p=%22applied+AI+engineer%22+Chennai+site%3Acutshort.io 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.search_adapter] Total candidate URLs: 25
+  [careerloop.on_demand] [OnDemand] Board health: {'naukri': 0, 'monster': 13, 'jobspy': 40, 'glassdoor': 11, 'google_jobs': 28, 'ddg': 21}
+  [Phase B] per-source: ddg:21 | glassdoor:11 | google_jobs:28 | jobspy:40 | monster:13 | naukri:0
+  [Phase B] boards done — 101 jobs (archetype title-rejected 12)
+  [Pipeline] total raw candidates: 101 (A:0 + B:101)
+  [careerloop.india_filter] India filter: 79 passed, 22 rejected
+  [Filter] India filter: 101 → 79
+  [Phase E] ontology gate (archetype_match>=0.2): 78 → 20 (58 dropped)
+  [Phase E] role similarity filter: 20 candidates...
+  [Phase E] role filter done: 20 → 16 relevant (4 rejected)
+  [careerloop.apply_route] Canonical dedup: 16 → 16 unique jobs
+  [careerloop.india_fit_engine] company_memory_lookup failed for '5 Years of Experience ...': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for '5 Years of Experience ...': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Zocket Technologies Private Limited': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Zocket Technologies Private Limited': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'DevRev': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'DevRev': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'MulticoreWare': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'MulticoreWare': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Luminai': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Luminai': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Air': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Air': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Built In': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Built In': near "%": syntax error — using defaults
+  [Phase F] LLM validator (DeepSeek): validating top-10 jobs...
+  [careerloop.on_demand] [OnDemand] LLM validator: 10 → 9 (1 rejected)
+  [Phase F] LLM validator done: 10 → 9
+
+────────────────────────────────────────────────────────────
+  RESULTS: Applied AI Engineer @ Chennai
+────────────────────────────────────────────────────────────
+  Keywords   : applied AI engineer, applied machine learning engineer, AI engineer, machine learning engineer, deep learning engineer, AI/ML engineer, applied scientist, AI researcher, ML engineer, AI developer
+  Candidates : 101
+  After dedup: 16
+  Ranked     : 9
+  Elapsed    : 159.3s
+  · Phase A: detached (include_phase_a=False)
+  · board health: ddg:21 | glassdoor:11 | google_jobs:28 | jobspy:40 | monster:13 | naukri:0
+  · company-type filter: dropped 1 rejected-type companies
+  · ontology gate: dropped 58 jobs (archetype_match<0.2)
+  · role filter: 20 → 16 relevant (4 rejected)
+  · city filter (Chennai): 16 → 11 (5 off-city removed)
+  · company cap (max 3): 11 → 10
+
+    #   SCORE  TITLE                                          COMPANY                         PHASE:SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ──────────────────
+    1    62.3  Applied AI Engineer with 3                     5 Years of Experience ...       [B:foundit]
+         → https://www.foundit.in/job/applied-ai-engineer-soliton-technologies-chennai-52560953
+    2    61.5  Applied AI Engineer (AI/ML LLM Deployment)     NeoGenCode Technologies Pvt Lt  [B:scrapegraph]
+         → https://cutshort.io/job/Applied-AI-Engineer-AI-ML-LLM-Deployment-NeoGenCode-Technologies-Pvt-Lt
+    3    59.5  AI Engineer                                    Agentic AI & Automation         [B:google_jobs]
+         → https://apply.workable.com/luxasia/j/CFF16F4372/
+    4    58.6  Job Application for Applied AI Product Engine  Anthropic                       [B:google_jobs]
+         → https://boards.greenhouse.io/anthropic/jobs/4131823008
+    5    57.5  Sr. Applied AI Engineer @ Taktile              Taktile                         [B:google_jobs]
+         → https://jobs.ashbyhq.com/taktile/fd4d4145-62df-438d-9667-92b5ecbbfa7d
+    6    57.5  Applied AI Engineer @ Luminai                  Luminai                         [B:google_jobs]
+         → https://jobs.ashbyhq.com/luminai/4b580dd6-0675-4f55-86c7-6d694285b6d8
+    7    57.5  Applied AI Engineer                            Air                             [B:google_jobs]
+         → https://apply.workable.com/air/j/EB172BBC35
+    8    56.2  Applied AI Engineer - MERN Stack               ?                               [B:generic_http]
+         → https://cutshort.io/job/Applied-AI-Engineer-MERN-Stack-Procedure-osZhIuIE
+    9    52.9  Gen AI Engineer                                ?                               [B:scrapegraph]
+         → https://aijobs.net/job/gen-ai-engineer-bengaluru-karnataka-india-140607/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: AI Product Manager @ Bangalore
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Bangalore | AI Product Manager
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Archetype] role='AI Product Manager' | function='applied AI product' | market='B2B SaaS / developer tools'
+  [Archetype] must_have=['product', 'platform', 'customer-facing', 'applied AI', 'cross-functional', 'AI product', 'technical product']
+  [Archetype] avoid=['research', 'data science', 'frontend', 'QA', 'support', 'sales', 'business development', 'Java']
+  [Queries] 8 board queries: ['ai product manager applied AI product AI-native startup Bangalore jobs', 'ai product manager applied AI product AI-native startup hiring Bangalore 2025', '"AI product manager" jobs in Bangalore', '"AI product manager" hiring Bangalore site:linkedin.com/jobs/view']
+  [Phase A] DETACHED — skipping employer discovery (Phase B→G mode)
+  [Phase B] searching job boards (parallel)...
+  [careerloop.sources.search_adapter] Search [1/6]: ai product manager applied AI product AI-native startup Bangalore jobs
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [careerloop.sources.naukri_adapter] Naukri API returned 406
+  [careerloop.on_demand] [OnDemand] Naukri: 0 jobs
+  [primp] response: https://search.yahoo.com/search;_ylt=z4rl4jmwPUvVA9IexjAEN6s5;_ylu=325CkqS8B3vAFQo8gZf3WDM7VAtqhMZm3Mt9x65-pPPYBtU?p=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Manager+Bangalore+India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Manager%20site%3Ajobs.lever.co%20Bangalore%20India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20Product%20Manager%22%20Bangalore%20site%3Afoundit.in 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com/job-listing%20AI%20Product%20Manager%20Bangalore%20India 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+Product+Manager%22+Bangalore+site%3Afoundit.in 403
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Manager+site%3Ajobs.lever.co+Bangalore+India&limit=1 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+Product+Manager%22+Bangalore+site%3Afoundit.in&limit=1 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BManager%2Bsite%253Ajobs.lever.co%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGMTT4NAGIjBNLa6RwHb0PcaQUi2Wca-oDEWRZP4QcrqPyxV8-t-wZuj9P2ctvqLDhMSzqqOInUYyAnJSWgFD 429
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Manager+Bangalore+India 200
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Manager+site%3Ajobs.lever.co+Bangalore+India 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2BProduct%2BManager%2522%2BBangalore%2Bsite%253Afoundit.in%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGMTT4NAGIjDxu2brAr0A8_Hn6i-xxSeLsAVBvTW4uWeLEUazvP2FinL9GHGwh2w5B5qJHzs5XcgyAnJSWgFD 429
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Manager+Bangalore+India&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=%22AI+Product+Manager%22+Bangalore+site%3Afoundit.in&web=1&searchid=5006033 200
+  [primp] response: https://search.brave.com/search?q=AI+Product+Manager+site%3Ajobs.lever.co+Bangalore+India&source=web 429
+  [primp] response: https://grokipedia.com/api/typeahead?query=ai+product+manager+applied+AI+product+AI-native+startup+Bangalore+jobs&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20manager%20applied%20AI%20product%20AI-native%20startup%20Bangalore%20jobs 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Manager+Bangalore+India&web=1&searchid=6787557 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Manager+site%3Ajobs.lever.co+Bangalore+India&web=1&searchid=5848346 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%252Fjob-listing%2BAI%2BProduct%2BManager%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGMbT4NAGIjDCBvLMwjK2ozUZ3nzh8inF72ifQ2oqypwQxvR1jnvcq2eVCNU7pWs7EfTS30abKHsyAnJSWgFD 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.brave.com/search?q=%22AI+Product+Manager%22+Bangalore+site%3Afoundit.in&source=web 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.yahoo.com/search;_ylt=vCmZHCtzH5NM5bY8lnvxaqWF;_ylu=PxNURwU73_mQDSIlP2fHzYCZALrUfb0SxvD3GvWW28foTYo?p=%22AI+Product+Manager%22+Bangalore+site%3Afoundit.in 200
+  [primp] response: https://www.mojeek.com/search?q=ai+product+manager+applied+AI+product+AI-native+startup+Bangalore+jobs 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.monster_adapter] [Monster/foundit] DDG: AI Product Manager in Bangalore: 13 jobs
+  [careerloop.on_demand] [OnDemand] Monster/foundit: 13 jobs
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Manager+Bangalore+India&source=web 429
+  [primp] response: https://search.yahoo.com/search;_ylt=zWeCTPSTF4WQQLGXzKNtzsoh;_ylu=DKIqPJgD7KiKWU31AjJjXV1MqrnFlAZuU9gAkl23Y1Nt5Wc?p=AI+Product+Manager+site%3Ajobs.lever.co+Bangalore+India 200
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Manager%22+Bangalore&source=web 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com%20%22job-listing%22%20%22AI%20Product%20Manager%22%20Bangalore 200
+  [careerloop.sources.search_adapter] Search [2/6]: ai product manager applied AI product AI-native startup hiring Bangalore 2025
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Manager%22+Bangalore&limit=1 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.jobspy_adapter] JobSpy found 40 jobs for 'AI Product Manager' in Bangalore
+  [careerloop.on_demand] [OnDemand] JobSpy: 40 jobs
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Manager%20site%3Aboards.greenhouse.io%20Bangalore%20India 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=ai+product+manager+applied+AI+product+AI-native+startup+hiring+Bangalore+2025&limit=1 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Manager+site%3Aboards.greenhouse.io+Bangalore+India&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20manager%20applied%20AI%20product%20AI-native%20startup%20hiring%20Bangalore%202025 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Manager%22+Bangalore&web=1&searchid=1429033 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.brave.com/search?q=AI+Product+Manager+site%3Aboards.greenhouse.io+Bangalore+India&source=web 429
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dai%2Bproduct%2Bmanager%2Bapplied%2BAI%2Bproduct%2BAI-native%2Bstartup%2Bhiring%2BBangalore%2B2025%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGM3T4NAGIjAitLeY3qquHobYLsI1RdhwOuGqYuimjfu1ZFt9uBzsJaYz9lK7M_H35tjZ9tGxkCkyAnJSWgFD 429
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Manager%22+Bangalore 403
+  [primp] response: https://search.yahoo.com/search;_ylt=fSC5ddyMR8SoNIWIgOeYsYTv;_ylu=c_jUL7CX7blaq3hbum8DjM8tQOoiS7PSl_TrhIycoD9RHxc?p=ai+product+manager+applied+AI+product+AI-native+startup+hiring+Bangalore+2025 200
+  [primp] response: https://search.yahoo.com/search;_ylt=bYmshuZuNKfR9TfdzaF5X8WT;_ylu=EcfpgJ41pJ5Jmu0wGCY53lxDi67LGa6B5FK_4RRarNgYstE?p=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Manager%22+Bangalore 200
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Manager+site%3Aboards.greenhouse.io+Bangalore+India 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BManager%2Bsite%253Aboards.greenhouse.io%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGM_T4NAGIjCT5SESL8nATLUuMI9Xnvc7n9WP5MMX2W3NJvwvVt4jJa4LzCYPMsXxpmdOJp-hSWgyAnJSWgFD 429
+  [primp] response: https://search.yahoo.com/search;_ylt=KPAqakbfO56A5qGwx2TiDIHC;_ylu=9pj2IEUe7gPIKUgiEFZg3ENyRxnFXmwKdBJ9vimM3P96NtU?p=AI+Product+Manager+site%3Aboards.greenhouse.io+Bangalore+India 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%2B%2522job-listing%2522%2B%2522AI%2BProduct%2BManager%2522%2BBangalore%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGNDT4NAGIjC1EzXdW_rR3RVQSKlqaH8Qtfv7jIAoTCZuH3qhgwiUmW5bT3rgRJ5Xuaz8mitrgxsyAnJSWgFD 429
+  [primp] response: https://yandex.com/search/site/?text=ai+product+manager+applied+AI+product+AI-native+startup+hiring+Bangalore+2025&web=1&searchid=5706522 200
+  [careerloop.sources.glassdoor_adapter] [Glassdoor] AI Product Manager in Bangalore: 10 jobs
+  [careerloop.on_demand] [OnDemand] Glassdoor: 10 jobs
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Manager+site%3Aboards.greenhouse.io+Bangalore+India&web=1&searchid=3291321 200
+  [careerloop.sources.search_adapter] Search [3/6]: "AI product manager" jobs in Bangalore
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Manager%20site%3Aashbyhq.com%20Bangalore%20India 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BManager%2Bsite%253Aashbyhq.com%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGNLT4NAGIjBPhZaMxUHaCCfvGyDqDlp9HdGyFyqf7wqj-P1IdxxYQhf7GBmpiOTJdMVH0G_dydIyAnJSWgFD 429
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Manager+site%3Aashbyhq.com+Bangalore+India&web=1&searchid=4295186 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Manager+site%3Aashbyhq.com+Bangalore+India&limit=1 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20manager%22%20jobs%20in%20Bangalore 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+manager%22+jobs+in+Bangalore&limit=1 200
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Manager+site%3Aashbyhq.com+Bangalore+India 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.yahoo.com/search;_ylt=3TB73PSfrggv3yLQAZZZbXgf;_ylu=PDAX_f-02MY7ogCfRW4M3G_D3icxe4JqePezAJ2DaRkCU_8?p=AI+Product+Manager+site%3Aashbyhq.com+Bangalore+India 200
+  [primp] response: https://search.brave.com/search?q=AI+Product+Manager+site%3Aashbyhq.com+Bangalore+India&source=web 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.yahoo.com/search;_ylt=4oRtWwwxnhynrATjEaTDq2gP;_ylu=IS_U8svZtnEMRlur616y7Ud8ygg_eZAqQdvbWj0jfJxbkFY?p=%22AI+product+manager%22+jobs+in+Bangalore 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.brave.com/search?q=%22AI+product+manager%22+jobs+in+Bangalore&source=web 429
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bmanager%2522%2Bjobs%2Bin%2BBangalore%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGNfT4NAGIjDvacesYvfqShspvAzSsMD_65aK5zQ6a7FVWPw1VsglW8timKdXw8MYyZQK1qeGxGkyAnJSWgFD 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+product+manager%22+jobs+in+Bangalore 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Manager%20site%3Aapply.workable.com%20Bangalore%20India 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BManager%2Bsite%253Aapply.workable.com%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGNjT4NAGIjCDNbF8jX2Bm2AdVSEyjFju2qOA6uPTJwGm8SEcQmxlI-cTKPPc9nTrsmhKESIQOlYyAnJSWgFD 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Manager+site%3Aapply.workable.com+Bangalore+India&limit=1 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [careerloop.sources.search_adapter] Search [4/6]: "AI product manager" hiring Bangalore site:linkedin.com/jobs/view
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Manager+site%3Aapply.workable.com+Bangalore+India 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://search.yahoo.com/search;_ylt=wXsPAlsDrRnONNLe85JxUhQB;_ylu=p3OGFwkqi1rzInh1zMiF8tGlaZC82qwzLdIRzM5xL1bt3wA?p=AI+Product+Manager+site%3Aapply.workable.com+Bangalore+India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20manager%22%20hiring%20Bangalore%20site%3Alinkedin.com/jobs/view 200
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Manager+site%3Aapply.workable.com+Bangalore+India&web=1&searchid=6095900 200
+  [primp] response: https://search.brave.com/search?q=AI+Product+Manager+site%3Aapply.workable.com+Bangalore+India&source=web 429
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+manager%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&limit=1 200
+  [careerloop.sources.google_jobs_adapter] [GoogleJobs] AI Product Manager in Bangalore: 26 jobs
+  [careerloop.on_demand] [OnDemand] GoogleJobs: 26 jobs
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.mojeek.com/search?q=%22AI+product+manager%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview 403
+  [primp] response: https://search.yahoo.com/search;_ylt=LhMQfUesX-DHIlB-p3cu_F6d;_ylu=BRoCvZ02p5pHAMmUFVLsWO6T6B49KJmgcIhjqjJMIlMLHKA?p=%22AI+product+manager%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview 200
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+manager%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&web=1&searchid=2821976 200
+  [primp] response: https://search.brave.com/search?q=%22AI+product+manager%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&source=web 429
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bmanager%2522%2Bhiring%2BBangalore%2Bsite%253Alinkedin.com%252Fjobs%252Fview%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGOTT4NAGIjB7vmjb8gSzqLPrCc42ijo6XrrSS3dsGF0DU0h3B-ZPcaPv_pws9AOBg-_yCiQgQl8yAnJSWgFD 429
+  [careerloop.sources.search_adapter] Search [5/6]: "AI product manager" Bangalore site:naukri.com
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20manager%22%20Bangalore%20site%3Anaukri.com 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+manager%22+Bangalore+site%3Anaukri.com&limit=1 200
+  [primp] response: https://search.yahoo.com/search;_ylt=B8WgJ1tCIA-5MlI4Sm-U7OlF;_ylu=hRlEqmBz26DVsrqKBD5KP01WIWe6c7ydzwIIpJ9n7nit-b8?p=%22AI+product+manager%22+Bangalore+site%3Anaukri.com 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.brave.com/search?q=%22AI+product+manager%22+Bangalore+site%3Anaukri.com&source=web 429
+  [primp] response: https://www.mojeek.com/search?q=%22AI+product+manager%22+Bangalore+site%3Anaukri.com 403
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bmanager%2522%2BBangalore%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGOzT4NAGIjB0V9hjZr0qJDshzytxIln1LQZWZLw1fRKLIlmZgbI1DWsCUc6ayP8Q_2qSDfstMZUyAnJSWgFD 429
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+manager%22+Bangalore+site%3Anaukri.com&web=1&searchid=8799562 200
+  [careerloop.sources.search_adapter] Search [6/6]: "AI product manager" Bangalore site:cutshort.io
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20manager%22%20Bangalore%20site%3Acutshort.io 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+manager%22+Bangalore+site%3Acutshort.io&limit=1 200
+  [primp] response: https://search.yahoo.com/search;_ylt=qk2dQpvfaoNiXxa1bKoT3vSL;_ylu=cZaMLDBHBMrI4DLB9na0M5qpGq34YJMH01WmUgilKOujFns?p=%22AI+product+manager%22+Bangalore+site%3Acutshort.io 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+product+manager%22+Bangalore+site%3Acutshort.io 403
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bmanager%2522%2BBangalore%2Bsite%253Acutshort.io%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGPLT4NAGIjDSZB0oQ6JZrWMSQm7L_h85B8MBTQDFj0OTRu2S9CTa2KP5DaOYsLQUg82udNqWNZoyAnJSWgFD 429
+  [primp] response: https://search.brave.com/search?q=%22AI+product+manager%22+Bangalore+site%3Acutshort.io&source=web 429
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+manager%22+Bangalore+site%3Acutshort.io&web=1&searchid=8024467 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.search_adapter] Total candidate URLs: 15
+  [careerloop.on_demand] [OnDemand] Board health: {'naukri': 0, 'monster': 13, 'jobspy': 40, 'glassdoor': 10, 'google_jobs': 26, 'ddg': 11}
+  [Phase B] per-source: ddg:11 | glassdoor:10 | google_jobs:26 | jobspy:40 | monster:13 | naukri:0
+  [Phase B] boards done — 45 jobs (archetype title-rejected 55)
+  [Pipeline] total raw candidates: 45 (A:0 + B:45)
+  [careerloop.india_filter] India filter: 42 passed, 3 rejected
+  [Filter] India filter: 45 → 42
+  [Phase E] ontology gate (archetype_match>=0.2): 42 → 6 (36 dropped)
+  [Phase E] role similarity filter: 6 candidates...
+  [Phase E] role filter done: 6 → 6 relevant (0 rejected)
+  [careerloop.apply_route] Canonical dedup: 6 → 3 unique jobs
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Airbnb': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Airbnb': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Bangalore @ Protect AI': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Bangalore @ Protect AI': near "%": syntax error — using defaults
+  [Phase F] LLM validator (DeepSeek): validating top-2 jobs...
+  [careerloop.on_demand] [OnDemand] LLM validator: 2 → 1 (1 rejected)
+  [Phase F] LLM validator done: 2 → 1
+
+────────────────────────────────────────────────────────────
+  RESULTS: AI Product Manager @ Bangalore
+────────────────────────────────────────────────────────────
+  Keywords   : AI product manager, product manager AI, AI PM, machine learning product manager, ML product manager, AI product lead, product manager - AI/ML, AI product owner, technical product manager AI, AI product strategist
+  Candidates : 45
+  After dedup: 3
+  Ranked     : 1
+  Elapsed    : 121.5s
+  · Phase A: detached (include_phase_a=False)
+  · board health: ddg:11 | glassdoor:10 | google_jobs:26 | jobspy:40 | monster:13 | naukri:0
+  · ontology gate: dropped 36 jobs (archetype_match<0.2)
+  · role filter: 6 → 6 relevant (0 rejected)
+  · city filter (Bangalore): 3 → 2 (1 off-city removed)
+
+    #   SCORE  TITLE                                          COMPANY                         PHASE:SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ──────────────────
+    1    30.0  AI                                             ?                               [B:foundit]
+         → https://www.foundit.in/job/ai-product-manager-delta-exchange-india-48692775
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: AI Product Manager @ Chennai
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Chennai | AI Product Manager
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Archetype] role='AI Product Manager' | function='applied AI product' | market='B2B SaaS / developer tools'
+  [Archetype] must_have=['product', 'platform', 'customer-facing', 'applied AI', 'cross-functional', 'AI product', 'technical product']
+  [Archetype] avoid=['research', 'data science', 'frontend', 'QA', 'support', 'sales', 'business development', 'Java']
+  [Queries] 8 board queries: ['ai product manager applied AI product AI-native startup Chennai jobs', 'ai product manager applied AI product AI-native startup hiring Chennai 2025', '"AI product manager" jobs in Chennai', '"AI product manager" hiring Chennai site:linkedin.com/jobs/view']
+  [Phase A] DETACHED — skipping employer discovery (Phase B→G mode)
+  [Phase B] searching job boards (parallel)...
+  [careerloop.sources.search_adapter] Search [1/6]: ai product manager applied AI product AI-native startup Chennai jobs
+  [careerloop.sources.naukri_adapter] Naukri API returned 406
+  [careerloop.on_demand] [OnDemand] Naukri: 0 jobs
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Manager+Chennai+India&source=web 429
+  [primp] response: https://search.yahoo.com/search;_ylt=2278Si6EhxhCnoyhmEOu-Zvb;_ylu=DKZGUZAOcebF1JmeoDm3DyJ1_9xOClBPIadJrVi-6Smrqw0?p=AI+Product+Manager+site%3Ajobs.lever.co+Chennai+India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com/job-listing%20AI%20Product%20Manager%20Chennai%20India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20Product%20Manager%22%20Chennai%20site%3Afoundit.in 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Manager%20site%3Ajobs.lever.co%20Chennai%20India 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Manager+Chennai+India&limit=1 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+Product+Manager%22+Chennai+site%3Afoundit.in&limit=1 200
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Manager+site%3Ajobs.lever.co+Chennai+India 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://search.yahoo.com/search;_ylt=dj-B3qYBHQ9mbNylDe5FIe67;_ylu=xO9UP6eSWHXZsglW_RMenVT1zBWJlhhbS5X9WBd-l51E5Mc?p=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Manager+Chennai+India 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+Product+Manager%22+Chennai+site%3Afoundit.in 403
+  [primp] response: https://grokipedia.com/api/typeahead?query=ai+product+manager+applied+AI+product+AI-native+startup+Chennai+jobs&limit=1 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=%22AI+Product+Manager%22+Chennai+site%3Afoundit.in&web=1&searchid=6694723 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20manager%20applied%20AI%20product%20AI-native%20startup%20Chennai%20jobs 200
+  [ddgs.ddgs] Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/)', 'https://www.startpage.com/')")
+  [ddgs.ddgs] Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/sp/search)', 'https://www.startpage.com/sp/search')")
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Manager+site%3Ajobs.lever.co+Chennai+India&limit=1 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%252Fjob-listing%2BAI%2BProduct%2BManager%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGL_U4NAGIjBO3GqbU1RQ1eAK0XbqXBd943jL-IeTsEakTqa_vDZGKryDty1Z1XsnvbYHHcdJ2ewyAnJSWgFD 429
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2BProduct%2BManager%2522%2BChennai%2Bsite%253Afoundit.in%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGL_U4NAGIjCcZP5AtIIg6GI3XufKrd38NoBiQgCP9SQc7hOF1xV79m9SZNkWO94mNkciGTEnIugyAnJSWgFD 429
+  [primp] response: https://yandex.com/search/site/?text=ai+product+manager+applied+AI+product+AI-native+startup+Chennai+jobs&web=1&searchid=8621932 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BManager%2Bsite%253Ajobs.lever.co%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGL_U4NAGIjAsfAEeTXtJVQkizsup9UerpgboOjY0UzBJXbjCNN2OTwi12SNVC7DqQwvNtoybgYsyAnJSWgFD 429
+  [primp] response: https://search.brave.com/search?q=%22AI+Product+Manager%22+Chennai+site%3Afoundit.in&source=web 429
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Manager+Chennai+India 200
+  [primp] response: https://search.yahoo.com/search;_ylt=it4GG12qtrYXOxWNxDfvSj8g;_ylu=uuXTbLKfMWMJtCpTXfJ1sM0yyIWGFTlQCNXJ6n7S2rf04uE?p=%22AI+Product+Manager%22+Chennai+site%3Afoundit.in 200
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Manager+site%3Ajobs.lever.co+Chennai+India&web=1&searchid=4628337 200
+  [careerloop.sources.monster_adapter] [Monster/foundit] DDG: AI Product Manager in Chennai: 6 jobs
+  [careerloop.on_demand] [OnDemand] Monster/foundit: 6 jobs
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Manager+Chennai+India&web=1&searchid=3325723 200
+  [primp] response: https://search.brave.com/search?q=AI+Product+Manager+site%3Ajobs.lever.co+Chennai+India&source=web 429
+  [careerloop.sources.search_adapter] Search [2/6]: ai product manager applied AI product AI-native startup hiring Chennai 2025
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com%20%22job-listing%22%20%22AI%20Product%20Manager%22%20Chennai 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=ai+product+manager+applied+AI+product+AI-native+startup+hiring+Chennai+2025&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20manager%20applied%20AI%20product%20AI-native%20startup%20hiring%20Chennai%202025 200
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Manager%22+Chennai 403
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Manager%22+Chennai&limit=1 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dai%2Bproduct%2Bmanager%2Bapplied%2BAI%2Bproduct%2BAI-native%2Bstartup%2Bhiring%2BChennai%2B2025%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGMPU4NAGIjBudT9feN4zLrK4cZPoqS5JcIc33fPTENKirm3jmNypmtjpS4nEVxhP1eVUjeIS12QyAnJSWgFD 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.yahoo.com/search;_ylt=Kmc0acRMnosLqZiYfCkWx8Cc;_ylu=7uOADQQTlWNmkm3oUttAJ7jDeMZp_q9ujH-CpMHUf6RjyPc?p=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Manager%22+Chennai 200
+  [ddgs.ddgs] Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/)', 'https://www.startpage.com/')")
+  [primp] response: https://search.yahoo.com/search;_ylt=hepm9Q6FEdqYKBveF6tnWKyy;_ylu=ER5oNjSceKblNmkvoZ-gsKYDbqeKP7PkuGB3lUIn-W0j5Ew?p=ai+product+manager+applied+AI+product+AI-native+startup+hiring+Chennai+2025 200
+  [primp] response: https://search.yahoo.com/search;_ylt=XeviZN2wqpDQ_X8jJnwVWs5z;_ylu=qIMw2HNMOOohlalGEtWjRqvTJfdJiB__wWsgWGv3K-fqDnU?p=AI+Product+Manager+site%3Aboards.greenhouse.io+Chennai+India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Manager%20site%3Aboards.greenhouse.io%20Chennai%20India 200
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Manager+site%3Aboards.greenhouse.io+Chennai+India&web=1&searchid=9788240 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Manager+site%3Aboards.greenhouse.io+Chennai+India&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Manager%22+Chennai&web=1&searchid=3003491 200
+  [primp] response: https://search.brave.com/search?q=ai+product+manager+applied+AI+product+AI-native+startup+hiring+Chennai+2025&source=web 429
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%2B%2522job-listing%2522%2B%2522AI%2BProduct%2BManager%2522%2BChennai%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGMbU4NAGIjAlLPFXtb9Qa7ExLajsdBC8uINzlm2ttfy7IO9RX9QxiZSzivyuY2ipX6zEgarYGf4yAnJSWgFD 429
+  [ddgs.ddgs] Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/)', 'https://www.startpage.com/')")
+  [primp] response: https://www.mojeek.com/search?q=ai+product+manager+applied+AI+product+AI-native+startup+hiring+Chennai+2025 403
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Manager%22+Chennai&source=web 429
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BManager%2Bsite%253Aboards.greenhouse.io%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGMfU4NAGIjCWxZRj8oh48DGp2WMphPcZ1M60dDRiOSlq0BWE9VQkrd9T5U5sAq2ti19U3V7qzMIyAnJSWgFD 429
+  [careerloop.sources.glassdoor_adapter] [Glassdoor] AI Product Manager in Chennai: 6 jobs
+  [careerloop.on_demand] [OnDemand] Glassdoor: 6 jobs
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Manager+site%3Aboards.greenhouse.io+Chennai+India 200
+  [primp] response: https://yandex.com/search/site/?text=ai+product+manager+applied+AI+product+AI-native+startup+hiring+Chennai+2025&web=1&searchid=4675583 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [ddgs.ddgs] Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/)', 'https://www.startpage.com/')")
+  [primp] response: https://search.brave.com/search?q=AI+Product+Manager+site%3Aboards.greenhouse.io+Chennai+India&source=web 429
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Manager+site%3Aashbyhq.com+Chennai+India&limit=1 200
+  [primp] response: https://search.yahoo.com/search;_ylt=wxeu_7t_AdH4TiWRm7QO278A;_ylu=PUsjRfgnLIXHFwknkf2ywf1JEImtgAeBktxDo7eynMZtrTw?p=AI+Product+Manager+site%3Aashbyhq.com+Chennai+India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Manager%20site%3Aashbyhq.com%20Chennai%20India 200
+  [careerloop.sources.search_adapter] Search [3/6]: "AI product manager" jobs in Chennai
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+manager%22+jobs+in+Chennai&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20manager%22%20jobs%20in%20Chennai 200
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Manager+site%3Aashbyhq.com+Chennai+India&web=1&searchid=7712194 200
+  [primp] response: https://search.yahoo.com/search;_ylt=GOWVI3F1oLLPG_0g-91eT0a6;_ylu=5APqU9qOXUh9Y3UMA5qEJ8Jau_AXpcino3PdUbt-IhSUt7E?p=%22AI+product+manager%22+jobs+in+Chennai 200
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Manager+site%3Aashbyhq.com+Chennai+India 200
+  [ddgs.ddgs] Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/)', 'https://www.startpage.com/')")
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+product+manager%22+jobs+in+Chennai 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.brave.com/search?q=AI+Product+Manager+site%3Aashbyhq.com+Chennai+India&source=web 429
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BManager%2Bsite%253Aashbyhq.com%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGM_U4NAGIjBG0AQQ1gev593WYTprmc1KlP07TVmIlADnab2cP4aX-kVtH-0-W7xCa4e41O4O5McyAnJSWgFD 429
+  [careerloop.sources.search_adapter] Search [4/6]: "AI product manager" hiring Chennai site:linkedin.com/jobs/view
+  [primp] response: https://search.brave.com/search?q=AI+Product+Manager+site%3Aapply.workable.com+Chennai+India&source=web 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Manager%20site%3Aapply.workable.com%20Chennai%20India 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Manager+site%3Aapply.workable.com+Chennai+India&limit=1 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BManager%2Bsite%253Aapply.workable.com%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGNDU4NAGIjCNGGR3b57Tt-XAjSrCE9q73NABKd4JEyG9m7PugeStlNdnIYrzsX0oCsdjTYHManUyAnJSWgFD 429
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20manager%22%20hiring%20Chennai%20site%3Alinkedin.com/jobs/view 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+manager%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&limit=1 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Manager+site%3Aapply.workable.com+Chennai+India&web=1&searchid=1408610 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+product+manager%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview 403
+  [primp] response: https://search.yahoo.com/search;_ylt=7mot6u82bhBoaRnNEwzxz30C;_ylu=dd0_Ri2V8OsRrsprlfFeJA-2PHz7Om4JKF1NqcstXbR0914?p=AI+Product+Manager+site%3Aapply.workable.com+Chennai+India 200
+  [careerloop.sources.jobspy_adapter] JobSpy found 40 jobs for 'AI Product Manager' in Chennai
+  [careerloop.on_demand] [OnDemand] JobSpy: 40 jobs
+  [primp] response: https://search.yahoo.com/search;_ylt=SK0Zk8yRCfJuaLLM1VQqeOPA;_ylu=ymZjZziUDZxig5P7Uv5vi3j8xE62D4WcCBGRK1oZ1wrXyww?p=%22AI+product+manager%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview 200
+  [primp] response: https://search.brave.com/search?q=%22AI+product+manager%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&source=web 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bmanager%2522%2Bhiring%2BChennai%2Bsite%253Alinkedin.com%252Fjobs%252Fview%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGNTU4NAGIjDq4bolFr6sywig9OXHGsr7wbYUIE_rVVPAnm8quethI92EWMd9svk3TJMZTRJmaZIyAnJSWgFD 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+manager%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&web=1&searchid=8786587 200
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Manager+site%3Aapply.workable.com+Chennai+India 200
+  [careerloop.sources.google_jobs_adapter] [GoogleJobs] AI Product Manager in Chennai: 30 jobs
+  [careerloop.on_demand] [OnDemand] GoogleJobs: 30 jobs
+  [ddgs.ddgs] Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/)', 'https://www.startpage.com/')")
+  [careerloop.sources.search_adapter] Search [5/6]: "AI product manager" Chennai site:naukri.com
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20manager%22%20Chennai%20site%3Anaukri.com 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+manager%22+Chennai+site%3Anaukri.com&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+manager%22+Chennai+site%3Anaukri.com&web=1&searchid=1313414 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [ddgs.ddgs] Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/sp/search)', 'https://www.startpage.com/sp/search')")
+  [primp] response: https://search.brave.com/search?q=%22AI+product+manager%22+Chennai+site%3Anaukri.com&source=web 429
+  [primp] response: https://www.mojeek.com/search?q=%22AI+product+manager%22+Chennai+site%3Anaukri.com 403
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://search.yahoo.com/search;_ylt=XKTLT4bvXRTVCr4ZlnC11brQ;_ylu=PUQGg9wizbIDA3TAo3DSdHkk8XDt2SL-O2i4L2i3rj_yhZI?p=%22AI+product+manager%22+Chennai+site%3Anaukri.com 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bmanager%2522%2BChennai%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGN7U4NAGIjB0Zyg3M2PuF1F2pG6XaYR7Vmy7kSHddm5ik9erW6WDQJRO6WauyD994lAMio3CWToyAnJSWgFD 429
+  [careerloop.sources.search_adapter] Google Search failed for '"AI product manager" Chennai site:naukri.com', trying DDG: ConnectError: ConnectError('error sending request for url (https://www.startpage.com/sp/search)', 'https://www.startpage.com/sp/search')
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20manager%22%20Chennai%20site%3Anaukri.com 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+manager%22+Chennai+site%3Anaukri.com&limit=1 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bmanager%2522%2BChennai%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGODU4NAGIjDQ8-JMf_qq7NS7-cqEn8iUS0IKemE19iiAmDJJxKysYmmDafV1FzoWBzWdZzJIW6EyAnJSWgFD 429
+  [primp] response: https://www.mojeek.com/search?q=%22AI+product+manager%22+Chennai+site%3Anaukri.com 403
+  [primp] response: https://search.yahoo.com/search;_ylt=c07LQ2OMVCq4Qd7KHt7au_6m;_ylu=xPFppu4hGdHTzlH22ouHpL7Non1TmYI838uUHJPIQ7FY0Hg?p=%22AI+product+manager%22+Chennai+site%3Anaukri.com 200
+  [primp] response: https://search.brave.com/search?q=%22AI+product+manager%22+Chennai+site%3Anaukri.com&source=web 429
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+manager%22+Chennai+site%3Anaukri.com&web=1&searchid=9473534 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [ddgs.ddgs] Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/sp/search)', 'https://www.startpage.com/sp/search')")
+  [careerloop.sources.search_adapter] Search [6/6]: "AI product manager" Chennai site:cutshort.io
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20manager%22%20Chennai%20site%3Acutshort.io 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+manager%22+Chennai+site%3Acutshort.io&limit=1 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [ddgs.ddgs] Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/)', 'https://www.startpage.com/')")
+  [primp] response: https://www.mojeek.com/search?q=%22AI+product+manager%22+Chennai+site%3Acutshort.io 403
+  [primp] response: https://search.brave.com/search?q=%22AI+product+manager%22+Chennai+site%3Acutshort.io&source=web 429
+  [primp] response: https://search.yahoo.com/search;_ylt=Yb0IR5LGP31j9cmtOfaHj0Pq;_ylu=MhuV0fQyy077LjBEVZ8WvOGCIDSU3v8uiuiBTEM-kVnT3OY?p=%22AI+product+manager%22+Chennai+site%3Acutshort.io 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bmanager%2522%2BChennai%2Bsite%253Acutshort.io%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGO3U4NAGIjBg7RF0TV7YtxRd_9_FgMNUAChq6YWbYX8EUSpuTtug523jhDxfbowHgcXWbSRTOrUyAnJSWgFD 429
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+manager%22+Chennai+site%3Acutshort.io&web=1&searchid=2061858 200
+  [careerloop.sources.search_adapter] Total candidate URLs: 11
+  [careerloop.on_demand] [OnDemand] Board health: {'naukri': 0, 'monster': 6, 'glassdoor': 6, 'jobspy': 40, 'google_jobs': 30, 'ddg': 10}
+  [Phase B] per-source: ddg:10 | glassdoor:6 | google_jobs:30 | jobspy:40 | monster:6 | naukri:0
+  [Phase B] boards done — 44 jobs (archetype title-rejected 48)
+  [Pipeline] total raw candidates: 44 (A:0 + B:44)
+  [careerloop.india_filter] India filter: 39 passed, 5 rejected
+  [Filter] India filter: 44 → 39
+  [Phase E] ontology gate (archetype_match>=0.2): 38 → 4 (34 dropped)
+  [Phase E] role similarity filter: 4 candidates...
+  [Phase E] role filter done: 4 → 3 relevant (1 rejected)
+  [careerloop.apply_route] Canonical dedup: 3 → 3 unique jobs
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'AstraZeneca': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'AstraZeneca': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Product Manager, AI Studio': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Product Manager, AI Studio': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Product Manager, AI Platforms (R4991)': near "%": syntax error — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Product Manager, AI Platforms (R4991)': near "%": syntax error — using defaults
+  [Phase F] LLM validator (DeepSeek): validating top-3 jobs...
+  [Phase F] LLM validator done: 3 → 3
+
+────────────────────────────────────────────────────────────
+  RESULTS: AI Product Manager @ Chennai
+────────────────────────────────────────────────────────────
+  Keywords   : AI product manager, product manager AI, AI PM, machine learning product manager, ML product manager, AI product lead, product manager - AI/ML, AI product owner, technical product manager AI, AI product strategist
+  Candidates : 44
+  After dedup: 3
+  Ranked     : 3
+  Elapsed    : 121.7s
+  · Phase A: detached (include_phase_a=False)
+  · board health: ddg:10 | glassdoor:6 | google_jobs:30 | jobspy:40 | monster:6 | naukri:0
+  · company-type filter: dropped 1 rejected-type companies
+  · ontology gate: dropped 34 jobs (archetype_match<0.2)
+  · role filter: 4 → 3 relevant (1 rejected)
+
+    #   SCORE  TITLE                                          COMPANY                         PHASE:SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ──────────────────
+    1    30.0  Technical Product Lead                         AstraZeneca                     [B:jobspy]
+         → https://www.linkedin.com/jobs/view/4416182039
+    2    30.0  Mistral AI                                     Product Manager, AI Studio      [B:google_jobs]
+         → https://jobs.lever.co/mistral/6201f9a0-233f-4de3-a8cc-65b75e99370f
+    3    30.0  Shield AI                                      Product Manager, AI Platforms   [B:google_jobs]
+         → https://jobs.lever.co/shieldai/7886f437-2d5e-4616-8dcb-3dc488f1f585
+
+============================================================
+  FINAL SUMMARY
+============================================================
+  Roles searched : 3
+  Total jobs     : 27
+  AI Product Engineer: 4 ranked (339.7s)
+  AI Product Engineer: 5 ranked (113.9s)
+  Applied AI Engineer: 5 ranked (163.3s)
+  Applied AI Engineer: 9 ranked (159.3s)
+  AI Product Manager: 1 ranked (121.5s)
+  AI Product Manager: 3 ranked (121.7s)
+  ✓ Results saved: /Users/hayagreev13/Projects/career-loop/CareerLoop/test data/output/siddharth/siddharth_bangalore_v4_20260528_1657.json
+  ✓ Audit log   : /Users/hayagreev13/Projects/career-loop/CareerLoop/test data/output/siddharth/audit_20260528_1657.log
+  ⚠ Only 27 jobs found — may need more roles or broader search

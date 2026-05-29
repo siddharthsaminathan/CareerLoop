@@ -1,0 +1,200 @@
+{
+  "role": "ai product engineer",
+  "city": "chennai",
+  "cached_at": 1779971509.06077,
+  "expires_at": 1780000309.06077,
+  "job_count": 6,
+  "jobs": [
+    {
+      "title": "AI Product Engineer (Agentic AI / Vibe Coding) with 0",
+      "company": "",
+      "location": "Chennai",
+      "url": "https://www.foundit.in/job/ai-product-engineer-agentic-ai-vibe-coding-kuubiik-india-47494538",
+      "apply_url": "https://www.foundit.in/job/ai-product-engineer-agentic-ai-vibe-coding-kuubiik-india-47494538",
+      "description": "Build AI-native product features using modern AI development tools such as Cursor, Claude Code, Lovable, or similar environments. Design and develop AI agents and multi-agent systems capable of performing complex workflows.",
+      "_source_type": "foundit",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "989ac62079da59b2",
+      "canonical": true,
+      "canonical_id": "989ac62079da59b2",
+      "apply_route": {
+        "best_apply_route": "foundit",
+        "apply_url": "https://www.foundit.in/job/ai-product-engineer-agentic-ai-vibe-coding-kuubiik-india-47494538",
+        "backup_urls": [],
+        "reason": "best route: foundit (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Enterprise Architect",
+      "company": "Yitro",
+      "location": "TN, IN",
+      "url": "https://in.indeed.com/viewjob?jk=6944da5d49d6a750",
+      "apply_url": "https://in.indeed.com/viewjob?jk=6944da5d49d6a750",
+      "url_type": "UNKNOWN",
+      "description": "**Role Overview**\n\nThe Enterprise Architect (EA) is responsible for defining, governing, and evolving the enterprise\\-wide technology architecture across multi\\-product platforms in banking, e\\-commerce, and e\\-learning domains. The role ensures alignment between business strategy, product roadmaps, and technology execution, while enabling scalability, security, performance, and long\\-term sustainability.\n\nThe EA establishes architectural standards and guardrails for cloud\\-native, API\\-driven, ",
+      "_source_type": "jobspy",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.38,
+        "biz_model": "b2b",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location ends with India country code",
+      "_canonical_fp": "5a0bf5ab2043c793",
+      "canonical": true,
+      "canonical_id": "5a0bf5ab2043c793",
+      "apply_route": {
+        "best_apply_route": "indeed",
+        "apply_url": "https://in.indeed.com/viewjob?jk=6944da5d49d6a750",
+        "backup_urls": [],
+        "reason": "best route: indeed (priority 6)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Senior Software Engineer, AI Product @ Vanta",
+      "company": "Vanta",
+      "location": "Chennai",
+      "url": "https://jobs.ashbyhq.com/vanta/1fb75eb1-739a-4394-9f9b-ca684a61dfd3",
+      "apply_url": "https://jobs.ashbyhq.com/vanta/1fb75eb1-739a-4394-9f9b-ca684a61dfd3",
+      "description": "As a Senior Applied AI Engineer at Vanta, you will play a crucial role in shaping Vanta’s AI offerings, setting technical strategy, and leading projects that leverage AI to deliver smarter, faster outcomes for our customers. You'll be part of a team integrating AI into the Vanta product...",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "senior",
+        "archetype_match": 0.38,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains chennai",
+      "_canonical_fp": "2ed3444ec55595c2",
+      "canonical": true,
+      "canonical_id": "2ed3444ec55595c2",
+      "apply_route": {
+        "best_apply_route": "ashby",
+        "apply_url": "https://jobs.ashbyhq.com/vanta/1fb75eb1-739a-4394-9f9b-ca684a61dfd3",
+        "backup_urls": [],
+        "reason": "best route: ashby (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "AI Product Engineer",
+      "company": "Mathspace",
+      "location": "Chennai",
+      "url": "https://apply.workable.com/mathspace/j/115A926E81",
+      "apply_url": "https://apply.workable.com/mathspace/j/115A926E81",
+      "description": "About UsMathspace is on a mission to transform mathematics education. We believe that every student can learn and grow in mathematics with the right support—and we’re building the most intelligent, adaptive platform to make that possible.For over a d...",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains chennai",
+      "_canonical_fp": "72c6455012b60c42",
+      "canonical": true,
+      "canonical_id": "72c6455012b60c42",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://apply.workable.com/mathspace/j/115A926E81",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
+    },
+    {
+      "title": "Full stack developer",
+      "company": "Tech AI startup in Bangalore",
+      "location": "Bangalore, India",
+      "url": "https://cutshort.io/job/Full-stack-developer-Recruit-Square-wrN8K60z",
+      "apply_url": "",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "About the Role: We are looking for a skilled Full-Stack Developer with expertise in Python, JavaScript, and No-Code AI tools to join our dynamic team. The ideal candidate should be proficient in both backend and frontend development, capable of working with modern frameworks, and have experience in LLM prompt engineering, data extraction, and response formatting. Key Responsibilities: Develop and maintain scalable backend services using FastAPI / Flask / Django. Build dynamic front-end applications using React / Next.js. Implement LLM-based solutions for data extraction and response formatting. Design and optimize databases using Milvus / Weaviate / Pinecone for vector storage and MongoDB / MySQL for structured data. Collaborate with cross-functional teams to deliver high-quality AI-driven applications. Ensure application performance, security, and scalability. Communicate technical ideas effectively through written and verbal communication. Required Skills Qualifications: Technical Skills: Programming: Proficiency in Python and JavaScript. Backend: Experience with FastAPI / Flask / Django. Frontend: Strong understanding of React / Next.js. Database: Knowledge of at least one vector database (Milvus / Weaviate / Pinecone) and one relational or NoSQL database (MongoDB / MySQL). No-Code AI LLM: Expertise in LLM Prompt Engineering. Experience with data extraction from context and response formatting. Soft Skills: Strong written and verbal communication skills. Ability to collaborate effectively with teams and clients. Problem-solving mindset with a focus on innovation and efficiency.",
+      "skills": [
+        "Javascript",
+        "Python",
+        "Django",
+        "FastAPI",
+        "Flask",
+        "React.js",
+        "NextJs (Next.js)",
+        "weaviate",
+        "pinecone",
+        "MySQL",
+        "MongoDB",
+        "Large Language Models (LLM)"
+      ],
+      "salary": "₹6L - ₹8L / yr",
+      "work_mode": "remote",
+      "_source_type": "scrapegraph",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "815ab000c28ba36b",
+      "canonical": true,
+      "canonical_id": "815ab000c28ba36b",
+      "apply_route": {
+        "best_apply_route": "cutshort",
+        "apply_url": "https://cutshort.io/job/Full-stack-developer-Recruit-Square-wrN8K60z",
+        "backup_urls": [],
+        "reason": "best route: cutshort (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "Applied AI Engineer",
+      "company": "DevRev",
+      "location": "Chennai",
+      "url": "https://unstop.com/jobs/applied-ai-engineer-devrev-1512418",
+      "apply_url": "",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "DevRev is hiring for the role of Applied AI Engineer! Responsibilities of the Candidate: Design, develop and implement integrations, automations and customizations to integrate DevRev with customers’ tech stack and workflows, and ensure successful customer engagements. Utilize AI in novel ways to solve customer problems, including Generative AI techniques like prompt engineering for foundation large language models (LLMs) to enable great AI agent experience. Work on semantic search engine fine-tuning for better search accuracy. Conduct data analysis, writing SQL queries, and building dashboards to share insights and drive decision-making. Be proactive in communicating and keeping constant feedback loops to all key stakeholders including Customers, Engineering, Product, Customer Success ... Read More If an employer asks you to pay any kind of fee, please notify us immediately. Unstop does not charge any fee from the applicants and we do not allow other companies also to do so.",
+      "skills": [
+        "Artificial Intelligence",
+        "Generative AI",
+        "prompt engineering",
+        "large language models (LLMs)",
+        "semantic search",
+        "SQL"
+      ],
+      "salary": "",
+      "work_mode": "onsite",
+      "_source_type": "scrapegraph",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.38,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains chennai",
+      "_canonical_fp": "370d4242140fbd4d",
+      "canonical": true,
+      "canonical_id": "370d4242140fbd4d",
+      "apply_route": {
+        "best_apply_route": "company_site",
+        "apply_url": "https://unstop.com/jobs/applied-ai-engineer-devrev-1512418",
+        "backup_urls": [],
+        "reason": "best route: company_site (priority 1)",
+        "risk": "low"
+      }
+    }
+  ]
+}

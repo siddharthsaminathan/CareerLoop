@@ -1,0 +1,162 @@
+
+============================================================
+  CAREERLOOP SIDDHARTH FULL RUN — v2
+============================================================
+  Started : 2026-05-28 15:44:31
+  Roles   : AI Product Engineer, Applied AI Engineer, AI Product Manager
+  Cities  : Bangalore, Chennai
+  Max/role: 30
+  Audit   : /Users/hayagreev13/Projects/career-loop/CareerLoop/test data/output/siddharth/audit_20260528_1544.log
+  SerpAPI : ✅ ACTIVE
+  DeepSeek: ✅ ACTIVE
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 0: IMPORTS + INIT
+────────────────────────────────────────────────────────────
+  ✓ on_demand.OnDemandSearch imported
+  ✓ OnDemandSearch ready — profile: profile.yml
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: AI Product Engineer @ Bangalore
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Bangalore | AI Product Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Phase A] discovering companies for 'AI Product Engineer' in Bangalore...
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+    internet discovery done — querying DB for top companies...
+  [Phase A] 0 companies found.
+  [Phase A] portal scrape done — 0 jobs
+  [Phase B] searching job boards (parallel)...
+  [Phase B] boards done — 139 jobs (archetype dropped 18)
+
+────────────────────────────────────────────────────────────
+  RESULTS: AI Product Engineer @ Bangalore
+────────────────────────────────────────────────────────────
+  Keywords   : AI product engineer, AI product developer, machine learning product engineer, AI solutions engineer, AI product manager, AI engineer, product engineer AI, AI product architect, AI product specialist, AI product lead
+  Candidates : 139
+  After dedup: 65
+  Ranked     : 12
+  Elapsed    : 323.3s
+  · Phase A: live discovery returned 0 companies — skipping portal layer
+  · board health: ddg:21 | glassdoor:30 | google_jobs:30 | jobspy:40 | monster:36 | naukri:0
+  · company-type filter: dropped 1 rejected-type companies
+  · ontology gate: dropped 4 jobs (archetype_match<0.2)
+  · role filter: 104 → 67 relevant (37 rejected)
+  · min-desc gate: dropped 6 jobs (<200c)
+  · city filter (Bangalore): 59 → 46 (13 off-city removed)
+  · company cap (max 3): 46 → 31
+
+    #   SCORE  TITLE                                          COMPANY                         SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ───────────────
+    1    64.5  Senior AI Product Engineer with 5              ?                               foundit
+         → https://www.foundit.in/job/senior-ai-product-engineer-uplers-bengaluru-bangalore-37005874
+    2    64.3  Product Engineer- AI with 4                    6 Years of Experience at Fibr   foundit
+         → https://www.foundit.in/job/product-engineer-ai-fibr-ai-bengaluru-bangalore-36846590
+    3    64.2  Generative AI Platform Infrastructure Enginee  Cargill Business Services       scrapegraph
+         → https://cutshort.io/job/Generative-AI-Platform-Infrastructure-Engineer-Bengaluru-Bangalore-Carg
+    4    63.8  AI Product Engineer with 3                     Mindtickle                      foundit
+         → https://www.foundit.in/job/ai-product-engineer-mindtickle-bengaluru-bangalore-48103684
+    5    63.1  Lead AI Product Engineer with 6                ?                               foundit
+         → https://www.foundit.in/job/lead-ai-product-engineer-aspire-bengaluru-bangalore-51996607
+    6    62.9  AI Founding Engineer Job for 2                 ?                               foundit
+         → https://www.foundit.in/job/ai-founding-engineer-sidecar-bengaluru-bangalore-34662844
+    7    62.1  Senior AI Product Engineer                     Neemtree                        scrapegraph
+         → https://www.hirist.tech/j/senior-ai-product-engineer-1639483
+    8    61.1  Job Application for Lead AI Platform Engineer  AlphaSense                      google_jobs
+         → https://boards.greenhouse.io/alphasense/jobs/7756999002?t=1b1a313c2us
+    9    60.1  Software Engineer — AI Products                Tipstat®                        jobspy
+         → https://www.linkedin.com/jobs/view/4404599688
+   10    59.6  AI Engineer                                    Osfin.ai                        jobspy
+         → https://www.linkedin.com/jobs/view/4381308207
+   11    57.5  AI Applications Engineer                       Oleria                          jobspy
+         → https://www.linkedin.com/jobs/view/4416227798
+   12    30.0  Job Application for Product Engineer - Scale   Scale AI                        google_jobs
+         → https://boards.greenhouse.io/scaleai/jobs/4004695005
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: AI Product Engineer @ Chennai
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Chennai | AI Product Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Phase A] discovering companies for 'AI Product Engineer' in Chennai...
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...

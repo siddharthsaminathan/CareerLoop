@@ -25,15 +25,34 @@ CREATE TABLE IF NOT EXISTS role_keywords (
     last_used_at   TEXT
 );
 CREATE TABLE IF NOT EXISTS companies (
-    id           TEXT PRIMARY KEY,
-    name         TEXT NOT NULL,
-    city         TEXT,
-    sector       TEXT,
-    ats_provider TEXT DEFAULT 'unknown',
-    ats_url      TEXT,
-    career_page_url TEXT,
-    score        REAL DEFAULT 50.0,
-    updated_at   TEXT
+    id                TEXT PRIMARY KEY,
+    name              TEXT NOT NULL,
+    domain            TEXT DEFAULT '',
+    city              TEXT DEFAULT '',
+    sector            TEXT DEFAULT '',
+    subsector         TEXT DEFAULT '',
+    ats_provider      TEXT DEFAULT 'unknown',
+    ats_url           TEXT DEFAULT '',
+    career_page_url   TEXT DEFAULT '',
+    linkedin_url      TEXT DEFAULT '',
+    employee_estimate INTEGER DEFAULT 0,
+    crawl_status      TEXT DEFAULT 'pending',
+    last_crawled_at   TEXT,
+    last_job_count    INTEGER DEFAULT 0,
+    source            TEXT DEFAULT '',
+    is_active         INTEGER DEFAULT 1,
+    score             REAL DEFAULT 50.0,
+    created_at        TEXT,
+    updated_at        TEXT
+);
+CREATE TABLE IF NOT EXISTS role_archetypes (
+    role_norm         TEXT PRIMARY KEY,
+    must_have         TEXT NOT NULL DEFAULT '[]',
+    avoid             TEXT NOT NULL DEFAULT '[]',
+    preferred_company_types TEXT NOT NULL DEFAULT '[]',
+    function_type     TEXT DEFAULT '',
+    market_type       TEXT DEFAULT '',
+    generated_at      TEXT
 );
 CREATE TABLE IF NOT EXISTS company_sources (
     company_id    TEXT NOT NULL,
@@ -47,6 +66,7 @@ CREATE TABLE IF NOT EXISTS company_functions (
     company_id   TEXT NOT NULL,
     function     TEXT NOT NULL,
     probability  REAL DEFAULT 0.5,
+    is_active    INTEGER DEFAULT 1,
     PRIMARY KEY (company_id, function)
 );
 """
@@ -65,6 +85,9 @@ class _SQLiteConn:
         cur = self._conn.cursor()
         cur.execute(sql, params or [])
         return cur
+
+    def cursor(self):
+        return self._conn.cursor()
 
     def commit(self):
         self._conn.commit()

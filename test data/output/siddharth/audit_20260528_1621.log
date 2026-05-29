@@ -1,0 +1,1494 @@
+
+============================================================
+  CAREERLOOP SIDDHARTH FULL RUN — v3
+============================================================
+  Started : 2026-05-28 16:21:41
+  Roles   : AI Product Engineer, Applied AI Engineer, AI Product Manager
+  Cities  : Bangalore, Chennai
+  Max/role: 30
+  Audit   : /Users/hayagreev13/Projects/career-loop/CareerLoop/test data/output/siddharth/audit_20260528_1621.log
+  SerpAPI : ✅ ACTIVE
+  DeepSeek: ✅ ACTIVE
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 0: IMPORTS + INIT
+────────────────────────────────────────────────────────────
+  ✓ on_demand.OnDemandSearch imported
+  [careerloop.memory.connection] [DB] SQLite local dev: /Users/hayagreev13/Projects/career-loop/CareerLoop/test data/output/careerloop_local.db
+  ✓ OnDemandSearch ready — profile: profile.yml
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: AI Product Engineer @ Bangalore
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Bangalore | AI Product Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Archetype] role='AI Product Engineer' | function='applied product engineering' | market='B2B SaaS / developer tools'
+  [Archetype] must_have=['product', 'applied AI', 'customer-facing', 'cross-functional', 'platform', 'LLM', 'agent', 'API']
+  [Archetype] avoid=['research', 'data science', 'frontend', 'QA', 'support', 'SAP', 'Java', 'PHP']
+  [Queries] 8 board queries: ['ai product engineer applied product engineering AI product startup Bangalore jobs', 'ai product engineer applied product engineering AI product startup hiring Bangalore 2025', '"AI product engineer" jobs in Bangalore', '"AI product engineer" hiring Bangalore site:linkedin.com/jobs/view']
+  [Phase A] discovering companies for 'AI Product Engineer' in Bangalore...
+  [careerloop.on_demand] [OnDemand] Phase A: sector inferred → 'Technology & Software' for role 'AI Product Engineer'
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+  [careerloop.sources.company_discovery] [Discovery] Starting: city=Bangalore, sector=Technology & Software, function=ai product engineer applied product engineering AI product startup
+  [careerloop.sources.company_discovery] [SerpAPI] query: 'well-funded AI startup Bangalore India hiring "ai product engineer applied product engineering AI product startup" 2025'
+  [careerloop.sources.company_discovery] [SerpAPI] → 0 results
+  [careerloop.sources.company_discovery] [SerpAPI] query: 'top technology product company Bangalore Series A B careers engineer'
+  [careerloop.sources.company_discovery] [SerpAPI] → 5 results
+  [careerloop.sources.company_discovery] [SerpAPI] Bangalore/Technology & Software: 5 companies total
+  [careerloop.sources.company_discovery] [Wellfound/DDG] query: 'site:wellfound.com/company technology bangalore'
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/company%20technology%20bangalore 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fcompany+technology+bangalore&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Awellfound.com%2Fcompany+technology+bangalore&web=1&searchid=5986393 200
+  [primp] response: https://search.yahoo.com/search;_ylt=nrgRU62UTxUWS29CZINwCIWI;_ylu=aUvaZZGZ79oHvK2W-UMZgLshZS6uvzs05QwuBvGIFWZK_3E?p=site%3Awellfound.com%2Fcompany+technology+bangalore 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.brave.com/search?q=site%3Awellfound.com%2Fcompany+technology+bangalore&source=web 429
+  [primp] response: https://www.mojeek.com/search?q=site%3Awellfound.com%2Fcompany+technology+bangalore 200
+  [primp] response: https://www.google.com/search?q=site%3Awellfound.com%2Fcompany+technology+bangalore&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [careerloop.sources.company_discovery] [Wellfound/DDG] → 6 results
+  [careerloop.sources.company_discovery] [Wellfound] Bangalore/Technology & Software: 6 companies
+  [careerloop.sources.company_discovery] [Crunchbase/DDG] query: 'site:crunchbase.com/organization technology bangalore india'
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acrunchbase.com/organization%20technology%20bangalore%20india 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&limit=1 200
+  [primp] response: https://www.google.com/search?q=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.mojeek.com/search?q=site%3Acrunchbase.com%2Forganization+technology+bangalore+india 200
+  [primp] response: https://search.brave.com/search?q=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&source=web 429
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://search.yahoo.com/search;_ylt=8kdZwnt7Y8QqqcDztSR2bWTg;_ylu=NhiMIhXxOuuuF_FGIHs3qU4oQ9tufzWaoxeFefKPansi71k?p=site%3Acrunchbase.com%2Forganization+technology+bangalore+india 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&web=1&searchid=4641875 200
+  [careerloop.sources.company_discovery] [Crunchbase/DDG] → 6 results
+  [careerloop.sources.company_discovery] [Crunchbase/DDG] query: 'crunchbase technology company bangalore india funding'
+  [primp] response: https://search.brave.com/search?q=crunchbase+technology+company+bangalore+india+funding&source=web 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=crunchbase%20technology%20company%20bangalore%20india%20funding 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=crunchbase+technology+company+bangalore+india+funding&limit=1 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.google.com/search?q=crunchbase+technology+company+bangalore+india+funding&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [primp] response: https://yandex.com/search/site/?text=crunchbase+technology+company+bangalore+india+funding&web=1&searchid=4962998 200
+  [careerloop.sources.company_discovery] [Crunchbase/DDG] → 15 results
+  [careerloop.sources.company_discovery] [Crunchbase] Bangalore/Technology & Software: 3 companies
+  [careerloop.sources.company_discovery] [Inc42/DDG] query: 'site:inc42.com technology startup bangalore india'
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainc42.com%20technology%20startup%20bangalore%20india 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Ainc42.com+technology+startup+bangalore+india&limit=1 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.google.com/search?q=site%3Ainc42.com+technology+startup+bangalore+india&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [primp] response: https://search.brave.com/search?q=site%3Ainc42.com+technology+startup+bangalore+india&source=web 429
+  [primp] response: https://www.mojeek.com/search?q=site%3Ainc42.com+technology+startup+bangalore+india 200
+  [careerloop.sources.company_discovery] [Inc42/DDG] → 10 results
+  [careerloop.sources.company_discovery] [Inc42/DDG] query: 'site:yourstory.com technology company bangalore india'
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ayourstory.com%20technology%20company%20bangalore%20india 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Ayourstory.com+technology+company+bangalore+india&limit=1 200
+  [primp] response: https://search.brave.com/search?q=site%3Ayourstory.com+technology+company+bangalore+india&source=web 429
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Ayourstory.com+technology+company+bangalore+india&web=1&searchid=5705243 200
+  [primp] response: https://search.yahoo.com/search;_ylt=C3NPD_3ege5Fb-G3nJqYn5sR;_ylu=X-Kg4UCIpyxr0DTYkSDzXbCmQ2nQxpowGqhDyec7Mvmvu6w?p=site%3Ayourstory.com+technology+company+bangalore+india 200
+  [careerloop.sources.company_discovery] [Inc42/DDG] → 10 results
+  [careerloop.sources.company_discovery] [Inc42/DDG] query: 'startupindia.gov.in technology bangalore registered startup'
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=startupindia.gov.in%20technology%20bangalore%20registered%20startup 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=startupindia.gov.in+technology+bangalore+registered+startup&limit=1 200
+  [primp] response: https://www.google.com/search?q=startupindia.gov.in+technology+bangalore+registered+startup&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [primp] response: https://yandex.com/search/site/?text=startupindia.gov.in+technology+bangalore+registered+startup&web=1&searchid=4967986 200
+  [careerloop.sources.company_discovery] [Inc42/DDG] → 10 results
+  [careerloop.sources.company_discovery] [Inc42/YourStory] Bangalore/Technology & Software: 30 companies
+  [careerloop.sources.company_discovery] [YC] India/Technology & Software: 100 companies
+  [careerloop.sources.company_discovery] [Discovery] 144 raw → 144 deduped
+  [careerloop.sources.ats_adapter] [ATS detect] productbased.in → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] internshala.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] builtin.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] wellfound.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] gridspace.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] augmedix.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] infibooks-1.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] cfo-studio.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] docon.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 10/80
+  [careerloop.sources.ats_adapter] [ATS detect] applico-1.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 20/80
+  [careerloop.sources.company_discovery] [Discovery] Enriched 30/80
+  [careerloop.sources.company_discovery] [Discovery] Enriched 40/80
+  [careerloop.sources.ats_adapter] [ATS detect] airbnb.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] doordash.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] coinbase.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] groww.in → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] oklo.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] instacart.com → greenhouse (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 50/80
+  [careerloop.sources.ats_adapter] [ATS detect] meesho.com → lever (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] rigetti.com → lever (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] dropbox.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] equipmentshare.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] gitlab.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] billiontoone.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] matterport.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] amplitude.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] pagerduty.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] ginkgobioworks.com → greenhouse (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 60/80
+  [careerloop.sources.ats_adapter] [ATS detect] getweave.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] pardesbio.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_portal_scraper] [CareerPage] Found (static): https://momentus.space/careers
+  [careerloop.sources.ats_adapter] [ATS detect] embarktrucks.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] lucirahealth.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] segment.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] algolia.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] truebill.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] twitch.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] plangrid.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 70/80
+  [careerloop.sources.ats_adapter] [ATS detect] bellabeat.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] getcruise.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] benchling.com → ashby (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] casetext.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] bird.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] brex.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] theathletic.com → lever (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] codecademy.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] checkr.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] lever.co → lever (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 80/80
+  [careerloop.sources.company_discovery] [Discovery] Done: 80 companies enriched and stored
+    internet discovery done — querying DB for top companies...
+  [Phase A] found 43 companies. scraping portals...
+  [careerloop.sources.ats_extended] [SmartRecruiters] wellfound.com/company/augmedix: 0 India jobs
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/augmedix ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] 100+ Product Company Jobs in Bangalore: 0 India jobs
+  [careerloop.on_demand] [OnDemand] 100+ Product Company Jobs in Bangalore ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] wellfound.com/company/gridspace: 0 India jobs
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/gridspace ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] Tech & Startup Jobs in Bengaluru: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] Understanding Product-Based Companies in Bangalore: 0 India jobs
+  [careerloop.on_demand] [OnDemand] Tech & Startup Jobs in Bengaluru ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Understanding Product-Based Companies in Bangalore ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] Xperteez Technology Careers | Wellfound (formerly AngelList Talent): 0 India jobs
+  [careerloop.on_demand] [OnDemand] Xperteez Technology Careers | Wellfound (formerly AngelList Talent) ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] wellfound.com/company/docon: 0 India jobs
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/docon ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] wellfound.com/company/applico-1: 0 India jobs
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/applico-1 ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] Infibooks Jobs | Wellfound (formerly AngelList Talent): 0 India jobs
+  [careerloop.on_demand] [OnDemand] Infibooks Jobs | Wellfound (formerly AngelList Talent) ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_adapter] [Greenhouse] Best Tech Jobs & Startup Jobs in Bangalore 2026: 1 India jobs
+  [sentence_transformers.base.model] No device provided, using mps
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+  [huggingface_hub.utils._http] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+  [sentence_transformers.base.model] Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+  [httpx] HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+  [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+  [httpx] HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+  [careerloop.role_similarity] [RoleSimilarity] Using sentence-transformers
+  [careerloop.on_demand] [OnDemand] Best Tech Jobs & Startup Jobs in Bangalore 2026 ATS: 1 raw → 1 after role filter (0 rejected)
+  [Phase A] portal scrape done — 1 jobs
+  [Phase B] searching job boards (parallel)...
+  [careerloop.sources.search_adapter] Search [1/6]: ai product engineer applied product engineering AI product startup Bangalore jobs
+  [careerloop.sources.naukri_adapter] Naukri API returned 406
+  [careerloop.on_demand] [OnDemand] Naukri: 0 jobs
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Ajobs.lever.co%20Bangalore%20India 200
+  [primp] response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India&source=web 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com/job-listing%20AI%20Product%20Engineer%20Bangalore%20India 200
+  [primp] response: https://search.yahoo.com/search;_ylt=J9iVvvTIV4GlV7u_aPobEhgd;_ylu=etIvUKfgIaKuQpufnd0fnIRu8DEE_2_aT-vOykKE_Tx1Vlc?p=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20Product%20Engineer%22%20Bangalore%20site%3Afoundit.in 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.google.com/search?q=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://www.google.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India 200
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in&limit=1 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20engineer%20applied%20product%20engineering%20AI%20product%20startup%20Bangalore%20jobs 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India&limit=1 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://search.brave.com/search?q=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in&source=web 429
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India&source=web 429
+  [primp] response: https://grokipedia.com/api/typeahead?query=ai+product+engineer+applied+product+engineering+AI+product+startup+Bangalore+jobs&limit=1 200
+  [primp] response: https://search.yahoo.com/search;_ylt=-wl6qxa7S9U86ieVZag1MmPj;_ylu=4mWLn3wXipfkUyvc76bFDYcAuhE8r5Y1ChtoQIk5X8O0_Yk?p=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India&web=1&searchid=9994349 200
+  [primp] response: https://yandex.com/search/site/?text=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in&web=1&searchid=7973739 200
+  [primp] response: https://yandex.com/search/site/?text=ai+product+engineer+applied+product+engineering+AI+product+startup+Bangalore+jobs&web=1&searchid=6872879 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://search.yahoo.com/search;_ylt=4tup2sH5xTpgn2h4u5BxnwmV;_ylu=QvTwLTuhoNWswkt0uqKj7-RfjhRK7CjRp8UzVjy1C8c9Y7k?p=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in 403
+  [careerloop.sources.monster_adapter] [Monster/foundit] DDG: AI Product Engineer in Bangalore: 23 jobs
+  [careerloop.on_demand] [OnDemand] Monster/foundit: 23 jobs
+  [primp] response: https://www.startpage.com/sp/search 200
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore&source=web 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com%20%22job-listing%22%20%22AI%20Product%20Engineer%22%20Bangalore 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore&limit=1 200
+  [primp] response: https://www.google.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [careerloop.sources.search_adapter] Search [2/6]: ai product engineer applied product engineering AI product startup hiring Bangalore 2025
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India&web=1&searchid=6687127 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aboards.greenhouse.io%20Bangalore%20India 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore&web=1&searchid=9958582 200
+  [primp] response: https://search.yahoo.com/search;_ylt=Jv9hmitdda_j5tK_YVqq5ZFz;_ylu=kQ4U-G5zXmTo5cjZdzaJEBu6bkJCsNNxVF3bKA2CGOQq9yk?p=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India 200
+  [primp] response: https://search.yahoo.com/search;_ylt=ZLXKV_n-U6NO5_Jcca2NWbkX;_ylu=8HO9kEadoNPGaadd52FUI82xoLbMhvdGDseNFzI0CvQ0rqc?p=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20engineer%20applied%20product%20engineering%20AI%20product%20startup%20hiring%20Bangalore%202025 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&limit=1 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=ai+product+engineer+applied+product+engineering+AI+product+startup+hiring+Bangalore+2025&limit=1 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore 403
+  [primp] response: https://www.startpage.com/ 200
+  [careerloop.sources.glassdoor_adapter] [Glassdoor] AI Product Engineer in Bangalore: 30 jobs
+  [careerloop.on_demand] [OnDemand] Glassdoor: 30 jobs
+  [primp] response: https://www.mojeek.com/search?q=ai+product+engineer+applied+product+engineering+AI+product+startup+hiring+Bangalore+2025 403
+  [primp] response: https://www.startpage.com/sp/search 200
+  [careerloop.sources.jobspy_adapter] JobSpy found 40 jobs for 'AI Product Engineer' in Bangalore
+  [careerloop.on_demand] [OnDemand] JobSpy: 40 jobs
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&web=1&searchid=6073720 200
+  [primp] response: https://www.startpage.com/sp/search 200
+  [primp] response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&source=web 429
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aashbyhq.com%20Bangalore%20India 200
+  [careerloop.sources.search_adapter] Search [3/6]: "AI product engineer" jobs in Bangalore
+  [primp] response: https://search.yahoo.com/search;_ylt=rgMglI88qjYG8-46hsjgeqDn;_ylu=SvpcmJtqWastMw25u_KCi9tA-hnxdNrno7esQC4BUSx0KVo?p=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India 200
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India&limit=1 200
+  [primp] response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India&source=web 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20jobs%20in%20Bangalore 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+jobs+in+Bangalore&limit=1 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India&web=1&searchid=7325100 200
+  [primp] response: https://search.brave.com/search?q=%22AI+product+engineer%22+jobs+in+Bangalore&source=web 429
+  [primp] response: https://www.google.com/search?q=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [primp] response: https://www.startpage.com/ 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+jobs+in+Bangalore 200
+  [primp] response: https://www.startpage.com/sp/search 200
+  [careerloop.sources.google_jobs_adapter] [GoogleJobs] AI Product Engineer in Bangalore: 30 jobs
+  [careerloop.on_demand] [OnDemand] GoogleJobs: 30 jobs
+  [careerloop.sources.search_adapter] Search [4/6]: "AI product engineer" hiring Bangalore site:linkedin.com/jobs/view
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20hiring%20Bangalore%20site%3Alinkedin.com/jobs/view 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&limit=1 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview 403
+  [primp] response: https://search.yahoo.com/search;_ylt=tnRKKPG6uaFdkcYd8n5D-Wfg;_ylu=IPnSwmL6K_v95Cw1wh-VMDwMxcIglegBeTgfySh9fFpia_s?p=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&web=1&searchid=8141812 200
+  [careerloop.sources.search_adapter] Search [5/6]: "AI product engineer" Bangalore site:naukri.com
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Bangalore%20site%3Anaukri.com 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com&limit=1 200
+  [primp] response: https://search.brave.com/search?q=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com&source=web 429
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.yahoo.com/search;_ylt=9-qjYw63tLnkJzbtFjRZ25Z6;_ylu=f8qBuSpxAMKUsySShoaD-0OMLqlrU0XDgjUbWJ5NUOUwrto?p=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com 200
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com&web=1&searchid=9011501 200
+  [primp] response: https://www.google.com/search?q=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [careerloop.sources.search_adapter] Search [6/6]: "AI product engineer" Bangalore site:cutshort.io
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Bangalore%20site%3Acutshort.io 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Bangalore+site%3Acutshort.io&limit=1 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.google.com/search?q=%22AI+product+engineer%22+Bangalore+site%3Acutshort.io&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [careerloop.sources.search_adapter] Total candidate URLs: 28
+  [careerloop.on_demand] [OnDemand] Board health: {'naukri': 0, 'monster': 23, 'glassdoor': 30, 'jobspy': 40, 'google_jobs': 30, 'ddg': 23}
+  [Phase B] per-source: ddg:23 | glassdoor:30 | google_jobs:30 | jobspy:40 | monster:23 | naukri:0
+  [Phase B] boards done — 133 jobs (archetype title-rejected 13)
+  [Pipeline] total raw candidates: 134 (A:1 + B:133)
+  [careerloop.india_filter] India filter: 103 passed, 31 rejected
+  [Filter] India filter: 134 → 103
+  [Phase E] ontology gate (archetype_match>=0.2): 102 → 18 (84 dropped)
+  [Phase E] role similarity filter: 18 candidates...
+  [Phase E] role filter done: 18 → 15 relevant (3 rejected)
+  [careerloop.apply_route] Canonical dedup: 15 → 15 unique jobs
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Best Tech Jobs & Startup Jobs in Bangalore 2026': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Best Tech Jobs & Startup Jobs in Bangalore 2026': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Allica Bank': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Allica Bank': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Thoughtworks': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Thoughtworks': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Cargill Business Services': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Cargill Business Services': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'IAI solution': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'IAI solution': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'NeoGenCode Technologies Pvt Ltd': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'NeoGenCode Technologies Pvt Ltd': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [Phase F] LLM validator (DeepSeek): validating top-8 jobs...
+  [careerloop.on_demand] [OnDemand] LLM validator: 8 → 7 (1 rejected)
+  [Phase F] LLM validator done: 8 → 7
+
+────────────────────────────────────────────────────────────
+  RESULTS: AI Product Engineer @ Bangalore
+────────────────────────────────────────────────────────────
+  Keywords   : AI product engineer, AI product developer, machine learning product engineer, AI solutions engineer, AI product manager, AI engineer, product engineer AI, AI product architect, AI product specialist, AI product lead
+  Candidates : 134
+  After dedup: 15
+  Ranked     : 7
+  Elapsed    : 374.4s
+  · Phase A: live discovery OK — 43 companies
+  · board health: ddg:23 | glassdoor:30 | google_jobs:30 | jobspy:40 | monster:23 | naukri:0
+  · company-type filter: dropped 1 rejected-type companies
+  · ontology gate: dropped 84 jobs (archetype_match<0.2)
+  · role filter: 18 → 15 relevant (3 rejected)
+  · min-desc gate: dropped 2 jobs (<200c)
+  · city filter (Bangalore): 13 → 12 (1 off-city removed)
+  · company cap (max 3): 12 → 8
+
+    #   SCORE  TITLE                                          COMPANY                         PHASE:SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ──────────────────
+    1    68.0  Gen AI Engineer                                NeoGenCode Technologies Pvt Lt  [B:scrapegraph]
+         → https://cutshort.io/job/Gen-AI-Engineer-Bengaluru-Bangalore-NeoGenCode-Technologies-Pvt-Ltd-tB2
+    2    62.7  AI/ML Engineer (LLMs, RAG Agent Systems)       IAI solution                    [B:scrapegraph]
+         → https://cutshort.io/job/AI-ML-Engineer-LLMs-RAG-Agent-Systems-Bengaluru-Bangalore-IAI-solution-
+    3    58.4  Applied AI Principal/Staff Engineer (Agentic   Best Tech Jobs & Startup Jobs   [A:greenhouse]
+         → https://job-boards.greenhouse.io/builtin/jobs/7855050
+    4    58.2  Generative AI Platform Infrastructure Enginee  Cargill Business Services       [B:scrapegraph]
+         → https://cutshort.io/job/Generative-AI-Platform-Infrastructure-Engineer-Bengaluru-Bangalore-Carg
+    5    57.2  Generative AI- Machine Learning Engineer       ?                               [B:generic_http]
+         → https://cutshort.io/job/Generative-AI-Engineer-Bengaluru-Bangalore-Quantiphi-hja2EdHo
+    6    56.8  AI Product Engineer with 4                     ?                               [B:foundit]
+         → https://www.foundit.in/job/ai-product-engineer-fh-daata-gurugram-49289576
+    7    55.8  AI Product Engineer (Agentic AI / Vibe Coding  ?                               [B:foundit]
+         → https://www.foundit.in/job/ai-product-engineer-agentic-ai-vibe-coding-kuubiik-india-47494538
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: AI Product Engineer @ Chennai
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Chennai | AI Product Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Archetype] role='AI Product Engineer' | function='applied product engineering' | market='B2B SaaS / developer tools'
+  [Archetype] must_have=['product', 'applied AI', 'customer-facing', 'cross-functional', 'platform', 'LLM', 'agent', 'API']
+  [Archetype] avoid=['research', 'data science', 'frontend', 'QA', 'support', 'SAP', 'Java', 'PHP']
+  [Queries] 8 board queries: ['ai product engineer applied product engineering AI product startup Chennai jobs', 'ai product engineer applied product engineering AI product startup hiring Chennai 2025', '"AI product engineer" jobs in Chennai', '"AI product engineer" hiring Chennai site:linkedin.com/jobs/view']
+  [Phase A] discovering companies for 'AI Product Engineer' in Chennai...
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+  [careerloop.sources.company_discovery] [Discovery] Starting: city=Chennai, sector=Technology & Software, function=ai product engineer applied product engineering AI product startup
+  [careerloop.sources.company_discovery] [SerpAPI] query: 'well-funded AI startup Chennai India hiring "ai product engineer applied product engineering AI product startup" 2025'
+  [careerloop.sources.company_discovery] [SerpAPI] → 0 results
+  [careerloop.sources.company_discovery] [SerpAPI] query: 'top technology product company Chennai Series A B careers engineer'
+  [careerloop.sources.company_discovery] [SerpAPI] → 5 results
+  [careerloop.sources.company_discovery] [SerpAPI] Chennai/Technology & Software: 5 companies total
+  [careerloop.sources.company_discovery] [Wellfound/DDG] query: 'site:wellfound.com/company technology chennai'
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/company%20technology%20chennai 200
+  [primp] response: https://search.brave.com/search?q=site%3Awellfound.com%2Fcompany+technology+chennai&source=web 429
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fcompany+technology+chennai&limit=1 200
+  [primp] response: https://www.mojeek.com/search?q=site%3Awellfound.com%2Fcompany+technology+chennai 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.yahoo.com/search;_ylt=60HZpp7GdXcyNmSf7Mf9fyAu;_ylu=T_FUULewpM3o7U2wVaQhuCyI_naVxLOCImrj3-C1PsZMRLQ?p=site%3Awellfound.com%2Fcompany+technology+chennai 200
+  [primp] response: https://www.google.com/search?q=site%3Awellfound.com%2Fcompany+technology+chennai&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Awellfound.com%2Fcompany+technology+chennai&web=1&searchid=7794441 200
+  [careerloop.sources.company_discovery] [Wellfound/DDG] → 13 results
+  [careerloop.sources.company_discovery] [Wellfound] Chennai/Technology & Software: 13 companies
+  [careerloop.sources.company_discovery] [Crunchbase/DDG] query: 'site:crunchbase.com/organization technology chennai india'
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acrunchbase.com/organization%20technology%20chennai%20india 200
+  [primp] response: https://search.brave.com/search?q=site%3Acrunchbase.com%2Forganization+technology+chennai+india&source=web 429
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Acrunchbase.com%2Forganization+technology+chennai+india&limit=1 200
+  [primp] response: https://www.google.com/search?q=site%3Acrunchbase.com%2Forganization+technology+chennai+india&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Acrunchbase.com%2Forganization+technology+chennai+india&web=1&searchid=2255557 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.mojeek.com/search?q=site%3Acrunchbase.com%2Forganization+technology+chennai+india 200
+  [primp] response: https://search.yahoo.com/search;_ylt=mni-OyldxmXPZ2VJKqC_PP8t;_ylu=HJULTSajF0r3_V4A9-E8FycgU6hpB7ipXlADICnRcad_jvE?p=site%3Acrunchbase.com%2Forganization+technology+chennai+india 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.company_discovery] [Crunchbase/DDG] → 13 results
+  [careerloop.sources.company_discovery] [Crunchbase/DDG] query: 'crunchbase technology company chennai india funding'
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=crunchbase%20technology%20company%20chennai%20india%20funding 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=crunchbase+technology+company+chennai+india+funding&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=crunchbase+technology+company+chennai+india+funding&web=1&searchid=3812330 200
+  [primp] response: https://www.mojeek.com/search?q=crunchbase+technology+company+chennai+india+funding 200
+  [careerloop.sources.company_discovery] [Crunchbase/DDG] → 15 results
+  [careerloop.sources.company_discovery] [Crunchbase] Chennai/Technology & Software: 11 companies
+  [careerloop.sources.company_discovery] [Inc42/DDG] query: 'site:inc42.com technology startup chennai india'
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainc42.com%20technology%20startup%20chennai%20india 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Ainc42.com+technology+startup+chennai+india&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Ainc42.com+technology+startup+chennai+india&web=1&searchid=3463294 200
+  [primp] response: https://search.brave.com/search?q=site%3Ainc42.com+technology+startup+chennai+india&source=web 429
+  [primp] response: https://www.google.com/search?q=site%3Ainc42.com+technology+startup+chennai+india&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.mojeek.com/search?q=site%3Ainc42.com+technology+startup+chennai+india 200
+  [careerloop.sources.company_discovery] [Inc42/DDG] → 10 results
+  [careerloop.sources.company_discovery] [Inc42/DDG] query: 'site:yourstory.com technology company chennai india'
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Ayourstory.com+technology+company+chennai+india&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ayourstory.com%20technology%20company%20chennai%20india 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Ayourstory.com+technology+company+chennai+india&web=1&searchid=5207145 200
+  [primp] response: https://www.mojeek.com/search?q=site%3Ayourstory.com+technology+company+chennai+india 200
+  [careerloop.sources.company_discovery] [Inc42/DDG] → 10 results
+  [careerloop.sources.company_discovery] [Inc42/DDG] query: 'startupindia.gov.in technology chennai registered startup'
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=startupindia.gov.in%20technology%20chennai%20registered%20startup 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=startupindia.gov.in+technology+chennai+registered+startup&limit=1 200
+  [primp] response: https://www.mojeek.com/search?q=startupindia.gov.in+technology+chennai+registered+startup 200
+  [careerloop.sources.company_discovery] [Inc42/DDG] → 10 results
+  [careerloop.sources.company_discovery] [Inc42/YourStory] Chennai/Technology & Software: 30 companies
+  [careerloop.sources.company_discovery] [YC] India/Technology & Software: 100 companies
+  [careerloop.sources.company_discovery] [Discovery] 159 raw → 159 deduped
+  [careerloop.sources.ats_adapter] [ATS detect] internshala.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] builtinchennai.in → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] productbased.in → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] wellfound.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] esseindia.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] f22-labs.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] augmedix.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] gridspace.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] luxury-presence.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] applico-1.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 10/80
+  [careerloop.sources.ats_adapter] [ATS detect] humansecurityinc.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] listertech.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] osyte-1.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] xtract-io.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] ielektron-technologies.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] platform-science.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] redblacktree.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] techademy.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 20/80
+  [careerloop.sources.company_discovery] [Discovery] Enriched 30/80
+  [careerloop.sources.company_discovery] [Discovery] Enriched 40/80
+  [careerloop.sources.company_discovery] [Discovery] Enriched 50/80
+  [careerloop.sources.ats_adapter] [ATS detect] airbnb.com → greenhouse (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 60/80
+  [careerloop.sources.ats_adapter] [ATS detect] doordash.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] coinbase.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] groww.in → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] oklo.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] instacart.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] meesho.com → lever (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] rigetti.com → lever (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] dropbox.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] equipmentshare.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] gitlab.com → greenhouse (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 70/80
+  [careerloop.sources.ats_adapter] [ATS detect] billiontoone.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] matterport.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] amplitude.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] pagerduty.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] ginkgobioworks.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] getweave.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] pardesbio.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_portal_scraper] [CareerPage] Found (static): https://momentus.space/careers
+  [careerloop.sources.ats_adapter] [ATS detect] embarktrucks.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] lucirahealth.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 80/80
+  [careerloop.sources.company_discovery] [Discovery] Done: 80 companies enriched and stored
+    internet discovery done — querying DB for top companies...
+  [Phase A] found 59 companies. scraping portals...
+  [careerloop.on_demand] [OnDemand] 100+ Product Company Jobs in Chennai ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Top 12 Product Based Companies in Chennai in 2026 ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Software Engineer Jobs in Chennai - 2026 ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/gridspace ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/augmedix ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/applico-1 ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] wellfound.com/company/f22-labs: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] Top 10 IT Companies in Chennai – Best Firms to Work: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] wellfound.com/company/humansecurityinc: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] Lister Technologies Careers: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] wellfound.com/company/luxury-presence: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] Best Tech Jobs & Startup Jobs in Chennai 2026: 0 India jobs
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/f22-labs ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Top 10 IT Companies in Chennai – Best Firms to Work ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/humansecurityinc ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Lister Technologies Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/luxury-presence ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Best Tech Jobs & Startup Jobs in Chennai 2026 ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] Jobs at RedBlackTree: Explore current Opportunities: 0 India jobs
+  [careerloop.on_demand] [OnDemand] Jobs at RedBlackTree: Explore current Opportunities ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] Xtract.io Careers: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] Techademy Careers: 0 India jobs
+  [careerloop.on_demand] [OnDemand] Xtract.io Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Techademy Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] Osyte Careers: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] Platform Science Careers: 0 India jobs
+  [careerloop.on_demand] [OnDemand] Osyte Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] iELEKTRON TECHNOLOGIES ENGINEERING P. L. Careers: 0 India jobs
+  [careerloop.on_demand] [OnDemand] Platform Science Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] iELEKTRON TECHNOLOGIES ENGINEERING P. L. Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [Phase A] portal scrape done — 0 jobs
+  [Phase B] searching job boards (parallel)...
+  [careerloop.sources.search_adapter] Search [1/6]: ai product engineer applied product engineering AI product startup Chennai jobs
+  [careerloop.sources.naukri_adapter] Naukri API returned 406
+  [careerloop.on_demand] [OnDemand] Naukri: 0 jobs
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20Product%20Engineer%22%20Chennai%20site%3Afoundit.in 200
+  [primp] response: https://search.yahoo.com/search;_ylt=FdAYCoOUeZK9vbNP83qgpIdM;_ylu=eKfMXPfGysPotAeg0_4rL2XVE3ZAWHFGPFe57zUKq59A2qQ?p=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Ajobs.lever.co%20Chennai%20India 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in 403
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com/job-listing%20AI%20Product%20Engineer%20Chennai%20India 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/ 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India 200
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India 200
+  [primp] response: https://yandex.com/search/site/?text=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in&web=1&searchid=1241812 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20engineer%20applied%20product%20engineering%20AI%20product%20startup%20Chennai%20jobs 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India&source=web 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=ai+product+engineer+applied+product+engineering+AI+product+startup+Chennai+jobs&limit=1 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India&limit=1 200
+  [primp] response: https://search.brave.com/search?q=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in&source=web 200
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India&source=web 429
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aboards.greenhouse.io%20Chennai%20India 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.google.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [primp] response: https://yandex.com/search/site/?text=ai+product+engineer+applied+product+engineering+AI+product+startup+Chennai+jobs&web=1&searchid=8484806 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India&limit=1 200
+  [primp] response: https://www.google.com/search?q=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [primp] response: https://www.startpage.com/sp/search 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India&web=1&searchid=7783068 200
+  [primp] response: https://search.yahoo.com/search;_ylt=SXn1DWg2vOAHN1LJIARvQwTr;_ylu=DxmztIfCf4xCQGVjGW_msixIy83zb6CCLHgKTQyqZNoR8Lg?p=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India 200
+  [primp] response: https://search.yahoo.com/search;_ylt=qGUwnvfMmx6YdH8PbE2BCxG5;_ylu=wcgDMKKyWjL7Nvi3kNaDwDU_yrWQi5RwbZiyebW6b1WCWWU?p=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in 200
+  [primp] response: https://www.google.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [primp] response: https://search.yahoo.com/search;_ylt=RKmoPOyXm3tvoAMqVDDu9XAY;_ylu=BqE3vx0ku_y2rn28za0HZ3eoGtTiperMgU4inWk9mVCil4k?p=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India 200
+  [careerloop.sources.monster_adapter] [Monster/foundit] DDG: AI Product Engineer in Chennai: 36 jobs
+  [careerloop.on_demand] [OnDemand] Monster/foundit: 36 jobs
+  [primp] response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India&source=web 429
+  [careerloop.sources.search_adapter] Search [2/6]: ai product engineer applied product engineering AI product startup hiring Chennai 2025
+  [careerloop.sources.jobspy_adapter] JobSpy found 40 jobs for 'AI Product Engineer' in Chennai
+  [careerloop.on_demand] [OnDemand] JobSpy: 40 jobs
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India 200
+  [primp] response: https://search.yahoo.com/search;_ylt=-A_i5_xug6wCCA9PJRGt5efu;_ylu=0HHG4J0uZZQatTlDDwWJOisuKOHMcRX4tRpADm1Yn2AZAmQ?p=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com%20%22job-listing%22%20%22AI%20Product%20Engineer%22%20Chennai 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20engineer%20applied%20product%20engineering%20AI%20product%20startup%20hiring%20Chennai%202025 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India&web=1&searchid=2639740 200
+  [careerloop.sources.google_jobs_adapter] [GoogleJobs] AI Product Engineer in Chennai: 30 jobs
+  [careerloop.on_demand] [OnDemand] GoogleJobs: 30 jobs
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=ai+product+engineer+applied+product+engineering+AI+product+startup+hiring+Chennai+2025&limit=1 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai 403
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/search 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai&web=1&searchid=7891576 200
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai&source=web 429
+  [primp] response: https://www.google.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [careerloop.sources.glassdoor_adapter] [Glassdoor] AI Product Engineer in Chennai: 23 jobs
+  [careerloop.on_demand] [OnDemand] Glassdoor: 23 jobs
+  [careerloop.sources.search_adapter] Search [3/6]: "AI product engineer" jobs in Chennai
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20jobs%20in%20Chennai 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+jobs+in+Chennai&limit=1 200
+  [primp] response: https://www.google.com/search?q=%22AI+product+engineer%22+jobs+in+Chennai&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [careerloop.sources.search_adapter] Search [4/6]: "AI product engineer" hiring Chennai site:linkedin.com/jobs/view
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20hiring%20Chennai%20site%3Alinkedin.com/jobs/view 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&limit=1 200
+  [primp] response: https://www.google.com/search?q=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [careerloop.sources.search_adapter] Search [5/6]: "AI product engineer" Chennai site:naukri.com
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Chennai%20site%3Anaukri.com 200
+  [primp] response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+Chennai+site%3Anaukri.com 403
+  [primp] response: https://search.yahoo.com/search;_ylt=plM6PV5CGmsxtvqSZL54az3K;_ylu=eejmFG5XXjwk2k725f5-sJn4H80S_q4-56_3sFOtOubwdRM?p=%22AI+product+engineer%22+Chennai+site%3Anaukri.com 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&web=1&searchid=1665953 200
+  [primp] response: https://search.brave.com/search?q=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&source=web 429
+  [primp] response: https://www.google.com/search?q=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [careerloop.sources.search_adapter] Search [6/6]: "AI product engineer" Chennai site:cutshort.io
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Chennai%20site%3Acutshort.io 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Chennai+site%3Acutshort.io&limit=1 200
+  [primp] response: https://search.yahoo.com/search;_ylt=T2E_4ODqLuo99qAX5ey_MEeW;_ylu=qbyozwc2WZbES3USF0veUmJqkk4kXnQL1MOIBnaErRL38Og?p=%22AI+product+engineer%22+Chennai+site%3Acutshort.io 200
+  [primp] response: https://search.brave.com/search?q=%22AI+product+engineer%22+Chennai+site%3Acutshort.io&source=web 429
+  [primp] response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+Chennai+site%3Acutshort.io&web=1&searchid=3859635 200
+  [primp] response: https://www.google.com/search?q=%22AI+product+engineer%22+Chennai+site%3Acutshort.io&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+  [careerloop.sources.search_adapter] Total candidate URLs: 25
+  [careerloop.on_demand] [OnDemand] Board health: {'naukri': 0, 'monster': 36, 'jobspy': 40, 'google_jobs': 30, 'glassdoor': 23, 'ddg': 17}
+  [Phase B] per-source: ddg:17 | glassdoor:23 | google_jobs:30 | jobspy:40 | monster:36 | naukri:0
+  [Phase B] boards done — 131 jobs (archetype title-rejected 15)
+  [Pipeline] total raw candidates: 131 (A:0 + B:131)
+  [careerloop.india_filter] India filter: 107 passed, 24 rejected
+  [Filter] India filter: 131 → 107
+  [Phase E] ontology gate (archetype_match>=0.2): 106 → 26 (80 dropped)
+  [Phase E] role similarity filter: 26 candidates...
+  [Phase E] role filter done: 26 → 15 relevant (11 rejected)
+  [careerloop.apply_route] Canonical dedup: 15 → 15 unique jobs
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Applied AI, Forward Deployed Machine Learning Engineer': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Applied AI, Forward Deployed Machine Learning Engineer': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Anthropic': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Anthropic': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Fieldproxy': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Fieldproxy': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'BigRio': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'BigRio': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [Phase F] LLM validator (DeepSeek): validating top-7 jobs...
+  [Phase F] LLM validator done: 7 → 7
+
+────────────────────────────────────────────────────────────
+  RESULTS: AI Product Engineer @ Chennai
+────────────────────────────────────────────────────────────
+  Keywords   : AI product engineer, AI product developer, machine learning product engineer, AI solutions engineer, AI product manager, AI engineer, product engineer AI, AI product architect, AI product specialist, AI product lead
+  Candidates : 131
+  After dedup: 15
+  Ranked     : 7
+  Elapsed    : 380.5s
+  · Phase A: live discovery OK — 59 companies
+  · board health: ddg:17 | glassdoor:23 | google_jobs:30 | jobspy:40 | monster:36 | naukri:0
+  · company-type filter: dropped 1 rejected-type companies
+  · ontology gate: dropped 80 jobs (archetype_match<0.2)
+  · role filter: 26 → 15 relevant (11 rejected)
+  · min-desc gate: dropped 3 jobs (<200c)
+  · company cap (max 3): 12 → 7
+
+    #   SCORE  TITLE                                          COMPANY                         PHASE:SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ──────────────────
+    1    67.0  AI Engineer                                    BigRio                          [B:scrapegraph]
+         → https://cutshort.io/job/AI-Engineer-Chennai-BigRio-L3umTsst
+    2    61.4  AI Engineer (Agentic AI & LLM Systems) with 7  ?                               [B:foundit]
+         → https://www.foundit.in/job/ai-engineer-agentic-ai-llm-systems-beroe-inc-advantage-procurement-c
+    3    61.1  AI Engineer with 7                             ?                               [B:foundit]
+         → https://www.foundit.in/job/ai-engineer-wpp-chennai-44597403
+    4    59.0  AI Engineer with 3                             ?                               [B:foundit]
+         → https://www.foundit.in/job/ai-engineer-prayag-ai-chennai-39335935
+    5    57.5  Job Application for Applied AI Product Engine  Anthropic                       [B:google_jobs]
+         → https://boards.greenhouse.io/anthropic/jobs/4131823008
+    6    30.0  Mistral AI                                     Applied AI, Forward Deployed M  [B:google_jobs]
+         → https://jobs.lever.co/mistral/77f6fd1b-65cf-45d8-9b68-594c62732f62
+    7    30.0  AI Product Specialist                          Fieldproxy                      [B:scrapegraph]
+         → https://cutshort.io/job/AI-Product-Specialist-Chennai-Fieldproxy-p8qlXQJD
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: Applied AI Engineer @ Bangalore
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Bangalore | Applied AI Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Archetype] role='Applied AI Engineer' | function='applied AI engineering' | market='B2B SaaS / developer tools'
+  [Archetype] must_have=['applied AI', 'product', 'cross-functional', 'customer-facing', 'platform', 'agentic', 'LLM', 'production']
+  [Archetype] avoid=['research', 'data science', 'frontend', 'QA', 'support', 'SAP', 'Java', 'PHP']
+  [Queries] 8 board queries: ['applied ai engineer applied AI engineering AI-native startup Bangalore jobs', 'applied ai engineer applied AI engineering AI-native startup hiring Bangalore 2025', '"applied AI engineer" jobs in Bangalore', '"applied AI engineer" hiring Bangalore site:linkedin.com/jobs/view']
+  [Phase A] discovering companies for 'Applied AI Engineer' in Bangalore...
+  [careerloop.on_demand] [OnDemand] Phase A: sector inferred → 'Technology & Software' for role 'Applied AI Engineer'
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+  [careerloop.sources.company_discovery] [Discovery] Starting: city=Bangalore, sector=Technology & Software, function=applied ai engineer applied AI engineering AI-native startup
+  [careerloop.sources.company_discovery] [SerpAPI] query: 'well-funded AI startup Bangalore India hiring "applied ai engineer applied AI engineering AI-native startup" 2025'
+  [careerloop.sources.company_discovery] [SerpAPI] → 0 results
+  [careerloop.sources.company_discovery] [SerpAPI] query: 'top technology product company Bangalore Series A B careers engineer'
+  [careerloop.sources.company_discovery] [SerpAPI] → 5 results
+  [careerloop.sources.company_discovery] [SerpAPI] Bangalore/Technology & Software: 5 companies total
+  [careerloop.sources.company_discovery] [Wellfound/DDG] query: 'site:wellfound.com/company technology bangalore'
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/company%20technology%20bangalore 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Awellfound.com%252Fcompany%2Btechnology%2Bbangalore%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGLPC4NAGIjB6L8ZJmxcd6MeYjZit2zEMEYvfV4omh1MupuZ3ZiLUF9fOJG9t0m9ogw4WYz6-jmoyAnJSWgFD 429
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fcompany+technology+bangalore&limit=1 200
+  [primp] response: https://www.mojeek.com/search?q=site%3Awellfound.com%2Fcompany+technology+bangalore 200
+  [primp] response: https://search.brave.com/search?q=site%3Awellfound.com%2Fcompany+technology+bangalore&source=web 429
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://yandex.com/search/site/?text=site%3Awellfound.com%2Fcompany+technology+bangalore&web=1&searchid=7331941 200
+  [primp] response: https://search.yahoo.com/search;_ylt=u9j3VlEyQ4Hszm2opMqlv6pl;_ylu=wY3V6BAY5DXIVXISOvhwmbtrWTuS5gXL1q1tuA9kR1fNruY?p=site%3Awellfound.com%2Fcompany+technology+bangalore 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.company_discovery] [Wellfound/DDG] → 13 results
+  [careerloop.sources.company_discovery] [Wellfound] Bangalore/Technology & Software: 13 companies
+  [careerloop.sources.company_discovery] [Crunchbase/DDG] query: 'site:crunchbase.com/organization technology bangalore india'
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acrunchbase.com/organization%20technology%20bangalore%20india 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&limit=1 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&web=1&searchid=3791802 200
+  [primp] response: https://search.brave.com/search?q=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&source=web 429
+  [primp] response: https://search.yahoo.com/search;_ylt=T_LpSUjKVQi1tluI_J631QP1;_ylu=TDK7wqmTMliddp98BX5dL-1KuXK4OqV3sTBkJQ9kcAA95xg?p=site%3Acrunchbase.com%2Forganization+technology+bangalore+india 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Acrunchbase.com%252Forganization%2Btechnology%2Bbangalore%2Bindia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGMHC4NAGIjASe0KERjLBIkpor-uqjFNO8ATjYMp0bodIUSsKg3DvZx8fWYmebcuu0XMkL84uKA4yAnJSWgFD 429
+  [primp] response: https://www.mojeek.com/search?q=site%3Acrunchbase.com%2Forganization+technology+bangalore+india 200
+  [careerloop.sources.company_discovery] [Crunchbase/DDG] → 13 results
+  [careerloop.sources.company_discovery] [Crunchbase/DDG] query: 'crunchbase technology company bangalore india funding'
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=crunchbase%20technology%20company%20bangalore%20india%20funding 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=crunchbase+technology+company+bangalore+india+funding&limit=1 200
+  [primp] response: https://www.mojeek.com/search?q=crunchbase+technology+company+bangalore+india+funding 200
+  [primp] response: https://yandex.com/search/site/?text=crunchbase+technology+company+bangalore+india+funding&web=1&searchid=4171953 200
+  [careerloop.sources.company_discovery] [Crunchbase/DDG] → 15 results
+  [careerloop.sources.company_discovery] [Crunchbase] Bangalore/Technology & Software: 12 companies
+  [careerloop.sources.company_discovery] [Inc42/DDG] query: 'site:inc42.com technology startup bangalore india'
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainc42.com%20technology%20startup%20bangalore%20india 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Ainc42.com+technology+startup+bangalore+india&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Ainc42.com+technology+startup+bangalore+india&web=1&searchid=6288383 200
+  [primp] response: https://www.mojeek.com/search?q=site%3Ainc42.com+technology+startup+bangalore+india 200
+  [careerloop.sources.company_discovery] [Inc42/DDG] → 10 results
+  [careerloop.sources.company_discovery] [Inc42/DDG] query: 'site:yourstory.com technology company bangalore india'
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Ayourstory.com+technology+company+bangalore+india&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ayourstory.com%20technology%20company%20bangalore%20india 200
+  [primp] response: https://www.mojeek.com/search?q=site%3Ayourstory.com+technology+company+bangalore+india 200
+  [careerloop.sources.company_discovery] [Inc42/DDG] → 10 results
+  [careerloop.sources.company_discovery] [Inc42/DDG] query: 'startupindia.gov.in technology bangalore registered startup'
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=startupindia.gov.in%20technology%20bangalore%20registered%20startup 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=startupindia.gov.in+technology+bangalore+registered+startup&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=startupindia.gov.in+technology+bangalore+registered+startup&web=1&searchid=1182149 200
+  [careerloop.sources.company_discovery] [Inc42/DDG] → 10 results
+  [careerloop.sources.company_discovery] [Inc42/YourStory] Bangalore/Technology & Software: 30 companies
+  [careerloop.sources.company_discovery] [YC] India/Technology & Software: 100 companies
+  [careerloop.sources.company_discovery] [Discovery] 160 raw → 160 deduped
+  [careerloop.sources.ats_adapter] [ATS detect] productbased.in → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] internshala.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] builtin.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] wellfound.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] gridspace.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] augmedix.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] banki-technology.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] applico-1.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] bankopen.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 10/80
+  [careerloop.sources.ats_adapter] [ATS detect] humansecurityinc.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] oden-technologies.com → ashby (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] empathy-technologies-1.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] zethic.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] ipsator.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] nyuc-technologies.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] swiffylabs-1.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] bluesapling.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 20/80
+  [careerloop.sources.company_discovery] [Discovery] Enriched 30/80
+  [careerloop.sources.company_discovery] [Discovery] Enriched 40/80
+  [careerloop.sources.company_discovery] [Discovery] Enriched 50/80
+  [careerloop.sources.company_discovery] [Discovery] Enriched 60/80
+  [careerloop.sources.ats_adapter] [ATS detect] airbnb.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] doordash.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] coinbase.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] groww.in → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] oklo.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] instacart.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] meesho.com → lever (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] rigetti.com → lever (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] dropbox.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] equipmentshare.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 70/80
+  [careerloop.sources.ats_adapter] [ATS detect] gitlab.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] billiontoone.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] matterport.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] amplitude.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] pagerduty.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] ginkgobioworks.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] getweave.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] pardesbio.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_portal_scraper] [CareerPage] Found (static): https://momentus.space/careers
+  [careerloop.sources.ats_adapter] [ATS detect] embarktrucks.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 80/80
+  [careerloop.sources.company_discovery] [Discovery] Done: 80 companies enriched and stored
+    internet discovery done — querying DB for top companies...
+  [Phase A] found 82 companies. scraping portals...
+  [careerloop.on_demand] [OnDemand] 100+ Product Company Jobs in Bangalore ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Understanding Product-Based Companies in Bangalore ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Tech & Startup Jobs in Bengaluru ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/augmedix ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/gridspace ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Infibooks Jobs | Wellfound (formerly AngelList Talent) ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Xperteez Technology Careers | Wellfound (formerly AngelList Talent) ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/docon ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/applico-1 ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/humansecurityinc ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Best Tech Jobs & Startup Jobs in Bangalore 2026 ATS: 1 raw → 1 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] Zethic Careers: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] Empathy Technologies Careers: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] wellfound.com/company/bankopen: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] Jobs at Banki Technology: Explore current Opportunities: 0 India jobs
+  [careerloop.on_demand] [OnDemand] Zethic Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Empathy Technologies Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] Ipsator Careers: 0 India jobs
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/bankopen ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Jobs at Banki Technology: Explore current Opportunities ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Ipsator Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] SwiffyLabs Careers: 0 India jobs
+  [careerloop.on_demand] [OnDemand] SwiffyLabs Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] BlueSapling: 0 India jobs
+  [careerloop.on_demand] [OnDemand] BlueSapling ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] NYUC Technologies Careers: 0 India jobs
+  [careerloop.on_demand] [OnDemand] NYUC Technologies Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_adapter] [Ashby] wellfound.com/company/oden-technologies: 6 India jobs
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/oden-technologies ATS: 6 raw → 3 after role filter (3 rejected)
+  [Phase A] portal scrape done — 4 jobs
+  [Phase B] searching job boards (parallel)...
+  [careerloop.sources.search_adapter] Search [1/6]: applied ai engineer applied AI engineering AI-native startup Bangalore jobs
+  [careerloop.sources.naukri_adapter] Naukri API returned 406
+  [careerloop.on_demand] [OnDemand] Naukri: 0 jobs
+  [primp] response: https://search.yahoo.com/search;_ylt=yP-SCvljQuIsahIV4P5IPLE9;_ylu=LD4dseI06eyVF5Aurg4yf-4gBZcznt-DD24RjAm3d-845Y4?p=%22Applied+AI+Engineer%22+Bangalore+site%3Afoundit.in 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=Applied+AI+Engineer+site%3Ajobs.lever.co+Bangalore+India&limit=1 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22Applied+AI+Engineer%22+Bangalore+site%3Afoundit.in&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22Applied%20AI%20Engineer%22%20Bangalore%20site%3Afoundit.in 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Applied%20AI%20Engineer%20site%3Ajobs.lever.co%20Bangalore%20India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com/job-listing%20Applied%20AI%20Engineer%20Bangalore%20India 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Bangalore+India&limit=1 200
+  [primp] response: https://www.mojeek.com/search?q=%22Applied+AI+Engineer%22+Bangalore+site%3Afoundit.in 403
+  [primp] response: https://search.yahoo.com/search;_ylt=9325THQLAi-P7YwvPkMCK3kt;_ylu=5GURxhQGxbQrZdUf8as39-KwHGj_fIg-EIbQBZTJ29ymNvs?p=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Bangalore+India 200
+  [primp] response: https://www.mojeek.com/search?q=Applied+AI+Engineer+site%3Ajobs.lever.co+Bangalore+India 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522Applied%2BAI%2BEngineer%2522%2BBangalore%2Bsite%253Afoundit.in%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGOvD4NAGIjC54CR2A9WqOwlfB4CfxwiK0VLtBEkVpU_YisGkLxHdw1J4Zje409p8gXaHvvG0iYAyAnJSWgFD 429
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Bangalore+India&web=1&searchid=6765594 200
+  [primp] response: https://yandex.com/search/site/?text=Applied+AI+Engineer+site%3Ajobs.lever.co+Bangalore+India&web=1&searchid=3205951 200
+  [primp] response: https://yandex.com/search/site/?text=%22Applied+AI+Engineer%22+Bangalore+site%3Afoundit.in&web=1&searchid=2714821 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=applied%20ai%20engineer%20applied%20AI%20engineering%20AI-native%20startup%20Bangalore%20jobs 200
+  [primp] response: https://search.yahoo.com/search;_ylt=3JvesfMvGwTsGVq4nglfvDHE;_ylu=kYKek8KgrtqY-A9wyi6JwmFTQRRi_POcp37QBzJvcdQQphk?p=Applied+AI+Engineer+site%3Ajobs.lever.co+Bangalore+India 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=applied+ai+engineer+applied+AI+engineering+AI-native+startup+Bangalore+jobs&limit=1 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%252Fjob-listing%2BApplied%2BAI%2BEngineer%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGOzD4NAGIjDr87q5y5oID0LTfFA9DV0v0kIvd_9CiQ0FwtQMtmx-TK3xBp-f5nmUg1aFH_ASSBsyAnJSWgFD 429
+  [primp] response: https://search.yahoo.com/search;_ylt=i2pftWWhnmGaVnL8d4kxjG2W;_ylu=LtniWgQmnMuFvYZyms4rRiuWq4-PbU81G0AQzQMTRR4e6Dw?p=applied+ai+engineer+applied+AI+engineering+AI-native+startup+Bangalore+jobs 200
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Bangalore+India&source=web 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Bangalore+India 200
+  [primp] response: https://search.brave.com/search?q=%22Applied+AI+Engineer%22+Bangalore+site%3Afoundit.in&source=web 429
+  [careerloop.sources.monster_adapter] [Monster/foundit] DDG: Applied AI Engineer in Bangalore: 13 jobs
+  [careerloop.on_demand] [OnDemand] Monster/foundit: 13 jobs
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DApplied%2BAI%2BEngineer%2Bsite%253Ajobs.lever.co%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGO7D4NAGIjDjRfQw_jdWcX_SLlElbbZY4F72wbhs6nOvI2QeOPPJGf1O2b5bA4H3c1qYLwBfTGAyAnJSWgFD 429
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://search.brave.com/search?q=Applied+AI+Engineer+site%3Ajobs.lever.co+Bangalore+India&source=web 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.jobspy_adapter] JobSpy found 40 jobs for 'Applied AI Engineer' in Bangalore
+  [careerloop.on_demand] [OnDemand] JobSpy: 40 jobs
+  [primp] response: https://www.startpage.com/sp/search 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Bangalore 403
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com%20%22job-listing%22%20%22Applied%20AI%20Engineer%22%20Bangalore 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%2B%2522job-listing%2522%2B%2522Applied%2BAI%2BEngineer%2522%2BBangalore%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGPDD4NAGIjARCcXGEa3T67UTQ7W0ueaqyVrXtynlG9K-fa-mxWFZFbpSyw9NNnCI8mb6T14MgYgyAnJSWgFD 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Bangalore&limit=1 200
+  [primp] response: https://search.brave.com/search?q=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&source=web 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Applied%20AI%20Engineer%20site%3Aboards.greenhouse.io%20Bangalore%20India 200
+  [primp] response: https://www.mojeek.com/search?q=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Bangalore+India 200
+  [careerloop.sources.search_adapter] Search [2/6]: applied ai engineer applied AI engineering AI-native startup hiring Bangalore 2025
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&limit=1 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=applied+ai+engineer+applied+AI+engineering+AI-native+startup+hiring+Bangalore+2025&limit=1 200
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Bangalore&source=web 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=applied%20ai%20engineer%20applied%20AI%20engineering%20AI-native%20startup%20hiring%20Bangalore%202025 200
+  [primp] response: https://search.yahoo.com/search;_ylt=X16ffYW1vsvrd3TJSplW5Ryr;_ylu=gqOpVnKMfdX8iM_mrVm5XdFdhqxjPKacPRiFBZ-A0crXMUo?p=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Bangalore 200
+  [primp] response: https://www.mojeek.com/search?q=applied+ai+engineer+applied+AI+engineering+AI-native+startup+hiring+Bangalore+2025 403
+  [primp] response: https://www.startpage.com/sp/search 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://search.yahoo.com/search;_ylt=B1a1B00-3oNmGowr5W5WnYda;_ylu=iav7WTUcpyVo6HVcpKXkCV6ZfeBMNjG2RofqVP_WkLTPXiQ?p=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Bangalore+India 200
+  [primp] response: https://yandex.com/search/site/?text=applied+ai+engineer+applied+AI+engineering+AI-native+startup+hiring+Bangalore+2025&web=1&searchid=5290053 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Bangalore&web=1&searchid=9867948 200
+  [careerloop.sources.glassdoor_adapter] [Glassdoor] Applied AI Engineer in Bangalore: 8 jobs
+  [careerloop.on_demand] [OnDemand] Glassdoor: 8 jobs
+  [primp] response: https://yandex.com/search/site/?text=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&web=1&searchid=6071467 200
+  [careerloop.sources.search_adapter] Search [3/6]: "applied AI engineer" jobs in Bangalore
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Applied%20AI%20Engineer%20site%3Aashbyhq.com%20Bangalore%20India 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DApplied%2BAI%2BEngineer%2Bsite%253Aashbyhq.com%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGPfD4NAGIjC4D4JjSS90yCrQ4oL6DENTlt_xUip4mzHW1fRL98uQD5tx3Z5FaedruRIMtQWM6Q0yAnJSWgFD 429
+  [primp] response: https://grokipedia.com/api/typeahead?query=Applied+AI+Engineer+site%3Aashbyhq.com+Bangalore+India&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=Applied+AI+Engineer+site%3Aashbyhq.com+Bangalore+India&web=1&searchid=8646941 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://search.brave.com/search?q=Applied+AI+Engineer+site%3Aashbyhq.com+Bangalore+India&source=web 429
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20jobs%20in%20Bangalore 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+jobs+in+Bangalore&limit=1 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/search 200
+  [primp] response: https://yandex.com/search/site/?text=%22applied+AI+engineer%22+jobs+in+Bangalore&web=1&searchid=8757492 200
+  [primp] response: https://search.yahoo.com/search;_ylt=5HDJ4vc3W8tYAI-SfAuwN_Ex;_ylu=DueQQv2dg654aUy7GOFVJel48p4uT6Sk4CjS3lRilzSp-tA?p=Applied+AI+Engineer+site%3Aashbyhq.com+Bangalore+India 200
+  [primp] response: https://www.mojeek.com/search?q=Applied+AI+Engineer+site%3Aashbyhq.com+Bangalore+India 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [careerloop.sources.search_adapter] Search [4/6]: "applied AI engineer" hiring Bangalore site:linkedin.com/jobs/view
+  [careerloop.sources.google_jobs_adapter] [GoogleJobs] Applied AI Engineer in Bangalore: 30 jobs
+  [careerloop.on_demand] [OnDemand] GoogleJobs: 30 jobs
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20hiring%20Bangalore%20site%3Alinkedin.com/jobs/view 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&limit=1 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.mojeek.com/search?q=%22applied+AI+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview 403
+  [primp] response: https://yandex.com/search/site/?text=%22applied+AI+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&web=1&searchid=1067501 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522applied%2BAI%2Bengineer%2522%2Bhiring%2BBangalore%2Bsite%253Alinkedin.com%252Fjobs%252Fview%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGITE4NAGIjBciEehZ2oiXB2LVOk4TpCVqINgjQQ9S-CbsEbJZslH6nu6ggWSgv9bwDCUd1aHaXEyAnJSWgFD 429
+  [primp] response: https://search.brave.com/search?q=%22applied+AI+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&source=web 429
+  [primp] response: https://search.yahoo.com/search;_ylt=cEpFkHhqdUrb2oDgtlUBMYVA;_ylu=UOG8_DpKqkIb7V-LQf0sLlFROsaxcRXZcFMx46g7CneW4Vg?p=%22applied+AI+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview 200
+  [careerloop.sources.search_adapter] Search [5/6]: "applied AI engineer" Bangalore site:naukri.com
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20Bangalore%20site%3Anaukri.com 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+Bangalore+site%3Anaukri.com&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=%22applied+AI+engineer%22+Bangalore+site%3Anaukri.com&web=1&searchid=9720935 200
+  [primp] response: https://search.yahoo.com/search;_ylt=_NKszJ-lVbhN5CxC_GjmXhYJ;_ylu=F8O-rBJ27xE0rLGk99ydiMFzKY-5OVpTnXm9ii7dLtsRCVo?p=%22applied+AI+engineer%22+Bangalore+site%3Anaukri.com 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522applied%2BAI%2Bengineer%2522%2BBangalore%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGIvE4NAGIjBPuGb6N1l00olurxvMl9BpZ8BzYMlwHt7nP3l1L5Sp0fXtrCvRlpCevRxl_5L7upcyAnJSWgFD 429
+  [primp] response: https://www.mojeek.com/search?q=%22applied+AI+engineer%22+Bangalore+site%3Anaukri.com 403
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.brave.com/search?q=%22applied+AI+engineer%22+Bangalore+site%3Anaukri.com&source=web 429
+  [careerloop.sources.search_adapter] Search [6/6]: "applied AI engineer" Bangalore site:cutshort.io
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20Bangalore%20site%3Acutshort.io 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+Bangalore+site%3Acutshort.io&limit=1 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522applied%2BAI%2Bengineer%2522%2BBangalore%2Bsite%253Acutshort.io%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGJLE4NAGIjBJ7QxIXXCNKKL6yUX5seeTeLSHOE0qe8ITcOs9DeZZpsnV2FPH0zEAXt_veSG9n0MyAnJSWgFD 429
+  [primp] response: https://search.brave.com/search?q=%22applied+AI+engineer%22+Bangalore+site%3Acutshort.io&source=web 429
+  [primp] response: https://search.yahoo.com/search;_ylt=by8Zx7jfBQxs4zf2A8BiBl6-;_ylu=XM_QuQnV2oaNEMhSIICes5N453Fp4lhG6_iCLfun2Wg1VXQ?p=%22applied+AI+engineer%22+Bangalore+site%3Acutshort.io 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.mojeek.com/search?q=%22applied+AI+engineer%22+Bangalore+site%3Acutshort.io 403
+  [primp] response: https://yandex.com/search/site/?text=%22applied+AI+engineer%22+Bangalore+site%3Acutshort.io&web=1&searchid=7236026 200
+  [careerloop.sources.search_adapter] Total candidate URLs: 25
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.foundit.in/job/applied-ai-engineering-genios-ai-bengaluru-bangalore-36734899: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://bluewhaleai.ai/jobs/anthropic-applied-ai-engineer-beneficial-deploymen-bangalore-a4d25079: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://aijobs.net/job/gen-ai-engineer-bengaluru-karnataka-india-140607/: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://web3jobs.io/jobs/475032214-applied-ai-engineer: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://remoteyeah.com/jobs/remote-applied-ai-engineer-remote-north-american-timezones-mostest: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.aijobs.com/jobs/472880455-ai-engineer: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.instahyre.com/job-336694-applied-ai-engineer-at-cheq-2-bangalore/: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.foundit.in/job/applied-ai-engineer-i2e-consulting-private-limited-remote-47165204: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.shine.com/jobs/applied-ai-engineer/meril/17815644: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.choppingblock.ai/jobs/applied-ai-engineer-at-flora: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.realworkfromanywhere.com/jobs/applied-ai-engineer-assemblyai-6860: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.workingnomads.com/jobs/applied-ai-engineer-automattic-careers-1564577: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.naukri.com/job-listings-applied-ai-engineer-auric-ai-labs-bengaluru-2-to-5-years-250326509402: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.naukri.com/job-listings-applied-ai-engineer-dft-methodology-nvidia-bengaluru-2-to-7-years-210426501642: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://cutshort.io/job/Applied-AI-Engineer-AI-ML-LLM-Deployment-NeoGenCode-Technologies-Pvt-Ltd-oliI22ix: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://cutshort.io/job/Applied-AI-Engineer-MERN-Stack-Procedure-osZhIuIE: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.on_demand] [OnDemand] Board health: {'naukri': 0, 'monster': 13, 'jobspy': 40, 'glassdoor': 8, 'google_jobs': 30, 'ddg': 18}
+  [Phase B] per-source: ddg:18 | glassdoor:8 | google_jobs:30 | jobspy:40 | monster:13 | naukri:0
+  [Phase B] boards done — 97 jobs (archetype title-rejected 12)
+  [Pipeline] total raw candidates: 101 (A:4 + B:97)
+  [careerloop.india_filter] India filter: 78 passed, 23 rejected
+  [Filter] India filter: 101 → 78
+  [Phase E] ontology gate (archetype_match>=0.2): 72 → 10 (62 dropped)
+  [Phase E] role similarity filter: 10 candidates...
+  [Phase E] role filter done: 10 → 10 relevant (0 rejected)
+  [careerloop.apply_route] Canonical dedup: 10 → 9 unique jobs
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'Sarvam': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'Sarvam': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_memory_lookup failed for 'HackerRank': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [careerloop.india_fit_engine] company_registry_lookup failed for 'HackerRank': 'sqlite3.Cursor' object does not support the context manager protocol — using defaults
+  [Phase F] LLM validator (DeepSeek): validating top-4 jobs...
+  [Phase F] LLM validator done: 4 → 4
+
+────────────────────────────────────────────────────────────
+  RESULTS: Applied AI Engineer @ Bangalore
+────────────────────────────────────────────────────────────
+  Keywords   : applied AI engineer, applied machine learning engineer, AI engineer, machine learning engineer, deep learning engineer, AI/ML engineer, applied scientist, AI researcher, ML engineer, AI developer
+  Candidates : 101
+  After dedup: 9
+  Ranked     : 4
+  Elapsed    : 819.8s
+  · Phase A: live discovery OK — 82 companies
+  · board health: ddg:18 | glassdoor:8 | google_jobs:30 | jobspy:40 | monster:13 | naukri:0
+  · company-type filter: dropped 6 rejected-type companies
+  · ontology gate: dropped 62 jobs (archetype_match<0.2)
+  · role filter: 10 → 10 relevant (0 rejected)
+  · city filter (Bangalore): 9 → 6 (3 off-city removed)
+  · company cap (max 3): 6 → 4
+
+    #   SCORE  TITLE                                          COMPANY                         PHASE:SRC
+  ───  ──────  ─────────────────────────────────────────────  ──────────────────────────────  ──────────────────
+    1    58.4  Applied AI Principal/Staff Engineer (Agentic   Best Tech Jobs & Startup Jobs   [A:greenhouse]
+         → https://job-boards.greenhouse.io/builtin/jobs/7855050
+    2    57.3  Applied AI Engineer with 1                     ?                               [B:foundit]
+         → https://www.foundit.in/job/applied-ai-engineer-i2e-consulting-private-limited-remote-47165204
+    3    56.2  Applied AI Engineer - MERN Stack               ?                               [B:generic_http]
+         → https://cutshort.io/job/Applied-AI-Engineer-MERN-Stack-Procedure-osZhIuIE
+    4    55.8  Applied AI Engineer with 2                     ?                               [B:foundit]
+         → https://www.foundit.in/job/applied-ai-engineer-weekday-yc-w21-mumbai-44424959
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SEARCH: Applied AI Engineer @ Chennai
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 1: COMPANY DISCOVERY — Chennai | Applied AI Engineer
+────────────────────────────────────────────────────────────
+  · SerpAPI queries targeting funded AI companies, anti-body-shop filters
+  · Also hitting: Wellfound, Crunchbase, Inc42, YC
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 2: ATS FINGERPRINT + ADAPTER ROUTING
+────────────────────────────────────────────────────────────
+  · 14 adapters: Greenhouse, Lever, Ashby, Workday, SmartRecruiters,
+  ·             SAP SuccessFactors, Taleo, iCIMS, TalentRecruit, Darwinbox,
+  ·             Workable, Teamtailor, Recruitee, BambooHR
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 3: JOB BOARD SCRAPE — parallel 6 sources
+────────────────────────────────────────────────────────────
+  · Sources: Naukri(XHR), JobSpy(LinkedIn+Indeed), Monster/Foundit,
+  ·          Glassdoor, Google Jobs, DDG Search
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 4: JD EXTRACTION — Playwright + DeepSeek
+────────────────────────────────────────────────────────────
+  · ScrapeGraph (Playwright+LLM) → Indeed JSON API → BeautifulSoup fallback
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 5: ROLE FILTER + SCORE
+────────────────────────────────────────────────────────────
+  · Embedding filter → source-aware weighting (+3 ATS, +1.5 scraped, +1 jobspy)
+  · Anti-gatekeeping: rejecting IT outsourcing, body shops, hardware roles
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 6: LLM VALIDATOR — DeepSeek batch pass
+────────────────────────────────────────────────────────────
+  · Top-60 validated against role + culture fit
+
+────────────────────────────────────────────────────────────
+  ▶ PHASE 7: RANKING + OUTPUT
+────────────────────────────────────────────────────────────
+
+  🚀 Running pipeline now...
+
+  [Archetype] role='Applied AI Engineer' | function='applied AI engineering' | market='B2B SaaS / developer tools'
+  [Archetype] must_have=['applied AI', 'product', 'cross-functional', 'customer-facing', 'platform', 'agentic', 'LLM', 'production']
+  [Archetype] avoid=['research', 'data science', 'frontend', 'QA', 'support', 'SAP', 'Java', 'PHP']
+  [Queries] 8 board queries: ['applied ai engineer applied AI engineering AI-native startup Chennai jobs', 'applied ai engineer applied AI engineering AI-native startup hiring Chennai 2025', '"applied AI engineer" jobs in Chennai', '"applied AI engineer" hiring Chennai site:linkedin.com/jobs/view']
+  [Phase A] discovering companies for 'Applied AI Engineer' in Chennai...
+    sector=Technology & Software — Phase A via SerpAPI+Wellfound+Crunchbase+Inc42+YC...
+  [careerloop.sources.company_discovery] [Discovery] Starting: city=Chennai, sector=Technology & Software, function=applied ai engineer applied AI engineering AI-native startup
+  [careerloop.sources.company_discovery] [SerpAPI] query: 'well-funded AI startup Chennai India hiring "applied ai engineer applied AI engineering AI-native startup" 2025'
+  [careerloop.sources.company_discovery] [SerpAPI] → 0 results
+  [careerloop.sources.company_discovery] [SerpAPI] query: 'top technology product company Chennai Series A B careers engineer'
+  [careerloop.sources.company_discovery] [SerpAPI] → 5 results
+  [careerloop.sources.company_discovery] [SerpAPI] Chennai/Technology & Software: 5 companies total
+  [careerloop.sources.company_discovery] [Wellfound/DDG] query: 'site:wellfound.com/company technology chennai'
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fcompany+technology+chennai&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/company%20technology%20chennai 200
+  [primp] response: https://search.yahoo.com/search;_ylt=tc8p2DJ3rV58-PXjUKL-6FqX;_ylu=tmJEuKiigpvVugxMn1tkH28upOwqfcWKy4xSulv1Yyd2o70?p=site%3Awellfound.com%2Fcompany+technology+chennai 200
+  [primp] response: https://search.brave.com/search?q=site%3Awellfound.com%2Fcompany+technology+chennai&source=web 200
+  [careerloop.sources.company_discovery] [Wellfound/DDG] → 20 results
+  [careerloop.sources.company_discovery] [Wellfound] Chennai/Technology & Software: 18 companies
+  [careerloop.sources.company_discovery] [Crunchbase/DDG] query: 'site:crunchbase.com/organization technology chennai india'
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Acrunchbase.com%2Forganization+technology+chennai+india&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acrunchbase.com/organization%20technology%20chennai%20india 200
+  [primp] response: https://www.mojeek.com/search?q=site%3Acrunchbase.com%2Forganization+technology+chennai+india 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.yahoo.com/search;_ylt=FfXJt_43lj4yZ3Bq1_bK1VIB;_ylu=BJDExQGU7DE9q7WMngH-XqjZ5hr_Wy_50cFp9oXxWq51XA4?p=site%3Acrunchbase.com%2Forganization+technology+chennai+india 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Acrunchbase.com%2Forganization+technology+chennai+india&web=1&searchid=3374206 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Acrunchbase.com%252Forganization%2Btechnology%2Bchennai%2Bindia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGO_I4NAGIjDJD86GWRFZtxwOvZWSVHUa2dhGj19ylINcD35xyxWq82vaMCLYZvb9FDDi56AVvygyAnJSWgFD 429
+  [primp] response: https://search.brave.com/search?q=site%3Acrunchbase.com%2Forganization+technology+chennai+india&source=web 429
+  [careerloop.sources.company_discovery] [Crunchbase/DDG] → 13 results
+  [careerloop.sources.company_discovery] [Crunchbase/DDG] query: 'crunchbase technology company chennai india funding'
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=crunchbase%20technology%20company%20chennai%20india%20funding 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=crunchbase+technology+company+chennai+india+funding&limit=1 200
+  [primp] response: https://search.brave.com/search?q=crunchbase+technology+company+chennai+india+funding&source=web 429
+  [primp] response: https://search.yahoo.com/search;_ylt=f1THF16iIkUXwnyKTlhRT8Td;_ylu=B-kTOJPPhjD346gIKjLA19UWLKuilo-tHFdtz85NH6Ll71U?p=crunchbase+technology+company+chennai+india+funding 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/search 200
+  [primp] response: https://www.mojeek.com/search?q=crunchbase+technology+company+chennai+india+funding 200
+  [careerloop.sources.company_discovery] [Crunchbase/DDG] → 15 results
+  [careerloop.sources.company_discovery] [Crunchbase] Chennai/Technology & Software: 14 companies
+  [careerloop.sources.company_discovery] [Inc42/DDG] query: 'site:inc42.com technology startup chennai india'
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Ainc42.com+technology+startup+chennai+india&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainc42.com%20technology%20startup%20chennai%20india 200
+  [primp] response: https://search.brave.com/search?q=site%3Ainc42.com+technology+startup+chennai+india&source=web 429
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Ainc42.com+technology+startup+chennai+india&web=1&searchid=8017900 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Ainc42.com%2Btechnology%2Bstartup%2Bchennai%2Bindia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGP7I4NAGIjBuyM_XgDvlzEcYuxM95SRX3EGtxGL48tLB4GJc1dFdq3N-05h_rCGSF3Ch3n6O9wEyAnJSWgFD 429
+  [primp] response: https://www.mojeek.com/search?q=site%3Ainc42.com+technology+startup+chennai+india 200
+  [careerloop.sources.company_discovery] [Inc42/DDG] → 10 results
+  [careerloop.sources.company_discovery] [Inc42/DDG] query: 'site:yourstory.com technology company chennai india'
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Ayourstory.com+technology+company+chennai+india&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ayourstory.com%20technology%20company%20chennai%20india 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://search.yahoo.com/search;_ylt=neKrhWRl79s2Btfi99fv9xYh;_ylu=Jr-yP75J6w4NR7z7TQU3atWC7K6FzFpVhHH2no7DaUPYovo?p=site%3Ayourstory.com+technology+company+chennai+india 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Ayourstory.com+technology+company+chennai+india&web=1&searchid=2514061 200
+  [careerloop.sources.company_discovery] [Inc42/DDG] → 10 results
+  [careerloop.sources.company_discovery] [Inc42/DDG] query: 'startupindia.gov.in technology chennai registered startup'
+  [primp] response: https://grokipedia.com/api/typeahead?query=startupindia.gov.in+technology+chennai+registered+startup&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=startupindia.gov.in%20technology%20chennai%20registered%20startup 200
+  [primp] response: https://search.yahoo.com/search;_ylt=sUaGvIan0zIZaZTad8OEB5bi;_ylu=jMEkqV3u2JCvRi0bz9MSOdOkyM1BnX8nk6Wb6DYkaB6p1u8?p=startupindia.gov.in+technology+chennai+registered+startup 200
+  [primp] response: https://yandex.com/search/site/?text=startupindia.gov.in+technology+chennai+registered+startup&web=1&searchid=1207418 200
+  [careerloop.sources.company_discovery] [Inc42/DDG] → 10 results
+  [careerloop.sources.company_discovery] [Inc42/YourStory] Chennai/Technology & Software: 30 companies
+  [careerloop.sources.company_discovery] [YC] India/Technology & Software: 100 companies
+  [careerloop.sources.company_discovery] [Discovery] 167 raw → 167 deduped
+  [careerloop.sources.ats_adapter] [ATS detect] internshala.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] builtinchennai.in → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] productbased.in → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] wellfound.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] esseindia.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] ideas2it-technology-services-1.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] coders-brain-technology.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] tulasi-technologies-1.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] velankani-communications-technologies.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] entropiktech.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 10/80
+  [careerloop.sources.ats_adapter] [ATS detect] listertech.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] xtract-io.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] ielektron-technologies.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] osyte-1.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] platform-science.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] redblacktree.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] techademy.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] ideas2it-technologies.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] planys-technologies.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] deforay-technologies-1.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 20/80
+  [careerloop.sources.ats_adapter] [ATS detect] kyro-technologies.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] codeparva-technologies.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] kennect-technologies.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 30/80
+  [careerloop.sources.company_discovery] [Discovery] Enriched 40/80
+  [careerloop.sources.company_discovery] [Discovery] Enriched 50/80
+  [careerloop.sources.company_discovery] [Discovery] Enriched 60/80
+  [careerloop.sources.ats_adapter] [ATS detect] airbnb.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] doordash.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] coinbase.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 70/80
+  [careerloop.sources.ats_adapter] [ATS detect] groww.in → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] oklo.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] instacart.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] meesho.com → lever (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] rigetti.com → lever (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] dropbox.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] equipmentshare.com → smartrecruiters (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] gitlab.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] billiontoone.com → greenhouse (REST probe)
+  [careerloop.sources.ats_adapter] [ATS detect] matterport.com → smartrecruiters (REST probe)
+  [careerloop.sources.company_discovery] [Discovery] Enriched 80/80
+  [careerloop.sources.company_discovery] [Discovery] Done: 80 companies enriched and stored
+    internet discovery done — querying DB for top companies...
+  [Phase A] found 87 companies. scraping portals...
+  [careerloop.on_demand] [OnDemand] 100+ Product Company Jobs in Chennai ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Top 12 Product Based Companies in Chennai in 2026 ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Best Tech Jobs & Startup Jobs in Chennai 2026 ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Software Engineer Jobs in Chennai - 2026 ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Top 10 IT Companies in Chennai – Best Firms to Work ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/f22-labs ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Lister Technologies Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] wellfound.com/company/luxury-presence ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Osyte Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Xtract.io Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] iELEKTRON TECHNOLOGIES ENGINEERING P. L. Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Platform Science Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Jobs at RedBlackTree: Explore current Opportunities ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Techademy Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] Velankani Communications Technologies People | Wellfound: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] Coders Brain Technology Careers: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] IDEAS2IT Technologies: Founder, Leadership & Team: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] IDEAS2it Technology Services People | Wellfound (formerly AngelList Talent): 0 India jobs
+  [careerloop.on_demand] [OnDemand] Velankani Communications Technologies People | Wellfound ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Coders Brain Technology Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] IDEAS2IT Technologies: Founder, Leadership & Team ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] IDEAS2it Technology Services People | Wellfound (formerly AngelList Talent) ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] Tulasi Technologies Careers | Wellfound: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] Entropik Technologies Jobs | Wellfound: 0 India jobs
+  [careerloop.on_demand] [OnDemand] Tulasi Technologies Careers | Wellfound ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Entropik Technologies Jobs | Wellfound ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] KYRO Technologies Careers: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] CodeParva Technologies: Founder, Leadership & Team: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] Planys Technologies Careers: 0 India jobs
+  [careerloop.on_demand] [OnDemand] KYRO Technologies Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.sources.ats_extended] [SmartRecruiters] Deforay technologies Careers: 0 India jobs
+  [careerloop.sources.ats_extended] [SmartRecruiters] Kennect Technologies Careers: 0 India jobs
+  [careerloop.on_demand] [OnDemand] CodeParva Technologies: Founder, Leadership & Team ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Planys Technologies Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Deforay technologies Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [careerloop.on_demand] [OnDemand] Kennect Technologies Careers ATS: 0 raw → 0 after role filter (0 rejected)
+  [Phase A] portal scrape done — 0 jobs
+  [Phase B] searching job boards (parallel)...
+  [careerloop.sources.search_adapter] Search [1/6]: applied ai engineer applied AI engineering AI-native startup Chennai jobs
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [careerloop.sources.naukri_adapter] Naukri API returned 406
+  [careerloop.on_demand] [OnDemand] Naukri: 0 jobs
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22Applied+AI+Engineer%22+Chennai+site%3Afoundit.in&limit=1 200
+  [primp] response: https://search.yahoo.com/search;_ylt=TifDWwAT4tL11kvzGldiEnPa;_ylu=dmnogKmArlDEthle3ZxoEDv8x83ZqZRa-T414V0WjoMxL7s?p=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Chennai+India 200
+  [primp] response: https://search.yahoo.com/search;_ylt=JmiiCL1CIaawc6XrigpS7pzH;_ylu=QjXtRseQ0uuyby74JxA4G7-t3htkF1cYkuVpRMpADzBgaG4?p=%22Applied+AI+Engineer%22+Chennai+site%3Afoundit.in 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=Applied+AI+Engineer+site%3Ajobs.lever.co+Chennai+India&limit=1 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Chennai+India&limit=1 200
+  [primp] response: https://www.mojeek.com/search?q=%22Applied+AI+Engineer%22+Chennai+site%3Afoundit.in 403
+  [primp] response: https://search.yahoo.com/search;_ylt=Z5o-P04Fif8uBggJkpF3p5QW;_ylu=AZoKCDclC0IuU8sfPY6nnawufsvPwDazDM3zLuRVeM_8xsg?p=Applied+AI+Engineer+site%3Ajobs.lever.co+Chennai+India 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22Applied%20AI%20Engineer%22%20Chennai%20site%3Afoundit.in 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Applied%20AI%20Engineer%20site%3Ajobs.lever.co%20Chennai%20India 200
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Chennai+India&web=1&searchid=3620861 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=applied+ai+engineer+applied+AI+engineering+AI-native+startup+Chennai+jobs&limit=1 200
+  [primp] response: https://yandex.com/search/site/?text=%22Applied+AI+Engineer%22+Chennai+site%3Afoundit.in&web=1&searchid=7301785 200
+  [primp] response: https://www.startpage.com/sp/search 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=applied%20ai%20engineer%20applied%20AI%20engineering%20AI-native%20startup%20Chennai%20jobs 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com/job-listing%20Applied%20AI%20Engineer%20Chennai%20India 200
+  [primp] response: https://search.yahoo.com/search;_ylt=a2doknXlehjZewTl_dFe1N_K;_ylu=XZe9E4bGcmtiHmagsKToGeU036MLKnmeiH11UxnJIlqis9A?p=applied+ai+engineer+applied+AI+engineering+AI-native+startup+Chennai+jobs 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522Applied%2BAI%2BEngineer%2522%2BChennai%2Bsite%253Afoundit.in%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGIDK4NAGIjCN3g6Rz3g8XtPucEyEBdiLRWWGMdwzDGyuhw2GDkwo02cCN3a63r7cl24scBHi978yAnJSWgFD 429
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Chennai+India 200
+  [primp] response: https://yandex.com/search/site/?text=Applied+AI+Engineer+site%3Ajobs.lever.co+Chennai+India&web=1&searchid=8786306 200
+  [primp] response: https://www.startpage.com/ 200
+  [primp] response: https://search.brave.com/search?q=applied+ai+engineer+applied+AI+engineering+AI-native+startup+Chennai+jobs&source=web 429
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com%2Fjob-listing+Applied+AI+Engineer+Chennai+India&source=web 429
+  [primp] response: https://www.mojeek.com/search?q=Applied+AI+Engineer+site%3Ajobs.lever.co+Chennai+India 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.brave.com/search?q=Applied+AI+Engineer+site%3Ajobs.lever.co+Chennai+India&source=web 429
+  [primp] response: https://search.brave.com/search?q=%22Applied+AI+Engineer%22+Chennai+site%3Afoundit.in&source=web 429
+  [careerloop.sources.monster_adapter] [Monster/foundit] DDG: Applied AI Engineer in Chennai: 13 jobs
+  [careerloop.on_demand] [OnDemand] Monster/foundit: 13 jobs
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DApplied%2BAI%2BEngineer%2Bsite%253Aboards.greenhouse.io%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGILK4NAGIjDhlZ4UrELuEekF_Hjw3J4y1462GihMnoIGhazXrw439gIcdFGOFt_jAXFisJOcua4yAnJSWgFD 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.mojeek.com/search?q=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Chennai+India 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Chennai+India&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Applied%20AI%20Engineer%20site%3Aboards.greenhouse.io%20Chennai%20India 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%252Fjob-listing%2BApplied%2BAI%2BEngineer%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGIPK4NAGIjDmmZVHd82kmM5CyOdy3l7nKpOYLI0r8fvlAKCIFLn_FJ6eNWDf9t-fqjc2Jjnr6RoyAnJSWgFD 429
+  [primp] response: https://search.brave.com/search?q=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Chennai+India&source=web 429
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dapplied%2Bai%2Bengineer%2Bapplied%2BAI%2Bengineering%2BAI-native%2Bstartup%2BChennai%2Bjobs%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGIPK4NAGIjDcM13ma0wFxEU0uXK-zKBVaCV7lXs6rs_XxOlx3AOPxkLQy6kydUwxlLhEnkEJbNwyAnJSWgFD 429
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://search.yahoo.com/search;_ylt=qIz1unDypoIFdHSZYOSYpMRX;_ylu=q8mWcJ_TovPerfg0Xc-E4206nbHIse2WvDqF7o0t5k06qp8?p=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Chennai+India 200
+  [primp] response: https://search.brave.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Chennai&source=web 429
+  [primp] response: https://www.mojeek.com/search?q=applied+ai+engineer+applied+AI+engineering+AI-native+startup+Chennai+jobs 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Chennai&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com%20%22job-listing%22%20%22Applied%20AI%20Engineer%22%20Chennai 200
+  [primp] response: https://search.yahoo.com/search;_ylt=6PhkHDyRhluT1YlQVPjmjdPm;_ylu=G7HUZOSCodtN-2er__LVJuHuexpIGM0T-TWuhqKrJrpsNTc?p=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Chennai 200
+  [primp] response: https://yandex.com/search/site/?text=Applied+AI+Engineer+site%3Aboards.greenhouse.io+Chennai+India&web=1&searchid=9089057 200
+  [careerloop.sources.search_adapter] Search [2/6]: applied ai engineer applied AI engineering AI-native startup hiring Chennai 2025
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://yandex.com/search/site/?text=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Chennai&web=1&searchid=3164163 200
+  [primp] response: https://search.brave.com/search?q=Applied+AI+Engineer+site%3Aashbyhq.com+Chennai+India&source=web 429
+  [careerloop.sources.jobspy_adapter] JobSpy found 40 jobs for 'Applied AI Engineer' in Chennai
+  [careerloop.on_demand] [OnDemand] JobSpy: 40 jobs
+  [primp] response: https://grokipedia.com/api/typeahead?query=Applied+AI+Engineer+site%3Aashbyhq.com+Chennai+India&limit=1 200
+  [primp] response: https://www.mojeek.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22Applied+AI+Engineer%22+Chennai 403
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Applied%20AI%20Engineer%20site%3Aashbyhq.com%20Chennai%20India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=applied%20ai%20engineer%20applied%20AI%20engineering%20AI-native%20startup%20hiring%20Chennai%202025 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=applied+ai+engineer+applied+AI+engineering+AI-native+startup+hiring+Chennai+2025&limit=1 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%2B%2522job-listing%2522%2B%2522Applied%2BAI%2BEngineer%2522%2BChennai%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGIrK4NAGIjDX-7QUi5Umf3nxkomfqRs9NFVGSuXH__gd2wBW1e9lz4xzwxTIvsCb8TRUztBqeygyAnJSWgFD 429
+  [primp] response: https://search.yahoo.com/search;_ylt=J0_FqmifT4Pn0OAD5hUqZg0R;_ylu=c03HRGfKCYZr1U7AeuVIhr5jFq3tXPXrjWUjgx2VhfsI3XQ?p=applied+ai+engineer+applied+AI+engineering+AI-native+startup+hiring+Chennai+2025 200
+  [careerloop.sources.glassdoor_adapter] [Glassdoor] Applied AI Engineer in Chennai: 5 jobs
+  [careerloop.on_demand] [OnDemand] Glassdoor: 5 jobs
+  [primp] response: https://yandex.com/search/site/?text=Applied+AI+Engineer+site%3Aashbyhq.com+Chennai+India&web=1&searchid=3329515 200
+  [primp] response: https://www.mojeek.com/search?q=Applied+AI+Engineer+site%3Aashbyhq.com+Chennai+India 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DApplied%2BAI%2BEngineer%2Bsite%253Aashbyhq.com%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGIzK4NAGIjDmwVMj3QmI0LDebRqEaPoWVv5DXVgVCC_QLABHtVIlKHI-iv1T4SxP7Z3bOiUG3DoyAnJSWgFD 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.mojeek.com/search?q=applied+ai+engineer+applied+AI+engineering+AI-native+startup+hiring+Chennai+2025 403
+  [primp] response: https://search.yahoo.com/search;_ylt=R4nxA7wk_COPfR9flY-6p4Gk;_ylu=5JZKFnsLNrmvAQnA9QkdoDV9xol65iw_AJNrQ7fFUYgYqhs?p=Applied+AI+Engineer+site%3Aashbyhq.com+Chennai+India 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dapplied%2Bai%2Bengineer%2Bapplied%2BAI%2Bengineering%2BAI-native%2Bstartup%2Bhiring%2BChennai%2B2025%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGI7K4NAGIjALe9oQG3fXGsEIET0tyif5EsAy1O-BviYbRRyOs1YY0N0v9NRKzl7C7Yql7jmakcAyAnJSWgFD 429
+  [primp] response: https://search.yahoo.com/search;_ylt=ZMUeZKZlIYJVKUdF_-FhOG23;_ylu=DpTXdsXRPY_ax7-oK6bzNAtaxorox_st1V_OVxUbcVZ7Cn4?p=Applied+AI+Engineer+site%3Aapply.workable.com+Chennai+India 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Applied%20AI%20Engineer%20site%3Aapply.workable.com%20Chennai%20India 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=applied+ai+engineer+applied+AI+engineering+AI-native+startup+hiring+Chennai+2025&web=1&searchid=9774450 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=Applied+AI+Engineer+site%3Aapply.workable.com+Chennai+India&limit=1 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [careerloop.sources.search_adapter] Search [3/6]: "applied AI engineer" jobs in Chennai
+  [primp] response: https://yandex.com/search/site/?text=Applied+AI+Engineer+site%3Aapply.workable.com+Chennai+India&web=1&searchid=8328869 200
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://www.mojeek.com/search?q=Applied+AI+Engineer+site%3Aapply.workable.com+Chennai+India 200
+  [primp] response: https://search.brave.com/search?q=Applied+AI+Engineer+site%3Aapply.workable.com+Chennai+India&source=web 429
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+jobs+in+Chennai&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20jobs%20in%20Chennai 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DApplied%2BAI%2BEngineer%2Bsite%253Aapply.workable.com%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGJXK4NAGIjD5uwJD7jXEEaCRSD5eNI6dABBOY8YdYBNz-MJn4svCnmp-F5A7iqjYn-ZYGGgbQP0yAnJSWgFD 429
+  [careerloop.sources.google_jobs_adapter] [GoogleJobs] Applied AI Engineer in Chennai: 30 jobs
+  [careerloop.on_demand] [OnDemand] GoogleJobs: 30 jobs
+  [primp] response: https://yandex.com/search/site/?text=%22applied+AI+engineer%22+jobs+in+Chennai&web=1&searchid=3574978 200
+  [careerloop.sources.search_adapter] Search [4/6]: "applied AI engineer" hiring Chennai site:linkedin.com/jobs/view
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&limit=1 200
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20hiring%20Chennai%20site%3Alinkedin.com/jobs/view 200
+  [primp] response: https://yandex.com/search/site/?text=%22applied+AI+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&web=1&searchid=8998570 200
+  [primp] response: https://search.yahoo.com/search;_ylt=U7pg20em2tSgMNgyV6eDIRld;_ylu=C8t0XiA-SyW1RH37oo8KVO2ub8meLeHDDlv3_9Rkl_83_t0?p=%22applied+AI+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.mojeek.com/search?q=%22applied+AI+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview 403
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.brave.com/search?q=%22applied+AI+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&source=web 429
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522applied%2BAI%2Bengineer%2522%2Bhiring%2BChennai%2Bsite%253Alinkedin.com%252Fjobs%252Fview%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGJ_K4NAGIjAYkbiz9iUcBmrFosPfWhE8TvpSn-HuL4Klp3lUMJOiua_v5S9lQAvMhyG32dsz6B4yAnJSWgFD 429
+  [careerloop.sources.search_adapter] Search [5/6]: "applied AI engineer" Chennai site:naukri.com
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20Chennai%20site%3Anaukri.com 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+Chennai+site%3Anaukri.com&limit=1 200
+  [primp] response: https://search.yahoo.com/search;_ylt=UOTRdMFm7AAHLFp3tvaJeWH9;_ylu=NQuAeF1lmzRWbyUJzfuBc1-3Q4gyUxMiJI2nIu62tmwGMcs?p=%22applied+AI+engineer%22+Chennai+site%3Anaukri.com 200
+  [httpx] HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+  [primp] response: https://www.mojeek.com/search?q=%22applied+AI+engineer%22+Chennai+site%3Anaukri.com 403
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=%22applied+AI+engineer%22+Chennai+site%3Anaukri.com&web=1&searchid=2252030 200
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522applied%2BAI%2Bengineer%2522%2BChennai%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGKnK4NAGIjDcIkXKCBxAe_3VTu1dyhuzqL8qOIm83ZMSh9hVLOyOVPDxMXBROBKR6Hmas6qE08YyAnJSWgFD 429
+  [primp] response: https://search.brave.com/search?q=%22applied+AI+engineer%22+Chennai+site%3Anaukri.com&source=web 429
+  [careerloop.sources.search_adapter] Google Search failed for '"applied AI engineer" Chennai site:naukri.com', trying DDG: No results found.
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20Chennai%20site%3Anaukri.com 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+Chennai+site%3Anaukri.com&limit=1 200
+  [primp] response: https://search.brave.com/search?q=%22applied+AI+engineer%22+Chennai+site%3Anaukri.com&source=web 429
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522applied%2BAI%2Bengineer%2522%2BChennai%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGKzK4NAGIjBUHFS7zc8bRLBL_cAmn6F0ObOkCjIpKK82giIozU-Tt__WgW-To0VhAWLxxP5Xa4gyAnJSWgFD 429
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://yandex.com/search/site/?text=%22applied+AI+engineer%22+Chennai+site%3Anaukri.com&web=1&searchid=1885151 200
+  [primp] response: https://www.mojeek.com/search?q=%22applied+AI+engineer%22+Chennai+site%3Anaukri.com 403
+  [primp] response: https://search.yahoo.com/search;_ylt=kEPPP7z167WaFs2Fg_FgnpFH;_ylu=fsD3cuoRW1qbfcRP_fPhSK4HeuEy8z8Y7FqvznfIYbcyW_k?p=%22applied+AI+engineer%22+Chennai+site%3Anaukri.com 200
+  [careerloop.sources.search_adapter] Search [6/6]: "applied AI engineer" Chennai site:cutshort.io
+  [careerloop.sources.search_adapter] Google Search returned 0 organic hits, trying DDG fallback...
+  [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22applied%20AI%20engineer%22%20Chennai%20site%3Acutshort.io 200
+  [primp] response: https://grokipedia.com/api/typeahead?query=%22applied+AI+engineer%22+Chennai+site%3Acutshort.io&limit=1 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://www.startpage.com/sp/captcha 200
+  [primp] response: https://search.yahoo.com/search;_ylt=uNfv9EAqB7W8U9BJjBhcsDau;_ylu=rGpPlts2zrlUk2OUn99wZd0PnPOOwGQ5yhv0RYxV26qD8VE?p=%22applied+AI+engineer%22+Chennai+site%3Acutshort.io 200
+  [primp] response: https://search.brave.com/search?q=%22applied+AI+engineer%22+Chennai+site%3Acutshort.io&source=web 429
+  [primp] response: https://yandex.com/search/site/?text=%22applied+AI+engineer%22+Chennai+site%3Acutshort.io&web=1&searchid=7076066 200
+  [primp] response: https://www.mojeek.com/search?q=%22applied+AI+engineer%22+Chennai+site%3Acutshort.io 403
+  [primp] response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522applied%2BAI%2Bengineer%2522%2BChennai%2Bsite%253Acutshort.io%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgQbB5cGGLzK4NAGIjBrfHF1td8Q3qtpoTwgt-6pEY5q0AwIjHF0WHXUlyOHh7aaYq_4dyiqbiu6HgN8VR0yAnJSWgFD 429
+  [careerloop.sources.search_adapter] Total candidate URLs: 19
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://corvi.careers/jobs/chennai/ai-engineer-jobs/: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://builtinchennai.in/jobs/dev-engineering/search/artificial-intelligence: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://web3jobs.io/jobs/475032214-applied-ai-engineer: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.foundit.in/job/applied-ai-engineer-recro-noida-44671715: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.workingnomads.com/jobs/applied-ai-engineer-wellness-vi: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.shine.com/jobs/applied-ai-engineer/meril/17815644: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.choppingblock.ai/jobs/applied-ai-engineer-at-flora: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://himalayas.app/companies/air/jobs/applied-ai-engineer-6292087224: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://www.realworkfromanywhere.com/jobs/applied-ai-engineer-assemblyai-6860: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
+  [careerloop.sources.scrapegraph_adapter] [ScrapeGraph] LLM extraction failed for https://bulldogjob.com/companies/jobs/238336-applied-ai-engineer-monq-ltd: HTTPSConnectionPool(host='api.deepseek.com', port=443): Read timed out.
