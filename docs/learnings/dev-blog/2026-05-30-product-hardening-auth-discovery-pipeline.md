@@ -94,18 +94,53 @@
 
 ---
 
+### Frontend Rendering Fixes — Afternoon Session
+
+After the backend agent completed product hardening, a separate frontend pass addressed rendering issues:
+
+#### Profile Rendering (Raw N/A Lists Gone)
+- `ProfilePage.tsx` fetches `GET /v1/me/preferences` on mount. Shows Profile Summary Card with Personal Info + Career Profile sections.
+- `displayValue()` and `displayList()` utility functions in `types.ts` replace null/undefined/"N/A"/"—" with graceful "Not provided yet" fallbacks.
+- `ChatBubble.tsx` profile cards now use `displayValue()` instead of raw `|| "—"`.
+
+#### Scan Artifact Stale Closure (Progress Rollback)
+- Lock timeout created a JS closure on `data`. When 1000ms timer fired, it wrote old progress back, overwriting live updates.
+- Fix: `dataRef = useRef(data)` updated every render. Timeout reads `dataRef.current` instead of closure `data`.
+
+#### Scan Card Centered → Chat Bubble (Layout)
+- ScanArtifact had `mx-auto` → floating centered card. Removed. ChatBubble wraps it in avatar + left-aligned container.
+
+#### CV Extraction Silently Fails (DeepSeek API Key Invalid)
+- `sk-5e3258fcab4febcb14d30ef0cc3ff6c` returns 401. Error swallowed by `_call_api()` into fake-success JSON.
+- Fix: Rotated key in `.env`. Added `_parse_error` sentinel so onboarding tells user "I had trouble parsing your CV."
+
+#### Chat Persistence Broken (`_active_conversation_id` Destroyed)
+- Messages persist in DB (22 rows, 5 conversations). Link to find them destroyed at two sites: `_complete_onboarding()` popped the key, `_handle_idle()` erased the dict.
+- Fix: Removed both destruction sites. conv_id survives through onboarding.
+
+#### Saved Jobs Reappearing in Brief
+- Same job in both `saved` AND `matched` status. Fix: filter `top_jobs` before brief_items insertion.
+
+#### Duplicate Scan Elimination + 5-Thread Load Test
+- `_active_scans_lock` mutex + `_worker_semaphore` (max 3). Proven: 1/5 accepted (200), 4/5 blocked (409) with same run_id.
+
+#### Brief Lifecycle Verified (Clean MECE)
+- Zero endpoint mixing, zero leaked logic. Brief = READ ONLY. Copilot = ACT.
+
+
 ## Open Issues for Next Session
 
 ### P0
-- **SSE streaming UX** — user wants live per-job visibility: "Checking Cutshort... Found: AI Engineer @ Sarvam AI — MATCHED (reason). Checking DDG... Found: Data Engineer @ xAI — REJECTED (location mismatch)." Backend emits events, but they're not granular enough and the frontend render is lagging.
-- **Dark mode redesign** — current dark palette is poor contrast and feels unpolished. Needs a complete visual pass.
+- **SSE streaming UX** — events arrive but frontend renders single card. Backend emits 49 events for 9 jobs; user sees 0%→7%→100% with no per-role visibility.
+- **`company_registry_lookup` SQL error** — slug as UUID, noisy logs.
 
 ### P1
-- **Job score calibration** — top matches scoring 45-60. For a senior AI engineer with 4+ years targeting India, DevRev/Sarvam/xAI roles should score 70+. Scoring weights for `india_fit_engine.py` need re-tuning.
-- **`company_registry_lookup` SQL error** — passes slug as UUID, noisy in logs. Fix the query to search by `name` not `id`.
-- **Inspect page navigation** — route fix deployed, blank screen fixed. Needs end-to-end UI test with real job card click.
+- **Job score calibration** — top matches 45-60. Default baselines reduced from 5.0→3.0-3.5 but actual distribution not verified post-fix.
+- **Dark mode redesign** — poor contrast, unpolished.
+- **Scan transparency** — user sees only progress bar during 60s+ Phase A. Needs per-source visibility.
 
 ### P2
 - Fly.io deployment (Dockerfile + GitHub Actions)
 - PostgresSaver checkpointer hardening
 - Multi-worker readiness (Redis session cache)
+- Score explainability (Role Fit, Location Fit, Skills Fit breakdowns via API)

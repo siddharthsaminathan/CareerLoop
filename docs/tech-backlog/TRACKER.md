@@ -5,6 +5,35 @@
 
 ---
 
+## Session Log — 2026-05-30 (Full Day)
+
+**Morning — Frontend UX Stabilization:**
+- 6-agent parallel audit: onboarding, scan streaming, chat UI state, daily brief truth, chat persistence, resume parsing
+- 12 root causes found, all fixed. Auth PKCE deadlock resolved (`api._cachedToken` bypasses `getSession()`). Onboarding infinite loop eliminated (greetings trap → LLM contextual). Discovery pipeline: 2 jobs → 7 jobs (ontology gate escape hatch). Inspect page blank screen fixed (RouteBadge null-safe + serializer enrichment). JWT full_name overwrite bug fixed (separated INSERT/UPDATE params). BriefPage auth gate added.
+- **Frontend rendering pass:** ProfilePage Profile Summary Card with `displayValue()/displayList()` graceful fallbacks — no more raw N/A lists. ScanArtifact stale closure fixed (dataRef instead of closure-captured data). Scan card layout aligned inside ChatBubble wrapper (removed mx-auto). ChatBubble profile cards use displayValue() consistently.
+
+**Afternoon — Backend Product Hardening:**
+- 4-agent parallel: Discovery engine quality (cache saturation, score compression, fresh scans), Brief lifecycle correctness (PASS — clean MECE separation), Chat reliability (timeouts, auth refresh, connection reuse), Engineering lead (all canonical docs synced).
+- **Agent A:** Score compression fixed — 14 neutral defaults reduced from 5.0→3.0-3.5, baseline drops from ~53→~38. CrawlCache bypassed on user-requested scans (`force_refresh=True`). Day-seeded shuffle for result rotation.
+- **Agent B:** Architecture verification PASS. Brief = READ ONLY, Copilot = ACTION HUB. Zero endpoint mixing proven.
+- **Agent C:** Chat timeout reduced 120s→45s. LLM timeout split (10,30). Connection pool unified. Debug endpoints added.
+- **Agent D:** CLAUDE.md, AGENTS.md, GEMINI.md, PRD.md, TRACKER.md, CANONICAL_ARCHITECTURE.md, TECH_ROADMAP.md all synced.
+
+**Late Afternoon — Frontend Scan UX Redesign:**
+- `ScanArtifact.tsx` created — single persistent card replacing per-event chat bubbles. 1000ms visual lock. States: initializing→running→complete→error. Discovery-journey progress (not technical metrics). Only JOB_FOUND + CANDIDATE_MATCHED surface.
+- 6 regex/progress/cache fixes applied post-backend-audit: CANDIDATE_MATCHED without score suffix, JOB_FOUND board-search messages, progress smoothing on non-content events, BriefPage cache invalidation on DONE.
+
+**5-Layer Onboarding Verification (10-message E2E):**
+- greet → name → CV → extract → confirm → gap-fill → PROFILE_READY → profile queries
+- 5 distinct contextual responses. Single conversation_id persists. CV 5,475 chars in DB. onboarding_complete=true.
+- All profile queries answer specifically (not raw CV dumps).
+
+**Duplicate Scan Protection Verified:** 5-thread load test proves 1/5 accepted (200), 4/5 blocked (409) with identical run_id.
+
+**State Consistency:** Saved/skipped job filter applied in both scan code paths. `_active_conversation_id` destruction sites removed.
+
+**Committed:** Backend `b093beb` (product hardening), Frontend `9cebb81` (rendering fixes). Both pushed to main.
+
 ## Current Sprint Focus
 
 **Week of 2026-05-25 → 2026-06-01 — REST API Productization & Web Deployment**
