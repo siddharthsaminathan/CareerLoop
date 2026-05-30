@@ -1,9 +1,9 @@
-# CareerLoop — Canonical Architecture v1.0
+# CareerLoop — Canonical Architecture v1.1
 
 **Status:** FINAL — all architecture decisions locked
-**Date:** 2026-05-23
+**Date:** 2026-05-30 (updated from 2026-05-23)
 **Supersedes:** All prior architecture documents
-**Based on:** PRD.md v1.0 + CAREERLOOP_REUSE_AUDIT.md + CAREERLOOP_COUNCIL_AUDIT.md
+**Based on:** PRD.md v1.0 + CAREERLOOP_REUSE_AUDIT.md + CAREERLOOP_COUNCIL_AUDIT.md + REST API v1 (2026-05-29)
 
 ---
 
@@ -57,7 +57,8 @@ No independent CV generator. Council owns all content generation. Renderer owns 
 | Profile Manager | `careerloop/profile_manager.py` | 50% |
 | Resume Council | `careerloop/council/` (10 files) | 82% |
 | Memory Layer | `careerloop/memory/` (4 files) | 10% |
-| Delivery Orchestration | `careerloop/session/`, `careerloop/transport/` | 12% 🔴 SCAFFOLD — supervisor/transport exist, contract unverified |
+| Delivery Orchestration | `careerloop/session/`, `careerloop/transport/` | 12% → TRANSPORT SUPERSEDED by REST API. Transport dir archived per PRD §21. Session layer active in chat_service.py. |
+| REST API v1 | `careerloop_api/` | 95% ✅ LIVE — 7 endpoint groups, 9 routes, SSE scan streaming, Supabase JWT auth |
 | Assisted Apply Bridge | `careerloop/execution/kimi_bridge.py` | 5% ⚫ MOCK — no real Webbridge/Hermes execution yet |
 | Company Intelligence | `careerloop/company_intel.py` | 75% ✅ LIVE — MECE D1-D5 vectors, LinkedIn PortalScraper, Glassdoor ScrapeGraph, DDG web enrichment |
 | Humanizer | `careerloop/council/humanizer.py` | 65% ✅ LIVE — 5-phase pipeline, 29 regression tests, aggressive rewrite prompt |
@@ -387,6 +388,37 @@ ACTIVE STATES:    All non-terminal, non-dormant
 ├── .claude/      ← Claude Code skills
 ├── .gemini/      ← Gemini CLI commands
 └── .opencode/    ← OpenCode commands
+│
+├── careerloop_api/                       ✅ REST API v1 (production transport layer)
+│   ├── main.py                           ✅ FastAPI entry point (7 routers, /v1 prefix)
+│   ├── core/
+│   │   ├── config.py                     ✅ DB_SCHEMA, DATABASE_URL, CORS
+│   │   ├── security.py                   ✅ Supabase JWT HS256 verification
+│   │   └── envelope.py                   ✅ {ok, data, error, meta} envelope
+│   ├── deps/
+│   │   ├── auth.py                       ✅ get_current_user — JWT verification + auto-provisioning
+│   │   └── db.py                         ✅ get_db — psycopg2 connection pool
+│   ├── routers/
+│   │   ├── auth.py                       ✅ POST /v1/auth/me
+│   │   ├── users.py                      ✅ GET /v1/me, GET /v1/me/preferences
+│   │   ├── briefs.py                     ✅ GET /v1/briefs/latest, POST .../select
+│   │   ├── jobs.py                       ✅ GET /v1/jobs/{id}, POST save/skip
+│   │   ├── chat.py                       ✅ POST /v1/chat/message, GET /v1/chat/history
+│   │   ├── scans.py                      ✅ POST /v1/scans, GET .../events (SSE), GET .../latest
+│   │   └── debug.py                      ✅ GET /v1/debug/runtime
+│   ├── services/
+│   │   ├── chat_service.py               ✅ LangGraph supervisor + OnboardingFlow wrapper
+│   │   ├── scan_service.py               ✅ Background worker, SSE streaming, scan_more
+│   │   ├── brief_service.py              ✅ Brief reads + item selection
+│   │   ├── job_service.py                ✅ Job detail + save/skip
+│   │   ├── user_service.py               ✅ Profile + preferences
+│   │   └── serializers.py               ✅ TAL-style card serialization, logo fallback
+│   ├── repositories/
+│   │   ├── users_repo.py                 ✅ careerloop.users CRUD
+│   │   ├── briefs_repo.py                ✅ daily_briefs + daily_brief_items
+│   │   └── jobs_repo.py                  ✅ jobs + user_job_relationships
+│   ├── e2e_api_test.py                   ✅ 15/15 E2E verified
+│   └── e2e_onboarding_test.py            ✅ 7/7 onboarding E2E verified
 ```
 
 ---
@@ -419,7 +451,7 @@ ACTIVE STATES:    All non-terminal, non-dormant
 
 | Phase | Systems | % of Vision | Est. Completion |
 |-------|---------|-------------|-----------------|
-| **Phase 0** (Delivery Foundation) | Transport, Supervisor, Checkpointer, Onboarding (7-step name-first: name → LinkedIn → identity card → CV → extraction → gap-fill → PROFILE_READY) | ~10% | 12% scaffolded |
+| **Phase 0** (Delivery Foundation) | **REST API v1 LIVE** (careerloop_api/, 7 endpoint groups, SSE streaming, Supabase JWT), Supervisor active in chat_service.py, Checkpointer (65%), Onboarding (7-step) | ~10% | 70% built (API live) |
 | **Phase 1** (Discovery + Pre-filter) | Discovery, Verification, India Fit Engine, Ledger | ~25% | 70% built |
 | **Phase 1.5** (Decision + Memory) | Triage UX, Career State Modes, A-G wrapper, Ledger migration | ~20% | 25% built |
 | **Phase 2** (Intelligence + Positioning) | Company Intel, Humanizer, Council hardening, Positioning engine | ~25% | 50% built (Company Intel + Humanizer live) |
@@ -428,7 +460,7 @@ ACTIVE STATES:    All non-terminal, non-dormant
 
 ---
 
-*Architecture locked 2026-05-18. Amendments require PRD §17 update + this document update.*
+*Architecture locked 2026-05-18. Updated 2026-05-30 (REST API v1 + web-first deployment + transport archived). Amendments require PRD §17 update + this document update.*
 
 ---
 
@@ -465,3 +497,47 @@ The discovery pipeline emits structured events via Server-Sent Events (SSE). The
 #### Transport
 
 Events are stored in `careerloop.run_events` (PostgreSQL) and polled by `stream_scan_events()` every 1 second. The producer writes to `run_events` directly; no message broker is involved.
+
+---
+
+## 10. REST API Transport Layer (Addendum — 2026-05-30)
+
+### Decision
+
+The REST API (`careerloop_api/`) is the production transport layer. Web-first deployment. Telegram/WhatsApp/webhook work permanently delayed (PRD §21, architecture decision A14).
+
+### Live Endpoints (9 routes across 7 groups)
+
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/v1/auth/me` | Verify Supabase JWT, auto-provision user |
+| GET | `/v1/me` | User profile from careerloop.users |
+| GET | `/v1/me/preferences` | User work_style_prefs |
+| GET | `/v1/briefs/latest` | Latest daily brief with TAL-style job cards |
+| POST | `/v1/briefs/{brief_id}/items/{idx}/select` | Select a brief item |
+| GET | `/v1/jobs/{job_id}` | Job detail + relationship |
+| POST | `/v1/jobs/{job_id}/save` | Save/approve a job |
+| POST | `/v1/jobs/{job_id}/skip` | Skip a job |
+| POST | `/v1/chat/message` | NL chat (onboarding or supervisor graph) |
+| GET | `/v1/chat/history` | Recent conversation history |
+| POST | `/v1/scans` | Start async scan (default or scan_more) |
+| GET | `/v1/scans/{run_id}/events` | SSE event stream |
+| GET | `/v1/scans/{run_id}` | Scan status |
+| GET | `/v1/scans/latest` | Latest scan run_id |
+| GET | `/v1/debug/runtime` | Runtime observability |
+
+### Architecture
+
+```
+router → service → repository/runtime → Supabase (careerloop.*)
+```
+
+- **Routers** parse HTTP, validate schemas, call services. No business logic.
+- **Services** own logic — chat_service wraps supervisor graph, scan_service manages background workers.
+- **Repositories** own all SQL. No raw SQL in routers or services.
+- **Shared envelope**: Every endpoint returns `{ok, data, error, meta}`.
+- **Auth**: HS256 JWT via Supabase, auto-provisioning with 300s in-process TTL cache.
+
+### Specification vs Implementation
+
+The full API spec (`docs/engineering/API_ARCHITECTURE.md`) defines target endpoints for packs, applications, pipeline, companies, memory, and webhooks. These are NOT yet implemented. Only the endpoints listed above are live and E2E verified (15/15 API E2E + 7/7 onboarding E2E).

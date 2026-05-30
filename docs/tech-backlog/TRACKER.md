@@ -129,6 +129,27 @@ Sprint 6 delivered: 7 MVP API endpoints live, SSE scan streaming, Supabase JWT a
 
 ## Session Log
 
+### 2026-05-30 — Session: Engineering Lead Sync — Architecture + Docs + Journal
+
+**What was done:**
+- **All canonical docs synced to actual system state** — CLAUDE.md/AGENTS.md updated to reflect REST API transport layer. GEMINI.md updated with web delivery section. CANONICAL_ARCHITECTURE.md v1.1 with careerloop_api/ file layout, REST API section, updated Phase 0 completion (70%). PRD.md §17 tracker aligned with TRACKER.md (PostgresSaver 65%, REST API added, Transport superseded, WhatsApp delayed). TECH_ROADMAP.md Phase 0 updated to 70%.
+- **API_ARCHITECTURE.md discrepancy banner added** — flags 36 spec-only endpoints not yet implemented vs 9 live routes.
+- **Productization journal written** — `docs/engineering/2026-05-30_BACKEND_PRODUCTIZATION.md` with full system audit: every file in careerloop_api/ catalogued, key careerloop/ files listed, known issues documented, next priorities ranked.
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED — Documentation now accurately reflects the live system. No code changes, no architecture drift. All stale references corrected.
+
+**Deviations detected:**
+- API_ARCHITECTURE.md is a target-state spec, not an as-built reference. 36 endpoints defined vs 9 live. Packs, applications, pipeline, companies, memory, webhooks routers not built. Workers/events/ schemas/ directories not created.
+- PostgresSaver checkpointer: PRD showed 20%, TRACKER showed 65%. Resolved to 65% (matches TRACKER).
+- Transport abstraction layer: PRD showed 65% active. Now marked SUPERSEDED (REST API replaces it).
+
+**Recommended next 3 actions:**
+1. Deploy API to Fly.io — Dockerfile + fly.toml + GitHub Actions (P0 for user delivery)
+2. PostgresSaver checkpointer hardening — interrupt/resume proof before multi-worker (P1)
+3. Build packs endpoint (POST /v1/jobs/{job_id}/packs) — highest-gap spec-to-reality delta (P1)
+
+---
+
 ### 2026-05-29 — Session: REST API v1 — 7 MVP Endpoints, SSE Scan Streaming, Web-First Pivot
 
 ### 2026-05-29 — Session: REST API v1 — 7 MVP Endpoints, SSE Scan Streaming, Web-First Pivot

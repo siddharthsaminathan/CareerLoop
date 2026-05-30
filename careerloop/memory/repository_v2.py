@@ -1117,7 +1117,7 @@ def get_fresh_cached_jobs(
                 params.append(f"%{role}%")
             query += " AND (" + " OR ".join(role_clauses) + ")"
 
-        query += " ORDER BY last_seen_at DESC LIMIT %s"
+        query += " ORDER BY RANDOM() LIMIT %s"
         params.append(limit)
 
         cur.execute(query, params)
@@ -1125,7 +1125,15 @@ def get_fresh_cached_jobs(
         cur.close()
         conn.close()
 
+        # Day-seeded shuffle: deterministic for same day, rotates day-over-day.
+        # Prevents the same 9-12 jobs from appearing in identical order across 12+ briefs.
+        import random as _random
+        from datetime import date as _date
         jobs = [dict(zip(_cols, r)) for r in rows] if rows else []
+        if jobs and len(jobs) > 1:
+            _day_seed = int(_date.today().strftime("%Y%m%d"))
+            _rng = _random.Random(_day_seed)
+            _rng.shuffle(jobs)
         _log.info(f"Cache-hit: {len(jobs)} fresh jobs found (window={freshness_window_days}d, cities={target_cities}, roles={target_roles})")
         return jobs
 

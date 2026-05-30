@@ -275,9 +275,10 @@ class IndiaFitEngine:
             if name == "role_fit":
                 role_fit_raw = raw
 
-        # Hard gate: role identity mismatch → cap score at 30
+        # Hard gate: role identity mismatch → score penalty (scaled, not hard-capped)
+        # Reduced baseline makes penalty more discriminating — bad matches score 10-30, good ones 55-85
         if role_fit_raw < self.p.role_fit_gate:
-            return min(round(total, 1), 30.0), breakdown
+            return min(round(total, 1), 25.0), breakdown
 
         return round(total, 1), breakdown
 
@@ -352,7 +353,7 @@ class IndiaFitEngine:
             scores.append(_overlap_ratio(archetypes, haystack) * 9.0)
 
         if not scores:
-            return 5.0  # no intent set → neutral
+            return 3.0  # no intent set → low confidence, not neutral
         score = max(scores)
 
         # Seniority alignment: if user title contains a seniority signal that matches JD's, boost
@@ -370,10 +371,10 @@ class IndiaFitEngine:
 
     def _score_archetype_fit(self, job: dict, ctx: dict) -> float:
         """Use pre-computed ontology archetype_match from _tag_jobs_with_ontology.
-        Falls back to 5.0 if ontology tag not present."""
+        Falls back to 3.0 if ontology tag not present (low confidence, not neutral)."""
         ontology = job.get("_ontology")
         if not ontology:
-            return 5.0
+            return 3.0
         match = ontology.get("archetype_match", 0.5)
         # Scale 0-1 → 0-10; preferred_company_match gives +1 bonus
         score = match * 10.0
@@ -387,7 +388,7 @@ class IndiaFitEngine:
         weak = self.p.weak_skills or []
 
         if not confirmed:
-            return 5.0
+            return 3.0   # no skills set in profile → low confidence, not neutral
 
         # Prefer structured fields when available
         haystack_text = (
@@ -400,7 +401,7 @@ class IndiaFitEngine:
             haystack_text = job.get("description") or job.get("raw_jd_text") or ""
 
         if not haystack_text.strip():
-            return 5.0  # no JD content to match
+            return 3.0  # no JD content to match → low confidence
 
         haystack = _tokens(haystack_text)
         confirmed_hit = _overlap_ratio(confirmed, haystack)
@@ -417,7 +418,7 @@ class IndiaFitEngine:
         ceiling = self.p.salary_ceiling_lakhs
 
         if floor is None and ceiling is None:
-            return 5.0
+            return 3.0   # no salary targets set → low confidence
 
         salary_text = (
             (job.get("salary_text") or "") + " " +
@@ -426,7 +427,7 @@ class IndiaFitEngine:
         )
         job_min, job_max = _parse_salary_lakhs(salary_text)
         if job_min is None:
-            return 5.0  # unknown → neutral
+            return 3.5  # salary not in JD → slightly below neutral (uncertainty penalty)
 
         if floor is None:
             floor = max(0.0, (ceiling or job_min) * 0.6)
@@ -443,9 +444,9 @@ class IndiaFitEngine:
         return 10.0
 
     def _score_equity_fit(self, job: dict, ctx: dict) -> float:
-        """ESOPs match. If user doesn't care → neutral 5.0. If user requires equity, check JD."""
+        """ESOPs match. If user doesn't care → neutral 3.5 (irrelevant, not positive). If user requires equity, check JD."""
         if not self.p.equity_required:
-            return 5.0
+            return 3.5
         text = ctx["jd_text"].lower()
         equity_signals = ["esop", "equity", "stock option", "rsu", "share grant", "ownership"]
         has_signal = any(s in text for s in equity_signals)
@@ -468,7 +469,7 @@ class IndiaFitEngine:
         """Check that user's must-have benefits appear in JD benefits/description."""
         must = self.p.benefits_must_have
         if not must:
-            return 5.0
+            return 3.5   # no benefits requirement → slightly below neutral (doesn't contribute)
         text = ((job.get("benefits") or "") + " " + ctx["jd_text"]).lower()
         hits = sum(1 for b in must if b.lower() in text)
         return round(min(10.0, (hits / len(must)) * 10.0), 1)
@@ -479,7 +480,7 @@ class IndiaFitEngine:
         user_city = self.p.location_city.lower()
 
         if not job_loc:
-            return 5.0
+            return 3.5   # unknown location → below neutral
         if user_city and user_city in job_loc:
             return 10.0
 
@@ -519,7 +520,7 @@ class IndiaFitEngine:
             return 8.0 if prefers_remote else 10.0
         if "onsite" in mode or "on-site" in mode or "in-office" in mode:
             return 4.0 if prefers_remote else 7.0
-        return 5.0
+        return 3.5   # unknown work mode → below neutral
 
     def _score_notice_period_fit(self, job: dict, ctx: dict) -> float:
         text = ctx["jd_text"].lower()
@@ -542,18 +543,18 @@ class IndiaFitEngine:
                 if user_notice <= required_days * 2:
                     return 4.0
                 return 2.0
-        return 7.0
+        return 4.5   # no notice period signal in JD → slightly below neutral (uncertainty)
 
     def _score_sector_fit(self, job: dict, ctx: dict) -> float:
         """User's sector allow/deny preference vs company's known sector."""
         prefs = self.p.sector_preferences
         rejections = self.p.sector_rejections
         if not prefs and not rejections:
-            return 5.0  # no preference set → neutral 5.0
+            return 3.5  # no preference set → low confidence
 
         company_sector = (ctx["company_registry"].get("sector") or "").strip()
         if not company_sector:
-            return 6.0  # unknown sector — neither penalize hard nor reward
+            return 4.0  # unknown sector → below neutral
 
         sector_lower = company_sector.lower()
         if any(r.lower() in sector_lower for r in rejections):
@@ -673,7 +674,7 @@ class IndiaFitEngine:
     def _score_career_trajectory(self, job: dict, ctx: dict) -> float:
         """Seniority match + brand bump. No AI bias."""
         title = (job.get("title") or "").lower()
-        base = 5.0
+        base = 4.0   # below neutral — trajectory must be earned, not assumed
 
         seniority = ["senior", "staff", "principal", "lead", "head", "founding", "director"]
         for i, s in enumerate(seniority):

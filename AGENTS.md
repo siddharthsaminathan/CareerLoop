@@ -62,6 +62,8 @@ On-demand: invoke `/careerloop-product-lead` (Claude Code) or `/careerloop-produ
 | `docs/product/vision_v1.6_historical.md` | Historical vision v1.6 |
 | `docs/engineering/breakdown-20-part.md` | Architecture breakdown reference |
 | `docs/engineering/resume-council-vision.md` | Resume Council 8-system spec |
+| `docs/engineering/API_ARCHITECTURE.md` | REST API spec (target state) |
+| `careerloop_api/` | REST API v1 — production transport layer (9 routes, 7 endpoint groups) |
 
 ---
 
@@ -87,7 +89,7 @@ To rollback: `node update-system.mjs rollback`
 
 ## What is career-ops
 
-AI-powered, CLI-agnostic job search automation: pipeline tracking, offer evaluation, CV generation, portal scanning, batch processing. Runs on any AI coding CLI that follows the [open agent skill standard](https://agentskills.io) (Claude Code, Codex, Gemini, OpenCode, Qwen, Copilot, Kimi).
+AI-powered job search automation: pipeline tracking, offer evaluation, CV generation, portal scanning, batch processing. Delivered via REST API (careerloop_api/) to web frontend. Also runs on AI coding CLIs that follow the [open agent skill standard](https://agentskills.io) (Claude Code, Codex, Gemini, OpenCode, Qwen, Copilot, Kimi).
 
 ### Main Files
 

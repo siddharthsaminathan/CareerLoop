@@ -1,4 +1,3 @@
-import os
 import json
 import logging
 from typing import Optional, Any, Annotated, Dict
@@ -15,27 +14,18 @@ from careerloop.session.tool_registry import ToolRegistry
 
 logger = logging.getLogger("careerloop.session.supervisor_graph")
 
-# P1-07: Module-level singleton — created ONCE and reused across all graph invocations
-# so we don't exhaust the connection pool. Initialized lazily on first use.
-_db_singleton: Any = None
-_db_singleton_lock = None  # threading.Lock, initialized lazily
-
-
+# NEW: Reuse the FastAPI app's DatabaseManager singleton instead of creating
+# a second connection pool.  A separate pool (old _get_db()) doubled the minimum
+# connections needed and caused pool-checkout deadlocks under concurrent chat
+# requests because each pool was unaware of the other's reservations.
 def _get_db():
-    """Return the module-level DatabaseManager singleton (lazy-init, thread-safe)."""
-    global _db_singleton, _db_singleton_lock
-    if _db_singleton is not None:
-        return _db_singleton
-    import threading
-    if _db_singleton_lock is None:
-        _db_singleton_lock = threading.Lock()
-    with _db_singleton_lock:
-        if _db_singleton is not None:
-            return _db_singleton
-        from careerloop.memory.connection import DatabaseManager
-        _db_singleton = DatabaseManager(os.getenv("DATABASE_URL"))
-        logger.info("DatabaseManager singleton initialized")
-        return _db_singleton
+    """Return the shared DatabaseManager singleton from connection.py.
+
+    This is the SAME pool used by FastAPI dependencies (deps/db.py),
+    SessionStore, and every other component. One pool per process.
+    """
+    from careerloop.memory.connection import get_db_manager
+    return get_db_manager()
 
 class ConversationState(TypedDict):
     user_id: str

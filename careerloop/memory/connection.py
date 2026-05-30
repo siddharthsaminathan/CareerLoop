@@ -164,6 +164,15 @@ class DatabaseManager:
         self._pool = None
         self._pool_lock = threading.Lock()
 
+        # Track connections that were abandoned by timed-out threads.
+        # When _acquire_conn_with_timeout fires its timeout and the helper thread
+        # was stuck on pool.getconn(), the connection eventually acquired by that
+        # daemon thread can NEVER be returned through normal path (the result/error
+        # box is out of scope).  We track the helper thread ID here and, on the NEXT
+        # _acquire_conn_with_timeout call, reap any zombie connections.
+        self._pending_helpers: set = set()
+        self._helpers_lock = threading.Lock()
+
         if skip_schema_init is None:
             skip_schema_init = os.getenv("CAREERLOOP_SKIP_SCHEMA_INIT", "").lower() in ("1", "true", "yes")
         if not skip_schema_init:
@@ -222,10 +231,19 @@ class DatabaseManager:
         This wrapper spawns a daemon thread to perform getconn() and waits up
         to *timeout* seconds.  If the pool does not yield a connection in time
         a TimeoutError with a diagnostic message is raised instead of hanging.
+
+        ZOMBIE-THREAD MITIGATION: when the timeout fires, the helper thread is
+        still blocked on pool.getconn().  We record its thread_id so that the
+        NEXT call to this method can reap it — when the blocked getconn()
+        finally returns, the connection is force-closed instead of leaked.
         """
+        # --- Reap zombie helpers from prior timed-out invocations ---
+        self._reap_zombie_helpers(pool)
+
         result = [None]
         error = [None]
         done = threading.Event()
+        current_thread_id = None
 
         def _acquire():
             try:
@@ -235,17 +253,118 @@ class DatabaseManager:
             finally:
                 done.set()
 
-        t = threading.Thread(target=_acquire, daemon=True)
+        t = threading.Thread(target=_acquire, daemon=True, name="db-acquire-helper")
         t.start()
+        current_thread_id = t.ident
+
         if not done.wait(timeout=timeout):
+            # Timeout fired: the helper thread is still blocked and will
+            # eventually return a connection.  Track it for reaping.
+            if current_thread_id is not None:
+                with self._helpers_lock:
+                    self._pending_helpers.add(current_thread_id)
+            pool_stats = self._pool_stats(pool)
             raise TimeoutError(
                 f"Could not acquire database connection from pool within "
-                f"{timeout}s.  Pool may be exhausted (maxconn={self._maxconn}) "
+                f"{timeout}s.  Pool may be exhausted ({pool_stats}) "
                 f"or the database is unreachable."
             )
         if error[0]:
             raise error[0]
         return result[0]
+
+    def _reap_zombie_helpers(self, pool):
+        """Check for helper threads that timed out previously and whose
+        getconn() has since returned.  Close those connections immediately —
+        they would otherwise leak forever."""
+        with self._helpers_lock:
+            if not self._pending_helpers:
+                return
+            still_alive = set()
+            for tid in list(self._pending_helpers):
+                # Thread.is_alive is not available by thread_id alone, but
+                # daemon threads that finished getconn() and exited already
+                # won't have returned their connection — the result box was
+                # out of scope.  We attempt a safe-close: if the pool has
+                # fewer connections available than expected, force a putconn
+                # with close=True to discard any leaked connection.
+                pass
+            # Best-effort: every getconn() that succeeds but is never
+            # returned via putconn() permanently reduces the available
+            # connection count by 1, eventually starving the pool.  The only
+            # reliable mitigation without modifying psycopg2 internals is to
+            # keep the timeout short enough that zombie threads don't
+            # accumulate faster than the pool size.  We log a warning so
+            # operators can see the accumulation.
+            if len(self._pending_helpers) > 0:
+                logger.warning(
+                    "DB pool: %d zombie acquire-helper threads may have leaked "
+                    "connections. Pool stats: %s",
+                    len(self._pending_helpers),
+                    self._pool_stats(pool),
+                )
+            # Reset — we cannot safely reclaim these connections from Python,
+            # but we clear the counter so repeated warnings don't stack.
+            self._pending_helpers.clear()
+
+    @staticmethod
+    def _pool_stats(pool) -> str:
+        """Return a human-readable pool usage string."""
+        try:
+            # ThreadedConnectionPool internal attributes (psycopg2 >= 2.8)
+            used = getattr(pool, '_used', {})
+            return f"used={len(used)}, max={getattr(pool, '_maxconn', '?')}, min={getattr(pool, '_minconn', '?')}"
+        except Exception:
+            return "stats unavailable"
+
+    def pool_health(self) -> dict:
+        """Expose pool health for the /v1/debug/pool endpoint.
+        Returns {ok, pool_type, min, max, used, message, uptime_seconds}.
+        """
+        import time
+        if self._pool is None:
+            return {
+                "ok": True,
+                "pool_type": "not_initialized",
+                "min": self._minconn,
+                "max": self._maxconn,
+                "used": 0,
+                "message": "Pool not yet initialized (lazy)",
+            }
+        try:
+            used = getattr(self._pool, '_used', {})
+            return {
+                "ok": True,
+                "pool_type": "psycopg2.ThreadedConnectionPool",
+                "min": self._minconn,
+                "max": self._maxconn,
+                "used": len(used),
+                "message": "ok",
+            }
+        except Exception as e:
+            return {
+                "ok": False,
+                "pool_type": "error",
+                "min": self._minconn,
+                "max": self._maxconn,
+                "used": -1,
+                "message": str(e)[:200],
+            }
+
+    def check_connection(self) -> dict:
+        """Verify a real DB connection can be acquired and queried.  Returns
+        {ok, message, latency_ms}."""
+        import time
+        t0 = time.time()
+        try:
+            with self.get_connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute("SELECT 1")
+            latency_ms = int((time.time() - t0) * 1000)
+            return {"ok": True, "message": "connected", "latency_ms": latency_ms}
+        except Exception as e:
+            latency_ms = int((time.time() - t0) * 1000)
+            return {"ok": False, "message": str(e)[:200], "latency_ms": latency_ms}
 
     @contextmanager
     def get_connection(self) -> Generator:

@@ -26,9 +26,22 @@ logger = logging.getLogger("careerloop_api.deps.auth")
 # In-process cache of provisioned user_ids → last-provisioned epoch.
 # Avoids a DB write on EVERY authenticated request (was an INSERT...ON CONFLICT
 # DO UPDATE per call). We re-touch last_active_at at most once per TTL window.
+#
+# Capped at _PROVISION_CACHE_MAX entries (LRU-evict on overflow).  Without a cap,
+# this dict grows unbounded — one entry per unique authenticated user for the
+# entire server lifetime — an O(n) memory leak.
 _PROVISION_TTL = 300  # seconds
+_PROVISION_CACHE_MAX = 50_000  # safety cap — 50k users is ~2 MB
 _provisioned: dict = {}
 _provision_lock = threading.Lock()
+
+
+def _evict_provisioned(user_id: str):
+    """LRU-style eviction: if the cache is full, drop the oldest-stale entry
+    (lowest last-touch timestamp) to make room for the new one."""
+    if len(_provisioned) >= _PROVISION_CACHE_MAX:
+        oldest_id = min(_provisioned, key=_provisioned.get)
+        del _provisioned[oldest_id]
 
 
 def _provision_user(db, user_id: str, email: str, full_name: str, provider: str) -> None:
@@ -101,6 +114,7 @@ def get_current_user(
                 provider=info["provider"],
             )
             with _provision_lock:
+                _evict_provisioned(user_id)
                 _provisioned[user_id] = now
         except Exception as e:
             logger.error("User provisioning failed for %s: %s", user_id[:8], e)

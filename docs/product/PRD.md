@@ -361,10 +361,11 @@ working together to turn openings into interviews.
 
 | System | Completion | Status | Notes |
 |--------|------------|--------|-------|
-| **Transport abstraction layer** | **65%** | 🟡 | Base + Terminal stubs. Echo fallback removed. Safe error messages. /brief + /scan + CommandRouter wired. |
+| **Transport abstraction layer** | **SUPERSEDED** | ⚫ | Replaced by REST API (careerloop_api/). Telegram/WhatsApp permanently delayed. See §21. |
 | **Multi-user onboarding** | **75%** | 🟢 | 7-step name-first flow (see §22.5). Name → LinkedIn lookup → identity card → CV → LLM extraction → gap-fill (CTC + notice) → PROFILE_READY. 3-user E2E verified. CTC (current + expected) + notice_period + work_style_prefs stored in careerloop.users columns. |
 | **LangGraph Chatbot Orchestrator** | **92%** | 🟢 | 2-node pipeline. GENERAL_CHAT returns real LLM. ActionResolver context injection. Live scan rendering. Messages persisted to DB. Conversation history injected with last-20 messages. Chat history API endpoint live. SessionStore unified. Scan async. P0/P1 bug hunt complete. Resume editing wired via DeepSeek. |
-| **PostgresSaver Checkpointer** | **20%** | 🔴 | SQLite sessions functional without Postgres. Dual-mode verified. Interrupt/resume proof still needed. |
+| **PostgresSaver Checkpointer** | **65%** | 🟡 | Wired into API path. Graceful MemorySaver fallback. Checkpoint tables verified. Interrupt/resume proof still needed for multi-worker. |
+| **REST API v1 (careerloop_api/)** | **95%** | 🟢 | 7 endpoint groups, 9 routes. SSE scan streaming. Supabase JWT auth. TAL job card serializers. 15/15 API E2E + 7/7 onboarding E2E verified. |
 | **Application pack delivery** | **95%** | 🟢 | PackageAssembler + Playwright PDFs. E2E validated on real job. |
 | **Daily brief cron delivery** | **90%** | 🟢 | Daily Runner triggers scan and fully populates daily_briefs and daily_brief_items SQL tables. E2E database brief retrieval verified. |
 | OnDemandSearch unified discovery | **90%** | 🟢 | `careerloop/on_demand.py::OnDemandSearch` is the canonical engine. All discovery unified. 13 board sources. SSE event streaming. Deprecates `scan.mjs` and `DailyRunner.run()`. |
@@ -389,7 +390,7 @@ working together to turn openings into interviews.
 | Interview memory (full) | 25% | 🟡 | Vent parsing works. Debrief + weakness tracker = Sprint 7. |
 | Persistent memory graph | **60%** | 🟡 | Schema isolation (careerloop.*). Repository layer. Fingerprint dedup. User-job relationships. |
 | Background job scheduler | 0% | ⚫ | Sprint 2. Daily + per-job two classes. |
-| WhatsApp / Meta Cloud API | 0% | ⚫ | After Telegram beta validates loop. |
+| WhatsApp / Meta Cloud API | 0% | ⚫ | Permanently delayed. Web-first per §21. |
 | Monetization / billing | 0% | 🔴 | Pricing tiers defined. No paywall yet. Needs onboarding first. |
 | Data engineering V3 | **95%** | 🟢 | careerloop.users identity spine. 20 FKs migrated. 14 users backfilled. 7 new tables. 12 canonical docs. Phase 1+2 complete. Companies populated, Cutshort parsing, cache-hit wired, memory architecture documented. |
 | Memory architecture | **70%** | 🟡 | 7-layer model defined. 4-level recall hierarchy. 8 propagation flows. 10 anti-patterns. MEMORY_SYSTEMS_ARCHITECTURE.md created. |

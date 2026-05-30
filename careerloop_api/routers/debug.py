@@ -126,3 +126,26 @@ def runtime():
         "checkpointer_pools_psycopg3": _count_pg_pools(),
         "scans_and_streams": runtime_snapshot(),
     }
+
+
+@router.get("/db-check")
+def db_check():
+    """Verify a real DB connection can be acquired and queried.
+    Returns latency_ms.  If ok=False, the pool is exhausted or the DB is down."""
+    from careerloop.memory.connection import get_db_manager
+    mgr = get_db_manager()
+    result = mgr.check_connection()
+    return {"ok": result["ok"], **result}
+
+
+@router.get("/pool")
+def pool_health():
+    """Detailed connection pool health."""
+    from careerloop.memory.connection import get_db_manager
+    mgr = get_db_manager()
+    result = mgr.pool_health()
+    # Add a direct connection check
+    check = mgr.check_connection()
+    result["connection_check"] = check
+    result["uptime_s"] = round(time.time() - _BOOT_TS, 1)
+    return result

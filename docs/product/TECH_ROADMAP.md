@@ -307,10 +307,10 @@ That is the real CareerLoop architecture.
 ---
 
 ## PHASE 0 — Delivery Foundation (The Missing Layer)
-**Status: ~12% | Owner: CTO | Priority: P0 — blocks everything**
+**Status: ~70% | Owner: CTO | Priority: P0 — blocks everything**
 
-> Added 2026-05-22. Updated 2026-05-23 after first scaffolds.
-> The entire backend exists, and the delivery layer now has initial files, but no verified end-to-end user loop. This phase must ship before any other feature investment.
+> Added 2026-05-22. Updated 2026-05-23 after first scaffolds. Updated 2026-05-30: REST API v1 live, web-first deployment locked, Telegram/WhatsApp permanently delayed.
+> The REST API (careerloop_api/) is now the production transport layer with 7 endpoint groups live and E2E verified. The supervisor graph, onboarding flow, and scan pipeline are all invoked through the API.
 
 The MVP operating loop:
 
@@ -576,7 +576,7 @@ Transport Layer (Telegram / WhatsApp)
 
 | Phase | % | Owner | Status |
 |-------|---|-------|--------|
-| Phase 0: Delivery Foundation | 12% | CTO | 🔴 P0 |
+| Phase 0: Delivery Foundation | 70% | CTO | 🟢 REST API v1 LIVE |
 | Phase 1: Discovery | 75% | CTO | 🟡 |
 | Phase 1.5: Decision Compression | 20% | CEO | 🔴 |
 | Phase 2: Positioning + Intelligence | 45% | CTO | 🟡 |
@@ -589,4 +589,4 @@ Transport Layer (Telegram / WhatsApp)
 
 ---
 
-*Synced with `docs/tech-backlog/TRACKER.md` and `docs/product/PRD.md` — May 23, 2026.*
+*Synced with `docs/tech-backlog/TRACKER.md` and `docs/product/PRD.md` — May 30, 2026.*

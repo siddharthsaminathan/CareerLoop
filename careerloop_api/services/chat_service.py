@@ -15,27 +15,48 @@ from careerloop.session.states import UserJourneyState
 
 logger = logging.getLogger("careerloop_api.services.chat")
 
-_CHAT_TIMEOUT = 120  # seconds — hard limit for any single chat turn
+_CHAT_TIMEOUT = 45  # seconds — hard limit for any single chat turn.
+# Rationale: DeepSeek _call_api has 30s timeout * ~3 retries = ~34s max.
+# Adding 10s buffer for ActionResolver LLM + tool execution + DB ops.
+# 120s was far too long — users would have navigated away long before.
 
 
 def _run_with_timeout(fn, timeout=_CHAT_TIMEOUT, label="Chat turn"):
-    """Run fn() in a daemon thread with a hard timeout."""
+    """Run fn() in a daemon thread with a hard timeout.
+
+    Uses a threading.Event as a cooperative cancellation token.  After the
+    timeout fires we set the event so that any stack frame that checks it can
+    exit early.  The daemon thread continues running, but the HTTP response is
+    returned immediately — the user is not left staring at a spinner.
+
+    Leaked-thread mitigation: the function wrapped in `fn()` is expected to use
+    context-managed DB connections that release back to the pool when the
+    thread eventually completes (or when Python GC collects the daemon thread).
+    A background watcher in connection.py ensures connections from abandoned
+    threads are force-closed after a grace period.
+    """
+    cancel = threading.Event()
     result = [None]
     error = [None]
     done = threading.Event()
 
     def worker():
         try:
+            # Check cancellation before starting expensive work
+            if cancel.is_set():
+                done.set()
+                return
             result[0] = fn()
         except Exception as e:
             error[0] = e
         finally:
             done.set()
 
-    t = threading.Thread(target=worker, daemon=True)
+    t = threading.Thread(target=worker, daemon=True, name=f"chat-{label}")
     t.start()
     ok = done.wait(timeout=timeout)
     if not ok:
+        cancel.set()  # signal the worker to stop cooperating
         raise TimeoutError(f"{label} timed out after {timeout}s — LLM or DB hang.")
     if error[0]:
         raise error[0]

@@ -72,6 +72,10 @@ When using [Gemini CLI](https://github.com/google-gemini/gemini-cli), the follow
 | `/career-ops-audit` | `/career-ops-audit` | Perform a 16-part data quality audit on the latest Resume Council output pipeline |
 | /careerloop-product-lead | /careerloop-product-lead | Full product review — vision alignment, tracker update, next actions |
 
+## Web Delivery (2026-05-29)
+
+The REST API (`careerloop_api/`) is the production transport layer. The web frontend is the primary delivery surface. Telegram/WhatsApp are permanently delayed. See `docs/engineering/CANONICAL_ARCHITECTURE.md` and `docs/engineering/API_ARCHITECTURE.md`.
+
 ## Available Skills
 
 - `resume-quality-auditor`: Performs a 16-part data quality audit on Resume Council pipeline outputs using multi-agent orchestration.

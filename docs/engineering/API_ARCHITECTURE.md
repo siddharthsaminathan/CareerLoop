@@ -2,6 +2,11 @@
 
 > Thin FastAPI product layer. Core logic in services/runtime/repos. Not another brain.
 
+> **IMPORTANT (2026-05-30): This document defines the TARGET-STATE API spec. Not all endpoints have been implemented.**
+> - **LIVE (9 routes):** POST /v1/auth/me, GET /v1/me, GET /v1/me/preferences, GET /v1/briefs/latest, POST /v1/briefs/{id}/items/{idx}/select, GET /v1/jobs/{id}, POST /v1/jobs/{id}/save, POST /v1/jobs/{id}/skip, POST /v1/chat/message, GET /v1/chat/history, POST /v1/scans, GET /v1/scans/{run_id}/events, GET /v1/scans/{run_id}, GET /v1/scans/latest, GET /v1/debug/runtime
+> - **NOT YET BUILT:** packs, applications, pipeline, companies, memory, webhooks routers. No schemas/, workers/, events/ directories exist.
+> - **DIFFERENT FROM SPEC:** POST /auth/login (Supabase handles OAuth, we have POST /auth/me). PATCH /me/profile (not implemented). PATCH /me/preferences (not implemented). POST /me/resume (not implemented). GET /chat/sessions/current (not implemented). GET /chat/messages (implemented as GET /chat/history). GET /briefs/{brief_id} + items (not implemented). GET /jobs (list) (not implemented).
+
 ## Design Principle
 
 ```

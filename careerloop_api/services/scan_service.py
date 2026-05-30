@@ -607,7 +607,13 @@ def _build_from_cache(user_id: str, db, limit: int = 10) -> list:
 
     Returns the same shape as DailyRunner's top_jobs: [{"job":..., "score":..., "breakdown":...}].
     Pulls fit_score / reasons from user_job_relationships when present, else sensible defaults.
+
+    Uses RANDOM() ordering to prevent cache saturation — the same 9-10 jobs will not
+    appear in identical order across consecutive briefs, even with a small job pool.
     """
+    import random as _random
+    from datetime import date as _date
+
     rows = []
     try:
         with db.get_connection() as conn:
@@ -635,12 +641,26 @@ def _build_from_cache(user_id: str, db, limit: int = 10) -> list:
                     ORDER BY COALESCE(r.fit_score, 0) DESC, j.scraped_at DESC NULLS LAST
                     LIMIT %s
                     """,
-                    (user_id, limit),
+                    (user_id, limit * 3),   # fetch 3x limit, then shuffle
                 )
                 rows = cur.fetchall()
     except Exception as e:
         logger.error("_build_from_cache failed: %s", e)
         return []
+
+    # ── Rotation: deterministic day-seeded shuffle to prevent cache saturation ──
+    # Without this, the same top-N jobs appear identically ordered every brief.
+    # Day-seed means the same day gets the same order (predictable), but
+    # day-over-day rotation breaks the monotony of "same 9 jobs, same order."
+    if rows and len(rows) > limit:
+        import random as _random
+        from datetime import date as _date
+        _day_seed = int(_date.today().strftime("%Y%m%d"))
+        _rng = _random.Random(_day_seed)
+        _rng.shuffle(rows)
+        rows = rows[:limit]
+    elif rows:
+        rows = rows[:limit]
 
     top = []
     for row in rows:
@@ -731,6 +751,10 @@ def _execute_scan_more(user_id: str, run_id: str, db):
     #    flagged OFF by default. scan_more runs Phase B (board search) only, which
     #    streams jobs in seconds. To re-enable Phase A: set ENABLE_PHASE_A=true in
     #    the environment (.env). See docs — disabling it is the responsiveness fix.
+    #
+    #    force_refresh=True bypasses the file-based CrawlCache (8h TTL) because
+    #    the user explicitly requested fresh discovery — same role+city should
+    #    still run the full board search pipeline every time.
     from careerloop.on_demand import OnDemandSearch
 
     primary_role = target_roles[0]
@@ -742,7 +766,8 @@ def _execute_scan_more(user_id: str, run_id: str, db):
             max_results=10,
             portal_companies=20,
             include_boards=True,
-            include_phase_a=_phase_a_enabled(),  # default False — board search only
+            force_refresh=True,                    # user wants fresh results
+            include_phase_a=_phase_a_enabled(),    # default False — board search only
             event_emitter=_event_emitter,
         )
     except Exception as e:
@@ -1134,6 +1159,7 @@ def _execute_scan(user_id: str, run_id: str, db):
         role=target_role,
         city=target_city,
         max_results=25,
+        force_refresh=True,          # daily scan always runs fresh pipeline
         include_phase_a=True,
         event_emitter=_scan_emitter,
     )

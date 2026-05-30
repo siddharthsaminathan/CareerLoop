@@ -40,7 +40,7 @@ class LLMChatAgent:
                         "temperature": 0.3,
                         "max_tokens": 4096,
                     },
-                    timeout=30,
+                    timeout=(10, 30),  # (connect_timeout, read_timeout)
                 )
 
                 if response.status_code == 200:
