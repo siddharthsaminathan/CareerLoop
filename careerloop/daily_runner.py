@@ -438,7 +438,7 @@ class DailyRunner:
         if self.funnel:
             self.funnel.emit_funnel_complete({
                 "run_id": run_id,
-                "user_id": _funnel_uid,
+                "user_id": brief_user_id,
                 "discovered": len(new_raw_jobs),
                 "deduped": len(unique_jobs),
                 "location_passed": _funnel_role_before,

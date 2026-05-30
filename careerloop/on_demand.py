@@ -85,6 +85,136 @@ def _tag_jobs_with_ontology(jobs: list[dict], archetype: "RoleArchetype", senior
         }
 
 
+def _infer_company_from_title(search_title: str, url: str = "") -> str:
+    """Parse company name from DDG search result titles.
+
+    Handles patterns seen across Indian job boards:
+      - "BigRio is hiring AI Engineer job in Chennai | Cutshort"
+      - "Company Name — Job Title" / "Job Title — Company Name"
+      - "Job Title at Company Name"
+      - "Company Name hiring Role"
+    """
+    import re as _re
+    if not search_title:
+        return ""
+
+    # Known job board suffixes/domains — these are NOT companies
+    _JOB_BOARD_DOMAINS = frozenset({
+        "iimjobs.com", "naukri.com", "indeed.com", "linkedin.com",
+        "cutshort.io", "cutshort", "glassdoor", "foundit.in", "foundit",
+        "monster.com", "monster", "wellfound", "instahyre", "shine.com",
+        "timesjobs.com", "careerbuilder", "ziprecruiter", "simplyhired",
+        "snagajob", "dice.com", "angel.co", "remoteok", "remotive",
+        "weworkremotely",
+    })
+
+    t = search_title.strip()
+
+    # Pattern 1: "CompanyName is hiring..." (Cutshort/LinkedIn-style)
+    m = _re.match(r"(.+?)\s+is\s+hiring\s+", t, _re.IGNORECASE)
+    if m:
+        candidate = m.group(1).strip()
+        if candidate.lower() not in _JOB_BOARD_DOMAINS:
+            return candidate
+
+    # Pattern 2: "Title at Company" (common job board format)
+    m = _re.search(r"\s+at\s+(.+?)$", t, _re.IGNORECASE)
+    if m:
+        candidate = m.group(1).strip().rstrip(".")
+        if len(candidate) < 80 and candidate.lower() not in _JOB_BOARD_DOMAINS:
+            return candidate
+
+    # Pattern 3: "Title — Company" or "Company — Title" (Naukri/Indeed-style)
+    m = _re.search(r"\s+(?:—|-)\s+(.+?)$", t)
+    if m:
+        candidate = m.group(1).strip()
+        # Filter out suffixes like "iimjobs.com", "Cutshort", "| site"
+        candidate = _re.sub(r"\s*\|.*$", "", candidate)
+        if (2 < len(candidate) < 80
+                and candidate.lower() not in _JOB_BOARD_DOMAINS
+                and not candidate.lower().endswith(".com")
+                and not candidate.lower().endswith(".in")):
+            return candidate
+
+    # Pattern 4: "Company hiring Role in City"
+    m = _re.match(r"(.+?)\s+(?:is\s+)?hiring\s+", t, _re.IGNORECASE)
+    if m:
+        candidate = m.group(1).strip()
+        if candidate.lower() not in _JOB_BOARD_DOMAINS:
+            return candidate
+
+    return ""
+
+
+def _infer_company_from_url(url: str) -> str:
+    """Infer company name from job board URL patterns.
+
+    Covering common cases:
+      - cutshort.io/job/Gen-AI-Engineer-Bengaluru-Bangalore-NeoGenCode → NeoGenCode
+      - greenhouse.io/boards/{company}/jobs/... → company name from board slug
+      - lever.co/{company}/... → company name from path
+      - *.careerpage.io/{company}/... → company name from path
+    Returns '' if no inference possible.
+    """
+    import re as _re
+    from urllib.parse import urlparse as _urlparse
+
+    if not url:
+        return ""
+
+    parsed = _urlparse(url)
+    domain = parsed.netloc.lower().lstrip("www.")
+    path = parsed.path.strip("/")
+
+    # Cutshort: /job/Title-City-CompanyName-hash
+    if "cutshort.io" in domain and path:
+        parts = path.split("/")[-1].split("-")
+        # Reverse walk: last part before any hex hash is the company name
+        for i in range(len(parts) - 1, 0, -1):
+            part = parts[i]
+            # Skip hex-like slugs (Git), city names, and short tokens
+            if (_re.match(r"^[0-9a-fA-F]{7,}$", part)
+                    or part.lower() in ("bangalore", "bengaluru", "chennai", "mumbai",
+                                        "delhi", "hyderabad", "pune", "india", "remote",
+                                        "gurgaon", "noida", "kolkata")):
+                continue
+            if len(part) >= 3:
+                # Collect consecutive meaningful parts going backward
+                comp_parts = []
+                for j in range(i, max(i - 3, -1), -1):
+                    pj = parts[j]
+                    if _re.match(r"^[0-9a-fA-F]{7,}$", pj) or pj.lower() in (
+                        "bangalore", "bengaluru", "chennai", "mumbai", "delhi",
+                        "hyderabad", "pune", "india", "remote", "gurgaon", "noida",
+                        "kolkata", "fulltime", "full-time", "remote", "job"):
+                        break
+                    comp_parts.insert(0, pj)
+                if comp_parts:
+                    return " ".join(comp_parts).replace("-", " ").title()
+                break
+        return ""
+
+    # Greenhouse: /boards/{company}/jobs/...
+    if "greenhouse.io" in domain or "greenhouse.com" in domain:
+        parts = path.split("/")
+        if len(parts) >= 2 and parts[0] == "boards":
+            return parts[1].replace("-", " ").title()
+
+    # Lever: /{company} or /{company}/{job-id}
+    if "lever.co" in domain:
+        parts = path.split("/")
+        if parts:
+            return parts[0].replace("-", " ").title()
+
+    # Generic: domain-based fallback
+    domain_base = domain.split(".")[-2] if len(domain.split(".")) >= 2 else domain
+    # Skip known job boards
+    if domain_base in ("cutshort", "iimjobs", "naukri", "foundit", "indeed",
+                        "linkedin", "glassdoor", "monster", "wellfound", "instahyre"):
+        return ""
+    return domain_base.replace("-", " ").title()
+
+
 def _fetch_missing_jds(jobs: list[dict]) -> None:
     """Attempt to fetch full JD text for jobs with thin descriptions (e.g. jobspy).
     Mutates jobs in-place. Uses requests + BeautifulSoup; silently skips on failure."""
@@ -637,7 +767,7 @@ class OnDemandSearch:
                         INSERT INTO careerloop.user_job_relationships
                             (user_id, job_id, match_status, fit_score,
                              user_seen_at, created_at, updated_at)
-                        VALUES (%s, %s, 'discovered', %s, NOW(), NOW(), NOW())
+                        VALUES (%s, %s, 'matched', %s, NOW(), NOW(), NOW())
                         ON CONFLICT (user_id, job_id) DO UPDATE SET
                             fit_score  = EXCLUDED.fit_score,
                             updated_at = NOW()
@@ -887,21 +1017,22 @@ class OnDemandSearch:
             now = datetime.now(timezone.utc).isoformat()
             db = get_db_manager(self.root)
             with db.get_connection() as conn:
-                conn.execute(
-                    "UPDATE companies SET ats_provider=?, ats_url=?, updated_at=? WHERE id=?",
-                    [provider, ats_url, now, company_id],
-                )
-                # Upsert into company_sources for full endpoint history
-                conn.execute(
-                    """INSERT INTO company_sources (company_id, source_type, crawl_url,
-                       last_crawled_at, is_active)
-                       VALUES (?, ?, ?, ?, 1)
-                       ON CONFLICT(company_id, source_type)
-                       DO UPDATE SET crawl_url=excluded.crawl_url,
+                with conn.cursor() as cur:
+                    cur.execute(
+                        "UPDATE companies SET ats_provider=%s, ats_url=%s, updated_at=%s WHERE id=%s",
+                        (provider, ats_url, now, company_id),
+                    )
+                    # Upsert into company_sources for full endpoint history
+                    cur.execute(
+                        """INSERT INTO company_sources (company_id, source_type, crawl_url,
+                           last_crawled_at, is_active)
+                           VALUES (%s, %s, %s, %s, 1)
+                           ON CONFLICT(company_id, source_type)
+                           DO UPDATE SET crawl_url=excluded.crawl_url,
                                      last_crawled_at=excluded.last_crawled_at,
                                      is_active=1""",
-                    [company_id, provider, ats_url, now],
-                )
+                        (company_id, provider, ats_url, now),
+                    )
             logger.info(f"[OnDemand] Persisted ATS endpoint: {company_id} → {provider} @ {ats_url}")
         except Exception as e:
             logger.debug(f"[OnDemand] ATS cache write failed: {e}")
@@ -1119,10 +1250,104 @@ class OnDemandSearch:
                 if 3 < len(h1_text) < 120:
                     title = h1_text
 
+            # ── Company and location extraction ──────────────────────────
+            # Fix: _extract_generic_jd was hardcoding company="" and location="",
+            # causing 75% of CANDIDATE_MATCHED events to have empty company.
+            company = ""
+            location = ""
+
+            # 1. JSON-LD schema (most reliable — used by Greenhouse, Lever, Job boards)
+            try:
+                import json as _json
+                for script_tag in soup.find_all("script", type="application/ld+json"):
+                    try:
+                        raw = script_tag.string or script_tag.text or ""
+                        if not raw.strip():
+                            continue
+                        ld = _json.loads(raw)
+                        # Handle @graph pattern (multiple entities)
+                        items = ld if isinstance(ld, list) else [ld] if isinstance(ld, dict) else []
+                        for item in items:
+                            if not isinstance(item, dict):
+                                continue
+                            if item.get("@type") == "JobPosting":
+                                org = item.get("hiringOrganization") or {}
+                                if isinstance(org, dict):
+                                    company = org.get("name", "")
+                                elif isinstance(org, str):
+                                    company = org
+                                jloc = item.get("jobLocation") or {}
+                                if isinstance(jloc, dict):
+                                    addr = jloc.get("address") or {}
+                                    if isinstance(addr, dict):
+                                        location = (
+                                            addr.get("addressLocality")
+                                            or addr.get("addressRegion")
+                                            or addr.get("addressCountry")
+                                            or ""
+                                        )
+                                    else:
+                                        location = str(jloc.get("name", ""))
+                                elif isinstance(jloc, str):
+                                    location = jloc
+                                if company or location:
+                                    break
+                    except Exception:
+                        pass
+            except Exception:
+                pass
+
+            # 2. Meta tags (og:site_name, article:author)
+            if not company:
+                for meta_attr in [{"property": "og:site_name"}, {"name": "og:site_name"},
+                                  {"name": "author"}, {"name": "application-name"}]:
+                    meta = soup.find("meta", attrs=meta_attr)
+                    if meta and meta.get("content", "").strip():
+                        company = meta["content"].strip()
+                        break
+
+            # 3. Common company name CSS selectors (site-agnostic heuristics)
+            if not company:
+                for cls_pat in [r"company.?name", r"employer.?name", r"org.?name",
+                                r"hiring.?org", r"organization"]:
+                    el = soup.find(class_=re.compile(cls_pat, re.I))
+                    if el:
+                        c = el.get_text(" ", strip=True)
+                        if 2 < len(c) < 80:
+                            company = c
+                            break
+
+            # 4. Fallback: infer company from URL domain
+            if not company:
+                domain_parts = domain.split(".")
+                if len(domain_parts) >= 2:
+                    # e.g., cutshort.io → "Cutshort", greenhouse.io → "Greenhouse"
+                    base = domain_parts[-2] if domain_parts[-1] in ("io", "com", "org", "in", "co") else domain_parts[0]
+                    company = base.replace("-", " ").title()
+
+            # 5. Location from common selectors
+            if not location:
+                for cls_pat in [r"location", r"city", r"region"]:
+                    el = soup.find(class_=re.compile(cls_pat, re.I))
+                    if el:
+                        loc_text = el.get_text(" ", strip=True)
+                        if 2 < len(loc_text) < 60:
+                            location = loc_text
+                            break
+
+            # 6. Location fallback: try meta location tags
+            if not location:
+                for meta_attr in [{"name": "geo.placename"}, {"name": "location"},
+                                  {"itemprop": "jobLocation"}]:
+                    meta = soup.find("meta", attrs=meta_attr)
+                    if meta and meta.get("content", "").strip():
+                        location = meta["content"].strip()
+                        break
+
             return {
                 "title": title,
-                "company": "",
-                "location": "",
+                "company": company,
+                "location": location,
                 "apply_url": url,
                 "description": text,
                 "skills": [],
@@ -1189,10 +1414,27 @@ class OnDemandSearch:
                         source_type = "indeed_direct"
                     else:
                         source_type = "generic_http"
+
+                    co = data.get("company", "")
+                    loc = data.get("location", "")
+                    search_title = r.get("title", "")
+
+                    # Enrich empty company from search result title patterns
+                    if not co and search_title:
+                        co = _infer_company_from_title(search_title, url)
+
+                    # Enrich empty company from URL domain
+                    if not co:
+                        co = _infer_company_from_url(url)
+
+                    # Enrich empty location from search result city
+                    if not loc:
+                        loc = r.get("source_city", "") or r.get("city", "") or ""
+
                     out.append({
-                        "title": data.get("title", r.get("title", "")),
-                        "company": data.get("company", ""),
-                        "location": data.get("location", ""),
+                        "title": data.get("title", search_title),
+                        "company": co,
+                        "location": loc,
                         "url": url,
                         "apply_url": data.get("apply_url", url),
                         "url_type": url_type,
@@ -1203,9 +1445,13 @@ class OnDemandSearch:
                         "_source_type": source_type,
                     })
                 else:
+                    search_title = r.get("title", "")
+                    co = _infer_company_from_title(search_title, url)
+                    if not co:
+                        co = _infer_company_from_url(url)
                     out.append({
-                        "title": r.get("title", ""),
-                        "company": "",
+                        "title": search_title,
+                        "company": co,
                         "location": r.get("source_city", ""),
                         "url": url,
                         "url_type": url_type,

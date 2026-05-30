@@ -62,6 +62,57 @@ _INDIA_CITY_KEYWORDS = frozenset([
 ])
 
 
+def _phase_a_enabled() -> bool:
+    """Phase A (employer discovery) is OFF by default — it adds 3-5 min before the
+    first job and the user does not care about company discovery. Set ENABLE_PHASE_A=true
+    to turn it back on."""
+    return os.getenv("ENABLE_PHASE_A", "false").strip().lower() in ("1", "true", "yes", "on")
+
+
+# Event types that represent a concrete job/match surfacing to the user.
+_FIRST_JOB_EVENTS = {"JOB_FOUND", "SOURCE_SCANNING", "JD_ENRICHED", "JD_SNIPPET"}
+_FIRST_MATCH_EVENTS = {"CANDIDATE_MATCHED", "JOB_EVALUATED"}
+_BRIEF_EVENTS = {"BRIEF_CREATED"}
+
+
+class _ScanMetrics:
+    """Records responsiveness metrics for one scan. Success metric = TTFE < 2s.
+
+    TTFE              — time to first event (any)
+    time_to_first_job — time to first job-surfacing event
+    time_to_first_match — time to first scored match
+    time_to_brief     — time the brief was created
+    """
+
+    def __init__(self, run_id: str):
+        self.run_id = run_id
+        self.t0 = time.time()
+        self.ttfe = None
+        self.first_job = None
+        self.first_match = None
+        self.to_brief = None
+
+    def observe(self, event_type: str):
+        dt = time.time() - self.t0
+        if self.ttfe is None:
+            self.ttfe = dt
+        et = (event_type or "").upper()
+        if self.first_job is None and et in _FIRST_JOB_EVENTS:
+            self.first_job = dt
+        if self.first_match is None and et in _FIRST_MATCH_EVENTS:
+            self.first_match = dt
+        if self.to_brief is None and et in _BRIEF_EVENTS:
+            self.to_brief = dt
+
+    def log(self, extra: str = ""):
+        def f(v):
+            return f"{v:.2f}s" if v is not None else "—"
+        logger.info(
+            "SCAN_METRICS run=%s TTFE=%s time_to_first_job=%s time_to_first_match=%s time_to_brief=%s %s",
+            self.run_id, f(self.ttfe), f(self.first_job), f(self.first_match), f(self.to_brief), extra,
+        )
+
+
 def _compute_job_fingerprint(job: dict) -> str:
     """Deterministic SHA-256 fingerprint from identity fields for dedup.
 
@@ -179,7 +230,7 @@ def _persist_scan_jobs(db, user_id: str, top_jobs: list) -> list:
                     INSERT INTO careerloop.user_job_relationships
                         (user_id, job_id, match_status, fit_score,
                          user_seen_at, created_at, updated_at)
-                    VALUES (%s, %s, 'discovered', %s, NOW(), NOW(), NOW())
+                    VALUES (%s, %s, 'matched', %s, NOW(), NOW(), NOW())
                     ON CONFLICT (user_id, job_id) DO UPDATE SET
                         fit_score  = EXCLUDED.fit_score,
                         updated_at = NOW()
@@ -200,7 +251,39 @@ _active_scans: dict = {}  # user_id → run_id
 
 # Global semaphore: at most 3 concurrent scan workers across ALL users.
 # This prevents connection pool exhaustion (Supabase free tier = 15 conns).
-_worker_semaphore = threading.BoundedSemaphore(3)
+_WORKER_LIMIT = 3
+_worker_semaphore = threading.BoundedSemaphore(_WORKER_LIMIT)
+
+# Live SSE stream registry — observability for /debug/runtime and leak detection.
+# Incremented when a client opens GET /scans/{run_id}/events, decremented in the
+# generator's finally (fires on normal completion AND on client disconnect/GC).
+_active_streams_lock = threading.Lock()
+_active_streams: dict = {}  # stream_uuid → {"run_id":..., "started": epoch}
+
+
+def runtime_snapshot() -> dict:
+    """Read-only snapshot of scan/stream runtime state for /debug/runtime."""
+    with _active_scans_lock:
+        scans = dict(_active_scans)
+    with _active_streams_lock:
+        streams = [
+            {"run_id": v["run_id"], "age_s": round(time.time() - v["started"], 1)}
+            for v in _active_streams.values()
+        ]
+    # BoundedSemaphore exposes its current value via the internal counter.
+    try:
+        free_workers = _worker_semaphore._value  # type: ignore[attr-defined]
+    except Exception:
+        free_workers = None
+    return {
+        "active_scans": scans,
+        "active_scan_count": len(scans),
+        "worker_slots_total": _WORKER_LIMIT,
+        "worker_slots_free": free_workers,
+        "worker_slots_in_use": (_WORKER_LIMIT - free_workers) if free_workers is not None else None,
+        "active_sse_streams": len(streams),
+        "sse_streams": streams,
+    }
 
 # Stale scan recovery — run once at module import.
 def _recover_stale_scans():
@@ -344,6 +427,17 @@ def stream_scan_events(run_id: str, db) -> Generator[str, None, None]:
     last_ts = None
     seen_event_ids: set = set()
 
+    stream_uid = uuid.uuid4().hex
+    with _active_streams_lock:
+        _active_streams[stream_uid] = {"run_id": run_id, "started": time.time()}
+    try:
+        yield from _stream_loop(run_id, db, deadline, last_ts, seen_event_ids)
+    finally:
+        with _active_streams_lock:
+            _active_streams.pop(stream_uid, None)
+
+
+def _stream_loop(run_id, db, deadline, last_ts, seen_event_ids):
     while time.time() < deadline:
         try:
             with db.get_connection() as conn:
@@ -586,11 +680,13 @@ def _execute_scan_more(user_id: str, run_id: str, db):
     if not city:
         city = "Bangalore"
 
-    # 3. Direct event emitter — writes to DB immediately on each call.
-    # No buffering: OnDemandSearch.run() blocks for 60-120s, so interleaved
-    # flush timers cannot fire. Each event opens its own connection and writes.
+    # 3. Direct event emitter — writes to DB immediately on each call, and
+    #    records TTFE responsiveness metrics (success metric: TTFE < 2s).
+    metrics = _ScanMetrics(run_id)
+
     def _event_emitter(event_type: str, message: str, payload: dict = None):
         """Write event to run_events IMMEDIATELY — no buffering, no delay."""
+        metrics.observe(event_type)
         try:
             with db.get_connection() as emit_conn:
                 with emit_conn.cursor() as emit_cur:
@@ -598,13 +694,17 @@ def _execute_scan_more(user_id: str, run_id: str, db):
         except Exception:
             pass  # Non-fatal — scan continues even if event logging fails
 
-    # 4. Kick off SCAN_STARTED — event_emitter writes immediately
+    # 4. Kick off SCAN_STARTED — event_emitter writes immediately (this is TTFE)
     _event_emitter("SCAN_STARTED",
         f"Scanning for: {', '.join(target_roles)} in {city}",
         {"event_type": "SCAN_STARTED", "mode": "scan_more",
          "target_roles": target_roles, "city": city})
 
-    # 5. Run OnDemandSearch — the canonical discovery engine
+    # 5. Run OnDemandSearch — the canonical discovery engine.
+    #    Phase A (employer discovery) is the 3-5 min TTFE killer. It is feature-
+    #    flagged OFF by default. scan_more runs Phase B (board search) only, which
+    #    streams jobs in seconds. To re-enable Phase A: set ENABLE_PHASE_A=true in
+    #    the environment (.env). See docs — disabling it is the responsiveness fix.
     from careerloop.on_demand import OnDemandSearch
 
     primary_role = target_roles[0]
@@ -616,7 +716,7 @@ def _execute_scan_more(user_id: str, run_id: str, db):
             max_results=10,
             portal_companies=20,
             include_boards=True,
-            include_phase_a=True,
+            include_phase_a=_phase_a_enabled(),  # default False — board search only
             event_emitter=_event_emitter,
         )
     except Exception as e:
@@ -663,6 +763,9 @@ def _execute_scan_more(user_id: str, run_id: str, db):
                 "UPDATE careerloop.background_runs SET status = 'COMPLETED', updated_at = NOW() WHERE run_id = %s",
                 (run_id,),
             )
+    if metrics.to_brief is None:
+        metrics.to_brief = time.time() - metrics.t0
+    metrics.log(extra=f"phase_a={_phase_a_enabled()} candidates={result.candidate_count} appended={appended}")
     logger.info("scan_more (OnDemandSearch) done: run=%s candidates=%d appended=%d",
                 run_id, result.candidate_count, appended)
 
@@ -865,13 +968,24 @@ def _append_to_brief(user_id: str, run_id: str, scored_items: list, db) -> int:
                     idx += 1
                     added += 1
                     job_id = ev.get("job_id") or ev.get("id") or str(uuid.uuid4())
+                    co = ev.get("company", "") or ev.get("company_name", "")
+                    loc = ev.get("location", "")
+                    # DATA QUALITY: safety net — infer company from title/URL if still empty
+                    if not co:
+                        try:
+                            from careerloop.on_demand import _infer_company_from_title, _infer_company_from_url
+                            co = _infer_company_from_title(ev.get("title", "")) or _infer_company_from_url(ev.get("apply_url", "") or ev.get("url", ""))
+                        except ImportError:
+                            pass
+                    if not loc:
+                        loc = "India"
                     cur.execute(
                         "INSERT INTO careerloop.daily_brief_items "
                         "(id, brief_id, item_index, job_id, title, company, location, fit_score, recommendation_reason, risk_summary, route_recommendation) "
                         "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                         (
                             str(uuid.uuid4()), brief_id, idx, str(job_id),
-                            ev.get("title", ""), ev.get("company", ""), ev.get("location", ""),
+                            ev.get("title", ""), co, loc,
                             score, "Fresh match from live portal scan.", "Newly discovered — verify details.", "APPLY",
                         ),
                     )
@@ -1168,13 +1282,43 @@ def _execute_scan(user_id: str, run_id: str, db):
                 score = item["score"]
                 bd = item.get("breakdown", {})
                 job_id = job.get("job_id") or job.get("id") or str(uuid.uuid4())
+
+                title = job.get("title", "")
+                company = job.get("company", "") or job.get("company_name", "")
+                location = job.get("location", "")
+
+                # DATA QUALITY: Parse "Company is hiring Title in Location | Source" patterns
+                # (Cutshort, LinkedIn, and many Indian job boards use this format)
+                m = re.match(r"(.+?)\s+is\s+hiring\s+(.+?)(?:\s+job)?\s+in\s+(.+?)(?:\s*\|.+)?$", title, re.IGNORECASE)
+                if m:
+                    parsed_co = m.group(1).strip()
+                    parsed_title = m.group(2).strip()
+                    parsed_loc = m.group(3).strip().split("|")[0].strip()
+                    if not company:
+                        company = parsed_co
+                    if len(parsed_title) > 3:
+                        title = parsed_title
+                    if not location:
+                        location = parsed_loc
+
+                # DATA QUALITY: Safety net — infer company from title/URL if still empty
+                if not company:
+                    try:
+                        from careerloop.on_demand import _infer_company_from_title, _infer_company_from_url
+                        co_url = job.get("apply_url", "") or job.get("url", "")
+                        company = _infer_company_from_title(title) or _infer_company_from_url(co_url)
+                    except ImportError:
+                        pass
+                if not location:
+                    location = "India"
+
                 cur.execute(
                     "INSERT INTO careerloop.daily_brief_items "
                     "(id, brief_id, item_index, job_id, title, company, location, fit_score, recommendation_reason, risk_summary, route_recommendation) "
                     "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                     (
                         str(uuid.uuid4()), brief_id, idx, str(job_id),
-                        job.get("title", ""), job.get("company", ""), job.get("location", ""),
+                        title, company, location,
                         score,
                         bd.get("recommendation_reason") or bd.get("reason") or "Strong match.",
                         bd.get("risk_summary") or bd.get("risks") or "No critical risks.",
@@ -1182,15 +1326,6 @@ def _execute_scan(user_id: str, run_id: str, db):
                     ),
                 )
                 # Emit match event — frontend shows each as it arrives
-                title = job.get("title", "?")
-                company = job.get("company", "?")
-                location = job.get("location", "?")
-                # Parse Cutshort-style titles: "BigRio is hiring AI Engineer job in Chennai | Cutshort"
-                m = re.match(r"(.+?)\s+is\s+hiring\s+(.+?)(?:\s+job)?\s+in\s+(.+?)(?:\s*\|.+)?$", title, re.IGNORECASE)
-                if m:
-                    company = m.group(1).strip()
-                    title = m.group(2).strip()
-                    location = m.group(3).strip().split("|")[0].strip()
                 match_payload = {
                     "event": "CANDIDATE_MATCHED",
                     "job_title": title,
