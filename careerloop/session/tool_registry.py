@@ -307,7 +307,7 @@ class ToolRegistry:
                         )
                         cursor.execute(
                             "INSERT INTO careerloop.daily_briefs (id, user_id, date_str, run_id, summary) VALUES (%s, %s, %s, %s, %s)",
-                            (brief_id, user_id, today_str, run_id, res.get("shortlist_text", ""))
+                            (brief_id, user_id, today_str, run_id, f"On-demand scan — {scored_count} matches")
                         )
 
                         top_jobs = res.get("top_jobs", [])
