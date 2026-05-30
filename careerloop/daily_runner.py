@@ -88,7 +88,7 @@ class DailyRunner:
             from careerloop.memory.connection import get_db_manager
             _funnel_email = self.profile.base.get("candidate", {}).get("email", "") or self.profile.base.get("email", "")
             _funnel_ns = uuid.UUID('12345678-1234-5678-1234-567812345678')
-            brief_user_id = str(uuid.uuid5(_funnel_ns, _funnel_email))[:12] if _funnel_email else "unknown"
+            brief_user_id = str(uuid.uuid5(_funnel_ns, _funnel_email)) if _funnel_email else "unknown"
             self.funnel = ScanFunnel(run_id, brief_user_id, get_db_manager(self.root))
         except Exception:
             self.funnel = None

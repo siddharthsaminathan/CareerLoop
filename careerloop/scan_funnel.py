@@ -36,8 +36,8 @@ class ScanFunnel:
                 with conn.cursor() as cur:
                     cur.execute(
                         """INSERT INTO careerloop.scan_rejection_reasons (run_id, user_id, job_title, company_name, source_url, rejection_stage, rejection_reason)
-                           VALUES (%s, %s, %s, %s, %s, %s, %s)""",
-                        (self.run_id, self.user_id, job_title[:500], company_name[:255], source_url[:2048], stage, reason[:500])
+                           VALUES (%s, %s::uuid, %s, %s, %s, %s, %s)""",
+                        (self.run_id, str(self.user_id), job_title[:500], company_name[:255], source_url[:2048], stage, reason[:500])
                     )
                 conn.commit()
         except Exception as e:

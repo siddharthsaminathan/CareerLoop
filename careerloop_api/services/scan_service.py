@@ -122,13 +122,15 @@ def _persist_scan_jobs(db, user_id: str, top_jobs: list) -> list:
                 cur.execute(
                     """
                     INSERT INTO careerloop.jobs (
-                        job_id, source, title, company_name, location,
-                        location_raw, apply_url, canonical_url, jd_text,
-                        content_fingerprint, is_india_role, status
+                        id, source, title, company_name, location,
+                        location_raw, apply_url, jd_text,
+                        content_fingerprint, is_india_role, status,
+                        scraped_at
                     ) VALUES (
                         gen_random_uuid(), %s, %s, %s, %s,
-                        %s, %s, %s, %s,
-                        %s, %s, 'active'
+                        %s, %s, %s,
+                        %s, %s, 'active',
+                        NOW()
                     )
                     ON CONFLICT (content_fingerprint) DO UPDATE SET
                         title            = EXCLUDED.title,
@@ -137,9 +139,10 @@ def _persist_scan_jobs(db, user_id: str, top_jobs: list) -> list:
                         location_raw     = EXCLUDED.location_raw,
                         apply_url        = EXCLUDED.apply_url,
                         jd_text          = EXCLUDED.jd_text,
+                        scraped_at      = NOW(),
                         last_seen_at     = NOW(),
                         updated_at       = NOW()
-                    RETURNING job_id
+                    RETURNING id
                     """,
                     (
                         "on_demand",
@@ -148,7 +151,6 @@ def _persist_scan_jobs(db, user_id: str, top_jobs: list) -> list:
                         location,
                         location,
                         apply_url,
-                        canonical_url,
                         jd_text,
                         fp,
                         is_india,
@@ -156,15 +158,15 @@ def _persist_scan_jobs(db, user_id: str, top_jobs: list) -> list:
                 )
                 row = cur.fetchone()
                 if row:
-                    job_id = str(row["job_id"])
+                    job_id = str(row["id"])
                 else:
                     # Fallback: query by fingerprint (should not normally happen)
                     cur.execute(
-                        "SELECT job_id FROM careerloop.jobs WHERE content_fingerprint = %s",
+                        "SELECT id FROM careerloop.jobs WHERE content_fingerprint = %s",
                         (fp,),
                     )
                     r2 = cur.fetchone()
-                    job_id = str(r2["job_id"]) if r2 else str(uuid.uuid4())
+                    job_id = str(r2["id"]) if r2 else str(uuid.uuid4())
 
                 # Stamp the real UUID onto the job dict so downstream brief_items
                 # and event emission use the canonical FK.
@@ -584,32 +586,19 @@ def _execute_scan_more(user_id: str, run_id: str, db):
     if not city:
         city = "Bangalore"
 
-    # 3. Buffered event emitter — same throttled DB-write pattern as old scan_more
-    buffer = []
-    last_flush = _time.time()
-
-    def _flush():
-        nonlocal buffer, last_flush
-        if not buffer:
-            return
-        try:
-            with db.get_connection() as conn:
-                with conn.cursor() as cur:
-                    for et, msg, pl in buffer:
-                        _emit(cur, run_id, msg, et, pl)
-        except Exception as e:
-            logger.error("scan_more emit flush failed: %s", e)
-        buffer = []
-        last_flush = _time.time()
-
+    # 3. Direct event emitter — writes to DB immediately on each call.
+    # No buffering: OnDemandSearch.run() blocks for 60-120s, so interleaved
+    # flush timers cannot fire. Each event opens its own connection and writes.
     def _event_emitter(event_type: str, message: str, payload: dict = None):
-        """OnDemandSearch calls this at each pipeline stage."""
-        nonlocal buffer
-        buffer.append((event_type, message, payload or {}))
-        if len(buffer) >= 12 or (_time.time() - last_flush) > 0.5:
-            _flush()
+        """Write event to run_events IMMEDIATELY — no buffering, no delay."""
+        try:
+            with db.get_connection() as emit_conn:
+                with emit_conn.cursor() as emit_cur:
+                    _emit(emit_cur, run_id, message, event_type, payload or {})
+        except Exception:
+            pass  # Non-fatal — scan continues even if event logging fails
 
-    # 4. Kick off SCAN_STARTED
+    # 4. Kick off SCAN_STARTED — event_emitter writes immediately
     _event_emitter("SCAN_STARTED",
         f"Scanning for: {', '.join(target_roles)} in {city}",
         {"event_type": "SCAN_STARTED", "mode": "scan_more",
@@ -631,12 +620,9 @@ def _execute_scan_more(user_id: str, run_id: str, db):
             event_emitter=_event_emitter,
         )
     except Exception as e:
-        _flush()
         logger.exception("OnDemandSearch failed for scan_more run %s: %s", run_id, e)
         _mark_scan_failed(run_id, user_id, f"Scan failed: {str(e)[:200]}")
         return
-    finally:
-        _flush()
 
     # 6. Dedupe ranked jobs against existing brief items (keep full scored items)
     net_new_items = []
@@ -976,12 +962,22 @@ def _execute_scan(user_id: str, run_id: str, db):
                   "PHASE_A_STARTED",
                   {"event": "PHASE_A_STARTED", "role": target_role, "city": target_city})
 
+    # Direct-write emitter: every OnDemandSearch event reaches DB immediately
+    def _scan_emitter(event_type: str, message: str, payload: dict = None):
+        try:
+            with db.get_connection() as emit_conn:
+                with emit_conn.cursor() as emit_cur:
+                    _emit(emit_cur, run_id, message, event_type, payload or {})
+        except Exception:
+            pass
+
     searcher = OnDemandSearch(root)
     result = searcher.run(
         role=target_role,
         city=target_city,
         max_results=25,
         include_phase_a=True,
+        event_emitter=_scan_emitter,
     )
 
     with db.get_connection() as conn:
