@@ -19,6 +19,7 @@ The user has explicitly stated that future agents must not produce "generative A
 4. **Preserve Links:** If you use an LLM to rewrite a section, you MUST explicitly instruct it to preserve all `[Text](URL)` links.
 5. **No Silent Failures:** If a JSON parse fails or a dataclass instantiation fails because of unexpected LLM keys, DO NOT swallow the error. Use safe initializers (`_safe_init`) and log the error prominently.
 6. **No "Cope" Language:** Strip out defensive, corporate fluff ("passionate", "leveraged", "results-driven"). Be direct.
+7. **No Output Leakage (E2E Artifacts & Scans):** You are strictly forbidden from saving E2E artifacts, scans, test results, verification reports, or any requested documentation inside the CLI configuration, cache, or agent brain directories (like `.gemini/` or home folder). All execution reports, scans, E2E artifacts, and verification logs must be saved directly inside the CareerLoop repository `docs/` workspace (under the appropriate path, e.g., `docs/scans/YYYY-MM-DD/` or `docs/engineering/`). Do not make the user search in hidden system folders; keep all files strictly within the repository workspace boundary.
 
 If you are asked to modify the Resume Council, you MUST strictly adhere to the Deterministic Compiler approach. Do not revert to prompt-driven LLM black boxes.
 

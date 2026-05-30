@@ -357,20 +357,20 @@ working together to turn openings into interviews.
 
 ## 17. Product Engineering Tracker
 
-> Updated by the `careerloop-product-lead` skill. Last updated: 2026-05-30.
+> Updated by the `careerloop-product-lead` skill. Last updated: 2026-05-30 (evening).
 
 | System | Completion | Status | Notes |
 |--------|------------|--------|-------|
 | **Transport abstraction layer** | **65%** | 🟡 | Base + Terminal stubs. Echo fallback removed. Safe error messages. /brief + /scan + CommandRouter wired. |
 | **Multi-user onboarding** | **75%** | 🟢 | 7-step name-first flow (see §22.5). Name → LinkedIn lookup → identity card → CV → LLM extraction → gap-fill (CTC + notice) → PROFILE_READY. 3-user E2E verified. CTC (current + expected) + notice_period + work_style_prefs stored in careerloop.users columns. |
-| **LangGraph Chatbot Orchestrator** | **85%** | 🟢 | 2-node pipeline. GENERAL_CHAT returns real LLM. ActionResolver context injection. Live scan rendering. Supabase-only. |
+| **LangGraph Chatbot Orchestrator** | **92%** | 🟢 | 2-node pipeline. GENERAL_CHAT returns real LLM. ActionResolver context injection. Live scan rendering. Messages persisted to DB. Conversation history injected with last-20 messages. Chat history API endpoint live. SessionStore unified. Scan async. P0/P1 bug hunt complete. Resume editing wired via DeepSeek. |
 | **PostgresSaver Checkpointer** | **20%** | 🔴 | SQLite sessions functional without Postgres. Dual-mode verified. Interrupt/resume proof still needed. |
 | **Application pack delivery** | **95%** | 🟢 | PackageAssembler + Playwright PDFs. E2E validated on real job. |
 | **Daily brief cron delivery** | **90%** | 🟢 | Daily Runner triggers scan and fully populates daily_briefs and daily_brief_items SQL tables. E2E database brief retrieval verified. |
-| OnDemandSearch unified discovery | **85%** | 🟢 | `careerloop/on_demand.py::OnDemandSearch` is the canonical discovery engine. Unified SSE event streaming. Deprecates `scan.mjs` and `DailyRunner.run()` discovery path. |
-| India-first discovery | 92% | 🟢 | Geo filter on all ATS adapters. Location spoofing fixed. CSV India filter. 14 ATS adapters + 6 boards. |
-| Verification & filtering | 78% | 🟡 | India filter enforced at 3 choke points. Block G not hoisted. |
-| Opportunity scoring (14-dim) | 62% | 🟡 | Scoring caps (CPU=50, LLM=15). Token accounting per call. _get_score() unified schema. |
+| OnDemandSearch unified discovery | **90%** | 🟢 | `careerloop/on_demand.py::OnDemandSearch` is the canonical engine. All discovery unified. 13 board sources. SSE event streaming. Deprecates `scan.mjs` and `DailyRunner.run()`. |
+| India-first discovery | 98% | 🟢 | OnDemandSearch unified. 13 board sources. Canonical location policy at choke point. IndiaFitEngine + IndiaFitLLM wired. Open: Company Identity Layer, Phase E ontology gate. |
+| Verification & filtering | 85% | 🟡 | archetype.reject_title() on Phase B, _tag_jobs_with_ontology(), location policy enforced. Open: Phase E ontology pre-filter. |
+| Opportunity scoring (16-dim) | 74% | 🟡 | role_fit hard gate, archetype_fit 16th dim (weight 8). FIT_WEIGHTS=100. _fetch_missing_jds + min_description_chars gate. |
 | Decision compression / triage | 20% | 🔴 | CEO owns. DECISION_COMPRESSION_VISION.md written. |
 | Career state system (modes) | **60%** | 🟡 | 11 real states with legacy migration. All states have setter+handler+test paths. Natural approval phrases work. |
 | Company intelligence | 75% | 🟢 | MECE vision implemented; S3 cache working |
@@ -379,7 +379,7 @@ working together to turn openings into interviews.
 | Humanizer layer | 65% | 🟡 | LLM rewrite active; Truth Guard UNSUPPORTED matching too aggressive |
 | Resume rendering (templates) | 90% | 🟢 | 10 templates; normalizer handles 3 user CV formats; automated validation |
 | ATS validator layer | 0% | ⚫ | Spec written (PRD §26). Sprint 4. |
-| Resume editing layer | 0% | ⚫ | Spec written (PRD §25). Surgical edits without full Council rerun. Sprint 4. |
+| Resume editing layer | 5% | 🟡 | DeepSeek wired for surgical single-section edits without full Council rerun. Diff-based before/after validation. Guardrails specified. Sprint 7. |
 | Validator / QA | **83%** | 🟢 | 42 stabilization + 22 integration + 14 chat runtime regression. All passing. |
 | Application execution | 18% | 🔴 | modes/apply.md prototype; Kimi bridge scaffold. Real Webbridge/Hermes integration not verified. |
 | Assisted apply bridge | 5% | ⚫ | `kimi_bridge.py` mock only. Must never run queue-based or unattended submission. |
@@ -397,7 +397,7 @@ working together to turn openings into interviews.
 | **Chat quality (known issues)** | **⚠️** | 🟡 | Polite closings misclassified as HELP (2/7 E2E turns). Fix: 1-line ActionResolver prompt update. |
 | Job persistence engine | **75%** | 🟡 | Global cache + user relationships. Fingerprint dedup. TTL strategy. Cache-hit check wired, companies linked via FK, Cutshort parsing. |
  
-**Overall product maturity: ~78-81% of vision.** Data engineering V3 at 95%. Multi-user onboarding E2E verified (3/3 real Supabase + DeepSeek). E2E at 90%. B-ONBOARD blocker closing. Remaining: transport deployment, async scan, chat fallback.
+**Overall product maturity: ~84-86% of vision.** Discovery engine unified at 98%. LangGraph Chatbot Orchestrator at 92% with chat history + conversation memory. Application pack pipeline wired with resume editing. REST API v1 ships product to web. P0 bug hunt complete (31 fixed, 5-layer verified). Resume editing started at 5%.
  
 > Legend: 🟢 Done · 🟡 Active · 🔴 Gap · ⚫ Not started
 

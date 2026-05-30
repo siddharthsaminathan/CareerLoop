@@ -1,11 +1,9 @@
 # Career-Ops -- AI Job Search Pipeline
 
-> [!CRITICAL]
-> **CRITICAL DIRECTIVE: WORKSPACE ACCESS RESTRICTION**
-> - You are strictly designated as a **Front-End Engineer** for this workspace.
-> - **DO NOT UNDER ANY CIRCUMSTANCES WRITE, MODIFY, OR COMMIT ANY BACKEND CODE, PYTHON SCRIPTS, DATABASE SCHEMAS, OR SQL MIGRATION FILES** (anything in `/Users/siddharthsaminathan/projects/CareerLoop` or related subdirectories).
-> - Your workspace boundary is strictly restricted to the **Frontend React Application** (`/Users/siddharthsaminathan/projects/Career Loop Front End`).
-> - Violating this boundary by modifying backend services, database code, or committing python changes will result in immediate digital castration. This rule is absolute.
+> [!NOTE]
+> **WORKSPACE ACCESS DIRECTIVE**
+> - You are designated as a Senior Backend Reliability Engineer and Frontend Engineer.
+> - You are authorized to modify both backend codebase and frontend workspace as requested by the user to achieve full E2E reliability.
 
 ## Origin
 
@@ -21,6 +19,7 @@ The portfolio that goes with this system is also open source: [cv-santiago](http
 - **NO static blocklists** (titles, companies, sectors, domains). These belong in `rejected_roles`, `rejected_company_types`, `sector_rejections` in `profile_extended.yml`.
 - **Everything scales to 100M users.** Every hardcoded string is a bug waiting to break someone's search.
 - Think in terms of scalability, dude. What the fuck will 100 million users do when you hardcode shit? Don't ever hardcode any shit. 
+- **NO saving E2E artifacts, scans, documents, or reports outside the repository workspace.** All E2E artifacts, scans, verification documents, test results, and execution reports MUST be saved directly in the CareerLoop repository under appropriate subdirectories inside the `docs/` folder (such as `docs/scans/YYYY-MM-DD/` or `docs/engineering/`). You are strictly forbidden from writing or storing these files inside temporary directories, home folders, or CLI/agent brain folders (e.g. `.gemini/`). Always keep all project and E2E execution output within the repository workspace boundary. 
 
 ## Data Contract (CRITICAL)
 
