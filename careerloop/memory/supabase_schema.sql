@@ -180,8 +180,42 @@ CREATE TABLE IF NOT EXISTS careerloop.company_memory (
 );
 
 ALTER TABLE careerloop.company_memory ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Users can manage their own company memory" 
+CREATE POLICY "Users can manage their own company memory"
     ON careerloop.company_memory FOR ALL USING (auth.uid() = user_id);
+
+-- 6a. ROLE_KEYWORDS Cache Table (LLM-generated search keywords per role)
+-- Global cache: same role produces same keywords regardless of user.
+-- Populated on miss by RoleKeywordCache (careerloop/role_keywords.py).
+CREATE TABLE IF NOT EXISTS careerloop.role_keywords (
+    role_name      TEXT PRIMARY KEY,
+    keywords       TEXT NOT NULL DEFAULT '[]',
+    search_queries TEXT NOT NULL DEFAULT '[]',
+    sector_hints   TEXT NOT NULL DEFAULT '[]',
+    generated_at   TEXT,
+    usage_count    INTEGER NOT NULL DEFAULT 0,
+    last_used_at   TEXT
+);
+
+ALTER TABLE careerloop.role_keywords ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Authenticated users can read role keywords"
+    ON careerloop.role_keywords FOR SELECT USING (auth.role() = 'authenticated');
+
+-- 6b. ROLE_ARCHETYPES Cache Table (LLM-generated role archetypes)
+-- Global cache: same role produces same archetype regardless of user.
+-- Populated on miss by RoleArchetypeEngine (careerloop/sources/role_archetype.py).
+CREATE TABLE IF NOT EXISTS careerloop.role_archetypes (
+    role_norm               TEXT PRIMARY KEY,
+    must_have               TEXT NOT NULL DEFAULT '[]',
+    avoid                   TEXT NOT NULL DEFAULT '[]',
+    preferred_company_types TEXT NOT NULL DEFAULT '[]',
+    function_type           TEXT DEFAULT '',
+    market_type             TEXT DEFAULT '',
+    generated_at            TEXT
+);
+
+ALTER TABLE careerloop.role_archetypes ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Authenticated users can read role archetypes"
+    ON careerloop.role_archetypes FOR SELECT USING (auth.role() = 'authenticated');
 
 -- 7. POSITIONING_MEMORY Table
 CREATE TABLE IF NOT EXISTS careerloop.positioning_memory (

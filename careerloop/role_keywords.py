@@ -18,9 +18,36 @@ import logging
 import re
 from datetime import datetime, timezone
 
-from careerloop.memory.connection import get_db_manager
+from careerloop.memory.connection import get_db_manager, db_execute, cache_table
 
 logger = logging.getLogger(__name__)
+
+_TABLE_READY = False
+
+
+def _ensure_table(conn):
+    """Idempotently create the role_keywords cache table (careerloop schema on PG).
+
+    The table was only ever defined for SQLite local dev, so it was MISSING in
+    production Postgres — every lookup/store failed. CREATE TABLE IF NOT EXISTS
+    is cheap and runs at most once per process via the _TABLE_READY guard.
+    """
+    global _TABLE_READY
+    if _TABLE_READY:
+        return
+    tbl = cache_table("role_keywords", conn)
+    db_execute(conn, f"""
+        CREATE TABLE IF NOT EXISTS {tbl} (
+            role_name      TEXT PRIMARY KEY,
+            keywords       TEXT NOT NULL DEFAULT '[]',
+            search_queries TEXT NOT NULL DEFAULT '[]',
+            sector_hints   TEXT NOT NULL DEFAULT '[]',
+            generated_at   TEXT,
+            usage_count    INTEGER NOT NULL DEFAULT 0,
+            last_used_at   TEXT
+        )
+    """)
+    _TABLE_READY = True
 
 
 def _now() -> str:
@@ -92,8 +119,11 @@ class RoleKeywordCache:
     def _lookup(self, role_norm: str) -> dict | None:
         try:
             with self.db.get_connection() as conn:
-                row = conn.execute(
-                    "SELECT keywords, search_queries, sector_hints FROM role_keywords WHERE role_name = ?",
+                _ensure_table(conn)
+                tbl = cache_table("role_keywords", conn)
+                row = db_execute(
+                    conn,
+                    f"SELECT keywords, search_queries, sector_hints FROM {tbl} WHERE role_name = ?",
                     [role_norm],
                 ).fetchone()
             if row:
@@ -109,8 +139,10 @@ class RoleKeywordCache:
     def _bump_usage(self, role_norm: str):
         try:
             with self.db.get_connection() as conn:
-                conn.execute(
-                    "UPDATE role_keywords SET usage_count = usage_count + 1, last_used_at = ? WHERE role_name = ?",
+                tbl = cache_table("role_keywords", conn)
+                db_execute(
+                    conn,
+                    f"UPDATE {tbl} SET usage_count = usage_count + 1, last_used_at = ? WHERE role_name = ?",
                     [_now(), role_norm],
                 )
         except Exception:
@@ -119,8 +151,11 @@ class RoleKeywordCache:
     def _store(self, role_norm: str, data: dict):
         try:
             with self.db.get_connection() as conn:
-                conn.execute(
-                    """INSERT INTO role_keywords
+                _ensure_table(conn)
+                tbl = cache_table("role_keywords", conn)
+                db_execute(
+                    conn,
+                    f"""INSERT INTO {tbl}
                            (role_name, keywords, search_queries, sector_hints, generated_at, usage_count, last_used_at)
                        VALUES (?, ?, ?, ?, ?, 1, ?)
                        ON CONFLICT(role_name) DO UPDATE SET
@@ -137,6 +172,7 @@ class RoleKeywordCache:
                         _now(),
                     ],
                 )
+            logger.info("[RoleKeywords] cache WRITE ok role=%s keywords=%d", role_norm, len(data.get("keywords", [])))
         except Exception as e:
             logger.warning(f"[RoleKeywords] store failed: {e}")
 
@@ -239,6 +275,8 @@ Rules:
             from datetime import timedelta
             cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
             with self.db.get_connection() as conn:
-                conn.execute("DELETE FROM role_keywords WHERE last_used_at < ?", [cutoff])
+                _ensure_table(conn)
+                tbl = cache_table("role_keywords", conn)
+                db_execute(conn, f"DELETE FROM {tbl} WHERE last_used_at < ?", [cutoff])
         except Exception:
             pass

@@ -1,0 +1,30 @@
+INFO:     Will watch for changes in these directories: ['/Users/siddharthsaminathan/Projects/CareerLoop']
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     Started reloader process [49275] using WatchFiles
+INFO:     Started server process [49290]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/scan_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [49290]
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:3 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/scan_service.py'. Reloading...
+INFO:     Started server process [49584]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [49584]
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:37 changes detected
+INFO:     Started server process [49731]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:59027 - "GET /health HTTP/1.1" 200 OK
+INFO:watchfiles.main:4 changes detected
+INFO:     127.0.0.1:59115 - "POST /v1/auth/me HTTP/1.1" 200 OK

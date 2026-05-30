@@ -1,0 +1,25 @@
+INFO:     Started server process [37506]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     127.0.0.1:57427 - "GET /health HTTP/1.1" 200 OK
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id 205abfb332fd
+INFO:     127.0.0.1:57429 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 7 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:     127.0.0.1:57435 - "GET /v1/scans/205abfb332fd/events HTTP/1.1" 200 OK
+INFO:careerloop.daily_runner:daily_run_started
+INFO:careerloop_api.services.scan:Scan completed: run_id=205abfb332fd user=730d5bab top_jobs=7
+============================================================
+🔁 CareerLoop Daily Runner
+   May 29, 2026 — 11:37 UTC
+   User: Siddharth Saminathan
+============================================================
+
+Brief already generated today (2026-05-29). Use --no-scan --force to re-run.
+INFO:     127.0.0.1:57437 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [37506]

@@ -1,0 +1,12 @@
+Scan SSE Stream — run_id=4940c05d2ea4 — user=siddharth.swami99@gmail.com
+================================================================================
+
+QUEUED                 | Scan queued — starting shortly...
+SCAN_STARTED           | Starting job discovery...
+SOURCE_STARTED         | Searching configured portals for new job postings...
+CACHE_HIT              | Cache-hit: 7 fresh jobs found in global cache
+FILTER_SUMMARY         | No matching roles found right now — try again later.
+DONE                   | Scan complete
+
+SCAN COMPLETED in 0.4s
+total events captured: 7

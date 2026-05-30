@@ -44,6 +44,35 @@ def _normalize(role: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", role.lower()).strip()
 
 
+_ARCHETYPE_TABLE_READY = False
+
+
+def _ensure_archetype_table(conn):
+    """Idempotently create the role_archetypes cache table (careerloop schema on PG).
+
+    Previously defined only in _SQLITE_INIT (connection.py) — never existed in
+    production Postgres, so every cache lookup/store silently failed.
+    CREATE TABLE IF NOT EXISTS is cheap and runs at most once per process.
+    """
+    global _ARCHETYPE_TABLE_READY
+    if _ARCHETYPE_TABLE_READY:
+        return
+    from careerloop.memory.connection import db_execute, cache_table
+    tbl = cache_table("role_archetypes", conn)
+    db_execute(conn, f"""
+        CREATE TABLE IF NOT EXISTS {tbl} (
+            role_norm               TEXT PRIMARY KEY,
+            must_have               TEXT NOT NULL DEFAULT '[]',
+            avoid                   TEXT NOT NULL DEFAULT '[]',
+            preferred_company_types TEXT NOT NULL DEFAULT '[]',
+            function_type           TEXT DEFAULT '',
+            market_type             TEXT DEFAULT '',
+            generated_at            TEXT
+        )
+    """)
+    _ARCHETYPE_TABLE_READY = True
+
+
 @dataclass
 class RoleArchetype:
     role: str
@@ -92,11 +121,14 @@ class RoleArchetypeEngine:
 
     def _lookup(self, role_norm: str) -> RoleArchetype | None:
         try:
-            from careerloop.memory.connection import get_db_manager
+            from careerloop.memory.connection import get_db_manager, db_execute, cache_table
             db = get_db_manager()
             with db.get_connection() as conn:
-                row = conn.execute(
-                    "SELECT * FROM role_archetypes WHERE role_norm = ?",
+                _ensure_archetype_table(conn)
+                tbl = cache_table("role_archetypes", conn)
+                row = db_execute(
+                    conn,
+                    f"SELECT * FROM {tbl} WHERE role_norm = ?",
                     [role_norm],
                 ).fetchone()
             if row:
@@ -115,11 +147,14 @@ class RoleArchetypeEngine:
 
     def _store(self, role_norm: str, arch: RoleArchetype):
         try:
-            from careerloop.memory.connection import get_db_manager
+            from careerloop.memory.connection import get_db_manager, db_execute, cache_table
             db = get_db_manager()
             with db.get_connection() as conn:
-                conn.execute(
-                    """INSERT INTO role_archetypes
+                _ensure_archetype_table(conn)
+                tbl = cache_table("role_archetypes", conn)
+                db_execute(
+                    conn,
+                    f"""INSERT INTO {tbl}
                        (role_norm, must_have, avoid, preferred_company_types,
                         function_type, market_type, generated_at)
                        VALUES (?, ?, ?, ?, ?, ?, ?)

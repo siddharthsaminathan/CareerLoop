@@ -303,3 +303,32 @@ def get_connection(career_ops_root: Optional[str] = None) -> Generator:
     manager = get_db_manager(career_ops_root)
     with manager.get_connection() as conn:
         yield conn
+
+
+# ─── Backend-agnostic execute helper ───────────────────────────────────────────
+#
+# Cache modules (role_keywords, archetypes, enrichment) were written with the
+# SQLite API: `conn.execute("... ?", [params])`. psycopg2 connections have no
+# `.execute` and use `%s` placeholders, so every cache write silently failed in
+# production Postgres ("'psycopg2.extensions.connection' object has no attribute
+# 'execute'"). This helper makes the same call work on both backends.
+
+def db_execute(conn, sql: str, params=None):
+    """Execute on either a psycopg2 connection or the SQLite wrapper.
+
+    - SQLite (`_SQLiteConn`): native `?` placeholders, `conn.execute(...)`.
+    - psycopg2: `%s` placeholders via `conn.cursor()`. `?` tokens are converted.
+    Returns a cursor positioned for `.fetchone()/.fetchall()`.
+    """
+    params = list(params) if params else []
+    if isinstance(conn, _SQLiteConn):
+        return conn.execute(sql, params)
+    cur = conn.cursor()
+    cur.execute(sql.replace("?", "%s"), params)
+    return cur
+
+
+def cache_table(name: str, conn) -> str:
+    """Qualified table name. Postgres cache tables live in the careerloop schema
+    (search_path excludes it); SQLite uses the bare name."""
+    return name if isinstance(conn, _SQLiteConn) else f"careerloop.{name}"

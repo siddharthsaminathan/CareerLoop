@@ -443,9 +443,9 @@ class IndiaFitEngine:
         return 10.0
 
     def _score_equity_fit(self, job: dict, ctx: dict) -> float:
-        """ESOPs match. If user doesn't care → neutral 10. If user requires equity, check JD."""
+        """ESOPs match. If user doesn't care → neutral 5.0. If user requires equity, check JD."""
         if not self.p.equity_required:
-            return 10.0
+            return 5.0
         text = ctx["jd_text"].lower()
         equity_signals = ["esop", "equity", "stock option", "rsu", "share grant", "ownership"]
         has_signal = any(s in text for s in equity_signals)
@@ -468,7 +468,7 @@ class IndiaFitEngine:
         """Check that user's must-have benefits appear in JD benefits/description."""
         must = self.p.benefits_must_have
         if not must:
-            return 10.0
+            return 5.0
         text = ((job.get("benefits") or "") + " " + ctx["jd_text"]).lower()
         hits = sum(1 for b in must if b.lower() in text)
         return round(min(10.0, (hits / len(must)) * 10.0), 1)
@@ -549,7 +549,7 @@ class IndiaFitEngine:
         prefs = self.p.sector_preferences
         rejections = self.p.sector_rejections
         if not prefs and not rejections:
-            return 10.0  # no preference set
+            return 5.0  # no preference set → neutral 5.0
 
         company_sector = (ctx["company_registry"].get("sector") or "").strip()
         if not company_sector:

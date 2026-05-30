@@ -13,7 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from careerloop_api.core.config import settings
 from careerloop_api.core.envelope import APIError, err
-from careerloop_api.routers import auth, users, briefs, jobs, chat, scans
+from careerloop_api.routers import auth, users, briefs, jobs, chat, scans, debug
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("careerloop_api")
@@ -45,7 +45,7 @@ async def unhandled_handler(request: Request, exc: Exception):
 # ── Routers (mounted under /v1) ─────────────────────────────────────────────────
 
 API_PREFIX = "/v1"
-for r in (auth.router, users.router, briefs.router, jobs.router, chat.router, scans.router):
+for r in (auth.router, users.router, briefs.router, jobs.router, chat.router, scans.router, debug.router):
     app.include_router(r, prefix=API_PREFIX)
 
 

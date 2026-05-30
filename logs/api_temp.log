@@ -1,0 +1,411 @@
+INFO:     Started server process [90053]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     127.0.0.1:50907 - "GET /health HTTP/1.1" 200 OK
+WARNING:careerloop_api.services.scan:Scan blocked: user 730d5bab already has RUNNING scan 11d41700b909
+INFO:     127.0.0.1:50924 - "POST /v1/scans HTTP/1.1" 409 Conflict
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id d559a3d161c2 mode=scan_more
+INFO:     127.0.0.1:50927 - "POST /v1/scans HTTP/1.1" 200 OK
+WARNING:careerloop.role_keywords:[RoleKeywords] store failed: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.role_archetype:[Archetype] LLM generated for 'AI Product Engineer': must_have=['product', 'customer-facing', 'applied AI', 'cross-functional', 'system design', 'LLM', 'product management']
+WARNING:careerloop.sources.role_archetype:[Archetype] cache store failed: 'psycopg2.extensions.connection' object has no attribute 'execute'
+  [Archetype] role='AI Product Engineer' | function='applied AI product engineering' | market='B2B enterprise'
+  [Archetype] must_have=['product', 'customer-facing', 'applied AI', 'cross-functional', 'system design', 'LLM', 'product management']
+  [Archetype] avoid=['research', 'data entry', 'support engineer', 'hardware', 'infrastructure only', 'generic SWE', 'IT support']
+  [Queries] 8 board queries: ['AI Product Engineer applied AI product engineering AI-first startup Bangalore jobs', 'AI Product Engineer applied AI product engineering AI-first startup hiring Bangalore 2025', '"AI product engineer" jobs in Bangalore', '"AI product engineer" hiring Bangalore site:linkedin.com/jobs/view']
+  [Phase A] discovering companies for 'AI Product Engineer' in Bangalore...
+INFO:careerloop.on_demand:[OnDemand] Phase A: sector inferred → 'Technology & Software' for role 'AI Product Engineer'
+INFO:careerloop.sources.role_archetype:[Archetype] LLM generated for 'AI Product Engineer': must_have=['product', 'applied AI', 'cross-functional', 'customer-facing', 'LLM', 'system design', 'behavioral analytics']
+WARNING:careerloop.sources.role_archetype:[Archetype] cache store failed: 'psycopg2.extensions.connection' object has no attribute 'execute'
+    sector=Technology & Software — Phase A via DDG+Wellfound+Crunchbase+Inc42+YC...
+INFO:careerloop.sources.company_discovery:[Discovery] Starting: city=Bangalore, sector=Technology & Software, function=AI Product Engineer applied AI product engineering AI-first startup
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'technology companies in Bangalore India'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=technology%20companies%20in%20Bangalore%20India 200
+INFO:primp:response: https://yandex.com/search/site/?text=technology+companies+in+Bangalore+India&web=1&searchid=5804055 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=technology+companies+in+Bangalore+India&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=WLEIMYnkOZ-RwniofA-uGqsS;_ylu=Il3Gs5S3GKCYj8H_kau4Wz0AdeGP_V6UxQSZBAW3oDx1pjI?p=technology+companies+in+Bangalore+India 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 14 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'top technology startups in Bangalore'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=top%20technology%20startups%20in%20Bangalore 200
+INFO:primp:response: https://www.startpage.com/ 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=top+technology+startups+in+Bangalore&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/search 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=DV3-hFVN1yii4ytIh_rK20LZ;_ylu=Tq8VejJImuloNKo5pwWgMtjMr5amzSyf-fAwS1hvXW12t-U?p=top+technology+startups+in+Bangalore 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 14 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'best technology firms Bangalore India'
+INFO:primp:response: https://search.yahoo.com/search;_ylt=mqI4zrkbq-Xk8FYyeIOe9dUZ;_ylu=3ef26egdlsJKL-gBDUy712x_gGT2L8o7YADiXq5D_fgXev4?p=best+technology+firms+Bangalore+India 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=best%20technology%20firms%20Bangalore%20India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=best+technology+firms+Bangalore+India&limit=1 200
+INFO:primp:response: https://www.mojeek.com/search?q=best+technology+firms+Bangalore+India 200
+INFO:primp:response: https://yandex.com/search/site/?text=best+technology+firms+Bangalore+India&web=1&searchid=4412348 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 12 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'companies hiring AI Product Engineer applied AI product engineering AI-first startup in Bangalore India'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=companies%20hiring%20AI%20Product%20Engineer%20applied%20AI%20product%20engineering%20AI-first%20startup%20in%20Bangalore%20India 200
+INFO:primp:response: https://www.google.com/search?q=companies+hiring+AI+Product+Engineer+applied+AI+product+engineering+AI-first+startup+in+Bangalore+India&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=companies+hiring+AI+Product+Engineer+applied+AI+product+engineering+AI-first+startup+in+Bangalore+India&limit=1 200
+INFO:primp:response: https://search.brave.com/search?q=companies+hiring+AI+Product+Engineer+applied+AI+product+engineering+AI-first+startup+in+Bangalore+India&source=web 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 8 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps] Bangalore/Technology & Software: 42 companies total
+INFO:careerloop.sources.company_discovery:[Wellfound/DDG] query: 'site:wellfound.com/company technology bangalore'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/company%20technology%20bangalore 200
+INFO:primp:response: https://www.startpage.com/ 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fcompany+technology+bangalore&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=sSIy3f3Tc0f5mI-NJWHxOZD6;_ylu=oZAgwNJufkIYbZ6wA2_7zjVOZ_vJuw7137OrM0a6UgsAnmI?p=site%3Awellfound.com%2Fcompany+technology+bangalore 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.brave.com/search?q=site%3Awellfound.com%2Fcompany+technology+bangalore&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Awellfound.com%2Fcompany+technology+bangalore 200
+INFO:primp:response: https://www.google.com/search?q=site%3Awellfound.com%2Fcompany+technology+bangalore&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Awellfound.com%2Fcompany+technology+bangalore&web=1&searchid=8142021 200
+INFO:careerloop.sources.company_discovery:[Wellfound/DDG] → 6 results
+INFO:careerloop.sources.company_discovery:[Wellfound] Bangalore/Technology & Software: 6 companies
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] query: 'site:crunchbase.com/organization technology bangalore india'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acrunchbase.com/organization%20technology%20bangalore%20india 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&limit=1 200
+INFO:primp:response: https://www.startpage.com/ 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&source=web 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=A3cAhJElovfQc-CyvMmIUEmR;_ylu=Z6HGbRzcWqG_qqRtvHhyyi1bNliZ68RCazHqRqJc6LqiBf8?p=site%3Acrunchbase.com%2Forganization+technology+bangalore+india 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&web=1&searchid=9557318 200
+INFO:primp:response: https://www.google.com/search?q=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Acrunchbase.com%2Forganization+technology+bangalore+india 200
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] → 6 results
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] query: 'crunchbase technology company bangalore india funding'
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=crunchbase%20technology%20company%20bangalore%20india%20funding 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=crunchbase+technology+company+bangalore+india+funding&limit=1 200
+INFO:primp:response: https://search.brave.com/search?q=crunchbase+technology+company+bangalore+india+funding&source=web 429
+INFO:primp:response: https://yandex.com/showcaptcha?cc=1&form-fb-hint=8.148&mt=EADF5EF1BDBDF085C81B226AC1C0EBC7363A09C80BF718036C110185A4A60D27C8DD774ACAFCBB484637C01293AD3D3CBAA32605AE72FC243F622CB277E266B8EA0C977E0DAB2948E64E0AB538026D7286DA3504B7A16CF20247198E8C6A8C5B9B53F6641B74195686FEBCCDB99DF599E9D0490FE43EC845E0D62DA91228EF0B8CE8054AB57CF5393758A45FAC17150A9AE82CC92F382000E015356CFC41A9DB5B0103B7901CECD6871F48CAD743D09BBD0A4FB914736D72F12C2B7E2FB3C6102A6205B484256884683DF7546C5CAE700C4F3F574E9F53CC3F96EDFA9DFBCE08324226E4E17D2B1D5D8808D127F2F0CF30BAA66A&retpath=aHR0cHM6Ly95YW5kZXguY29tL3NlYXJjaC9zaXRlP3RleHQ9Y3J1bmNoYmFzZSt0ZWNobm9sb2d5K2NvbXBhbnkrYmFuZ2Fsb3JlK2luZGlhK2Z1bmRpbmcmd2ViPTEmc2VhcmNoaWQ9MTg1MTcxNg%2C%2C_1025e86672333013483fc9107e97f2aa&t=2%252F1780083265%252Fd92159df3df80a81c066186f47c06023&u=8778901356226026432&s=9b5cefd735312aeeb4d1cd3a382488e8 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=crunchbase+technology+company+bangalore+india+funding 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=1UM6UYIfIzpc5NTYnf05rND0;_ylu=bOJTHqo8g7VIuLS18mMDAMf9ataZWePyNnhvf065HrRlYKs?p=crunchbase+technology+company+bangalore+india+funding 200
+INFO:primp:response: https://www.google.com/search?q=crunchbase+technology+company+bangalore+india+funding&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] → 15 results
+INFO:careerloop.sources.company_discovery:[Crunchbase] Bangalore/Technology & Software: 10 companies
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'site:inc42.com technology startup bangalore india'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainc42.com%20technology%20startup%20bangalore%20india 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ainc42.com+technology+startup+bangalore+india&limit=1 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Ainc42.com+technology+startup+bangalore+india&web=1&searchid=6979671 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Ainc42.com+technology+startup+bangalore+india&source=web 429
+INFO:primp:response: https://www.google.com/search?q=site%3Ainc42.com+technology+startup+bangalore+india&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=xLuCIsgqixxhjZIrFCEdsgd5;_ylu=37vESDw14X4gpJeMTw4rw_VFs3-HqTvpifmb4tt_MvWx5tI?p=site%3Ainc42.com+technology+startup+bangalore+india 200
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'site:yourstory.com technology company bangalore india'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ayourstory.com%20technology%20company%20bangalore%20india 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ayourstory.com+technology+company+bangalore+india&limit=1 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Ayourstory.com+technology+company+bangalore+india 200
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'startupindia.gov.in technology bangalore registered startup'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=startupindia.gov.in%20technology%20bangalore%20registered%20startup 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=startupindia.gov.in+technology+bangalore+registered+startup&limit=1 200
+INFO:primp:response: https://www.google.com/search?q=startupindia.gov.in+technology+bangalore+registered+startup&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:primp:response: https://www.startpage.com/ 200
+INFO:primp:response: https://www.startpage.com/sp/search 200
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/YourStory] Bangalore/Technology & Software: 30 companies
+INFO:careerloop.sources.company_discovery:[YC] India/Technology & Software: 100 companies
+INFO:careerloop.sources.company_discovery:[Discovery] 188 raw → 187 deduped
+INFO:careerloop.sources.ats_adapter:[ATS detect] techbehemoths.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20+ IT Companies in Bangalore (2025) - TechBehemoths: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] selectedfirms.co → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 50+ IT Services Companies in Bangalore | Reviews | May 2025: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] upgrad.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 50 IT Companies in Bangalore: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] goodfirms.co → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Bangalore Software Companies - April 2025 Reviews | GoodFirms: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] rankpointer.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Software Companies in Bangalore: List of Tech Innovators: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] vingsfire.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Software Companies Bangalore ll Vingsfire 2023 ll India: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] 99database.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top information technology companies Bangalore - IT Companies...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] internshala.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for IT Companies in Bangalore: Jobs, Salaries & Benefits: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] cumulations.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best Software Companies In Bangalore For Outsourcing Software...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] vcsdata.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Bengaluru /Bangalore Companies - List of Companies in Bengaluru...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] guvi.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 14 Tech Startups in Bangalore in 2026: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] builtinbengaluru.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Tech Companies in Bengaluru, Karnataka 2026 | Built In ...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] rankexdigital.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 IT Companies in Bangalore [Updated 2026]: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_portal_scraper:[CareerPage] Found (static): https://jobs.pitchnhire.com/about/careers
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 50 Information Technology Companies in Bangalore ...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] topstartups.io → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 29 Bangalore Startups — Newly Funded & Hiring: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] wellfound.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Tech Startups in Bangalore Urban, India in 2026 - Wellfound: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] builtin.com → greenhouse (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 43 Top Tech Companies in Bangalore | Built In: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] evoma.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Outstanding Tech Startups From Bangalore - Evoma: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] bengalurutechsummit.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Bengaluru Tech Summit 2026 | Asia's Premier Technology ...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] agniyo.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 15 Startup Companies in Bangalore Driving India's Innovation: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] thescalers.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for How Bangalore Became the Silicon Valley of India - The Scalers: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] explodingtopics.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 19 Top Technology Startups in Bangalore (May 2026): 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] knowstartup.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 Startups in Bangalore 2026 - Best Places to Work: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] seedtable.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Explore 69 Best Startups in Bangalore Karnataka India to ...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] growthlist.co → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 505+ Funded Bangalore Startups 2026 | Verified Contacts ...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] zeroado.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 9 Startups in Bangalore to Watch in 2026 & Beyond: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] scribd.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Startup Companies in Bangalore List | PDF - Scribd: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] beststartup.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 9 Bangalore Based Product Management Companies | The Most: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] brandelite.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best Digital Marketing Company in Bangalore India | Brand Elite: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] marketmystique.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 15 Best Product Based Companies in Bangalore in 2026: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] indglobal.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best Software Development Company in Bangalore, India |: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] seekneo.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best it companies in bangalore india: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] theqna.org → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 best electronics companies in Bangalore - TheQnA.Org: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] marketinghack4u.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Software Companies in Bangalore 2025 | Updated: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] omsaigroupconsultancy.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Who Are The Best Global Consultancy Bangalore?: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] lanetteam.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top IT Companies in Bangalore (2026) – Best Tech Firms &: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] explorateglobal.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Software Development Companies of Bangalore India: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] failory.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 19 Venture Capital Firms in Bangalore in 2024: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] wizard-events.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Event Management Companies in Bangalore, Delhi & Mumbai: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] designrush.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top AI Companies in Bengaluru | 2026: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_discovery:[Discovery] Done: 0 companies enriched and stored
+    internet discovery done — querying DB for top companies...
+WARNING:careerloop.on_demand:[OnDemand] Phase A discovery failed: 'psycopg2.extensions.connection' object has no attribute 'execute'
+  [Phase A] 0 companies found.
+  [Phase A] portal scrape done — 0 jobs
+  [Phase B] searching job boards (parallel)...
+INFO:careerloop.sources.search_adapter:Search [1/6]: AI Product Engineer applied AI product engineering AI-first startup Bangalore jobs
+WARNING:careerloop.sources.jobspy_adapter:python-jobspy not installed
+INFO:careerloop.on_demand:[OnDemand] JobSpy: 0 jobs
+INFO:careerloop.sources.remotive_adapter:[Remotive] 10 jobs for 'AI Product Engineer'
+INFO:careerloop.on_demand:[OnDemand] Remotive: 10 jobs
+INFO:careerloop.sources.remoteok_adapter:[RemoteOK] 20 jobs for 'AI Product Engineer'
+INFO:careerloop.on_demand:[OnDemand] RemoteOK: 20 jobs
+WARNING:careerloop.sources.naukri_adapter:Naukri API returned 406
+INFO:careerloop.on_demand:[OnDemand] Naukri: 0 jobs
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.brave.com/search?q=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in&source=web 429
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com/job-listing%20AI%20Product%20Engineer%20Bangalore%20India 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acutshort.io/job%20%22AI%20Product%20Engineer%22%20%22Bangalore%22 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/l/job-listings%20%22AI%20Product%20Engineer%22%20%22Bangalore%22 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aiimjobs.com%20%22AI%20Product%20Engineer%22%20%22Bangalore%22 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Ajobs.lever.co%20Bangalore%20India 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20Product%20Engineer%22%20Bangalore%20site%3Afoundit.in 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainstahyre.com%20%22AI%20Product%20Engineer%22%20%22Bangalore%22 200
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in 403
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Bangalore%22&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Bangalore%22&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20applied%20AI%20product%20engineering%20AI-first%20startup%20Bangalore%20jobs 200
+INFO:primp:response: https://www.google.com/search?q=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:primp:response: https://www.google.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=loLoUUnTAy3ttKZXFtV886cr;_ylu=1BZT_tc3ptzXI7_7zbcD-ORYapImNbDzCOhcf9mIHzEpu_I?p=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Bangalore%22 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=qtxjLADI5-nza7bySGRFcJ4w;_ylu=ML51a-z9HW1MXVYaFt0pEM_aM6hwT3OkIl2KD-03iA9CBaU?p=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Bangalore%22 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Bangalore%22&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=WsOKn2XsI_1r1ZY8c5Oc1Biy;_ylu=-VOeiM0CfQscY8e6_5ytjhYuUhzsbp9Ak72xxQUdAuKcTyY?p=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Bangalore%22 200
+INFO:primp:response: https://yandex.com/showcaptcha?cc=1&form-fb-hint=8.148&mt=DAA19E8A491A366EDD0AFC6E6633F13F45553DC9B72568EC6060287B0E554C698CB878F820A980D2074EDCBEB53AF2EA5613DFDBE20EED5224E08BA0B763AB8086C31989F81CC8A30C652CFF262A2A92D3A9BCC89CAB6673EFB45EC78193EE8125988402B73F910B59C6250EEEC27706BE7B64841E480FEBC59BB1EF69EEA5FF3C549F53BFE08A0A7563735DA046EAF803EF5B346CDBECE87223C15B91430BAC43305E522B7037AF54E2625D719F5124648618854C4C7CC92F9739CE57B0316B4A6B6855E3EBCE1FCBD72176F92E107CEA7FBF11F4CFD86180CEC10223C881A10678ABE102E49AD66FCB434C7F95AFA3076F846B&retpath=aHR0cHM6Ly95YW5kZXguY29tL3NlYXJjaC9zaXRlP3RleHQ9JTIyQUkrUHJvZHVjdCtFbmdpbmVlciUyMitCYW5nYWxvcmUrc2l0ZSUzQWZvdW5kaXQuaW4md2ViPTEmc2VhcmNoaWQ9NzkyMTgyMA%2C%2C_f2ea752fca87055fca7c7f1aa67b556e&t=2%252F1780083382%252F787371b1b6759d415c1ddfb9b687e591&u=8778909175952186236&s=b35e8d264b59e91d69206ba924fe8363 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Bangalore%22&web=1&searchid=3497971 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Bangalore%22&web=1&searchid=9701265 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Bangalore%22&limit=1 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+applied+AI+product+engineering+AI-first+startup+Bangalore+jobs&limit=1 200
+INFO:careerloop.sources.weworkremotely_adapter:[WWR] 30 jobs for 'AI Product Engineer'
+INFO:careerloop.on_demand:[OnDemand] WeWorkRemotely: 30 jobs
+INFO:primp:response: https://search.yahoo.com/search;_ylt=jeeF6_apERIxOUt4hpyFyjFK;_ylu=zCQKa6c-F7WdHzRRg4vU2FHlwi8aflUpWX5lDhV2wt2hiOk?p=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Bangalore%22 403
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+applied+AI+product+engineering+AI-first+startup+Bangalore+jobs&source=web 429
+INFO:primp:response: https://www.startpage.com/ 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Bangalore%22 403
+INFO:primp:response: https://www.startpage.com/ 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Bangalore%22&source=web 429
+INFO:careerloop.sources.monster_adapter:[Monster/foundit] DDG: AI Product Engineer in Bangalore: 17 jobs
+INFO:careerloop.on_demand:[OnDemand] Monster/foundit: 17 jobs
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India 200
+INFO:primp:response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.google.com/search?q=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Bangalore%22&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:primp:response: https://www.google.com/search?q=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Bangalore%22&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=fw5pSVaTyRvbnJ6N2vWayDbM;_ylu=1hZVRofxEtTTsTD58TCGSf34O4ggcCAUQDPLapByvlgBLPo?p=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Bangalore%22 200
+INFO:primp:response: https://yandex.com/search/site/?text=AI+Product+Engineer+applied+AI+product+engineering+AI-first+startup+Bangalore+jobs&web=1&searchid=9837088 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Bangalore%22&source=web 429
+INFO:careerloop.sources.instahyre_adapter:[Instahyre] 0 jobs for 'AI Product Engineer' / 'Bangalore'
+INFO:careerloop.on_demand:[OnDemand] Instahyre: 0 jobs
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India&web=1&searchid=8234450 200
+INFO:primp:response: https://yandex.com/showcaptcha?cc=1&form-fb-hint=8.148&mt=BB30EC063170A3AB946274ACD0358AEED0192EAAE8C19409B711BEB56DCB8FD77CC3A703AC4E13FF2A4F8456FA1CE7362A4D061BF35496AE6F6DC09C3D744C213907BD7B1ACC601A71FB6ED295F699D66601F7A686E8259826315DA3B8F054949BD33E4460EDDCA235919911117F09F576D2AC2126F92949C759295CD92AA3A2A594A276E878CBD1DD2565E94DA6D4A0C40FEE2BB019CF652A6BFC5B5C07224DCF025FEF17E3B6CEF7635854F2F3CE52F52A3476D04C52B2C153C76F92363249D5CCC600B3788868C7FC1320DA85B0C5A7C5C1AD993C86866E53F214627AE461C532F44AD33296ED8E24221B6E9B77A4DF6CD515&retpath=aHR0cHM6Ly95YW5kZXguY29tL3NlYXJjaC9zaXRlP3RleHQ9QUkrUHJvZHVjdCtFbmdpbmVlcitzaXRlJTNBam9icy5sZXZlci5jbytCYW5nYWxvcmUrSW5kaWEmd2ViPTEmc2VhcmNoaWQ9NDE4NDkyNw%2C%2C_beadd98c1684b21ecb9b125f56c46901&t=2%252F1780083384%252Fcc0e2c06c0d33bd64509a99f3499be9c&u=8778909342986148738&s=008998ea3386119c3bbc216cc204b4d4 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Bangalore%22 403
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.yahoo.com/search;_ylt=3IdlJyHOW9mcXxsWJlqfr134;_ylu=JqYJlHScjC8orD_387dm-irG3O70VHGVaprzwG4Z5IrZEfA?p=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India 200
+INFO:primp:response: https://www.google.com/search?q=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Bangalore%22&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=pn5p6h5em60KpB0DXEw_DggN;_ylu=LqrbxnMlwaemZMepnl375OlKthq4Kec3Bvd0Bq5mehgqRBU?p=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India&source=web 429
+INFO:primp:response: https://yandex.com/showcaptcha?cc=1&form-fb-hint=8.148&mt=11F83EF181377B60D1AC900ED89D7924942E35187D33EB2C4BFC861B745362D9D04D1995731A4F3375284015D104B3E2DE2406B7EEF862E5E5811B42E9DEF3DFA8C263E2552AD7F1BE4E0589957BC6FBC473E3A73AFB06F643D0C52F75F2413AEC81F0B65B46CC838109C5795FBC237F40A318622E37C28008215C5593A47B7DB2B3C7EB3E8256112AB58C5126DD7AA1F77556D3D4A783679AEB526AC368CB23504AB58CE07401BC87460F9EFE572151383914CE9C1B415C328735C603D7C41904CD795F703CD15F96691C241C43D241B313FAEE2ABE91757C0177AEC65687334FA1A57544A2CEE22B1F67A8FFD08746517DE756&retpath=aHR0cHM6Ly95YW5kZXguY29tL3NlYXJjaC9zaXRlP3RleHQ9c2l0ZSUzQXdlbGxmb3VuZC5jb20lMkZsJTJGam9iLWxpc3RpbmdzKyUyMkFJK1Byb2R1Y3QrRW5naW5lZXIlMjIrJTIyQmFuZ2Fsb3JlJTIyJndlYj0xJnNlYXJjaGlkPTIzMjYxNDc%2C_d2028e0f95e34618e14911d669743cf6&t=2%252F1780083386%252F41b51651e10af7954d6f576015592007&u=8778909423315458997&s=3de785fad348b6a9aebfac3c02ec15b1 200
+INFO:primp:response: https://yandex.com/showcaptcha?cc=1&form-fb-hint=8.148&mt=73654CD855C312A810A887D8A9FFAC0675E537B89C952921E754EC9432491B9299BE1D75CDC7FB1EB252D378862F179E466E7069D03B4192D4FB84A4BE999E4CBDFB10657DE85D5FE2F0F7925368F11DBFF8B22F9C5A2824EE8FFDE711C13E4D43EE1F21BF822BE3271619458150A8CA4106CEB39BC923ACA8DA0B79BB542B36AD6BC69994A32C998E404DF5321215B3BF7B89F0D8A560C97B6867FF4FF4C7E633A8DA08E8C17DD3DEE244D1C12E3B7D9271D663A45A1125D946850C46A2E99101C9595FB9C06F7AFDAB913DCD7C1E276D2BE3EBB09AE25D9A4D541768FE8C0B5F1C18186A3BE2B2E3AB531B93F1ABEB4BFF320E&retpath=aHR0cHM6Ly95YW5kZXguY29tL3NlYXJjaC9zaXRlP3RleHQ9c2l0ZSUzQWlpbWpvYnMuY29tKyUyMkFJK1Byb2R1Y3QrRW5naW5lZXIlMjIrJTIyQmFuZ2Fsb3JlJTIyJndlYj0xJnNlYXJjaGlkPTQwNjEwMzY%2C_c411588692ac05998cfad174c22a441b&t=2%252F1780083386%252F049dc8b5097ff0c066f9f96c50313da9&u=8778909435059510109&s=6e5a40724d7535e752dda2245f3af215 200
+INFO:primp:response: https://www.startpage.com/ 200
+INFO:careerloop.sources.search_adapter:Search [2/6]: AI Product Engineer applied AI product engineering AI-first startup hiring Bangalore 2025
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://search.brave.com/search?q=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Bangalore%22&source=web 429
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com%20%22job-listing%22%20%22AI%20Product%20Engineer%22%20Bangalore 200
+INFO:primp:response: https://www.startpage.com/ 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+applied+AI+product+engineering+AI-first+startup+hiring+Bangalore+2025&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=n7G6RhZb0UqFpFEGUrPagiYL;_ylu=uQQXqJHTHO4uGwNJYd7ilNTg9MBRm0kxHldogr6Kouq9jTg?p=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20applied%20AI%20product%20engineering%20AI-first%20startup%20hiring%20Bangalore%202025 200
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+applied+AI+product+engineering+AI-first+startup+hiring+Bangalore+2025&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/search 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.brave.com/search?q=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Bangalore%22&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=AI+Product+Engineer+applied+AI+product+engineering+AI-first+startup+hiring+Bangalore+2025 403
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore&limit=1 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Bangalore%22 403
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%2B%2522job-listing%2522%2B%2522AI%2BProduct%2BEngineer%2522%2BBangalore%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGLzV59AGIjCMR6iUZGhqY0sZgyVxGgbHxZS8W4Vzso0a_adQht6NfeEM80ynlOuUyv2z--GSPfwyAnJSWgFD 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bapplied%2BAI%2Bproduct%2Bengineering%2BAI-first%2Bstartup%2Bhiring%2BBangalore%2B2025%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGLzV59AGIjAZx-OYn-dN1MsEjHKyss5U0B_k0BoZkue0mYRlwFL4d0RcqLK63Y6Q1STYMr527MsyAnJSWgFD 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Awellfound.com%252Fl%252Fjob-listings%2B%2522AI%2BProduct%2BEngineer%2522%2B%2522Bangalore%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGLzV59AGIjCdwLgd5OQOAuUlqJnH4_9ZMJCHagDFdzIa8fghJuf9OXn4XgIb8Xj-NxG-08jknyMyAnJSWgFD 429
+INFO:careerloop.on_demand:[OnDemand] Wellfound: 0 jobs
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aboards.greenhouse.io%20Bangalore%20India 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=xy8yHlRt0fRURPDQsznyvBMq;_ylu=8_o-EJJZkJK0tMDaIsGUcT2wkbkJ3l5xSmfB2M0PGVXpjiM?p=AI+Product+Engineer+applied+AI+product+engineering+AI-first+startup+hiring+Bangalore+2025 200
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&source=web 429
+INFO:primp:response: https://www.startpage.com/ 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore 403
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&limit=1 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore&web=1&searchid=3110132 200
+INFO:primp:response: https://www.startpage.com/ 200
+INFO:careerloop.sources.iimjobs_adapter:[IIMJobs] 7 jobs for 'AI Product Engineer' / 'Bangalore'
+INFO:careerloop.on_demand:[OnDemand] IIMJobs: 7 jobs
+INFO:primp:response: https://search.brave.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/search 200
+INFO:careerloop.sources.glassdoor_adapter:[Glassdoor] AI Product Engineer in Bangalore: 27 jobs
+INFO:careerloop.on_demand:[OnDemand] Glassdoor: 27 jobs
+INFO:primp:response: https://www.startpage.com/sp/search 200
+INFO:primp:response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&web=1&searchid=4926419 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=lbN-wgcCEa28Gpl4JbpeSX1H;_ylu=hwaLPFcLdauEKzfeRnwecoVD5y_ySXMmVkrLxKYrlWahW90?p=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India 200
+INFO:careerloop.sources.search_adapter:Search [3/6]: "AI product engineer" jobs in Bangalore
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20jobs%20in%20Bangalore 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aashbyhq.com%20Bangalore%20India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+jobs+in+Bangalore&limit=1 200
+INFO:primp:response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India&web=1&searchid=6338718 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=H_3JyEiIgRnH4qNZPNv9QhcY;_ylu=eMfJZjR19JtlgNotLZJFWhyc0bO3NhAo9HMKecgIZy6EcIU?p=%22AI+product+engineer%22+jobs+in+Bangalore 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Aashbyhq.com%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGMTV59AGIjAMEVEwepJ_VK8ciEi73wDm2lQLIUy5Se2U6cX5HjD1-jtsHRH3xj2q7JiVBNH6Z0gyAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India 200
+INFO:primp:response: https://yandex.com/showcaptcha?cc=1&form-fb-hint=8.148&mt=A0F886508AA820811739D339C0FC4D86D27F71454D5DD6D8709D19FB522FDF4D7180D7CB682B02E34438308E490AADAEAA5554ED7E693C73EAF6253BECDDB50FA94924368DF667225D446CDD1E8C3DE33276051146B437BF644B987AC89E0B6427F428B496B3D12813418D832E6A12BF6F1E6D5A94948A1A423149D380EE352D3A97D1A8F7B853E94E430CEC0B991810B9F56950698641C60A66D24F3C03B12E596ED52AD02CCE91B0718A637ED15C9D0622D231D4D5E9C29F87F93B9B0CEA3D19EEC88E37F4FD46A9C240A06438D60FE7395D0FF4A37EF6AF2AA5AE8C3FFB2A3D0644F4F129C39E4CED07B28999A95F7AA0CBF9&retpath=aHR0cHM6Ly95YW5kZXguY29tL3NlYXJjaC9zaXRlP3RleHQ9JTIyQUkrcHJvZHVjdCtlbmdpbmVlciUyMitqb2JzK2luK0JhbmdhbG9yZSZ3ZWI9MSZzZWFyY2hpZD00Mzk3Mzg2_fc54c12eadce2f5f9ff2397a22717fb0&t=2%252F1780083397%252F8c815af9ef07fad3c0f5783d726586bc&u=8778910174062320450&s=286528944042936ae30d6a1409350d0a 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=Np-eUAYUAMQe8ziwzNHoXIFS;_ylu=kyGsVZeL2DZqjvDXPawbQ6TtmcdiT8cRSICwWZYLQeHILvc?p=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India 200
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+jobs+in+Bangalore 200
+INFO:primp:response: https://www.startpage.com/ 200
+INFO:primp:response: https://www.startpage.com/sp/search 200
+INFO:careerloop.sources.google_jobs_adapter:[GoogleJobs] AI Product Engineer in Bangalore: 30 jobs
+INFO:careerloop.on_demand:[OnDemand] GoogleJobs: 30 jobs
+INFO:careerloop.sources.search_adapter:Search [4/6]: "AI product engineer" hiring Bangalore site:linkedin.com/jobs/view
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20hiring%20Bangalore%20site%3Alinkedin.com/jobs/view 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&limit=1 200
+INFO:primp:response: https://www.startpage.com/ 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:careerloop.sources.cutshort_adapter:[Cutshort] 16 jobs for 'AI Product Engineer' / 'Bangalore'
+INFO:careerloop.on_demand:[OnDemand] Cutshort: 16 jobs
+INFO:primp:response: https://yandex.com/showcaptcha?cc=1&form-fb-hint=8.148&mt=F5CFB3492BBDC3F2DCD682C30C999F8D4B3831BD60BFC351125F05D5456DE8B01FD3AA114A3F2BD9D07563FE47EBCFF624BE8CD1F478CE68DC130E3CFEFCEB44360F26E09301A4E9B24FDE24216FDD545D925B723AE7E04A71CA9A20AC8B49B7811513279800227E0617AA6917B77D3A38DD01111343BA059530B67C7D8BFC8077D36BEC73BEE3B9D6D41244785117D0C15F4E9410E5C40F34978346D193F1E730D9043757A6A02CF2F238EED31F5D19A205231847335A7A5A8934C434B23F37E98AA3ED064E40FF1CF90C6517E035C1302EAA9883D03CC3881E1758DA8DF49D106EE99753167FBCE7541028644D23B18BC8F8B6&retpath=aHR0cHM6Ly95YW5kZXguY29tL3NlYXJjaC9zaXRlP3RleHQ9JTIyQUkrcHJvZHVjdCtlbmdpbmVlciUyMitoaXJpbmcrQmFuZ2Fsb3JlK3NpdGUlM0FsaW5rZWRpbi5jb20lMkZqb2JzJTJGdmlldyZ3ZWI9MSZzZWFyY2hpZD03MDg1ODY0_77ef305520b6049605ab110958415eef&t=2%252F1780083403%252F95af7babbf93fdf5e27a307459ad4781&u=8778910623490382723&s=fcc929511daf746faded428ceebdc5a7 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&source=web 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=3o8GKU55rBKr-qqse-QsKi-d;_ylu=UTbUL0vHsciv-fKSz5eGHPObZZB38FC1vhfAnyRO8CxCH-A?p=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview 200
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview 403
+INFO:primp:response: https://www.google.com/search?q=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:careerloop.sources.search_adapter:Search [5/6]: "AI product engineer" Bangalore site:naukri.com
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Bangalore%20site%3Anaukri.com 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com&limit=1 200
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com 403
+INFO:primp:response: https://www.google.com/search?q=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:careerloop.sources.search_adapter:Search [6/6]: "AI product engineer" Bangalore site:cutshort.io
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Bangalore%20site%3Acutshort.io 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Bangalore+site%3Acutshort.io&limit=1 200
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+Bangalore+site%3Acutshort.io&source=web 429
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.startpage.com/ 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.google.com/search?q=%22AI+product+engineer%22+Bangalore+site%3Acutshort.io&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:careerloop.sources.search_adapter:Total candidate URLs: 24
+INFO:careerloop.on_demand:[OnDemand] Board health: {'jobspy': 0, 'remotive': 10, 'remoteok': 20, 'naukri': 0, 'weworkremotely': 30, 'monster': 17, 'instahyre': 0, 'wellfound': 0, 'iimjobs': 7, 'glassdoor': 27, 'google_jobs': 30, 'cutshort': 16, 'ddg': 14}
+  [Phase B] per-source: cutshort:16 | ddg:14 | glassdoor:27 | google_jobs:30 | iimjobs:7 | instahyre:0 | jobspy:0 | monster:17 | naukri:0 | remoteok:20 | remotive:10 | wellfound:0 | weworkremotely:30
+  [Phase B] boards done — 170 jobs (archetype title-rejected 1)
+  [Pipeline] total raw candidates: 170 (A:0 + B:170)
+INFO:careerloop.india_filter:India filter: 84 passed, 86 rejected
+  [Filter] India filter: 170 → 84
+  [Phase E] ontology gate (archetype_match>=0.2): 84 → 17 (67 dropped)
+  [Phase E] role similarity filter: 17 candidates...
+INFO:careerloop.role_similarity:[RoleSimilarity] sentence-transformers not installed, using token overlap
+  [Phase E] role filter done: 17 → 9 relevant (8 rejected)
+INFO:careerloop.apply_route:Canonical dedup: 9 → 9 unique jobs
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cargill Business Services': invalid input syntax for type uuid: "cargill-business-services"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cargill-b...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TopGrep Tech Private Limited': invalid input syntax for type uuid: "topgrep-tech-private-limited"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'topgrep-t...
+                                                             ^
+ — using defaults
+  [Phase F] LLM validator (DeepSeek): validating top-5 jobs...
+  [Phase F] LLM validator done: 5 → 5
+ERROR:careerloop_api.services.scan:Scan worker fatal error for run d559a3d161c2: column "canonical_url" of relation "jobs" does not exist
+LINE 4:                         location_raw, apply_url, canonical_u...
+                                                         ^
+Traceback (most recent call last):
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/scan_service.py", line 473, in _run_scan_worker
+    _execute_scan_more(user_id, run_id, db)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/scan_service.py", line 638, in _execute_scan_more
+    appended = _append_to_brief(user_id, run_id, net_new_items, db)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/scan_service.py", line 839, in _append_to_brief
+    scan_more_items = _persist_scan_jobs(db, user_id, scored_items)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/scan_service.py", line 122, in _persist_scan_jobs
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<31 lines>...
+        ),
+        ^^
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/psycopg2/extras.py", line 236, in execute
+    return super().execute(query, vars)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column "canonical_url" of relation "jobs" does not exist
+LINE 4:                         location_raw, apply_url, canonical_u...
+                                                         ^
+
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=d559a3d161c2 user=730d5bab — guards released

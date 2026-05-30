@@ -1,0 +1,63 @@
+INFO:     Started server process [43583]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     127.0.0.1:58713 - "GET /health HTTP/1.1" 200 OK
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id f40bb6b4b85a mode=scan_more
+INFO:     127.0.0.1:58721 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:     127.0.0.1:58727 - "GET /v1/scans/f40bb6b4b85a/events HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:scan_more done: run=f40bb6b4b85a scanned=40 found=9 appended=9
+INFO:     127.0.0.1:58870 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58870 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:58870 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:58870 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:58870 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:58870 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58870 - "GET /v1/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58870 - "GET /v1/me/preferences HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58870 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58870 - "POST /v1/briefs/11994aae-f39d-4506-8275-26e7a42bc176/items/1/select HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58870 - "GET /v1/jobs/loop-0122 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58870 - "POST /v1/jobs/loop-0122/save HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58870 - "POST /v1/jobs/loop-0122/skip HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58870 - "GET /v1/jobs/does-not-exist-xyz HTTP/1.1" 404 Not Found
+INFO:careerloop.session.supervisor_graph:Action resolved: HELP (confidence: 0.95)
+INFO:     127.0.0.1:58870 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58874 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58874 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58874 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58874 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58874 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id 6fb4654ebf0f mode=default
+INFO:     127.0.0.1:58890 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 7 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop.daily_runner:daily_run_started
+INFO:careerloop_api.services.scan:Scan completed: run_id=6fb4654ebf0f user=730d5bab top_jobs=7
+============================================================
+🔁 CareerLoop Daily Runner
+   May 29, 2026 — 12:15 UTC
+   User: Siddharth Saminathan
+============================================================
+
+Brief already generated today (2026-05-29). Use --no-scan --force to re-run.
+INFO:     127.0.0.1:58900 - "GET /health HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id b81086aa7bee mode=scan_more
+INFO:     127.0.0.1:58941 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:     127.0.0.1:58944 - "GET /v1/scans/b81086aa7bee/events HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:scan_more done: run=b81086aa7bee scanned=39 found=3 appended=1
+INFO:     127.0.0.1:59221 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59297 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59372 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59440 - "POST /v1/chat/message HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:59571 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59651 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59673 - "POST /v1/scans HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:59783 - "POST /v1/scans HTTP/1.1" 401 Unauthorized
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [43583]

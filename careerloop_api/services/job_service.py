@@ -14,32 +14,17 @@ class JobService:
         job = self.repo.get_by_any_id(job_ident)
         if not job:
             raise APIError("Job not found.", status_code=404, code="job_not_found")
-        rel = None
-        job_uuid = job.get("job_id")
-        if job_uuid:
-            rel = self.repo.get_relationship(user_id, str(job_uuid))
+        rel = self.repo.get_relationship(user_id, job["id"])
         return serializers.job_detail(job, rel)
-
-    def _resolve_uuid(self, job_ident: str) -> tuple:
-        job = self.repo.get_by_any_id(job_ident)
-        if not job:
-            raise APIError("Job not found.", status_code=404, code="job_not_found")
-        job_uuid = job.get("job_id")
-        if not job_uuid:
-            raise APIError(
-                "Job has no canonical UUID yet; cannot persist a relationship.",
-                status_code=409, code="job_not_canonical",
-            )
-        return str(job_uuid), job
 
     def save(self, user_id: str, job_ident: str) -> dict:
         """Save (approve) a job: validate existence, then upsert user_job_relationships."""
         with self.db.get_connection() as conn:
             with conn.cursor() as cur:
-                # Validate job exists — try id (v1 text PK) or job_id::text (v2 UUID)
+                # Validate job exists directly by id (text PK)
                 cur.execute(
-                    "SELECT id, job_id FROM careerloop.jobs WHERE id = %s OR job_id::text = %s LIMIT 1",
-                    (job_ident, job_ident),
+                    "SELECT id FROM careerloop.jobs WHERE id = %s LIMIT 1",
+                    (job_ident,),
                 )
                 row = cur.fetchone()
                 if not row:
@@ -48,17 +33,9 @@ class JobService:
                         status_code=404, code="job_not_found",
                     )
 
-                job_uuid = row.get("job_id")
-                if not job_uuid:
-                    # Job exists but has no UUID PK yet — backfill one so the FK insert works
-                    import uuid
-                    job_uuid = str(uuid.uuid4())
-                    cur.execute(
-                        "UPDATE careerloop.jobs SET job_id = %s::uuid WHERE id = %s",
-                        (job_uuid, row["id"]),
-                    )
+                job_id = row["id"]
 
-                # Upsert user-job relationship
+                # Upsert user-job relationship directly under jobs.id
                 cur.execute(
                     """
                     INSERT INTO careerloop.user_job_relationships
@@ -69,14 +46,18 @@ class JobService:
                         swiped_action = EXCLUDED.swiped_action,
                         updated_at   = CURRENT_TIMESTAMP
                     """,
-                    (user_id, job_uuid),
+                    (user_id, job_id),
                 )
 
-        return {"job_id": job_uuid, "match_status": "saved", "swiped_action": "right"}
+        return {"job_id": job_id, "match_status": "saved", "swiped_action": "right"}
 
     def skip(self, user_id: str, job_ident: str) -> dict:
-        job_uuid, job = self._resolve_uuid(job_ident)
-        okw = self.repo.set_match_status(user_id, job_uuid, "skipped", swiped_action="left")
+        """Skip a job card directly using jobs.id."""
+        job = self.repo.get_by_any_id(job_ident)
+        if not job:
+            raise APIError("Job not found.", status_code=404, code="job_not_found")
+        job_id = job["id"]
+        okw = self.repo.set_match_status(user_id, job_id, "skipped", swiped_action="left")
         if not okw:
             raise APIError("Could not skip job.", status_code=500, code="skip_failed")
-        return {"job_id": job_uuid, "match_status": "skipped", "swiped_action": "left"}
+        return {"job_id": job_id, "match_status": "skipped", "swiped_action": "left"}

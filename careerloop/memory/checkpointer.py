@@ -7,6 +7,7 @@ get_supervisor_graph().
 
 import logging
 import os
+import threading
 
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.checkpoint.postgres import PostgresSaver
@@ -14,13 +15,33 @@ from psycopg_pool import ConnectionPool
 
 logger = logging.getLogger(__name__)
 
+# Process-wide singleton. CRITICAL: get_checkpointer() is called once per chat
+# turn (chat_service.message); without caching, each call built a NEW
+# psycopg_pool.ConnectionPool (min_size=4 conns + worker/scheduler threads) that
+# was never closed — a connection+thread leak that exhausted the DB and the
+# threadpool after a few hours of uptime. One pool per process is correct because
+# DATABASE_URL is constant for the process lifetime.
+_checkpointer_singleton = None
+_checkpointer_lock = threading.Lock()
+
 
 def get_checkpointer():
-    """Return a BaseCheckpointSaver instance.
+    """Return the process-wide BaseCheckpointSaver singleton (lazy, thread-safe).
 
     PostgresSaver if DATABASE_URL is set and reachable,
     MemorySaver otherwise (in-memory, no persistence across restarts).
     """
+    global _checkpointer_singleton
+    if _checkpointer_singleton is not None:
+        return _checkpointer_singleton
+    with _checkpointer_lock:
+        if _checkpointer_singleton is not None:
+            return _checkpointer_singleton
+        _checkpointer_singleton = _build_checkpointer()
+        return _checkpointer_singleton
+
+
+def _build_checkpointer():
     db_url = os.getenv("DATABASE_URL")
     if not db_url:
         logger.warning("checkpointer: DATABASE_URL not set — using MemorySaver (in-memory)")

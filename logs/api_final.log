@@ -1,0 +1,130 @@
+INFO:     Started server process [89239]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     127.0.0.1:50573 - "GET /health HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id 11d41700b909 mode=scan_more
+INFO:     127.0.0.1:50588 - "POST /v1/scans HTTP/1.1" 200 OK
+WARNING:careerloop.role_keywords:[RoleKeywords] store failed: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.role_archetype:[Archetype] LLM generated for 'AI Product Engineer': must_have=['product', 'customer-facing', 'applied AI', 'cross-functional', 'system design', 'LLM', 'behavioral analytics']
+WARNING:careerloop.sources.role_archetype:[Archetype] cache store failed: 'psycopg2.extensions.connection' object has no attribute 'execute'
+  [Archetype] role='AI Product Engineer' | function='applied AI product engineering' | market='B2B enterprise'
+  [Archetype] must_have=['product', 'customer-facing', 'applied AI', 'cross-functional', 'system design', 'LLM', 'behavioral analytics']
+  [Archetype] avoid=['research', 'data entry', 'support engineer', 'hardware', 'infra only', 'generic SWE', 'backend only']
+  [Queries] 8 board queries: ['AI Product Engineer applied AI product engineering AI-first startup Bangalore jobs', 'AI Product Engineer applied AI product engineering AI-first startup hiring Bangalore 2025', '"AI Product Engineer" jobs in Bangalore', '"AI Product Engineer" hiring Bangalore site:linkedin.com/jobs/view']
+  [Phase A] discovering companies for 'AI Product Engineer' in Bangalore...
+INFO:careerloop.on_demand:[OnDemand] Phase A: sector inferred → 'Technology & Software' for role 'AI Product Engineer'
+INFO:careerloop.sources.role_archetype:[Archetype] LLM generated for 'AI Product Engineer': must_have=['product', 'applied AI', 'cross-functional', 'customer-facing', 'system design', 'LLM', 'behavioral analytics']
+WARNING:careerloop.sources.role_archetype:[Archetype] cache store failed: 'psycopg2.extensions.connection' object has no attribute 'execute'
+    sector=Technology & Software — Phase A via DDG+Wellfound+Crunchbase+Inc42+YC...
+INFO:careerloop.sources.company_discovery:[Discovery] Starting: city=Bangalore, sector=Technology & Software, function=AI Product Engineer applied AI product engineering AI-first startup
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'technology companies in Bangalore India'
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=technology%20companies%20in%20Bangalore%20India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=technology+companies+in+Bangalore+India&limit=1 200
+INFO:primp:response: https://www.google.com/search?q=technology+companies+in+Bangalore+India&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:primp:response: https://yandex.com/search/site/?text=technology+companies+in+Bangalore+India&web=1&searchid=2251827 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 12 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'top technology startups in Bangalore'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=top%20technology%20startups%20in%20Bangalore 200
+INFO:primp:response: https://www.google.com/search?q=top+technology+startups+in+Bangalore&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=top+technology+startups+in+Bangalore&limit=1 200
+INFO:primp:response: https://yandex.com/search/site/?text=top+technology+startups+in+Bangalore&web=1&searchid=7484585 200
+INFO:primp:response: https://search.brave.com/search?q=top+technology+startups+in+Bangalore&source=web 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 15 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'best technology firms Bangalore India'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=best%20technology%20firms%20Bangalore%20India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=best+technology+firms+Bangalore+India&limit=1 200
+INFO:primp:response: https://www.mojeek.com/search?q=best+technology+firms+Bangalore+India 200
+INFO:primp:response: https://search.brave.com/search?q=best+technology+firms+Bangalore+India&source=web 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 15 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'companies hiring AI Product Engineer applied AI product engineering AI-first startup in Bangalore India'
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=companies%20hiring%20AI%20Product%20Engineer%20applied%20AI%20product%20engineering%20AI-first%20startup%20in%20Bangalore%20India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=companies+hiring+AI+Product+Engineer+applied+AI+product+engineering+AI-first+startup+in+Bangalore+India&limit=1 200
+INFO:primp:response: https://search.brave.com/search?q=companies+hiring+AI+Product+Engineer+applied+AI+product+engineering+AI-first+startup+in+Bangalore+India&source=web 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 8 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps] Bangalore/Technology & Software: 42 companies total
+INFO:careerloop.sources.company_discovery:[Wellfound/DDG] query: 'site:wellfound.com/company technology bangalore'
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/company%20technology%20bangalore 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fcompany+technology+bangalore&limit=1 200
+INFO:primp:response: https://www.google.com/search?q=site%3Awellfound.com%2Fcompany+technology+bangalore&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:primp:response: https://www.startpage.com/ 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Awellfound.com%2Fcompany+technology+bangalore 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=69ai7djcaMJGipPFLgUAUeqD;_ylu=eaUPDGI7fDS2y7iiOq0GfK_5Ze7nbfj3ncNVsCNBQYg7kI4?p=site%3Awellfound.com%2Fcompany+technology+bangalore 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Awellfound.com%2Fcompany+technology+bangalore&source=web 200
+INFO:careerloop.sources.company_discovery:[Wellfound/DDG] → 20 results
+INFO:careerloop.sources.company_discovery:[Wellfound] Bangalore/Technology & Software: 18 companies
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] query: 'site:crunchbase.com/organization technology bangalore india'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acrunchbase.com/organization%20technology%20bangalore%20india 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Acrunchbase.com%2Forganization+technology+bangalore+india 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&limit=1 200
+INFO:primp:response: https://www.google.com/search?q=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&filter=1&start=0&hl=en-IN&lr=lang_en&cr=countryIN 200
+INFO:primp:response: https://www.startpage.com/ 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&source=web 200
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] → 15 results
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] query: 'crunchbase technology company bangalore india funding'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=crunchbase%20technology%20company%20bangalore%20india%20funding 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=crunchbase+technology+company+bangalore+india+funding&limit=1 200
+INFO:primp:response: https://search.brave.com/search?q=crunchbase+technology+company+bangalore+india+funding&source=web 200
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] → 15 results
+INFO:careerloop.sources.company_discovery:[Crunchbase] Bangalore/Technology & Software: 17 companies
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'site:inc42.com technology startup bangalore india'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainc42.com%20technology%20startup%20bangalore%20india 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ainc42.com+technology+startup+bangalore+india&limit=1 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Ainc42.com+technology+startup+bangalore+india 200
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'site:yourstory.com technology company bangalore india'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ayourstory.com%20technology%20company%20bangalore%20india 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ayourstory.com+technology+company+bangalore+india&limit=1 200
+INFO:primp:response: https://www.startpage.com/ 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Ayourstory.com+technology+company+bangalore+india 200
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'startupindia.gov.in technology bangalore registered startup'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=startupindia.gov.in%20technology%20bangalore%20registered%20startup 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=startupindia.gov.in+technology+bangalore+registered+startup&limit=1 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://yandex.com/search/site/?text=startupindia.gov.in+technology+bangalore+registered+startup&web=1&searchid=9813918 200
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/YourStory] Bangalore/Technology & Software: 30 companies
+INFO:careerloop.sources.company_discovery:[YC] India/Technology & Software: 100 companies
+INFO:careerloop.sources.company_discovery:[Discovery] 207 raw → 207 deduped
+INFO:careerloop.sources.ats_adapter:[ATS detect] upgrad.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 50 IT Companies in Bangalore: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] techbehemoths.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20+ IT Companies in Bangalore (2025) - TechBehemoths: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] selectedfirms.co → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 50+ IT Services Companies in Bangalore | Reviews | May 2025: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] goodfirms.co → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Bangalore Software Companies - April 2025 Reviews | GoodFirms: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] rankpointer.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Software Companies in Bangalore: List of Tech Innovators: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] vingsfire.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Software Companies Bangalore ll Vingsfire 2023 ll India: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] cumulations.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best Software Companies In Bangalore For Outsourcing Software...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] 99database.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top information technology companies Bangalore - IT Companies...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] internshala.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for IT Companies in Bangalore: Jobs, Salaries & Benefits: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] vcsdata.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Bengaluru /Bangalore Companies - List of Companies in Bengaluru...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_portal_scraper:[CareerPage] Found (static): https://ru.pinterest.com/careers
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Find and save ideas about top it companies in bangalore on Pinterest.: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] techstaunch.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for techstaunch.com/blogs/product-development-companies-bangalore: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] knowstartup.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 Startups in Bangalore 2026 - Best Places to Work: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] startupblink.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Startups in Bangalore | StartupBlink: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] startuptalky.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Exhaustive List of Top 91 Startups In Bangalore [2022 List]: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] homes247.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Bangalore Startups to Watch in 2025: Innovators Leading Change: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] failory.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 23 Accelerators and Incubators in Bangalore (2026): 'psycopg2.extensions.connection' object has no attribute 'execute'

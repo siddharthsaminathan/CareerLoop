@@ -1,0 +1,49 @@
+========================================
+CareerLoop API — started at 2026-05-29_19-43-40
+========================================
+INFO:     Will watch for changes in these directories: ['/Users/siddharthsaminathan/Projects/CareerLoop']
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     Started reloader process [48370] using WatchFiles
+INFO:     Started server process [48375]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:61740 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61743 - "GET /health HTTP/1.1" 200 OK
+INFO:watchfiles.main:45 changes detected
+INFO:     127.0.0.1:61745 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61745 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61745 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61745 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61745 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61745 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61745 - "GET /v1/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61745 - "GET /v1/me/preferences HTTP/1.1" 200 OK
+INFO:watchfiles.main:4 changes detected
+INFO:     127.0.0.1:61745 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61745 - "GET /v1/jobs/does-not-exist-xyz HTTP/1.1" 404 Not Found
+INFO:watchfiles.main:3 changes detected
+INFO:careerloop.session.supervisor_graph:Action resolved: HELP (confidence: 0.95)
+INFO:     127.0.0.1:61745 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:4 changes detected
+INFO:watchfiles.main:2 changes detected
+INFO:     127.0.0.1:61959 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61959 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61959 - "OPTIONS /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61961 - "OPTIONS /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61959 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61961 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61963 - "OPTIONS /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.session.supervisor_graph:Action resolved: SHOW_PROFILE (confidence: 0.95)
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:     127.0.0.1:61963 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.session.supervisor_graph:Action resolved: GENERAL_CHAT (confidence: 0.95)
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:     127.0.0.1:61966 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:watchfiles.main:1 change detected
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [48375]
+INFO:     Stopping reloader process [48370]

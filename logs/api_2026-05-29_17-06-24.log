@@ -1,0 +1,29 @@
+INFO:     Started server process [37109]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     127.0.0.1:57393 - "GET /health HTTP/1.1" 200 OK
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id e99125cad945
+INFO:     127.0.0.1:57397 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 7 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop.daily_runner:daily_run_started
+============================================================
+🔁 CareerLoop Daily Runner
+   May 29, 2026 — 11:36 UTC
+   User: Siddharth Saminathan
+============================================================
+
+Brief already generated today (2026-05-29). Use --no-scan --force to re-run.
+INFO:     127.0.0.1:57402 - "GET /v1/scans/e99125cad945/events HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:_build_from_cache failed: column r.recommendation_reason does not exist
+LINE 4:                            r.fit_score, r.recommendation_rea...
+                                                ^
+
+INFO:careerloop_api.services.scan:Scan produced no jobs (cache empty): run_id=e99125cad945
+INFO:     127.0.0.1:57405 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [37109]

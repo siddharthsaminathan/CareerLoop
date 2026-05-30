@@ -1,0 +1,4 @@
+Target Job ID Approved: a71372c6-1e3a-485a-b039-0ad238fda547
+Postgres Relationship row: {'user_id': 'e2eb87df-cc68-40f4-88c6-e16f3db69df7', 'job_id': 'a71372c6-1e3a-485a-b039-0ad238fda547', 'match_status': 'saved', 'swiped_action': 'right', 'updated_at': datetime.datetime(2026, 5, 30, 8, 39, 59, 443451, tzinfo=datetime.timezone.utc)}
+FastAPI GET /v1/jobs/{id} match_status: saved
+FastAPI GET /v1/briefs/latest brief_id: b0a02629-5166-41bf-8e5f-297b4ac78ee0

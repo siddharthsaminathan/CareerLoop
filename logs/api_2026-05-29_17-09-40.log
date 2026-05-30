@@ -1,0 +1,82 @@
+========================================
+CareerLoop API — started at 2026-05-29_17-09-40
+========================================
+INFO:     Will watch for changes in these directories: ['/Users/siddharthsaminathan/Projects/CareerLoop']
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     Started reloader process [38479] using WatchFiles
+INFO:     Started server process [38486]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:57514 - "GET /health HTTP/1.1" 200 OK
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:     127.0.0.1:57516 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57535 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57537 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57727 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57730 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57731 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57727 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57727 - "OPTIONS /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57731 - "OPTIONS /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57730 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57733 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57727 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57733 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57739 - "OPTIONS /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.session.supervisor_graph:Action resolved: START_SCAN (confidence: 1.0)
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 7 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop.session.tool_registry:Cache-hit: 7 fresh cached jobs -- skipping external scan
+INFO:careerloop.daily_runner:daily_run_started
+============================================================
+🔁 CareerLoop Daily Runner
+   May 29, 2026 — 11:50 UTC
+   User: Siddharth Saminathan
+============================================================
+
+Brief already generated today (2026-05-29). Use --no-scan --force to re-run.
+INFO:     127.0.0.1:57739 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57748 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57748 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57748 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57900 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57904 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57902 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57913 - "OPTIONS /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.session.supervisor_graph:Action resolved: START_SCAN (confidence: 1.0)
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 7 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop.session.tool_registry:Cache-hit: 7 fresh cached jobs -- skipping external scan
+INFO:careerloop.daily_runner:daily_run_started
+INFO:careerloop.session.tool_registry:V3 pipeline: 2 candidates, 1 jobs, 1 relationships written
+============================================================
+🔁 CareerLoop Daily Runner
+   May 29, 2026 — 11:54 UTC
+   User: Siddharth Saminathan
+============================================================
+
+Brief already generated today (2026-05-29). Use --no-scan --force to re-run.
+INFO:     127.0.0.1:57992 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58070 - "GET /health HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id 95adccb52789
+INFO:     127.0.0.1:58072 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58074 - "GET /v1/scans/95adccb52789/events HTTP/1.1" 200 OK
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 7 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop.daily_runner:daily_run_started
+INFO:careerloop_api.services.scan:Scan completed: run_id=95adccb52789 user=730d5bab top_jobs=7
+============================================================
+🔁 CareerLoop Daily Runner
+   May 29, 2026 — 11:58 UTC
+   User: Siddharth Saminathan
+============================================================
+
+Brief already generated today (2026-05-29). Use --no-scan --force to re-run.
+INFO:     127.0.0.1:58078 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:watchfiles.main:1 change detected
+INFO:     127.0.0.1:58235 - "GET /health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [38486]
+INFO:     Stopping reloader process [38479]

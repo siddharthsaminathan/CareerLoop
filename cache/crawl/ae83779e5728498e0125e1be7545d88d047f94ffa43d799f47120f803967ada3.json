@@ -1,312 +1,95 @@
 {
   "role": "ai product engineer",
   "city": "bangalore",
-  "cached_at": 1779971397.695019,
-  "expires_at": 1780000197.695019,
-  "job_count": 10,
+  "cached_at": 1780119250.327023,
+  "expires_at": 1780148050.327023,
+  "job_count": 3,
   "jobs": [
     {
-      "title": "Software Engineer, AI Agents, Tools and Productivity",
+      "title": "Agentic AI Product Manager - iimjobs.com",
       "company": "",
       "location": "Bangalore",
-      "url": "https://www.foundit.in/job/software-engineer-ai-agents-tools-and-productivity-google-india-bengaluru-bangalore-49762289",
-      "apply_url": "https://www.foundit.in/job/software-engineer-ai-agents-tools-and-productivity-google-india-bengaluru-bangalore-49762289",
-      "description": "6 days ago · Posted 06:40:29 PM Google India is hiring an Software Engineer, AI Agents, Tools and Productivity with 5 - 7 Years of Experience in Bengaluru / Bangalore,India. Explore required skills, salary, responsibilities & similar job roles on Foundit.",
-      "_source_type": "foundit",
+      "url": "https://www.iimjobs.com/j/agentic-ai-product-manager-1700985",
+      "apply_url": "https://www.iimjobs.com/j/agentic-ai-product-manager-1700985",
+      "description": "You need to enable JavaScript to run this app. Banking & Finance Jobs Finance & Accounts Banking Corporate Banking Investment Banking Private Equity Equity Research Sales & Marketing Jobs Sales Marketing Brand Management Online Marketing Marketing Communication Market Research Consulting Jobs Strategy Consulting Research Analytics Process Excellence Consulting - BFSI Consulting - Consumer Goods HR & IR Jobs HR Generalist HR Business Partner Talent Acquisition Organization Development Learning and Development Compensation & Benefits IT & Systems Jobs IT Project Management IT Consulting Presales IT Sales IT Product Management IT Business Analyst SCM & Operations Jobs Supply Chain Operations Procurement Inventory Management Plant Operations Demand Planning Legal Jobs Regulatory Compliance Litigation Company Secretary Intellectual Property Rights Legal Jobs in BFSI Legal Jobs in IT/ITeS BPO Jobs BPO Operations BPO Quality BPO Presales BPO Sales BPO Training Customer Service Healthcare Jobs MBBS MD Healthcare Operations Clinical Operations Pharma Jobs Pharma Operations Pharmacovigilance Pharma R&D Pharma Safety GenAI Jobs AI Product Management Generative AI Gen AI Strategy AI Project Management",
+      "skills": [],
+      "_source_type": "iimjobs",
       "_phase": "B",
       "_ontology": {
-        "seniority": "unknown",
-        "archetype_match": 0.25,
+        "seniority": "mid",
+        "archetype_match": 0.29,
         "biz_model": "unknown",
         "preferred_company_match": false
       },
       "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "2eab8b16968ae5b1",
+      "_canonical_fp": "16e849bbe13f0743",
       "canonical": true,
-      "canonical_id": "2eab8b16968ae5b1",
+      "canonical_id": "16e849bbe13f0743",
       "apply_route": {
-        "best_apply_route": "foundit",
-        "apply_url": "https://www.foundit.in/job/software-engineer-ai-agents-tools-and-productivity-google-india-bengaluru-bangalore-49762289",
+        "best_apply_route": "unknown",
+        "apply_url": "https://www.iimjobs.com/j/agentic-ai-product-manager-1700985",
         "backup_urls": [],
-        "reason": "best route: foundit (priority 4)",
-        "risk": "medium"
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
       }
     },
     {
-      "title": "Director of Product",
+      "title": "Technical + Functional CLM Consultant/Product Manager - IT",
       "company": "",
       "location": "Bangalore",
-      "url": "https://www.foundit.in/job/director-of-product-ai-platform-aurigo-software-technologies-bengaluru-bangalore-49482285",
-      "apply_url": "https://www.foundit.in/job/director-of-product-ai-platform-aurigo-software-technologies-bengaluru-bangalore-49482285",
-      "description": "May 19, 2026 · Electrical Engineering Jobs Event Management Jobs Hotel Management Jobs HR Jobs Sales Jobs Jobs in Gulf Jobs in Singapore Jobs in Malaysia Jobs in Philippines Jobs in Hong Kong Jobs in Vietnam Jobs in Indonesia Jobs in Thailand Jobs in Dubai Jobs in UAE Last Updated: 19-05-2026 09:05:11 AM Home jobs in Bengaluru / Bangalore Director of Product - AI Platform",
-      "_source_type": "foundit",
-      "_phase": "B",
-      "_ontology": {
-        "seniority": "senior",
-        "archetype_match": 0.25,
-        "biz_model": "unknown",
-        "preferred_company_match": false
-      },
-      "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "82341edb4cacfe0c",
-      "canonical": true,
-      "canonical_id": "82341edb4cacfe0c",
-      "apply_route": {
-        "best_apply_route": "foundit",
-        "apply_url": "https://www.foundit.in/job/director-of-product-ai-platform-aurigo-software-technologies-bengaluru-bangalore-49482285",
-        "backup_urls": [],
-        "reason": "best route: foundit (priority 4)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "AI Product Engineer (Agentic AI / Vibe Coding) with 0",
-      "company": "",
-      "location": "Bangalore",
-      "url": "https://www.foundit.in/job/ai-product-engineer-agentic-ai-vibe-coding-kuubiik-india-47494538",
-      "apply_url": "https://www.foundit.in/job/ai-product-engineer-agentic-ai-vibe-coding-kuubiik-india-47494538",
-      "description": "Key Responsibilities. Build AI-native product features using modern AI development tools such as Cursor, Claude Code, Lovable, or similar environments. Design and develop AI agents and multi-agent systems capable of performing complex workflows.",
-      "_source_type": "foundit",
+      "url": "https://www.iimjobs.com/j/technical-functional-clm-consultant-product-manager-it-1700904",
+      "apply_url": "https://www.iimjobs.com/j/technical-functional-clm-consultant-product-manager-it-1700904",
+      "description": "Location: Bangalore, India - Experience: 7+ Years Role Overview: We are looking for a highly skilled Technical + Functional CLM Consultant / Product Manager with strong expertise in enterprise Contract Lifecycle Management (CLM), enterprise integrations, AI-driven automation, workflow optimization, and cloud-native architecture.",
+      "skills": [],
+      "_source_type": "iimjobs",
       "_phase": "B",
       "_ontology": {
         "seniority": "unknown",
-        "archetype_match": 0.25,
-        "biz_model": "unknown",
-        "preferred_company_match": false
-      },
-      "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "813c5c94e3c98008",
-      "canonical": true,
-      "canonical_id": "813c5c94e3c98008",
-      "apply_route": {
-        "best_apply_route": "foundit",
-        "apply_url": "https://www.foundit.in/job/ai-product-engineer-agentic-ai-vibe-coding-kuubiik-india-47494538",
-        "backup_urls": [],
-        "reason": "best route: foundit (priority 4)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "AI Product Engineer with 4",
-      "company": "",
-      "location": "Bangalore",
-      "url": "https://www.foundit.in/job/ai-product-engineer-fh-daata-gurugram-49289576",
-      "apply_url": "https://www.foundit.in/job/ai-product-engineer-fh-daata-gurugram-49289576",
-      "description": "We are building an AI-native document intelligence platform that transforms unstructured chaos into structured, auditable truth powered by multi-agent systems, human-in-the-loop workflows, and both frontier and open-source AI models.",
-      "_source_type": "foundit",
-      "_phase": "B",
-      "_ontology": {
-        "seniority": "unknown",
-        "archetype_match": 0.38,
-        "biz_model": "unknown",
-        "preferred_company_match": false
-      },
-      "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "73389550cf829150",
-      "canonical": true,
-      "canonical_id": "73389550cf829150",
-      "apply_route": {
-        "best_apply_route": "foundit",
-        "apply_url": "https://www.foundit.in/job/ai-product-engineer-fh-daata-gurugram-49289576",
-        "backup_urls": [],
-        "reason": "best route: foundit (priority 4)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "AI Engineer",
-      "company": "Reltio",
-      "location": "KA, IN",
-      "url": "https://in.indeed.com/viewjob?jk=c5fb16c7dfe41a22",
-      "apply_url": "https://in.indeed.com/viewjob?jk=c5fb16c7dfe41a22",
-      "url_type": "UNKNOWN",
-      "description": "At Reltio®, an SAP Company, we believe data should fuel your success in the enterprise AI era. Our Context Intelligence Platform turns fragmented data into a trusted, connected context so AI agents and systems can act with expert\\-level judgement at enterprise scale. Reltio’s cloud\\-native SaaS platform harmonizes, unifies, and governs data across sources and formats—including unstructured data—in real time, turning them into data assets that can be mobilized in milliseconds to any application, ",
-      "_source_type": "jobspy",
-      "_phase": "B",
-      "_ontology": {
-        "seniority": "unknown",
-        "archetype_match": 0.25,
+        "archetype_match": 0.29,
         "biz_model": "b2b",
         "preferred_company_match": false
       },
-      "_india_filter": "location ends with India country code",
-      "_canonical_fp": "f0242fa81695b963",
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "1ffe7bccbacf2c82",
       "canonical": true,
-      "canonical_id": "f0242fa81695b963",
-      "apply_route": {
-        "best_apply_route": "indeed",
-        "apply_url": "https://in.indeed.com/viewjob?jk=c5fb16c7dfe41a22",
-        "backup_urls": [],
-        "reason": "best route: indeed (priority 6)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "Senior AI Engineer",
-      "company": "Thoughtworks",
-      "location": "KA, IN",
-      "url": "https://in.indeed.com/viewjob?jk=d946d1a75a1d8fc0",
-      "apply_url": "https://in.indeed.com/viewjob?jk=d946d1a75a1d8fc0",
-      "url_type": "UNKNOWN",
-      "description": "AI Engineer : Senior Consultant\n\n\nWe are looking for an AI Engineer who can effectively leverage modern AI\\-powered\n\n\ndevelopment tools (e.g., GitHub Copilot, Cursor, Claude, etc.) and Agentic AI to accelerate\n\n\nsoftware development while maintaining high standards of code quality, scalability, and\n\n\nsecurity. This role sits at the intersection of software engineering and applied AI / Agentic AI\n\n\n— ideal for engineers who not only write code but also know how to collaborate with AI\n\n\nsystems to",
-      "_source_type": "jobspy",
-      "_phase": "B",
-      "_ontology": {
-        "seniority": "senior",
-        "archetype_match": 0.25,
-        "biz_model": "unknown",
-        "preferred_company_match": false
-      },
-      "_india_filter": "location ends with India country code",
-      "_canonical_fp": "9c2207512eaa4213",
-      "canonical": true,
-      "canonical_id": "9c2207512eaa4213",
-      "apply_route": {
-        "best_apply_route": "indeed",
-        "apply_url": "https://in.indeed.com/viewjob?jk=d946d1a75a1d8fc0",
-        "backup_urls": [],
-        "reason": "best route: indeed (priority 6)",
-        "risk": "medium"
-      }
-    },
-    {
-      "title": "Product Engineer (Bangalore) @ Bespoke Labs",
-      "company": "Bespokelabs",
-      "location": "Bangalore",
-      "url": "https://jobs.ashbyhq.com/bespokelabs/3751a4cb-bb4d-4113-afe6-9c87341f6739",
-      "apply_url": "https://jobs.ashbyhq.com/bespokelabs/3751a4cb-bb4d-4113-afe6-9c87341f6739",
-      "description": "As a Full Stack Developer, you will own end-to-end platforms powering core Bespoke Labs products. This is a high-agency role with direct impact on production systems used in AI training and execution.",
-      "_source_type": "google_jobs",
-      "_phase": "B",
-      "_ontology": {
-        "seniority": "unknown",
-        "archetype_match": 0.25,
-        "biz_model": "unknown",
-        "preferred_company_match": false
-      },
-      "_india_filter": "location contains bangalore",
-      "_canonical_fp": "edd482c7842159f6",
-      "canonical": true,
-      "canonical_id": "edd482c7842159f6",
-      "apply_route": {
-        "best_apply_route": "ashby",
-        "apply_url": "https://jobs.ashbyhq.com/bespokelabs/3751a4cb-bb4d-4113-afe6-9c87341f6739",
-        "backup_urls": [],
-        "reason": "best route: ashby (priority 2)",
-        "risk": "low"
-      }
-    },
-    {
-      "title": "AI Engineer",
-      "company": "Agentic AI & Automation",
-      "location": "Bangalore",
-      "url": "https://apply.workable.com/luxasia/j/CFF16F4372/",
-      "apply_url": "https://apply.workable.com/luxasia/j/CFF16F4372/",
-      "description": "Define prompt engineering standards, system prompt versioning, and model evaluation frameworks across all AI products Implement guardrails, fallback handling, and monitoring for all production AI agents to ensure safe and reliable operation Stay current on the AI landscape and actively bring relevant ideas and tools to the team's attention",
-      "_source_type": "google_jobs",
-      "_phase": "B",
-      "_ontology": {
-        "seniority": "unknown",
-        "archetype_match": 0.25,
-        "biz_model": "unknown",
-        "preferred_company_match": false
-      },
-      "_india_filter": "location contains bangalore",
-      "_canonical_fp": "b38fa38c74195413",
-      "canonical": true,
-      "canonical_id": "b38fa38c74195413",
+      "canonical_id": "1ffe7bccbacf2c82",
       "apply_route": {
         "best_apply_route": "unknown",
-        "apply_url": "https://apply.workable.com/luxasia/j/CFF16F4372/",
+        "apply_url": "https://www.iimjobs.com/j/technical-functional-clm-consultant-product-manager-it-1700904",
         "backup_urls": [],
         "reason": "best route: unknown (priority 9)",
         "risk": "high"
       }
     },
     {
-      "title": "Gen AI Engineer",
+      "title": "AI/ML Engineer (GenAI, Cloud ML",
       "company": "",
-      "location": "Bengaluru, Karnataka, India",
-      "url": "https://aijobs.net/job/gen-ai-engineer-bengaluru-karnataka-india-140607/",
-      "apply_url": "",
-      "url_type": "INDIVIDUAL_JOB",
-      "description": "Tasks Build and orchestrate llm based workflows Build document ingestion and extraction workflows Communicate insights using reports and presentations Debug defects and perform root cause analysis Define data requirements and evaluation metrics Design semantic search using vector embeddings Implement Retrieval-Augmented Generation architectures Manage generative ai model production pipelines Mentor junior team members Perform prompt engineering and pipeline design Process unstructured documents using aws extract Perks/Benefits N/A Skills/Tech-stack AWS Textract | Generative AI | Langchain | Language Models | Large Language Models | Machine Learning | Pinecone | Prompt engineering | PyTorch | RAG | Retrieval-Augmented Generation | Scikit-learn | Semantic Search | TensorFlow | Vector Databases | Vector embeddings Education Bachelor of Science | Master of Science Roles Engineer | GenAI Engineer | Learning Engineer | Machine Learning Engineer Regions Asia/Pacific Countries India States Karnataka, IN Cities Bengaluru, Karnataka, IN",
-      "skills": [
-        "AWS Textract",
-        "Generative AI",
-        "Langchain",
-        "Language Models",
-        "Large Language Models",
-        "Machine Learning",
-        "Pinecone",
-        "Prompt engineering",
-        "PyTorch",
-        "RAG",
-        "Retrieval-Augmented Generation",
-        "Scikit-learn",
-        "Semantic Search",
-        "TensorFlow",
-        "Vector Databases",
-        "Vector embeddings"
-      ],
-      "salary": "INR 2500K-4800K (estimate)",
-      "work_mode": "onsite",
-      "_source_type": "scrapegraph",
-      "_phase": "B",
-      "_ontology": {
-        "seniority": "unknown",
-        "archetype_match": 0.25,
-        "biz_model": "unknown",
-        "preferred_company_match": false
-      },
-      "_india_filter": "location contains bengaluru",
-      "_canonical_fp": "d5c101b6d9a58b73",
-      "canonical": true,
-      "canonical_id": "d5c101b6d9a58b73",
-      "apply_route": {
-        "best_apply_route": "unknown",
-        "apply_url": "https://aijobs.net/job/gen-ai-engineer-bengaluru-karnataka-india-140607/",
-        "backup_urls": [],
-        "reason": "best route: unknown (priority 9)",
-        "risk": "high"
-      }
-    },
-    {
-      "title": "Senior AI Product Engineer",
-      "company": "Neemtree",
       "location": "",
-      "url": "https://www.hirist.tech/j/senior-ai-product-engineer-1639483",
-      "apply_url": "",
+      "url": "https://cutshort.io/job/AI-ML-Engineer-GenAI-Cloud-ML-Bengaluru-Bangalore-Staffnixcom-puQDtt7P",
+      "apply_url": "https://cutshort.io/job/AI-ML-Engineer-GenAI-Cloud-ML-Bengaluru-Bangalore-Staffnixcom-puQDtt7P",
       "url_type": "INDIVIDUAL_JOB",
-      "description": "Role Overview : As a Senior AI Product Engineer, you will work across product, engineering, customer workflows, and AI-native systems to rapidly build and scale enterprise applications. You will own problems end-to-end : - Understanding customer pain points - Designing workflows - Building prototypes - Shipping production systems - Iterating based on real-world feedback This is a high-ownership engineering role with strong product involvement. We are looking for engineers who naturally think like builders. What You'll Do : - Design and build end-to-end product experiences and systems - Work directly with customers and internal teams to understand operational workflows - Rapidly prototype and iterate using modern AI development tools - Build production-grade applications and internal platforms - Contribute across frontend, backend, workflows, APIs, automation, and AI-assisted systems - Use AI tools aggressively to accelerate development, experimentation, and iteration - Drive product direction through technical and product intuition - Identify opportunities for automation and simplification across workflows - Help shape the future architecture of AI-native enterprise applications What We're Looking For : We are specifically looking for engineers who : - Have 6+ years of engineering experience Have built products or systems end-to-end - Have worked on projects with real users, customers, or monetization - Build side projects, experiments, tools, or products outside of work - Actively use AI tools in their daily workflow - Have strong product intuition alongside technical depth - Enjoy high ownership and fast execution - Are comfortable working across multiple parts of the stack - Prefer building and shipping over process-heavy environments Strong Signals - We value engineers who have : - Built and launched independent products or startups - Monetized side projects or tools - Created internal tools that improved workflows significantly - Used AI tools to dramatically increase development velocity - Strong curiosity around AI-native software development - Demonstrated ability to move from idea prototype production quickly Technologies Workflows You may work with : - AI-assisted development tools - Large language model workflows - Full-stack product systems - Enterprise SaaS applications - Video AI and operational intelligence platforms - APIs, automation systems, and distributed infrastructure Experience with tools such as : - ChatGPT Claude Cursor Replit Lovable v0 GitHub Copilot - AI coding agents is highly valued. Successful engineers in this role : - Ship quickly and iterate continuously - Think deeply about customer workflows and usability - Build systems with strong product intuition - Use AI to meaningfully improve execution speed - Operate independently with high ownership - Contribute beyond pure implementation into product direction and strategy Experience Range : 6 - 10 years Educational Qualifications : B.Tech/B",
-      "skills": [
-        "AI Integration",
-        "Code Generation Tools",
-        "IT Product Architecture",
-        "System Design",
-        "SaaS Applications",
-        "Workflows"
-      ],
+      "description": "AI/ML Engineer (GenAI, Cloud ML\nat\nStaffnixcom\nApply to this job\nAI/ML Engineer (GenAI, Cloud ML\nStaffnixcom\nCompany\nHome\nAI/ML Engineer (GenAI, Cloud ML\nat\nStaffnixcom\nPosted by\nMayank Choudhary\nApply to this job\n3\n- 5 yrs\n₹20L - ₹25L / yr\nBengaluru (Bangalore)\nSkills\nArtificial Intelligence (AI)\nStrong AI/ML Engineer Profile\nMandatory (Experience) : Must have 3+ years of experience in software engineering with atleast 1+ years in GenAI application development and production deployment\nMandatory (GenAI Application Development): Must have proven experience building GenAI applications covering RAG pipelines, multi-agent systems, Text2SQL, and fine-tuning\nMandatory (Production GenAI Deployment): Must have expertise deploying production-grade GenAI applications including model evaluation, optimisation, and ownership of full production rollouts\nMandatory (ML & Data Science Tooling): Must have strong hands-on experience with core ML and data science tools including pandas, scikit-learn, and PyTorch\nMandatory (Cloud ML Infrastructure): Must have experience building and deploying production-grade ML workloads on at least one of AWS, Azure, or GCP\nMandatory (Communication): Must have strong English communication skills with the ability to work across time zones and collaborate cross-functionally with product, engineering, and business stakeholders\nMandatory (Note 1) : Role is Hybrid, WFH flexibility as well upto 6 days a month\nMandatory (Note 2) : CTC is inclusive of 10% variable\nMandatory (Note 3): Candidates should be available to join within May 31st or June first week max\nRead more\nUsers love Cutshort\nRead about what our users have to say about finding their next opportunity on Cutshort.\nPrevious\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt",
+      "skills": [],
       "salary": "",
-      "work_mode": "remote",
-      "_source_type": "scrapegraph",
+      "work_mode": "",
+      "_source_type": "generic_http",
       "_phase": "B",
       "_ontology": {
-        "seniority": "senior",
-        "archetype_match": 0.25,
-        "biz_model": "b2b",
+        "seniority": "unknown",
+        "archetype_match": 0.29,
+        "biz_model": "unknown",
         "preferred_company_match": false
       },
       "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "b716a1f7b0abab14",
+      "_canonical_fp": "c968289d85d43d07",
       "canonical": true,
-      "canonical_id": "b716a1f7b0abab14",
+      "canonical_id": "c968289d85d43d07",
       "apply_route": {
-        "best_apply_route": "unknown",
-        "apply_url": "https://www.hirist.tech/j/senior-ai-product-engineer-1639483",
+        "best_apply_route": "cutshort",
+        "apply_url": "https://cutshort.io/job/AI-ML-Engineer-GenAI-Cloud-ML-Bengaluru-Bangalore-Staffnixcom-puQDtt7P",
         "backup_urls": [],
-        "reason": "best route: unknown (priority 9)",
-        "risk": "high"
+        "reason": "best route: cutshort (priority 4)",
+        "risk": "medium"
       }
     }
   ]

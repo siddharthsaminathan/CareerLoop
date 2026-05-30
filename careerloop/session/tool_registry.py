@@ -690,63 +690,47 @@ class ToolRegistry:
         )
 
     def review_job(self, action: Action, state: UserJourneyState, context: Dict[str, Any]) -> ResponseEnvelope:
-        import os as _os
         job_id = context.get("active_job_id")
         if not job_id:
             return ResponseEnvelope(response_type="error", text="No job selected.")
 
         try:
-            from careerloop.application_ledger import ApplicationLedger
-            root = _os.path.realpath(_os.path.join(_os.path.dirname(__file__), "..", ".."))
-            ledger = ApplicationLedger(root)
-            job = next((e for e in ledger.entries if e.get("job_id") == job_id), None)
+            with self.session_store.db_manager.get_connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        """
+                        SELECT j.id, j.title, j.company_name, j.location, r.fit_score, 
+                               r.match_status, j.role_summary, j.apply_url, j.source_url
+                        FROM careerloop.jobs j
+                        LEFT JOIN careerloop.user_job_relationships r 
+                            ON r.job_id = j.id AND r.user_id::text = %s
+                        WHERE j.id = %s LIMIT 1
+                        """,
+                        (action.user_id, job_id)
+                    )
+                    job = cur.fetchone()
 
             if not job:
-                return ResponseEnvelope(response_type="error", text="Job not found in ledger.")
-
-            # Repository V2: supplement with richer job detail from global cache
-            repo_job = None
-            if _REPO_V2 and JobRepository:
-                try:
-                    fingerprint = job.get("job_fingerprint") or job.get("job_id")
-                    if fingerprint:
-                        repo_job = JobRepository.find_by_fingerprint(fingerprint)
-                        if repo_job and hasattr(repo_job, '__dict__') and not isinstance(repo_job, dict):
-                            repo_job = {k: v for k, v in repo_job.__dict__.items() if not k.startswith('_')}
-                except Exception as e:
-                    logger.debug(f"JobRepository unavailable: {e}")
-
-            breakdown = job.get("fit_breakdown", {})
-            if isinstance(breakdown, str):
-                try:
-                    breakdown = json.loads(breakdown)
-                except Exception:
-                    breakdown = {}
+                return ResponseEnvelope(response_type="error", text="Job not found in database.")
 
             cards = [
                 {"label": "Title", "value": job.get("title", "N/A")},
-                {"label": "Company", "value": job.get("company", "N/A")},
+                {"label": "Company", "value": job.get("company_name", "N/A")},
                 {"label": "Location", "value": job.get("location", "N/A")},
                 {"label": "Fit Score", "value": f"{(job.get('fit_score') or 0):.1f}/100"},
+                {"label": "Status", "value": (job.get("match_status") or "matched").upper()},
             ]
 
-            # Enrich with repository data if available
-            if repo_job:
-                if repo_job.get("role_summary"):
-                    cards.append({"label": "Role Summary", "value": str(repo_job["role_summary"])[:500]})
-                if repo_job.get("source_url"):
-                    cards.append({"label": "Source URL", "value": str(repo_job["source_url"])})
-                if repo_job.get("apply_url"):
-                    cards.append({"label": "Apply URL", "value": str(repo_job["apply_url"])})
-
-            if isinstance(breakdown, dict):
-                for k, v in breakdown.items():
-                    if k not in ("rejected",):
-                        cards.append({"label": k.replace("_", " ").title(), "value": str(v)})
+            if job.get("role_summary"):
+                cards.append({"label": "Role Summary", "value": str(job["role_summary"])[:500]})
+            if job.get("apply_url"):
+                cards.append({"label": "Apply URL", "value": str(job["apply_url"])})
+            if job.get("source_url"):
+                cards.append({"label": "Source URL", "value": str(job["source_url"])})
 
             return ResponseEnvelope(response_type="card", text="", cards=cards)
         except Exception as e:
-            logger.error(f"Error reviewing job {job_id}: {e}")
+            logger.error(f"Error reviewing job {job_id} from PostgreSQL: {e}")
             return ResponseEnvelope(response_type="error", text=f"Error loading job: {e}")
 
     def skip_job(self, action: Action, state: UserJourneyState, context: Dict[str, Any]) -> ResponseEnvelope:
@@ -755,15 +739,27 @@ class ToolRegistry:
             return ResponseEnvelope(response_type="error", text="Please select a job first.")
         
         try:
-            from careerloop.application_ledger import ApplicationLedger
-            ledger = ApplicationLedger(self.session_store.db_manager._sqlite_path if hasattr(self.session_store.db_manager, "_sqlite_path") else None)
-            ledger.transition(job_id, "SKIPPED", "User skipped this job card.")
+            with self.session_store.db_manager.get_connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        """
+                        INSERT INTO careerloop.user_job_relationships
+                            (user_id, job_id, match_status, swiped_action, created_at, updated_at)
+                        VALUES (%s, %s, 'skipped', 'left', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                        ON CONFLICT (user_id, job_id) DO UPDATE SET
+                            match_status = EXCLUDED.match_status,
+                            swiped_action = EXCLUDED.swiped_action,
+                            updated_at   = CURRENT_TIMESTAMP
+                        """,
+                        (action.user_id, job_id),
+                    )
         except Exception as e:
-            logger.error(f"Error skipping job {job_id}: {e}")
+            logger.error(f"Error skipping job {job_id} in PostgreSQL: {e}")
+            return ResponseEnvelope(response_type="error", text=f"Failed to skip job: {e}")
 
         return ResponseEnvelope(
             response_type="text",
-            text="Job marked as skipped in ledger.",
+            text="Job marked as skipped (PostgreSQL updated).",
             artifact_context_updates={"active_artifact_type": "daily_brief"}
         )
 
@@ -773,13 +769,28 @@ class ToolRegistry:
             return ResponseEnvelope(response_type="error", text="Please select a job first.")
         
         try:
-            from careerloop.application_ledger import ApplicationLedger
-            ledger = ApplicationLedger(self.session_store.db_manager._sqlite_path if hasattr(self.session_store.db_manager, "_sqlite_path") else None)
-            ledger.transition(job_id, "SAVED", "User saved this job card to pipeline.")
+            with self.session_store.db_manager.get_connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        """
+                        INSERT INTO careerloop.user_job_relationships
+                            (user_id, job_id, match_status, swiped_action, created_at, updated_at)
+                        VALUES (%s, %s, 'saved', 'right', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                        ON CONFLICT (user_id, job_id) DO UPDATE SET
+                            match_status = EXCLUDED.match_status,
+                            swiped_action = EXCLUDED.swiped_action,
+                            updated_at   = CURRENT_TIMESTAMP
+                        """,
+                        (action.user_id, job_id),
+                    )
         except Exception as e:
-            logger.error(f"Error saving job {job_id}: {e}")
+            logger.error(f"Error saving job {job_id} to PostgreSQL: {e}")
+            return ResponseEnvelope(response_type="error", text=f"Failed to save job: {e}")
 
-        return ResponseEnvelope(response_type="text", text="Job saved to pipeline.")
+        return ResponseEnvelope(
+            response_type="text", 
+            text="Job saved to pipeline (PostgreSQL updated)."
+        )
 
     def show_company_intel(self, action: Action, state: UserJourneyState, context: Dict[str, Any]) -> ResponseEnvelope:
         job_id = context.get("active_job_id")

@@ -351,39 +351,65 @@ def initiate_scan(user_id: str, db, mode: str = "default") -> str:
     Raises 409 if the user already has a RUNNING scan.
     """
     # ── Concurrency guard: one active scan per user ───────────────────────
-    existing = _has_running_scan(user_id)
-    if existing:
-        logger.warning("Scan blocked: user %s already has RUNNING scan %s", user_id[:8], existing)
-        raise APIError(
-            f"A scan is already running (ID: {existing}). Please wait for it to complete.",
-            status_code=409, code="scan_already_running",
-        )
+    with _active_scans_lock:
+        existing = _active_scans.get(user_id)
+        if not existing:
+            # Fallback DB check under the same memory lock context
+            try:
+                with db.get_connection() as conn:
+                    with conn.cursor() as cur:
+                        cur.execute(
+                            """
+                            SELECT run_id FROM careerloop.background_runs 
+                            WHERE user_id = %s AND status = 'RUNNING' AND run_type = 'scan' 
+                            ORDER BY started_at DESC LIMIT 1
+                            """,
+                            (user_id,),
+                        )
+                        row = cur.fetchone()
+                        if row:
+                            existing = row["run_id"]
+            except Exception:
+                pass
 
-    # ── Global semaphore: at most 3 concurrent workers ────────────────────
-    if not _worker_semaphore.acquire(blocking=False):
-        logger.warning("Scan blocked: too many concurrent workers (max 3)")
-        raise APIError(
-            "Our job scanners are busy right now. Please try again in a few minutes.",
-            status_code=503, code="scan_busy",
-        )
+        if existing:
+            logger.warning("Scan blocked atomically: user %s already has RUNNING scan %s", user_id[:8], existing)
+            raise APIError(
+                f"A scan is already running (ID: {existing}). Please wait for it to complete.",
+                status_code=409, code="scan_already_running",
+            )
 
-    run_id = uuid.uuid4().hex[:12]
+        # ── Global semaphore: at most 3 concurrent workers ────────────────────
+        if not _worker_semaphore.acquire(blocking=False):
+            logger.warning("Scan blocked: too many concurrent workers (max 3)")
+            raise APIError(
+                "Our job scanners are busy right now. Please try again in a few minutes.",
+                status_code=503, code="scan_busy",
+            )
+
+        run_id = uuid.uuid4().hex[:12]
+        
+        # Atomically register in the active-scans tracker under lock
+        _active_scans[user_id] = run_id
 
     # Write the initial row synchronously so SSE can start polling immediately.
-    with db.get_connection() as conn:
-        with conn.cursor() as cur:
-            cur.execute(
-                """
-                INSERT INTO careerloop.background_runs (run_id, user_id, run_type, status, started_at)
-                VALUES (%s, %s, 'scan', 'RUNNING', NOW())
-                """,
-                (run_id, user_id),
-            )
-            _emit(cur, run_id, "Scan queued — starting shortly...", "QUEUED")
-
-    # Register in the active-scans tracker
-    with _active_scans_lock:
-        _active_scans[user_id] = run_id
+    try:
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO careerloop.background_runs (run_id, user_id, run_type, status, started_at)
+                    VALUES (%s, %s, 'scan', 'RUNNING', NOW())
+                    """,
+                    (run_id, user_id),
+                )
+                _emit(cur, run_id, "Scan queued — starting shortly...", "QUEUED")
+    except Exception as e:
+        with _active_scans_lock:
+            _active_scans.pop(user_id, None)
+        _worker_semaphore.release()
+        logger.error("Scan initiation database insert failed: %s", e)
+        raise APIError("Failed to initialize scan in database.", status_code=500, code="scan_init_failed")
 
     # Pass DATABASE_URL explicitly — threads don't inherit uvicorn env reliably
     import os as _os
@@ -593,7 +619,7 @@ def _build_from_cache(user_id: str, db, limit: int = 10) -> list:
                            r.fit_score, r.route_recommendation
                     FROM careerloop.jobs j
                     LEFT JOIN careerloop.user_job_relationships r
-                        ON r.job_id::text = j.job_id::text AND r.user_id::text = %s
+                        ON r.job_id = j.id AND r.user_id::text = %s
                     WHERE COALESCE(j.status, 'active') = 'active'
                       AND (j.location ILIKE '%india%'
                            OR j.location ILIKE '%bangalore%'
@@ -944,6 +970,24 @@ def _append_to_brief(user_id: str, run_id: str, scored_items: list, db) -> int:
     scan_more_items = _persist_scan_jobs(db, user_id, scored_items)
     # After _persist_scan_jobs, each job dict has real job_id set.
 
+    # ── Filter out jobs the user already saved or skipped ────────────────────
+    try:
+        with db.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "SELECT job_id FROM careerloop.user_job_relationships WHERE user_id = %s AND match_status IN ('saved','skipped')",
+                    (user_id,),
+                )
+                excluded = {str(r["job_id"]) for r in cur.fetchall() if r.get("job_id")}
+        if excluded:
+            scan_more_items = [
+                item for item in scan_more_items
+                if str(item.get("job", item).get("job_id", item.get("job", item).get("id", ""))) not in excluded
+            ]
+            logger.info("Scan-more: filtered %d already-answered jobs for user %s", len(excluded), user_id[:8])
+    except Exception:
+        pass
+
     try:
         with db.get_connection() as conn:
             with conn.cursor() as cur:
@@ -1184,8 +1228,11 @@ def _execute_scan(user_id: str, run_id: str, db):
                     j = item.get("job", item)
                     if fp and (j.get("url", "") + j.get("title", "")).encode("utf-8").hex()[:16] == fp:
                         item["llm_score"] = llm_r.get("overall_score", item.get("score", 0))
+                        item["score"] = item["llm_score"]  # Propagate rescore downstream
                         item["llm_detail"] = llm_r
                         break
+            # Sort top_jobs again to ensure the list is ranked by the new LLM scores
+            top_jobs.sort(key=lambda x: x.get("score", 0), reverse=True)
             with db.get_connection() as conn:
                 with conn.cursor() as cur:
                     _emit(cur, run_id, f"Deep LLM scoring complete for {len(_llm_results)} jobs.",
@@ -1260,6 +1307,22 @@ def _execute_scan(user_id: str, run_id: str, db):
         return
 
     brief_id = str(uuid.uuid4())
+
+    # ── Filter out jobs the user already acted on ────────────────────────────
+    # Jobs the user saved or skipped should not reappear in subsequent briefs.
+    with db.get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                "SELECT job_id FROM careerloop.user_job_relationships WHERE user_id = %s AND match_status IN ('saved','skipped')",
+                (user_id,),
+            )
+            excluded = {str(r["job_id"]) for r in cur.fetchall() if r.get("job_id")}
+    if excluded:
+        top_jobs = [
+            item for item in top_jobs
+            if str(item.get("job", item).get("job_id", item.get("job", item).get("id", ""))) not in excluded
+        ]
+        logger.info("Filtered %d already-answered jobs from brief for user %s", len(excluded), user_id[:8])
 
     with db.get_connection() as conn:
         with conn.cursor() as cur:

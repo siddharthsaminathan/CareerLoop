@@ -1,0 +1,885 @@
+========================================
+CareerLoop API — started at 2026-05-30_13-14-56
+========================================
+INFO:     Will watch for changes in these directories: ['/Users/siddharthsaminathan/Projects/CareerLoop']
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     Started reloader process [33961] using WatchFiles
+INFO:     Started server process [33966]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:62287 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62301 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62301 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 06ae5e0b run_id 2d9e551108d9 mode=default
+INFO:     127.0.0.1:62301 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62301 - "GET /v1/scans/2d9e551108d9/events HTTP/1.1" 200 OK
+INFO:watchfiles.main:3 changes detected
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user 06ae5e0b
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestCorp India': invalid input syntax for type uuid: "testcorp-india"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testcorp-...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestGlobal Corp': invalid input syntax for type uuid: "testglobal-corp"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testgloba...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'BigRio': invalid input syntax for type uuid: "bigrio"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'bigrio' O...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Moative': invalid input syntax for type uuid: "moative"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'moative' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'us healthcare company': invalid input syntax for type uuid: "us-healthcare-company"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'us-health...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'ZakApps software pvt ltd': invalid input syntax for type uuid: "zakapps-software-pvt-ltd"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'zakapps-s...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Niki.ai': invalid input syntax for type uuid: "niki-ai"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'niki-ai' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cargill Business Services': invalid input syntax for type uuid: "cargill-business-services"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cargill-b...
+                                                             ^
+ — using defaults
+INFO:careerloop_api.services.scan.persist:Persisted 9 jobs to careerloop.jobs for user 06ae5e0b
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 19 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan:Scan completed: run_id=2d9e551108d9 user=06ae5e0b top_jobs=9
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=2d9e551108d9 user=06ae5e0b — guards released
+INFO:     127.0.0.1:62320 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62320 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user e5353486 run_id e2a0a4c12118 mode=default
+INFO:     127.0.0.1:62320 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62320 - "GET /v1/scans/e2a0a4c12118/events HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user e5353486
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestCorp India': invalid input syntax for type uuid: "testcorp-india"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testcorp-...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestGlobal Corp': invalid input syntax for type uuid: "testglobal-corp"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testgloba...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'BigRio': invalid input syntax for type uuid: "bigrio"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'bigrio' O...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Moative': invalid input syntax for type uuid: "moative"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'moative' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'us healthcare company': invalid input syntax for type uuid: "us-healthcare-company"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'us-health...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'ZakApps software pvt ltd': invalid input syntax for type uuid: "zakapps-software-pvt-ltd"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'zakapps-s...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Niki.ai': invalid input syntax for type uuid: "niki-ai"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'niki-ai' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cargill Business Services': invalid input syntax for type uuid: "cargill-business-services"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cargill-b...
+                                                             ^
+ — using defaults
+INFO:careerloop_api.services.scan.persist:Persisted 9 jobs to careerloop.jobs for user e5353486
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 19 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan:Scan completed: run_id=e2a0a4c12118 user=e5353486 top_jobs=9
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=e2a0a4c12118 user=e5353486 — guards released
+INFO:     127.0.0.1:62340 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62340 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user fca7a00b run_id 6d1a475d08c8 mode=default
+INFO:     127.0.0.1:62340 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62340 - "GET /v1/scans/6d1a475d08c8/events HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user fca7a00b
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestCorp India': invalid input syntax for type uuid: "testcorp-india"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testcorp-...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestGlobal Corp': invalid input syntax for type uuid: "testglobal-corp"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testgloba...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'BigRio': invalid input syntax for type uuid: "bigrio"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'bigrio' O...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Moative': invalid input syntax for type uuid: "moative"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'moative' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'us healthcare company': invalid input syntax for type uuid: "us-healthcare-company"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'us-health...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'ZakApps software pvt ltd': invalid input syntax for type uuid: "zakapps-software-pvt-ltd"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'zakapps-s...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Niki.ai': invalid input syntax for type uuid: "niki-ai"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'niki-ai' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cargill Business Services': invalid input syntax for type uuid: "cargill-business-services"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cargill-b...
+                                                             ^
+ — using defaults
+INFO:careerloop_api.services.scan.persist:Persisted 9 jobs to careerloop.jobs for user fca7a00b
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 19 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan:Scan completed: run_id=6d1a475d08c8 user=fca7a00b top_jobs=9
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=6d1a475d08c8 user=fca7a00b — guards released
+INFO:careerloop.session.session_store:Session recovery: user fca7a00b-01c has onboarding_complete=TRUE, upgrading to PROFILE_READY
+INFO:     127.0.0.1:62355 - "POST /v1/briefs/faf2b0c3-18bc-47c5-a841-64ffba800567/items/1/select HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62355 - "POST /v1/jobs/a71372c6-1e3a-485a-b039-0ad238fda547/save HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62355 - "GET /v1/jobs/a71372c6-1e3a-485a-b039-0ad238fda547 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62355 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62365 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62365 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user b4839b37 run_id b595c0330b2c mode=default
+INFO:     127.0.0.1:62365 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62365 - "GET /v1/scans/b595c0330b2c/events HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user b4839b37
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestCorp India': invalid input syntax for type uuid: "testcorp-india"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testcorp-...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestGlobal Corp': invalid input syntax for type uuid: "testglobal-corp"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testgloba...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'BigRio': invalid input syntax for type uuid: "bigrio"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'bigrio' O...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Moative': invalid input syntax for type uuid: "moative"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'moative' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'us healthcare company': invalid input syntax for type uuid: "us-healthcare-company"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'us-health...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'ZakApps software pvt ltd': invalid input syntax for type uuid: "zakapps-software-pvt-ltd"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'zakapps-s...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Niki.ai': invalid input syntax for type uuid: "niki-ai"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'niki-ai' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cargill Business Services': invalid input syntax for type uuid: "cargill-business-services"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cargill-b...
+                                                             ^
+ — using defaults
+INFO:careerloop_api.services.scan.persist:Persisted 9 jobs to careerloop.jobs for user b4839b37
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 19 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan:Scan completed: run_id=b595c0330b2c user=b4839b37 top_jobs=9
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=b595c0330b2c user=b4839b37 — guards released
+INFO:careerloop.session.session_store:Session recovery: user b4839b37-cc0 has onboarding_complete=TRUE, upgrading to PROFILE_READY
+INFO:     127.0.0.1:62380 - "POST /v1/briefs/82238dbb-2caa-4590-bd0b-ed4bee2acdc1/items/1/select HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62380 - "POST /v1/jobs/a71372c6-1e3a-485a-b039-0ad238fda547/save HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62380 - "GET /v1/jobs/a71372c6-1e3a-485a-b039-0ad238fda547 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62380 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user b4839b37 run_id 9002f54ca766 mode=default
+INFO:     127.0.0.1:62382 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user b4839b37 run_id e9a3009c6e3c mode=default
+INFO:     127.0.0.1:62383 - "POST /v1/scans HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user b4839b37
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user b4839b37
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestCorp India': invalid input syntax for type uuid: "testcorp-india"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testcorp-...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestCorp India': invalid input syntax for type uuid: "testcorp-india"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testcorp-...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestGlobal Corp': invalid input syntax for type uuid: "testglobal-corp"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testgloba...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestGlobal Corp': invalid input syntax for type uuid: "testglobal-corp"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testgloba...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'BigRio': invalid input syntax for type uuid: "bigrio"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'bigrio' O...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'BigRio': invalid input syntax for type uuid: "bigrio"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'bigrio' O...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Moative': invalid input syntax for type uuid: "moative"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'moative' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Moative': invalid input syntax for type uuid: "moative"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'moative' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'us healthcare company': invalid input syntax for type uuid: "us-healthcare-company"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'us-health...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'us healthcare company': invalid input syntax for type uuid: "us-healthcare-company"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'us-health...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'ZakApps software pvt ltd': invalid input syntax for type uuid: "zakapps-software-pvt-ltd"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'zakapps-s...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'ZakApps software pvt ltd': invalid input syntax for type uuid: "zakapps-software-pvt-ltd"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'zakapps-s...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Niki.ai': invalid input syntax for type uuid: "niki-ai"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'niki-ai' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Niki.ai': invalid input syntax for type uuid: "niki-ai"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'niki-ai' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cargill Business Services': invalid input syntax for type uuid: "cargill-business-services"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cargill-b...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cargill Business Services': invalid input syntax for type uuid: "cargill-business-services"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cargill-b...
+                                                             ^
+ — using defaults
+ERROR:careerloop_api.services.scan:_emit failed for run 9002f54ca766 (event_type=CANDIDATE_MATCHED): deadlock detected
+DETAIL:  Process 535076 waits for RowShareLock on relation 202296 of database 5; blocked by process 535083.
+Process 535083 waits for AccessExclusiveLock on relation 202312 of database 5; blocked by process 535076.
+HINT:  See server log for query details.
+
+ERROR:careerloop_api.services.scan:_emit failed for run e9a3009c6e3c (event_type=CANDIDATE_MATCHED): deadlock detected
+DETAIL:  Process 535056 waits for RowShareLock on relation 202296 of database 5; blocked by process 535083.
+Process 535083 waits for AccessExclusiveLock on relation 202312 of database 5; blocked by process 535056.
+HINT:  See server log for query details.
+
+INFO:careerloop_api.services.scan.persist:Persisted 9 jobs to careerloop.jobs for user b4839b37
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 19 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan.persist:Persisted 9 jobs to careerloop.jobs for user b4839b37
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 19 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan:Scan completed: run_id=e9a3009c6e3c user=b4839b37 top_jobs=9
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=e9a3009c6e3c user=b4839b37 — guards released
+INFO:careerloop_api.services.scan:Scan completed: run_id=9002f54ca766 user=b4839b37 top_jobs=9
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=9002f54ca766 user=b4839b37 — guards released
+INFO:     127.0.0.1:62405 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62405 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 1263a701 run_id 098778dfce1e mode=default
+INFO:     127.0.0.1:62405 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62405 - "GET /v1/scans/098778dfce1e/events HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user 1263a701
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestCorp India': invalid input syntax for type uuid: "testcorp-india"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testcorp-...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestGlobal Corp': invalid input syntax for type uuid: "testglobal-corp"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testgloba...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'BigRio': invalid input syntax for type uuid: "bigrio"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'bigrio' O...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Moative': invalid input syntax for type uuid: "moative"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'moative' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'us healthcare company': invalid input syntax for type uuid: "us-healthcare-company"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'us-health...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'ZakApps software pvt ltd': invalid input syntax for type uuid: "zakapps-software-pvt-ltd"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'zakapps-s...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Niki.ai': invalid input syntax for type uuid: "niki-ai"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'niki-ai' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cargill Business Services': invalid input syntax for type uuid: "cargill-business-services"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cargill-b...
+                                                             ^
+ — using defaults
+INFO:careerloop_api.services.scan.persist:Persisted 9 jobs to careerloop.jobs for user 1263a701
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 19 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan:Scan completed: run_id=098778dfce1e user=1263a701 top_jobs=9
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=098778dfce1e user=1263a701 — guards released
+INFO:careerloop.session.session_store:Session recovery: user 1263a701-6e3 has onboarding_complete=TRUE, upgrading to PROFILE_READY
+INFO:     127.0.0.1:62419 - "POST /v1/briefs/1ffffd71-5d8a-4a53-9328-b88aa9ef3969/items/1/select HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62419 - "POST /v1/jobs/a71372c6-1e3a-485a-b039-0ad238fda547/save HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62419 - "GET /v1/jobs/a71372c6-1e3a-485a-b039-0ad238fda547 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62419 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 1263a701 run_id dfedc6f5d2ff mode=default
+INFO:     127.0.0.1:62422 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 1263a701 run_id e136856dd738 mode=default
+INFO:     127.0.0.1:62421 - "POST /v1/scans HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user 1263a701
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user 1263a701
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestCorp India': invalid input syntax for type uuid: "testcorp-india"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testcorp-...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestCorp India': invalid input syntax for type uuid: "testcorp-india"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testcorp-...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestGlobal Corp': invalid input syntax for type uuid: "testglobal-corp"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testgloba...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestGlobal Corp': invalid input syntax for type uuid: "testglobal-corp"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testgloba...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'BigRio': invalid input syntax for type uuid: "bigrio"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'bigrio' O...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'BigRio': invalid input syntax for type uuid: "bigrio"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'bigrio' O...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Moative': invalid input syntax for type uuid: "moative"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'moative' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Moative': invalid input syntax for type uuid: "moative"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'moative' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'us healthcare company': invalid input syntax for type uuid: "us-healthcare-company"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'us-health...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'us healthcare company': invalid input syntax for type uuid: "us-healthcare-company"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'us-health...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'ZakApps software pvt ltd': invalid input syntax for type uuid: "zakapps-software-pvt-ltd"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'zakapps-s...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'ZakApps software pvt ltd': invalid input syntax for type uuid: "zakapps-software-pvt-ltd"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'zakapps-s...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Niki.ai': invalid input syntax for type uuid: "niki-ai"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'niki-ai' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Niki.ai': invalid input syntax for type uuid: "niki-ai"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'niki-ai' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cargill Business Services': invalid input syntax for type uuid: "cargill-business-services"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cargill-b...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cargill Business Services': invalid input syntax for type uuid: "cargill-business-services"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cargill-b...
+                                                             ^
+ — using defaults
+INFO:careerloop_api.services.scan.persist:Persisted 9 jobs to careerloop.jobs for user 1263a701
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 19 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan.persist:Persisted 9 jobs to careerloop.jobs for user 1263a701
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 19 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan:Scan completed: run_id=dfedc6f5d2ff user=1263a701 top_jobs=9
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=dfedc6f5d2ff user=1263a701 — guards released
+INFO:careerloop_api.services.scan:Scan completed: run_id=e136856dd738 user=1263a701 top_jobs=9
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=e136856dd738 user=1263a701 — guards released
+INFO:     127.0.0.1:62731 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user cf8ea6c0 run_id d88d40806baa mode=default
+INFO:     127.0.0.1:62731 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62731 - "GET /v1/scans/d88d40806baa/events HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user cf8ea6c0
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestCorp India': invalid input syntax for type uuid: "testcorp-india"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testcorp-...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestGlobal Corp': invalid input syntax for type uuid: "testglobal-corp"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testgloba...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'BigRio': invalid input syntax for type uuid: "bigrio"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'bigrio' O...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Moative': invalid input syntax for type uuid: "moative"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'moative' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'us healthcare company': invalid input syntax for type uuid: "us-healthcare-company"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'us-health...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'ZakApps software pvt ltd': invalid input syntax for type uuid: "zakapps-software-pvt-ltd"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'zakapps-s...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Niki.ai': invalid input syntax for type uuid: "niki-ai"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'niki-ai' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cargill Business Services': invalid input syntax for type uuid: "cargill-business-services"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cargill-b...
+                                                             ^
+ — using defaults
+INFO:careerloop_api.services.scan.persist:Persisted 9 jobs to careerloop.jobs for user cf8ea6c0
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 19 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan:Scan completed: run_id=d88d40806baa user=cf8ea6c0 top_jobs=9
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=d88d40806baa user=cf8ea6c0 — guards released
+INFO:     127.0.0.1:62745 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62745 - "POST /v1/jobs/a71372c6-1e3a-485a-b039-0ad238fda547/save HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62745 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62745 - "GET /v1/jobs/a71372c6-1e3a-485a-b039-0ad238fda547 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62805 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 20858194 run_id 04a0b08ae957 mode=default
+INFO:     127.0.0.1:62805 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62805 - "GET /v1/scans/04a0b08ae957/events HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user 20858194
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestCorp India': invalid input syntax for type uuid: "testcorp-india"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testcorp-...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestGlobal Corp': invalid input syntax for type uuid: "testglobal-corp"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testgloba...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'BigRio': invalid input syntax for type uuid: "bigrio"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'bigrio' O...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Moative': invalid input syntax for type uuid: "moative"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'moative' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'us healthcare company': invalid input syntax for type uuid: "us-healthcare-company"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'us-health...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'ZakApps software pvt ltd': invalid input syntax for type uuid: "zakapps-software-pvt-ltd"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'zakapps-s...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Niki.ai': invalid input syntax for type uuid: "niki-ai"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'niki-ai' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cargill Business Services': invalid input syntax for type uuid: "cargill-business-services"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cargill-b...
+                                                             ^
+ — using defaults
+INFO:careerloop_api.services.scan.persist:Persisted 9 jobs to careerloop.jobs for user 20858194
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 19 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan:Scan completed: run_id=04a0b08ae957 user=20858194 top_jobs=9
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=04a0b08ae957 user=20858194 — guards released
+INFO:     127.0.0.1:62820 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62820 - "POST /v1/jobs/a71372c6-1e3a-485a-b039-0ad238fda547/save HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62820 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/scan_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [33966]
+INFO:watchfiles.main:3 changes detected
+INFO:     Started server process [34496]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/job_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [34496]
+INFO:watchfiles.main:3 changes detected
+INFO:     Started server process [34498]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/scan_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [34498]
+INFO:watchfiles.main:3 changes detected
+INFO:     Started server process [34500]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop/session/tool_registry.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [34500]
+INFO:     Started server process [34503]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop/session/tool_registry.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [34503]
+INFO:     Started server process [34504]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:62888 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user b54b9a20 run_id 99909a5bfcf2 mode=default
+INFO:     127.0.0.1:62888 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62888 - "GET /v1/scans/99909a5bfcf2/events HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user b54b9a20
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestCorp India': invalid input syntax for type uuid: "testcorp-india"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testcorp-...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestGlobal Corp': invalid input syntax for type uuid: "testglobal-corp"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testgloba...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'BigRio': invalid input syntax for type uuid: "bigrio"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'bigrio' O...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Moative': invalid input syntax for type uuid: "moative"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'moative' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'us healthcare company': invalid input syntax for type uuid: "us-healthcare-company"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'us-health...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'ZakApps software pvt ltd': invalid input syntax for type uuid: "zakapps-software-pvt-ltd"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'zakapps-s...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Niki.ai': invalid input syntax for type uuid: "niki-ai"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'niki-ai' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cargill Business Services': invalid input syntax for type uuid: "cargill-business-services"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cargill-b...
+                                                             ^
+ — using defaults
+INFO:careerloop_api.services.scan.persist:Persisted 9 jobs to careerloop.jobs for user b54b9a20
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 19 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan:Scan completed: run_id=99909a5bfcf2 user=b54b9a20 top_jobs=9
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=99909a5bfcf2 user=b54b9a20 — guards released
+INFO:     127.0.0.1:62903 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62903 - "POST /v1/jobs/a71372c6-1e3a-485a-b039-0ad238fda547/save HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62903 - "GET /v1/jobs/a71372c6-1e3a-485a-b039-0ad238fda547 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62980 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62984 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 01334fc1 run_id 39e81148a7b2 mode=default
+INFO:     127.0.0.1:62984 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62984 - "GET /v1/scans/39e81148a7b2/events HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user 01334fc1
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestCorp India': invalid input syntax for type uuid: "testcorp-india"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testcorp-...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestGlobal Corp': invalid input syntax for type uuid: "testglobal-corp"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testgloba...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'BigRio': invalid input syntax for type uuid: "bigrio"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'bigrio' O...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Moative': invalid input syntax for type uuid: "moative"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'moative' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'us healthcare company': invalid input syntax for type uuid: "us-healthcare-company"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'us-health...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'ZakApps software pvt ltd': invalid input syntax for type uuid: "zakapps-software-pvt-ltd"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'zakapps-s...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Niki.ai': invalid input syntax for type uuid: "niki-ai"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'niki-ai' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cargill Business Services': invalid input syntax for type uuid: "cargill-business-services"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cargill-b...
+                                                             ^
+ — using defaults
+INFO:careerloop_api.services.scan.persist:Persisted 9 jobs to careerloop.jobs for user 01334fc1
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 19 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan:Scan completed: run_id=39e81148a7b2 user=01334fc1 top_jobs=9
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=39e81148a7b2 user=01334fc1 — guards released
+INFO:     127.0.0.1:62998 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62998 - "POST /v1/jobs/a71372c6-1e3a-485a-b039-0ad238fda547/save HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62998 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62998 - "GET /v1/jobs/a71372c6-1e3a-485a-b039-0ad238fda547 HTTP/1.1" 200 OK
+INFO:watchfiles.main:218 changes detected
+INFO:watchfiles.main:9 changes detected
+WARNING:  WatchFiles detected changes in 'scan_truth_report.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [34504]
+INFO:     Started server process [35071]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'scan_truth_report.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [35071]
+INFO:     Started server process [35075]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:1 change detected
+INFO:     127.0.0.1:63162 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user e2eb87df run_id 95e1013021fb mode=default
+INFO:     127.0.0.1:63162 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63162 - "GET /v1/scans/95e1013021fb/events HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user e2eb87df
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestCorp India': invalid input syntax for type uuid: "testcorp-india"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testcorp-...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestGlobal Corp': invalid input syntax for type uuid: "testglobal-corp"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testgloba...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'BigRio': invalid input syntax for type uuid: "bigrio"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'bigrio' O...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Moative': invalid input syntax for type uuid: "moative"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'moative' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'us healthcare company': invalid input syntax for type uuid: "us-healthcare-company"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'us-health...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'ZakApps software pvt ltd': invalid input syntax for type uuid: "zakapps-software-pvt-ltd"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'zakapps-s...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Niki.ai': invalid input syntax for type uuid: "niki-ai"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'niki-ai' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cargill Business Services': invalid input syntax for type uuid: "cargill-business-services"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cargill-b...
+                                                             ^
+ — using defaults
+INFO:careerloop_api.services.scan.persist:Persisted 9 jobs to careerloop.jobs for user e2eb87df
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 19 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan:Scan completed: run_id=95e1013021fb user=e2eb87df top_jobs=9
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=95e1013021fb user=e2eb87df — guards released
+INFO:     127.0.0.1:63179 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:watchfiles.main:2 changes detected
+INFO:     127.0.0.1:63179 - "POST /v1/jobs/a71372c6-1e3a-485a-b039-0ad238fda547/save HTTP/1.1" 200 OK
+INFO:watchfiles.main:1 change detected
+INFO:     127.0.0.1:63179 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63179 - "GET /v1/jobs/a71372c6-1e3a-485a-b039-0ad238fda547 HTTP/1.1" 200 OK
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'run_scan_load_test.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [35075]
+INFO:     Started server process [35257]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:63296 - "POST /v1/auth/me HTTP/1.1" 200 OK
+WARNING:careerloop_api.services.scan:Scan blocked atomically: user f21102d1 already has RUNNING scan cd3f1a251437
+WARNING:careerloop_api.services.scan:Scan blocked atomically: user f21102d1 already has RUNNING scan cd3f1a251437
+INFO:     127.0.0.1:63299 - "POST /v1/scans HTTP/1.1" 409 Conflict
+WARNING:careerloop_api.services.scan:Scan blocked atomically: user f21102d1 already has RUNNING scan cd3f1a251437
+INFO:     127.0.0.1:63300 - "POST /v1/scans HTTP/1.1" 409 Conflict
+WARNING:careerloop_api.services.scan:Scan blocked atomically: user f21102d1 already has RUNNING scan cd3f1a251437
+INFO:     127.0.0.1:63302 - "POST /v1/scans HTTP/1.1" 409 Conflict
+INFO:     127.0.0.1:63303 - "POST /v1/scans HTTP/1.1" 409 Conflict
+INFO:careerloop_api.services.scan:Scan thread started for user f21102d1 run_id cd3f1a251437 mode=default
+INFO:     127.0.0.1:63301 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:watchfiles.main:1 change detected
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user f21102d1
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestCorp India': invalid input syntax for type uuid: "testcorp-india"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testcorp-...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'TestGlobal Corp': invalid input syntax for type uuid: "testglobal-corp"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'testgloba...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'BigRio': invalid input syntax for type uuid: "bigrio"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'bigrio' O...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Moative': invalid input syntax for type uuid: "moative"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'moative' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'us healthcare company': invalid input syntax for type uuid: "us-healthcare-company"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'us-health...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'ZakApps software pvt ltd': invalid input syntax for type uuid: "zakapps-software-pvt-ltd"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'zakapps-s...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Niki.ai': invalid input syntax for type uuid: "niki-ai"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'niki-ai' ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cargill Business Services': invalid input syntax for type uuid: "cargill-business-services"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cargill-b...
+                                                             ^
+ — using defaults
+INFO:careerloop_api.services.scan.persist:Persisted 9 jobs to careerloop.jobs for user f21102d1
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 19 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan:Scan completed: run_id=cd3f1a251437 user=f21102d1 top_jobs=9
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=cd3f1a251437 user=f21102d1 — guards released
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:16 changes detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:8 changes detected
+INFO:watchfiles.main:38 changes detected
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/scan_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [35257]
+INFO:watchfiles.main:3 changes detected
+INFO:     Started server process [35274]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop/india_fit_engine.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [35274]
+INFO:     Started server process [35276]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop/india_fit_engine.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [35276]
+INFO:     Started server process [35277]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:3 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/scan_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [35277]
+INFO:watchfiles.main:3 changes detected
+INFO:     Started server process [38060]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/scan_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [38060]
+INFO:watchfiles.main:3 changes detected
+INFO:     Started server process [38563]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [38563]
+INFO:     Stopping reloader process [33961]

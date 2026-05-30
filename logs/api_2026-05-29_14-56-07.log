@@ -1,0 +1,620 @@
+========================================
+CareerLoop API — started at 2026-05-29_14-56-07
+========================================
+INFO:     Will watch for changes in these directories: ['/Users/siddharthsaminathan/Projects/CareerLoop']
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     Started reloader process [25272] using WatchFiles
+INFO:     Started server process [25277]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:54541 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54543 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id a094e1121424
+INFO:     127.0.0.1:54554 - "POST /v1/scans HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:Scan worker fatal error for run a094e1121424: [Errno 2] No such file or directory: '/Users/siddharthsaminathan/Projects/config/profile.yml'
+Traceback (most recent call last):
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/scan_service.py", line 167, in _run_scan_worker
+    _execute_scan(user_id, run_id, db)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/scan_service.py", line 189, in _execute_scan
+    runner = DailyRunner(root)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop/daily_runner.py", line 58, in __init__
+    self.profile = ProfileManager(self.root)
+                   ~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop/profile_manager.py", line 64, in __init__
+    with open(self.profile_path) as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/siddharthsaminathan/Projects/config/profile.yml'
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id f0901caf706a
+INFO:     127.0.0.1:54571 - "POST /v1/scans HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:Scan worker fatal error for run f0901caf706a: [Errno 2] No such file or directory: '/Users/siddharthsaminathan/Projects/config/profile.yml'
+Traceback (most recent call last):
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/scan_service.py", line 167, in _run_scan_worker
+    _execute_scan(user_id, run_id, db)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/scan_service.py", line 189, in _execute_scan
+    runner = DailyRunner(root)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop/daily_runner.py", line 58, in __init__
+    self.profile = ProfileManager(self.root)
+                   ~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop/profile_manager.py", line 64, in __init__
+    with open(self.profile_path) as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/siddharthsaminathan/Projects/config/profile.yml'
+INFO:     127.0.0.1:54576 - "GET /v1/scans/f0901caf706a/events HTTP/1.1" 200 OK
+INFO:watchfiles.main:3 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/scan_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [25277]
+INFO:     Started server process [25710]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id 757f465b79fa
+INFO:     127.0.0.1:54598 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 7 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop.daily_runner:daily_run_started
+INFO:careerloop_api.services.scan:Scan completed: run_id=757f465b79fa user=730d5bab top_jobs=0
+============================================================
+🔁 CareerLoop Daily Runner
+   May 29, 2026 — 09:27 UTC
+   User: Siddharth Saminathan
+============================================================
+
+Brief already generated today (2026-05-29). Use --no-scan --force to re-run.
+INFO:     127.0.0.1:54604 - "GET /v1/scans/757f465b79fa/events HTTP/1.1" 200 OK
+INFO:watchfiles.main:3 changes detected
+INFO:     127.0.0.1:54923 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54924 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54925 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54924 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54927 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54927 - "OPTIONS /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54923 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54924 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54924 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54924 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54924 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54924 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54924 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54924 - "OPTIONS /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.session.supervisor_graph:Action resolved: START_SCAN (confidence: 1.0)
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 7 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop.session.tool_registry:Cache-hit: 7 fresh cached jobs -- skipping external scan
+INFO:careerloop.daily_runner:daily_run_started
+INFO:careerloop.session.tool_registry:V3 pipeline: 2 candidates, 1 jobs, 1 relationships written
+============================================================
+🔁 CareerLoop Daily Runner
+   May 29, 2026 — 09:38 UTC
+   User: Siddharth Saminathan
+============================================================
+
+Brief already generated today (2026-05-29). Use --no-scan --force to re-run.
+INFO:     127.0.0.1:54929 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54929 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54929 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54929 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54929 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55017 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55042 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55085 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55001 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55086 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55001 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55001 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55001 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55001 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55111 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55111 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55159 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55161 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55163 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55244 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:55246 - "GET /v1/briefs/latest HTTP/1.1" 401 Unauthorized
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:34 changes detected
+INFO:watchfiles.main:4 changes detected
+INFO:     127.0.0.1:55323 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55378 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55380 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55379 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55380 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55380 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55405 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55405 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55416 - "OPTIONS /v1/scans HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id 022800fb9608
+INFO:     127.0.0.1:55416 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55416 - "OPTIONS /v1/scans/022800fb9608/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55418 - "GET /v1/scans/022800fb9608/events HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:SSE poll error for run 022800fb9608: deadlock detected
+LINE 1: SELECT status FROM careerloop.background_runs WHERE run_id =...
+                           ^
+DETAIL:  Process 421984 waits for AccessShareLock on relation 202296 of database 5; blocked by process 421983.
+Process 421983 waits for AccessExclusiveLock on relation 202312 of database 5; blocked by process 421984.
+HINT:  See server log for query details.
+
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 7 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop.daily_runner:daily_run_started
+INFO:careerloop_api.services.scan:Scan completed: run_id=022800fb9608 user=730d5bab top_jobs=0
+============================================================
+🔁 CareerLoop Daily Runner
+   May 29, 2026 — 09:47 UTC
+   User: Siddharth Saminathan
+============================================================
+
+Brief already generated today (2026-05-29). Use --no-scan --force to re-run.
+INFO:     127.0.0.1:55436 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55436 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id 02dafadee4f3
+INFO:     127.0.0.1:55436 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55436 - "OPTIONS /v1/scans/02dafadee4f3/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55436 - "GET /v1/scans/02dafadee4f3/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55459 - "OPTIONS /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55463 - "OPTIONS /v1/briefs/latest HTTP/1.1" 200 OK
+WARNING:careerloop_api.deps.auth:User provisioning failed for 730d5bab: canceling statement due to statement timeout
+
+WARNING:careerloop.memory.connection:Schema cmd warning: canceling statement due to statement timeout
+
+WARNING:careerloop_api.deps.auth:User provisioning failed for 730d5bab: canceling statement due to statement timeout
+
+INFO:     127.0.0.1:55507 - "GET /health HTTP/1.1" 200 OK
+WARNING:careerloop_api.deps.auth:User provisioning failed for 730d5bab: canceling statement due to statement timeout
+
+WARNING:careerloop_api.deps.auth:User provisioning failed for 730d5bab: canceling statement due to statement timeout
+
+INFO:     127.0.0.1:55514 - "POST /v1/scans HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:55516 - "GET /v1/briefs/latest HTTP/1.1" 401 Unauthorized
+WARNING:careerloop_api.deps.auth:User provisioning failed for 730d5bab: canceling statement due to statement timeout
+
+WARNING:careerloop_api.deps.auth:User provisioning failed for 730d5bab: canceling statement due to statement timeout
+
+INFO:     127.0.0.1:55522 - "GET /health HTTP/1.1" 200 OK
+INFO:watchfiles.main:1 change detected
+ERROR:careerloop_api:Unhandled error on /v1/briefs/latest: canceling statement due to statement timeout
+Traceback (most recent call last):
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+    await route.handle(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 134, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 120, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 674, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 330, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/concurrency.py", line 32, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/anyio/to_thread.py", line 63, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 2518, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/routers/briefs.py", line 15, in latest
+    return ok(BriefService(db).latest(user_id))
+              ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/brief_service.py", line 15, in latest
+    b = self.repo.get_latest_brief(user_id)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/repositories/briefs_repo.py", line 41, in get_latest_brief
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<6 lines>...
+        (user_id,),
+        ^^^^^^^^^^^
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/psycopg2/extras.py", line 236, in execute
+    return super().execute(query, vars)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.QueryCanceled: canceling statement due to statement timeout
+
+INFO:     127.0.0.1:55447 - "GET /v1/briefs/latest HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/applications.py", line 1159, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+    await route.handle(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 134, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 120, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 674, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 330, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/concurrency.py", line 32, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/anyio/to_thread.py", line 63, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 2518, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/routers/briefs.py", line 15, in latest
+    return ok(BriefService(db).latest(user_id))
+              ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/brief_service.py", line 15, in latest
+    b = self.repo.get_latest_brief(user_id)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/repositories/briefs_repo.py", line 41, in get_latest_brief
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<6 lines>...
+        (user_id,),
+        ^^^^^^^^^^^
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/psycopg2/extras.py", line 236, in execute
+    return super().execute(query, vars)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.QueryCanceled: canceling statement due to statement timeout
+
+INFO:     127.0.0.1:55537 - "OPTIONS /v1/chat/message HTTP/1.1" 200 OK
+WARNING:careerloop.memory.connection:Schema cmd warning: canceling statement due to statement timeout
+
+INFO:     127.0.0.1:55455 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55476 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55477 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55469 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55470 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55537 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 7 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id d061ac66dadd
+INFO:     127.0.0.1:55476 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:careerloop.daily_runner:daily_run_started
+============================================================
+🔁 CareerLoop Daily Runner
+   May 29, 2026 — 09:51 UTC
+   User: Siddharth Saminathan
+============================================================
+
+Brief already generated today (2026-05-29). Use --no-scan --force to re-run.
+INFO:     127.0.0.1:55477 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55455 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55469 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55469 - "OPTIONS /v1/scans/d061ac66dadd/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55470 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55537 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55476 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:Scan worker fatal error for run 02dafadee4f3: deadlock detected
+DETAIL:  Process 422012 waits for RowShareLock on relation 202549 of database 5; blocked by process 422006.
+Process 422006 waits for AccessExclusiveLock on relation 202239 of database 5; blocked by process 422012.
+HINT:  See server log for query details.
+Traceback (most recent call last):
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/scan_service.py", line 167, in _run_scan_worker
+    _execute_scan(user_id, run_id, db)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/scan_service.py", line 245, in _execute_scan
+    cur.execute(
+    ~~~~~~~~~~~^
+        "INSERT INTO careerloop.daily_briefs (id, user_id, date_str, run_id, summary) VALUES (%s, %s, %s, %s, %s)",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (brief_id, user_id, today_str, run_id, res.get("shortlist_text", "")),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/psycopg2/extras.py", line 236, in execute
+    return super().execute(query, vars)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.DeadlockDetected: deadlock detected
+DETAIL:  Process 422012 waits for RowShareLock on relation 202549 of database 5; blocked by process 422006.
+Process 422006 waits for AccessExclusiveLock on relation 202239 of database 5; blocked by process 422012.
+HINT:  See server log for query details.
+
+INFO:     127.0.0.1:55469 - "GET /v1/scans/d061ac66dadd/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55477 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:careerloop.session.supervisor_graph:Action resolved: START_SCAN (confidence: 1.0)
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 7 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop.daily_runner:daily_run_started
+ERROR:careerloop_api.services.scan:Scan worker fatal error for run d061ac66dadd: deadlock detected
+DETAIL:  Process 422007 waits for RowShareLock on relation 202549 of database 5; blocked by process 422010.
+Process 422010 waits for AccessExclusiveLock on relation 202239 of database 5; blocked by process 422007.
+HINT:  See server log for query details.
+Traceback (most recent call last):
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/scan_service.py", line 167, in _run_scan_worker
+    _execute_scan(user_id, run_id, db)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/scan_service.py", line 245, in _execute_scan
+    cur.execute(
+    ~~~~~~~~~~~^
+        "INSERT INTO careerloop.daily_briefs (id, user_id, date_str, run_id, summary) VALUES (%s, %s, %s, %s, %s)",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (brief_id, user_id, today_str, run_id, res.get("shortlist_text", "")),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/psycopg2/extras.py", line 236, in execute
+    return super().execute(query, vars)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.DeadlockDetected: deadlock detected
+DETAIL:  Process 422007 waits for RowShareLock on relation 202549 of database 5; blocked by process 422010.
+Process 422010 waits for AccessExclusiveLock on relation 202239 of database 5; blocked by process 422007.
+HINT:  See server log for query details.
+
+INFO:watchfiles.main:3 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/scan_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for connections to close. (CTRL+C to force quit)
+WARNING:careerloop.memory.connection:Schema cmd warning: canceling statement due to statement timeout
+
+WARNING:careerloop_api.deps.auth:User provisioning failed for 730d5bab: canceling statement due to statement timeout
+
+WARNING:careerloop.memory.connection:Schema cmd warning: canceling statement due to statement timeout
+
+ERROR:careerloop_api:Unhandled error on /v1/briefs/latest: canceling statement due to statement timeout
+Traceback (most recent call last):
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+    await route.handle(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 134, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 120, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 674, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 330, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/concurrency.py", line 32, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/anyio/to_thread.py", line 63, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 2518, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/routers/briefs.py", line 15, in latest
+    return ok(BriefService(db).latest(user_id))
+              ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/brief_service.py", line 15, in latest
+    b = self.repo.get_latest_brief(user_id)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/repositories/briefs_repo.py", line 41, in get_latest_brief
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<6 lines>...
+        (user_id,),
+        ^^^^^^^^^^^
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/psycopg2/extras.py", line 236, in execute
+    return super().execute(query, vars)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.QueryCanceled: canceling statement due to statement timeout
+
+============================================================
+🔁 CareerLoop Daily Runner
+   May 29, 2026 — 09:51 UTC
+   User: Siddharth Saminathan
+============================================================
+
+Brief already generated today (2026-05-29). Use --no-scan --force to re-run.
+INFO:     127.0.0.1:55599 - "GET /v1/briefs/latest HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/applications.py", line 1159, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/cors.py", line 96, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/cors.py", line 154, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+    await route.handle(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 134, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 120, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 674, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 330, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/starlette/concurrency.py", line 32, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/anyio/to_thread.py", line 63, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 2518, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1002, in run
+    result = context.run(func, *args)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/routers/briefs.py", line 15, in latest
+    return ok(BriefService(db).latest(user_id))
+              ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/brief_service.py", line 15, in latest
+    b = self.repo.get_latest_brief(user_id)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/repositories/briefs_repo.py", line 41, in get_latest_brief
+    cur.execute(
+    ~~~~~~~~~~~^
+        """
+        ^^^
+    ...<6 lines>...
+        (user_id,),
+        ^^^^^^^^^^^
+    )
+    ^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/psycopg2/extras.py", line 236, in execute
+    return super().execute(query, vars)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.QueryCanceled: canceling statement due to statement timeout
+
+INFO:     Waiting for background tasks to complete. (CTRL+C to force quit)
+WARNING:careerloop.memory.connection:Schema cmd warning: canceling statement due to statement timeout
+
+WARNING:careerloop.memory.connection:Schema cmd warning: canceling statement due to statement timeout
+
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 7 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop.session.tool_registry:Cache-hit: 7 fresh cached jobs -- skipping external scan
+INFO:careerloop.daily_runner:daily_run_started
+INFO:careerloop.session.tool_registry:V3 pipeline: 2 candidates, 1 jobs, 1 relationships written
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [25710]

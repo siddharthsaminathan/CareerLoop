@@ -1,0 +1,129 @@
+INFO:     Started server process [99233]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     127.0.0.1:51489 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52286 - "OPTIONS /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52288 - "OPTIONS /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52290 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52288 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52288 - "OPTIONS /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52290 - "OPTIONS /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=14 conversation_id=8712ee6d-014
+INFO:     127.0.0.1:52286 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=14 conversation_id=8712ee6d-014
+INFO:     127.0.0.1:52286 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52292 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52292 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52313 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52313 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52313 - "OPTIONS /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52316 - "OPTIONS /v1/scans HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id 726f903b7791 mode=scan_more
+INFO:     127.0.0.1:52313 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52313 - "OPTIONS /v1/scans/726f903b7791/events HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id b0e230e384e4 mode=scan_more
+INFO:     127.0.0.1:52316 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52316 - "OPTIONS /v1/scans/b0e230e384e4/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52318 - "GET /v1/scans/726f903b7791/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52313 - "GET /v1/scans/b0e230e384e4/events HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:_append_to_brief failed: duplicate key value violates unique constraint "daily_brief_items_brief_id_item_index_key"
+DETAIL:  Key (brief_id, item_index)=(fd72cda5-f753-4070-b6ea-81c1e1351d23, 7) already exists.
+
+INFO:careerloop_api.services.scan:scan_more done: run=b0e230e384e4 scanned=67 found=9 appended=5
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=b0e230e384e4 user=730d5bab — guards released
+INFO:careerloop_api.services.scan:scan_more done: run=726f903b7791 scanned=67 found=9 appended=1
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=726f903b7791 user=730d5bab — guards released
+INFO:     127.0.0.1:52320 - "GET /v1/scans/726f903b7791/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52540 - "GET /v1/scans/b0e230e384e4/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54466 - "OPTIONS /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54467 - "OPTIONS /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54469 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54467 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=14 conversation_id=8712ee6d-014
+INFO:     127.0.0.1:54466 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54467 - "OPTIONS /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54469 - "OPTIONS /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=14 conversation_id=8712ee6d-014
+INFO:     127.0.0.1:54466 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54471 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54466 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54466 - "OPTIONS /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54471 - "OPTIONS /v1/scans HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id 1e9d6293f012 mode=scan_more
+INFO:     127.0.0.1:54466 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54466 - "OPTIONS /v1/scans/1e9d6293f012/events HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id 91a1f5f63a71 mode=scan_more
+INFO:     127.0.0.1:54469 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54469 - "OPTIONS /v1/scans/91a1f5f63a71/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54471 - "GET /v1/scans/1e9d6293f012/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54466 - "GET /v1/scans/91a1f5f63a71/events HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:scan_more done: run=91a1f5f63a71 scanned=69 found=2 appended=0
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=91a1f5f63a71 user=730d5bab — guards released
+INFO:careerloop_api.services.scan:scan_more done: run=1e9d6293f012 scanned=68 found=3 appended=1
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=1e9d6293f012 user=730d5bab — guards released
+INFO:     127.0.0.1:54568 - "GET /v1/scans/1e9d6293f012/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54570 - "GET /v1/scans/91a1f5f63a71/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55113 - "OPTIONS /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55115 - "OPTIONS /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55113 - "GET /v1/chat/history HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:55115 - "GET /v1/chat/history HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:55115 - "GET /v1/chat/history HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:55113 - "GET /v1/chat/history HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:55603 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=14 conversation_id=8712ee6d-014
+INFO:     127.0.0.1:55601 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=14 conversation_id=8712ee6d-014
+INFO:     127.0.0.1:55601 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55603 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55601 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55849 - "OPTIONS /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55851 - "OPTIONS /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55853 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=14 conversation_id=8712ee6d-014
+INFO:     127.0.0.1:55849 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55851 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55851 - "OPTIONS /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55853 - "OPTIONS /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=14 conversation_id=8712ee6d-014
+INFO:     127.0.0.1:55849 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55855 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55849 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55849 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55855 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55855 - "OPTIONS /v1/scans HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id b56d5d5613a4 mode=scan_more
+INFO:     127.0.0.1:55849 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55849 - "OPTIONS /v1/scans/b56d5d5613a4/events HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id 788d1e88f972 mode=scan_more
+INFO:     127.0.0.1:55855 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55855 - "OPTIONS /v1/scans/788d1e88f972/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55849 - "GET /v1/scans/b56d5d5613a4/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55902 - "GET /v1/scans/788d1e88f972/events HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:scan_more done: run=b56d5d5613a4 scanned=71 found=2 appended=0
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=b56d5d5613a4 user=730d5bab — guards released
+INFO:careerloop_api.services.scan:scan_more done: run=788d1e88f972 scanned=70 found=2 appended=0
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=788d1e88f972 user=730d5bab — guards released
+INFO:     127.0.0.1:57140 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=14 conversation_id=8712ee6d-014
+INFO:     127.0.0.1:57138 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=14 conversation_id=8712ee6d-014
+INFO:     127.0.0.1:57138 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57140 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57138 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id 99ae8a0d687c mode=scan_more
+INFO:     127.0.0.1:57138 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57138 - "OPTIONS /v1/scans/99ae8a0d687c/events HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id d5d0b4b43873 mode=scan_more
+INFO:     127.0.0.1:57140 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57140 - "OPTIONS /v1/scans/d5d0b4b43873/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57138 - "GET /v1/scans/99ae8a0d687c/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57145 - "GET /v1/scans/d5d0b4b43873/events HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:scan_more done: run=99ae8a0d687c scanned=67 found=2 appended=0
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=99ae8a0d687c user=730d5bab — guards released
+INFO:careerloop_api.services.scan:scan_more done: run=d5d0b4b43873 scanned=70 found=2 appended=0
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=d5d0b4b43873 user=730d5bab — guards released
+INFO:     127.0.0.1:57804 - "GET /v1/auth/me HTTP/1.1" 405 Method Not Allowed
+INFO:     127.0.0.1:57806 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57830 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57830 - "POST /v1/auth/me HTTP/1.1" 200 OK

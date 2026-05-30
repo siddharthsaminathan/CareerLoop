@@ -1,0 +1,12 @@
+INFO:     Started server process [44172]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id 9409a47670de mode=scan_more
+INFO:     127.0.0.1:58435 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:scan_more done: run=9409a47670de scanned=64 found=2 appended=0
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=9409a47670de user=730d5bab — guards released
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [44172]

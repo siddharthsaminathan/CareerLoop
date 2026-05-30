@@ -1,0 +1,35 @@
+# Raw SSE stream — run 1827a117cec3 — 9 events
+
+data: {"event_type": "SCAN_STARTED", "message": "Scanning for: AI Product Engineer, AI Engineer, Founding AI Engineer, Machine Learning Engineer, NLP Engineer in Bangalore", "city": "Bangalore", "mode": "scan_more", "target_roles": ["AI Product Engineer", "AI Engineer", "Founding AI Engineer", "Machine Learning Engineer", "NLP Engineer"]}
+   [+ 0.00s]
+
+data: {"event_type": "SCAN_STARTED", "message": "Searching for AI Product Engineer in Bangalore...", "city": "Bangalore", "mode": "on_demand", "role": "AI Product Engineer"}
+   [+ 0.20s]
+
+data: {"event_type": "SOURCE_SCANNING", "message": "Cache hit: 3 jobs from crawl cache (AI Product Engineer / Bangalore)", "stage": "cache", "source": "crawl_cache", "roles_found": 3}
+   [+ 0.89s]
+
+data: {"event_type": "CANDIDATE_MATCHED", "message": "MATCH #1 \u2014 Agentic AI Product Manager - iimjobs.com @  (Bangalore) [cached]", "status": "matched", "company": "", "location": "Bangalore", "fit_score": 56.6, "job_title": "Agentic AI Product Manager - iimjobs.com", "match_index": 1}
+   [+ 0.19s]
+
+   ✗ MISSING FIELDS: ['company']
+
+data: {"event_type": "CANDIDATE_MATCHED", "message": "MATCH #2 \u2014 AI/ML Engineer (GenAI, Cloud ML @  () [cached]", "status": "matched", "company": "", "location": "", "fit_score": 54.6, "job_title": "AI/ML Engineer (GenAI, Cloud ML", "match_index": 2}
+   [+ 0.12s]
+
+   ✗ MISSING FIELDS: ['company', 'location']
+
+data: {"event_type": "CANDIDATE_MATCHED", "message": "MATCH #3 \u2014 Technical + Functional CLM Consultant/Product Manager - IT @  (Bangalore) [cached]", "status": "matched", "company": "", "location": "Bangalore", "fit_score": 54.2, "job_title": "Technical + Functional CLM Consultant/Product Manager - IT", "match_index": 3}
+   [+ 0.12s]
+
+   ✗ MISSING FIELDS: ['company']
+
+data: {"event_type": "SCAN_COMPLETED", "message": "Cached: 3 matches in 0.89s", "source": "cache", "matched_count": 3, "candidate_count": 3, "elapsed_seconds": 0.89}
+   [+ 0.12s]
+
+data: {"event_type": "FILTER_SUMMARY", "message": "Discovery: 3 candidates \u00b7 3 after dedup \u00b7 0 net-new matches", "event": "FILTER_SUMMARY", "source": "on_demand_search", "candidates": 3, "after_dedup": 3, "net_new_matches": 0}
+   [+ 0.20s]
+
+data: {"event_type": "BRIEF_CREATED", "message": "No new matches beyond your current brief right now.", "event": "BRIEF_CREATED", "new_matches": 0}
+   [+ 0.00s]
+

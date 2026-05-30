@@ -1,0 +1,23 @@
+Daily Brief:
+endpoint: GET /v1/briefs/latest
+service: BriefService.latest() in careerloop_api/services/brief_service.py
+repository: BriefsRepo in careerloop_api/repositories/briefs_repo.py
+tables touched: careerloop.daily_briefs, careerloop.daily_brief_items, careerloop.jobs, careerloop.companies
+
+On-Demand Scan:
+endpoint: POST /v1/scans
+service: initiate_scan() / _run_scan_worker() / _execute_scan() in careerloop_api/services/scan_service.py
+repository: None (direct SQL in services)
+tables touched: careerloop.background_runs, careerloop.run_events, careerloop.jobs, careerloop.user_job_relationships, careerloop.daily_briefs, careerloop.daily_brief_items
+
+Approve:
+endpoint: POST /v1/jobs/{job_id}/save
+service: JobService.save() in careerloop_api/services/job_service.py
+repository: JobsRepo in careerloop_api/repositories/jobs_repo.py
+tables touched: careerloop.user_job_relationships, careerloop.jobs
+
+Skip:
+endpoint: POST /v1/jobs/{job_id}/skip
+service: JobService.skip() in careerloop_api/services/job_service.py
+repository: JobsRepo in careerloop_api/repositories/jobs_repo.py
+tables touched: careerloop.user_job_relationships

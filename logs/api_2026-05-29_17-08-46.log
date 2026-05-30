@@ -1,0 +1,31 @@
+INFO:     Started server process [38190]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     127.0.0.1:57473 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57474 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57474 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:57474 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:57474 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:57474 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:     127.0.0.1:57474 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57474 - "GET /v1/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57474 - "GET /v1/me/preferences HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57474 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57474 - "POST /v1/briefs/11994aae-f39d-4506-8275-26e7a42bc176/items/1/select HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57474 - "GET /v1/jobs/loop-0122 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57474 - "POST /v1/jobs/loop-0122/save HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57474 - "POST /v1/jobs/loop-0122/skip HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57474 - "GET /v1/jobs/does-not-exist-xyz HTTP/1.1" 404 Not Found
+INFO:careerloop.session.supervisor_graph:Action resolved: HELP (confidence: 0.95)
+INFO:     127.0.0.1:57474 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57478 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57478 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57478 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57478 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57478 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [38190]

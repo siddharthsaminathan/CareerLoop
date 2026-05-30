@@ -1,0 +1,209 @@
+========================================
+CareerLoop API — started at 2026-05-29_18-13-29
+========================================
+INFO:     Will watch for changes in these directories: ['/Users/siddharthsaminathan/Projects/CareerLoop']
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     Started reloader process [46306] using WatchFiles
+INFO:     Started server process [46311]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:60158 - "GET /health HTTP/1.1" 200 OK
+INFO:watchfiles.main:137 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop/onboarding/onboarding_flow.py', 'careerloop/sources/linkedin_scraper.py', 'careerloop/memory/connection.py', 'careerloop_api/services/scan_service.py', 'careerloop/session/supervisor_graph.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [46311]
+INFO:     Started server process [46428]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:6 changes detected
+INFO:watchfiles.main:458 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop/on_demand.py', 'careerloop/memory/connection.py', 'careerloop/sources/role_archetype.py', 'careerloop/sources/iimjobs_adapter.py', 'careerloop/sources/instahyre_adapter.py', 'careerloop/sources/remoteok_adapter.py', 'careerloop/sources/weworkremotely_adapter.py', 'careerloop/sources/company_discovery.py', 'careerloop/sources/wellfound_adapter.py', 'careerloop/sources/scrapegraph_adapter.py', 'careerloop/sources/cutshort_adapter.py', 'careerloop/india_fit_engine.py', 'careerloop_api/services/scan_service.py', 'careerloop/sources/spireai_adapter.py', 'careerloop/sources/remotive_adapter.py', 'run_siddharth.py', 'careerloop/session/supervisor_graph.py', 'careerloop/onboarding/onboarding_flow.py', 'careerloop/sources/linkedin_scraper.py', 'run_varsha.py', 'careerloop/profile_manager.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [46428]
+INFO:     Started server process [46440]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:6 changes detected
+INFO:     127.0.0.1:60933 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60935 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60936 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:     127.0.0.1:60933 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60938 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60935 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60968 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60971 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60972 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60991 - "OPTIONS /v1/chat/message HTTP/1.1" 200 OK
+INFO:watchfiles.main:3 changes detected
+INFO:careerloop.session.supervisor_graph:Action resolved: GENERAL_CHAT (confidence: 0.99)
+INFO:     127.0.0.1:60991 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:4 changes detected
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/deps/auth.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [46440]
+INFO:     Started server process [47466]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/user_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47466]
+INFO:     Started server process [47467]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:11 changes detected
+INFO:     127.0.0.1:61160 - "GET /health HTTP/1.1" 200 OK
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:3 changes detected
+INFO:     127.0.0.1:61273 - "GET /health HTTP/1.1" 200 OK
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:111 changes detected
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:84 changes detected
+INFO:watchfiles.main:4 changes detected
+INFO:     127.0.0.1:61282 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61339 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:     127.0.0.1:61339 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61394 - "GET /health HTTP/1.1" 200 OK
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:1 change detected
+INFO:     127.0.0.1:61397 - "GET /health HTTP/1.1" 200 OK
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/repositories/briefs_repo.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47467]
+INFO:     Started server process [47959]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/brief_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47959]
+INFO:     Started server process [47961]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/routers/briefs.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47961]
+INFO:     Started server process [47962]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:9 changes detected
+INFO:watchfiles.main:3 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/deps/auth.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47962]
+INFO:     Started server process [47967]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:3 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/chat_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47967]
+INFO:     Started server process [47971]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:3 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/scan_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47971]
+INFO:watchfiles.main:3 changes detected
+INFO:     Started server process [47975]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/scan_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47975]
+INFO:watchfiles.main:6 changes detected
+INFO:     Started server process [47977]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/scan_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47977]
+INFO:watchfiles.main:3 changes detected
+INFO:     Started server process [47979]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/brief_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47979]
+INFO:watchfiles.main:3 changes detected
+INFO:     Started server process [47980]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/brief_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47980]
+INFO:watchfiles.main:3 changes detected
+INFO:     Started server process [47981]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [47981]
+INFO:     Stopping reloader process [46306]

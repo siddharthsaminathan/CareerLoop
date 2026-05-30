@@ -1,0 +1,25 @@
+INFO:     Started server process [36571]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     127.0.0.1:57343 - "GET /health HTTP/1.1" 200 OK
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:     127.0.0.1:57350 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57353 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57355 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id 4382d40f165a
+INFO:     127.0.0.1:57357 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 7 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:     127.0.0.1:57361 - "GET /v1/scans/4382d40f165a/events HTTP/1.1" 200 OK
+INFO:careerloop.daily_runner:daily_run_started
+ERROR:careerloop_api.services.scan:_build_from_cache failed: operator does not exist: text = uuid
+LINE 7:                         ON r.job_id = j.job_id AND r.user_id...
+                                            ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+INFO:careerloop_api.services.scan:Scan produced no jobs (cache empty): run_id=4382d40f165a
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [36571]

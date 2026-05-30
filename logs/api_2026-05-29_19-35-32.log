@@ -1,0 +1,111 @@
+========================================
+CareerLoop API — started at 2026-05-29_19-35-32
+========================================
+INFO:     Will watch for changes in these directories: ['/Users/siddharthsaminathan/Projects/CareerLoop']
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     Started reloader process [47997] using WatchFiles
+INFO:     Started server process [48002]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:61478 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61480 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61489 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61489 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61489 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61489 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61489 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61489 - "POST /v1/auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61489 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61489 - "GET /v1/me/preferences HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61489 - "GET /v1/briefs/latest HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61489 - "GET /v1/jobs/does-not-exist-xyz HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61489 - "POST /v1/chat/message HTTP/1.1" 401 Unauthorized
+INFO:watchfiles.main:1 change detected
+INFO:     127.0.0.1:61503 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61503 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61503 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61503 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61503 - "GET /v1/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61503 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61503 - "GET /v1/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61503 - "GET /v1/me/preferences HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61503 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61503 - "GET /v1/jobs/does-not-exist-xyz HTTP/1.1" 404 Not Found
+INFO:careerloop.session.supervisor_graph:Action resolved: HELP (confidence: 0.95)
+INFO:     127.0.0.1:61503 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:19 changes detected
+INFO:watchfiles.main:10 changes detected
+INFO:watchfiles.main:19 changes detected
+INFO:watchfiles.main:37 changes detected
+INFO:watchfiles.main:4 changes detected
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:4 changes detected
+INFO:watchfiles.main:1 change detected
+INFO:     127.0.0.1:61596 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61596 - "OPTIONS /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61599 - "OPTIONS /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61596 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61599 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61601 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61601 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:watchfiles.main:1 change detected
+INFO:     127.0.0.1:61613 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:watchfiles.main:3 changes detected
+INFO:     127.0.0.1:61601 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:watchfiles.main:11 changes detected
+INFO:watchfiles.main:37 changes detected
+INFO:watchfiles.main:4 changes detected
+INFO:     127.0.0.1:61620 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61620 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61622 - "OPTIONS /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.session.supervisor_graph:Action resolved: GENERAL_CHAT (confidence: 1.0)
+INFO:     127.0.0.1:61622 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.session.supervisor_graph:Action resolved: SHOW_PROFILE (confidence: 0.98)
+INFO:careerloop.memory.connection:DB pool created (min=1 max=20)
+INFO:     127.0.0.1:61626 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61650 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61650 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop/session/supervisor_graph.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [48002]
+INFO:     Started server process [48302]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop/session/tool_registry.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [48302]
+INFO:     Started server process [48305]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop/session/tool_registry.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [48305]
+INFO:     Started server process [48310]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+WARNING:  WatchFiles detected changes in 'careerloop/session/session_store.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [48310]
+INFO:watchfiles.main:3 changes detected
+INFO:     Started server process [48311]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [48311]
+INFO:     Stopping reloader process [47997]

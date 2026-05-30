@@ -1,0 +1,4 @@
+Usage: python -m uvicorn [OPTIONS] APP
+Try 'python -m uvicorn --help' for help.
+
+Error: No such option '--no-reload'. (Did you mean one of: '--reload', '--reload-delay', '--reload-dir'?)
