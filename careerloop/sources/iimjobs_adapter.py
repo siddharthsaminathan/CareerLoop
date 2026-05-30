@@ -100,9 +100,27 @@ def _fetch_job(url: str, fallback_title: str, fallback_snippet: str, city: str) 
         }
     except Exception as e:
         logger.debug(f"[IIMJobs] fetch failed for {url}: {e}")
+        # Try to infer company from the fallback title (DDG search result often
+        # includes "Company Name - Job Title" or "Job Title at Company")
+        company = ""
+        if fallback_title:
+            # Pattern: "Company - Title" or "Title - Company"
+            for sep in (" - ", " — ", " | "):
+                parts = fallback_title.rsplit(sep, 1)
+                if len(parts) == 2 and 2 < len(parts[1]) < 80:
+                    # Pick the part that is NOT all-caps and NOT a known job title pattern
+                    for candidate in (parts[1], parts[0]):
+                        candidate = candidate.strip()
+                        if (not candidate.isupper()
+                                and not re.search(r"\b(manager|engineer|developer|analyst|consultant|director|lead|head|vp|chief|architect)\b", candidate, re.I)
+                                and 2 < len(candidate) < 80):
+                            company = candidate
+                            break
+                    if company:
+                        break
         return {
             "title": fallback_title,
-            "company": "",
+            "company": company,
             "location": city or "India",
             "url": url,
             "apply_url": url,

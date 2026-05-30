@@ -166,31 +166,58 @@ def _infer_company_from_url(url: str) -> str:
     domain = parsed.netloc.lower().lstrip("www.")
     path = parsed.path.strip("/")
 
+    def _is_hash_or_id(token: str) -> bool:
+        """Detect UUID fragments, hash strings, or random IDs like 'L3Umtsst'.
+        True if the token is > 5 chars and looks like a hash (mixed case/digits)."""
+        if len(token) < 6:
+            return False
+        has_digit = bool(_re.search(r"\d", token))
+        has_upper = bool(_re.search(r"[A-Z]", token))
+        has_lower = bool(_re.search(r"[a-z]", token))
+        # Mix of uppercase + lowercase + digits = likely hash/ID
+        return (has_digit and (has_upper or has_lower)) or _re.match(r"^[0-9a-fA-F]{7,}$", token)
+
+    def _is_job_title_token(token: str) -> bool:
+        """True if token is a job title keyword (should not be parsed as company)."""
+        keywords = {
+            "engineer", "manager", "developer", "analyst", "consultant",
+            "director", "lead", "head", "architect", "scientist", "product",
+            "designer", "specialist", "coordinator", "associate", "vp",
+            "admin", "assistant", "intern", "trainee", "gen", "ai", "ml",
+            "software", "data", "cloud", "fullstack", "devops", "qa",
+            "frontend", "backend", "platform", "infrastructure",
+        }
+        return token.lower() in keywords
+
     # Cutshort: /job/Title-City-CompanyName-hash
     if "cutshort.io" in domain and path:
         parts = path.split("/")[-1].split("-")
-        # Reverse walk: last part before any hex hash is the company name
+        _skip_city = frozenset({
+            "bangalore", "bengaluru", "chennai", "mumbai", "delhi", "india",
+            "hyderabad", "pune", "remote", "gurgaon", "noida", "kolkata",
+            "fulltime", "full-time", "job", "apply",
+        })
+        # Reverse walk: last part before any hash/ID is the company name
         for i in range(len(parts) - 1, 0, -1):
             part = parts[i]
-            # Skip hex-like slugs (Git), city names, and short tokens
-            if (_re.match(r"^[0-9a-fA-F]{7,}$", part)
-                    or part.lower() in ("bangalore", "bengaluru", "chennai", "mumbai",
-                                        "delhi", "hyderabad", "pune", "india", "remote",
-                                        "gurgaon", "noida", "kolkata")):
+            if _is_hash_or_id(part) or part.lower() in _skip_city:
                 continue
             if len(part) >= 3:
                 # Collect consecutive meaningful parts going backward
                 comp_parts = []
                 for j in range(i, max(i - 3, -1), -1):
                     pj = parts[j]
-                    if _re.match(r"^[0-9a-fA-F]{7,}$", pj) or pj.lower() in (
-                        "bangalore", "bengaluru", "chennai", "mumbai", "delhi",
-                        "hyderabad", "pune", "india", "remote", "gurgaon", "noida",
-                        "kolkata", "fulltime", "full-time", "remote", "job"):
+                    if _is_hash_or_id(pj) or pj.lower() in _skip_city:
                         break
                     comp_parts.insert(0, pj)
                 if comp_parts:
-                    return " ".join(comp_parts).replace("-", " ").title()
+                    result = " ".join(comp_parts).replace("-", " ").title()
+                    # Validate: result should NOT contain job title keywords
+                    # (some Cutshort slugs only have title + city, no company)
+                    has_job_kw = any(_is_job_title_token(p) for p in comp_parts)
+                    if has_job_kw:
+                        return ""
+                    return result
                 break
         return ""
 

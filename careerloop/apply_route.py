@@ -211,6 +211,17 @@ def deduplicate_canonical(jobs: list[dict]) -> list[dict]:
             for field in ("role_summary", "responsibilities", "requirements", "benefits"):
                 if not winner.get(field) and loser.get(field):
                     winner[field] = loser[field]
+            # DATA QUALITY: Backfill company/location if winner has empty values
+            # but a loser has populated ones (e.g., DDG generic path produces
+            # empty company, but the dedicated board adapter has the real name).
+            if not winner.get("company") and loser.get("company"):
+                winner["company"] = loser["company"]
+                winner.setdefault("_enriched_from", []).append("company")
+            if not winner.get("company_name") and loser.get("company_name"):
+                winner["company_name"] = loser["company_name"]
+            if not winner.get("location") and loser.get("location"):
+                winner["location"] = loser["location"]
+                winner.setdefault("_enriched_from", []).append("location")
 
         result.append(winner)
 

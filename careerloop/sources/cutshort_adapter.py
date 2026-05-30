@@ -119,9 +119,73 @@ def _bs4_extract(url: str, html: str) -> dict | None:
         body = soup.get_text(" ", strip=True)
         if len(body) < 100:
             return None
+
+        # Extract company from the page (not hardcoded empty anymore)
+        company = ""
+        # Try meta tags first
+        for meta_attr in [{"property": "og:site_name"}, {"name": "og:site_name"},
+                          {"name": "author"}]:
+            meta = soup.find("meta", attrs=meta_attr)
+            if meta and meta.get("content", "").strip():
+                company = meta["content"].strip()
+                break
+        # Try company name elements
+        if not company:
+            for cls_pat in [r"company.?name", r"employer", r"organization", r"org.?name"]:
+                el = soup.find(class_=re.compile(cls_pat, re.I))
+                if el:
+                    c = el.get_text(" ", strip=True)
+                    if 2 < len(c) < 80:
+                        company = c
+                        break
+
+        # Fallback: infer from URL slug (Cutshort URLs encode company in the path)
+        if not company and url:
+            from urllib.parse import urlparse as _urlparse
+            parsed = _urlparse(url)
+            path = parsed.path.strip("/")
+            if "/job/" in path:
+                parts = path.split("/")[-1].split("-")
+                # Same logic as on_demand._infer_company_from_url
+                _skip = frozenset({
+                    "bangalore", "bengaluru", "chennai", "mumbai", "delhi", "india",
+                    "hyderabad", "pune", "remote", "gurgaon", "noida", "kolkata",
+                    "fulltime", "full-time", "job", "apply",
+                })
+                # Job title keywords that should never be parsed as company name
+                _job_kw = frozenset({
+                    "engineer", "manager", "developer", "analyst", "consultant",
+                    "director", "lead", "head", "architect", "scientist", "product",
+                    "designer", "specialist", "coordinator", "associate", "vp",
+                    "admin", "assistant", "intern", "trainee", "gen", "ai", "ml",
+                    "software", "data", "cloud", "fullstack", "devops", "qa",
+                    "frontend", "backend", "platform", "infrastructure",
+                })
+                for i in range(len(parts) - 1, 0, -1):
+                    part = parts[i]
+                    # Skip hash-like fragments (mixed case+digits which indicate IDs)
+                    is_hash = (len(part) >= 6
+                               and bool(re.search(r"\d", part))
+                               and (bool(re.search(r"[A-Z]", part)) or bool(re.search(r"[a-z]", part))))
+                    if is_hash or part.lower() in _skip:
+                        continue
+                    if len(part) >= 3:
+                        comp_parts = []
+                        for j in range(i, max(i - 3, -1), -1):
+                            pj = parts[j]
+                            pj_is_hash = (len(pj) >= 6
+                                          and bool(re.search(r"\d", pj))
+                                          and (bool(re.search(r"[A-Z]", pj)) or bool(re.search(r"[a-z]", pj))))
+                            if pj_is_hash or pj.lower() in _skip:
+                                break
+                            comp_parts.insert(0, pj)
+                        if comp_parts and not any(p.lower() in _job_kw for p in comp_parts):
+                            company = " ".join(comp_parts).replace("-", " ").title()
+                        break
+
         return {
             "title": title,
-            "company": "",
+            "company": company,
             "location": "India",
             "url": url,
             "apply_url": url,
