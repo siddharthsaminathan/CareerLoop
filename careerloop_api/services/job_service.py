@@ -15,7 +15,8 @@ class JobService:
         if not job:
             raise APIError("Job not found.", status_code=404, code="job_not_found")
         rel = self.repo.get_relationship(user_id, job["id"])
-        return serializers.job_detail(job, rel)
+        enrichment = self.repo.get_brief_enrichment(user_id, job_ident)
+        return serializers.job_detail(job, rel, enrichment)
 
     def save(self, user_id: str, job_ident: str) -> dict:
         """Save (approve) a job: validate existence, then upsert user_job_relationships."""

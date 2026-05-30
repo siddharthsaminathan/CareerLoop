@@ -10,33 +10,33 @@ POST /v1/scans
 POST /v1/jobs/{job_id}/save
 
 4. What jobs were discovered?
-A total of 9 matched jobs were discovered in today's daily briefing run.
+A total of 4 matched jobs were discovered in today's daily briefing run.
 Discovered list (top 3):
-- Item 1: AI Engineer @ BigRio (job_id: a71372c6-1e3a-485a-b039-0ad238fda547)
-- Item 2: Fullstack AI Engineer @ Moative (job_id: 13414de6-ba9b-4cae-bcb2-2a39ec09b5cf)
-- Item 3: ai/ml engineer job in... @ us healthcare company (job_id: 1569a8f4-9933-4bc3-bccc-d6153e56a445)
+- Item 1: Jr AI Engineer @ Rockstar (job_id: c6adf5db-0339-4629-aa21-5f82869651a3)
+- Item 2: AI Engineer @ Cutshort (job_id: 76624dac-de9b-4281-8b30-338614f1bed1)
+- Item 3: AI/ML Engineer @ Cutshort (job_id: fa584534-bd1d-434e-94a6-05eff5a43ed0)
 
 5. What jobs were persisted?
-A total of 9 jobs were persisted in the careerloop.jobs database table during this run.
+A total of 4 jobs were persisted in the careerloop.jobs database table during this run.
 
 6. What jobs entered the brief?
-All 9 jobs entered the daily_brief_items table for brief_id = 'b0a02629-5166-41bf-8e5f-297b4ac78ee0'.
+All 4 jobs entered the daily_brief_items table for brief_id = 'fb29c5ba-0f9e-4351-add5-3ad6dac00f6b'.
 
 7. What jobs were approved?
-Job ID 'a71372c6-1e3a-485a-b039-0ad238fda547' (AI Engineer @ BigRio) was successfully approved.
+Job ID 'c6adf5db-0339-4629-aa21-5f82869651a3' (Jr AI Engineer @ Rockstar) was successfully approved.
 Database verified: match_status = 'saved', swiped_action = 'right'
 
 8. Which board sources produced jobs?
 The search was powered by the unified 'OnDemandCache' (seeding global boards like LinkedIn, Indeed, Ashby, and Lever directly into our target filter pools).
-Total Found: 10 | Persisted: 18
+Total Found: 10 | Persisted: 4
 
 9. Time to first SSE event?
-0.872 seconds
+0.941 seconds
 
 10. Total scan duration?
-13.670 seconds
+259.313 seconds
 
-Trace Run Timestamp: 2026-05-30T08:40:00.542568+00:00
-Execution Run ID   : 95e1013021fb
-Verified User ID   : e2eb87df-cc68-40f4-88c6-e16f3db69df7
+Trace Run Timestamp: 2026-05-30T10:31:29.226591+00:00
+Execution Run ID   : 625deab51a75
+Verified User ID   : d4e07f40-d912-4ddb-86c7-3f7283768245
 ======================================================

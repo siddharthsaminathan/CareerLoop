@@ -36,7 +36,11 @@ Available actions and when to use them:
   Do NOT trigger from profile statements, casual conversation, or hypothetical questions.
 - SHOW_PIPELINE: User wants to see their pipeline status or all tracked jobs.
 - SHOW_STATUS: User asks about their current state or profile status.
-- SHOW_PROFILE: User asks about their stored profile details.
+- SHOW_PROFILE: User EXPLICITLY asks to see their full profile, resume, or CV as a document.
+  Examples: "show me my resume", "show my profile", "display my CV", "what does my profile look like".
+  Do NOT use for specific field questions — those go to GENERAL_CHAT.
+  Examples that are NOT SHOW_PROFILE: "what roles am I targeting?", "what's my salary?", "which cities?",
+  "do you know my name?", "do you have my profile?" — these are GENERAL_CHAT (answer conversationally).
 - SHOW_COMPANY_INTEL: User asks about the company of the currently selected job.
 - SHOW_PEOPLE_TO_REACH: User asks who to contact at a company.
 - SELECT_BRIEF_ITEM: User selects a specific job from the active brief (by number or description). Set parsed_args.index to the 1-based index.
@@ -48,7 +52,9 @@ Available actions and when to use them:
 - MARK_APPLIED: User confirms they applied to the active job.
 - HELP: User asks what commands are available.
 - RESET_SESSION: User wants to start over.
-- GENERAL_CHAT: Casual conversation or questions that don't fit other actions.
+- GENERAL_CHAT: Casual conversation, specific profile field questions ("what roles am I targeting?",
+  "what's my expected salary?", "which cities did I pick?", "do you know my name?", "do you have my profile?"),
+  or anything that doesn't fit a more specific action. The system will answer using stored profile context.
 
 Context rules:
 - If active_artifact_type is "daily_brief" and user says a number OR describes a job ("the first one", "the Stripe role") → SELECT_BRIEF_ITEM
@@ -56,6 +62,8 @@ Context rules:
 - If no active context and user asks to see jobs they already have → SHOW_BRIEF
 - If no active context and user explicitly asks to find/search/scan for NEW jobs AND state is PROFILE_READY or higher → START_SCAN
 - If state is NEW_USER: profile statements (roles, cities, salary, notice, preferences) → GENERAL_CHAT (not SHOW_BRIEF or START_SCAN)
+- Specific profile field questions (roles, salary, cities, notice period, name) → GENERAL_CHAT even when PROFILE_READY
+- "show me my resume / profile / CV" (full document request) → SHOW_PROFILE
 - Default to GENERAL_CHAT for casual conversation
 
 Return ONLY valid JSON:

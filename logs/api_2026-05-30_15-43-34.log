@@ -1,0 +1,993 @@
+========================================
+CareerLoop API — started at 2026-05-30_15-43-34
+========================================
+INFO:     Will watch for changes in these directories: ['/Users/siddharthsaminathan/Projects/CareerLoop']
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     Started reloader process [69821] using WatchFiles
+INFO:     Started server process [69826]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:51108 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51111 - "POST /v1/auth/me HTTP/1.1" 200 OK
+WARNING:careerloop_api.services.scan:Scan blocked atomically: user 6610c82b already has RUNNING scan a33629c74f9b
+WARNING:careerloop_api.services.scan:Scan blocked atomically: user 6610c82b already has RUNNING scan a33629c74f9b
+INFO:     127.0.0.1:51113 - "POST /v1/scans HTTP/1.1" 409 Conflict
+WARNING:careerloop_api.services.scan:Scan blocked atomically: user 6610c82b already has RUNNING scan a33629c74f9b
+INFO:     127.0.0.1:51117 - "POST /v1/scans HTTP/1.1" 409 Conflict
+WARNING:careerloop_api.services.scan:Scan blocked atomically: user 6610c82b already has RUNNING scan a33629c74f9b
+INFO:     127.0.0.1:51116 - "POST /v1/scans HTTP/1.1" 409 Conflict
+INFO:     127.0.0.1:51115 - "POST /v1/scans HTTP/1.1" 409 Conflict
+INFO:careerloop_api.services.scan:Scan thread started for user 6610c82b run_id a33629c74f9b mode=default
+INFO:     127.0.0.1:51114 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:watchfiles.main:4 changes detected
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user 6610c82b
+  [Archetype] role='AI Product Engineer' | function='applied AI product engineering' | market='B2B enterprise'
+  [Archetype] must_have=['product', 'customer-facing', 'applied AI', 'cross-functional', 'system design', 'LLM', 'behavioral analytics']
+  [Archetype] avoid=['research', 'data entry', 'support engineer', 'hardware', 'infra only', 'generic SWE', 'manual testing']
+  [Queries] 8 board queries: ['ai product engineer applied AI product engineering AI-first startup Chennai jobs', 'ai product engineer applied AI product engineering AI-first startup hiring Chennai 2025', '"AI product engineer" jobs in Chennai', '"AI product engineer" hiring Chennai site:linkedin.com/jobs/view']
+  [Phase A] discovering companies for 'AI Product Engineer' in Chennai...
+INFO:careerloop.on_demand:[OnDemand] Phase A: sector inferred → 'Technology & Software' for role 'AI Product Engineer'
+    sector=Technology & Software — Phase A via DDG+Wellfound+Crunchbase+Inc42+YC...
+INFO:careerloop.sources.company_discovery:[Discovery] Starting: city=Chennai, sector=Technology & Software, function=ai product engineer applied AI product engineering AI-first startup
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'technology companies in Chennai India'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=technology%20companies%20in%20Chennai%20India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=technology+companies+in+Chennai+India&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=technology+companies+in+Chennai+India&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=technology+companies+in+Chennai+India 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dtechnology%2Bcompanies%2Bin%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGNzw6tAGIjBnxDZ2JQgTeUBhO0X8XwmAr8gncimRqhDZM1aR-i0mpLoUXBC8M0QB9pXsz_mDjQEyAnJSWgFD 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=p4kr-FghU8hDLaocKHpU4cHJ;_ylu=XdSr1807_S-YSRHv3Hg-dOorGPnfOrSGzrJTiCeBR7H44Us?p=technology+companies+in+Chennai+India 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 14 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'top technology startups in Chennai'
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=top%20technology%20startups%20in%20Chennai 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=top+technology+startups+in+Chennai&limit=1 200
+INFO:watchfiles.main:1 change detected
+INFO:primp:response: https://search.brave.com/search?q=top+technology+startups+in+Chennai&source=web 429
+INFO:     127.0.0.1:51134 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dtop%2Btechnology%2Bstartups%2Bin%2BChennai%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGOHw6tAGIjDEXFSuhzBkaxFcXG9_cQyGXyrUd3S4P9BoY7wRM4JhaDoR5XjWRoywcnDpqnhyT8kyAnJSWgFD 429
+INFO:careerloop_api.services.scan:Scan thread started for user d637466c run_id e0fb26a16c35 mode=default
+INFO:     127.0.0.1:51134 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:primp:response: https://search.yahoo.com/search;_ylt=K7vQtY_tA0cZ0jpg-gGrbvzl;_ylu=k7jF0_FaxOP5SE5qm4ONrOBCPCxG78-ARD8_Rlt_b76o6cg?p=top+technology+startups+in+Chennai 200
+INFO:     127.0.0.1:51134 - "GET /v1/scans/e0fb26a16c35/events HTTP/1.1" 200 OK
+ERROR:careerloop_api.services.scan:_execute_scan: failed to load user profile from DB: column "location_city" does not exist
+LINE 1: SELECT target_roles, location_city FROM careerloop.users WHE...
+                             ^
+
+WARNING:careerloop_api.services.scan:_execute_scan: no target role found for user d637466c
+  [Archetype] role='AI Product Engineer' | function='applied AI product engineering' | market='B2B enterprise'
+  [Archetype] must_have=['product', 'customer-facing', 'applied AI', 'cross-functional', 'system design', 'LLM', 'behavioral analytics']
+  [Archetype] avoid=['research', 'data entry', 'support engineer', 'hardware', 'infra only', 'generic SWE', 'manual testing']
+  [Queries] 8 board queries: ['ai product engineer applied AI product engineering AI-first startup Chennai jobs', 'ai product engineer applied AI product engineering AI-first startup hiring Chennai 2025', '"AI product engineer" jobs in Chennai', '"AI product engineer" hiring Chennai site:linkedin.com/jobs/view']
+  [Phase A] discovering companies for 'AI Product Engineer' in Chennai...
+INFO:primp:response: https://www.mojeek.com/search?q=top+technology+startups+in+Chennai 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 15 results
+INFO:careerloop.on_demand:[OnDemand] Phase A: sector inferred → 'Technology & Software' for role 'AI Product Engineer'
+    sector=Technology & Software — Phase A via DDG+Wellfound+Crunchbase+Inc42+YC...
+INFO:careerloop.sources.company_discovery:[Discovery] Starting: city=Chennai, sector=Technology & Software, function=ai product engineer applied AI product engineering AI-first startup
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'technology companies in Chennai India'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=technology%20companies%20in%20Chennai%20India 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'best technology firms Chennai India'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=best%20technology%20firms%20Chennai%20India 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=best+technology+firms+Chennai+India&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=technology+companies+in+Chennai+India&limit=1 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:primp:response: https://yandex.com/search/site/?text=technology+companies+in+Chennai+India&web=1&searchid=8341179 200
+INFO:primp:response: https://search.brave.com/search?q=technology+companies+in+Chennai+India&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=best+technology+firms+Chennai+India 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 14 results
+INFO:primp:response: https://www.mojeek.com/search?q=technology+companies+in+Chennai+India 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 13 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'companies hiring ai product engineer applied AI product engineering AI-first startup in Chennai India'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=companies%20hiring%20ai%20product%20engineer%20applied%20AI%20product%20engineering%20AI-first%20startup%20in%20Chennai%20India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=companies+hiring+ai+product+engineer+applied+AI+product+engineering+AI-first+startup+in+Chennai+India&limit=1 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'top technology startups in Chennai'
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=top%20technology%20startups%20in%20Chennai 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=top+technology+startups+in+Chennai&limit=1 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dtop%2Btechnology%2Bstartups%2Bin%2BChennai%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGOzw6tAGIjA3P8hunMOWtvvlnS0uwyTZFn-gpXc_XGyodsJBq8MBMDUZ4PNXa2yHPKL9sCSuZXYyAnJSWgFD 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dcompanies%2Bhiring%2Bai%2Bproduct%2Bengineer%2Bapplied%2BAI%2Bproduct%2Bengineering%2BAI-first%2Bstartup%2Bin%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGOzw6tAGIjDlxbSe623zHYR1-uyCvkz4S8FSATCNFkSS5zOlIwockPVyx4_WgLhMJtrX1izGIqkyAnJSWgFD 429
+INFO:primp:response: https://yandex.com/search/site/?text=top+technology+startups+in+Chennai&web=1&searchid=4109733 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=top+technology+startups+in+Chennai&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=companies+hiring+ai+product+engineer+applied+AI+product+engineering+AI-first+startup+in+Chennai+India&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=companies+hiring+ai+product+engineer+applied+AI+product+engineering+AI-first+startup+in+Chennai+India 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 7 results
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=pTX-fvN9agZH-vbEvpsVO_q4;_ylu=wI7hnq4jDnKeXKyeYZ_27kNHQmE8Z_pB3sooHIUPfcX7Ui8?p=top+technology+startups+in+Chennai 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 13 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps] Chennai/Technology & Software: 36 companies total
+INFO:careerloop.sources.company_discovery:[Wellfound/DDG] query: 'site:wellfound.com/company technology chennai'
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fcompany+technology+chennai&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/company%20technology%20chennai 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'best technology firms Chennai India'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=best%20technology%20firms%20Chennai%20India 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=Vz4_l4vk2fwZdJ8oi4IIBUMp;_ylu=gJ2Wew8PzWLJY26-eLsLESW_9ct2kAnVjqDAs_Jfb_yQyRc?p=best+technology+firms+Chennai+India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=best+technology+firms+Chennai+India&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dbest%2Btechnology%2Bfirms%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGPTw6tAGIjCmf5xdX0u98_0wMBHmUs4v8KEb-i80bcz10g09QVoBUUTPmune0Izi0f02HgCYYaMyAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Awellfound.com%2Fcompany+technology+chennai 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Awellfound.com%2Fcompany+technology+chennai&source=web 429
+INFO:primp:response: https://yandex.com/search/site/?text=best+technology+firms+Chennai+India&web=1&searchid=7452582 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 10 results
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Awellfound.com%252Fcompany%2Btechnology%2Bchennai%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGPXw6tAGIjBwGknZbwqykvQzCErm_yiYyyHcVIZHdPd2C7FHu-i9UzJoe0rZfFpQUzWysN5x--wyAnJSWgFD 429
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Awellfound.com%2Fcompany+technology+chennai&web=1&searchid=7321699 200
+INFO:careerloop.sources.company_discovery:[Wellfound/DDG] → 14 results
+INFO:careerloop.sources.company_discovery:[Wellfound] Chennai/Technology & Software: 14 companies
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] query: 'site:crunchbase.com/organization technology chennai india'
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'companies hiring ai product engineer applied AI product engineering AI-first startup in Chennai India'
+INFO:primp:response: https://search.yahoo.com/search;_ylt=vnrml3v11p3BhotCAqUt_xa6;_ylu=fzTOBNIW3EA9LLic91RP-WVlOTbbhbv79CixLCQ4xwpLMGE?p=companies+hiring+ai+product+engineer+applied+AI+product+engineering+AI-first+startup+in+Chennai+India 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acrunchbase.com/organization%20technology%20chennai%20india 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=companies%20hiring%20ai%20product%20engineer%20applied%20AI%20product%20engineering%20AI-first%20startup%20in%20Chennai%20India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=companies+hiring+ai+product+engineer+applied+AI+product+engineering+AI-first+startup+in+Chennai+India&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Acrunchbase.com%2Forganization+technology+chennai+india&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Acrunchbase.com%2Forganization+technology+chennai+india 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Acrunchbase.com%2Forganization+technology+chennai+india&web=1&searchid=3161478 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dcompanies%2Bhiring%2Bai%2Bproduct%2Bengineer%2Bapplied%2BAI%2Bproduct%2Bengineering%2BAI-first%2Bstartup%2Bin%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGPrw6tAGIjCNIWxUcMQcynXk4ipyWw73D_gXhFC0jFlNtggJ5fMR4IRJ2YA93Ry03EIL-PAiJ0MyAnJSWgFD 429
+INFO:primp:response: https://search.brave.com/search?q=companies+hiring+ai+product+engineer+applied+AI+product+engineering+AI-first+startup+in+Chennai+India&source=web 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Acrunchbase.com%252Forganization%2Btechnology%2Bchennai%2Bindia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGPvw6tAGIjCt0VDd0yZg_lFM7jxXrZNTjhFWYruuZjBa-ZcSX0ujPwmlWTxN-eiZkaIU8lNXkV4yAnJSWgFD 429
+INFO:primp:response: https://search.brave.com/search?q=site%3Acrunchbase.com%2Forganization+technology+chennai+india&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=companies+hiring+ai+product+engineer+applied+AI+product+engineering+AI-first+startup+in+Chennai+India 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=SAUHdYJbVxuuJwSqJvIt5wJm;_ylu=GzfltzeDPnQXGkB-bhji-mHvkzUzUtqjFE29hkzD5dCpaBM?p=site%3Acrunchbase.com%2Forganization+technology+chennai+india 200
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] → 13 results
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 4 results
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] query: 'crunchbase technology company chennai india funding'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=crunchbase%20technology%20company%20chennai%20india%20funding 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps] Chennai/Technology & Software: 34 companies total
+INFO:careerloop.sources.company_discovery:[Wellfound/DDG] query: 'site:wellfound.com/company technology chennai'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/company%20technology%20chennai 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Awellfound.com%2Fcompany+technology+chennai&source=web 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fcompany+technology+chennai&limit=1 200
+INFO:primp:response: https://yandex.com/search/site/?text=crunchbase+technology+company+chennai+india+funding&web=1&searchid=4730343 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=crunchbase+technology+company+chennai+india+funding&limit=1 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Awellfound.com%2Fcompany+technology+chennai&web=1&searchid=7968081 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=mUwRqAL72N-VLJDIi5wsRFiV;_ylu=BxgfwwglyVtCslmVkU_h4otfTOml0Tp9A3gF4zSb84PmoDk?p=site%3Awellfound.com%2Fcompany+technology+chennai 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dcrunchbase%2Btechnology%2Bcompany%2Bchennai%2Bindia%2Bfunding%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGIHx6tAGIjBLSwel_vrSuyo40ETSDUMcllgqixbmm6vu-F_2e5jE9E-IxrekzEBGOw4xIbici1AyAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Awellfound.com%2Fcompany+technology+chennai 200
+INFO:primp:response: https://search.brave.com/search?q=crunchbase+technology+company+chennai+india+funding&source=web 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Awellfound.com%252Fcompany%2Btechnology%2Bchennai%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGILx6tAGIjA3cawL8QInDN8Y8Cm2NLTBi-kDhmTxi8_UuCGxBdCkrWhZVqd6MUuUSlt_Q1FK1fwyAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=crunchbase+technology+company+chennai+india+funding 200
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] → 15 results
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:careerloop.sources.company_discovery:[Crunchbase] Chennai/Technology & Software: 12 companies
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'site:inc42.com technology startup chennai india'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainc42.com%20technology%20startup%20chennai%20india 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:careerloop.sources.company_discovery:[Wellfound/DDG] → 13 results
+INFO:careerloop.sources.company_discovery:[Wellfound] Chennai/Technology & Software: 13 companies
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] query: 'site:crunchbase.com/organization technology chennai india'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acrunchbase.com/organization%20technology%20chennai%20india 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ainc42.com+technology+startup+chennai+india&limit=1 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Acrunchbase.com%252Forganization%2Btechnology%2Bchennai%2Bindia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGITx6tAGIjDFnumHeaGOB1SVuuMU6D3Brp3SS7Kk13SmYa3fii73PUEM8cpcPOC08OPlR10uy4kyAnJSWgFD 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Acrunchbase.com%2Forganization+technology+chennai+india&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:primp:response: https://search.brave.com/search?q=site%3Acrunchbase.com%2Forganization+technology+chennai+india&source=web 429
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'site:yourstory.com technology company chennai india'
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ayourstory.com%20technology%20company%20chennai%20india 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Acrunchbase.com%2Forganization+technology+chennai+india 403
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ayourstory.com+technology+company+chennai+india&limit=1 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Acrunchbase.com%2Forganization+technology+chennai+india&web=1&searchid=5827291 200
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] → 15 results
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] query: 'crunchbase technology company chennai india funding'
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=crunchbase%20technology%20company%20chennai%20india%20funding 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=crunchbase+technology+company+chennai+india+funding&limit=1 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Ayourstory.com+technology+company+chennai+india&source=web 429
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:primp:response: https://www.mojeek.com/search?q=crunchbase+technology+company+chennai+india+funding 403
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Ayourstory.com%2Btechnology%2Bcompany%2Bchennai%2Bindia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGIzx6tAGIjAFfV5ykJJN7V_DGbMn67-D2yIS42LlyfSvviLuuDtKgjxNmeGec-M-Zz4Ryn3lDC4yAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Ayourstory.com+technology+company+chennai+india 403
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.yahoo.com/search;_ylt=yVoH2eQwMJcF-rH24N6ZwUhx;_ylu=3JV1UPMJbhwdmGLscmtH7gJY90JEL52Qhy_AH0q1FXeaIQQ?p=site%3Ayourstory.com+technology+company+chennai+india 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dcrunchbase%2Btechnology%2Bcompany%2Bchennai%2Bindia%2Bfunding%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGI_x6tAGIjBVoWsc7wPwjBwjjZ-zP76LBNefUOGfeQv4vBIILCayXQfBKEi7Q1gFCiPWUKqt2C4yAnJSWgFD 429
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Ayourstory.com+technology+company+chennai+india&web=1&searchid=3644459 200
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:primp:response: https://search.brave.com/search?q=crunchbase+technology+company+chennai+india+funding&source=web 429
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'startupindia.gov.in technology chennai registered startup'
+INFO:primp:response: https://yandex.com/search/site/?text=crunchbase+technology+company+chennai+india+funding&web=1&searchid=4849502 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=startupindia.gov.in+technology+chennai+registered+startup&limit=1 200
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] → 15 results
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=startupindia.gov.in%20technology%20chennai%20registered%20startup 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dstartupindia.gov.in%2Btechnology%2Bchennai%2Bregistered%2Bstartup%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJLx6tAGIjCRRme5n8lMldwq0N8zAvnqrZzs5MCE1KNYFsg1c9cp0JUQUdApDbYdln6cDHFdbiMyAnJSWgFD 429
+INFO:careerloop.sources.company_discovery:[Crunchbase] Chennai/Technology & Software: 18 companies
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'site:inc42.com technology startup chennai india'
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ainc42.com+technology+startup+chennai+india&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainc42.com%20technology%20startup%20chennai%20india 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Ainc42.com+technology+startup+chennai+india&web=1&searchid=1732401 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Ainc42.com%2Btechnology%2Bstartup%2Bchennai%2Bindia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJTx6tAGIjD2uKn7Hbs8ZF9k4AvIf2womJUM09GQ39RzGh8MNwVp9_Vc0JUMGgWSO4AOeweEFJgyAnJSWgFD 429
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/YourStory] Chennai/Technology & Software: 29 companies
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'site:yourstory.com technology company chennai india'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ayourstory.com%20technology%20company%20chennai%20india 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ayourstory.com+technology+company+chennai+india&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=yEzL_YnAjCTd4EgtmvVqpOSh;_ylu=B8ZAUlrrPiZUKGmov7SE2sAHaRQAwnq5yMV2lJSAKM0Boqo?p=site%3Ayourstory.com+technology+company+chennai+india 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Ayourstory.com+technology+company+chennai+india&web=1&searchid=4714557 200
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[YC] India/Technology & Software: 100 companies
+INFO:careerloop.sources.company_discovery:[Discovery] 191 raw → 191 deduped
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'startupindia.gov.in technology chennai registered startup'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=startupindia.gov.in%20technology%20chennai%20registered%20startup 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=startupindia.gov.in+technology+chennai+registered+startup&limit=1 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/YourStory] Chennai/Technology & Software: 28 companies
+INFO:careerloop.sources.company_discovery:[YC] India/Technology & Software: 100 companies
+INFO:careerloop.sources.company_discovery:[Discovery] 193 raw → 193 deduped
+INFO:careerloop.sources.company_portal_scraper:[CareerPage] Found via Playwright (score=11): https://in.mustakbil.com/jobseekers
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Information Technology and Services Companies in Chennai India: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] wikimint.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 45 IT Companies in Chennai – Leading Tech Firms You Should...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] easyleadz.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for List of Technology Companies in Chennai: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] techbehemoths.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20+ IT Companies in Chennai (2025) - TechBehemoths: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] marketmystique.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Product Based Companies in Chennai | 2025: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] adsnity.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for SEO Company in Chennai, SEO Services in Chennai - TechNest: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] tamilnow.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Indian software companies which has develop centers in Chennai,: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] wellfound.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best Tech Companies and Startups in Chennai, India 2026 |: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] builtinchennai.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 20 Top Tech Companies in Chennai | Built In Chennai: 'psycopg2.extensions.connection' object has no attribute 'execute'
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Service-Based IT Companies in Chennai... | Gramosoft: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] rankingindia.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for SEO Company in Chennai - Ranking India Technologies: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] goodfirms.co → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best IT Outsourcing Companies in Chennai - 2026 Reviews | Goodfirms: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] fita.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 100 IT Firms in Chennai | IT Solutions Companies | Top ...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] smarther.co → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Best SaaS Companies in Chennai 2025 - Smarther: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] smarther.co → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 50 Best IT Companies in Chennai 2026 | Top IT Firms Chennai: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] akkenna.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 List of Software Companies in Chennai: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] guvi.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 14 IT Companies in Chennai: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] vcsdata.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Companies in Chennai - List of Companies in Chennai: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] f6s.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 96 Top Software Companies in Chennai · May 2026 | F6S: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] internshala.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for IT Companies in Chennai: Jobs, Salaries & Benefits: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] goodfirms.co → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top IT Services Companies in Chennai - GoodFirms: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] knowstartup.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 Startup Companies in Chennai 2026 Guide: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] startupsunion.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Meet the 20 Startup Companies in Chennai That Are Disrupting ...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_portal_scraper:[CareerPage] Found via Playwright (score=11): https://in.mustakbil.com/jobseekers
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Information Technology and Services Companies in Chennai India: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] seedtable.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Explore 45 Best Startups in Chennai to watch in 2026 ...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] easyleadz.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for List of Technology Companies in Chennai: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] failory.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 26 Chennai Startups to Watch in 2026 - Failory: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] marketmystique.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Product Based Companies in Chennai | 2025: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] wherrelz.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 Startups Companies In Chennai 2026 Complete Guide: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] adsnity.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for SEO Company in Chennai, SEO Services in Chennai - TechNest: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] tamilnow.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Indian software companies which has develop centers in Chennai,: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] failory.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 26 Chennai Startups to Watch in 2026: 'psycopg2.extensions.connection' object has no attribute 'execute'
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 15 Tech Startups in Chennai [2025 Updated List]: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] scoopearth.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Startups In Chennai | Driving Innovation And Growth: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] kaashivinfotech.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Tech Startups in Chennai That You Should Know!: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] zartek.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Startups in Chennai 2025 | Zartek India: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] startupblink.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Startups in Chennai | StartupBlink: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] earnyatra.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 Startup Companies in Chennai For 2025: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] startuptalky.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for List of Successful Startups in Chennai | Top Chennai Based Startups: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] digitalmarketingdeal.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Startups in Chennai, Startup companies Chennai -: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] scoopearth.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Startups In Chennai | Driving Innovation And Growth: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] businesstalkmagazine.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 15 Best Startup Companies in Chennai (2026): 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] tech4lyf.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for How Chennai Startups Build Mobile Apps in 2026 – Tech4LYF...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] yourstory.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Chennai startups that are beating Bengaluru at its tech game: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] 123articleonline.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Web Development Solutions For Startups In Chennai: What's: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] guvi.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 14 Tech Startups in Chennai: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] analyticsinsight.net → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top AI Startups in Chennai Driving India’s Tech Growth: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] knowstartup.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 Startup Companies in Chennai 2026 Guide: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] nobroker.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 15 IT Companies in Chennai (2026) - NoBroker: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] startupsunion.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Meet the 20 Startup Companies in Chennai That Are Disrupting ...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] seedtable.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Explore 45 Best Startups in Chennai to watch in 2026 ...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] wherrelz.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 Startups Companies In Chennai 2026 Complete Guide: 'psycopg2.extensions.connection' object has no attribute 'execute'
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 15 Tech Startups in Chennai [2025 Updated List]: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] fita.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 100 IT Firms in Chennai | IT Solutions Companies | Top ...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] nobroker.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 15 IT Companies in Chennai (2026) - NoBroker: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_portal_scraper:[CareerPage] Found (static): https://blog.synarionit.com/hiring
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 35 IT Companies in Chennai: A Complete List for 2025: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] builtinchennai.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Tech Companies in Chennai, Tamil Nadu 2026 | Built In Chennai: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] pyramidions.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for List of Best IT Companies in Chennai - 2025 (Updated List): 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] traffictail.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 20 Best Product Based Companies In Chennai Hiring Freshers In: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] contus.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 10 Best Software Companies in Chennai [Top Firms in 2026]: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] thedesigngesture.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 10 Best Architecture Firms in Chennai India - The Design Gesture: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] beststartup.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 48 Chennai Based Service Industry Companies | The Most: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_portal_scraper:[CareerPage] Found via Playwright (score=11): https://corvi.careers/jobs/
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Ai Engineer jobs in Chennai | Corvi Careers: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] internshala.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 118 Artificial Intelligence (AI) Jobs in Chennai - Internshala: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] cutshort.io → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 27+ Artificial Intelligence (AI) in Chennai in May 2026: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] tyke-ai-1.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Tyke.ai Jobs | Wellfound (formerly AngelList Talent): 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_portal_scraper:[CareerPage] Found (static): https://blog.synarionit.com/hiring
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 35 IT Companies in Chennai: A Complete List for 2025: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] f22-labs.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for wellfound.com/company/f22-labs: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] spotnanatechnology.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Link to wellfound.com: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] augmedix.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for wellfound.com/company/augmedix: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_discovery:[Discovery] Done: 0 companies enriched and stored
+    internet discovery done — querying DB for top companies...
+WARNING:careerloop.on_demand:[OnDemand] Phase A discovery failed: 'psycopg2.extensions.connection' object has no attribute 'execute'
+  [Phase A] 0 companies found.
+  [Phase A] portal scrape done — 0 jobs
+  [Phase B] searching job boards (parallel)...
+INFO:careerloop.sources.search_adapter:Search [1/6]: ai product engineer applied AI product engineering AI-first startup Chennai jobs
+WARNING:careerloop.sources.jobspy_adapter:python-jobspy not installed
+INFO:careerloop.on_demand:[OnDemand] JobSpy: 0 jobs
+INFO:careerloop.sources.remoteok_adapter:[RemoteOK] 21 jobs for 'AI Product Engineer'
+INFO:careerloop.on_demand:[OnDemand] RemoteOK: 21 jobs
+WARNING:careerloop.sources.naukri_adapter:Naukri API returned 406
+INFO:careerloop.on_demand:[OnDemand] Naukri: 0 jobs
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/l/job-listings%20%22AI%20Product%20Engineer%22%20%22Chennai%22 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com/job-listing%20AI%20Product%20Engineer%20Chennai%20India 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20Product%20Engineer%22%20Chennai%20site%3Afoundit.in 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainstahyre.com%20%22AI%20Product%20Engineer%22%20%22Chennai%22 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acutshort.io/job%20%22AI%20Product%20Engineer%22%20%22Chennai%22 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Ajobs.lever.co%20Chennai%20India 200
+INFO:careerloop.sources.remotive_adapter:[Remotive] 10 jobs for 'AI Product Engineer'
+INFO:careerloop.on_demand:[OnDemand] Remotive: 10 jobs
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aiimjobs.com%20%22AI%20Product%20Engineer%22%20%22Chennai%22 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Chennai%22&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India&limit=1 200
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://search.yahoo.com/search;_ylt=Pe_O-54gnOsu-gztX7tZBXcJ;_ylu=Zd25pFG7OGrlgPHX3zWejXWlb4kWN_bDWPPBTNTlVW8RtBE?p=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=M5MXnFnxulydEnXTXerXXNmm;_ylu=QGP77lwl5exW4wQzn56xsjayKuxV2rsapgKzl9-PDapxNSY?p=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=EeEMYmMi9cKDQKkYIroLdB0z;_ylu=cWJqSlPnJBTx9avP-tlrC1noLVv64svEqC7cN8BFh0FdLK4?p=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=KpZVwn-syp7Yq-4KoUCz23s6;_ylu=DDQZdD7vCbBy5lq4hswGJvUc-xBGYye_ua9UEEcPxJliHyk?p=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Chennai%22 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=6LfuGfI8q-zx1Xp2csBZ-sQL;_ylu=oeHVF8XBmCf753H10OIKkikGhQ5zN4kMB3U4ajUIwkCP1iU?p=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Chennai%22 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:primp:response: https://search.brave.com/search?q=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Chennai%22&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Chennai%22 403
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20engineer%20applied%20AI%20product%20engineering%20AI-first%20startup%20Chennai%20jobs 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Chennai%22&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=ai+product+engineer+applied+AI+product+engineering+AI-first+startup+Chennai+jobs&limit=1 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Chennai%22&web=1&searchid=9920385 200
+INFO:careerloop.sources.weworkremotely_adapter:[WWR] 30 jobs for 'AI Product Engineer'
+INFO:careerloop.on_demand:[OnDemand] WeWorkRemotely: 30 jobs
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in&web=1&searchid=3542388 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Chennai%22&limit=1 200
+INFO:careerloop.sources.company_portal_scraper:[CareerPage] Found via Playwright (score=12): https://timesofindia.indiatimes.com/education/careers/news/trapped-between-a-paycheck-and-a-dream-why-women-in-us-are-staying-in-jobs-theyve-outgrown/articleshow/131403822.cms
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Chennai firms win Qualcomm’s hardware startups... - Times of India: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:primp:response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Chennai%22 403
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Chennai%22 403
+INFO:primp:response: https://www.mojeek.com/search?q=ai+product+engineer+applied+AI+product+engineering+AI-first+startup+Chennai+jobs 200
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India&source=web 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Chennai%22&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aiimjobs.com%2B%2522AI%2BProduct%2BEngineer%2522%2B%2522Chennai%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGI7y6tAGIjAa6nEvNJuqb7lPh0gZAcz8Uca5ATemrezNJtP2mxeIkxrHt1vNDC1m0l3gDtmd4SYyAnJSWgFD 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Chennai%22&web=1&searchid=6060214 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Awellfound.com%252Fl%252Fjob-listings%2B%2522AI%2BProduct%2BEngineer%2522%2B%2522Chennai%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGI7y6tAGIjAVhHyZbsxa-uvqbb7oCvYNkbHr1UGqP0WGFRQhQd48s1zkDdQD0ObVSnEP88mQQvIyAnJSWgFD 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Chennai%22&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Chennai%22 403
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:careerloop.sources.ats_adapter:[ATS detect] newindianexpress.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Tech firms to drive office space in Chennai next year: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:careerloop.sources.search_adapter:Search [2/6]: ai product engineer applied AI product engineering AI-first startup hiring Chennai 2025
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Acutshort.io%252Fjob%2B%2522AI%2BProduct%2BEngineer%2522%2B%2522Chennai%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGI_y6tAGIjCXcwDfVQwgQWiShFt-kiAcVG4p93VWL2KHF1ZTbZDpqlyIOP8tE_Usd0JEr_dCRmcyAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in 403
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Ajobs.lever.co%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJDy6tAGIjByCP4f0SS-KAWQLmZDUadTbSoW4_XwjcBiQfo_DUIzn3QYMB44PuOXTbEYvzGent0yAnJSWgFD 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%252Fjob-listing%2BAI%2BProduct%2BEngineer%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJDy6tAGIjCuU0fZD5ws77emqYIPR0EEJSSop5t9MAFzINe-n3fXLR1zu8vHzN0VnGpvYAml4mwyAnJSWgFD 429
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Chennai%22&web=1&searchid=8595851 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2BProduct%2BEngineer%2522%2BChennai%2Bsite%253Afoundit.in%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJHy6tAGIjDgtc74n3vnSbTQESMMMyR8OrB3XBl1dwTXjUfAo0VmmB4rZxV878a9ZD_YaIxrUJ0yAnJSWgFD 429
+INFO:careerloop.sources.monster_adapter:[Monster/foundit] DDG: AI Product Engineer in Chennai: 6 jobs
+INFO:careerloop.on_demand:[OnDemand] Monster/foundit: 6 jobs
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20engineer%20applied%20AI%20product%20engineering%20AI-first%20startup%20hiring%20Chennai%202025 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Ainstahyre.com%2B%2522AI%2BProduct%2BEngineer%2522%2B%2522Chennai%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJHy6tAGIjBsxUOs-jQ866SVI34572ZfAtZ5RgXNSwk6mm_tRdTWgMRAMbkNa5vQWGQmOFJyg_0yAnJSWgFD 429
+INFO:primp:response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India&web=1&searchid=7748962 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India&web=1&searchid=8775428 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Chennai%22&source=web 429
+INFO:primp:response: https://search.brave.com/search?q=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Chennai%22&source=web 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=ai+product+engineer+applied+AI+product+engineering+AI-first+startup+hiring+Chennai+2025&limit=1 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aboards.greenhouse.io%20Chennai%20India 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:careerloop.sources.instahyre_adapter:[Instahyre] 0 jobs for 'AI Product Engineer' / 'Chennai'
+INFO:careerloop.on_demand:[OnDemand] Instahyre: 0 jobs
+INFO:primp:response: https://search.yahoo.com/search;_ylt=2snK3PK6PuQLEYmzlax0q9T_;_ylu=FGMWrh-NJ84OzB3NZ81ycbEne9q27sbTdjvLgGiitqDZdhA?p=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=H57P8Cxm1p31wNdwW9KSNQZ9;_ylu=j7yY20X1XVSjokSuO0XR9XpS3aghJVYhCh6me4aEwsUyynA?p=ai+product+engineer+applied+AI+product+engineering+AI-first+startup+hiring+Chennai+2025 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:careerloop.sources.ats_adapter:[ATS detect] cutshort.io → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Tech AI startup in Bangalore is hiring Full stack developer job: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Chennai%22&web=1&searchid=2457428 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:careerloop.sources.iimjobs_adapter:[IIMJobs] 0 jobs for 'AI Product Engineer' / 'Chennai'
+INFO:careerloop.on_demand:[OnDemand] IIMJobs: 0 jobs
+INFO:careerloop.sources.wellfound_adapter:[Wellfound] 0 jobs for 'AI Product Engineer' / 'Chennai'
+INFO:careerloop.on_demand:[OnDemand] Wellfound: 0 jobs
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India&limit=1 200
+INFO:careerloop.sources.cutshort_adapter:[Cutshort] 6 jobs for 'AI Product Engineer' / 'Chennai'
+INFO:careerloop.on_demand:[OnDemand] Cutshort: 6 jobs
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com%20%22job-listing%22%20%22AI%20Product%20Engineer%22%20Chennai 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%2B%2522job-listing%2522%2B%2522AI%2BProduct%2BEngineer%2522%2BChennai%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJPy6tAGIjDMn5VeDdqaVmsDfHYZ57s1YISCsyZF14eEzCobEQT3XnyA8285N3jPVeJX_8WyowgyAnJSWgFD 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dai%2Bproduct%2Bengineer%2Bapplied%2BAI%2Bproduct%2Bengineering%2BAI-first%2Bstartup%2Bhiring%2BChennai%2B2025%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJPy6tAGIjAkKwJ39R9xw0BpmiZ0VCvHw99KBXoAaFfG7SPGRwOlpRnaa0C5WwUijWDCCh4nuO8yAnJSWgFD 429
+INFO:primp:response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India&web=1&searchid=9615217 200
+INFO:primp:response: https://search.brave.com/search?q=ai+product+engineer+applied+AI+product+engineering+AI-first+startup+hiring+Chennai+2025&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:careerloop.sources.ats_adapter:[ATS detect] wellfound.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best Artificial Intelligence Companies to Work for in Chennai 2026: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai 403
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:careerloop.sources.ats_adapter:[ATS detect] tyke-ai-1.com → smartrecruiters (REST probe)
+INFO:primp:response: https://search.yahoo.com/search;_ylt=9MClZr6whJrRTWkKfZApN1AS;_ylu=S-AL4HBq-E_Thww5OMck3ag_srmTB_vm3TBI9OXsfVDL9-4?p=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai 200
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Tyke.ai Jobs | Wellfound (formerly AngelList Talent): 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=ai+product+engineer+applied+AI+product+engineering+AI-first+startup+hiring+Chennai+2025 403
+INFO:primp:response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India 200
+INFO:careerloop.sources.ats_adapter:[ATS detect] f22-labs.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for wellfound.com/company/f22-labs: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Aboards.greenhouse.io%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJfy6tAGIjCimBGaccwN8VtMzJ9cYHgNg1hJe02QTJU38qqGuaKR274XoFEfbq5YINsEhJBAs5syAnJSWgFD 429
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai&web=1&searchid=4237592 200
+INFO:careerloop.sources.glassdoor_adapter:[Glassdoor] AI Product Engineer in Chennai: 11 jobs
+INFO:careerloop.on_demand:[OnDemand] Glassdoor: 11 jobs
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aashbyhq.com%20Chennai%20India 200
+INFO:primp:response: https://yandex.com/search/site/?text=ai+product+engineer+applied+AI+product+engineering+AI-first+startup+hiring+Chennai+2025&web=1&searchid=5306946 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aashbyhq.com+Chennai+India&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=umMGZ695svH80s73kpu1lCvB;_ylu=kiWjpL_qYam2PYHOE91JghTI1o29lrgeinO0aDvXqd76H2A?p=AI+Product+Engineer+site%3Aashbyhq.com+Chennai+India 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Aashbyhq.com%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJjy6tAGIjCOph9TNwx2HlGa_tg_9yyMOkYOl34W4Wt8DTaYNz9JZwsx11oNNQDiRr3b0VFik_YyAnJSWgFD 429
+INFO:careerloop.sources.ats_adapter:[ATS detect] spotnanatechnology.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Link to wellfound.com: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:primp:response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aashbyhq.com+Chennai+India&web=1&searchid=9848666 200
+INFO:careerloop.sources.search_adapter:Search [3/6]: "AI product engineer" jobs in Chennai
+INFO:careerloop.sources.ats_adapter:[ATS detect] augmedix.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for wellfound.com/company/augmedix: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20jobs%20in%20Chennai 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+jobs+in+Chennai&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+jobs+in+Chennai&source=web 429
+INFO:careerloop.sources.ats_adapter:[ATS detect] luxury-presence.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for wellfound.com/company/luxury-presence: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:primp:response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aashbyhq.com+Chennai+India 200
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aashbyhq.com+Chennai+India&source=web 429
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+jobs+in+Chennai&web=1&searchid=4538207 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aapply.workable.com%20Chennai%20India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aapply.workable.com+Chennai+India&limit=1 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Aapply.workable.com%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJ7y6tAGIjCZhokA1AdI11LyCFxs7v_kf6b0x6rTuYn7ylC1lwlI4tPE90mQQsa61sJcpceTrgcyAnJSWgFD 429
+INFO:careerloop.sources.ats_adapter:[ATS detect] simplotel-technologies-pvt-ltd.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for wellfound.com/company/simplotel-technologies-pvt-ltd: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_discovery:[Discovery] Done: 0 companies enriched and stored
+    internet discovery done — querying DB for top companies...
+WARNING:careerloop.on_demand:[OnDemand] Phase A discovery failed: 'psycopg2.extensions.connection' object has no attribute 'execute'
+  [Phase A] 0 companies found.
+  [Phase A] portal scrape done — 0 jobs
+  [Phase B] searching job boards (parallel)...
+INFO:careerloop.sources.search_adapter:Search [1/6]: ai product engineer applied AI product engineering AI-first startup Chennai jobs
+WARNING:careerloop.sources.jobspy_adapter:python-jobspy not installed
+INFO:careerloop.on_demand:[OnDemand] JobSpy: 0 jobs
+INFO:careerloop.sources.remoteok_adapter:[RemoteOK] 21 jobs for 'AI Product Engineer'
+INFO:careerloop.on_demand:[OnDemand] RemoteOK: 21 jobs
+INFO:primp:response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aapply.workable.com+Chennai+India&web=1&searchid=6560241 200
+INFO:careerloop.sources.remotive_adapter:[Remotive] 10 jobs for 'AI Product Engineer'
+INFO:careerloop.on_demand:[OnDemand] Remotive: 10 jobs
+WARNING:careerloop.sources.naukri_adapter:Naukri API returned 406
+INFO:careerloop.on_demand:[OnDemand] Naukri: 0 jobs
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/l/job-listings%20%22AI%20Product%20Engineer%22%20%22Chennai%22 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aiimjobs.com%20%22AI%20Product%20Engineer%22%20%22Chennai%22 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India&source=web 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=PRSqm0snWnorkG5lwHjLRAlD;_ylu=Iow_IoVkl_fQHebIlJ21w36_ENpebumEXWzJ0nt82PbDhGI?p=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Chennai%22&source=web 429
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India&source=web 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in&limit=1 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Chennai%22&source=web 429
+INFO:primp:response: https://search.brave.com/search?q=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in&source=web 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Chennai%22&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainstahyre.com%20%22AI%20Product%20Engineer%22%20%22Chennai%22 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Chennai%22&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com/job-listing%20AI%20Product%20Engineer%20Chennai%20India 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Ajobs.lever.co%20Chennai%20India 200
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Chennai%22&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20Product%20Engineer%22%20Chennai%20site%3Afoundit.in 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=RpYMtqrJ3hdRTXlyU0qiOjJ3;_ylu=0z0lovn9uUq75ikxeYrtFyJsYkECR1yamzTCQDOPBF9kU6U?p=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Chennai%22 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=J5AjWEG8xrPmgk3zNcsgPN8u;_ylu=-di7JzIPdjYgJ1i1uYY1oeDX076g2rRAAI40xaPIsvwVj3k?p=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Chennai%22 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Ainstahyre.com%2B%2522AI%2BProduct%2BEngineer%2522%2B%2522Chennai%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJ_y6tAGIjDTmxZH2M2StZwuPs--ythlo8Kd3UY40iTerfWyWrswVXUjvfgiw2rmhWIAfVs7c9MyAnJSWgFD 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Acutshort.io%252Fjob%2B%2522AI%2BProduct%2BEngineer%2522%2B%2522Chennai%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJ_y6tAGIjDAooCvMnToKr58dDaKDGHPu1upk6KnvKMADJkV0CD2UYtOv4hiU9BLtvK4W2MsL90yAnJSWgFD 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aiimjobs.com%2B%2522AI%2BProduct%2BEngineer%2522%2B%2522Chennai%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJ_y6tAGIjC6Mrgi1GPJaBm_g6VAV9VP85_Q4JmMLFVx5dNueMZ3lwKNZFHRhmwvebhMSuAmk1syAnJSWgFD 429
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acutshort.io/job%20%22AI%20Product%20Engineer%22%20%22Chennai%22 200
+INFO:careerloop.sources.weworkremotely_adapter:[WWR] 30 jobs for 'AI Product Engineer'
+INFO:careerloop.on_demand:[OnDemand] WeWorkRemotely: 30 jobs
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Chennai%22&limit=1 200
+INFO:primp:response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aapply.workable.com+Chennai+India 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20engineer%20applied%20AI%20product%20engineering%20AI-first%20startup%20Chennai%20jobs 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Chennai%22&web=1&searchid=1197772 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=ai+product+engineer+applied+AI+product+engineering+AI-first+startup+Chennai+jobs&limit=1 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India&web=1&searchid=2779396 200
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in&web=1&searchid=1501417 200
+INFO:careerloop.sources.search_adapter:Search [4/6]: "AI product engineer" hiring Chennai site:linkedin.com/jobs/view
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=V84ztytOMJioL7HuLYgF0mBQ;_ylu=jFsRJYbT-WzYjrFCceJNW264skWSv7l5XhjS1KpXVt5UiK8?p=AI+Product+Engineer+site%3Aapply.workable.com+Chennai+India 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India 200
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Chennai%22&web=1&searchid=3808515 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aapply.workable.com+Chennai+India&source=web 429
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Chennai%22&web=1&searchid=4424830 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Chennai%22&web=1&searchid=4924535 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=BkRtaw_WAdSLkGnYPj6N7_80;_ylu=G02rIt7tonXwQjhOqtAgFY9iVpFlLCxUXMbnEvXWId6pZcQ?p=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Chennai+India 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=Em4-nLpgHUyKZGeKRK5RLeTZ;_ylu=HjpfheHm73zjawJDS9YorixWoQeawDVD7s934AxYkUG1YgI?p=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Chennai%22 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20hiring%20Chennai%20site%3Alinkedin.com/jobs/view 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Chennai%22&source=web 429
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Chennai%22 403
+INFO:primp:response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&limit=1 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+Product+Engineer%22+Chennai+site%3Afoundit.in 403
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%252Fjob-listing%2BAI%2BProduct%2BEngineer%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKLy6tAGIjBItGxZB4tIcps4tIVMM-1J93lTmjU5JaMD2VhTsdQ7TkcrN6Cg3A1q6GjviWqCOk8yAnJSWgFD 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=ZELljAKztAo45CDrmew_EVI2;_ylu=RZmetpNorqY95iLuuVXnS6nmVtBPncIv6VbEsc4SzRoM2O4?p=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview 403
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Chennai%22 403
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:careerloop.sources.search_adapter:Search [2/6]: ai product engineer applied AI product engineering AI-first startup hiring Chennai 2025
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2BProduct%2BEngineer%2522%2BChennai%2Bsite%253Afoundit.in%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKLy6tAGIjBVxPc1ZCC_wVItiz8Tb8SH-eqzFq7PbHgJjbhNkQdgbzEsSNcDQGdFszGz5WG297gyAnJSWgFD 429
+INFO:careerloop.sources.monster_adapter:[Monster/foundit] DDG: AI Product Engineer in Chennai: 6 jobs
+INFO:careerloop.on_demand:[OnDemand] Monster/foundit: 6 jobs
+INFO:careerloop.sources.google_jobs_adapter:[GoogleJobs] AI Product Engineer in Chennai: 30 jobs
+INFO:careerloop.on_demand:[OnDemand] GoogleJobs: 30 jobs
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Ajobs.lever.co%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKPy6tAGIjDU9oeTro7vwf5tlkZHA2-tGBMorYXQgdVR5sLDkErQSm47QjasJhJf4dlnLequl9EyAnJSWgFD 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20engineer%20applied%20AI%20product%20engineering%20AI-first%20startup%20hiring%20Chennai%202025 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Chennai%22&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Chennai%22 403
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&web=1&searchid=6247580 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:careerloop.sources.instahyre_adapter:[Instahyre] 0 jobs for 'AI Product Engineer' / 'Chennai'
+INFO:careerloop.on_demand:[OnDemand] Instahyre: 0 jobs
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Ajobs.lever.co+Chennai+India&web=1&searchid=5098791 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=_0tJwyHGiQV1XKSH_t2xA5U6;_ylu=LjFc9gEaMg2MvKBbkuIQOvz7DvTzt34WLhKaXIr28XeuXjE?p=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Chennai%22 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.yahoo.com/search;_ylt=hGDPOpBjDeCybSNZ9vp-ZAkd;_ylu=_lABgC8OQWYc_e1jLgXGNFP4aaTzocfA-NbU4B1gc5fvYa8?p=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview 200
+INFO:careerloop.on_demand:[OnDemand] IIMJobs: 0 jobs
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com%20%22job-listing%22%20%22AI%20Product%20Engineer%22%20Chennai 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Awellfound.com%252Fl%252Fjob-listings%2B%2522AI%2BProduct%2BEngineer%2522%2B%2522Chennai%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKTy6tAGIjCJ1OEqsl0sYeqOyOuyK2S4JoiL7izLDZpflphtMznCXAYXUG0JpHRLVoFM9EkKfqIyAnJSWgFD 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=sug1r5iOQPKVWVvfL6dt_RwP;_ylu=pBlB0wBQmS92N8VOlxDhPWqvtCoxFJ2RUWFIozYvFnNJYXY?p=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aboards.greenhouse.io%20Chennai%20India 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%2B%2522job-listing%2522%2B%2522AI%2BProduct%2BEngineer%2522%2BChennai%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKXy6tAGIjA3ywBHepyuCjPAqdwfImp88gvardfGdE7Rwg375kfE7aUBBgLwUr9FdQDz0wkueI0yAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Chennai%22 403
+INFO:careerloop.sources.wellfound_adapter:[Wellfound] 0 jobs for 'AI Product Engineer' / 'Chennai'
+INFO:careerloop.on_demand:[OnDemand] Wellfound: 0 jobs
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=ai+product+engineer+applied+AI+product+engineering+AI-first+startup+hiring+Chennai+2025&limit=1 200
+INFO:primp:response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2Bhiring%2BChennai%2Bsite%253Alinkedin.com%252Fjobs%252Fview%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKXy6tAGIjDyIvUFH3thWeeV1XlGvn8tMkYDAN5dB2qOPEZexYt18uCJ3k4QNFzJ41lCwezt3wsyAnJSWgFD 429
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:careerloop.sources.cutshort_adapter:[Cutshort] 6 jobs for 'AI Product Engineer' / 'Chennai'
+INFO:careerloop.on_demand:[OnDemand] Cutshort: 6 jobs
+INFO:primp:response: https://search.yahoo.com/search;_ylt=43FcxVdbs2zunKVWttrDDax7;_ylu=G7xqzpasMylHIhilBmCDwBIzEf4WxDRJE06tMEA_Ov4pjs8?p=ai+product+engineer+applied+AI+product+engineering+AI-first+startup+hiring+Chennai+2025 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India&limit=1 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai&web=1&searchid=1276779 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dai%2Bproduct%2Bengineer%2Bapplied%2BAI%2Bproduct%2Bengineering%2BAI-first%2Bstartup%2Bhiring%2BChennai%2B2025%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKfy6tAGIjAHGe5rZBsILeB8XiVmxHcB0mKzMbJwQJf7EOcyIjqcocdgLfQMNqRqfVkN2HmrtgcyAnJSWgFD 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India&web=1&searchid=9092229 200
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India&source=web 429
+INFO:primp:response: https://yandex.com/search/site/?text=ai+product+engineer+applied+AI+product+engineering+AI-first+startup+hiring+Chennai+2025&web=1&searchid=1199507 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=-I4kNlH-iETjjMrKZALLAL32;_ylu=L94DZj7BoWBX2NzmCuUYEJue615U2VPVk6OppFeRYHJBVGo?p=AI+Product+Engineer+site%3Aboards.greenhouse.io+Chennai+India 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai 403
+INFO:primp:response: https://search.brave.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Chennai&source=web 429
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:careerloop.sources.search_adapter:Search [5/6]: "AI product engineer" Chennai site:naukri.com
+INFO:careerloop.sources.glassdoor_adapter:[Glassdoor] AI Product Engineer in Chennai: 13 jobs
+INFO:careerloop.on_demand:[OnDemand] Glassdoor: 13 jobs
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Aboards.greenhouse.io%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKry6tAGIjALR83tqrgBCAxokv0Qj8YHu5YOwklUVASIQqyf8XnpbQ3YTrmpkKMEvhyTaLYxaz0yAnJSWgFD 429
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aashbyhq.com%20Chennai%20India 200
+INFO:careerloop.sources.search_adapter:Search [3/6]: "AI product engineer" jobs in Chennai
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aashbyhq.com+Chennai+India&limit=1 200
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aashbyhq.com+Chennai+India&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aashbyhq.com+Chennai+India 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Chennai%20site%3Anaukri.com 200
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+jobs+in+Chennai&limit=1 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Aashbyhq.com%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKvy6tAGIjCdk9nUgRb_0QQJ4UO2kb5afv6H3L0SKMyAz3UnOumfrXl4NNr6U5lCsMmGRmm5cQEyAnJSWgFD 429
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20jobs%20in%20Chennai 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=oTwgfbaPJTsEJQfFmkWXcbXE;_ylu=RvEs-pVD5glrga0z1vIrmyKVQ8AjlwVadJaU6EmofwrOYwg?p=%22AI+product+engineer%22+jobs+in+Chennai 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2Bjobs%2Bin%2BChennai%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGK3y6tAGIjDxOzkul1shHy0nI73lRxRqVx1Rwtao7Yqps3cuNT69nvLQcjisEt3tYK_tG6Z76zwyAnJSWgFD 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+jobs+in+Chennai&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&source=web 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=Qtjpc8JVEEpj_1ENfsiL_5AS;_ylu=dpSClqisZ2rqMq8kmXhiKk9m67VKwErpqps_4ut_PyXqBHE?p=AI+Product+Engineer+site%3Aashbyhq.com+Chennai+India 200
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+jobs+in+Chennai&web=1&searchid=5044420 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&web=1&searchid=2218501 200
+INFO:primp:response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aashbyhq.com+Chennai+India&web=1&searchid=4654569 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2BChennai%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGLDy6tAGIjBRKu2JRbMQHno5eDreKcNRpX_C9xmMQVnFwRqxf9tY16XEOgQd2Ee9F3PHU7sUmacyAnJSWgFD 429
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:careerloop.sources.search_adapter:Search [4/6]: "AI product engineer" hiring Chennai site:linkedin.com/jobs/view
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aapply.workable.com+Chennai+India&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=HQXiW0fPRSN27HHq0E5hHSJa;_ylu=pjTKgUiUjMSFjJ_HllKwYQPVLsJ6zgyLRNzN1r7ZlrxIVCk?p=%22AI+product+engineer%22+Chennai+site%3Anaukri.com 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aapply.workable.com%20Chennai%20India 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Aapply.workable.com%2BChennai%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGLHy6tAGIjB2U7LROo3kLgnbh_ntz7Ia_HQeXHHzn-cP91o_vB21u95GFwi1zfL6KRUzc0-zx0gyAnJSWgFD 429
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20hiring%20Chennai%20site%3Alinkedin.com/jobs/view 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+Chennai+site%3Anaukri.com 403
+WARNING:careerloop.sources.search_adapter:Google Search failed for '"AI product engineer" Chennai site:naukri.com', trying DDG: No results found.
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Chennai%20site%3Anaukri.com 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&limit=1 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aapply.workable.com+Chennai+India&web=1&searchid=8891646 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aapply.workable.com+Chennai+India 403
+INFO:primp:response: https://search.yahoo.com/search;_ylt=6LcW4dUHYpReloMVEcetmkO2;_ylu=OqOmGcsKNWlurmc5Cb6C4ydDXq2jj3WYhtqoZoWsYiSD9c8?p=AI+Product+Engineer+site%3Aapply.workable.com+Chennai+India 200
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=7GyxJRXWMZjwgpQLH6LypxBt;_ylu=AaPe9AI-S6RvGVRdzrolsJU0kepW8xweGTID2KjXEV8s8hU?p=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview 200
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aapply.workable.com+Chennai+India&source=web 429
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&web=1&searchid=4564986 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=BsUwR8lnKk_l44JL8mXJ3mCs;_ylu=wepnZoeRiIEhlrGuK-kDSrAjeWQYrAdB7nr22rykPyE15dk?p=%22AI+product+engineer%22+Chennai+site%3Anaukri.com 200
+INFO:careerloop.sources.google_jobs_adapter:[GoogleJobs] AI Product Engineer in Chennai: 30 jobs
+INFO:careerloop.on_demand:[OnDemand] GoogleJobs: 30 jobs
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview&web=1&searchid=6590062 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2Bhiring%2BChennai%2Bsite%253Alinkedin.com%252Fjobs%252Fview%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGLjy6tAGIjCaFHxDOM9gVB-T5qefZUGJ-H7jsPb3Hm7DgaJEdiuo6jyXpoSDCRZEeXERo_5wLiAyAnJSWgFD 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2BChennai%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGLjy6tAGIjDNjLZO8L_yr6daUvOMCOGL_HN6JGemkgCXXjjPXr4We_ftggzftdOZrQzpsSERkMUyAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+hiring+Chennai+site%3Alinkedin.com%2Fjobs%2Fview 403
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+Chennai+site%3Anaukri.com 403
+WARNING:careerloop.sources.search_adapter:DDG fallback also failed: No results found.
+INFO:careerloop.sources.search_adapter:Search [5/6]: "AI product engineer" Chennai site:naukri.com
+INFO:careerloop.sources.search_adapter:Search [6/6]: "AI product engineer" Chennai site:cutshort.io
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Chennai%20site%3Anaukri.com 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Chennai+site%3Acutshort.io&limit=1 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Chennai%20site%3Acutshort.io 200
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+Chennai+site%3Acutshort.io&source=web 429
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&web=1&searchid=4737418 200
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+Chennai+site%3Acutshort.io 403
+INFO:primp:response: https://search.yahoo.com/search;_ylt=Me_JTZdsrpngw63Qw97TFAru;_ylu=sqoLXNZcuQ3bpfOAV2zcjTep2rsOmtoUfZmIwkFZHXGS-NA?p=%22AI+product+engineer%22+Chennai+site%3Anaukri.com 200
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+Chennai+site%3Acutshort.io&web=1&searchid=2273496 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2BChennai%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGL7y6tAGIjAu_iFEz0qMsHEXmdGVNgedjaDdhJmoHgqFO8WsZTge00enifSeZ7y1obiQ0ovPgDwyAnJSWgFD 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=4NHtQB1jG81GGTqJxHPJ2Qa2;_ylu=4ofpZOzVMs_AoCGfcKEiOHSeZwHMvAlPpoxk-AoVYC3VOPc?p=%22AI+product+engineer%22+Chennai+site%3Acutshort.io 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+Chennai+site%3Anaukri.com 403
+WARNING:careerloop.sources.search_adapter:Google Search failed for '"AI product engineer" Chennai site:naukri.com', trying DDG: No results found.
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Chennai%20site%3Anaukri.com 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=mv7UUOcLdswKlzB086keGcqM;_ylu=fWIqonkCQDfRfcSwJ76FJ1Jumee3W7qU6SQaodlNNMKClzY?p=%22AI+product+engineer%22+Chennai+site%3Anaukri.com 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2BChennai%2Bsite%253Acutshort.io%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGMLy6tAGIjCEyJGJ0CnJclOMXvydG1YBdqiQyDyTXEXFZFyCOQZrKrtprfm3OvW_jFP_MZy5tIcyAnJSWgFD 429
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:careerloop.sources.search_adapter:Total candidate URLs: 16
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&web=1&searchid=4615527 200
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+Chennai+site%3Anaukri.com 403
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2BChennai%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGMXy6tAGIjCZeYCwjFt4FPrp6EqDaQec67mOQDTLMteVjvieGUxKBY8lImWeUEY1qW3iGgY6vAgyAnJSWgFD 429
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+Chennai+site%3Anaukri.com&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:careerloop.sources.search_adapter:Search [6/6]: "AI product engineer" Chennai site:cutshort.io
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Chennai%20site%3Acutshort.io 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Chennai+site%3Acutshort.io&limit=1 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+Chennai+site%3Acutshort.io&web=1&searchid=8477370 200
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+Chennai+site%3Acutshort.io&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+Chennai+site%3Acutshort.io 403
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2BChennai%2Bsite%253Acutshort.io%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGNLy6tAGIjDQq3QYAxH27H1OfgD6PZm1qUQl-AN1L7FnCE3nz1toltvBydS5OQt19ViOdYiPRo8yAnJSWgFD 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=qtCcruaU0ZOKIo7Q1Z0cVN4_;_ylu=CmICF_2stCgIc-hh-kaH2ZsXCf3PXF1ElkZTC8b0zMvSSbM?p=%22AI+product+engineer%22+Chennai+site%3Acutshort.io 200
+INFO:careerloop.sources.search_adapter:Total candidate URLs: 21
+INFO:careerloop.on_demand:[OnDemand] Board health: {'jobspy': 0, 'remoteok': 21, 'naukri': 0, 'remotive': 10, 'weworkremotely': 30, 'monster': 6, 'instahyre': 0, 'iimjobs': 0, 'wellfound': 0, 'cutshort': 6, 'glassdoor': 11, 'google_jobs': 30, 'ddg': 15}
+  [Phase B] per-source: cutshort:6 | ddg:15 | glassdoor:11 | google_jobs:30 | iimjobs:0 | instahyre:0 | jobspy:0 | monster:6 | naukri:0 | remoteok:21 | remotive:10 | wellfound:0 | weworkremotely:30
+  [Phase B] boards done — 127 jobs (archetype title-rejected 2)
+  [Pipeline] total raw candidates: 127 (A:0 + B:127)
+INFO:careerloop.india_filter:India filter: 50 passed, 77 rejected
+  [Filter] India filter: 127 → 50
+  [Phase E] ontology gate (archetype_match>=0.2): 50 → 5 (45 dropped)
+  [Phase E] role similarity filter: 5 candidates...
+INFO:careerloop.role_similarity:[RoleSimilarity] sentence-transformers not installed, using token overlap
+  [Phase E] role filter done: 5 → 3 relevant (2 rejected)
+INFO:careerloop.apply_route:Canonical dedup: 3 → 3 unique jobs
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Vanta': invalid input syntax for type uuid: "vanta"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'vanta' OR...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Agentic AI & Automation': invalid input syntax for type uuid: "agentic-ai-automation"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'agentic-a...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'DevRev': invalid input syntax for type uuid: "devrev"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'devrev' O...
+                                                             ^
+ — using defaults
+  [Phase F] LLM validator (DeepSeek): validating top-3 jobs...
+INFO:watchfiles.main:3 changes detected
+  [Phase F] LLM validator done: 3 → 3
+INFO:careerloop_api.services.scan.persist:Persisted 3 jobs to careerloop.jobs for user 6610c82b
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 20 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop.on_demand:[OnDemand] Board health: {'jobspy': 0, 'remoteok': 21, 'remotive': 10, 'naukri': 0, 'weworkremotely': 30, 'monster': 6, 'instahyre': 0, 'iimjobs': 0, 'wellfound': 0, 'cutshort': 6, 'glassdoor': 13, 'google_jobs': 30, 'ddg': 15}
+  [Phase B] per-source: cutshort:6 | ddg:15 | glassdoor:13 | google_jobs:30 | iimjobs:0 | instahyre:0 | jobspy:0 | monster:6 | naukri:0 | remoteok:21 | remotive:10 | wellfound:0 | weworkremotely:30
+  [Phase B] boards done — 129 jobs (archetype title-rejected 2)
+INFO:careerloop_api.services.scan:Scan completed: run_id=a33629c74f9b user=6610c82b top_jobs=3
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=a33629c74f9b user=6610c82b — guards released
+  [Pipeline] total raw candidates: 129 (A:0 + B:129)
+INFO:careerloop.india_filter:India filter: 51 passed, 78 rejected
+  [Filter] India filter: 129 → 51
+  [Phase E] ontology gate (archetype_match>=0.2): 51 → 3 (48 dropped)
+  [Phase E] role similarity filter: 3 candidates...
+INFO:careerloop.role_similarity:[RoleSimilarity] sentence-transformers not installed, using token overlap
+  [Phase E] role filter done: 3 → 2 relevant (1 rejected)
+INFO:careerloop.apply_route:Canonical dedup: 2 → 2 unique jobs
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Agentic AI & Automation': invalid input syntax for type uuid: "agentic-ai-automation"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'agentic-a...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'DevRev': invalid input syntax for type uuid: "devrev"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'devrev' O...
+                                                             ^
+ — using defaults
+  [Phase F] LLM validator (DeepSeek): validating top-2 jobs...
+INFO:watchfiles.main:3 changes detected
+INFO:     127.0.0.1:51134 - "GET /v1/briefs/latest HTTP/1.1" 404 Not Found
+  [Phase F] LLM validator done: 2 → 2
+INFO:careerloop_api.services.scan.persist:Persisted 2 jobs to careerloop.jobs for user d637466c
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 20 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan:Scan completed: run_id=e0fb26a16c35 user=d637466c top_jobs=2
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=e0fb26a16c35 user=d637466c — guards released
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/scan_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [69826]
+Process SpawnProcess-2:
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.2/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/process.py", line 320, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.2/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+    ~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/uvicorn/server.py", line 75, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/opt/homebrew/Cellar/python@3.14/3.14.2/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py", line 204, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.2/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/uvicorn/server.py", line 79, in serve
+    await self._serve(sockets)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/uvicorn/server.py", line 86, in _serve
+    config.load()
+    ~~~~~~~~~~~^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/uvicorn/config.py", line 481, in load
+    self.loaded_app = self.load_app()
+                      ~~~~~~~~~~~~~^^
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/uvicorn/config.py", line 415, in load_app
+    return import_from_string(self.app)
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/.venv/lib/python3.14/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.2/Frameworks/Python.framework/Versions/3.14/lib/python3.14/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1398, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1371, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1342, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 938, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/main.py", line 16, in <module>
+    from careerloop_api.routers import auth, users, briefs, jobs, chat, scans, debug
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/routers/scans.py", line 27, in <module>
+    from careerloop_api.services.scan_service import (
+    ...<3 lines>...
+    )
+  File "/Users/siddharthsaminathan/Projects/CareerLoop/careerloop_api/services/scan_service.py", line 1100
+    try:
+    ^^^
+IndentationError: expected an indented block after 'try' statement on line 1099
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/scan_service.py'. Reloading...
+INFO:watchfiles.main:3 changes detected
+INFO:     Started server process [70014]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:52794 - "GET /health HTTP/1.1" 200 OK
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:     127.0.0.1:52799 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user d7071a1c run_id 929d226e0cd5 mode=default
+INFO:     127.0.0.1:52799 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52799 - "GET /v1/scans/929d226e0cd5/events HTTP/1.1" 200 OK
+INFO:careerloop.role_keywords:[RoleKeywords] cache WRITE ok role=ai engineer keywords=20
+INFO:careerloop.sources.role_archetype:[Archetype] LLM generated for '["AI Engineer"]': must_have=['product', 'applied AI', 'cross-functional', 'customer-facing', 'platform', 'LLM', 'system design', 'behavioral analytics']
+  [Archetype] role='["AI Engineer"]' | function='AI product engineering' | market='B2B enterprise'
+  [Archetype] must_have=['product', 'applied AI', 'cross-functional', 'customer-facing', 'platform', 'LLM', 'system design', 'behavioral analytics']
+  [Archetype] avoid=['research', 'data entry', 'support engineer', 'hardware', 'infra only', 'generic SWE', 'IT support', 'manual testing']
+  [Queries] 8 board queries: ['["AI Engineer"] AI product engineering AI-first startup ["Bangalore"] jobs', '["AI Engineer"] AI product engineering AI-first startup hiring ["Bangalore"] 2025', '"AI engineer" jobs in ["Bangalore"]', '"AI engineer" hiring ["Bangalore"] site:linkedin.com/jobs/view']
+  [Phase A] discovering companies for '["AI Engineer"]' in ["Bangalore"]...
+INFO:careerloop.on_demand:[OnDemand] Phase A: sector inferred → 'Technology & Software' for role '["AI Engineer"]'
+    sector=Technology & Software — Phase A via DDG+Wellfound+Crunchbase+Inc42+YC...
+INFO:careerloop.sources.company_discovery:[Discovery] Starting: city=["Bangalore"], sector=Technology & Software, function=ai engineer AI product engineering AI-first startup
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'technology companies in ["Bangalore"] India'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=technology%20companies%20in%20%5B%22Bangalore%22%5D%20India 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dtechnology%2Bcompanies%2Bin%2B%255B%2522Bangalore%2522%255D%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGMDz6tAGIjALsgl8lmfamSUt-oZVnF5lrtPmj-JZyeT84i-Kc42KrFS26VoJLHG_Z6GMPyTuCwAyAnJSWgFD 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=technology+companies+in+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=dPC5vhp9otnOrPnkUsMeQ1eN;_ylu=kx2_ixojQiDV3_aflf_wJbeI7bG8nTJhwm1NJwbJ_w1C3PQ?p=technology+companies+in+%5B%22Bangalore%22%5D+India 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=technology+companies+in+%5B%22Bangalore%22%5D+India 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 14 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'top technology startups in ["Bangalore"]'
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=top%20technology%20startups%20in%20%5B%22Bangalore%22%5D 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=top+technology+startups+in+%5B%22Bangalore%22%5D&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://yandex.com/search/site/?text=top+technology+startups+in+%5B%22Bangalore%22%5D&web=1&searchid=9020251 200
+INFO:primp:response: https://search.brave.com/search?q=top+technology+startups+in+%5B%22Bangalore%22%5D&source=web 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dtop%2Btechnology%2Bstartups%2Bin%2B%255B%2522Bangalore%2522%255D%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGMzz6tAGIjBfRrtTkJe8LwvAjc19QXwpknsRlKcSxNHvzU6qoJlMfIPcCGMA_L5rmLFBm7cFw84yAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=top+technology+startups+in+%5B%22Bangalore%22%5D 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 14 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'best technology firms ["Bangalore"] India'
+INFO:primp:response: https://search.yahoo.com/search;_ylt=d5coIUyIGuHCU5Rg_R2bTHhP;_ylu=AxoIai8ywBMwkn97p6j6Ve3dXN7_gdTadf5K1wHIm3--eBs?p=best+technology+firms+%5B%22Bangalore%22%5D+India 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=best%20technology%20firms%20%5B%22Bangalore%22%5D%20India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=best+technology+firms+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dbest%2Btechnology%2Bfirms%2B%255B%2522Bangalore%2522%255D%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGNHz6tAGIjAzDwTVXBiW6im-T4RmvwDbRDjpfAvUnwnvDA2UslolkRuQ-tU-jpZIceqoTPzQLEoyAnJSWgFD 429
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=best+technology+firms+%5B%22Bangalore%22%5D+India&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=best+technology+firms+%5B%22Bangalore%22%5D+India 200
+INFO:primp:response: https://yandex.com/search/site/?text=best+technology+firms+%5B%22Bangalore%22%5D+India&web=1&searchid=9356057 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 12 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'companies hiring ai engineer AI product engineering AI-first startup in ["Bangalore"] India'
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=companies%20hiring%20ai%20engineer%20AI%20product%20engineering%20AI-first%20startup%20in%20%5B%22Bangalore%22%5D%20India 200

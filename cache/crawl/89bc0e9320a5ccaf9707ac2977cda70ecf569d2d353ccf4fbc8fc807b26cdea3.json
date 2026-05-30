@@ -1,0 +1,184 @@
+{
+  "role": "[\"ai engineer\"]",
+  "city": "[\"bangalore\"]",
+  "cached_at": 1780137082.455795,
+  "expires_at": 1780165882.455795,
+  "job_count": 5,
+  "jobs": [
+    {
+      "title": "Jr AI Engineer",
+      "company": "Rockstar",
+      "location": "[\"Bangalore\"]",
+      "url": "https://apply.workable.com/rockstar-3/j/C6B0004466",
+      "apply_url": "https://apply.workable.com/rockstar-3/j/C6B0004466",
+      "description": "The Jr. AI Engineer will work closely with senior engineers to assist with prompt experimentation, data preparation, RAG pipeline support, model evaluation, documentation, debugging, and basic AI service development. This role offers hands-on exposure to LLMs, embeddings, retrieval systems, ML workflows, and production engineering practices.",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "junior",
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains bangalore",
+      "_canonical_fp": "db7a476b7152640e",
+      "canonical": true,
+      "canonical_id": "db7a476b7152640e",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://apply.workable.com/rockstar-3/j/C6B0004466",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
+    },
+    {
+      "title": "Senior Manager, AI Engineering",
+      "company": "Bengaluru, IN, 560103",
+      "location": "Bengaluru, IN",
+      "url": "https://aijobs.net/job/senior-manager-ai-engineering-bengaluru-in-560103-148695/",
+      "apply_url": "",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "Tasks Build and lead AI enabled engineering pods Champion AI agents and copilots for architecture design Champion AI agents and copilots for code generation review optimization Champion AI agents and copilots for requirements Champion AI agents and copilots for test creation and execution Collaborate with enterprise architecture security and risk teams Define AI engineering ways of working Drive standardization of AI delivery platforms Embed ethics security data privacy explainability and auditability into delivery pipelines Embed human in the loop quality gates Ensure release readiness and operational insights using AI Ensure security, risk, and governance compliance Orchestrate AI enabled SDLC Own AI enabled delivery outcomes Partner with business stakeholders to design AI enabled journeys Select adopt and govern AI engineering tooling Translate business problems into AI solvable opportunities Upskill engineers on AI as delivery partner Perks/Benefits N/A Skills/Tech-stack AI Agents | AI Engineering | AI copilots | API | AWS | Automation | C# | Data Privacy | DevOps | Evaluation Frameworks | Explainability | Flutter | Governance | Java | LLM-based Agents | PostgreSQL | Prompt orchestration) | Python | REST | React | Risk Management | SDLC | Security Education N/A Roles AI | AI Engineering | AI Engineering Manager | Engineering Manager | Manager | Senior Engineering | Senior Engineering Manager Regions Asia/Pacific Countries India States Karnataka, IN Cities Bengaluru, Karnataka, IN",
+      "skills": [
+        "AI Agents",
+        "AI Engineering",
+        "AI copilots",
+        "API",
+        "AWS",
+        "Automation",
+        "C#",
+        "Data Privacy",
+        "DevOps",
+        "Evaluation Frameworks",
+        "Explainability",
+        "Flutter",
+        "Governance",
+        "Java",
+        "LLM-based Agents",
+        "PostgreSQL",
+        "Prompt orchestration",
+        "Python",
+        "REST",
+        "React",
+        "Risk Management",
+        "SDLC",
+        "Security"
+      ],
+      "salary": "INR 2500K-4800K (estimate)",
+      "work_mode": "",
+      "_source_type": "scrapegraph",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "senior",
+        "archetype_match": 0.25,
+        "biz_model": "b2b",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains bengaluru",
+      "_canonical_fp": "878a5f9389eda5b6",
+      "canonical": true,
+      "canonical_id": "878a5f9389eda5b6",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://aijobs.net/job/senior-manager-ai-engineering-bengaluru-in-560103-148695/",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
+    },
+    {
+      "title": "AI/ML Engineer",
+      "company": "Cutshort",
+      "location": "",
+      "url": "https://cutshort.io/job/AI-ML-Engineer-Bengaluru-Bangalore-Staffnixcom-UeHEItAI",
+      "apply_url": "https://cutshort.io/job/AI-ML-Engineer-Bengaluru-Bangalore-Staffnixcom-UeHEItAI",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "AI/ML Engineer\nat\nStaffnixcom\nApply to this job\nAI/ML Engineer\nStaffnixcom\nCompany\nHome\nAI/ML Engineer\nat\nStaffnixcom\nPosted by\nMayank Choudhary\nApply to this job\n3\n- 5 yrs\n₹17L - ₹25L / yr\nBengaluru (Bangalore)\nSkills\nPyTorch\nAmazon Web Services (AWS)\nStrong AI/ML Engineer Profile\nMandatory (Experience) : Must have 3+ years of experience in software engineering with atleast 1+ years in GenAI application development and production deployment\nMandatory (GenAI Application Development): Must have proven experience building GenAI applications covering RAG pipelines, multi-agent systems, Text2SQL, and fine-tuning\nMandatory (Production GenAI Deployment): Must have expertise deploying production-grade GenAI applications including model evaluation, optimisation, and ownership of full production rollouts\nMandatory (ML & Data Science Tooling): Must have strong hands-on experience with core ML and data science tools including pandas, scikit-learn, and PyTorch\nMandatory (Cloud ML Infrastructure): Must have experience building and deploying production-grade ML workloads on at least one of AWS, Azure, or GCP\nMandatory (Communication): Must have strong English communication skills with the ability to work across time zones and collaborate cross-functionally with product, engineering, and business stakeholders\nRead more\nUsers love Cutshort\nRead about what our users have to say about finding their next opportunity on Cutshort.\nPrevious\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\n",
+      "skills": [],
+      "salary": "",
+      "work_mode": "",
+      "_source_type": "generic_http",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "97284b2293d29a27",
+      "canonical": true,
+      "canonical_id": "97284b2293d29a27",
+      "apply_route": {
+        "best_apply_route": "cutshort",
+        "apply_url": "https://cutshort.io/job/AI-ML-Engineer-Bengaluru-Bangalore-Staffnixcom-UeHEItAI",
+        "backup_urls": [],
+        "reason": "best route: cutshort (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "AI/ML Engineer (GenAI, Cloud ML",
+      "company": "Cutshort",
+      "location": "",
+      "url": "https://cutshort.io/job/AI-ML-Engineer-GenAI-Cloud-ML-Bengaluru-Bangalore-Staffnixcom-puQDtt7P",
+      "apply_url": "https://cutshort.io/job/AI-ML-Engineer-GenAI-Cloud-ML-Bengaluru-Bangalore-Staffnixcom-puQDtt7P",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "AI/ML Engineer (GenAI, Cloud ML\nat\nStaffnixcom\nApply to this job\nAI/ML Engineer (GenAI, Cloud ML\nStaffnixcom\nCompany\nHome\nAI/ML Engineer (GenAI, Cloud ML\nat\nStaffnixcom\nPosted by\nMayank Choudhary\nApply to this job\n3\n- 5 yrs\n₹20L - ₹25L / yr\nBengaluru (Bangalore)\nSkills\nArtificial Intelligence (AI)\nStrong AI/ML Engineer Profile\nMandatory (Experience) : Must have 3+ years of experience in software engineering with atleast 1+ years in GenAI application development and production deployment\nMandatory (GenAI Application Development): Must have proven experience building GenAI applications covering RAG pipelines, multi-agent systems, Text2SQL, and fine-tuning\nMandatory (Production GenAI Deployment): Must have expertise deploying production-grade GenAI applications including model evaluation, optimisation, and ownership of full production rollouts\nMandatory (ML & Data Science Tooling): Must have strong hands-on experience with core ML and data science tools including pandas, scikit-learn, and PyTorch\nMandatory (Cloud ML Infrastructure): Must have experience building and deploying production-grade ML workloads on at least one of AWS, Azure, or GCP\nMandatory (Communication): Must have strong English communication skills with the ability to work across time zones and collaborate cross-functionally with product, engineering, and business stakeholders\nMandatory (Note 1) : Role is Hybrid, WFH flexibility as well upto 6 days a month\nMandatory (Note 2) : CTC is inclusive of 10% variable\nMandatory (Note 3): Candidates should be available to join within May 31st or June first week max\nRead more\nUsers love Cutshort\nRead about what our users have to say about finding their next opportunity on Cutshort.\nPrevious\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt",
+      "skills": [],
+      "salary": "",
+      "work_mode": "",
+      "_source_type": "generic_http",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "b366630f84c221c8",
+      "canonical": true,
+      "canonical_id": "b366630f84c221c8",
+      "apply_route": {
+        "best_apply_route": "cutshort",
+        "apply_url": "https://cutshort.io/job/AI-ML-Engineer-GenAI-Cloud-ML-Bengaluru-Bangalore-Staffnixcom-puQDtt7P",
+        "backup_urls": [],
+        "reason": "best route: cutshort (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "AI Engineer",
+      "company": "Cutshort",
+      "location": "",
+      "url": "https://cutshort.io/job/AI-Engineer-Bengaluru-Bangalore-NeoGenCode-Technologies-Pvt-Ltd-oJH5W3YW",
+      "apply_url": "https://cutshort.io/job/AI-Engineer-Bengaluru-Bangalore-NeoGenCode-Technologies-Pvt-Ltd-oJH5W3YW",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "AI Engineer\nat\nNeoGenCode Technologies Pvt Ltd\nApply to this job\nAI Engineer\nNeoGenCode Technologies Pvt Ltd\nCompany\nHome\nAI Engineer\nat\nNeoGenCode Technologies Pvt Ltd\nPosted by\nRitika Verma\nApply to this job\n2\n- 5 yrs\n₹15L - ₹22L / yr\nBengaluru (Bangalore)\nSkills\nArtificial Intelligence (AI)\nMachine Learning (ML)\nGenerative AI\nPyTorch\nNumPy\nLLMs\nMicroservices Architeture\nJob Title: AI Engineer\nLocation: Bengaluru\nExperience: 3 Years\nWorking Days: 5 Days\nAbout the Role\nWe’re reimagining how enterprises interact with documents and workflows—starting with BFSI and healthcare. Our AI-first platforms are transforming credit decisioning, document intelligence, and underwriting at scale. The focus is on Intelligent Document Processing (IDP), GenAI-powered analysis, and human-in-the-loop (HITL) automation to accelerate outcomes across lending, insurance, and compliance workflows.\nAs an AI Engineer, you’ll be part of a high-caliber engineering team building next-gen AI systems that:\nPower robust APIs and platforms used by underwriters, credit analysts, and financial institutions.\nBuild and integrate GenAI agents.\nEnable “human-in-the-loop” workflows for high-assurance decisions in real-world conditions.\nKey Responsibilities\nBuild and optimize ML/DL models for document understanding, classification, and summarization.\nApply LLMs and RAG techniques for validation, search, and question-answering tasks.\nDesign and maintain data pipelines for structured and unstructured inputs (PDFs, OCR text, JSON, etc.).\nPackage and deploy models as REST APIs or microservices in production environments.\nCollaborate with engineering teams to integrate models into existing products and workflows.\nContinuously monitor and retrain models to ensure reliability and performance.\nStay updated on emerging AI frameworks, architectures, and open-source tools; propose improvements to internal systems.\nRequired Skills & Experience\n2–5 years of hands-on experience in AI/ML model development, fine-tuning, and building ML solutions.\nStrong Python proficiency with libraries such as NumPy, Pandas, scikit-learn, PyTorch, or TensorFlow.\nSolid understanding of transformers, embeddings, and NLP pipelines.\nExperience working with LLMs (OpenAI, Claude, Gemini, etc.) and frameworks like LangChain.\nExposure to OCR, document parsing, and unstructured text analytics.\nFamiliarity with model serving, APIs, and microservice architectures (FastAPI, Flask).\nWorking knowledge of Docker, cloud environments (AWS/GCP/Azure), and CI/CD pipelines.\nStrong grasp of data preprocessing, evaluation metrics, and model validation workflows.\nExcellent problem-solving ability, structured thinking, and clean, production-ready coding practices.\nRead more\nUsers love Cutshort\nRead about what our users have to say about finding their next opportunity on Cutshort.\nPrevious\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry ",
+      "skills": [],
+      "salary": "",
+      "work_mode": "",
+      "_source_type": "generic_http",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.38,
+        "biz_model": "b2b",
+        "preferred_company_match": false
+      },
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "4d9387cadfb28f5e",
+      "canonical": true,
+      "canonical_id": "4d9387cadfb28f5e",
+      "apply_route": {
+        "best_apply_route": "cutshort",
+        "apply_url": "https://cutshort.io/job/AI-Engineer-Bengaluru-Bangalore-NeoGenCode-Technologies-Pvt-Ltd-oJH5W3YW",
+        "backup_urls": [],
+        "reason": "best route: cutshort (priority 4)",
+        "risk": "medium"
+      }
+    }
+  ]
+}

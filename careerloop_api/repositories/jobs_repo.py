@@ -44,6 +44,37 @@ class JobsRepo:
                 row = cur.fetchone()
                 return dict(row) if row else None
 
+    def get_brief_enrichment(self, user_id: str, ident: str) -> Optional[dict]:
+        """Per-user brief-item context (fit_score, reason, risk, route) for a job.
+
+        The detail page needs these even when the user hasn't saved/skipped yet.
+        They live on daily_brief_items, not user_job_relationships. Match the
+        item's job_id against either the v1 text id or the UUID job_id.
+        """
+        with self.db.get_connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT bi.fit_score, bi.recommendation_reason,
+                           bi.risk_summary, bi.route_recommendation
+                    FROM careerloop.daily_brief_items bi
+                    JOIN careerloop.daily_briefs db ON db.id = bi.brief_id
+                    WHERE db.user_id = %s
+                      AND (bi.job_id = %s OR bi.job_id = (
+                          SELECT j.id FROM careerloop.jobs j
+                          WHERE j.id = %s OR j.job_id::text = %s LIMIT 1
+                      ) OR bi.job_id = (
+                          SELECT j.job_id::text FROM careerloop.jobs j
+                          WHERE j.id = %s OR j.job_id::text = %s LIMIT 1
+                      ))
+                    ORDER BY db.created_at DESC
+                    LIMIT 1
+                    """,
+                    (user_id, ident, ident, ident, ident, ident),
+                )
+                row = cur.fetchone()
+                return dict(row) if row else None
+
     def get_relationship(self, user_id: str, job_uuid: str) -> Optional[dict]:
         with self.db.get_connection() as conn:
             with conn.cursor() as cur:

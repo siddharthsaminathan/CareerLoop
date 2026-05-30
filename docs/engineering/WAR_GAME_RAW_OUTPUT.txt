@@ -1,0 +1,560 @@
+--- CAREERLOOP ONBOARDING WAR GAME RUNNER ---
+Executing simulations against PATCHED codebase...
+
+
+======================================================================
+SIMULATING USER: Arjun Raman (Flow: Flow A (LinkedIn Success Path))
+======================================================================
+
+--- TURN 1 ---
+STATE BEFORE: conv_id=conv_1001, session.state=NEW_USER, onboarding_step=0
+USER MESSAGE: "hello"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_idle
+ASSISTANT RESPONSE:
+Welcome to CareerLoop! I'm your AI career execution partner.
+
+Let's get you set up in under a minute. **What's your full name?** I'll find your LinkedIn profile to pre-fill everything.
+
+_(Prefer to skip? Just paste your CV/resume text instead.)_
+STATE AFTER: conv_id=conv_1001, session.state=NEW_USER, onboarding_step=10
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=10, New: NEW_USER, step=10
+
+--- TURN 2 ---
+STATE BEFORE: conv_id=conv_1001, session.state=NEW_USER, onboarding_step=10
+USER MESSAGE: "Arjun Raman"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_identifying
+ASSISTANT RESPONSE:
+I found this profile — **is this you?**
+
+• **Arjun Raman**
+• Senior Staff Engineer at Razorpay
+• Razorpay
+• Bangalore
+• https://linkedin.com/in/arjunraman
+
+Reply **YES** to use this, or **NO** to enter your details manually.
+STATE AFTER: conv_id=conv_1001, session.state=NEW_USER, onboarding_step=11
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=11, New: NEW_USER, step=11
+
+--- TURN 3 ---
+STATE BEFORE: conv_id=conv_1001, session.state=NEW_USER, onboarding_step=11
+USER MESSAGE: "YES"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_profile_confirmation
+ASSISTANT RESPONSE:
+Great — I've pre-filled your profile from LinkedIn, Arjun Raman!
+
+Now, **paste your CV/resume** (or upload a PDF/DOCX) so I can extract your full details.
+
+Type **skip** if your LinkedIn profile already covers everything you need.
+STATE AFTER: conv_id=conv_1001, session.state=NEW_USER, onboarding_step=1
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=1, New: NEW_USER, step=1
+
+--- TURN 4 ---
+STATE BEFORE: conv_id=conv_1001, session.state=NEW_USER, onboarding_step=1
+USER MESSAGE: "Arjun Raman
+Senior ML Engineer | Bangalore
+arjun@email.com
+Razorpay Senior ML Engineer 2022-present
+Amazon ML Engineer 2019-2022
+Expected salary: 45 LPA | Notice: 30 days"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_waiting_cv
+ASSISTANT RESPONSE:
+Here's what I extracted from your CV:
+
+• **LinkedIn:** https://linkedin.com/in/arjunraman
+• **Current Company:** Razorpay
+• **Current Role:** Senior Staff Engineer at Razorpay
+• **Roles:** Senior ML Engineer
+• **Cities:** Bangalore
+• **Expected CTC:** 45 LPA
+• **Notice Period:** 30 days
+• **Current CTC:** 35 LPA
+
+Reply **YES** to confirm, or tell me what needs to be corrected.
+STATE AFTER: conv_id=conv_1001, session.state=NEW_USER, onboarding_step=2
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=2, New: NEW_USER, step=2
+
+--- TURN 5 ---
+STATE BEFORE: conv_id=conv_1001, session.state=NEW_USER, onboarding_step=2
+USER MESSAGE: "YES"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_confirming
+ASSISTANT RESPONSE:
+Your profile is complete! Welcome to CareerLoop, Arjun Raman!
+
+Here's what I've got:
+• **Roles:** Senior ML Engineer
+• **Cities:** Bangalore
+• **Current CTC:** 35 LPA
+• **Expected CTC:** 45 LPA
+• **Notice Period:** 30 days
+
+You're all set! Ask me for your daily briefing or type /scan to find new roles.
+STATE AFTER: conv_id=conv_1001, session.state=PROFILE_READY, onboarding_step=0
+DB MUTATIONS:
+  * Table: careerloop.users, Column: master_cv_markdown, onboarding_complete, Old: onboarding_complete=False, New: master_cv_markdown stashed, onboarding_complete=TRUE
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: PROFILE_READY, step=0, New: PROFILE_READY, step=0
+
+Final Journey Status: ✅ SUCCESS - PROFILE_READY REACHED
+
+======================================================================
+SIMULATING USER: Priya Menon (Flow: Flow B (Frustration wtf Recovery and Name Collection Success))
+======================================================================
+
+--- TURN 1 ---
+STATE BEFORE: conv_id=conv_1002, session.state=NEW_USER, onboarding_step=0
+USER MESSAGE: "hello"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_idle
+ASSISTANT RESPONSE:
+Welcome to CareerLoop! I'm your AI career execution partner.
+
+Let's get you set up in under a minute. **What's your full name?** I'll find your LinkedIn profile to pre-fill everything.
+
+_(Prefer to skip? Just paste your CV/resume text instead.)_
+STATE AFTER: conv_id=conv_1002, session.state=NEW_USER, onboarding_step=10
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=10, New: NEW_USER, step=10
+
+--- TURN 2 ---
+STATE BEFORE: conv_id=conv_1002, session.state=NEW_USER, onboarding_step=10
+USER MESSAGE: "wtf"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_identifying
+ASSISTANT RESPONSE:
+Welcome back! Please tell me your **full name** so I can search for your LinkedIn profile, or paste your complete CV or resume text directly to get started.
+STATE AFTER: conv_id=conv_1002, session.state=NEW_USER, onboarding_step=10
+DB MUTATIONS:
+  * None
+
+--- TURN 3 ---
+STATE BEFORE: conv_id=conv_1002, session.state=NEW_USER, onboarding_step=10
+USER MESSAGE: "Priya Menon"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_identifying
+ASSISTANT RESPONSE:
+I couldn't find a confident LinkedIn match for **Priya Menon**.
+
+No problem — please paste your CV/resume text or upload a PDF/DOCX and I'll set you up from that.
+STATE AFTER: conv_id=conv_1002, session.state=NEW_USER, onboarding_step=1
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=1, New: NEW_USER, step=1
+
+--- TURN 4 ---
+STATE BEFORE: conv_id=conv_1002, session.state=NEW_USER, onboarding_step=1
+USER MESSAGE: "Priya Menon
+Product Manager | Chennai
+priya@email.com
+Freshworks PM 2021-Now
+Zoho APM 2019-2021
+Expected salary: 35 LPA | Notice: 60 days"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_waiting_cv
+ASSISTANT RESPONSE:
+Here's what I extracted from your CV:
+
+• **Roles:** Product Manager
+• **Cities:** Chennai
+• **Expected CTC:** 35 LPA
+• **Notice Period:** 60 days
+• **Current CTC:** 25 LPA
+
+Reply **YES** to confirm, or tell me what needs to be corrected.
+STATE AFTER: conv_id=conv_1002, session.state=NEW_USER, onboarding_step=2
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=2, New: NEW_USER, step=2
+
+--- TURN 5 ---
+STATE BEFORE: conv_id=conv_1002, session.state=NEW_USER, onboarding_step=2
+USER MESSAGE: "YES"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_confirming
+ASSISTANT RESPONSE:
+Your profile is complete! Welcome to CareerLoop, there!
+
+Here's what I've got:
+• **Roles:** Product Manager
+• **Cities:** Chennai
+• **Current CTC:** 25 LPA
+• **Expected CTC:** 35 LPA
+• **Notice Period:** 60 days
+
+You're all set! Ask me for your daily briefing or type /scan to find new roles.
+STATE AFTER: conv_id=conv_1002, session.state=PROFILE_READY, onboarding_step=0
+DB MUTATIONS:
+  * Table: careerloop.users, Column: master_cv_markdown, onboarding_complete, Old: onboarding_complete=False, New: master_cv_markdown stashed, onboarding_complete=TRUE
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: PROFILE_READY, step=0, New: PROFILE_READY, step=0
+
+Final Journey Status: ✅ SUCCESS - PROFILE_READY REACHED
+
+======================================================================
+SIMULATING USER: Rahul Sharma (Flow: Flow D (Direct Resume Skip-Name Path))
+======================================================================
+
+--- TURN 1 ---
+STATE BEFORE: conv_id=conv_1003, session.state=NEW_USER, onboarding_step=0
+USER MESSAGE: "hello"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_idle
+ASSISTANT RESPONSE:
+Welcome to CareerLoop! I'm your AI career execution partner.
+
+Let's get you set up in under a minute. **What's your full name?** I'll find your LinkedIn profile to pre-fill everything.
+
+_(Prefer to skip? Just paste your CV/resume text instead.)_
+STATE AFTER: conv_id=conv_1003, session.state=NEW_USER, onboarding_step=10
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=10, New: NEW_USER, step=10
+
+--- TURN 2 ---
+STATE BEFORE: conv_id=conv_1003, session.state=NEW_USER, onboarding_step=10
+USER MESSAGE: "Rahul Sharma
+MLOps Engineer | Hyderabad
+rahul@email.com
+Vertex AI, Kubeflow, Terraform, Docker, GCP
+Expected salary: 28 LPA | Notice: Immediate"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_identifying
+ASSISTANT RESPONSE:
+Here's what I extracted from your CV:
+
+• **Roles:** MLOps Engineer
+• **Cities:** Hyderabad
+• **Expected CTC:** 28 LPA
+• **Notice Period:** Immediate
+• **Current CTC:** 20 LPA
+
+Reply **YES** to confirm, or tell me what needs to be corrected.
+STATE AFTER: conv_id=conv_1003, session.state=NEW_USER, onboarding_step=2
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=1, New: NEW_USER, step=1
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=2, New: NEW_USER, step=2
+
+--- TURN 3 ---
+STATE BEFORE: conv_id=conv_1003, session.state=NEW_USER, onboarding_step=2
+USER MESSAGE: "YES"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_confirming
+ASSISTANT RESPONSE:
+Your profile is complete! Welcome to CareerLoop, there!
+
+Here's what I've got:
+• **Roles:** MLOps Engineer
+• **Cities:** Hyderabad
+• **Current CTC:** 20 LPA
+• **Expected CTC:** 28 LPA
+• **Notice Period:** Immediate
+
+You're all set! Ask me for your daily briefing or type /scan to find new roles.
+STATE AFTER: conv_id=conv_1003, session.state=PROFILE_READY, onboarding_step=0
+DB MUTATIONS:
+  * Table: careerloop.users, Column: master_cv_markdown, onboarding_complete, Old: onboarding_complete=False, New: master_cv_markdown stashed, onboarding_complete=TRUE
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: PROFILE_READY, step=0, New: PROFILE_READY, step=0
+
+Final Journey Status: ✅ SUCCESS - PROFILE_READY REACHED
+
+======================================================================
+SIMULATING USER: Ananya Krishnan (Flow: Flow C (LinkedIn Profile Rejection Fallback))
+======================================================================
+
+--- TURN 1 ---
+STATE BEFORE: conv_id=conv_1004, session.state=NEW_USER, onboarding_step=0
+USER MESSAGE: "hello"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_idle
+ASSISTANT RESPONSE:
+Welcome to CareerLoop! I'm your AI career execution partner.
+
+Let's get you set up in under a minute. **What's your full name?** I'll find your LinkedIn profile to pre-fill everything.
+
+_(Prefer to skip? Just paste your CV/resume text instead.)_
+STATE AFTER: conv_id=conv_1004, session.state=NEW_USER, onboarding_step=10
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=10, New: NEW_USER, step=10
+
+--- TURN 2 ---
+STATE BEFORE: conv_id=conv_1004, session.state=NEW_USER, onboarding_step=10
+USER MESSAGE: "Ananya Krishnan"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_identifying
+ASSISTANT RESPONSE:
+I found this profile — **is this you?**
+
+• **Ananya Krishnan (Finance Consultant)**
+• Finance Consultant at ICICI Bank
+• ICICI Bank
+• Chennai
+• https://linkedin.com/in/ananyakrishnan-finance
+
+Reply **YES** to use this, or **NO** to enter your details manually.
+STATE AFTER: conv_id=conv_1004, session.state=NEW_USER, onboarding_step=11
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=11, New: NEW_USER, step=11
+
+--- TURN 3 ---
+STATE BEFORE: conv_id=conv_1004, session.state=NEW_USER, onboarding_step=11
+USER MESSAGE: "NO"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_profile_confirmation
+ASSISTANT RESPONSE:
+No problem. Please paste your CV/resume text (or upload a PDF/DOCX) **AND your LinkedIn URL** so I can look you up manually.
+STATE AFTER: conv_id=conv_1004, session.state=NEW_USER, onboarding_step=1
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=1, New: NEW_USER, step=1
+
+--- TURN 4 ---
+STATE BEFORE: conv_id=conv_1004, session.state=NEW_USER, onboarding_step=1
+USER MESSAGE: "Ananya Krishnan
+Data Scientist | Bangalore
+ananya@email.com
+Python, Pandas, NLP, Deep Learning
+Expected salary: 22 LPA | Notice: 90 days"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_waiting_cv
+ASSISTANT RESPONSE:
+Here's what I extracted from your CV:
+
+• **Roles:** Data Scientist
+• **Cities:** Bangalore
+• **Expected CTC:** 22 LPA
+• **Notice Period:** 90 days
+• **Current CTC:** 15 LPA
+
+Reply **YES** to confirm, or tell me what needs to be corrected.
+STATE AFTER: conv_id=conv_1004, session.state=NEW_USER, onboarding_step=2
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=2, New: NEW_USER, step=2
+
+--- TURN 5 ---
+STATE BEFORE: conv_id=conv_1004, session.state=NEW_USER, onboarding_step=2
+USER MESSAGE: "YES"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_confirming
+ASSISTANT RESPONSE:
+Your profile is complete! Welcome to CareerLoop, Ananya Krishnan (Finance Consultant)!
+
+Here's what I've got:
+• **Roles:** Data Scientist
+• **Cities:** Bangalore
+• **Current CTC:** 15 LPA
+• **Expected CTC:** 22 LPA
+• **Notice Period:** 90 days
+
+You're all set! Ask me for your daily briefing or type /scan to find new roles.
+STATE AFTER: conv_id=conv_1004, session.state=PROFILE_READY, onboarding_step=0
+DB MUTATIONS:
+  * Table: careerloop.users, Column: master_cv_markdown, onboarding_complete, Old: onboarding_complete=False, New: master_cv_markdown stashed, onboarding_complete=TRUE
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: PROFILE_READY, step=0, New: PROFILE_READY, step=0
+
+Final Journey Status: ✅ SUCCESS - PROFILE_READY REACHED
+
+======================================================================
+SIMULATING USER: Karthik Iyer (Flow: Flow E (Short Resume Retry and Reset Recovery))
+======================================================================
+
+--- TURN 1 ---
+STATE BEFORE: conv_id=conv_1005, session.state=NEW_USER, onboarding_step=0
+USER MESSAGE: "hello"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_idle
+ASSISTANT RESPONSE:
+Welcome to CareerLoop! I'm your AI career execution partner.
+
+Let's get you set up in under a minute. **What's your full name?** I'll find your LinkedIn profile to pre-fill everything.
+
+_(Prefer to skip? Just paste your CV/resume text instead.)_
+STATE AFTER: conv_id=conv_1005, session.state=NEW_USER, onboarding_step=10
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=10, New: NEW_USER, step=10
+
+--- TURN 2 ---
+STATE BEFORE: conv_id=conv_1005, session.state=NEW_USER, onboarding_step=10
+USER MESSAGE: "Karthik Iyer"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_identifying
+ASSISTANT RESPONSE:
+I couldn't find a confident LinkedIn match for **Karthik Iyer**.
+
+No problem — please paste your CV/resume text or upload a PDF/DOCX and I'll set you up from that.
+STATE AFTER: conv_id=conv_1005, session.state=NEW_USER, onboarding_step=1
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=1, New: NEW_USER, step=1
+
+--- TURN 3 ---
+STATE BEFORE: conv_id=conv_1005, session.state=NEW_USER, onboarding_step=1
+USER MESSAGE: "wtf"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_waiting_cv
+ASSISTANT RESPONSE:
+I am still waiting for your resume to get your profile set up! Please paste your complete CV or resume text here so I can analyze your target roles, or type **skip** to proceed using only your LinkedIn data.
+STATE AFTER: conv_id=conv_1005, session.state=NEW_USER, onboarding_step=1
+DB MUTATIONS:
+  * None
+
+--- TURN 4 ---
+STATE BEFORE: conv_id=conv_1005, session.state=NEW_USER, onboarding_step=1
+USER MESSAGE: "restart"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_waiting_cv
+ASSISTANT RESPONSE:
+Onboarding has been reset! Welcome to CareerLoop. **What's your full name?** I'll search for your LinkedIn profile, or you can paste your CV text directly to start.
+STATE AFTER: conv_id=conv_1005, session.state=NEW_USER, onboarding_step=0
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=0, New: NEW_USER, step=0
+
+--- TURN 5 ---
+STATE BEFORE: conv_id=conv_1005, session.state=NEW_USER, onboarding_step=0
+USER MESSAGE: "Karthik Iyer
+AI Engineer | Pune
+karthik@email.com
+LangGraph, FastAPI, RAG, Postgres, Agents
+Expected salary: 55 LPA | Notice: 45 days"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_idle
+ASSISTANT RESPONSE:
+Here's what I extracted from your CV:
+
+• **Roles:** AI Engineer
+• **Cities:** Pune
+• **Expected CTC:** 55 LPA
+• **Notice Period:** 45 days
+• **Current CTC:** 40 LPA
+
+Reply **YES** to confirm, or tell me what needs to be corrected.
+STATE AFTER: conv_id=conv_1005, session.state=NEW_USER, onboarding_step=2
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=1, New: NEW_USER, step=1
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=2, New: NEW_USER, step=2
+
+--- TURN 6 ---
+STATE BEFORE: conv_id=conv_1005, session.state=NEW_USER, onboarding_step=2
+USER MESSAGE: "YES"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_confirming
+ASSISTANT RESPONSE:
+Your profile is complete! Welcome to CareerLoop, there!
+
+Here's what I've got:
+• **Roles:** AI Engineer
+• **Cities:** Pune
+• **Current CTC:** 40 LPA
+• **Expected CTC:** 55 LPA
+• **Notice Period:** 45 days
+
+You're all set! Ask me for your daily briefing or type /scan to find new roles.
+STATE AFTER: conv_id=conv_1005, session.state=PROFILE_READY, onboarding_step=0
+DB MUTATIONS:
+  * Table: careerloop.users, Column: master_cv_markdown, onboarding_complete, Old: onboarding_complete=False, New: master_cv_markdown stashed, onboarding_complete=TRUE
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: PROFILE_READY, step=0, New: PROFILE_READY, step=0
+
+Final Journey Status: ✅ SUCCESS - PROFILE_READY REACHED
+
+======================================================================
+SIMULATING USER: Meera Nair (Flow: Flow A (LinkedIn Success Path))
+======================================================================
+
+--- TURN 1 ---
+STATE BEFORE: conv_id=conv_1006, session.state=NEW_USER, onboarding_step=0
+USER MESSAGE: "hello"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_idle
+ASSISTANT RESPONSE:
+Welcome to CareerLoop! I'm your AI career execution partner.
+
+Let's get you set up in under a minute. **What's your full name?** I'll find your LinkedIn profile to pre-fill everything.
+
+_(Prefer to skip? Just paste your CV/resume text instead.)_
+STATE AFTER: conv_id=conv_1006, session.state=NEW_USER, onboarding_step=10
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=10, New: NEW_USER, step=10
+
+--- TURN 2 ---
+STATE BEFORE: conv_id=conv_1006, session.state=NEW_USER, onboarding_step=10
+USER MESSAGE: "Meera Nair"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_identifying
+ASSISTANT RESPONSE:
+I found this profile — **is this you?**
+
+• **Meera Nair**
+• Senior Staff Engineer at Razorpay
+• Razorpay
+• Mumbai
+• https://linkedin.com/in/meeranair
+
+Reply **YES** to use this, or **NO** to enter your details manually.
+STATE AFTER: conv_id=conv_1006, session.state=NEW_USER, onboarding_step=11
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=11, New: NEW_USER, step=11
+
+--- TURN 3 ---
+STATE BEFORE: conv_id=conv_1006, session.state=NEW_USER, onboarding_step=11
+USER MESSAGE: "YES"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_profile_confirmation
+ASSISTANT RESPONSE:
+Great — I've pre-filled your profile from LinkedIn, Meera Nair!
+
+Now, **paste your CV/resume** (or upload a PDF/DOCX) so I can extract your full details.
+
+Type **skip** if your LinkedIn profile already covers everything you need.
+STATE AFTER: conv_id=conv_1006, session.state=NEW_USER, onboarding_step=1
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=1, New: NEW_USER, step=1
+
+--- TURN 4 ---
+STATE BEFORE: conv_id=conv_1006, session.state=NEW_USER, onboarding_step=1
+USER MESSAGE: "Meera Nair
+Growth Product Manager | Mumbai
+meera@email.com
+Growth, Product Analytics, Amplitude, SQL, Experimentation
+Expected salary: 40 LPA | Notice: 30 days"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_waiting_cv
+ASSISTANT RESPONSE:
+Here's what I extracted from your CV:
+
+• **LinkedIn:** https://linkedin.com/in/meeranair
+• **Current Company:** Razorpay
+• **Current Role:** Senior Staff Engineer at Razorpay
+• **Roles:** Growth Product Manager
+• **Cities:** Mumbai
+• **Expected CTC:** 40 LPA
+• **Notice Period:** 30 days
+• **Current CTC:** 30 LPA
+
+Reply **YES** to confirm, or tell me what needs to be corrected.
+STATE AFTER: conv_id=conv_1006, session.state=NEW_USER, onboarding_step=2
+DB MUTATIONS:
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: NEW_USER, step=2, New: NEW_USER, step=2
+
+--- TURN 5 ---
+STATE BEFORE: conv_id=conv_1006, session.state=NEW_USER, onboarding_step=2
+USER MESSAGE: "YES"
+ROUTER DECISION: ChatService: NEW_USER -> OnboardingFlow
+HANDLER SELECTED: OnboardingFlow: _handle_confirming
+ASSISTANT RESPONSE:
+Your profile is complete! Welcome to CareerLoop, Meera Nair!
+
+Here's what I've got:
+• **Roles:** Growth Product Manager
+• **Cities:** Mumbai
+• **Current CTC:** 30 LPA
+• **Expected CTC:** 40 LPA
+• **Notice Period:** 30 days
+
+You're all set! Ask me for your daily briefing or type /scan to find new roles.
+STATE AFTER: conv_id=conv_1006, session.state=PROFILE_READY, onboarding_step=0
+DB MUTATIONS:
+  * Table: careerloop.users, Column: master_cv_markdown, onboarding_complete, Old: onboarding_complete=False, New: master_cv_markdown stashed, onboarding_complete=TRUE
+  * Table: careerloop.sessions, Column: state, onboarding_step, Old: PROFILE_READY, step=0, New: PROFILE_READY, step=0
+
+Final Journey Status: ✅ SUCCESS - PROFILE_READY REACHED

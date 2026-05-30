@@ -1097,24 +1097,21 @@ def _execute_scan(user_id: str, run_id: str, db):
     target_role = ""
     target_city = ""
     try:
-        with db.get_connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    "SELECT target_roles, location_city FROM careerloop.users WHERE id = %s",
-                    (user_id,),
-                )
-                row = cur.fetchone()
-                if row:
-                    raw_roles = row.get("target_roles", [])
-                    if isinstance(raw_roles, list) and len(raw_roles) > 0:
-                        target_role = raw_roles[0]
-                    elif isinstance(raw_roles, str):
-                        try:
-                            parsed = _json.loads(raw_roles)
-                            target_role = parsed[0] if isinstance(parsed, list) and len(parsed) > 0 else raw_roles
-                        except Exception:
-                            target_role = raw_roles.split(",")[0].strip()
-                    target_city = row.get("location_city") or ""
+        from careerloop.session.session_store import SessionStore as _SessionStore
+        store = _SessionStore(db)
+        profile_data = store._load_profile_data(user_id)
+        if profile_data:
+            r_val = profile_data.get("target_roles", "")
+            if isinstance(r_val, list) and len(r_val) > 0:
+                target_role = r_val[0]
+            elif isinstance(r_val, str) and r_val.strip():
+                target_role = r_val.split(",")[0].strip()
+            
+            c_val = profile_data.get("target_cities", "")
+            if isinstance(c_val, list) and len(c_val) > 0:
+                target_city = c_val[0]
+            elif isinstance(c_val, str) and c_val.strip():
+                target_city = c_val.split(",")[0].strip()
     except Exception as e:
         logger.error("_execute_scan: failed to load user profile from DB: %s", e)
 
@@ -1155,11 +1152,12 @@ def _execute_scan(user_id: str, run_id: str, db):
             pass
 
     searcher = OnDemandSearch(root)
+    _force_ref = os.getenv("CAREERLOOP_FORCE_REFRESH_SCAN", "true").lower() in ("1", "true", "yes", "on")
     result = searcher.run(
         role=target_role,
         city=target_city,
         max_results=25,
-        force_refresh=True,          # daily scan always runs fresh pipeline
+        force_refresh=_force_ref,    # dynamic cache bypass
         include_phase_a=True,
         event_emitter=_scan_emitter,
     )
@@ -1178,31 +1176,8 @@ def _execute_scan(user_id: str, run_id: str, db):
     unique_added = result.after_dedup_count
     scored = len(top_jobs)
 
-    # ── Emit JOB_FOUND + JOB_EVALUATED for each ranked job ───────────────
-    for item in top_jobs:
-        job = item.get("job", item)
-        title = job.get("title", "?")
-        company = job.get("company", "") or job.get("company_name", "") or "?"
-        loc = job.get("location", "?")
-        score = item.get("score", 0)
-        job_payload = {
-            "event": "JOB_FOUND",
-            "job_title": title,
-            "company": company,
-            "location": loc,
-        }
-        with db.get_connection() as conn:
-            with conn.cursor() as cur:
-                _emit(cur, run_id, f"Found: {title} @ {company}", "JOB_FOUND", job_payload)
-                eval_payload = {
-                    "event": "JOB_EVALUATED",
-                    "job_title": title,
-                    "company": company,
-                    "location": loc,
-                    "fit_score": score,
-                    "rejection_reason": None,
-                }
-                _emit(cur, run_id, f"MATCH: {title} @ {company} — score: {score:.0f}/100", "JOB_EVALUATED", eval_payload)
+    # -- Redundant daily scan event loop removed to prevent triple job event emission.
+    # OnDemandSearch already emits unified CANDIDATE_MATCHED events for each matched job.
 
     # ── LLMIndiaFitEngine deep scoring (top 5 only — single calls, ~15s total) ─
     if top_jobs and target_role:

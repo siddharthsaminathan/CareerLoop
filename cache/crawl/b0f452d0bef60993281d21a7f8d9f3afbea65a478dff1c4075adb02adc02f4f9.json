@@ -1,109 +1,295 @@
 {
   "role": "ai product engineer",
   "city": "chennai",
-  "cached_at": 1780127077.3857338,
-  "expires_at": 1780155877.3857338,
+  "cached_at": 1780142814.378209,
+  "expires_at": 1780171614.378209,
   "job_count": 10,
   "jobs": [
     {
-      "title": "Software Engineer",
-      "company": "TestCorp India",
-      "company_name": "TestCorp India",
+      "title": "Agentic AI Product Manager - iimjobs.com",
+      "company": "",
       "location": "Chennai",
-      "apply_url": "",
-      "url": "",
-      "description": "Build production ML systems",
-      "jd_text": "Build production ML systems"
+      "url": "https://www.iimjobs.com/j/agentic-ai-product-manager-1700985",
+      "apply_url": "https://www.iimjobs.com/j/agentic-ai-product-manager-1700985",
+      "description": "You need to enable JavaScript to run this app. Banking & Finance Jobs Finance & Accounts Banking Corporate Banking Investment Banking Private Equity Equity Research Sales & Marketing Jobs Sales Marketing Brand Management Online Marketing Marketing Communication Market Research Consulting Jobs Strategy Consulting Research Analytics Process Excellence Consulting - BFSI Consulting - Consumer Goods HR & IR Jobs HR Generalist HR Business Partner Talent Acquisition Organization Development Learning and Development Compensation & Benefits IT & Systems Jobs IT Project Management IT Consulting Presales IT Sales IT Product Management IT Business Analyst SCM & Operations Jobs Supply Chain Operations Procurement Inventory Management Plant Operations Demand Planning Legal Jobs Regulatory Compliance Litigation Company Secretary Intellectual Property Rights Legal Jobs in BFSI Legal Jobs in IT/ITeS BPO Jobs BPO Operations BPO Quality BPO Presales BPO Sales BPO Training Customer Service Healthcare Jobs MBBS MD Healthcare Operations Clinical Operations Pharma Jobs Pharma Operations Pharmacovigilance Pharma R&D Pharma Safety GenAI Jobs AI Product Management Generative AI Gen AI Strategy AI Project Management",
+      "skills": [],
+      "_source_type": "iimjobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "mid",
+        "archetype_match": 1.0,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "6c35071658981125",
+      "canonical": true,
+      "canonical_id": "6c35071658981125",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://www.iimjobs.com/j/agentic-ai-product-manager-1700985",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
     },
     {
-      "title": "AI Product Engineer",
-      "company": "TestGlobal Corp",
-      "company_name": "TestGlobal Corp",
-      "location": "Bangalore, India",
-      "apply_url": "",
-      "url": "",
-      "description": "Build AI products for Bangalore startup -- phase3 test 9530ac0a",
-      "jd_text": "Build AI products for Bangalore startup -- phase3 test 9530ac0a"
+      "title": "Job Application for Product AI Engineer",
+      "company": "xAI",
+      "location": "Chennai",
+      "url": "https://boards.greenhouse.io/xai/jobs/4379597007",
+      "apply_url": "https://boards.greenhouse.io/xai/jobs/4379597007",
+      "description": "Jobs at xAI Current openings at xAI Create a Job Alert Level-up your career by having opportunities at xAI sent directly to your inbox. Create alert Search 227 jobs Data Center Job BIM Manager Memphis, TN CAD Designer New Memphis, TN Civil Engineer Memphis, TN Construction Manager (Electrical) Memphis, TN Construction Manager (Mechanical) Memphis, TN Construction Manager (Structural) Memphis, TN Construction Superintendent - Electrical Memphis, TN Construction Superintendent – Mechanical Memphis, TN Construction Superintendent (Night Shift) – Electrical Memphis, TN Construction Superintendent (Night Shift) – Mechanical Memphis, TN Construction Superintendent (Night Shift), Power Generation Plant Southaven, MS Construction Superintendent (Night Shift) – Structural Memphis, TN Construction Superintendent - Structural Memphis, TN Controls Engineer Memphis, TN Data Analyst - Physical Infrastructure Memphis, TN Data Center Operations Technician Memphis, TN; Southaven, MS Data Center Operations Technician (Night Shift) Hillsboro, OR Documentation Control Specialist New Southaven, MS Document Control Specialist – xAI Infrastructure Memphis, TN; Southaven, MS Electrical Commissioning Lead Memphis, TN Electrical Commissioning Technician Memphis, TN Electrical Engineer (Physical Infrastructure) Memphis, TN Electrician Memphis, TN Environmental Engineer Memphis, TN Environmental Health & Safety Engineer Memphis, TN Facilities Maintenance Technician Memphis, TN Facilities Operations Technician Memphis, TN; Southaven, MS Fiber Technician New Memphis, TN; Southaven, MS Fire Protection Engineer Memphis, TN Gas Pipeline Engineer Memphis, TN Inventory Specialist Memphis, TN; Southaven, MS Manager, Engineering (Power Generation) New Southaven, MS Manager, Logistics Memphis, TN Manager, Operations Memphis, TN Material Flow Engineer - Data Center Operations Memphis, TN Mechanical Commissioning Lead Memphis, TN Mechanical Commissioning Technician Memphis, TN; Southaven, MS Mechanical Engineer (Physical Infrastructure) Memphis, TN Network Engineer Memphis, TN Operations & Maintenance Technician Memphis, TN; Southaven, MS Permitting Specialist (Data Centers) Memphis, TN Permitting Specialist (Power Generation) Memphis, TN Power Generation Engineer Memphis, TN; Southaven, MS Project Manager (Power Generation) New Southaven, MS Receiving & Logistics Clerk Memphis, TN Senior Data Center Operations Technician Memphis, TN; Southaven, MS Senior Facilities Operations Technician Memphis, TN; Southaven, MS Sr. Electrical Commissioning Technician Memphis, TN; Southaven, MS Sr. Manager, Engineering Memphis, TN Structural Engineer - Data Centers Memphis, TN",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 1.0,
+        "biz_model": "b2c",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains chennai",
+      "_canonical_fp": "f3eb19450ddb353e",
+      "canonical": true,
+      "canonical_id": "f3eb19450ddb353e",
+      "apply_route": {
+        "best_apply_route": "greenhouse",
+        "apply_url": "https://boards.greenhouse.io/xai/jobs/4379597007",
+        "backup_urls": [],
+        "reason": "best route: greenhouse (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Senior Software Engineer, AI Product @ Vanta",
+      "company": "Vanta",
+      "location": "Chennai",
+      "url": "https://jobs.ashbyhq.com/vanta/1fb75eb1-739a-4394-9f9b-ca684a61dfd3",
+      "apply_url": "https://jobs.ashbyhq.com/vanta/1fb75eb1-739a-4394-9f9b-ca684a61dfd3",
+      "description": "As a Senior Applied AI Engineer at Vanta, you will play a crucial role in shaping Vanta’s AI offerings, setting technical strategy, and leading projects that leverage AI to deliver smarter, faster outcomes for our customers.",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "senior",
+        "archetype_match": 0.5,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains chennai",
+      "_canonical_fp": "2ed3444ec55595c2",
+      "canonical": true,
+      "canonical_id": "2ed3444ec55595c2",
+      "apply_route": {
+        "best_apply_route": "ashby",
+        "apply_url": "https://jobs.ashbyhq.com/vanta/1fb75eb1-739a-4394-9f9b-ca684a61dfd3",
+        "backup_urls": [],
+        "reason": "best route: ashby (priority 2)",
+        "risk": "low"
+      }
     },
     {
       "title": "AI Engineer",
-      "company": "BigRio",
-      "company_name": "BigRio",
+      "company": "Agentic AI & Automation",
       "location": "Chennai",
-      "apply_url": "https://cutshort.io/job/AI-Engineer-Chennai-BigRio-L3umTsst",
-      "url": "https://cutshort.io/job/AI-Engineer-Chennai-BigRio-L3umTsst",
-      "description": "Looking for a software engineer.",
-      "jd_text": "Looking for a software engineer."
+      "url": "https://apply.workable.com/luxasia/j/CFF16F4372/",
+      "apply_url": "https://apply.workable.com/luxasia/j/CFF16F4372/",
+      "description": "Define prompt engineering standards, system prompt versioning, and model evaluation frameworks across all AI products Implement guardrails, fallback handling, and monitoring for all production AI agents to ensure safe and reliable operation Stay current on the AI landscape and actively bring relevant ideas and tools to the team's attention",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 1.0,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains chennai",
+      "_canonical_fp": "978f5f64bad5f690",
+      "canonical": true,
+      "canonical_id": "978f5f64bad5f690",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://apply.workable.com/luxasia/j/CFF16F4372/",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
     },
     {
-      "title": "Fullstack AI Engineer",
-      "company": "Moative",
-      "company_name": "Moative",
+      "title": "AI Product Manager",
+      "company": "Writesonic",
       "location": "Chennai",
-      "apply_url": "https://cutshort.io/job/Fullstack-AI-Engineer-Chennai-Moative-QlIywRyB",
-      "url": "https://cutshort.io/job/Fullstack-AI-Engineer-Chennai-Moative-QlIywRyB",
-      "description": "Looking for a software engineer.",
-      "jd_text": "Looking for a software engineer."
+      "url": "https://apply.workable.com/writesonic/j/F7E014216A/",
+      "apply_url": "https://apply.workable.com/writesonic/j/F7E014216A/",
+      "description": "Must-Haves 3+ years in product at a fast-moving startup (AI company preferred) Hands-on experience with AI coding tools (Claude Code, Cursor, or similar) Some software engineering background (you can read and write code) Strong UX instincts: you think like a user Data-driven: you use analytics tools daily, not weekly",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 1.0,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains chennai",
+      "_canonical_fp": "0954d48077bc1ef5",
+      "canonical": true,
+      "canonical_id": "0954d48077bc1ef5",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://apply.workable.com/writesonic/j/F7E014216A/",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
     },
     {
-      "title": "ai/ml engineer job in...",
-      "company": "us healthcare company",
-      "company_name": "us healthcare company",
+      "title": "Machine Learning Engineer",
+      "company": "Weekday AI",
       "location": "Chennai",
-      "apply_url": "https://cutshort.io/job/AI-ML-engineer-Hyderabad-Chennai-People-Impact-LbwBsIaW",
-      "url": "https://cutshort.io/job/AI-ML-engineer-Hyderabad-Chennai-People-Impact-LbwBsIaW",
-      "description": "Looking for a software engineer.",
-      "jd_text": "Looking for a software engineer."
+      "url": "https://apply.workable.com/weekday-1/j/EF8608F40D",
+      "apply_url": "https://apply.workable.com/weekday-1/j/EF8608F40D",
+      "description": "This role is for one of the Weekday's clients Salary range: Rs 1000000 - Rs 1800000 (ie INR 10-18 LPA) Experience: 4+ yrs Location: Chennai Job Type: full-time We are looking for a skilled Machine Learning Engineer with expertise in Large Language Models (LLMs), advanced analytics, and scalable data processing solutions. The role involves building and optimizing AI-driven applications ...",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 1.0,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains chennai",
+      "_canonical_fp": "3b3894fcc7d47eea",
+      "canonical": true,
+      "canonical_id": "3b3894fcc7d47eea",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://apply.workable.com/weekday-1/j/EF8608F40D",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
     },
     {
-      "title": "AI engineer- Python developer",
-      "company": "ZakApps software pvt ltd",
-      "company_name": "ZakApps software pvt ltd",
+      "title": "Senior Product Manager/Product Manager",
+      "company": "Platform",
       "location": "Chennai",
-      "apply_url": "https://cutshort.io/job/AI-engineer-Python-developer-Chennai-ZakApps-software-pvt-ltd-GIwzPZDD",
-      "url": "https://cutshort.io/job/AI-engineer-Python-developer-Chennai-ZakApps-software-pvt-ltd-GIwzPZDD",
-      "description": "Looking for a software engineer.",
-      "jd_text": "Looking for a software engineer."
+      "url": "https://apply.workable.com/wati-dot-i-o/j/0054C594F5/",
+      "apply_url": "https://apply.workable.com/wati-dot-i-o/j/0054C594F5/",
+      "description": "Experience as a Senior Product Manager at a scale or growth-stage company, ideally on developer, platform, or ecosystem products Strong technical product judgment; comfortable working with AI platforms, APIs, MCPs, integrations, LLM tooling, and developer and agentic workflows Track record of launching new platforms and iterating based on real usage and data Ability to operate with ambiguity ...",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "senior",
+        "archetype_match": 1.0,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains chennai",
+      "_canonical_fp": "8bdafc40927c3f1b",
+      "canonical": true,
+      "canonical_id": "8bdafc40927c3f1b",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://apply.workable.com/wati-dot-i-o/j/0054C594F5/",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
     },
     {
-      "title": "Natural Language Processing Engineer",
-      "company": "Niki.ai",
-      "company_name": "Niki.ai",
-      "location": "Bengaluru (Bangalore)",
-      "apply_url": "https://cutshort.io/job/Natural-Language-Processing-Engineer-Bengaluru-Bangalore-Niki-ai-ABXtZ9UI",
-      "url": "https://cutshort.io/job/Natural-Language-Processing-Engineer-Bengaluru-Bangalore-Niki-ai-ABXtZ9UI",
-      "description": "Looking for a software engineer.",
-      "jd_text": "Looking for a software engineer."
+      "title": "AI Engineer (INDIA)",
+      "company": "Trexquant Investment",
+      "location": "Chennai",
+      "url": "https://apply.workable.com/trexquant/j/13287007E6/",
+      "apply_url": "https://apply.workable.com/trexquant/j/13287007E6/",
+      "description": "We are seeking an AI Engineer to join our team. The successful candidate will play a critical role in developing, optimizing, and deploying advanced AI workflows and tools. The role offers a unique opportunity to work on cutting-edge technologies that directly impact our investment strategies. Responsibilities Design and implement systems incorporating large language models (LLMs), vector ...",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 1.0,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains chennai",
+      "_canonical_fp": "0d49e66e6259dc96",
+      "canonical": true,
+      "canonical_id": "0d49e66e6259dc96",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://apply.workable.com/trexquant/j/13287007E6/",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
     },
     {
-      "title": "Generative AI Platform Infrastructure Engineer",
-      "company": "Cargill Business Services",
-      "company_name": "Cargill Business Services",
-      "location": "Bengaluru (Bangalore), India",
-      "apply_url": "https://cutshort.io/job/Generative-AI-Platform-Infrastructure-Engineer-Bengaluru-Bangalore-Cargill-Business-Services-kt8gHw5t",
-      "url": "https://cutshort.io/job/Generative-AI-Platform-Infrastructure-Engineer-Bengaluru-Bangalore-Cargill-Business-Services-kt8gHw5t",
-      "description": "Job Purpose and Impact: The Sr. Generative AI Engineer will architect, design and develop new and existing GenAI solutions for the organization. As a Generative AI Engineer, you will be responsible for developing and implementing products using cutting-edge generative AI and RAG to solve complex problems and drive innovation across our organization. You will work closely with data scientists, software engineers, and product managers to design, build, and deploy AI-powered solutions that enhance our products and services in Cargill. You will bring order to ambiguous scenarios and apply in depth and broad knowledge of architectural, engineering and security practices to ensure your solutions are scalable, resilient and robust and will share knowledge on modern practices and technologies to the shared engineering community. Key Accountabilities: \u2022 Apply software and AI engineering patterns and principles to design, develop, test, integrate, maintain and troubleshoot complex and varied Generative AI software solutions and incorporate security practices in newly developed and maintained applications. \u2022 Collaborate with cross-functional teams to define AI project requirements and objectives, ensuring alignment with overall business goals. \u2022 Conduct research to stay up-to-date with the latest advancements in generative AI, machine learning, and deep learning techniques and identify opportunities to integrate them into our products and services, optimizing existing generative AI models and RAG for improved performance, scalability, and efficiency, developing and maintaining pipelines and RAG solutions including data preprocessing, prompt engineering, benchmarking and fine-tuning. \u2022 Develop clear and concise documentation, including technical specifications, user guides and presentations, to communicate complex AI concepts to both technical and non-technical stakeholders. \u2022 Participate in the engineering community by maintaining and sharing relevant technical approaches and modern skills in AI. \u2022 Contribute to the establishment of best practices and standards for generative AI development within the organization. \u2022 Independently handle complex issues with minimal supervision, while escalating only the most complex issues to appropriate staff. Minimum Qualifications: \u2022 Bachelor\u2019s degree in a related field or equivalent experience \u2022 Minimum of five years of related work experience \u2022 You are proficient in Python and have experience with machine learning libraries and frameworks \u2022 Have deep understanding of industry leading Foundation Model capabilities and its application. \u2022 You are familiar with cloud-based Generative AI platforms and services \u2022 Full stack software engineering experience to build products using Foundation Models \u2022 Confirmed experience architecting applications, databases, services or integrations. Read more",
-      "jd_text": "Job Purpose and Impact: The Sr. Generative AI Engineer will architect, design and develop new and existing GenAI solutions for the organization. As a Generative AI Engineer, you will be responsible for developing and implementing products using cutting-edge generative AI and RAG to solve complex problems and drive innovation across our organization. You will work closely with data scientists, software engineers, and product managers to design, build, and deploy AI-powered solutions that enhance our products and services in Cargill. You will bring order to ambiguous scenarios and apply in depth and broad knowledge of architectural, engineering and security practices to ensure your solutions are scalable, resilient and robust and will share knowledge on modern practices and technologies to the shared engineering community. Key Accountabilities: \u2022 Apply software and AI engineering patterns and principles to design, develop, test, integrate, maintain and troubleshoot complex and varied Generative AI software solutions and incorporate security practices in newly developed and maintained applications. \u2022 Collaborate with cross-functional teams to define AI project requirements and objectives, ensuring alignment with overall business goals. \u2022 Conduct research to stay up-to-date with the latest advancements in generative AI, machine learning, and deep learning techniques and identify opportunities to integrate them into our products and services, optimizing existing generative AI models and RAG for improved performance, scalability, and efficiency, developing and maintaining pipelines and RAG solutions including data preprocessing, prompt engineering, benchmarking and fine-tuning. \u2022 Develop clear and concise documentation, including technical specifications, user guides and presentations, to communicate complex AI concepts to both technical and non-technical stakeholders. \u2022 Participate in the engineering community by maintaining and sharing relevant technical approaches and modern skills in AI. \u2022 Contribute to the establishment of best practices and standards for generative AI development within the organization. \u2022 Independently handle complex issues with minimal supervision, while escalating only the most complex issues to appropriate staff. Minimum Qualifications: \u2022 Bachelor\u2019s degree in a related field or equivalent experience \u2022 Minimum of five years of related work experience \u2022 You are proficient in Python and have experience with machine learning libraries and frameworks \u2022 Have deep understanding of industry leading Foundation Model capabilities and its application. \u2022 You are familiar with cloud-based Generative AI platforms and services \u2022 Full stack software engineering experience to build products using Foundation Models \u2022 Confirmed experience architecting applications, databases, services or integrations. Read more"
+      "title": "Applied AI Engineer",
+      "company": "DevRev",
+      "location": "Chennai",
+      "url": "https://unstop.com/jobs/applied-ai-engineer-devrev-1512418",
+      "apply_url": "",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "DevRev is hiring for the role of Applied AI Engineer! Responsibilities of the Candidate: Design, develop and implement integrations, automations and customizations to integrate DevRev with customers’ tech stack and workflows, and ensure successful customer engagements. Utilize AI in novel ways to solve customer problems, including Generative AI techniques like prompt engineering for foundation large language models (LLMs) to enable great AI agent experience. Work on semantic search engine fine-tuning for better search accuracy. Conduct data analysis, writing SQL queries, and building dashboards to share insights and drive decision-making. Be proactive in communicating and keeping constant feedback loops to all key stakeholders including Customers, Engineering, Product, Customer Success ... Read More If an employer asks you to pay any kind of fee, please notify us immediately. Unstop does not charge any fee from the applicants and we do not allow other companies also to do so.",
+      "skills": [],
+      "salary": "",
+      "work_mode": "onsite",
+      "_source_type": "scrapegraph",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 1.0,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains chennai",
+      "_canonical_fp": "370d4242140fbd4d",
+      "canonical": true,
+      "canonical_id": "370d4242140fbd4d",
+      "apply_route": {
+        "best_apply_route": "company_site",
+        "apply_url": "https://unstop.com/jobs/applied-ai-engineer-devrev-1512418",
+        "backup_urls": [],
+        "reason": "best route: company_site (priority 1)",
+        "risk": "low"
+      }
     },
     {
-      "title": "Gen AI Engineer",
-      "company": "",
-      "company_name": "",
-      "location": "India",
-      "apply_url": "https://cutshort.io/job/Gen-AI-Engineer-Bengaluru-Bangalore-NeoGenCode-Technologies-Pvt-Ltd-tB25iNPq",
-      "url": "https://cutshort.io/job/Gen-AI-Engineer-Bengaluru-Bangalore-NeoGenCode-Technologies-Pvt-Ltd-tB25iNPq",
-      "description": "NeoGenCode Technologies Pvt Ltd is hiring Gen AI Engineer job in Bengaluru (Bangalore) | Cutshort Pricing FAQs For employers Gen AI Engineer at NeoGenCode Technologies Pvt Ltd Apply to this job Gen AI Engineer NeoGenCode Technologies Pvt Ltd Company Home Gen AI Engineer at NeoGenCode Technologies Pvt Ltd Posted by Akshay Patil Apply to this job 3 - 8 yrs \u20b910L - \u20b924L / yr Bengaluru (Bangalore) Skills Python Large Language Models (LLM) Generative AI AI Agents LangChain LlamaIndex Semantic Kernel Prompt engineering Systems design Vector database Embeddings RESTful APIs \ud83d\ude80 Job Title : Gen AI Engineer Experience : 3 to 5 Years Location : Bengaluru (MG Road \u2013 Prestige Building) Work Mode : Hybrid (3 Days WFO) Open Positions : 2 Notice Period : Immediate to 15\u201320 Days Preferred \ud83c\udfaf Role Overview : We are looking for a Gen AI Engineer with hands-on experience in building and deploying LLM powered applications. You will work on cutting-edge AI solutions, including real-world enterprise use cases and next-generation internal products. \ud83d\udee0 Mandatory Skills : Strong proficiency in Python. Hands-on experience with LLMs & GenAI frameworks (LangChain, LlamaIndex, Semantic Kernel). Experience in prompt engineering and system design. Knowledge of vector databases & embeddings. Experience integrating GenAI solutions into production systems. Understanding of REST APIs, async processing, and streaming responses. \u26a1 AI / ML Knowledge : Strong understanding of NLP & transformer-based models. Familiarity with fine-tuning, embeddings, and inference patterns. Knowledge of GenAI evaluation metrics (accuracy, relevance, grounding). \u2601 Infrastructure & Tooling : Experience with Cloud platforms (AWS / Azure / GCP). Familiarity with Docker & Kubernetes (good to have). Exposure to CI/CD pipelines and MLOps practices. \ud83c\udf1f Nice to Have : Experience with multimodal models (vision, OCR, speech). Knowledge of AIOps, RCA, observability, enterprise workflows. Experience building AI agents & orchestration layers. Understanding of AI governance, safety, and responsible AI. \ud83d\udcbc Key Responsibilities : Design, develop, and deploy GenAI applications using LLMs (OpenAI, Azure OpenAI, open-source models). Build RAG pipelines using vector databases (FAISS, Pinecone, Weaviate, Chroma). Develop high-quality prompts, system instructions, and structured outputs (JSON, function calling). Integrate GenAI capabilities into backend systems via APIs & microservices. Optimize models for performance, latency, cost, and accuracy. Implement evaluation frameworks (hallucination detection, confidence scoring). Ensure data security, privacy, and compliance. Collaborate with product, design, and domain teams. Document architecture, prompts, and best practices. \ud83d\udcbc\ud83e\udd1d Interview Process : 1. Geektrust Assessment (AI Agent-based evaluation) 2. Final Interview with Founder (45 mins) \ud83d\ude80 Job Title : Gen AI Engineer Experience : 3 to 5 Years Location : Bengaluru (MG Road \u2013 Prestige Building) Work Mode : Hybrid (3 Days WFO) Open Positions : 2 Notice Period : Immediate to 15\u201320 Days Preferred \ud83c\udfaf Role Overview : We are looking for a Gen AI Engineer with hands-on experience in building and deploying LLM powered applications. You will work on cutting-edge AI solutions, including real-world enterprise use cases and next-generation internal products. \ud83d\udee0 Mandatory Skills : Strong proficiency in Python. Hands-on experience with LLMs & GenAI frameworks (LangChain, LlamaIndex, Semantic Kernel). Experience in prompt engineering and system design. Knowledge of vector databases & embeddings. Experience integrating GenAI solutions into production systems. Understanding of REST APIs, async processing, and streaming responses. \u26a1 AI / ML Knowledge : Strong understanding of NLP & transformer-based models. Familiarity with fine-tuning, embeddings, and inference patterns. Knowledge of GenAI evaluation metrics (accuracy, relevance, grounding). \u2601 Infrastructure & Tooling : Experience with Cloud platforms (AWS / Azure / GCP). Familiarity with Docker & Kubernetes (good to have). Exposure to CI/CD pipelines and MLOps practices. \ud83c\udf1f Nice to Have : Experience with multimodal models (vision, OCR, speech). Knowledge of AIOps, RCA, observability, enterprise workflows. Experience building AI agents & orchestration layers. Understanding of AI governance, safety, and responsible AI. \ud83d\udcbc Key Responsibilities : Design, develop, and deploy GenAI applications using LLMs (OpenAI, Azure OpenAI, open-source models). Build RAG pipelines using vector databases (FAISS, Pinecone, Weaviate, Chroma). Develop high-quality prompts, system instructions, and structured outputs (JSON, function calling). Integrate GenAI capabilities into backend systems via APIs & microservices. Optimize models for performance, latency, cost, and accuracy. Implement evaluation frameworks (hallucination detection, confidence scoring). Ensure data security, privacy, and compliance. Collaborate with product, design, and domain teams. Document architecture, prompts, and best practices. \ud83d\udcbc\ud83e\udd1d Interview Process : 1. Geektrust Assessment (AI Agent-based evaluation) 2. Final Interview with Founder (45 mins) Read more Users love Cutshort Read about what our users have to say about finding their next opportunity on Cutshort. Previous Apoorv Pandey Sr. Mobile Developer - Prismberry Technologies Pvt Ltd The entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team! Shubham Vishwakarma Full Stack Developer - Averlon I had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team. Ashish Gupta Gen AI Engineer - Fractal Analytics The process was smooth, and the team was incredibly supportive. A sp",
-      "jd_text": "NeoGenCode Technologies Pvt Ltd is hiring Gen AI Engineer job in Bengaluru (Bangalore) | Cutshort Pricing FAQs For employers Gen AI Engineer at NeoGenCode Technologies Pvt Ltd Apply to this job Gen AI Engineer NeoGenCode Technologies Pvt Ltd Company Home Gen AI Engineer at NeoGenCode Technologies Pvt Ltd Posted by Akshay Patil Apply to this job 3 - 8 yrs \u20b910L - \u20b924L / yr Bengaluru (Bangalore) Skills Python Large Language Models (LLM) Generative AI AI Agents LangChain LlamaIndex Semantic Kernel Prompt engineering Systems design Vector database Embeddings RESTful APIs \ud83d\ude80 Job Title : Gen AI Engineer Experience : 3 to 5 Years Location : Bengaluru (MG Road \u2013 Prestige Building) Work Mode : Hybrid (3 Days WFO) Open Positions : 2 Notice Period : Immediate to 15\u201320 Days Preferred \ud83c\udfaf Role Overview : We are looking for a Gen AI Engineer with hands-on experience in building and deploying LLM powered applications. You will work on cutting-edge AI solutions, including real-world enterprise use cases and next-generation internal products. \ud83d\udee0 Mandatory Skills : Strong proficiency in Python. Hands-on experience with LLMs & GenAI frameworks (LangChain, LlamaIndex, Semantic Kernel). Experience in prompt engineering and system design. Knowledge of vector databases & embeddings. Experience integrating GenAI solutions into production systems. Understanding of REST APIs, async processing, and streaming responses. \u26a1 AI / ML Knowledge : Strong understanding of NLP & transformer-based models. Familiarity with fine-tuning, embeddings, and inference patterns. Knowledge of GenAI evaluation metrics (accuracy, relevance, grounding). \u2601 Infrastructure & Tooling : Experience with Cloud platforms (AWS / Azure / GCP). Familiarity with Docker & Kubernetes (good to have). Exposure to CI/CD pipelines and MLOps practices. \ud83c\udf1f Nice to Have : Experience with multimodal models (vision, OCR, speech). Knowledge of AIOps, RCA, observability, enterprise workflows. Experience building AI agents & orchestration layers. Understanding of AI governance, safety, and responsible AI. \ud83d\udcbc Key Responsibilities : Design, develop, and deploy GenAI applications using LLMs (OpenAI, Azure OpenAI, open-source models). Build RAG pipelines using vector databases (FAISS, Pinecone, Weaviate, Chroma). Develop high-quality prompts, system instructions, and structured outputs (JSON, function calling). Integrate GenAI capabilities into backend systems via APIs & microservices. Optimize models for performance, latency, cost, and accuracy. Implement evaluation frameworks (hallucination detection, confidence scoring). Ensure data security, privacy, and compliance. Collaborate with product, design, and domain teams. Document architecture, prompts, and best practices. \ud83d\udcbc\ud83e\udd1d Interview Process : 1. Geektrust Assessment (AI Agent-based evaluation) 2. Final Interview with Founder (45 mins) \ud83d\ude80 Job Title : Gen AI Engineer Experience : 3 to 5 Years Location : Bengaluru (MG Road \u2013 Prestige Building) Work Mode : Hybrid (3 Days WFO) Open Positions : 2 Notice Period : Immediate to 15\u201320 Days Preferred \ud83c\udfaf Role Overview : We are looking for a Gen AI Engineer with hands-on experience in building and deploying LLM powered applications. You will work on cutting-edge AI solutions, including real-world enterprise use cases and next-generation internal products. \ud83d\udee0 Mandatory Skills : Strong proficiency in Python. Hands-on experience with LLMs & GenAI frameworks (LangChain, LlamaIndex, Semantic Kernel). Experience in prompt engineering and system design. Knowledge of vector databases & embeddings. Experience integrating GenAI solutions into production systems. Understanding of REST APIs, async processing, and streaming responses. \u26a1 AI / ML Knowledge : Strong understanding of NLP & transformer-based models. Familiarity with fine-tuning, embeddings, and inference patterns. Knowledge of GenAI evaluation metrics (accuracy, relevance, grounding). \u2601 Infrastructure & Tooling : Experience with Cloud platforms (AWS / Azure / GCP). Familiarity with Docker & Kubernetes (good to have). Exposure to CI/CD pipelines and MLOps practices. \ud83c\udf1f Nice to Have : Experience with multimodal models (vision, OCR, speech). Knowledge of AIOps, RCA, observability, enterprise workflows. Experience building AI agents & orchestration layers. Understanding of AI governance, safety, and responsible AI. \ud83d\udcbc Key Responsibilities : Design, develop, and deploy GenAI applications using LLMs (OpenAI, Azure OpenAI, open-source models). Build RAG pipelines using vector databases (FAISS, Pinecone, Weaviate, Chroma). Develop high-quality prompts, system instructions, and structured outputs (JSON, function calling). Integrate GenAI capabilities into backend systems via APIs & microservices. Optimize models for performance, latency, cost, and accuracy. Implement evaluation frameworks (hallucination detection, confidence scoring). Ensure data security, privacy, and compliance. Collaborate with product, design, and domain teams. Document architecture, prompts, and best practices. \ud83d\udcbc\ud83e\udd1d Interview Process : 1. Geektrust Assessment (AI Agent-based evaluation) 2. Final Interview with Founder (45 mins) Read more Users love Cutshort Read about what our users have to say about finding their next opportunity on Cutshort. Previous Apoorv Pandey Sr. Mobile Developer - Prismberry Technologies Pvt Ltd The entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team! Shubham Vishwakarma Full Stack Developer - Averlon I had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team. Ashish Gupta Gen AI Engineer - Fractal Analytics The process was smooth, and the team was incredibly supportive. A sp"
-    },
-    {
-      "title": "Generative AI- Machine Learning Engineer",
-      "company": "",
-      "company_name": "",
-      "location": "India",
-      "apply_url": "https://cutshort.io/job/Generative-AI-Machine-Learning-Engineer-Bengaluru-Bangalore-Quantiphi-hja2EdHo",
-      "url": "https://cutshort.io/job/Generative-AI-Machine-Learning-Engineer-Bengaluru-Bangalore-Quantiphi-hja2EdHo",
-      "description": "Quantiphi is hiring Generative AI- Machine Learning Engineer job in Bengaluru (Bangalore) | Cutshort Pricing FAQs For employers Generative AI- Machine Learning Engineer at Quantiphi Apply to this job Generative AI- Machine Learning Engineer Quantiphi Company Home Generative AI- Machine Learning Engineer at Quantiphi Posted by Nikita Sinha Apply to this job 3 - 12 yrs Best in industry Bengaluru (Bangalore) Skills Large Language Models (LLM) Retrieval Augmented Generation (RAG) Generative AI (GenAI) We are looking for a hands-on Generative AI Engineer to design, build, and deploy enterprise-grade GenAI platform capabilities across multiple business units. This role focuses on developing scalable, reusable AI components across the full stack\u2014covering RAG systems, agent orchestration, LLM infrastructure, and GenAIOps \u2014on GCP (primary) and Azure . This is a core engineering role , not a research or client-facing position. Key Responsibilities Design and build production-ready GenAI systems and platform components Develop and deploy RAG pipelines (data ingestion, embeddings, retrieval, APIs) Implement agent-based architectures (orchestration, routing, memory, workflows) Build and manage LLM infrastructure (model routing, caching, rate limiting, observability) Develop scalable APIs and services for AI capabilities Implement GenAIOps/MLOps practices (prompt management, evaluation, monitoring, deployment) Work with GCP services (Vertex AI, BigQuery, Cloud Run, GKE, Pub/Sub) to deploy solutions Ensure AI safety, governance, and compliance (PII protection, guardrails, auditability) Collaborate with cross-functional teams to deliver reusable, enterprise-grade solutions Required Skills & Experience Strong hands-on experience in Generative AI and RAG systems (production level) Experience building multi-agent or agentic AI systems Proficiency in Python and backend/API development Hands-on experience with GCP AI/ML ecosystem (Vertex AI, BigQuery, etc.) Solid understanding of LLM infrastructure and orchestration layers Experience with CI/CD pipelines and Infrastructure as Code (Terraform) Knowledge of GenAIOps/MLOps practices and model lifecycle management Understanding of AI safety, governance, and compliance Nice to Have Experience with LangChain, LlamaIndex , or similar frameworks Familiarity with RAG evaluation tools (RAGAS, DeepEval) Knowledge of Knowledge Graphs with RAG Experience in multi-cloud environments (GCP + Azure) Exposure to BFSI/regulated domains What We\u2019re Looking For Engineers who have built and deployed real-world GenAI systems at scale Strong backend and systems-thinking mindset Ability to work in fast-paced, enterprise environments We are looking for a hands-on Generative AI Engineer to design, build, and deploy enterprise-grade GenAI platform capabilities across multiple business units. This role focuses on developing scalable, reusable AI components across the full stack\u2014covering RAG systems, agent orchestration, LLM infrastructure, and GenAIOps \u2014on GCP (primary) and Azure . This is a core engineering role , not a research or client-facing position. Key Responsibilities Design and build production-ready GenAI systems and platform components Develop and deploy RAG pipelines (data ingestion, embeddings, retrieval, APIs) Implement agent-based architectures (orchestration, routing, memory, workflows) Build and manage LLM infrastructure (model routing, caching, rate limiting, observability) Develop scalable APIs and services for AI capabilities Implement GenAIOps/MLOps practices (prompt management, evaluation, monitoring, deployment) Work with GCP services (Vertex AI, BigQuery, Cloud Run, GKE, Pub/Sub) to deploy solutions Ensure AI safety, governance, and compliance (PII protection, guardrails, auditability) Collaborate with cross-functional teams to deliver reusable, enterprise-grade solutions Required Skills & Experience Strong hands-on experience in Generative AI and RAG systems (production level) Experience building multi-agent or agentic AI systems Proficiency in Python and backend/API development Hands-on experience with GCP AI/ML ecosystem (Vertex AI, BigQuery, etc.) Solid understanding of LLM infrastructure and orchestration layers Experience with CI/CD pipelines and Infrastructure as Code (Terraform) Knowledge of GenAIOps/MLOps practices and model lifecycle management Understanding of AI safety, governance, and compliance Nice to Have Experience with LangChain, LlamaIndex , or similar frameworks Familiarity with RAG evaluation tools (RAGAS, DeepEval) Knowledge of Knowledge Graphs with RAG Experience in multi-cloud environments (GCP + Azure) Exposure to BFSI/regulated domains What We\u2019re Looking For Engineers who have built and deployed real-world GenAI systems at scale Strong backend and systems-thinking mindset Ability to work in fast-paced, enterprise environments Read more Users love Cutshort Read about what our users have to say about finding their next opportunity on Cutshort. Previous Apoorv Pandey Sr. Mobile Developer - Prismberry Technologies Pvt Ltd The entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team! Shubham Vishwakarma Full Stack Developer - Averlon I had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team. Ashish Gupta Gen AI Engineer - Fractal Analytics The process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless. Parth Lukhi Senior Software Developer - Bits In Glass It was a great experience with Cutshort. I wo",
-      "jd_text": "Quantiphi is hiring Generative AI- Machine Learning Engineer job in Bengaluru (Bangalore) | Cutshort Pricing FAQs For employers Generative AI- Machine Learning Engineer at Quantiphi Apply to this job Generative AI- Machine Learning Engineer Quantiphi Company Home Generative AI- Machine Learning Engineer at Quantiphi Posted by Nikita Sinha Apply to this job 3 - 12 yrs Best in industry Bengaluru (Bangalore) Skills Large Language Models (LLM) Retrieval Augmented Generation (RAG) Generative AI (GenAI) We are looking for a hands-on Generative AI Engineer to design, build, and deploy enterprise-grade GenAI platform capabilities across multiple business units. This role focuses on developing scalable, reusable AI components across the full stack\u2014covering RAG systems, agent orchestration, LLM infrastructure, and GenAIOps \u2014on GCP (primary) and Azure . This is a core engineering role , not a research or client-facing position. Key Responsibilities Design and build production-ready GenAI systems and platform components Develop and deploy RAG pipelines (data ingestion, embeddings, retrieval, APIs) Implement agent-based architectures (orchestration, routing, memory, workflows) Build and manage LLM infrastructure (model routing, caching, rate limiting, observability) Develop scalable APIs and services for AI capabilities Implement GenAIOps/MLOps practices (prompt management, evaluation, monitoring, deployment) Work with GCP services (Vertex AI, BigQuery, Cloud Run, GKE, Pub/Sub) to deploy solutions Ensure AI safety, governance, and compliance (PII protection, guardrails, auditability) Collaborate with cross-functional teams to deliver reusable, enterprise-grade solutions Required Skills & Experience Strong hands-on experience in Generative AI and RAG systems (production level) Experience building multi-agent or agentic AI systems Proficiency in Python and backend/API development Hands-on experience with GCP AI/ML ecosystem (Vertex AI, BigQuery, etc.) Solid understanding of LLM infrastructure and orchestration layers Experience with CI/CD pipelines and Infrastructure as Code (Terraform) Knowledge of GenAIOps/MLOps practices and model lifecycle management Understanding of AI safety, governance, and compliance Nice to Have Experience with LangChain, LlamaIndex , or similar frameworks Familiarity with RAG evaluation tools (RAGAS, DeepEval) Knowledge of Knowledge Graphs with RAG Experience in multi-cloud environments (GCP + Azure) Exposure to BFSI/regulated domains What We\u2019re Looking For Engineers who have built and deployed real-world GenAI systems at scale Strong backend and systems-thinking mindset Ability to work in fast-paced, enterprise environments We are looking for a hands-on Generative AI Engineer to design, build, and deploy enterprise-grade GenAI platform capabilities across multiple business units. This role focuses on developing scalable, reusable AI components across the full stack\u2014covering RAG systems, agent orchestration, LLM infrastructure, and GenAIOps \u2014on GCP (primary) and Azure . This is a core engineering role , not a research or client-facing position. Key Responsibilities Design and build production-ready GenAI systems and platform components Develop and deploy RAG pipelines (data ingestion, embeddings, retrieval, APIs) Implement agent-based architectures (orchestration, routing, memory, workflows) Build and manage LLM infrastructure (model routing, caching, rate limiting, observability) Develop scalable APIs and services for AI capabilities Implement GenAIOps/MLOps practices (prompt management, evaluation, monitoring, deployment) Work with GCP services (Vertex AI, BigQuery, Cloud Run, GKE, Pub/Sub) to deploy solutions Ensure AI safety, governance, and compliance (PII protection, guardrails, auditability) Collaborate with cross-functional teams to deliver reusable, enterprise-grade solutions Required Skills & Experience Strong hands-on experience in Generative AI and RAG systems (production level) Experience building multi-agent or agentic AI systems Proficiency in Python and backend/API development Hands-on experience with GCP AI/ML ecosystem (Vertex AI, BigQuery, etc.) Solid understanding of LLM infrastructure and orchestration layers Experience with CI/CD pipelines and Infrastructure as Code (Terraform) Knowledge of GenAIOps/MLOps practices and model lifecycle management Understanding of AI safety, governance, and compliance Nice to Have Experience with LangChain, LlamaIndex , or similar frameworks Familiarity with RAG evaluation tools (RAGAS, DeepEval) Knowledge of Knowledge Graphs with RAG Experience in multi-cloud environments (GCP + Azure) Exposure to BFSI/regulated domains What We\u2019re Looking For Engineers who have built and deployed real-world GenAI systems at scale Strong backend and systems-thinking mindset Ability to work in fast-paced, enterprise environments Read more Users love Cutshort Read about what our users have to say about finding their next opportunity on Cutshort. Previous Apoorv Pandey Sr. Mobile Developer - Prismberry Technologies Pvt Ltd The entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team! Shubham Vishwakarma Full Stack Developer - Averlon I had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team. Ashish Gupta Gen AI Engineer - Fractal Analytics The process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless. Parth Lukhi Senior Software Developer - Bits In Glass It was a great experience with Cutshort. I wo"
+      "title": "Senior AI Product Engineer",
+      "company": "Neemtree",
+      "location": "",
+      "url": "https://www.hirist.tech/j/senior-ai-product-engineer-1639483",
+      "apply_url": "",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "Role Overview : As a Senior AI Product Engineer, you will work across product, engineering, customer workflows, and AI-native systems to rapidly build and scale enterprise applications. You will own problems end-to-end : - Understanding customer pain points - Designing workflows - Building prototypes - Shipping production systems - Iterating based on real-world feedback This is a high-ownership engineering role with strong product involvement. We are looking for engineers who naturally think like builders. What You'll Do : - Design and build end-to-end product experiences and systems - Work directly with customers and internal teams to understand operational workflows - Rapidly prototype and iterate using modern AI development tools - Build production-grade applications and internal platforms - Contribute across frontend, backend, workflows, APIs, automation, and AI-assisted systems - Use AI tools aggressively to accelerate development, experimentation, and iteration - Drive product direction through technical and product intuition - Identify opportunities for automation and simplification across workflows - Help shape the future architecture of AI-native enterprise applications What We're Looking For : We are specifically looking for engineers who : - Have 6+ years of engineering experience Have built products or systems end-to-end - Have worked on projects with real users, customers, or monetization - Build side projects, experiments, tools, or products outside of work - Actively use AI tools in their daily workflow - Have strong product intuition alongside technical depth - Enjoy high ownership and fast execution - Are comfortable working across multiple parts of the stack - Prefer building and shipping over process-heavy environments Strong Signals - We value engineers who have : - Built and launched independent products or startups - Monetized side projects or tools - Created internal tools that improved workflows significantly - Used AI tools to dramatically increase development velocity - Strong curiosity around AI-native software development - Demonstrated ability to move from idea prototype production quickly Technologies Workflows You may work with : - AI-assisted development tools - Large language model workflows - Full-stack product systems - Enterprise SaaS applications - Video AI and operational intelligence platforms - APIs, automation systems, and distributed infrastructure Experience with tools such as : - ChatGPT Claude Cursor Replit Lovable v0 GitHub Copilot - AI coding agents is highly valued. Successful engineers in this role : - Ship quickly and iterate continuously - Think deeply about customer workflows and usability - Build systems with strong product intuition - Use AI to meaningfully improve execution speed - Operate independently with high ownership - Contribute beyond pure implementation into product direction and strategy",
+      "skills": [
+        "AI Integration",
+        "Code Generation Tools",
+        "IT Product Architecture",
+        "System Design",
+        "SaaS Applications",
+        "Workflows"
+      ],
+      "salary": "",
+      "work_mode": "remote",
+      "_source_type": "scrapegraph",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "senior",
+        "archetype_match": 1.0,
+        "biz_model": "b2b",
+        "preferred_company_match": false
+      },
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "b716a1f7b0abab14",
+      "canonical": true,
+      "canonical_id": "b716a1f7b0abab14",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://www.hirist.tech/j/senior-ai-product-engineer-1639483",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
     }
   ]
 }

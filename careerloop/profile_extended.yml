@@ -62,8 +62,14 @@ sector_rejections:
 - Government & Public Sector
 startup_tolerance: 7
 target_functions:
-- ai product manager
 - ai product engineer
+- systems architect
+- ai engineer
+- data engineer
+- machine learning engineer
+- ml engineer
+- applied ai engineer
+- ai product manager
 - technical product manager
 - product manager
 - ml product manager
@@ -75,7 +81,7 @@ willing_to_relocate: true
 scoring:
   role_fit_gate: 3.0         # raw role_fit below this → score capped at 30
   min_description_chars: 200 # jobs with shorter JD rejected before scoring
-  archetype_gate: 0.2        # archetype_match below this → hard reject before embedding filter
+  archetype_gate: 0.15       # archetype_match below this → hard reject before embedding filter. Target-function matches are floored to >=0.5 in _tag_jobs_with_ontology so on-target roles always clear this.
 seniority_signals:
   senior: ["senior", "sr", "lead", "principal", "staff", "head of", "director"]
   mid: ["mid", "ii", "2", "associate"]

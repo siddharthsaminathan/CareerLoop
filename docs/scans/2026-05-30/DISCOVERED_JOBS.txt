@@ -1,11 +1,6 @@
 job_id | title | company | location | source | score | matched | persisted
 --------------------------------------------------------------------------------------------------------------
-a71372c6-1e3a-485a-b039-0ad238fda547 | AI Engineer | BigRio | Chennai | on_demand | 60.0 | True | True
-13414de6-ba9b-4cae-bcb2-2a39ec09b5cf | Fullstack AI Engineer | Moative | Chennai | on_demand | 60.0 | True | True
-1569a8f4-9933-4bc3-bccc-d6153e56a445 | ai/ml engineer job in... | us healthcare compan | Chennai | on_demand | 60.0 | True | True
-fb97c654-4020-43ba-b036-3ee978bf2357 | AI engineer- Python developer | ZakApps software pvt | Chennai | on_demand | 60.0 | True | True
-4eb22c05-5e30-46f4-9efb-67bd387bac12 | Generative AI Platform Infrast | Cargill Business Ser | Bengaluru (Bang | on_demand | 59.7 | True | True
-7e6aebb9-f415-4a93-95f7-09571289d133 | Gen AI Engineer |  | India | on_demand | 58.8 | True | True
-dd9103cc-4e7e-4262-b99c-2337d1335f0d | Generative AI- Machine Learnin |  | India | on_demand | 58.2 | True | True
-44e18a7f-eea0-41f6-b338-22a753f77e90 | AI Product Engineer | TestGlobal Corp | Bangalore, Indi | on_demand | 57.3 | True | True
-b80fe1ed-58e8-461d-96ca-61d95c602e8b | Software Engineer | TestCorp India | Chennai | on_demand | 30.0 | True | True
+c6adf5db-0339-4629-aa21-5f82869651a3 | Jr AI Engineer | Rockstar | ["Bangalore"] | on_demand | 48.8 | True | True
+76624dac-de9b-4281-8b30-338614f1bed1 | AI Engineer | Cutshort |  | on_demand | 48.3 | True | True
+fa584534-bd1d-434e-94a6-05eff5a43ed0 | AI/ML Engineer | Cutshort |  | on_demand | 45.3 | True | True
+be67766b-a82e-49c2-94cd-9d09b4d22581 | AI/ML Engineer (GenAI, Cloud M | Cutshort |  | on_demand | 45.3 | True | True

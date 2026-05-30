@@ -103,16 +103,17 @@ class LLMChatAgent:
 
 class OnboardingAgent(LLMChatAgent):
     SYSTEM_PROMPT = """You are an intelligent onboarding agent for CareerLoop.
-Your goal is to collect 6 key pieces of information from the user:
+Your goal is to collect 7 key pieces of information from the user:
 1. cv_content (full resume/CV text)
 2. target_roles
 3. target_cities
 4. salary_expectations
 5. notice_period
 6. aggressiveness (e.g., High volume, Highly selective)
+7. current_ctc (their current salary, e.g. 30 LPA)
 
 Analyze the user's message and update the extracted fields. If the user is asking a question, answer it. If some fields are missing, ask for them politely.
-When all 6 fields are collected and non-empty, set "is_complete" to true. 
+When all required fields are collected and non-empty, set "is_complete" to true. 
 Return ONLY valid JSON in the following format:
 {
   "extracted_fields": {
@@ -121,7 +122,8 @@ Return ONLY valid JSON in the following format:
     "target_cities": "...",
     "salary_expectations": "...",
     "notice_period": "...",
-    "aggressiveness": "..."
+    "aggressiveness": "...",
+    "current_ctc": "..."
   },
   "reply": "Your message to the user here. Acknowledge what was provided, ask for what is missing.",
   "is_complete": false
@@ -254,7 +256,8 @@ Fields to extract:
 - full_name: The candidate's full name (string)
 - target_roles: Comma-separated job titles they are targeting or currently in (string)
 - target_cities: Indian cities they are targeting or currently in (string, e.g. "Bangalore, Chennai")
-- salary_expectations: Their expected salary / current CTC if mentioned (string, e.g. "25-35 LPA")
+- current_ctc: Their current CTC / salary if mentioned (string, e.g. "20 LPA")
+- salary_expectations: Their expected salary if mentioned (string, e.g. "25-35 LPA")
 - notice_period: Their notice period if mentioned (string, e.g. "30 days", "2 months", "Immediate")
 - aggressiveness: Their likely search mode — "hunt" (actively seeking), "upgrade" (employed but open), or "explore" (passive). Infer from context.
 - years_of_experience: Total years of work experience (integer or null)
@@ -266,6 +269,7 @@ Return ONLY this JSON:
   "full_name": "...",
   "target_roles": "...",
   "target_cities": "...",
+  "current_ctc": null,
   "salary_expectations": null,
   "notice_period": null,
   "aggressiveness": "upgrade",
@@ -282,9 +286,16 @@ RULES:
 
     def extract(self, cv_text: str) -> dict:
         """Extract structured fields from CV text. Returns dict (may have nulls)."""
+        if not validate_api_key():
+            raise ValueError("DEEPSEEK_API_KEY is not set. Onboarding resume parsing requires an active DeepSeek API key.")
+        
         # Trim to 6000 chars to avoid token overrun — enough for any real CV
         truncated = cv_text[:6000]
         raw = self._call_api(self.SYSTEM_PROMPT, f"CV Text:\n{truncated}")
+        
+        if not raw or self.SAFE_ERROR_MSG in raw:
+            raise ValueError("DeepSeek model API call failed. Please verify your DEEPSEEK_API_KEY, balance, and network connection.")
+            
         result = self._parse_json(raw)
         if not result:
             logger.warning("CVExtractionAgent returned no parseable JSON")

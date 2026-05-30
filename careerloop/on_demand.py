@@ -36,9 +36,37 @@ from careerloop.profile_manager import ProfileManager
 logger = logging.getLogger(__name__)
 
 
-def _tag_jobs_with_ontology(jobs: list[dict], archetype: "RoleArchetype", seniority_signals: dict) -> None:
+def _tag_jobs_with_ontology(jobs: list[dict], archetype: "RoleArchetype",
+                            seniority_signals: dict,
+                            target_functions: Optional[list] = None) -> None:
     """Tag each job dict with ontology dimensions in-place.
     Tags stored under job['_ontology']. All signals from profile config — zero hardcoding."""
+    # Target functions the user is explicitly searching for. These act as an
+    # escape hatch for the ontology gate: a job whose title/desc clearly matches
+    # one of the user's target functions must NOT be killed just because the
+    # niche LLM-generated must_have jargon tokens ("applied AI", "customer-facing",
+    # "cross-functional", ...) happen not to appear verbatim in the JD. Without
+    # this, legit AI Engineer / ML Engineer / Data Engineer / Systems Architect
+    # postings score 0.0 archetype_match and get hard-rejected.
+    target_functions = target_functions or []
+    # Per-word target-function tokens (drop generic filler so "product manager"
+    # doesn't make every "manager" pass). Keep words >= 3 chars, skip stopwords
+    # and generic job-nouns that are shared across unrelated functions — a lone
+    # "manager"/"engineer" hit must not credit a Sales Manager as on-target.
+    _FN_STOP = {"the", "and", "for", "of", "a", "an", "to", "in", "with"}
+    _FN_GENERIC = {"engineer", "manager", "developer", "lead", "senior",
+                   "specialist", "analyst", "consultant", "associate"}
+    fn_phrases = [f.lower().strip() for f in target_functions if f and f.strip()]
+    fn_words: set[str] = set()        # distinctive words (count toward overlap)
+    fn_generic_hit: set[str] = set()  # generic job-nouns present in targets
+    for f in fn_phrases:
+        for w in f.split():
+            if len(w) >= 3 and w not in _FN_STOP:
+                if w in _FN_GENERIC:
+                    fn_generic_hit.add(w)
+                else:
+                    fn_words.add(w)
+
     for job in jobs:
         title_lc = (job.get("title") or "").lower()
         desc_lc = (job.get("description") or "").lower()[:2000]
@@ -66,6 +94,26 @@ def _tag_jobs_with_ontology(jobs: list[dict], archetype: "RoleArchetype", senior
             sum(1 for m in must if _token_present(m, combined)) / len(must)
             if must else 0.5
         )
+
+        # Escape hatch: credit jobs that match the user's target functions.
+        # Full-phrase match in the title is a strong signal → force pass.
+        # Otherwise, count target-function word overlap in the TITLE and floor
+        # the archetype_match so on-target roles clear the gate.
+        if fn_phrases or fn_words:
+            title_words = set(title_lc.replace("/", " ").replace("-", " ").split())
+            if any(p in title_lc for p in fn_phrases):
+                archetype_match = max(archetype_match, 1.0)
+            else:
+                distinctive_hits = len(title_words & fn_words)
+                has_generic = bool(title_words & fn_generic_hit)
+                if distinctive_hits >= 1 and has_generic:
+                    # distinctive word ("ai"/"data"/"ml"/"systems") + a job-noun
+                    # the user targets ("engineer"/"manager") → clearly on-target
+                    archetype_match = max(archetype_match, 1.0)
+                elif distinctive_hits >= 1:
+                    archetype_match = max(archetype_match, 0.5)
+                # generic-only match (e.g. lone "manager"/"engineer") gets no
+                # credit — must clear the gate on real archetype tokens.
 
         # Business model signal — inferred from JD text tokens (generic, not domain-specific)
         biz_b2b_tokens = archetype.preferred_company_types or []
@@ -330,10 +378,14 @@ class OnDemandSearch:
         portal_companies: int = 20,
         include_boards: bool = True,
         force_refresh: bool = False,
-        include_phase_a: bool = True,
+        include_phase_a: Optional[bool] = None,
         event_emitter: Optional[Callable] = None,
     ) -> OnDemandResult:
         """Run a targeted discovery pass. Returns top-N ranked jobs."""
+        import os
+        if include_phase_a is None:
+            include_phase_a = os.getenv("ENABLE_PHASE_A", "false").strip().lower() in ("1", "true", "yes", "on")
+
         import time
         t0 = time.time()
         city = city or self.profile.location_city
@@ -510,7 +562,13 @@ class OnDemandSearch:
         print(f"  [Pipeline] total raw candidates: {len(all_jobs)} (A:{sum(1 for j in all_jobs if j.get('_phase')=='A')} + B:{sum(1 for j in all_jobs if j.get('_phase')=='B')})", flush=True)
 
         # Tag all jobs with ontology dimensions (function, market, archetype, seniority)
-        _tag_jobs_with_ontology(all_jobs, archetype, self.profile.seniority_signals)
+        # Pass target_functions so on-target roles (AI/ML/Data Engineer, Systems
+        # Architect, ...) aren't killed by the ontology gate when the niche
+        # must_have jargon tokens don't appear verbatim in the JD.
+        _tag_jobs_with_ontology(
+            all_jobs, archetype, self.profile.seniority_signals,
+            target_functions=self.profile.target_functions or [],
+        )
 
         # 4. India filter
         india_filtered, _ = filter_india_jobs(all_jobs)
@@ -1629,10 +1687,19 @@ class OnDemandSearch:
             ("wellfound", _run_wellfound),
             ("iimjobs", _run_iimjobs),
             ("instahyre", _run_instahyre),
-            ("remoteok", _run_remoteok),
-            ("remotive", _run_remotive),
-            ("weworkremotely", _run_weworkremotely),
         ]
+
+        # International remote boards (remoteok/remotive/weworkremotely) are
+        # US/EU-centric: ~100% of their postings fail the India location filter,
+        # so they burn bandwidth for zero matches. Only scan them when the user
+        # explicitly searches a "remote" city. Gated, not deleted — re-enable by
+        # searching city="remote".
+        if (city or "").strip().lower() == "remote":
+            board_fns.extend([
+                ("remoteok", _run_remoteok),
+                ("remotive", _run_remotive),
+                ("weworkremotely", _run_weworkremotely),
+            ])
 
         # M2: track per-source results for health monitoring
         _source_counts: dict[str, int] = {}

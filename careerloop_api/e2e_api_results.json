@@ -1,7 +1,7 @@
 {
-  "total": 15,
-  "passed": 15,
-  "failed": 0,
+  "total": 13,
+  "passed": 5,
+  "failed": 8,
   "results": [
     {
       "test": "health",
@@ -30,53 +30,43 @@
     },
     {
       "test": "POST /auth/me",
-      "passed": true,
-      "detail": "200 id=9c512f87 name=siddharthsaminathan99"
+      "passed": false,
+      "detail": "401 id=? name=None"
     },
     {
       "test": "GET /me",
-      "passed": true,
-      "detail": "200 id_match=True"
+      "passed": false,
+      "detail": "401 id_match=False"
     },
     {
       "test": "GET /me/preferences",
-      "passed": true,
-      "detail": "200 keys=['target_roles', 'target_cities', 'salary_expectations', 'notice_period', 'work_mode', 'aggressiveness', 'source']"
+      "passed": false,
+      "detail": "401 keys=[]"
     },
     {
       "test": "GET /briefs/latest",
-      "passed": true,
-      "detail": "200 brief=11994aae items=5"
+      "passed": false,
+      "detail": "401 brief=? items=0"
     },
     {
       "test": "POST select item",
-      "passed": true,
-      "detail": "200 job_id=loop-0122"
+      "passed": false,
+      "detail": "no brief/item to select"
     },
     {
       "test": "GET /jobs/{id}",
-      "passed": true,
-      "detail": "200 title=AI Engineer"
-    },
-    {
-      "test": "POST /jobs/{id}/save",
-      "passed": true,
-      "detail": "200 {'job_id': '3d10a92f-b6af-4e6f-b15e-3e39c2cfe77e', 'match_status': 'saved', 'swiped_action': 'right'}"
-    },
-    {
-      "test": "POST /jobs/{id}/skip",
-      "passed": true,
-      "detail": "200 {'job_id': '3d10a92f-b6af-4e6f-b15e-3e39c2cfe77e', 'match_status': 'skipped', 'swiped_action': 'left'}"
+      "passed": false,
+      "detail": "no job selected"
     },
     {
       "test": "GET /jobs/{id} 404",
-      "passed": true,
-      "detail": "404 (expected 404)"
+      "passed": false,
+      "detail": "401 (expected 404)"
     },
     {
       "test": "POST /chat/message",
-      "passed": true,
-      "detail": "200 reply=\"**Today's matches:** Show your latest job brief\\n**Scan for j\""
+      "passed": false,
+      "detail": "401 reply=''"
     }
   ]
 }

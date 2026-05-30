@@ -12,7 +12,7 @@ from dataclasses import dataclass, field, asdict
 from datetime import datetime, timezone
 from typing import Optional
 
-from careerloop.memory.connection import get_db_manager
+from careerloop.memory.connection import get_db_manager, db_execute, cache_table
 
 logger = logging.getLogger(__name__)
 
@@ -29,21 +29,18 @@ def _now() -> str:
 
 @dataclass
 class CompanyRecord:
-    id: str
+    id: str  # domain-or-name-slug
     name: str
     domain: str = ""
     city: str = ""
     sector: str = ""
-    subsector: str = ""
-    ats_provider: str = "unknown"       # greenhouse|lever|ashby|workday|custom|none|unknown
-    career_page_url: str = ""
+    employee_estimate: Optional[int] = None
+    crawl_status: str = "pending"  # pending / active / warm / failed / blocklist
+    career_url: str = ""
+    ats_provider: str = ""  # greenhouse / lever / ashby / workday / custom
     ats_url: str = ""
-    linkedin_url: str = ""
-    employee_estimate: int = 0
-    crawl_status: str = "pending"       # pending|active|warm|cold|dead
     last_crawled_at: Optional[str] = None
     last_job_count: int = 0
-    source: str = ""                    # how discovered: google_maps|linkedin|wellfound|crunchbase|manual
     is_active: bool = True
     created_at: str = field(default_factory=_now)
     updated_at: str = field(default_factory=_now)
@@ -63,7 +60,7 @@ class CompanyRecord:
 @dataclass
 class CompanySourceRecord:
     company_id: str
-    source_type: str        # greenhouse|lever|ashby|workday|career_page|linkedin
+    source_type: str  # career-page / LinkedIn / Wellfound / Crunchbase
     crawl_url: str
     last_crawled_at: Optional[str] = None
     last_job_count: int = 0
@@ -97,26 +94,29 @@ class CompanyRegistry:
         placeholders = ", ".join(["?" for _ in cols])
         updates = ", ".join([f"{c} = excluded.{c}" for c in cols if c != "id"])
 
-        sql = f"""
-            INSERT INTO companies ({", ".join(cols)})
-            VALUES ({placeholders})
-            ON CONFLICT(id) DO UPDATE SET {updates}
-        """
         with self.db.get_connection() as conn:
-            conn.execute(sql, [d[c] for c in cols])
+            tbl = cache_table("companies", conn)
+            sql = f"""
+                INSERT INTO {tbl} ({", ".join(cols)})
+                VALUES ({placeholders})
+                ON CONFLICT(id) DO UPDATE SET {updates}
+            """
+            db_execute(conn, sql, [d[c] for c in cols])
         return company
 
     def get(self, company_id: str) -> Optional[CompanyRecord]:
         with self.db.get_connection() as conn:
-            row = conn.execute(
-                "SELECT * FROM companies WHERE id = ?", [company_id]
+            tbl = cache_table("companies", conn)
+            row = db_execute(
+                conn, f"SELECT * FROM {tbl} WHERE id = ?", [company_id]
             ).fetchone()
         return CompanyRecord.from_row(row) if row else None
 
     def get_by_domain(self, domain: str) -> Optional[CompanyRecord]:
         with self.db.get_connection() as conn:
-            row = conn.execute(
-                "SELECT * FROM companies WHERE domain = ?", [domain.lower()]
+            tbl = cache_table("companies", conn)
+            row = db_execute(
+                conn, f"SELECT * FROM {tbl} WHERE domain = ?", [domain.lower()]
             ).fetchone()
         return CompanyRecord.from_row(row) if row else None
 
@@ -154,21 +154,24 @@ class CompanyRegistry:
             params.extend(crawl_status)
         params.append(limit)
 
-        sql = f"""
-            SELECT * FROM companies
-            WHERE {" AND ".join(conditions)}
-            ORDER BY last_job_count DESC, employee_estimate DESC
-            LIMIT ?
-        """
         with self.db.get_connection() as conn:
-            rows = conn.execute(sql, params).fetchall()
+            tbl = cache_table("companies", conn)
+            sql = f"""
+                SELECT * FROM {tbl}
+                WHERE {" AND ".join(conditions)}
+                ORDER BY last_job_count DESC, employee_estimate DESC
+                LIMIT ?
+            """
+            rows = db_execute(conn, sql, params).fetchall()
         return [CompanyRecord.from_row(r) for r in rows]
 
     def list_pending_crawl(self, limit: int = 30) -> list[CompanyRecord]:
         """Companies that need their career pages crawled."""
         with self.db.get_connection() as conn:
-            rows = conn.execute(
-                """SELECT * FROM companies
+            tbl = cache_table("companies", conn)
+            rows = db_execute(
+                conn,
+                f"""SELECT * FROM {tbl}
                    WHERE crawl_status IN ('pending', 'active', 'warm')
                    AND is_active = 1
                    ORDER BY
@@ -181,8 +184,10 @@ class CompanyRegistry:
 
     def mark_crawled(self, company_id: str, job_count: int):
         with self.db.get_connection() as conn:
-            conn.execute(
-                """UPDATE companies
+            tbl = cache_table("companies", conn)
+            db_execute(
+                conn,
+                f"""UPDATE {tbl}
                    SET last_crawled_at = ?, last_job_count = ?,
                        crawl_status = CASE WHEN ? > 0 THEN 'active' ELSE 'warm' END,
                        updated_at = ?
@@ -192,8 +197,10 @@ class CompanyRegistry:
 
     def set_ats(self, company_id: str, ats_provider: str, ats_url: str):
         with self.db.get_connection() as conn:
-            conn.execute(
-                "UPDATE companies SET ats_provider = ?, ats_url = ?, updated_at = ? WHERE id = ?",
+            tbl = cache_table("companies", conn)
+            db_execute(
+                conn,
+                f"UPDATE {tbl} SET ats_provider = ?, ats_url = ?, updated_at = ? WHERE id = ?",
                 [ats_provider, ats_url, _now(), company_id],
             )
 
@@ -202,8 +209,10 @@ class CompanyRegistry:
     def upsert_source(self, source: CompanySourceRecord):
         d = source.to_dict()
         with self.db.get_connection() as conn:
-            conn.execute(
-                """INSERT INTO company_sources
+            tbl = cache_table("company_sources", conn)
+            db_execute(
+                conn,
+                f"""INSERT INTO {tbl}
                        (company_id, source_type, crawl_url, last_crawled_at, last_job_count, is_active)
                    VALUES (?, ?, ?, ?, ?, ?)
                    ON CONFLICT(company_id, source_type) DO UPDATE SET
@@ -217,12 +226,15 @@ class CompanyRegistry:
 
     def get_sources(self, company_id: str) -> list[CompanySourceRecord]:
         with self.db.get_connection() as conn:
-            rows = conn.execute(
-                "SELECT * FROM company_sources WHERE company_id = ? AND is_active = 1",
+            tbl = cache_table("company_sources", conn)
+            rows = db_execute(
+                conn,
+                f"SELECT * FROM {tbl} WHERE company_id = ? AND is_active = 1",
                 [company_id],
             ).fetchall()
         return [CompanySourceRecord.from_row(r) for r in rows]
 
     def count(self) -> int:
         with self.db.get_connection() as conn:
-            return conn.execute("SELECT COUNT(*) FROM companies WHERE is_active = 1").fetchone()[0]
+            tbl = cache_table("companies", conn)
+            return db_execute(conn, f"SELECT COUNT(*) FROM {tbl} WHERE is_active = 1").fetchone()[0]

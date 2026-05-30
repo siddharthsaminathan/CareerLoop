@@ -77,6 +77,13 @@ class ChatService:
 
         # Persist the user's message
         conv_id = self._ensure_conversation(user_id)
+        # _ensure_conversation may load a fresher session and save the conv_id there.
+        # Sync it back into the in-memory session so OnboardingFlow._save() doesn't overwrite
+        # the conv_id when it persists the onboarding step update.
+        if session.temp_profile_data is None:
+            session.temp_profile_data = {}
+        if "_active_conversation_id" not in session.temp_profile_data:
+            session.temp_profile_data["_active_conversation_id"] = conv_id
         self.store.save_message(
             user_id=user_id,
             conversation_id=conv_id,

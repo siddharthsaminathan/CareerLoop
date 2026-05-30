@@ -84,6 +84,7 @@ class SessionStore:
                 "current_ctc": prefs.get("current_ctc") or "",
                 "current_company": prefs.get("current_company") or "",
                 "current_title": prefs.get("current_title") or "",
+                "years_of_experience": prefs.get("years_of_experience") or "",
                 "linkedin_url": prefs.get("linkedin_url") or row.get("linkedin_url") or "",
             }
         except Exception as e:

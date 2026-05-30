@@ -179,8 +179,9 @@ tables touched: careerloop.user_job_relationships
     print("\n[PART 3] Gathering Discovered Jobs...")
     # Load brief items via API
     brief_r = client.get("/v1/briefs/latest", headers=headers)
-    brief_data = brief_r.json().get("data", {})
-    brief_id = brief_data.get("brief_id")
+    res_json = brief_r.json() if brief_r.status_code == 200 else {}
+    brief_data = res_json.get("data") or {} if res_json else {}
+    brief_id = brief_data.get("brief_id") or brief_data.get("id")
     items = brief_data.get("items", [])
     if items:
         target_item = items[0]

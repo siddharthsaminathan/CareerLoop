@@ -1,0 +1,1184 @@
+========================================
+CareerLoop API — started at 2026-05-30_15-50-13
+========================================
+INFO:     Will watch for changes in these directories: ['/Users/siddharthsaminathan/Projects/CareerLoop']
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     Started reloader process [70040] using WatchFiles
+INFO:     Started server process [70045]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:52849 - "GET /health HTTP/1.1" 200 OK
+INFO:watchfiles.main:1 change detected
+INFO:     127.0.0.1:52851 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 1daae2f0 run_id cf90f62ac8cf mode=default
+INFO:     127.0.0.1:52851 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52851 - "GET /v1/scans/cf90f62ac8cf/events HTTP/1.1" 200 OK
+  [Archetype] role='["AI Engineer"]' | function='AI product engineering' | market='B2B enterprise'
+  [Archetype] must_have=['product', 'applied AI', 'cross-functional', 'customer-facing', 'platform', 'LLM', 'system design', 'behavioral analytics']
+  [Archetype] avoid=['research', 'data entry', 'support engineer', 'hardware', 'infra only', 'generic SWE', 'IT support', 'manual testing']
+  [Queries] 8 board queries: ['ai engineer AI product engineering AI-first startup ["Bangalore"] jobs', 'ai engineer AI product engineering AI-first startup hiring ["Bangalore"] 2025', '"AI engineer" jobs in ["Bangalore"]', '"AI engineer" hiring ["Bangalore"] site:linkedin.com/jobs/view']
+  [Phase A] discovering companies for '["AI Engineer"]' in ["Bangalore"]...
+INFO:careerloop.on_demand:[OnDemand] Phase A: sector inferred → 'Technology & Software' for role '["AI Engineer"]'
+    sector=Technology & Software — Phase A via DDG+Wellfound+Crunchbase+Inc42+YC...
+INFO:careerloop.sources.company_discovery:[Discovery] Starting: city=["Bangalore"], sector=Technology & Software, function=ai engineer AI product engineering AI-first startup
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'technology companies in ["Bangalore"] India'
+INFO:primp:response: https://search.yahoo.com/search;_ylt=6wdIcLup54OB4dm5GyCzaOeg;_ylu=uYdefNh2pad6dS9O4AQ8j6ag3nxRzv75sAbhz30ChNV69_g?p=technology+companies+in+%5B%22Bangalore%22%5D+India 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=technology%20companies%20in%20%5B%22Bangalore%22%5D%20India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=technology+companies+in+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://yandex.com/search/site/?text=technology+companies+in+%5B%22Bangalore%22%5D+India&web=1&searchid=2524438 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 14 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'top technology startups in ["Bangalore"]'
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=top+technology+startups+in+%5B%22Bangalore%22%5D&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=top%20technology%20startups%20in%20%5B%22Bangalore%22%5D 200
+INFO:primp:response: https://search.brave.com/search?q=top+technology+startups+in+%5B%22Bangalore%22%5D&source=web 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=G_OPaZos0bnOQxJM44B_ML8U;_ylu=_Uex1v3JZ3Xc8SSm9IDSMDis34ABvv_CWLQ_Mz8t4KLa2Ds?p=top+technology+startups+in+%5B%22Bangalore%22%5D 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dtop%2Btechnology%2Bstartups%2Bin%2B%255B%2522Bangalore%2522%255D%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGPbz6tAGIjC8nD6mSm5CSJHNMKZmcXQ3DFuttKeizmpuMN94QWfTaPFmqvIi5eQ3l_fjyOovo0cyAnJSWgFD 429
+INFO:primp:response: https://yandex.com/search/site/?text=top+technology+startups+in+%5B%22Bangalore%22%5D&web=1&searchid=1300095 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=top+technology+startups+in+%5B%22Bangalore%22%5D 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 11 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'best technology firms ["Bangalore"] India'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=best%20technology%20firms%20%5B%22Bangalore%22%5D%20India 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=_ECYbACaz7srR52c_OMD0DJa;_ylu=_L0f6x6EmZpTEy84lKEaUXFVhbLkvrh3M2XGI8ywWtm7bwk?p=best+technology+firms+%5B%22Bangalore%22%5D+India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=best+technology+firms+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dbest%2Btechnology%2Bfirms%2B%255B%2522Bangalore%2522%255D%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGID06tAGIjBoMHTuHONSmdtTLdEFiTTohULSXPj7Huh6NMEWH7jh-6ltgAvzItHqhPDRPKt7uoAyAnJSWgFD 429
+INFO:primp:response: https://search.brave.com/search?q=best+technology+firms+%5B%22Bangalore%22%5D+India&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=best+technology+firms+%5B%22Bangalore%22%5D+India 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 14 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'companies hiring ai engineer AI product engineering AI-first startup in ["Bangalore"] India'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=companies%20hiring%20ai%20engineer%20AI%20product%20engineering%20AI-first%20startup%20in%20%5B%22Bangalore%22%5D%20India 200
+INFO:primp:response: https://search.brave.com/search?q=companies+hiring+ai+engineer+AI+product+engineering+AI-first+startup+in+%5B%22Bangalore%22%5D+India&source=web 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=companies+hiring+ai+engineer+AI+product+engineering+AI-first+startup+in+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=rec6CjG-yZ7NsnxPediap3XZ;_ylu=DB4QQAAK5Uej7qVzQwyMcOc0QwZfV10WB1pTCHCHpefgg-E?p=companies+hiring+ai+engineer+AI+product+engineering+AI-first+startup+in+%5B%22Bangalore%22%5D+India 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dcompanies%2Bhiring%2Bai%2Bengineer%2BAI%2Bproduct%2Bengineering%2BAI-first%2Bstartup%2Bin%2B%255B%2522Bangalore%2522%255D%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGIf06tAGIjBfzeyTm4TWHu7B-1WCy-0icfjwfTD1Rs4R52NMrhkFiJ7LsCUzth52Af13CqTT0rwyAnJSWgFD 429
+INFO:primp:response: https://yandex.com/search/site/?text=companies+hiring+ai+engineer+AI+product+engineering+AI-first+startup+in+%5B%22Bangalore%22%5D+India&web=1&searchid=7413414 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.mojeek.com/search?q=companies+hiring+ai+engineer+AI+product+engineering+AI-first+startup+in+%5B%22Bangalore%22%5D+India 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 9 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps] ["Bangalore"]/Technology & Software: 43 companies total
+INFO:careerloop.sources.company_discovery:[Wellfound/DDG] query: 'site:wellfound.com/company technology ["bangalore"]'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/company%20technology%20%5B%22bangalore%22%5D 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Awellfound.com%252Fcompany%2Btechnology%2B%255B%2522bangalore%2522%255D%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGIz06tAGIjByPPGynIzU9w_fTQToAkkJrE0oxwj70X6ThboGuR52xMUJRY1xt6LV_n1aAvO-OQ0yAnJSWgFD 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fcompany+technology+%5B%22bangalore%22%5D&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Awellfound.com%2Fcompany+technology+%5B%22bangalore%22%5D&web=1&searchid=8996780 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Awellfound.com%2Fcompany+technology+%5B%22bangalore%22%5D 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=CIvQhAbE2k-LhCDsOomVKtV-;_ylu=D9ONbcFwuFKCW11a80xKE_M9pmuqPN8qrmFcCEHSWbp0Plo?p=site%3Awellfound.com%2Fcompany+technology+%5B%22bangalore%22%5D 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Awellfound.com%2Fcompany+technology+%5B%22bangalore%22%5D&source=web 429
+INFO:careerloop.sources.company_discovery:[Wellfound/DDG] → 13 results
+INFO:careerloop.sources.company_discovery:[Wellfound] ["Bangalore"]/Technology & Software: 13 companies
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] query: 'site:crunchbase.com/organization technology ["bangalore"] india'
+INFO:primp:response: https://search.brave.com/search?q=site%3Acrunchbase.com%2Forganization+technology+%5B%22bangalore%22%5D+india&source=web 429
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acrunchbase.com/organization%20technology%20%5B%22bangalore%22%5D%20india 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Acrunchbase.com%2Forganization+technology+%5B%22bangalore%22%5D+india&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Acrunchbase.com%2Forganization+technology+%5B%22bangalore%22%5D+india 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Acrunchbase.com%2Forganization+technology+%5B%22bangalore%22%5D+india&web=1&searchid=5002687 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Acrunchbase.com%252Forganization%2Btechnology%2B%255B%2522bangalore%2522%255D%2Bindia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJf06tAGIjBs1uVcO_JZKkiB0VCq69UvLF0cOTIYiVyLOu_Fb4eWWonGS4XskOM5XVaVsTLCjpgyAnJSWgFD 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=bskxFTMBdH-jGpOCwrnkfrR6;_ylu=AtngZAXP1veR1PYrSGLoEMgFltY6fBFGJh3shRVcscSgZ70?p=site%3Acrunchbase.com%2Forganization+technology+%5B%22bangalore%22%5D+india 200
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] → 13 results
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] query: 'crunchbase technology company ["bangalore"] india funding'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=crunchbase%20technology%20company%20%5B%22bangalore%22%5D%20india%20funding 200
+INFO:primp:response: https://yandex.com/search/site/?text=crunchbase+technology+company+%5B%22bangalore%22%5D+india+funding&web=1&searchid=5663125 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=crunchbase+technology+company+%5B%22bangalore%22%5D+india+funding&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dcrunchbase%2Btechnology%2Bcompany%2B%255B%2522bangalore%2522%255D%2Bindia%2Bfunding%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJ306tAGIjAhXfI3SQpLmZd6p39UFMPMl3XqPn6Bg7LK-vtoet3VbNuC7wbLcMoG5ov3hLZzJlAyAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=crunchbase+technology+company+%5B%22bangalore%22%5D+india+funding 200
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] → 15 results
+INFO:careerloop.sources.company_discovery:[Crunchbase] ["Bangalore"]/Technology & Software: 16 companies
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'site:inc42.com technology startup ["bangalore"] india'
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ainc42.com+technology+startup+%5B%22bangalore%22%5D+india&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainc42.com%20technology%20startup%20%5B%22bangalore%22%5D%20india 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Ainc42.com+technology+startup+%5B%22bangalore%22%5D+india&web=1&searchid=1505080 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Ainc42.com+technology+startup+%5B%22bangalore%22%5D+india 200
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'site:yourstory.com technology company ["bangalore"] india'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ayourstory.com%20technology%20company%20%5B%22bangalore%22%5D%20india 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ayourstory.com+technology+company+%5B%22bangalore%22%5D+india&limit=1 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Ayourstory.com+technology+company+%5B%22bangalore%22%5D+india 200
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'startupindia.gov.in technology ["bangalore"] registered startup'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=startupindia.gov.in%20technology%20%5B%22bangalore%22%5D%20registered%20startup 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=startupindia.gov.in+technology+%5B%22bangalore%22%5D+registered+startup&limit=1 200
+INFO:primp:response: https://yandex.com/search/site/?text=startupindia.gov.in+technology+%5B%22bangalore%22%5D+registered+startup&web=1&searchid=7370040 200
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/YourStory] ["Bangalore"]/Technology & Software: 29 companies
+INFO:careerloop.sources.company_discovery:[YC] India/Technology & Software: 100 companies
+INFO:careerloop.sources.company_discovery:[Discovery] 201 raw → 201 deduped
+INFO:careerloop.sources.ats_adapter:[ATS detect] rankexdigital.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 IT Companies in Bangalore [Updated 2026]: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_portal_scraper:[CareerPage] Found (static): https://jobs.pitchnhire.com/about/careers
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 50 Information Technology Companies in Bangalore ...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] f6s.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 100 Top Software Companies in Bangalore · May 2026 | F6S: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] techbehemoths.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20+ IT Companies in Bangalore (2026) - TechBehemoths: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] geeksforgeeks.org → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 25 Software & IT Companies in Bangalore - GeeksforGeeks: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] interviewbit.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 24 IT Companies in Bangalore (2024) - InterviewBit: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] techasoft.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 50 IT Companies In Bangalore - List Of IT Companies: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] marketmystique.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 11 Best IT Companies in Bangalore (2026): 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] internshala.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 15 Top Paying Companies in Bangalore (2026): 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] 360digitmg.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 IT Companies in Bangalore - 360DigiTMG: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] dxminds.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best Mobile App Development Companies in Bangalore: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] oaktreecloud.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Mobile App Development Companies in Bangalore, India: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] easyleadz.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for List of Information Technology (IT) Companies in Bengaluru: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] nexevo.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Website Development Company in Bangalore - Nexevo Technologies: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] guvi.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 13 Tech Startups in Bangalore in 2025: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] startupblink.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Unicorns in Bangalore for 2025 | StartupBlink: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] stanzaliving.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Startups in Bangalore: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] khatabook.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for List of Top 10 Startup Companies in Bangalore (2023): 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:3 changes detected
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top IT Startups In Bangalore To Watch | Next Field: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:     127.0.0.1:53114 - "OPTIONS /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53115 - "OPTIONS /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53117 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53114 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53115 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53114 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53114 - "OPTIONS /v1/chat/message HTTP/1.1" 200 OK
+INFO:watchfiles.main:6 changes detected
+INFO:     127.0.0.1:53115 - "POST /v1/chat/message HTTP/1.1" 200 OK
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Most Innovative Startups In Bangalore 2022 - Inventiva: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] guidedblogs.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for AI Startups in Bangalore 2026 | Top AI Companies & Innovators: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] startus-insights.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Technology Startups in Bangalore | StartUs Insights: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] aryanjalan.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Startups In Bangalore (2026): 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] viestories.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 Best Startups in Bangalore in 2024: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] lanetteam.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top IT Companies in Bangalore (2026) – Best Tech Firms & Services: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] intellipaat.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 30 IT Companies in Bangalore (2026) - Intellipaat: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] brandelite.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best Digital Marketing Company in Bangalore India | Brand Elite: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] seekneo.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best it companies in bangalore india: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] beststartup.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 9 Bangalore Based Product Management Companies | The Most: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] indglobal.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best Software Development Company in Bangalore, India |: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] marketinghack4u.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Software Companies in Bangalore 2025 | Updated: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] theqna.org → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 best electronics companies in Bangalore - TheQnA.Org: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] explorateglobal.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Software Development Companies of Bangalore India: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] digitalinfinizy.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Bangalore - Best Digital Marketing Services Providers Company: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_portal_scraper:[CareerPage] Found via Playwright (score=2): https://hr.economictimes.indiatimes.com/news/hrtech/racism-bias-in-ai-hiring-tools-screening-out-black-and-asian-job-applicants/131404374?utm_source=latest_news&utm_medium=homepage
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Motive to hire hundreds as AI unicorns follow Big Tech to India: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] quantalent.ai → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for AI Recruitment Agency Bangalore 2026 | Quantalent AI: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] gethiredfaster.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Future AGI Hiring For AI Intern (+PPO) 2026 - Apply Now, Bangalore...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] eorservicesindia.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Hiring AI Engineers in Bangalore: India’s AI Talent Hub: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] actaxindia.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for AI Startup Registration in Bangalore: 2026 Guide for Founders |: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] analyticsindiamag.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Now is the Best Time to Build AI Startups in India: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_discovery:[Discovery] Done: 0 companies enriched and stored
+    internet discovery done — querying DB for top companies...
+WARNING:careerloop.on_demand:[OnDemand] Phase A discovery failed: 'psycopg2.extensions.connection' object has no attribute 'execute'
+  [Phase A] 0 companies found.
+  [Phase A] portal scrape done — 0 jobs
+  [Phase B] searching job boards (parallel)...
+INFO:careerloop.sources.search_adapter:Search [1/6]: ai engineer AI product engineering AI-first startup ["Bangalore"] jobs
+WARNING:careerloop.sources.jobspy_adapter:python-jobspy not installed
+INFO:careerloop.on_demand:[OnDemand] JobSpy: 0 jobs
+WARNING:careerloop.sources.naukri_adapter:Naukri API returned 406
+INFO:careerloop.on_demand:[OnDemand] Naukri: 0 jobs
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:careerloop.sources.remotive_adapter:[Remotive] 0 jobs for '["AI Engineer"]'
+INFO:careerloop.on_demand:[OnDemand] Remotive: 0 jobs
+INFO:careerloop.sources.remoteok_adapter:[RemoteOK] 0 jobs for '["AI Engineer"]'
+INFO:careerloop.on_demand:[OnDemand] RemoteOK: 0 jobs
+INFO:primp:response: https://search.brave.com/search?q=site%3Awellfound.com%2Fl%2Fjob-listings+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&source=web 429
+INFO:primp:response: https://search.brave.com/search?q=site%3Aglassdoor.com%2Fjob-listing+%5B%22AI+Engineer%22%5D+%5B%22Bangalore%22%5D+India&source=web 429
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://search.yahoo.com/search;_ylt=-MdpW8W8w9ebxBE-wjyzKUeI;_ylu=GNxT0qDwIJWrp5uf5-I_IHo7sMUKewc2aPSnm1a5g8VZfnM?p=site%3Ainstahyre.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Acutshort.io%2Fjob+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&source=web 429
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22%5B%22AI%20Engineer%22%5D%22%20%5B%22Bangalore%22%5D%20site%3Afoundit.in 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/l/job-listings%20%22%5B%22AI%20Engineer%22%5D%22%20%22%5B%22Bangalore%22%5D%22 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com/job-listing%20%5B%22AI%20Engineer%22%5D%20%5B%22Bangalore%22%5D%20India 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aiimjobs.com%20%22%5B%22AI%20Engineer%22%5D%22%20%22%5B%22Bangalore%22%5D%22 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com%2Fjob-listing+%5B%22AI+Engineer%22%5D+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%5B%22AI%20Engineer%22%5D%20site%3Ajobs.lever.co%20%5B%22Bangalore%22%5D%20India 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acutshort.io/job%20%22%5B%22AI%20Engineer%22%5D%22%20%22%5B%22Bangalore%22%5D%22 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainstahyre.com%20%22%5B%22AI%20Engineer%22%5D%22%20%22%5B%22Bangalore%22%5D%22 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fl%2Fjob-listings+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&limit=1 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Awellfound.com%2Fl%2Fjob-listings+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22 403
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Acutshort.io%2Fjob+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22 403
+INFO:primp:response: https://www.mojeek.com/search?q=%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D+site%3Afoundit.in 403
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522%255B%2522AI%2BEngineer%2522%255D%2522%2B%255B%2522Bangalore%2522%255D%2Bsite%253Afoundit.in%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJb26tAGIjBkC38ZbAC-wDX4_XycpfTVxbMDMlsFecBVAT6HP1LbSDqZ4X7Fd-QySiMf-Uikrq0yAnJSWgFD 429
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://search.yahoo.com/search;_ylt=pecp2Xc0Sag0ERnVB8GKyTFv;_ylu=JYV5kyiFJUny-uHP9rryCVSppvoA5QW8LjcoCK6vj8w5zrc?p=site%3Awellfound.com%2Fl%2Fjob-listings+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20engineer%20AI%20product%20engineering%20AI-first%20startup%20%5B%22Bangalore%22%5D%20jobs 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=AzOGFlzG4OBwi9Ff4zmHG1Ve;_ylu=nTpGjOQB8XMZFKqzJNH-gQioBXGDhfAxF4vCjGWIUQNryiY?p=site%3Aglassdoor.com%2Fjob-listing+%5B%22AI+Engineer%22%5D+%5B%22Bangalore%22%5D+India 200
+INFO:primp:response: https://yandex.com/search/site/?text=%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D+site%3Afoundit.in&web=1&searchid=2361331 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%5B%22AI+Engineer%22%5D+site%3Ajobs.lever.co+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D+site%3Afoundit.in&limit=1 200
+INFO:primp:response: https://yandex.com/search/site/?text=%5B%22AI+Engineer%22%5D+site%3Ajobs.lever.co+%5B%22Bangalore%22%5D+India&web=1&searchid=6666539 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=CVXYTAeNM3u9ILAj4-Fq231T;_ylu=7cmMdu-bBB7GCu_mjV-CaIz-DzP3FMDS_ivgoW--czHEOEo?p=%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D+site%3Afoundit.in 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=ai+engineer+AI+product+engineering+AI-first+startup+%5B%22Bangalore%22%5D+jobs&limit=1 200
+INFO:     127.0.0.1:52851 - "GET /v1/briefs/latest HTTP/1.1" 404 Not Found
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Acutshort.io%2Fjob+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&limit=1 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/sp/search) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://www.mojeek.com/search?q=%5B%22AI+Engineer%22%5D+site%3Ajobs.lever.co+%5B%22Bangalore%22%5D+India 403
+INFO:primp:response: https://search.brave.com/search?q=%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D+site%3Afoundit.in&source=web 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aiimjobs.com%2B%2522%255B%2522AI%2BEngineer%2522%255D%2522%2B%2522%255B%2522Bangalore%2522%255D%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJj26tAGIjB7OfeQwjX2ji0dgN4fOVor6Fht7fdVpxy964r3M21p8yyRwAp2-l6RD1QP1BMNJvAyAnJSWgFD 429
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aiimjobs.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&web=1&searchid=5925370 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aglassdoor.com%2Fjob-listing+%5B%22AI+Engineer%22%5D+%5B%22Bangalore%22%5D+India&web=1&searchid=3997524 200
+INFO:careerloop.sources.monster_adapter:[Monster/foundit] DDG: ["AI Engineer"] in ["Bangalore"]: 13 jobs
+INFO:careerloop.on_demand:[OnDemand] Monster/foundit: 13 jobs
+INFO:primp:response: https://yandex.com/search/site/?text=ai+engineer+AI+product+engineering+AI-first+startup+%5B%22Bangalore%22%5D+jobs&web=1&searchid=2360184 200
+INFO:careerloop.sources.weworkremotely_adapter:[WWR] 0 jobs for '["AI Engineer"]'
+INFO:careerloop.on_demand:[OnDemand] WeWorkRemotely: 0 jobs
+INFO:primp:response: https://search.brave.com/search?q=%5B%22AI+Engineer%22%5D+site%3Ajobs.lever.co+%5B%22Bangalore%22%5D+India&source=web 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Acutshort.io%252Fjob%2B%2522%255B%2522AI%2BEngineer%2522%255D%2522%2B%2522%255B%2522Bangalore%2522%255D%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJj26tAGIjDuwIfELnbSa14o2xh_s1jlpkzUy4zAQep3CEo90BAQTlZ-tgfub1tVHX6QhDhXL9YyAnJSWgFD 429
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aiimjobs.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&limit=1 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Awellfound.com%2Fl%2Fjob-listings+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&web=1&searchid=4751234 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=eC7R1asA_osmrrxGkLWD_20f;_ylu=7AC_j6TkP7CE8HjnvR93q5PIqSwzo6yoJuWYYyMmHQoqLOw?p=site%3Acutshort.io%2Fjob+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ainstahyre.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&limit=1 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%255B%2522AI%2BEngineer%2522%255D%2Bsite%253Ajobs.lever.co%2B%255B%2522Bangalore%2522%255D%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJn26tAGIjALQZRBt-BRpiLRdBXokiMyRHiJc1WSrQCDj2jIAlEJsrtB0TI-RVgF85seGFeElVoyAnJSWgFD 429
+INFO:primp:response: https://search.brave.com/search?q=site%3Aiimjobs.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=ai+engineer+AI+product+engineering+AI-first+startup+%5B%22Bangalore%22%5D+jobs 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.yahoo.com/search;_ylt=3BEJc_w4UPEf-Ydimqs-lbRf;_ylu=tH7Cxg4cmxnp42rU6j60_GYxOkLqmKaJMkHOPxnc72gu-80?p=%5B%22AI+Engineer%22%5D+site%3Ajobs.lever.co+%5B%22Bangalore%22%5D+India 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%252Fjob-listing%2B%255B%2522AI%2BEngineer%2522%255D%2B%255B%2522Bangalore%2522%255D%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJn26tAGIjBm75hMKUC0N0ZFVZJcjtU4VAg5y9bEGL4wqcTSqoHW155iZn1kFgzOgCzKNl6CV3syAnJSWgFD 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Awellfound.com%252Fl%252Fjob-listings%2B%2522%255B%2522AI%2BEngineer%2522%255D%2522%2B%2522%255B%2522Bangalore%2522%255D%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJn26tAGIjC2AU_pwDswJsYN38rOAca-jauFZedCZFPcRhdRDlwsH7PYhV0cBZcUfsiKeLTnKJMyAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Ainstahyre.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22 403
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:careerloop.on_demand:[OnDemand] Wellfound: 0 jobs
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aiimjobs.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22 403
+INFO:primp:response: https://search.yahoo.com/search;_ylt=w3OrWbaqhX0vXEGrB0ThKT0E;_ylu=3npvtAhcslKY_ee3_r6n9Yiea3d5gr47bIhdrzGGXNB5DL0?p=site%3Aiimjobs.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aglassdoor.com%2Fjob-listing+%5B%22AI+Engineer%22%5D+%5B%22Bangalore%22%5D+India 403
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Acutshort.io%2Fjob+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&web=1&searchid=1118254 200
+INFO:primp:response: https://search.brave.com/search?q=%5B%22AI+Engineer%22%5D+site%3Aboards.greenhouse.io+%5B%22Bangalore%22%5D+India&source=web 429
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%5B%22AI%20Engineer%22%5D%20site%3Aboards.greenhouse.io%20%5B%22Bangalore%22%5D%20India 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Ainstahyre.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&web=1&searchid=7396975 200
+INFO:careerloop.sources.iimjobs_adapter:[IIMJobs] 0 jobs for '["AI Engineer"]' / '["Bangalore"]'
+INFO:careerloop.on_demand:[OnDemand] IIMJobs: 0 jobs
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com+%22job-listing%22+%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com%20%22job-listing%22%20%22%5B%22AI%20Engineer%22%5D%22%20%5B%22Bangalore%22%5D 200
+INFO:primp:response: https://yandex.com/search/site/?text=%5B%22AI+Engineer%22%5D+site%3Aboards.greenhouse.io+%5B%22Bangalore%22%5D+India&web=1&searchid=2834585 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%5B%22AI+Engineer%22%5D+site%3Aboards.greenhouse.io+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:careerloop.sources.search_adapter:Search [2/6]: ai engineer AI product engineering AI-first startup hiring ["Bangalore"] 2025
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aglassdoor.com+%22job-listing%22+%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D&web=1&searchid=1264612 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%2B%2522job-listing%2522%2B%2522%255B%2522AI%2BEngineer%2522%255D%2522%2B%255B%2522Bangalore%2522%255D%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJv26tAGIjAbUBUyaaKZKajrk0Lkpb6-Cp1KVA6_KZc9NGhw1UlxkJT0Hn0TzVy7EPxsBHJ0R8cyAnJSWgFD 429
+INFO:primp:response: https://search.brave.com/search?q=site%3Ainstahyre.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&source=web 429
+INFO:primp:response: https://search.brave.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D&source=web 429
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%255B%2522AI%2BEngineer%2522%255D%2Bsite%253Aboards.greenhouse.io%2B%255B%2522Bangalore%2522%255D%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJz26tAGIjAFWJmsxTa2Nq5Hlrdgq6nQOLKDa4FFULZ6PW7SrYsL9PKI76gz1tjAxtsZW_fGlpkyAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D 403
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20engineer%20AI%20product%20engineering%20AI-first%20startup%20hiring%20%5B%22Bangalore%22%5D%202025 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Ainstahyre.com%2B%2522%255B%2522AI%2BEngineer%2522%255D%2522%2B%2522%255B%2522Bangalore%2522%255D%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJz26tAGIjCf2rduvfMgCkam8NHOakQrPIurAJzZklDyBvyqpoxd6WJrlPwaJhE_GSBjNoV6uk0yAnJSWgFD 429
+INFO:careerloop.sources.instahyre_adapter:[Instahyre] 0 jobs for '["AI Engineer"]' / '["Bangalore"]'
+INFO:careerloop.on_demand:[OnDemand] Instahyre: 0 jobs
+INFO:primp:response: https://search.yahoo.com/search;_ylt=_2L8JtWzu9YglQFDM5jvon5C;_ylu=IK8poF0xJ-DGWT6Jnfe78ONM_kTU37BdEp1fP8HKN9er1PM?p=site%3Aglassdoor.com+%22job-listing%22+%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=ai+engineer+AI+product+engineering+AI-first+startup+hiring+%5B%22Bangalore%22%5D+2025&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=wa5KbSUh0Khorg3C5wEMh53p;_ylu=dD8SwsUeV414LOsgEFqhX7kYVM7ckkwAalUYyz7BnZSvbkA?p=%5B%22AI+Engineer%22%5D+site%3Aboards.greenhouse.io+%5B%22Bangalore%22%5D+India 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=fuEwUJkZE0TueFxToMmpgLM4;_ylu=_ewaCu8iJj9OYJABaYx2qIxTUXoLwJQQI3t4j5OGsyygbOs?p=ai+engineer+AI+product+engineering+AI-first+startup+hiring+%5B%22Bangalore%22%5D+2025 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:careerloop.sources.glassdoor_adapter:[Glassdoor] ["AI Engineer"] in ["Bangalore"]: 12 jobs
+INFO:careerloop.on_demand:[OnDemand] Glassdoor: 12 jobs
+INFO:primp:response: https://www.mojeek.com/search?q=%5B%22AI+Engineer%22%5D+site%3Aboards.greenhouse.io+%5B%22Bangalore%22%5D+India 403
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%5B%22AI+Engineer%22%5D+site%3Aashbyhq.com+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%5B%22AI%20Engineer%22%5D%20site%3Aashbyhq.com%20%5B%22Bangalore%22%5D%20India 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%255B%2522AI%2BEngineer%2522%255D%2Bsite%253Aashbyhq.com%2B%255B%2522Bangalore%2522%255D%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKD26tAGIjDl0Fa-kO-oKrxlEGZId7qG6opP1ctwV2Rg5qCth4p4OSn7bEoaICgzv56u_i14rIwyAnJSWgFD 429
+INFO:primp:response: https://yandex.com/search/site/?text=ai+engineer+AI+product+engineering+AI-first+startup+hiring+%5B%22Bangalore%22%5D+2025&web=1&searchid=2823151 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=G8pGrpy_HeqWzPufNlwprP39;_ylu=ObNt7ZmUC_F-S876Je_CShqrT1ZWRWQ7X6myEMpI5_Yv_Vc?p=%5B%22AI+Engineer%22%5D+site%3Aashbyhq.com+%5B%22Bangalore%22%5D+India 200
+INFO:primp:response: https://search.brave.com/search?q=%5B%22AI+Engineer%22%5D+site%3Aashbyhq.com+%5B%22Bangalore%22%5D+India&source=web 429
+INFO:primp:response: https://yandex.com/search/site/?text=%5B%22AI+Engineer%22%5D+site%3Aashbyhq.com+%5B%22Bangalore%22%5D+India&web=1&searchid=1075389 200
+INFO:careerloop.sources.search_adapter:Search [3/6]: "AI engineer" jobs in ["Bangalore"]
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.mojeek.com/search?q=%5B%22AI+Engineer%22%5D+site%3Aashbyhq.com+%5B%22Bangalore%22%5D+India 403
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20engineer%22%20jobs%20in%20%5B%22Bangalore%22%5D 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%5B%22AI%20Engineer%22%5D%20site%3Aapply.workable.com%20%5B%22Bangalore%22%5D%20India 200
+INFO:primp:response: https://www.mojeek.com/search?q=%5B%22AI+Engineer%22%5D+site%3Aapply.workable.com+%5B%22Bangalore%22%5D+India 403
+INFO:primp:response: https://yandex.com/search/site/?text=%5B%22AI+Engineer%22%5D+site%3Aapply.workable.com+%5B%22Bangalore%22%5D+India&web=1&searchid=6443829 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+engineer%22+jobs+in+%5B%22Bangalore%22%5D&limit=1 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.brave.com/search?q=%22AI+engineer%22+jobs+in+%5B%22Bangalore%22%5D&source=web 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%5B%22AI+Engineer%22%5D+site%3Aapply.workable.com+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=wufbb6IADUmPl5DyS4cLvnFu;_ylu=o9Rusl9mTwTKBJpMrKpzrsCZpsfaAaRCS8FqcaxdpnzV5nM?p=%5B%22AI+Engineer%22%5D+site%3Aapply.workable.com+%5B%22Bangalore%22%5D+India 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+engineer%22+jobs+in+%5B%22Bangalore%22%5D&web=1&searchid=4316507 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:careerloop.sources.cutshort_adapter:[Cutshort] 13 jobs for '["AI Engineer"]' / '["Bangalore"]'
+INFO:careerloop.on_demand:[OnDemand] Cutshort: 13 jobs
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%255B%2522AI%2BEngineer%2522%255D%2Bsite%253Aapply.workable.com%2B%255B%2522Bangalore%2522%255D%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKj26tAGIjA3ZXAYaQr1wsS-6d1f-2xIjnO4bnUy0uXBlvtElRgjm7Y0_pbqc6FVv-468X7kGz8yAnJSWgFD 429
+INFO:primp:response: https://search.brave.com/search?q=%5B%22AI+Engineer%22%5D+site%3Aapply.workable.com+%5B%22Bangalore%22%5D+India&source=web 429
+INFO:careerloop.sources.search_adapter:Search [4/6]: "AI engineer" hiring ["Bangalore"] site:linkedin.com/jobs/view
+INFO:careerloop.sources.google_jobs_adapter:[GoogleJobs] ["AI Engineer"] in ["Bangalore"]: 8 jobs
+INFO:careerloop.on_demand:[OnDemand] GoogleJobs: 8 jobs
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20engineer%22%20hiring%20%5B%22Bangalore%22%5D%20site%3Alinkedin.com/jobs/view 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+engineer%22+hiring+%5B%22Bangalore%22%5D+site%3Alinkedin.com%2Fjobs%2Fview&limit=1 200
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+engineer%22+hiring+%5B%22Bangalore%22%5D+site%3Alinkedin.com%2Fjobs%2Fview&web=1&searchid=3521455 200
+INFO:primp:response: https://search.brave.com/search?q=%22AI+engineer%22+hiring+%5B%22Bangalore%22%5D+site%3Alinkedin.com%2Fjobs%2Fview&source=web 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bengineer%2522%2Bhiring%2B%255B%2522Bangalore%2522%255D%2Bsite%253Alinkedin.com%252Fjobs%252Fview%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKz26tAGIjDnVAs4g6E_IoL8S1AQ-cX3HvMbkwzutYIUyARy8F8VLSXR3GwK0Fi27tG02JjaFvYyAnJSWgFD 429
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+engineer%22+hiring+%5B%22Bangalore%22%5D+site%3Alinkedin.com%2Fjobs%2Fview 403
+INFO:primp:response: https://search.yahoo.com/search;_ylt=aDsnfpyGFhgPRIiPd1sjFx6d;_ylu=3x1i0GfRdojwrXb7ZyYnFC8l-Dwj_0xV1Idm_E-yuwrJdaU?p=%22AI+engineer%22+hiring+%5B%22Bangalore%22%5D+site%3Alinkedin.com%2Fjobs%2Fview 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:careerloop.sources.search_adapter:Search [5/6]: "AI engineer" ["Bangalore"] site:naukri.com
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20engineer%22%20%5B%22Bangalore%22%5D%20site%3Anaukri.com 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Anaukri.com&limit=1 200
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Anaukri.com 403
+INFO:primp:response: https://search.brave.com/search?q=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Anaukri.com&source=web 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=kmyP-LMTlcULgsE--iElzXgj;_ylu=ktZqm7UtyssBfp85aCk5aahQDO8RqIBy7u6tffdXI6Svsx4?p=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Anaukri.com 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Anaukri.com&web=1&searchid=9925961 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bengineer%2522%2B%255B%2522Bangalore%2522%255D%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGLj26tAGIjDM7WF35PA1I1mKaAW5yNQTEiKQ883_pG8PciPsZGi00zQzamySnEKlGSqosmwq9ioyAnJSWgFD 429
+INFO:careerloop.sources.search_adapter:Search [6/6]: "AI engineer" ["Bangalore"] site:cutshort.io
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Acutshort.io&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20engineer%22%20%5B%22Bangalore%22%5D%20site%3Acutshort.io 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=Oo5JHIsowRZXaGErzWW86UQw;_ylu=1s0IzOxpb20zwj7Rq7Z1VX-lJWY9Trk5VsRQahPuM9pVCIw?p=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Acutshort.io 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bengineer%2522%2B%255B%2522Bangalore%2522%255D%2Bsite%253Acutshort.io%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGL326tAGIjCRgOVpbD41qQnewGidxPMwm9JSwA9FkEwelGs6pApc6PUK1LI_TKJF1wOM1saNG3AyAnJSWgFD 429
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Acutshort.io&web=1&searchid=5617269 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.brave.com/search?q=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Acutshort.io&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Acutshort.io 403
+INFO:careerloop.sources.search_adapter:Total candidate URLs: 18
+INFO:     127.0.0.1:53445 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53450 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/services/scan_service.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [70045]
+INFO:watchfiles.main:3 changes detected
+INFO:     Started server process [70184]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'scan_truth_report.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [70184]
+INFO:     Started server process [70185]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:1 change detected
+INFO:     127.0.0.1:53526 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user d4e07f40 run_id 625deab51a75 mode=default
+INFO:     127.0.0.1:53526 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53526 - "GET /v1/scans/625deab51a75/events HTTP/1.1" 200 OK
+  [Archetype] role='["AI Engineer"]' | function='AI product engineering' | market='B2B enterprise'
+  [Archetype] must_have=['product', 'applied AI', 'cross-functional', 'customer-facing', 'platform', 'LLM', 'system design', 'behavioral analytics']
+  [Archetype] avoid=['research', 'data entry', 'support engineer', 'hardware', 'infra only', 'generic SWE', 'IT support', 'manual testing']
+  [Queries] 8 board queries: ['ai engineer AI product engineering AI-first startup ["Bangalore"] jobs', 'ai engineer AI product engineering AI-first startup hiring ["Bangalore"] 2025', '"AI engineer" jobs in ["Bangalore"]', '"AI engineer" hiring ["Bangalore"] site:linkedin.com/jobs/view']
+  [Phase A] discovering companies for '["AI Engineer"]' in ["Bangalore"]...
+INFO:careerloop.on_demand:[OnDemand] Phase A: sector inferred → 'Technology & Software' for role '["AI Engineer"]'
+    sector=Technology & Software — Phase A via DDG+Wellfound+Crunchbase+Inc42+YC...
+INFO:careerloop.sources.company_discovery:[Discovery] Starting: city=["Bangalore"], sector=Technology & Software, function=ai engineer AI product engineering AI-first startup
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'technology companies in ["Bangalore"] India'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=technology%20companies%20in%20%5B%22Bangalore%22%5D%20India 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dtechnology%2Bcompanies%2Bin%2B%255B%2522Bangalore%2522%255D%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGP_26tAGIjAM6wnTkvAPHUAxNMklYn4rIDna4KRhZ3r2zTcOsQ5AxQM3I5eqZPTVZ0z8FqeBXzIyAnJSWgFD 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=technology+companies+in+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:primp:response: https://www.mojeek.com/search?q=technology+companies+in+%5B%22Bangalore%22%5D+India 200
+INFO:primp:response: https://search.brave.com/search?q=technology+companies+in+%5B%22Bangalore%22%5D+India&source=web 429
+INFO:primp:response: https://yandex.com/search/site/?text=technology+companies+in+%5B%22Bangalore%22%5D+India&web=1&searchid=8873151 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 15 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'top technology startups in ["Bangalore"]'
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=top%20technology%20startups%20in%20%5B%22Bangalore%22%5D 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=top+technology+startups+in+%5B%22Bangalore%22%5D&limit=1 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dtop%2Btechnology%2Bstartups%2Bin%2B%255B%2522Bangalore%2522%255D%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGIb36tAGIjD6FgJcDej6-z7RcPe_ls70BhyN-zHTOoi7n7sEmbAMdJ2FkoYDMRsrmxatw3GwdrAyAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=top+technology+startups+in+%5B%22Bangalore%22%5D 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=0cyUHP5KGKR83LNsiw6ViyQC;_ylu=IZQKLCnHHwn_hnq6Ab92Vv__k2ok6FmEph8eC6XYdbhsn5k?p=top+technology+startups+in+%5B%22Bangalore%22%5D 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 15 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'best technology firms ["Bangalore"] India'
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=best%20technology%20firms%20%5B%22Bangalore%22%5D%20India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=best+technology+firms+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:primp:response: https://search.brave.com/search?q=best+technology+firms+%5B%22Bangalore%22%5D+India&source=web 429
+INFO:primp:response: https://yandex.com/search/site/?text=best+technology+firms+%5B%22Bangalore%22%5D+India&web=1&searchid=9104154 200
+INFO:primp:response: https://www.mojeek.com/search?q=best+technology+firms+%5B%22Bangalore%22%5D+India 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 14 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'companies hiring ai engineer AI product engineering AI-first startup in ["Bangalore"] India'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=companies%20hiring%20ai%20engineer%20AI%20product%20engineering%20AI-first%20startup%20in%20%5B%22Bangalore%22%5D%20India 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://search.yahoo.com/search;_ylt=0mQhBUe65mQNv8Oo6Uk-43cQ;_ylu=LWz_t4Wz7ZvlLH2jgU74eM0NWCbKiCZVM1W21YDUkkOGQ7M?p=companies+hiring+ai+engineer+AI+product+engineering+AI-first+startup+in+%5B%22Bangalore%22%5D+India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=companies+hiring+ai+engineer+AI+product+engineering+AI-first+startup+in+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:primp:response: https://search.brave.com/search?q=companies+hiring+ai+engineer+AI+product+engineering+AI-first+startup+in+%5B%22Bangalore%22%5D+India&source=web 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dcompanies%2Bhiring%2Bai%2Bengineer%2BAI%2Bproduct%2Bengineering%2BAI-first%2Bstartup%2Bin%2B%255B%2522Bangalore%2522%255D%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJH36tAGIjDj-uIxagfaSTZMrodm6J6RpZ4-9q4hjj6SruCnRROThu0nFhsfpcly-uEDfWo-tiwyAnJSWgFD 429
+INFO:primp:response: https://yandex.com/search/site/?text=companies+hiring+ai+engineer+AI+product+engineering+AI-first+startup+in+%5B%22Bangalore%22%5D+India&web=1&searchid=9002885 200
+INFO:primp:response: https://www.mojeek.com/search?q=companies+hiring+ai+engineer+AI+product+engineering+AI-first+startup+in+%5B%22Bangalore%22%5D+India 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 12 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps] ["Bangalore"]/Technology & Software: 53 companies total
+INFO:careerloop.sources.company_discovery:[Wellfound/DDG] query: 'site:wellfound.com/company technology ["bangalore"]'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/company%20technology%20%5B%22bangalore%22%5D 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fcompany+technology+%5B%22bangalore%22%5D&limit=1 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Awellfound.com%2Fcompany+technology+%5B%22bangalore%22%5D 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Awellfound.com%252Fcompany%2Btechnology%2B%255B%2522bangalore%2522%255D%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJf36tAGIjBVIDCak6IxvhbnGo0iQZ3n3uBROTdI6rkmyRzQ3ol3HnczX_CjFVvdffKSiGrKrY4yAnJSWgFD 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=2mW_Le-z3jZXaS_6DVgC6fx4;_ylu=czhSP-sU78MhbEdHtHHOyMGzRSPpvBQTafnW01Wnja2vVhg?p=site%3Awellfound.com%2Fcompany+technology+%5B%22bangalore%22%5D 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Awellfound.com%2Fcompany+technology+%5B%22bangalore%22%5D&source=web 429
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Awellfound.com%2Fcompany+technology+%5B%22bangalore%22%5D&web=1&searchid=4654112 200
+INFO:careerloop.sources.company_discovery:[Wellfound/DDG] → 13 results
+INFO:careerloop.sources.company_discovery:[Wellfound] ["Bangalore"]/Technology & Software: 13 companies
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] query: 'site:crunchbase.com/organization technology ["bangalore"] india'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acrunchbase.com/organization%20technology%20%5B%22bangalore%22%5D%20india 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=gdIVyWL6PM_bmtU9B0G5sVQq;_ylu=W_1212JYI73Glss6uUw4F3vT9XiRoPPWQGspIwKrV7j70PI?p=site%3Acrunchbase.com%2Forganization+technology+%5B%22bangalore%22%5D+india 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Acrunchbase.com%2Forganization+technology+%5B%22bangalore%22%5D+india&limit=1 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Acrunchbase.com%2Forganization+technology+%5B%22bangalore%22%5D+india&source=web 429
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Acrunchbase.com%252Forganization%2Btechnology%2B%255B%2522bangalore%2522%255D%2Bindia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJ736tAGIjCJXMVybtZvlEprbPGVhy3hqw-UuuzkK5T8QVaIGI8JlHvlZ-dJxPYN5utiGih1kPsyAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Acrunchbase.com%2Forganization+technology+%5B%22bangalore%22%5D+india 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Acrunchbase.com%2Forganization+technology+%5B%22bangalore%22%5D+india&web=1&searchid=9857463 200
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] → 6 results
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] query: 'crunchbase technology company ["bangalore"] india funding'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=crunchbase%20technology%20company%20%5B%22bangalore%22%5D%20india%20funding 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dcrunchbase%2Btechnology%2Bcompany%2B%255B%2522bangalore%2522%255D%2Bindia%2Bfunding%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKH36tAGIjA84xYJSa27Km3dYPc_UCJN6rsiTpW-L04siW-m3wLsrf3qn19ALBr2FOXaETSFwigyAnJSWgFD 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=crunchbase+technology+company+%5B%22bangalore%22%5D+india+funding&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=qFPahwOl38bbw8jP7-ci3NFG;_ylu=c5J1c7mrMTEWD65KcgdzhUh6xPon1dYQE0zsQ6Oy3dtkJ_I?p=crunchbase+technology+company+%5B%22bangalore%22%5D+india+funding 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://yandex.com/search/site/?text=crunchbase+technology+company+%5B%22bangalore%22%5D+india+funding&web=1&searchid=9665105 200
+INFO:primp:response: https://search.brave.com/search?q=crunchbase+technology+company+%5B%22bangalore%22%5D+india+funding&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=crunchbase+technology+company+%5B%22bangalore%22%5D+india+funding 200
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] → 15 results
+INFO:careerloop.sources.company_discovery:[Crunchbase] ["Bangalore"]/Technology & Software: 7 companies
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'site:inc42.com technology startup ["bangalore"] india'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainc42.com%20technology%20startup%20%5B%22bangalore%22%5D%20india 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ainc42.com+technology+startup+%5B%22bangalore%22%5D+india&limit=1 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Ainc42.com%2Btechnology%2Bstartup%2B%255B%2522bangalore%2522%255D%2Bindia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKf36tAGIjA4la8CWRRewB0JVZ4Wwn7VvOLZsJ9MucyIqfQXxj2NKMNfyQc2HqHgE3vsvwIjN68yAnJSWgFD 429
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Ainc42.com+technology+startup+%5B%22bangalore%22%5D+india&web=1&searchid=6028092 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Ainc42.com+technology+startup+%5B%22bangalore%22%5D+india&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Ainc42.com+technology+startup+%5B%22bangalore%22%5D+india 200
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'site:yourstory.com technology company ["bangalore"] india'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ayourstory.com%20technology%20company%20%5B%22bangalore%22%5D%20india 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ayourstory.com+technology+company+%5B%22bangalore%22%5D+india&limit=1 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Ayourstory.com+technology+company+%5B%22bangalore%22%5D+india&web=1&searchid=8380710 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Ayourstory.com+technology+company+%5B%22bangalore%22%5D+india 200
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'startupindia.gov.in technology ["bangalore"] registered startup'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=startupindia.gov.in%20technology%20%5B%22bangalore%22%5D%20registered%20startup 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=startupindia.gov.in+technology+%5B%22bangalore%22%5D+registered+startup&limit=1 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dstartupindia.gov.in%2Btechnology%2B%255B%2522bangalore%2522%255D%2Bregistered%2Bstartup%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGLH36tAGIjDP9zbx9evX-GqNff8P1AhYvy20OdbMV9NOsf9bw7HexakzYpsVANX9rKeGQseRdmoyAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=startupindia.gov.in+technology+%5B%22bangalore%22%5D+registered+startup 200
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/YourStory] ["Bangalore"]/Technology & Software: 30 companies
+INFO:careerloop.sources.company_discovery:[YC] India/Technology & Software: 100 companies
+INFO:careerloop.sources.company_discovery:[Discovery] 203 raw → 203 deduped
+INFO:careerloop.sources.ats_adapter:[ATS detect] brandstory.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Digital Marketing Company in Bangalore India | Digital: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] marketinghack4u.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Software Companies in Bangalore 2025 | Updated: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_portal_scraper:[CareerPage] Found (static): https://electronicsmedia.info/careers
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for List of Top Electronics Companies in Bangalore India: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] digitalgriot.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Electronics Companies in Bangalore | 2026 List: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_portal_scraper:[CareerPage] Found (static): https://digest.myhq.in/careers
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best 22 Product Based Companies in Bangalore | A Detailed List: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] reallifebarbie.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for What Makes Bangalore the IT Hub of India? – Computer: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] traffictail.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 Product Based Companies In Bangalore 2026 | High-Paying: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] indiacatalog.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Software Development Companies in Bangalore. Accenture: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] explorateglobal.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Software Development Companies of Bangalore India: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] marketmystique.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 10 Best Manufacturing Companies in Bangalore | 2024: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] interviewbit.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 24 IT Companies in Bangalore (2024) - InterviewBit: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] techasoft.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 50 IT Companies In Bangalore - List Of IT Companies: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] internshala.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 15 Top Paying Companies in Bangalore (2026): 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] 360digitmg.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 IT Companies in Bangalore - 360DigiTMG: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] startus-insights.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Technology Startups in Bangalore | StartUs Insights: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] aryanjalan.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Startups In Bangalore (2026): 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] viestories.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 Best Startups in Bangalore in 2024: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] vyapaarjagat.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Startups in Bangalore – 2021 | Vyapaarjagat: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] startuptalky.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Exhaustive List of Top 91 Startups In Bangalore [2022 List]: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] askdaman.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 15 Startup Companies in Bangalore to Watch 2025: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] keevurds.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for List of Top Startups In Bangalore 2024 - KeeVurds: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] tiimagazine.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 30 Tech Startup Companies in Bangalore | The Industry: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] 21by72.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Revolutionizing Tech Startups in Bangalore in 2025: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] guvi.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 14 Tech Startups in Bangalore in 2026: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] explodingtopics.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 19 Top Technology Startups in Bangalore (May 2026): 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] topstartups.io → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 29 Bangalore Startups — Newly Funded & Hiring: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] knowstartup.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 Startups in Bangalore 2026 - Best Places to Work: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] wellfound.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best Tech Companies and Startups in Bangalore Urban, India ...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] financialexpress.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Bangalore home to fastest growing tech firms... | The Financial Express: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] rediff.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Bangalore among world's top 8 tech innovation... - Rediff.com Business: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] pinterest.com → greenhouse (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Find and save ideas about best it companies in bangalore on Pinterest.: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] failory.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 19 Venture Capital Firms in Bangalore in 2024: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] livemint.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Bangalore firm gives digital life to cookie monster and friends: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] nytimes.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for You Say Bangalore, They Say Bengalooru - The New York Times: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] ipflair.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for IP Law firms in Bangalore | IPR firms Bangalore/Bengaluru - IPFlair: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] tripandstays.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Bangalore Travel Guide: Top Places to Visit & Things To Do: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] echopx.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Website Design Firms Bangalore | Affordable and Professional Web...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] hindustantimes.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Bustling IT city turns into ghost town: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] corporatecompass.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Why Bangalore's Tech Teams Are Investing in Experiential Team...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] brandelite.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best Digital Marketing Company in Bangalore India | Brand Elite: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_discovery:[Discovery] Done: 0 companies enriched and stored
+    internet discovery done — querying DB for top companies...
+WARNING:careerloop.on_demand:[OnDemand] Phase A discovery failed: 'psycopg2.extensions.connection' object has no attribute 'execute'
+  [Phase A] 0 companies found.
+  [Phase A] portal scrape done — 0 jobs
+  [Phase B] searching job boards (parallel)...
+INFO:careerloop.sources.search_adapter:Search [1/6]: ai engineer AI product engineering AI-first startup ["Bangalore"] jobs
+WARNING:careerloop.sources.jobspy_adapter:python-jobspy not installed
+INFO:careerloop.on_demand:[OnDemand] JobSpy: 0 jobs
+INFO:careerloop.sources.remoteok_adapter:[RemoteOK] 0 jobs for '["AI Engineer"]'
+INFO:careerloop.on_demand:[OnDemand] RemoteOK: 0 jobs
+INFO:careerloop.sources.remotive_adapter:[Remotive] 0 jobs for '["AI Engineer"]'
+INFO:careerloop.on_demand:[OnDemand] Remotive: 0 jobs
+WARNING:careerloop.sources.naukri_adapter:Naukri API returned 406
+INFO:careerloop.on_demand:[OnDemand] Naukri: 0 jobs
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainstahyre.com%20%22%5B%22AI%20Engineer%22%5D%22%20%22%5B%22Bangalore%22%5D%22 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com/job-listing%20%5B%22AI%20Engineer%22%5D%20%5B%22Bangalore%22%5D%20India 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%5B%22AI%20Engineer%22%5D%20site%3Ajobs.lever.co%20%5B%22Bangalore%22%5D%20India 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aiimjobs.com%20%22%5B%22AI%20Engineer%22%5D%22%20%22%5B%22Bangalore%22%5D%22 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=txA6SaA21e4OcOyaCMUhrlxx;_ylu=ocqTwJ-tArpVsLd8xmgAR2JFUDsliQ7rsssVu6lNiCuj738?p=%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D+site%3Afoundit.in 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Awellfound.com%2Fl%2Fjob-listings+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&source=web 429
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22%5B%22AI%20Engineer%22%5D%22%20%5B%22Bangalore%22%5D%20site%3Afoundit.in 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/l/job-listings%20%22%5B%22AI%20Engineer%22%5D%22%20%22%5B%22Bangalore%22%5D%22 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acutshort.io/job%20%22%5B%22AI%20Engineer%22%5D%22%20%22%5B%22Bangalore%22%5D%22 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Acutshort.io%2Fjob+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&limit=1 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://search.brave.com/search?q=site%3Acutshort.io%2Fjob+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&source=web 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522%255B%2522AI%2BEngineer%2522%255D%2522%2B%255B%2522Bangalore%2522%255D%2Bsite%253Afoundit.in%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJn46tAGIjDsMrTVjP-eITrEkiZRQjidCZVxU5ALJ3YmAXlai2yBVbA6OYcW4LW__doTGjFnD6QyAnJSWgFD 429
+INFO:primp:response: https://search.brave.com/search?q=site%3Ainstahyre.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aiimjobs.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22 403
+INFO:primp:response: https://www.mojeek.com/search?q=%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D+site%3Afoundit.in 403
+INFO:primp:response: https://www.mojeek.com/search?q=%5B%22AI+Engineer%22%5D+site%3Ajobs.lever.co+%5B%22Bangalore%22%5D+India 403
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Acutshort.io%2Fjob+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22 403
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fl%2Fjob-listings+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&limit=1 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://search.yahoo.com/search;_ylt=XNzC_z_diB33pm968RqN63lZ;_ylu=a7VSgf9qvjAkpRCQsO3lqDOHDnRxR3PwkG_NfM2lw6V4B-8?p=site%3Acutshort.io%2Fjob+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Awellfound.com%2Fl%2Fjob-listings+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&web=1&searchid=6422969 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Acutshort.io%2Fjob+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&web=1&searchid=1527885 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aglassdoor.com%2Fjob-listing+%5B%22AI+Engineer%22%5D+%5B%22Bangalore%22%5D+India&web=1&searchid=1598710 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aiimjobs.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&web=1&searchid=6923286 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D+site%3Afoundit.in&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com%2Fjob-listing+%5B%22AI+Engineer%22%5D+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:primp:response: https://yandex.com/search/site/?text=%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D+site%3Afoundit.in&web=1&searchid=9235376 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20engineer%20AI%20product%20engineering%20AI-first%20startup%20%5B%22Bangalore%22%5D%20jobs 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aiimjobs.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ainstahyre.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&limit=1 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Ainstahyre.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22 403
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.yahoo.com/search;_ylt=BTYsg59k6AbnHAvY-e7MwQvT;_ylu=ypqcxh7_NcU8mW8qA-2tet1L2LOJo1rleYFiyb-AnGrYGGY?p=site%3Aglassdoor.com%2Fjob-listing+%5B%22AI+Engineer%22%5D+%5B%22Bangalore%22%5D+India 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Awellfound.com%2Fl%2Fjob-listings+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22 403
+INFO:primp:response: https://search.yahoo.com/search;_ylt=PCyuELy3nuuHARDtCRTtXfnL;_ylu=u6wuXxy1o_s-xMpFbKoBUOSkgGsPNZEXowED7ktbGsCzDx0?p=site%3Ainstahyre.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://search.brave.com/search?q=%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D+site%3Afoundit.in&source=web 429
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:careerloop.sources.monster_adapter:[Monster/foundit] DDG: ["AI Engineer"] in ["Bangalore"]: 13 jobs
+INFO:careerloop.on_demand:[OnDemand] Monster/foundit: 13 jobs
+INFO:careerloop.sources.weworkremotely_adapter:[WWR] 0 jobs for '["AI Engineer"]'
+INFO:careerloop.on_demand:[OnDemand] WeWorkRemotely: 0 jobs
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Acutshort.io%252Fjob%2B%2522%255B%2522AI%2BEngineer%2522%255D%2522%2B%2522%255B%2522Bangalore%2522%255D%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJv46tAGIjBw3nOJRx-bDON_diLqCgvAbrejD8ju3er3HHl_qwSAfIrFPyMF7v4XNufqD8vu3B0yAnJSWgFD 429
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.yahoo.com/search;_ylt=hLYCDpuf3ukC7LjvqFZDoqa_;_ylu=lzf6r2DuNZnXQTFTbzGMtDFfp59I9VDWZnYyExvzSag6HVQ?p=site%3Aiimjobs.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aglassdoor.com%2Fjob-listing+%5B%22AI+Engineer%22%5D+%5B%22Bangalore%22%5D+India 403
+INFO:primp:response: https://search.brave.com/search?q=site%3Aglassdoor.com%2Fjob-listing+%5B%22AI+Engineer%22%5D+%5B%22Bangalore%22%5D+India&source=web 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Awellfound.com%252Fl%252Fjob-listings%2B%2522%255B%2522AI%2BEngineer%2522%255D%2522%2B%2522%255B%2522Bangalore%2522%255D%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJv46tAGIjCSBXUfEMhASBES3lwpDDANJjw6rNNQQUbHW5b0DY7ne3Um6VD84obt4WgXZZ9RMXEyAnJSWgFD 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%5B%22AI+Engineer%22%5D+site%3Ajobs.lever.co+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=ai+engineer+AI+product+engineering+AI-first+startup+%5B%22Bangalore%22%5D+jobs&limit=1 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Ainstahyre.com%2B%2522%255B%2522AI%2BEngineer%2522%255D%2522%2B%2522%255B%2522Bangalore%2522%255D%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJz46tAGIjDtYUFsTjt3EXxuQpNeFHWVwkW3N3lqFL2mr8LXnxaNUeq-5Lyp8bSRAPosqgf-ogYyAnJSWgFD 429
+INFO:primp:response: https://search.brave.com/search?q=site%3Aiimjobs.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&source=web 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=pIVHFbgeYV6YMjXn3Xsb9tTm;_ylu=jBueYlzuMeCBhUWN6lvY7DQpoRescIzSQGKxVTTMVw-o8tM?p=site%3Awellfound.com%2Fl%2Fjob-listings+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=JHW28KXd1RpRjCLHZW9Q64bL;_ylu=XOXtSLCkCXZIZM507vJU2m-2u5swAxW3rf-qcsl6Xa48PN4?p=ai+engineer+AI+product+engineering+AI-first+startup+%5B%22Bangalore%22%5D+jobs 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=ezc551wy2JZboTuYgaKndzJn;_ylu=4zZpwPJUDswOBPYXeMuwdVGOkAtUSATySfbMCv67gw_rFHw?p=%5B%22AI+Engineer%22%5D+site%3Ajobs.lever.co+%5B%22Bangalore%22%5D+India 200
+INFO:careerloop.on_demand:[OnDemand] Wellfound: 0 jobs
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aiimjobs.com%2B%2522%255B%2522AI%2BEngineer%2522%255D%2522%2B%2522%255B%2522Bangalore%2522%255D%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJz46tAGIjCOz--cXbZaoZ-U0sv5G1CHPVs_3s2PBvpOCeeFO-C3Po2KGT9gS1ZppUi62Xgf27UyAnJSWgFD 429
+INFO:careerloop.sources.iimjobs_adapter:[IIMJobs] 0 jobs for '["AI Engineer"]' / '["Bangalore"]'
+INFO:careerloop.on_demand:[OnDemand] IIMJobs: 0 jobs
+INFO:primp:response: https://search.brave.com/search?q=%5B%22AI+Engineer%22%5D+site%3Ajobs.lever.co+%5B%22Bangalore%22%5D+India&source=web 429
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Ainstahyre.com+%22%5B%22AI+Engineer%22%5D%22+%22%5B%22Bangalore%22%5D%22&web=1&searchid=7180341 200
+INFO:careerloop.sources.instahyre_adapter:[Instahyre] 0 jobs for '["AI Engineer"]' / '["Bangalore"]'
+INFO:careerloop.on_demand:[OnDemand] Instahyre: 0 jobs
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/sp/search) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%255B%2522AI%2BEngineer%2522%255D%2Bsite%253Ajobs.lever.co%2B%255B%2522Bangalore%2522%255D%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJ346tAGIjDxXl7WV_X9l8o1GElByAJJWKLPr0kCcUcGPjEZouVf5F9h4P5nDaeTOV47JXvWO-QyAnJSWgFD 429
+INFO:primp:response: https://yandex.com/search/site/?text=ai+engineer+AI+product+engineering+AI-first+startup+%5B%22Bangalore%22%5D+jobs&web=1&searchid=3110244 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%252Fjob-listing%2B%255B%2522AI%2BEngineer%2522%255D%2B%255B%2522Bangalore%2522%255D%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJ746tAGIjAn5fhFhznTB-sr2FE4Ba7kd-u1ZwqEcZ8UpQwqkh8ajmCQxKvwLDqMFzUvrpQHFR0yAnJSWgFD 429
+INFO:careerloop.sources.cutshort_adapter:[Cutshort] 6 jobs for '["AI Engineer"]' / '["Bangalore"]'
+INFO:careerloop.on_demand:[OnDemand] Cutshort: 6 jobs
+INFO:primp:response: https://yandex.com/search/site/?text=%5B%22AI+Engineer%22%5D+site%3Ajobs.lever.co+%5B%22Bangalore%22%5D+India&web=1&searchid=2110977 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com%20%22job-listing%22%20%22%5B%22AI%20Engineer%22%5D%22%20%5B%22Bangalore%22%5D 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com+%22job-listing%22+%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D&limit=1 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%5B%22AI%20Engineer%22%5D%20site%3Aboards.greenhouse.io%20%5B%22Bangalore%22%5D%20India 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%2B%2522job-listing%2522%2B%2522%255B%2522AI%2BEngineer%2522%255D%2522%2B%255B%2522Bangalore%2522%255D%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJ_46tAGIjAhUSH-Wes7JZzFaUsT8kGNIVmZprwt2HpWTj6Odp_q63UfbwfxXQvjsXoUuVmtW9UyAnJSWgFD 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%5B%22AI+Engineer%22%5D+site%3Aboards.greenhouse.io+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D&source=web 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%255B%2522AI%2BEngineer%2522%255D%2Bsite%253Aboards.greenhouse.io%2B%255B%2522Bangalore%2522%255D%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJ_46tAGIjBGwz0DQG6cd-opO2tYH2ickAQJmQyC5YCGRgwfyvHltG3FyF_8szs1NR7GQs-WmooyAnJSWgFD 429
+INFO:careerloop.sources.search_adapter:Search [2/6]: ai engineer AI product engineering AI-first startup hiring ["Bangalore"] 2025
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D 403
+INFO:primp:response: https://search.yahoo.com/search;_ylt=NAXmPh_r-k9NMjEIBlQh63xO;_ylu=s5AH9TNIHk7Y6Er4NCKoHd3wbJ9iKGdrB5MPgMOLOR-nMLg?p=site%3Aglassdoor.com+%22job-listing%22+%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://search.yahoo.com/search;_ylt=em9P61w8Ohomw5_0BmSvP-vf;_ylu=uvWZ7P397U18KkmU_FqRfEE1XIf40q1b89YLIWPUoBw28q8?p=%5B%22AI+Engineer%22%5D+site%3Aboards.greenhouse.io+%5B%22Bangalore%22%5D+India 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20engineer%20AI%20product%20engineering%20AI-first%20startup%20hiring%20%5B%22Bangalore%22%5D%202025 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aglassdoor.com+%22job-listing%22+%22%5B%22AI+Engineer%22%5D%22+%5B%22Bangalore%22%5D&web=1&searchid=9427126 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=ai+engineer+AI+product+engineering+AI-first+startup+hiring+%5B%22Bangalore%22%5D+2025&limit=1 200
+INFO:careerloop.sources.glassdoor_adapter:[Glassdoor] ["AI Engineer"] in ["Bangalore"]: 8 jobs
+INFO:careerloop.on_demand:[OnDemand] Glassdoor: 8 jobs
+INFO:primp:response: https://search.brave.com/search?q=ai+engineer+AI+product+engineering+AI-first+startup+hiring+%5B%22Bangalore%22%5D+2025&source=web 429
+INFO:primp:response: https://yandex.com/search/site/?text=%5B%22AI+Engineer%22%5D+site%3Aboards.greenhouse.io+%5B%22Bangalore%22%5D+India&web=1&searchid=2545256 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=GfGQsDlYwM8wIiDTjjMJScZq;_ylu=d3EC-Zesb4e49N7ETeEuX3OtzrR5AYI-8VyI6n3D-eTVmKo?p=ai+engineer+AI+product+engineering+AI-first+startup+hiring+%5B%22Bangalore%22%5D+2025 200
+INFO:primp:response: https://www.mojeek.com/search?q=%5B%22AI+Engineer%22%5D+site%3Aboards.greenhouse.io+%5B%22Bangalore%22%5D+India 403
+INFO:primp:response: https://search.brave.com/search?q=%5B%22AI+Engineer%22%5D+site%3Aboards.greenhouse.io+%5B%22Bangalore%22%5D+India&source=web 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dai%2Bengineer%2BAI%2Bproduct%2Bengineering%2BAI-first%2Bstartup%2Bhiring%2B%255B%2522Bangalore%2522%255D%2B2025%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKT46tAGIjD6iEGkjpiX_gpFYXGEJJ2IuupYazA5kK0zapYpA5mGiXT6HnElTkhjxukN3wt9jPQyAnJSWgFD 429
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%5B%22AI%20Engineer%22%5D%20site%3Aashbyhq.com%20%5B%22Bangalore%22%5D%20India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%5B%22AI+Engineer%22%5D+site%3Aashbyhq.com+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%255B%2522AI%2BEngineer%2522%255D%2Bsite%253Aashbyhq.com%2B%255B%2522Bangalore%2522%255D%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKT46tAGIjAfoGMP13wdujZdvencyJbz_4FXwK9tN-trhK-mv2XLQKs3IgSZTwJRyl3srACXkL0yAnJSWgFD 429
+INFO:primp:response: https://search.brave.com/search?q=%5B%22AI+Engineer%22%5D+site%3Aashbyhq.com+%5B%22Bangalore%22%5D+India&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=ai+engineer+AI+product+engineering+AI-first+startup+hiring+%5B%22Bangalore%22%5D+2025 403
+INFO:primp:response: https://yandex.com/search/site/?text=%5B%22AI+Engineer%22%5D+site%3Aashbyhq.com+%5B%22Bangalore%22%5D+India&web=1&searchid=6763036 200
+INFO:primp:response: https://yandex.com/search/site/?text=ai+engineer+AI+product+engineering+AI-first+startup+hiring+%5B%22Bangalore%22%5D+2025&web=1&searchid=3525044 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.mojeek.com/search?q=%5B%22AI+Engineer%22%5D+site%3Aashbyhq.com+%5B%22Bangalore%22%5D+India 403
+INFO:primp:response: https://search.yahoo.com/search;_ylt=DxeWUxxBXdrR7g3O-HzZlkhM;_ylu=pnrHcBCcYIjeQvpBPsKAFnzXgBKs5Hbxd-7opnpzOpn4FFw?p=%5B%22AI+Engineer%22%5D+site%3Aashbyhq.com+%5B%22Bangalore%22%5D+India 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:careerloop.sources.search_adapter:Search [3/6]: "AI engineer" jobs in ["Bangalore"]
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%5B%22AI%20Engineer%22%5D%20site%3Aapply.workable.com%20%5B%22Bangalore%22%5D%20India 200
+INFO:primp:response: https://www.mojeek.com/search?q=%5B%22AI+Engineer%22%5D+site%3Aapply.workable.com+%5B%22Bangalore%22%5D+India 403
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%5B%22AI+Engineer%22%5D+site%3Aapply.workable.com+%5B%22Bangalore%22%5D+India&limit=1 200
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20engineer%22%20jobs%20in%20%5B%22Bangalore%22%5D 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+engineer%22+jobs+in+%5B%22Bangalore%22%5D&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+engineer%22+jobs+in+%5B%22Bangalore%22%5D&web=1&searchid=9842380 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/sp/search) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://yandex.com/search/site/?text=%5B%22AI+Engineer%22%5D+site%3Aapply.workable.com+%5B%22Bangalore%22%5D+India&web=1&searchid=3897407 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=3QzsMh75g9o5A7QhgBn8bufO;_ylu=4u26p_7PelV_B13NmRfIvaYbUMu4YH6plDLjGG_bE3pKjaU?p=%5B%22AI+Engineer%22%5D+site%3Aapply.workable.com+%5B%22Bangalore%22%5D+India 200
+INFO:careerloop.sources.search_adapter:Search [4/6]: "AI engineer" hiring ["Bangalore"] site:linkedin.com/jobs/view
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%255B%2522AI%2BEngineer%2522%255D%2Bsite%253Aapply.workable.com%2B%255B%2522Bangalore%2522%255D%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGKz46tAGIjBm1Llp20K1cOPWCRFQtLaLkAMdlfReX9czhtklUYXCISw6dgq2hu2C6PKdwlFIRcIyAnJSWgFD 429
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://search.brave.com/search?q=%5B%22AI+Engineer%22%5D+site%3Aapply.workable.com+%5B%22Bangalore%22%5D+India&source=web 429
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20engineer%22%20hiring%20%5B%22Bangalore%22%5D%20site%3Alinkedin.com/jobs/view 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+engineer%22+hiring+%5B%22Bangalore%22%5D+site%3Alinkedin.com%2Fjobs%2Fview&limit=1 200
+INFO:careerloop.sources.google_jobs_adapter:[GoogleJobs] ["AI Engineer"] in ["Bangalore"]: 15 jobs
+INFO:careerloop.on_demand:[OnDemand] GoogleJobs: 15 jobs
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+engineer%22+hiring+%5B%22Bangalore%22%5D+site%3Alinkedin.com%2Fjobs%2Fview&web=1&searchid=9317127 200
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://search.brave.com/search?q=%22AI+engineer%22+hiring+%5B%22Bangalore%22%5D+site%3Alinkedin.com%2Fjobs%2Fview&source=web 429
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.yahoo.com/search;_ylt=Ry-7sEEiZF81Qk3kJkT5YCu4;_ylu=NMmCBHXyxTWTQqE1XjMPXF5DF1fC76uZIJD7eCPFwy7RbGo?p=%22AI+engineer%22+hiring+%5B%22Bangalore%22%5D+site%3Alinkedin.com%2Fjobs%2Fview 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bengineer%2522%2Bhiring%2B%255B%2522Bangalore%2522%255D%2Bsite%253Alinkedin.com%252Fjobs%252Fview%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGLD46tAGIjDUtY6-eX3xsf6rHWOQh9vK2nIoLwCNpOEOViRFBdN74z_I6r1_SvytVqcC8ptbIdEyAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+engineer%22+hiring+%5B%22Bangalore%22%5D+site%3Alinkedin.com%2Fjobs%2Fview 403
+INFO:careerloop.sources.search_adapter:Search [5/6]: "AI engineer" ["Bangalore"] site:naukri.com
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20engineer%22%20%5B%22Bangalore%22%5D%20site%3Anaukri.com 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Anaukri.com&limit=1 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bengineer%2522%2B%255B%2522Bangalore%2522%255D%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGLX46tAGIjB8NFf4AD_zfiv77Of5xuRJx7pe3dPmCYhDplUKdRPe8O17KZduxi7P4b2ofWDwWMMyAnJSWgFD 429
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Anaukri.com&web=1&searchid=2341835 200
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Anaukri.com 403
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.yahoo.com/search;_ylt=daDkegZX4Ub0Nh9_yHJNb0xR;_ylu=fUBPOduCdVawDvhcVDpeljvg_O-Unc8b0NXRpMz9DDhZqgM?p=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Anaukri.com 200
+INFO:primp:response: https://search.brave.com/search?q=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Anaukri.com&source=web 429
+INFO:careerloop.sources.search_adapter:Search [6/6]: "AI engineer" ["Bangalore"] site:cutshort.io
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20engineer%22%20%5B%22Bangalore%22%5D%20site%3Acutshort.io 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Acutshort.io&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=9INCLP0y-ybt8dFlPYrIosNZ;_ylu=Tx2b3v5CKRqIuYorlCcNhWbr4shXdq7GM3gkKXgJVoAGh4I?p=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Acutshort.io 200
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Acutshort.io 403
+INFO:primp:response: https://search.brave.com/search?q=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Acutshort.io&source=web 429
+INFO:ddgs.ddgs:Error in engine startpage: DDGSException("ConnectError: ConnectError('error sending request for url (https://www.startpage.com/) > client error (Connect) > tcp connect error > Connection refused (os error 61)')")
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bengineer%2522%2B%255B%2522Bangalore%2522%255D%2Bsite%253Acutshort.io%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGL_46tAGIjDgAX9cGVBXGR7LsWs8uxIC6CmbshoP2WxmvUTnZvSwZfnhqkBKj7vn1nzrWAcrvCYyAnJSWgFD 429
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+engineer%22+%5B%22Bangalore%22%5D+site%3Acutshort.io&web=1&searchid=4085881 200
+INFO:careerloop.sources.search_adapter:Total candidate URLs: 22
+INFO:careerloop.on_demand:[OnDemand] Board health: {'jobspy': 0, 'remoteok': 0, 'remotive': 0, 'naukri': 0, 'monster': 13, 'weworkremotely': 0, 'wellfound': 0, 'iimjobs': 0, 'instahyre': 0, 'cutshort': 6, 'glassdoor': 8, 'google_jobs': 15, 'ddg': 18}
+  [Phase B] per-source: cutshort:6 | ddg:18 | glassdoor:8 | google_jobs:15 | iimjobs:0 | instahyre:0 | jobspy:0 | monster:13 | naukri:0 | remoteok:0 | remotive:0 | wellfound:0 | weworkremotely:0
+  [Phase B] boards done — 60 jobs (archetype title-rejected 0)
+  [Pipeline] total raw candidates: 60 (A:0 + B:60)
+INFO:careerloop.india_filter:India filter: 48 passed, 12 rejected
+  [Filter] India filter: 60 → 48
+  [Phase E] ontology gate (archetype_match>=0.2): 48 → 9 (39 dropped)
+  [Phase E] role similarity filter: 9 candidates...
+INFO:careerloop.role_similarity:[RoleSimilarity] sentence-transformers not installed, using token overlap
+  [Phase E] role filter done: 9 → 5 relevant (4 rejected)
+INFO:careerloop.apply_route:Canonical dedup: 5 → 5 unique jobs
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Rockstar': invalid input syntax for type uuid: "rockstar"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'rockstar'...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Bengaluru, IN, 560103': invalid input syntax for type uuid: "bengaluru-in-560103"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'bengaluru...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cutshort': invalid input syntax for type uuid: "cutshort"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cutshort'...
+                                                             ^
+ — using defaults
+  [Phase F] LLM validator (DeepSeek): validating top-4 jobs...
+INFO:watchfiles.main:3 changes detected
+  [Phase F] LLM validator done: 4 → 4
+INFO:careerloop_api.services.scan.persist:Persisted 4 jobs to careerloop.jobs for user d4e07f40
+INFO:careerloop.memory.repository_v2.cache:Cache-hit: 20 fresh jobs found (window=14d, cities=[], roles=[])
+INFO:careerloop_api.services.scan:Scan completed: run_id=625deab51a75 user=d4e07f40 top_jobs=4
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=625deab51a75 user=d4e07f40 — guards released
+INFO:     127.0.0.1:54175 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:1 change detected
+INFO:     127.0.0.1:54175 - "POST /v1/jobs/c6adf5db-0339-4629-aa21-5f82869651a3/save HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54175 - "GET /v1/briefs/latest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54175 - "GET /v1/jobs/c6adf5db-0339-4629-aa21-5f82869651a3 HTTP/1.1" 200 OK
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop/onboarding/onboarding_flow.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [70185]
+INFO:     Started server process [70304]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop/onboarding/onboarding_flow.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [70304]
+INFO:     Started server process [70305]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:4 changes detected
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'scripts/run_onboarding_war_game.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [70305]
+INFO:     Started server process [70597]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:4 changes detected
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'scripts/run_onboarding_war_game.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [70597]
+INFO:     Started server process [70603]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop/onboarding/onboarding_flow.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [70603]
+INFO:     Started server process [70609]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'scripts/run_onboarding_war_game.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [70609]
+INFO:     Started server process [70611]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop/onboarding/onboarding_flow.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [70611]
+INFO:     Started server process [70617]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:3 changes detected
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:3 changes detected
+INFO:     127.0.0.1:54396 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:watchfiles.main:6 changes detected
+INFO:     127.0.0.1:54396 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54396 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54396 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54396 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54396 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop_api/e2e_onboarding_test.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [70617]
+INFO:     Started server process [70697]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:54427 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54427 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54427 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54427 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54427 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54427 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'careerloop/llm_chat.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [70697]
+INFO:     Started server process [70700]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:54437 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:watchfiles.main:3 changes detected
+INFO:     127.0.0.1:54437 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54437 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54437 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.onboarding.onboarding_flow:Welcome brief seeded for user 2b85a2c8-088 (date=2026-05-30)
+INFO:     127.0.0.1:54437 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:2 changes detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'scripts/run_e2e_product_test.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [70700]
+INFO:     Started server process [71643]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:54571 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54571 - "GET /v1/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54571 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.sources.identity_provider:SerpAPI not configured — skipping LinkedIn search.
+INFO:     127.0.0.1:54571 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54571 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54571 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54571 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.onboarding.onboarding_flow:Welcome brief seeded for user e7c4591f-2f1 (date=2026-05-30)
+INFO:     127.0.0.1:54571 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:watchfiles.main:3 changes detected
+INFO:careerloop.memory.checkpointer:checkpointer: PostgresSaver connected successfully
+INFO:careerloop.session.supervisor_graph:Action resolved: GENERAL_CHAT (confidence: 0.95)
+INFO:     127.0.0.1:54571 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user e7c4591f run_id 1a46822b6afd mode=default
+INFO:     127.0.0.1:54571 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54571 - "GET /v1/scans/1a46822b6afd/events HTTP/1.1" 200 OK
+INFO:careerloop.role_keywords:[RoleKeywords] cache WRITE ok role=senior machine learning engineer keywords=20
+INFO:careerloop.sources.role_archetype:[Archetype] LLM generated for 'Senior Machine Learning Engineer': must_have=['product', 'applied AI', 'cross-functional', 'customer-facing', 'platform', 'LLM', 'system design', 'observability']
+  [Archetype] role='Senior Machine Learning Engineer' | function='applied AI product engineering' | market='B2B enterprise'
+  [Archetype] must_have=['product', 'applied AI', 'cross-functional', 'customer-facing', 'platform', 'LLM', 'system design', 'observability']
+  [Archetype] avoid=['research', 'data entry', 'support engineer', 'hardware', 'infra only', 'generic SWE', 'entry-level', 'maintenance']
+  [Queries] 8 board queries: ['Senior Machine Learning Engineer applied AI product engineering AI-first startup Bangalore jobs', 'Senior Machine Learning Engineer applied AI product engineering AI-first startup hiring Bangalore 2025', '"senior machine learning engineer" jobs in Bangalore', '"senior machine learning engineer" hiring Bangalore site:linkedin.com/jobs/view']
+  [Phase A] discovering companies for 'Senior Machine Learning Engineer' in Bangalore...
+INFO:careerloop.on_demand:[OnDemand] Phase A: sector inferred → 'Technology & Software' for role 'Senior Machine Learning Engineer'
+    sector=Technology & Software — Phase A via DDG+Wellfound+Crunchbase+Inc42+YC...
+INFO:careerloop.sources.company_discovery:[Discovery] Starting: city=Bangalore, sector=Technology & Software, function=senior machine learning engineer applied AI product engineering AI-first startup
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'technology companies in Bangalore India'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=technology%20companies%20in%20Bangalore%20India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=technology+companies+in+Bangalore+India&limit=1 200
+INFO:primp:response: https://www.mojeek.com/search?q=technology+companies+in+Bangalore+India 200
+INFO:primp:response: https://yandex.com/search/site/?text=technology+companies+in+Bangalore+India&web=1&searchid=3815740 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 14 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'top technology startups in Bangalore'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=top%20technology%20startups%20in%20Bangalore 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=top+technology+startups+in+Bangalore&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=1-CnARXrmcyHMz6q7GUqRiRX;_ylu=8E8bgThtOVFANTkB4ELtbxAdEoZFpAQAX9jO9R22yqbVf98?p=top+technology+startups+in+Bangalore 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.mojeek.com/search?q=top+technology+startups+in+Bangalore 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dtop%2Btechnology%2Bstartups%2Bin%2BBangalore%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGLaI69AGIjDph-JeKMpkn_K7W3YPbDzgCcAweQAqRQ8I4nJWa_jgX85YLbaeVedi7nwVlEH5y2oyAnJSWgFD 429
+INFO:primp:response: https://yandex.com/search/site/?text=top+technology+startups+in+Bangalore&web=1&searchid=6497390 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 15 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'best technology firms Bangalore India'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=best%20technology%20firms%20Bangalore%20India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=best+technology+firms+Bangalore+India&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=best+technology+firms+Bangalore+India 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=WCMAseW-K8dGjoobnTpsbLyN;_ylu=OraZ4x3kuxKvGoLBmnfdB7ngFqlykKEA4l9tccIQYg93SVk?p=best+technology+firms+Bangalore+India 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 15 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] query: 'companies hiring senior machine learning engineer applied AI product engineering AI-first startup in Bangalore India'
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=companies+hiring+senior+machine+learning+engineer+applied+AI+product+engineering+AI-first+startup+in+Bangalore+India&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=companies%20hiring%20senior%20machine%20learning%20engineer%20applied%20AI%20product%20engineering%20AI-first%20startup%20in%20Bangalore%20India 200
+INFO:primp:response: https://www.mojeek.com/search?q=companies+hiring+senior+machine+learning+engineer+applied+AI+product+engineering+AI-first+startup+in+Bangalore+India 200
+INFO:primp:response: https://yandex.com/search/site/?text=companies+hiring+senior+machine+learning+engineer+applied+AI+product+engineering+AI-first+startup+in+Bangalore+India&web=1&searchid=7063496 200
+INFO:careerloop.sources.company_discovery:[GoogleMaps/DDG] → 6 results
+INFO:careerloop.sources.company_discovery:[GoogleMaps] Bangalore/Technology & Software: 44 companies total
+INFO:careerloop.sources.company_discovery:[Wellfound/DDG] query: 'site:wellfound.com/company technology bangalore'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/company%20technology%20bangalore 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Awellfound.com%2Fcompany+technology+bangalore 200
+INFO:watchfiles.main:2 changes detected
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fcompany+technology+bangalore&limit=1 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Awellfound.com%252Fcompany%2Btechnology%2Bbangalore%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGMiI69AGIjBzPCZ2L4F88U_fD37oQ3tqltIBLcw3SE6U9pzVbzDmVBh4PRnggIXJneZfHZlipu8yAnJSWgFD 429
+INFO:primp:response: https://search.brave.com/search?q=site%3Awellfound.com%2Fcompany+technology+bangalore&source=web 429
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Awellfound.com%2Fcompany+technology+bangalore&web=1&searchid=1394525 200
+INFO:careerloop.sources.company_discovery:[Wellfound/DDG] → 16 results
+INFO:careerloop.sources.company_discovery:[Wellfound] Bangalore/Technology & Software: 16 companies
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] query: 'site:crunchbase.com/organization technology bangalore india'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acrunchbase.com/organization%20technology%20bangalore%20india 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:watchfiles.main:2 changes detected
+INFO:primp:response: https://search.brave.com/search?q=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&source=web 429
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Acrunchbase.com%2Forganization+technology+bangalore+india&web=1&searchid=3044951 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=3wQMCxrQMBMpC19E3HGcmvot;_ylu=kk3AlgduEb7cv2A2kB90ZhWA0ltACFJF9SgvfhvAgyXQ-o0?p=site%3Acrunchbase.com%2Forganization+technology+bangalore+india 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Acrunchbase.com%252Forganization%2Btechnology%2Bbangalore%2Bindia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGNCI69AGIjB_OIaoIAAsoef8lIKyDsvI6qkvTmOKbVrqSVJX2cj-odOgAwZ5yXTmb3WMIdRkI8EyAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Acrunchbase.com%2Forganization+technology+bangalore+india 200
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] → 13 results
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] query: 'crunchbase technology company bangalore india funding'
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=crunchbase+technology+company+bangalore+india+funding&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=crunchbase%20technology%20company%20bangalore%20india%20funding 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dcrunchbase%2Btechnology%2Bcompany%2Bbangalore%2Bindia%2Bfunding%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGNSI69AGIjBpJepHjVTY5sHiAhCart3UTTHMaAqsA6hL2FmI3tGq0xkLKWen8tcKLLarWaz7SvAyAnJSWgFD 429
+INFO:primp:response: https://www.mojeek.com/search?q=crunchbase+technology+company+bangalore+india+funding 200
+INFO:careerloop.sources.company_discovery:[Crunchbase/DDG] → 15 results
+INFO:careerloop.sources.company_discovery:[Crunchbase] Bangalore/Technology & Software: 14 companies
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'site:inc42.com technology startup bangalore india'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainc42.com%20technology%20startup%20bangalore%20india 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ainc42.com+technology+startup+bangalore+india&limit=1 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Ainc42.com+technology+startup+bangalore+india&web=1&searchid=5936399 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'site:yourstory.com technology company bangalore india'
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ayourstory.com+technology+company+bangalore+india&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ayourstory.com%20technology%20company%20bangalore%20india 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=jxBsVgvZi7jgiir-ndyEbwJr;_ylu=hHSkjx48xejsoaQSk4LhG-mX1zxKzmxUqUEftVwMuDxJ06U?p=site%3Ayourstory.com+technology+company+bangalore+india 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Ayourstory.com+technology+company+bangalore+india&web=1&searchid=1174319 200
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] query: 'startupindia.gov.in technology bangalore registered startup'
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=startupindia.gov.in%20technology%20bangalore%20registered%20startup 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=startupindia.gov.in+technology+bangalore+registered+startup&limit=1 200
+INFO:primp:response: https://yandex.com/search/site/?text=startupindia.gov.in+technology+bangalore+registered+startup&web=1&searchid=5471398 200
+INFO:careerloop.sources.company_discovery:[Inc42/DDG] → 10 results
+INFO:careerloop.sources.company_discovery:[Inc42/YourStory] Bangalore/Technology & Software: 30 companies
+INFO:careerloop.sources.company_discovery:[YC] India/Technology & Software: 100 companies
+INFO:careerloop.sources.company_discovery:[Discovery] 204 raw → 204 deduped
+INFO:careerloop.sources.ats_adapter:[ATS detect] zinavo.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best Website Design & Web Development Company in Bangalore: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] brandstory.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Digital Marketing Company in Bangalore India | Digital: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] marketinghack4u.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Software Companies in Bangalore 2025 | Updated: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] traffictail.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 Product Based Companies In Bangalore 2026 | High-Paying: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_portal_scraper:[CareerPage] Found (static): https://electronicsmedia.info/careers
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for List of Top Electronics Companies in Bangalore India: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] digitalgriot.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Electronics Companies in Bangalore | 2026 List: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:     127.0.0.1:54806 - "OPTIONS /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54808 - "OPTIONS /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54810 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54808 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54808 - "OPTIONS /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=6 conversation_id=f337f33a-6e8
+INFO:     127.0.0.1:54806 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=6 conversation_id=f337f33a-6e8
+INFO:     127.0.0.1:54806 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:careerloop.sources.company_portal_scraper:[CareerPage] Found (static): https://digest.myhq.in/careers
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best 22 Product Based Companies in Bangalore | A Detailed List: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:     127.0.0.1:54810 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.sources.ats_adapter:[ATS detect] explorateglobal.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Software Development Companies of Bangalore India: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] punelist.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for List of Top 50 Product Based Companies in Bangalore 2023-24 -: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] foodntravelstories.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 50 Multinational Companies with a Strong Presence in: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] upgrad.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 50 IT Companies in Bangalore: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] techbehemoths.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20+ IT Companies in Bangalore (2025) - TechBehemoths: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:     127.0.0.1:54812 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.sources.ats_adapter:[ATS detect] selectedfirms.co → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 50+ IT Services Companies in Bangalore | Reviews | May 2025: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] goodfirms.co → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Bangalore Software Companies - April 2025 Reviews | GoodFirms: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] startuptalky.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Exhaustive List of Top 91 Startups In Bangalore [2022 List]: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] startus-insights.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Technology Startups in Bangalore | StartUs Insights: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] aryanjalan.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Startups In Bangalore (2026): 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] viestories.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 Best Startups in Bangalore in 2024: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] vyapaarjagat.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Startups in Bangalore – 2021 | Vyapaarjagat: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] askdaman.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 15 Startup Companies in Bangalore to Watch 2025: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:watchfiles.main:1 change detected
+WARNING:  WatchFiles detected changes in 'scripts/run_e2e_product_test.py'. Reloading...
+INFO:careerloop.sources.ats_adapter:[ATS detect] 21by72.com → smartrecruiters (REST probe)
+INFO:     Shutting down
+INFO:     Waiting for background tasks to complete. (CTRL+C to force quit)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 Revolutionizing Tech Startups in Bangalore in 2025: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] tiimagazine.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 30 Tech Startup Companies in Bangalore | The Industry: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] earnyatra.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 15 Startup Companies in Bangalore - Updated List [2025]: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] startupblink.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top Startups in Bangalore | StartupBlink: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] knowstartup.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 20 Startups in Bangalore 2026 - Best Places to Work: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] homes247.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Bangalore Startups to Watch in 2025: Innovators Leading Change: 'psycopg2.extensions.connection' object has no attribute 'execute'
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Startups in Bangalore • • Bangalore Startups List: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] failory.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 23 Accelerators and Incubators in Bangalore (2026): 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] beststartup.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 9 Bangalore Based Product Management Companies | The Most: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] brandelite.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best Digital Marketing Company in Bangalore India | Brand Elite: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] marketmystique.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for 15 Best Product Based Companies in Bangalore in 2026: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] indglobal.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best Software Development Company in Bangalore, India |: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] seekneo.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Best it companies in bangalore india: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] theqna.org → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 best electronics companies in Bangalore - TheQnA.Org: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] omsaigroupconsultancy.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Who Are The Best Global Consultancy Bangalore?: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] lanetteam.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top IT Companies in Bangalore (2026) – Best Tech Firms &: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_portal_scraper:[CareerPage] Found (static): https://jobs.pitchnhire.com/about/careers
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 50 Information Technology Companies in Bangalore ...: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] nobroker.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 10 MNC Companies in Bangalore (Updated 2026) - NoBroker: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] intellipaat.com → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Top 30 IT Companies in Bangalore (2026) - Intellipaat: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.ats_adapter:[ATS detect] bangalores.in → smartrecruiters (REST probe)
+WARNING:careerloop.sources.company_discovery:[Discovery] Enrichment failed for Bengaluru Top 10 AI Startups In 2025 - Bangalore Vibe: 'psycopg2.extensions.connection' object has no attribute 'execute'
+INFO:careerloop.sources.company_discovery:[Discovery] Done: 0 companies enriched and stored
+    internet discovery done — querying DB for top companies...
+WARNING:careerloop.on_demand:[OnDemand] Phase A discovery failed: 'psycopg2.extensions.connection' object has no attribute 'execute'
+  [Phase A] 0 companies found.
+  [Phase A] portal scrape done — 0 jobs
+  [Phase B] searching job boards (parallel)...
+INFO:careerloop.sources.search_adapter:Search [1/6]: Senior Machine Learning Engineer applied AI product engineering AI-first startup Bangalore jobs
+WARNING:careerloop.sources.jobspy_adapter:python-jobspy not installed
+INFO:careerloop.on_demand:[OnDemand] JobSpy: 0 jobs
+WARNING:careerloop.sources.naukri_adapter:Naukri API returned 406
+INFO:careerloop.on_demand:[OnDemand] Naukri: 0 jobs
+INFO:careerloop.sources.remoteok_adapter:[RemoteOK] 30 jobs for 'Senior Machine Learning Engineer'
+INFO:careerloop.on_demand:[OnDemand] RemoteOK: 30 jobs
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [71643]
+INFO:     Started server process [71793]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:54951 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54951 - "GET /v1/me HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for connections to close. (CTRL+C to force quit)
+INFO:     127.0.0.1:54951 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [71793]
+INFO:     Stopping reloader process [70040]

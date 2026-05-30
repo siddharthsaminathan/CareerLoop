@@ -32,18 +32,18 @@ Sprint 6 delivered: 7 MVP API endpoints live, SSE scan streaming, Supabase JWT a
 
 ## System Status (Live)
 
-> Updated 2026-05-29, IST — REST API v1 live. 7 MVP endpoints deployed. SSE scan streaming with "Scan More" mode. Supabase JWT auth universal. TAL job card serializers. Web-first deployment strategy locked. Telegram/WhatsApp permanently delayed.
+> Updated 2026-05-30, IST — Core product loop stable. Auth works end-to-end. Onboarding loop fixed. Discovery pipeline producing 7 jobs (was 2). PKCE deadlock resolved. Inspect page fixed. Job scores 45-60 (calibration needed). SSE streaming functional but quality insufficient. Dark mode needs redesign.
 
 | System | % | Status | Blocking? | Notes |
 |--------|---|--------|-----------|-------|
-| **REST API (7 endpoints)** | **95%** | 🟢 | No | POST /v1/auth/me, GET /v1/me, GET /v1/me/preferences, GET /v1/briefs/latest, POST /v1/briefs/{id}/items/{idx}/select, GET /v1/jobs/{id}, POST /v1/jobs/{id}/save, POST /v1/jobs/{id}/skip, POST /v1/chat/message, POST /v1/scans, GET /v1/scans/{run_id}/events (SSE), GET /v1/scans/latest. 15/15 E2E verified. |
-| **SSE Scan Streaming** | **90%** | 🟢 | No | Timestamp watermark dedup, event ID dedup, 5-min timeout, "Scan More" mode for forced fresh discovery. Thread-safe worker with independent DB connection. |
-| **Supabase JWT Auth** | **95%** | 🟢 | No | HS256 verification, auto-provisioning with 300s in-process TTL cache. Universal across web/iOS/Android. |
-| **TAL Job Card Serializers** | **95%** | 🟢 | No | 3-tier logo fallback (explicit → Clearbit → initials avatar), fit_tier colors (emerald/amber/red), salary/description mapping. Never broken image. |
-| **Transport abstraction layer** | **100% → 🔴 DELAYED** | ⚫ | No | **Superseded by REST API.** Telegram/WhatsApp/webhook work permanently delayed. REST API is the transport layer now. |
-| **Multi-user onboarding** | **75%** | 🟢 | No | 3-user real E2E verified against Supabase + DeepSeek. 5 pillars extracted, CV→profile flow works, PROFILE_READY reached. _load_profile_data returns master_cv_markdown + has_cv. |
-| **LangGraph Chatbot Orchestrator** | **92%** | 🟢 | No | 2-node pipeline. GENERAL_CHAT returns real LLM. ActionResolver context injection. Live scan rendering. Messages persisted to DB. Conversation history injected into LLM context with last-20 messages. Chat history API endpoint live. SessionStore unified. Scan async. P0/P1 bug hunt complete. Resume editing wired via DeepSeek. |
-| **PostgresSaver Checkpointer** | **65%** | 🟡 | No | PostgresSaver wired into API path. Graceful MemorySaver fallback. Checkpoint tables verified. Interrupt/resume proof + multi-worker still needed. |
+| **REST API (7 endpoints)** | **97%** | 🟢 | No | POST /v1/auth/me, GET /v1/me, GET /v1/me/preferences, GET /v1/briefs/latest, POST /v1/briefs/{id}/items/{idx}/select, GET /v1/jobs/{id}, POST /v1/jobs/{id}/save, POST /v1/jobs/{id}/skip, POST /v1/chat/message, POST /v1/scans, GET /v1/scans/{run_id}/events (SSE), GET /v1/scans/latest. Inspect page enrichment wired. full_name overwrite bug fixed. |
+| **SSE Scan Streaming** | **75%** | 🟡 | **Yes** | Events arrive. Per-job match/reject visibility missing. Frontend render lags. User expectation: see each job discovered live with match/reject reason. Needs backend granularity + frontend real-time render. |
+| **Supabase JWT Auth** | **98%** | 🟢 | No | PKCE deadlock fixed — `api.setToken()` caches token on `onAuthStateChange`, bypasses `getSession()` deadlock. `full_name` overwrite on session restore fixed. `isAuthenticated = !!session` only. Refresh survives. |
+| **TAL Job Card Serializers** | **97%** | 🟢 | No | Inspect page enrichment from `daily_brief_items`. `company` field alias. non-null `route_recommendation`. RouteBadge null-safe. FitScoreBar NaN guard. |
+| **Transport abstraction layer** | **DELAYED** | ⚫ | No | Superseded by REST API. Telegram/WhatsApp permanently delayed. |
+| **Multi-user onboarding** | **90%** | 🟢 | No | Infinite loop fixed (greetings trap → LLM contextual). Conv_id race fixed. 10-message E2E verified: greet → name → CV → confirm → gap-fill → PROFILE_READY → profile queries all contextual. CV 5,475 chars in DB. onboarding_complete=true. |
+| **LangGraph Chatbot Orchestrator** | **95%** | 🟢 | No | ActionResolver SHOW_PROFILE vs GENERAL_CHAT routing fixed. Field queries answer specifically. Profile queries return direct answers not CV dump. PKCE deadlock resolved — chat now responds immediately after auth. |
+| **PostgresSaver Checkpointer** | **65%** | 🟡 | No | PostgresSaver wired into API path. Graceful MemorySaver fallback. Interrupt/resume proof + multi-worker still needed. |
 | **Application pack delivery** | **95%** | 🟢 | No | PackageAssembler + Playwright PDFs. E2E validated on real job. |
 | **Daily brief cron delivery** | **90%** | 🟢 | No | Daily Runner triggers scan and fully populates daily_briefs and daily_brief_items SQL tables. E2E database brief retrieval verified. |
 | India-first discovery | **98%** | 🟢 | No | OnDemandSearch as canonical engine. Unified discovery pipeline. 13 board sources. Canonical location policy enforced at choke point. IndiaFitEngine + IndiaFitLLM wired. Open: Company Identity Layer, Phase E ontology gate, Naukri dead. |
@@ -127,7 +127,52 @@ Sprint 6 delivered: 7 MVP API endpoints live, SSE scan streaming, Supabase JWT a
 
 ---
 
+## Open Blockers (Updated 2026-05-30)
+
+| # | Blocker | System | Priority |
+|---|---------|--------|----------|
+| **B-SSE-UX** | SSE streaming events arrive but too coarse — user wants per-job live visibility: "Checking Cutshort... AI Engineer @ Sarvam — MATCHED". Backend + frontend work needed. | SSE / Frontend | **P0** |
+| **B-DARK-MODE** | Dark mode UI is poor contrast and unpolished. Needs complete visual redesign pass. | Frontend | **P0** |
+| **B-SCORES** | Job scores for AI/ML roles in India averaging 45-60. Should be 70+ for senior AI engineer. `india_fit_engine.py` weights need calibration. | Scoring | **P1** |
+| **B-COMPANY-LOOKUP** | `company_registry_lookup` passes slug as UUID → SQL type error on every company lookup. Noisy logs, uses defaults. | Backend | **P1** |
+| **B-SUPERVISOR** | LangGraph scaffold exists but state contract/routing/resume interrupts not verified under load | Chat | P1 |
+| **B-DELIVERY** | Council generates PDFs but delivers them to nobody | Pack delivery | P1 |
+| **B-POSTGRESSAVER** | PostgresSaver checkpointer at 65% — Postgres checkpointing untested with API load | Backend | P1 |
+| **B-WORKER-THREADS** | Scan threads use in-process threading — no timeout kill, no lifecycle management | Backend | P1 |
+| B4 | Company career pages invisible | Discovery | P2 |
+| B5 | Decision compression UX not built | Triage | P2 |
+| B10 | No pre-render validation gate — sections silently drop | Rendering | P2 |
+
+---
+
 ## Session Log
+
+### 2026-05-30 — Session: Product Hardening — Auth, Discovery Pipeline & Core Loop
+
+**What was done:**
+- **Onboarding infinite loop fixed** — `_handle_waiting_cv` greetings trap replaced with `onboarding_agent.process()`. LLM generates contextual reply, saves state. Conv_id race condition fixed — stale in-memory session was overwriting DB conv_id on every onboarding step.
+- **Discovery pipeline: 2 → 7 jobs** — Ontology gate escape hatch in `_tag_jobs_with_ontology()`. Target-function title match → score 1.0. Data Engineer, ML Engineer, AI Engineer, Systems Architect all now PASS. Removed US-only boards (remoteok/remotive/weworkremotely) from default India scan.
+- **Supabase PKCE deadlock fixed** — `api.setToken()` caches access token on `onAuthStateChange`. `getHeaders()` uses cached token, bypassing `supabase.auth.getSession()` which deadlocked during code exchange. Both `POST /auth/me` and `GET /briefs/latest` were silently timing out for 15s.
+- **`full_name` overwrite bug fixed** — `_provision_user()` used `full_name or email` in ON CONFLICT UPDATE, wiping "Siddharth Saminathan" with email on every 5-min TTL cycle. Fixed to pass `full_name` separately.
+- **Auth persistence** — `isAuthenticated = !!session` (JWT is truth, not profile). `onAuthStateChange` only clears on explicit SIGNED_OUT. Supabase client pinned to localStorage.
+- **Inspect page blank screen fixed** — `RouteBadge` crashed on undefined route. `serializers.job_detail()` now always emits `company`, enrichment from `daily_brief_items`.
+- **BriefPage auth gate** — `loadBrief()` now waits for `isAuthenticated` before fetching. Prevents 401 timeout on OAuth callback.
+- **ActionResolver routing** — SHOW_PROFILE only for explicit document requests. Specific field queries route to GENERAL_CHAT which answers from profile context.
+- **Full E2E verified**: Auth ✅ · Conversation persists ✅ · Messages persist ✅ · Onboarding completes ✅ · Scan executes ✅ · SSE updates visible ✅ · Jobs in Daily Brief ✅ · Approve action exists ✅
+
+**Vision alignment verdict:** ✅ STRONGLY ALIGNED — The core product loop is now stable end-to-end. Every major subsystem (auth, onboarding, discovery, chat, brief) is verified working on real data for real user. This session closed the gap between "technically built" and "actually usable."
+
+**Deviations detected:**
+- SSE streaming exists but quality is below expectation — events are coarse, no per-job visibility. This is a P0 UX gap.
+- Dark mode UI needs a complete redesign — not blocking functionality but blocks user perception of product quality.
+- Job scores (45-60) are below expected range for senior AI engineer roles. Scoring calibration is a P1 quality issue.
+
+**Recommended next 3 actions:**
+1. **SSE streaming granularity** (P0) — emit per-job events with match/reject reason from `on_demand.py` pipeline phases. Wire frontend to display "Checking [source]... Found [role] @ [company] — MATCHED/REJECTED ([reason])".
+2. **Dark mode redesign** (P0) — complete visual overhaul of the dark palette for usability and polish.
+3. **Score calibration** (P1) — re-tune `india_fit_engine.py` weights for AI/ML/Data Engineering roles in India. Senior AI engineer with 4yr exp + production systems should score 70+ at Sarvam/DevRev/PhonePe.
+
+---
 
 ### 2026-05-30 — Session: Engineering Lead Sync — Architecture + Docs + Journal
 

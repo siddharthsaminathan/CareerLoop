@@ -70,9 +70,12 @@ def _provision_user(db, user_id: str, email: str, full_name: str, provider: str)
                 ON CONFLICT (id) DO UPDATE SET
                     last_active_at = NOW(),
                     email          = COALESCE(NULLIF(EXCLUDED.email, ''), careerloop.users.email),
-                    full_name      = COALESCE(NULLIF(EXCLUDED.full_name, ''), careerloop.users.full_name)
+                    -- Only update full_name when the JWT actually carries a real name.
+                    -- Restored sessions have empty user_metadata; passing (full_name or email)
+                    -- meant the email string replaced the real name every 5-minute TTL cycle.
+                    full_name      = COALESCE(NULLIF(%s, ''), careerloop.users.full_name)
                 """,
-                (user_id, email, full_name or email, provider or "web"),
+                (user_id, email, full_name or email, provider or "web", full_name),
             )
 
 

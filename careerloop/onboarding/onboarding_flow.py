@@ -59,6 +59,46 @@ class OnboardingFlow:
         step   = session.onboarding_step
         data   = session.temp_profile_data or {}
 
+        # Universal recovery commands
+        cleaned = text.strip().lower()
+        if cleaned in {"reset", "restart", "start over"}:
+            session.onboarding_step = STEP_IDLE
+            session.temp_profile_data = {}
+            if session.temp_profile_data is None:
+                session.temp_profile_data = {}
+            self._save(session)
+            return (
+                "Onboarding has been reset! Welcome to CareerLoop. **What's your full name?** "
+                "I'll search for your LinkedIn profile, or you can paste your CV text directly to start.",
+                UserJourneyState.NEW_USER
+            )
+            
+        if cleaned in {"help", "onboarding help"}:
+            return (
+                "💡 **CareerLoop Onboarding Help**\n\n"
+                "I am setting up your profile so I can generate tailored application packages for you. Available commands:\n"
+                "• **`reset` / `restart`**: Starts onboarding from the beginning.\n"
+                "• **`back`**: Moves back to the previous step.\n\n"
+                "Please paste your complete CV/resume text (minimum 80 characters) or enter your full name to proceed.",
+                UserJourneyState.NEW_USER
+            )
+
+        if cleaned in {"back", "go back"}:
+            if step in {STEP_CONFIRMING, STEP_COLLECTING, STEP_PROFILE_CONFIRMATION}:
+                session.onboarding_step = STEP_WAITING_CV
+                self._save(session)
+                return "Moved back. Please paste your complete CV or resume text here to proceed.", UserJourneyState.NEW_USER
+            elif step == STEP_WAITING_CV:
+                session.onboarding_step = STEP_IDLE
+                self._save(session)
+                return "Moved back. Welcome! What's your full name to get started?", UserJourneyState.NEW_USER
+            else:
+                return "You are at the first step. Cannot go back.", UserJourneyState.NEW_USER
+
+        # State validation: impossible states check
+        if state == UserJourneyState.PROFILE_READY and step != 0:
+            raise ValueError(f"Invalid state consistency: Journey state is PROFILE_READY but step is {step}. Resetting session.")
+
         if state == UserJourneyState.PROFILE_READY:
             return self._already_complete(data), UserJourneyState.PROFILE_READY
 
@@ -83,10 +123,20 @@ class OnboardingFlow:
     # ── Step handlers ─────────────────────────────────────────────────────────
 
     def _handle_idle(self, session: Session, text: str = "") -> Tuple[str, UserJourneyState]:
+        cleaned = text.strip()  # Fix NameError by binding cleaned
+        
+        # Direct CV paste check (Resume-first onboarding fallback)
+        if len(cleaned) >= 80:
+            session.onboarding_step = STEP_WAITING_CV
+            self._save(session)
+            return self._handle_waiting_cv(session, cleaned, {})
+            
+        conv_id = (session.temp_profile_data or {}).get("_active_conversation_id")
         session.temp_profile_data = {}
-        cleaned = text.strip()
-        # P0-04: If user already typed their name in the first message, go straight to identifying
-        if cleaned and len(cleaned) < 80:
+        if conv_id:
+            session.temp_profile_data["_active_conversation_id"] = conv_id
+        greetings = {"hi", "hello", "hey", "/start", "start", "hi!", "hello!", "hey!", "yo", "yo!"}
+        if cleaned and len(cleaned) < 80 and cleaned.lower() not in greetings:
             session.onboarding_step = STEP_IDENTIFYING
             self._save(session)
             return self._handle_identifying(session, cleaned, {})
@@ -103,7 +153,8 @@ class OnboardingFlow:
 
     def _handle_waiting_cv(self, session: Session, text: str, data: dict) -> Tuple[str, UserJourneyState]:
         # P0-5: Skip only allowed when we ALREADY have real CV content (not LinkedIn placeholder)
-        if text.strip().lower() in {"skip", "no", "later"}:
+        cleaned_text = text.strip().lower()
+        if cleaned_text in {"skip", "no", "later"}:
             cv = (data.get("cv_content") or "").strip()
             if cv and len(cv) >= 50:
                 return self._proceed_after_linkedin(session, data)
@@ -116,11 +167,13 @@ class OnboardingFlow:
             )
 
         if len(text.strip()) < 80:
-            return (
-                "That looks too short to be a full CV. Please paste your complete resume text, "
-                "or upload a PDF/DOCX file.",
-                UserJourneyState.NEW_USER,
-            )
+            # Short non-CV message: respond contextually via the onboarding agent instead of
+            # repeating a hardcoded string. This eliminates the robot loop where every greeting
+            # or frustrated message ("wtf", "do you know my name?") returns the same text forever.
+            updated_data, reply, _ = self.onboarding_agent.process(text, data)
+            session.temp_profile_data = updated_data
+            self._save(session)
+            return reply, UserJourneyState.NEW_USER
 
         # Extract structured fields from CV using LLM
         extracted = self.extraction_agent.extract(text)
@@ -194,6 +247,15 @@ class OnboardingFlow:
             session.onboarding_step = STEP_WAITING_CV
             self._save(session)
             return self._handle_waiting_cv(session, cleaned, data)
+
+        # Greeting detection inside Name Identification to prevent silent step updates
+        greetings = {"hi", "hello", "hey", "yo", "wtf", "help"}
+        if cleaned.lower() in greetings:
+            return (
+                "Welcome back! Please tell me your **full name** so I can search for your LinkedIn profile, "
+                "or paste your complete CV or resume text directly to get started.",
+                UserJourneyState.NEW_USER
+            )
 
         candidate = None
         try:
@@ -350,7 +412,6 @@ class OnboardingFlow:
         # rely on temp_profile_data for CV context, roles, and salary target.
         data.pop("_identity_card", None)
         data.pop("_identity_candidate", None)
-        data.pop("_active_conversation_id", None)
         session.temp_profile_data = data
         session.state = UserJourneyState.PROFILE_READY
         session.onboarding_step = 0
@@ -432,7 +493,7 @@ class OnboardingFlow:
                     merged_prefs = dict(existing_prefs)
                     for key in ["target_roles", "target_cities", "salary_expectations",
                                 "notice_period", "current_ctc", "linkedin_url",
-                                "current_company", "current_title"]:
+                                "current_company", "current_title", "years_of_experience"]:
                         next_value = clean(profile_data.get(key))
                         if next_value is not None:
                             merged_prefs[key] = next_value

@@ -1,0 +1,271 @@
+INFO:     Started server process [96132]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     127.0.0.1:59181 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59187 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59189 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59191 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59441 - "OPTIONS /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59442 - "OPTIONS /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59441 - "GET /v1/chat/history HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:59442 - "GET /v1/chat/history HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:59756 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59845 - "OPTIONS /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59845 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59845 - "OPTIONS /v1/me/preferences HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59847 - "OPTIONS /v1/me/preferences HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59847 - "OPTIONS /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59852 - "OPTIONS /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59845 - "GET /v1/me/preferences HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59856 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59852 - "GET /v1/me/preferences HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=32 conversation_id=c8b46264-f22
+INFO:     127.0.0.1:59857 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=32 conversation_id=c8b46264-f22
+INFO:     127.0.0.1:59852 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59852 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59852 - "GET /v1/me/preferences HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59856 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=32 conversation_id=c8b46264-f22
+INFO:     127.0.0.1:59857 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59845 - "GET /v1/me/preferences HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=32 conversation_id=c8b46264-f22
+INFO:     127.0.0.1:59856 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59856 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59856 - "GET /v1/me/preferences HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59857 - "POST /v1/auth/me HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=32 conversation_id=c8b46264-f22
+INFO:     127.0.0.1:59845 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59858 - "GET /v1/me/preferences HTTP/1.1" 200 OK
+INFO:careerloop_api.services.chat:CHAT_HISTORY_RESTORED user_id=730d5bab-258 messages=32 conversation_id=c8b46264-f22
+INFO:     127.0.0.1:59857 - "GET /v1/chat/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59902 - "OPTIONS /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59904 - "OPTIONS /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59902 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59904 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59906 - "OPTIONS /v1/scans HTTP/1.1" 200 OK
+INFO:careerloop_api.services.scan:Scan thread started for user 730d5bab run_id eac6f874fae7 mode=scan_more
+INFO:     127.0.0.1:59906 - "POST /v1/scans HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59906 - "OPTIONS /v1/scans/eac6f874fae7/events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59909 - "GET /v1/scans/eac6f874fae7/events HTTP/1.1" 200 OK
+  [Archetype] role='AI Product Engineer' | function='applied AI product engineering' | market='B2B enterprise'
+  [Archetype] must_have=['product', 'customer-facing', 'applied AI', 'cross-functional', 'system design', 'LLM', 'behavioral analytics']
+  [Archetype] avoid=['research', 'data entry', 'support engineer', 'hardware', 'infra only', 'generic SWE', 'manual testing']
+  [Queries] 8 board queries: ['ai product engineer applied AI product engineering AI-first startup Bangalore jobs', 'ai product engineer applied AI product engineering AI-first startup hiring Bangalore 2025', '"AI product engineer" jobs in Bangalore', '"AI product engineer" hiring Bangalore site:linkedin.com/jobs/view']
+  [Phase A] DETACHED — skipping employer discovery (Phase B→G mode)
+  [Phase B] searching job boards (parallel)...
+INFO:careerloop.sources.search_adapter:Search [1/6]: ai product engineer applied AI product engineering AI-first startup Bangalore jobs
+WARNING:careerloop.sources.jobspy_adapter:python-jobspy not installed
+INFO:careerloop.on_demand:[OnDemand] JobSpy: 0 jobs
+WARNING:careerloop.sources.naukri_adapter:Naukri API returned 406
+INFO:careerloop.on_demand:[OnDemand] Naukri: 0 jobs
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Ainstahyre.com%20%22AI%20Product%20Engineer%22%20%22Bangalore%22 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aiimjobs.com%20%22AI%20Product%20Engineer%22%20%22Bangalore%22 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Awellfound.com/l/job-listings%20%22AI%20Product%20Engineer%22%20%22Bangalore%22 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com/job-listing%20AI%20Product%20Engineer%20Bangalore%20India 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20Product%20Engineer%22%20Bangalore%20site%3Afoundit.in 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Acutshort.io/job%20%22AI%20Product%20Engineer%22%20%22Bangalore%22 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.brave.com/search?q=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Bangalore%22&source=web 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Bangalore%22&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=HKr2KVwFhWWWA2W_qaVMM2Yg;_ylu=TthEw4VF8MNEvlUS5dDh7lnsZXVJ0OP_0hps2yyW8aPj3b0?p=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Bangalore%22 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Bangalore%22&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=25QKZ0Z3jPHL2my6vZ_JEafc;_ylu=nfYe9L1kEctcvuzZVqpBsaITMxbcZfp1futOCbs8Ezu0BCY?p=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=-612PqmiqmHbWxJMoBkI9mbJ;_ylu=E3cNP2b89lBrL8YBXPpjrneAUH9E2FY5oSIhC-BZN0hkih4?p=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in 200
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India&limit=1 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Ajobs.lever.co%20Bangalore%20India 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=LpH52Rz6DGJWbc4CZU0VOH68;_ylu=9KzpZnL0IC7DMrEgON3lnNN4pIAoPTCU9rWcox8yOYr77-U?p=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Bangalore%22 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Bangalore%22&source=web 429
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20engineer%20applied%20AI%20product%20engineering%20AI-first%20startup%20Bangalore%20jobs 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Bangalore%22 403
+INFO:primp:response: https://search.brave.com/search?q=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in&source=web 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%252Fjob-listing%2BAI%2BProduct%2BEngineer%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGPKu69AGIjCDUG9Opi53e8dE8JuIf7z_Q1uZWwFDsfO8eYyVZPX9nZ1fuUjwNfLFa7bqcYvtxSwyAnJSWgFD 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2BProduct%2BEngineer%2522%2BBangalore%2Bsite%253Afoundit.in%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGPKu69AGIjD1j9rqrxbMltRqiySrCKwJ73QcUZXxpN0XOgHO1gWtNRXz7daYQF1ZpvOfNEy-CVoyAnJSWgFD 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Bangalore%22&limit=1 200
+INFO:primp:response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Bangalore%22&web=1&searchid=8020543 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Bangalore%22&web=1&searchid=5599676 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India&web=1&searchid=1345745 200
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in&web=1&searchid=1388624 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Bangalore%22&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in&limit=1 200
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Bangalore%22 403
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=ai+product+engineer+applied+AI+product+engineering+AI-first+startup+Bangalore+jobs&limit=1 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Acutshort.io%252Fjob%2B%2522AI%2BProduct%2BEngineer%2522%2B%2522Bangalore%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGPOu69AGIjD5oJ6E_Ri7LxW7ekeHpSH_JrBErv1moAoryQ0YZ6NYCSzEN2rWrwO2YMxC0e8AjgoyAnJSWgFD 429
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Acutshort.io%2Fjob+%22AI+Product+Engineer%22+%22Bangalore%22&source=web 429
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Ajobs.lever.co%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGPOu69AGIjAadmiwN0O42a7HHZpgwNn5mQ3nb0yqfkNySGDXrdDF0ssKYpiPo3WhDA0q0wEgiUYyAnJSWgFD 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=I0vzGQ_E8gUmoPqrs-F3fRw1;_ylu=suLFcNcan7SeYcNCWqRL5ujgvkjxymJkOkgD0R2Xo3zwK40?p=site%3Aglassdoor.com%2Fjob-listing+AI+Product+Engineer+Bangalore+India 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Ajobs.lever.co+Bangalore+India&web=1&searchid=1999663 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Bangalore%22&web=1&searchid=4370049 200
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Bangalore%22&web=1&searchid=5587362 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Bangalore%22 403
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+Product+Engineer%22+Bangalore+site%3Afoundit.in 403
+INFO:careerloop.sources.monster_adapter:[Monster/foundit] DDG: AI Product Engineer in Bangalore: 13 jobs
+INFO:careerloop.on_demand:[OnDemand] Monster/foundit: 13 jobs
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Ainstahyre.com%2B%2522AI%2BProduct%2BEngineer%2522%2B%2522Bangalore%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGPWu69AGIjBTx5aO4foWzB485seGy-nx8KCyRCOS7okR-ehzTGlhvK3mYBQzDYFq60Hek4xjP-QyAnJSWgFD 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aiimjobs.com%2B%2522AI%2BProduct%2BEngineer%2522%2B%2522Bangalore%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGPau69AGIjBnUf8rTJ8nX2hXSFNrmljZeEGcOnzpx0NPsM8GENZFCOg3lOdFA2nGqY_s8SAMRzYyAnJSWgFD 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Awellfound.com%252Fl%252Fjob-listings%2B%2522AI%2BProduct%2BEngineer%2522%2B%2522Bangalore%2522%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGPau69AGIjBLky73C1B-9Hh_DWW86RsGKXATlfaj9U6iNbFt_1dZVxSPBHIdYByZC88f6mKdwo0yAnJSWgFD 429
+INFO:primp:response: https://search.brave.com/search?q=site%3Awellfound.com%2Fl%2Fjob-listings+%22AI+Product+Engineer%22+%22Bangalore%22&source=web 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=8h2ltYlYgGODfEMi4PNr6ghT;_ylu=0oksOnTC77IbP_YSg0limVJMSu1n2Bbl7OPRmgsN5M4emSo?p=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Bangalore%22 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=Uxqyyy7gMwkk2JZSsgWjX0EI;_ylu=cVOTVmgnTmzy9ScjRsMdzst-TnBHGwjBPfs8hEa4b2sA8Go?p=site%3Aiimjobs.com+%22AI+Product+Engineer%22+%22Bangalore%22 200
+INFO:careerloop.on_demand:[OnDemand] Wellfound: 0 jobs
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://yandex.com/search/site/?text=ai+product+engineer+applied+AI+product+engineering+AI-first+startup+Bangalore+jobs&web=1&searchid=1276729 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=site%3Aglassdoor.com%20%22job-listing%22%20%22AI%20Product%20Engineer%22%20Bangalore 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aboards.greenhouse.io%20Bangalore%20India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore&limit=1 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Aglassdoor.com%2B%2522job-listing%2522%2B%2522AI%2BProduct%2BEngineer%2522%2BBangalore%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGPiu69AGIjBnTFZdvKBki5EnmlljmPi4OFNnUz51ytyQn_bCOeQpvyOEKKLa_GtxdsNQw7PxI3syAnJSWgFD 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&web=1&searchid=8231876 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&limit=1 200
+INFO:careerloop.sources.search_adapter:Search [2/6]: ai product engineer applied AI product engineering AI-first startup hiring Bangalore 2025
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:careerloop.sources.iimjobs_adapter:[IIMJobs] 5 jobs for 'AI Product Engineer' / 'Bangalore'
+INFO:careerloop.on_demand:[OnDemand] IIMJobs: 5 jobs
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=ai%20product%20engineer%20applied%20AI%20product%20engineering%20AI-first%20startup%20hiring%20Bangalore%202025 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=ai+product+engineer+applied+AI+product+engineering+AI-first+startup+hiring+Bangalore+2025&limit=1 200
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore 403
+INFO:primp:response: https://www.mojeek.com/search?q=site%3Ainstahyre.com+%22AI+Product+Engineer%22+%22Bangalore%22 403
+INFO:careerloop.sources.instahyre_adapter:[Instahyre] 0 jobs for 'AI Product Engineer' / 'Bangalore'
+INFO:careerloop.on_demand:[OnDemand] Instahyre: 0 jobs
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:primp:response: https://yandex.com/search/site/?text=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore&web=1&searchid=9081546 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:primp:response: https://search.brave.com/search?q=site%3Aglassdoor.com+%22job-listing%22+%22AI+Product+Engineer%22+Bangalore&source=web 429
+INFO:careerloop.sources.glassdoor_adapter:[Glassdoor] AI Product Engineer in Bangalore: 6 jobs
+INFO:careerloop.on_demand:[OnDemand] Glassdoor: 6 jobs
+INFO:ddgs.ddgs:Error in engine mojeek: TimeoutException(TimeoutError('error sending request for url (https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India) > operation timed out'))
+INFO:careerloop.sources.search_adapter:Search [3/6]: "AI product engineer" jobs in Bangalore
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Aboards.greenhouse.io%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGP2u69AGIjDoEvRIuOsoArNBox4a1zgdtZTuPLoHVp8elgw6mCQMlxKkHsztPklpua-w4EVdQRsyAnJSWgFD 429
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20jobs%20in%20Bangalore 200
+INFO:careerloop.sources.cutshort_adapter:[Cutshort] 6 jobs for 'AI Product Engineer' / 'Bangalore'
+INFO:careerloop.on_demand:[OnDemand] Cutshort: 6 jobs
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 200 OK"
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aboards.greenhouse.io+Bangalore+India&source=web 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+jobs+in+Bangalore&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=f8_wPF4ei-ovFuxvO_xn04gR;_ylu=_Un6fVUJFAWW6e46UX86FeMjT0U-2pVuUDDsjZsGW4wSjns?p=%22AI+product+engineer%22+jobs+in+Bangalore 200
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aashbyhq.com%20Bangalore%20India 200
+INFO:primp:response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India&limit=1 200
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+jobs+in+Bangalore&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+jobs+in+Bangalore 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Aashbyhq.com%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGISv69AGIjAG9hCvao6BaEMhWcFOBJq9ibJMrcjVznKzTG6uehON8Hkm7lpHo7UXkzJw988Ola8yAnJSWgFD 429
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India&source=web 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=qXUIBL45WqhcbV85PQSTdPC0;_ylu=3Ufz1M3l_huwjY38LAQn2WwJ7gzlWJMKwH9VyW9GBknnQTM?p=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:careerloop.sources.search_adapter:Search [4/6]: "AI product engineer" hiring Bangalore site:linkedin.com/jobs/view
+INFO:primp:response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aashbyhq.com+Bangalore+India&web=1&searchid=3106789 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=AI%20Product%20Engineer%20site%3Aapply.workable.com%20Bangalore%20India 200
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20hiring%20Bangalore%20site%3Alinkedin.com/jobs/view 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DAI%2BProduct%2BEngineer%2Bsite%253Aapply.workable.com%2BBangalore%2BIndia%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGIev69AGIjCuI7tGWrHdwyCrqmHmJ-Y185PK3NxsHmAAtx8HBRiigdEmX4yOh51NdiU8XobUSo4yAnJSWgFD 429
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=AI+Product+Engineer+site%3Aapply.workable.com+Bangalore+India&limit=1 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&limit=1 200
+INFO:primp:response: https://search.yahoo.com/search;_ylt=_mhijxEX2NNLK8kaoiuckuWl;_ylu=2oQO52IPKsit7XErF2WfOC91-XIBF2SS71R7RSQVLF2NVXI?p=AI+Product+Engineer+site%3Aapply.workable.com+Bangalore+India 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2Bhiring%2BBangalore%2Bsite%253Alinkedin.com%252Fjobs%252Fview%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGIiv69AGIjBfHb-3yqe1CT3U-nwgRt8TrSIW0P3zoZbd9t1s9J_k_anw47Yyf_dBsdd_M93RC6IyAnJSWgFD 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=kg_AGwwYQQGW4Xdu6pKk4qQB;_ylu=p7vQ2Swy0_KlEQmDT5-4mRjeSe4stU8NvEbSKMaE1ilXlsI?p=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview 200
+INFO:primp:response: https://yandex.com/search/site/?text=AI+Product+Engineer+site%3Aapply.workable.com+Bangalore+India&web=1&searchid=6963445 200
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview 403
+INFO:primp:response: https://www.mojeek.com/search?q=AI+Product+Engineer+site%3Aapply.workable.com+Bangalore+India 200
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&source=web 429
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+hiring+Bangalore+site%3Alinkedin.com%2Fjobs%2Fview&web=1&searchid=5004331 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://search.brave.com/search?q=AI+Product+Engineer+site%3Aapply.workable.com+Bangalore+India&source=web 429
+INFO:careerloop.sources.google_jobs_adapter:[GoogleJobs] AI Product Engineer in Bangalore: 27 jobs
+INFO:careerloop.on_demand:[OnDemand] GoogleJobs: 27 jobs
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:careerloop.sources.search_adapter:Search [5/6]: "AI product engineer" Bangalore site:naukri.com
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Bangalore%20site%3Anaukri.com 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com&limit=1 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.startpage.com/sp/captcha 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2BBangalore%2Bsite%253Anaukri.com%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJSv69AGIjD5wrVou5zvc4IG1z1VDkNNORomZAEFoxxaic-MzDE0rim75CLpyMs8tOa7GioWg0syAnJSWgFD 429
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.yahoo.com/search;_ylt=ACU-qQfQ7jpF80lVd5X6eNZ_;_ylu=HN_49vRjVXcqFKA2BRqh-aSW54OrrlgA6AhwSyH2-ZO7cs4?p=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com 200
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com 403
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+Bangalore+site%3Anaukri.com&web=1&searchid=2049511 200
+INFO:careerloop.sources.search_adapter:Search [6/6]: "AI product engineer" Bangalore site:cutshort.io
+INFO:careerloop.sources.search_adapter:Google Search returned 0 organic hits, trying DDG fallback...
+INFO:primp:response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=%22AI%20product%20engineer%22%20Bangalore%20site%3Acutshort.io 200
+INFO:primp:response: https://grokipedia.com/api/typeahead?query=%22AI+product+engineer%22+Bangalore+site%3Acutshort.io&limit=1 200
+INFO:httpx:HTTP Request: POST https://html.duckduckgo.com/html/ "HTTP/2 202 Accepted"
+INFO:primp:response: https://search.brave.com/search?q=%22AI+product+engineer%22+Bangalore+site%3Acutshort.io&source=web 429
+INFO:primp:response: https://www.mojeek.com/search?q=%22AI+product+engineer%22+Bangalore+site%3Acutshort.io 403
+INFO:primp:response: https://yandex.com/search/site/?text=%22AI+product+engineer%22+Bangalore+site%3Acutshort.io&web=1&searchid=7997844 200
+INFO:primp:response: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3D%2522AI%2Bproduct%2Bengineer%2522%2BBangalore%2Bsite%253Acutshort.io%26filter%3D1%26start%3D0%26hl%3Den-IN%26lr%3Dlang_en%26cr%3DcountryIN&hl=en-IN&q=EgS3UszcGJ6v69AGIjB-kuW9UcBJKzka16NHjjwcHICIFxacrf_TSyikIdv2SvisN3S4n-3uk8UhAgRZAtMyAnJSWgFD 429
+INFO:primp:response: https://search.yahoo.com/search;_ylt=ABbQZYFHFt3gTaUGfa5DkeF7;_ylu=2A8kUG9XeUFsKati1An4jWOfQi-NdRFHHnaDv39k70bLyE0?p=%22AI+product+engineer%22+Bangalore+site%3Acutshort.io 200
+INFO:careerloop.sources.search_adapter:Total candidate URLs: 24
+INFO:careerloop.on_demand:[OnDemand] Board health: {'jobspy': 0, 'naukri': 0, 'monster': 13, 'wellfound': 0, 'iimjobs': 5, 'instahyre': 0, 'glassdoor': 6, 'cutshort': 6, 'google_jobs': 27, 'ddg': 14}
+  [Phase B] per-source: cutshort:6 | ddg:14 | glassdoor:6 | google_jobs:27 | iimjobs:5 | instahyre:0 | jobspy:0 | monster:13 | naukri:0 | wellfound:0
+  [Phase B] boards done — 70 jobs (archetype title-rejected 1)
+  [Pipeline] total raw candidates: 70 (A:0 + B:70)
+INFO:careerloop.india_filter:India filter: 61 passed, 9 rejected
+  [Filter] India filter: 70 → 61
+  [Phase E] ontology gate (archetype_match>=0.15): 61 → 21 (40 dropped)
+  [Phase E] role similarity filter: 21 candidates...
+INFO:careerloop.role_similarity:[RoleSimilarity] sentence-transformers not installed, using token overlap
+  [Phase E] role filter done: 21 → 12 relevant (9 rejected)
+INFO:careerloop.apply_route:Canonical dedup: 12 → 12 unique jobs
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'AI Solution Engineer': invalid input syntax for type uuid: "ai-solution-engineer"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'ai-soluti...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'AHOY': invalid input syntax for type uuid: "ahoy"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'ahoy' OR ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Figr': invalid input syntax for type uuid: "figr"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'figr' OR ...
+                                                             ^
+ — using defaults
+WARNING:careerloop.india_fit_engine:company_registry_lookup failed for 'Cutshort': invalid input syntax for type uuid: "cutshort"
+LINE 1: ...st_job_count FROM careerloop.companies WHERE id = 'cutshort'...
+                                                             ^
+ — using defaults
+  [Phase F] LLM validator (DeepSeek): validating top-9 jobs...
+INFO:careerloop.on_demand:[OnDemand] LLM validator: 9 → 7 (2 rejected)
+  [Phase F] LLM validator done: 9 → 7
+INFO:careerloop_api.services.scan.persist:Persisted 7 jobs to careerloop.jobs for user 730d5bab
+INFO:careerloop_api.services.scan:Scan-more: filtered 2 already-answered jobs for user 730d5bab
+INFO:careerloop_api.services.scan:SCAN_METRICS run=eac6f874fae7 TTFE=0.00s time_to_first_job=89.23s time_to_first_match=96.59s time_to_brief=99.71s phase_a=False candidates=70 appended=7
+INFO:careerloop_api.services.scan:scan_more (OnDemandSearch) done: run=eac6f874fae7 candidates=70 appended=7
+INFO:careerloop_api.services.scan:Scan cleanup: run_id=eac6f874fae7 user=730d5bab — guards released
+INFO:     127.0.0.1:60177 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60177 - "GET /v1/briefs/latest?offset=0 HTTP/1.1" 200 OK

@@ -147,7 +147,7 @@ def main():
 
     # 5. gap-fill if still NEW_USER
     if state == "NEW_USER":
-        gap_answer = "Target roles: Senior ML Engineer. Cities: Bangalore, Remote. Salary: 40-55 LPA. Notice: 60 days. Mode: aggressive."
+        gap_answer = "Target roles: Senior ML Engineer. Cities: Bangalore, Remote. Salary: 40-55 LPA. Notice: 60 days. Current CTC: 30 LPA. Mode: aggressive."
         b = show("chat: <gap-fill details>", client.post("/v1/chat/message", headers=auth, json={"text": gap_answer}))
         state = (b.get("data") or {}).get("state")
         # one more confirm if needed

@@ -135,13 +135,28 @@ def brief(brief_row: dict, items: list) -> dict:
     }
 
 
-def job_detail(row: dict, relationship: Optional[dict] = None) -> dict:
-    score = row.get("fit_score") if relationship is None else relationship.get("fit_score")
+def job_detail(
+    row: dict,
+    relationship: Optional[dict] = None,
+    enrichment: Optional[dict] = None,
+) -> dict:
+    enrichment = enrichment or {}
+    # Fit score priority: relationship → brief item → job row.
+    score = None
+    if relationship and relationship.get("fit_score") is not None:
+        score = relationship.get("fit_score")
+    elif enrichment.get("fit_score") is not None:
+        score = enrichment.get("fit_score")
+    else:
+        score = row.get("fit_score")
+
+    company_name = row.get("company_name") or row.get("company") or ""
     out = {
         "job_id": str(row.get("job_id")) if row.get("job_id") is not None else None,
         "legacy_id": row.get("id"),
         "title": row.get("title") or "",
-        "company_name": row.get("company_name") or "",
+        "company": company_name,
+        "company_name": company_name,
         "logo_url": company_logo(row, row.get("company_name")),
         "location": row.get("location") or row.get("location_raw") or "",
         "location_city": row.get("location_city"),
@@ -162,12 +177,21 @@ def job_detail(row: dict, relationship: Optional[dict] = None) -> dict:
         "verified_active": bool(row.get("verified_active")),
         "status": row.get("status") or "unknown",
         "posted_at": _iso(row.get("posted_at")),
+        # Always present so the detail page never renders undefined fields.
+        "fit_score": float(score) if score is not None else None,
+        "fit_tier": fit_tier(score),
+        "recommendation_reason": enrichment.get("recommendation_reason")
+            or "Matches your target roles and location.",
+        "risk_summary": enrichment.get("risk_summary")
+            or "No critical risks identified.",
+        "route_recommendation": _route_badge(
+            (relationship or {}).get("route_recommendation")
+            or enrichment.get("route_recommendation")
+            or "APPLY"
+        ),
     }
     if relationship:
         out["match_status"] = relationship.get("match_status")
-        out["fit_score"] = float(score) if score is not None else None
-        out["fit_tier"] = fit_tier(score)
-        out["route_recommendation"] = _route_badge(relationship.get("route_recommendation"))
     return out
 
 

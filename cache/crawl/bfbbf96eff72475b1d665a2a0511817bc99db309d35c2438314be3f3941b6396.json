@@ -1,0 +1,67 @@
+{
+  "role": "senior machine learning engineer",
+  "city": "bangalore",
+  "cached_at": 1780139866.678464,
+  "expires_at": 1780168666.678464,
+  "job_count": 2,
+  "jobs": [
+    {
+      "title": "Job Application for Senior Machine Learning Engineer",
+      "company": "Wayve",
+      "location": "Bangalore",
+      "url": "https://boards.greenhouse.io/wayve/jobs/7279313002",
+      "apply_url": "https://boards.greenhouse.io/wayve/jobs/7279313002",
+      "description": "Collaborating with cross-functional teams to integrate machine learning solutions into our autonomous driving platform. Contributing to the creation of a collaborative and innovative engineering culture.",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "senior",
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains bangalore",
+      "_canonical_fp": "18442e78f67dc73f",
+      "canonical": true,
+      "canonical_id": "18442e78f67dc73f",
+      "apply_route": {
+        "best_apply_route": "greenhouse",
+        "apply_url": "https://boards.greenhouse.io/wayve/jobs/7279313002",
+        "backup_urls": [],
+        "reason": "best route: greenhouse (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Senior Machine Learning Engineer",
+      "company": "Cutshort",
+      "location": "",
+      "url": "https://cutshort.io/job/Senior-Machine-Learning-Engineer-Bengaluru-Bangalore-Autonomize-AI-cQffhpoX",
+      "apply_url": "https://cutshort.io/job/Senior-Machine-Learning-Engineer-Bengaluru-Bangalore-Autonomize-AI-cQffhpoX",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "Senior Machine Learning Engineer\nat\nAutonomize AI\nApply to this job\nSenior Machine Learning Engineer\nAutonomize AI\nCompany\nHome\nSenior Machine Learning Engineer\nat\nAutonomize AI\nPosted by\nMarcus Sailo\nApply to this job\n5\n- 15 yrs\nBest in industry\nBengaluru (Bangalore)\nSkills\nLarge Language Models (LLM) tuning\nPython\nPyTorch\nTensorFlow\nAbout Autonomize AI\nAutonomize AI is on a mission to help organizations make sense of the world's data. We help organizations harness the full potential of data to unlock business outcomes. Unstructured dark data contains nuggets of information that when paired with human context will unlock some of the most impactful insights for most organizations, and it’s our goal to make that process effortless and accessible.\nWe are an ambitious team committed to human-machine collaboration. Our founders are serial entrepreneurs passionate about data and AI and have started and scaled several companies to successful exits. We are a global, remote company with expertise in building amazing data products, captivating human experiences, disrupting industries, being ridiculously funny, and of course scaling AI\nThe Opportunity\nAs a Senior Machine Learning Engineer at Autonomize, you will lead the development and deployment of machine learning solutions with an emphasis on large language models (LLMs), vision models, and classic NLP (Natural Language Processing) models. The ideal candidate will have a proven track record in these areas, particularly within healthcare contexts, and will play a significant role in advancing our AI-driven healthcare optimized AI Copilots and Agents..\nWhat You’ll Do\nHelp fine-tune or prompt engineer large language models (LLMs) for various healthcare applications across various customer engagements.\nDevelop and refine our approach to handling vision based data using state-of-the-art VLM based models capable of processing and analyzing medical documents, healthcare forms in various formats and other visual data accurately.\nCreate and enhance classic NLP models to understand and generate human language in healthcare settings, supporting clinical documentation, and patient interaction.\nCollaborate with multi-disciplinary teams including data scientists,ml engineers, healthcare clients, and product managers to deliver robust solutions.\nEnsure models are efficiently deployed and integrated into healthcare systems, maintaining high performance and scalability.\nMentor and provide guidance to junior engineers and data scientists, fostering a culture of continuous learning and innovation.\nConduct rigorous testing, validation, and tuning of models to ensure accuracy, reliability, and compliance with healthcare standards.\nDeep understanding of various training techniques including distributed training on GPUs and TPUs.\nStay informed on the latest research, tools, and technologies in machine learning, particularly those applicable to language and vision processing in healthcare.\nDocument methodologies, model architectures, and project outcomes effectively for both technical and non-technical audiences.\nYou’re a Fit If You Have\nBachelor's or Master's degree in Computer Science, Engineering, Data Science, or a related field.\n5-7 years of experience in machine learning engineering, with a significant track record in the developing production grade models and model pipelines in a regulated industry such as healthcare.\nHands-on expertise in working with large language models (e.g., GPT, BERT), computer vision models, and classic NLP technologies.\nProficient in programming languages such as Python, with extensive experience in ML libraries/frameworks like TensorFlow, PyTorch, OpenCV, etc.\nStrong understanding of deep learning techniques, model fine-tuning, hyper parameter optimization, and model optimization\nProven experience in deploying and managing ML models in production environments.\nExcellent analytical skills, with a problem-solving mindset and the ability to think strategically.\nStrong communi",
+      "skills": [],
+      "salary": "",
+      "work_mode": "",
+      "_source_type": "generic_http",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "senior",
+        "archetype_match": 0.25,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "9f863fc1d4034a99",
+      "canonical": true,
+      "canonical_id": "9f863fc1d4034a99",
+      "apply_route": {
+        "best_apply_route": "cutshort",
+        "apply_url": "https://cutshort.io/job/Senior-Machine-Learning-Engineer-Bengaluru-Bangalore-Autonomize-AI-cQffhpoX",
+        "backup_urls": [],
+        "reason": "best route: cutshort (priority 4)",
+        "risk": "medium"
+      }
+    }
+  ]
+}

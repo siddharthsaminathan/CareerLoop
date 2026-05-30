@@ -1,0 +1,31 @@
+INFO:     Started server process [76449]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+INFO:     127.0.0.1:56770 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56777 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.sources.identity_provider:SerpAPI not configured — skipping LinkedIn search.
+INFO:     127.0.0.1:56779 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56798 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56804 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56809 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56852 - "GET /v1/me/preferences HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:57049 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.sources.identity_provider:SerpAPI not configured — skipping LinkedIn search.
+INFO:     127.0.0.1:57052 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57056 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57061 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57063 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57066 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.onboarding.onboarding_flow:Welcome brief seeded for user 730d5bab-258 (date=2026-05-30)
+INFO:     127.0.0.1:57071 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.memory.checkpointer:checkpointer: PostgresSaver connected successfully
+WARNING:langgraph.checkpoint.serde.jsonplus:Deserializing unregistered type careerloop.session.models.ActionType from checkpoint. This will be blocked in a future version. Set LANGGRAPH_STRICT_MSGPACK=true to block now, or add to allowed_msgpack_modules to allow explicitly: [('careerloop.session.models', 'ActionType')]
+WARNING:langgraph.checkpoint.serde.jsonplus:Deserializing unregistered type careerloop.session.models.Action from checkpoint. This will be blocked in a future version. Set LANGGRAPH_STRICT_MSGPACK=true to block now, or add to allowed_msgpack_modules to allow explicitly: [('careerloop.session.models', 'Action')]
+WARNING:langgraph.checkpoint.serde.jsonplus:Deserializing unregistered type careerloop.session.models.ResponseEnvelope from checkpoint. This will be blocked in a future version. Set LANGGRAPH_STRICT_MSGPACK=true to block now, or add to allowed_msgpack_modules to allow explicitly: [('careerloop.session.models', 'ResponseEnvelope')]
+INFO:careerloop.session.supervisor_graph:Action resolved: SHOW_PROFILE (confidence: 0.95)
+INFO:     127.0.0.1:57075 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.session.supervisor_graph:Action resolved: SHOW_PROFILE (confidence: 0.95)
+INFO:     127.0.0.1:57083 - "POST /v1/chat/message HTTP/1.1" 200 OK
+INFO:careerloop.session.supervisor_graph:Action resolved: SHOW_PROFILE (confidence: 0.95)
+INFO:     127.0.0.1:57090 - "POST /v1/chat/message HTTP/1.1" 200 OK

@@ -1,97 +1,97 @@
 {
-  "timestamp": "2026-05-30T08:44:39.375940",
-  "test_user_id": "f21102d1-58d3-4c21-821a-1c634f152a0a",
+  "timestamp": "2026-05-30T10:13:41.909920",
+  "test_user_id": "6610c82b-2dba-4a40-a043-f12b507af998",
   "requests": [
-    {
-      "thread_idx": 4,
-      "status_code": 409,
-      "latency_ms": 195.51,
-      "body": {
-        "ok": false,
-        "data": null,
-        "error": {
-          "message": "A scan is already running (ID: cd3f1a251437). Please wait for it to complete.",
-          "code": "scan_already_running"
-        },
-        "meta": {
-          "request_id": "f3d4e7cd-f026-49a6-92de-ce27c7c5aace",
-          "timestamp": "2026-05-30T08:44:39.190235+00:00"
-        }
-      },
-      "start_time": 1780130678.995861
-    },
     {
       "thread_idx": 2,
       "status_code": 409,
-      "latency_ms": 194.79,
+      "latency_ms": 256.24,
       "body": {
         "ok": false,
         "data": null,
         "error": {
-          "message": "A scan is already running (ID: cd3f1a251437). Please wait for it to complete.",
+          "message": "A scan is already running (ID: a33629c74f9b). Please wait for it to complete.",
           "code": "scan_already_running"
         },
         "meta": {
-          "request_id": "6fb7220e-6790-45e2-82b8-19c70ad9970e",
-          "timestamp": "2026-05-30T08:44:39.189978+00:00"
+          "request_id": "36266c33-73d0-4a9c-bf09-124fdb75cf15",
+          "timestamp": "2026-05-30T10:13:41.649731+00:00"
         }
       },
-      "start_time": 1780130678.99617
+      "start_time": 1780136021.394869
     },
     {
       "thread_idx": 1,
       "status_code": 409,
-      "latency_ms": 195.1,
+      "latency_ms": 255.09,
       "body": {
         "ok": false,
         "data": null,
         "error": {
-          "message": "A scan is already running (ID: cd3f1a251437). Please wait for it to complete.",
+          "message": "A scan is already running (ID: a33629c74f9b). Please wait for it to complete.",
           "code": "scan_already_running"
         },
         "meta": {
-          "request_id": "7764c127-8bb9-4959-b6fc-aa11d42000e8",
-          "timestamp": "2026-05-30T08:44:39.190389+00:00"
+          "request_id": "8bf8dd51-46e9-4afb-bdd6-c7a977368a98",
+          "timestamp": "2026-05-30T10:13:41.648406+00:00"
         }
       },
-      "start_time": 1780130678.99634
+      "start_time": 1780136021.395526
+    },
+    {
+      "thread_idx": 4,
+      "status_code": 409,
+      "latency_ms": 255.51,
+      "body": {
+        "ok": false,
+        "data": null,
+        "error": {
+          "message": "A scan is already running (ID: a33629c74f9b). Please wait for it to complete.",
+          "code": "scan_already_running"
+        },
+        "meta": {
+          "request_id": "ad088690-7312-48f3-b0e1-fa89cc456fae",
+          "timestamp": "2026-05-30T10:13:41.649986+00:00"
+        }
+      },
+      "start_time": 1780136021.3957708
     },
     {
       "thread_idx": 0,
       "status_code": 200,
-      "latency_ms": 378.85,
+      "latency_ms": 512.05,
       "body": {
         "ok": true,
         "data": {
-          "run_id": "cd3f1a251437",
+          "run_id": "a33629c74f9b",
           "status": "RUNNING",
           "mode": "default"
         },
         "error": null,
         "meta": {
-          "request_id": "0d033396-1d44-4fc7-ab57-2a6aa727896c",
-          "timestamp": "2026-05-30T08:44:39.374468+00:00"
+          "request_id": "24708f90-b47e-4381-8fec-d7af240fe35e",
+          "timestamp": "2026-05-30T10:13:41.905722+00:00"
         }
       },
-      "start_time": 1780130678.9965281
+      "start_time": 1780136021.3959858
     },
     {
       "thread_idx": 3,
       "status_code": 409,
-      "latency_ms": 194.72,
+      "latency_ms": 254.99,
       "body": {
         "ok": false,
         "data": null,
         "error": {
-          "message": "A scan is already running (ID: cd3f1a251437). Please wait for it to complete.",
+          "message": "A scan is already running (ID: a33629c74f9b). Please wait for it to complete.",
           "code": "scan_already_running"
         },
         "meta": {
-          "request_id": "faf23882-98a2-43c2-b47b-de20b56899c0",
-          "timestamp": "2026-05-30T08:44:39.190542+00:00"
+          "request_id": "a0f080d4-ba33-4aa1-babe-f8a00c25b260",
+          "timestamp": "2026-05-30T10:13:41.649190+00:00"
         }
       },
-      "start_time": 1780130678.9967391
+      "start_time": 1780136021.396181
     }
   ],
   "summary": {

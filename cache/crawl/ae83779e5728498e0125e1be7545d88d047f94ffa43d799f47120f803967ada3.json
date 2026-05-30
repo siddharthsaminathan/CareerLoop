@@ -1,36 +1,35 @@
 {
   "role": "ai product engineer",
   "city": "bangalore",
-  "cached_at": 1780119250.327023,
-  "expires_at": 1780148050.327023,
-  "job_count": 3,
+  "cached_at": 1780144080.4591339,
+  "expires_at": 1780172880.4591339,
+  "job_count": 9,
   "jobs": [
     {
-      "title": "Agentic AI Product Manager - iimjobs.com",
+      "title": "AI Product Owner with 4",
       "company": "",
       "location": "Bangalore",
-      "url": "https://www.iimjobs.com/j/agentic-ai-product-manager-1700985",
-      "apply_url": "https://www.iimjobs.com/j/agentic-ai-product-manager-1700985",
-      "description": "You need to enable JavaScript to run this app. Banking & Finance Jobs Finance & Accounts Banking Corporate Banking Investment Banking Private Equity Equity Research Sales & Marketing Jobs Sales Marketing Brand Management Online Marketing Marketing Communication Market Research Consulting Jobs Strategy Consulting Research Analytics Process Excellence Consulting - BFSI Consulting - Consumer Goods HR & IR Jobs HR Generalist HR Business Partner Talent Acquisition Organization Development Learning and Development Compensation & Benefits IT & Systems Jobs IT Project Management IT Consulting Presales IT Sales IT Product Management IT Business Analyst SCM & Operations Jobs Supply Chain Operations Procurement Inventory Management Plant Operations Demand Planning Legal Jobs Regulatory Compliance Litigation Company Secretary Intellectual Property Rights Legal Jobs in BFSI Legal Jobs in IT/ITeS BPO Jobs BPO Operations BPO Quality BPO Presales BPO Sales BPO Training Customer Service Healthcare Jobs MBBS MD Healthcare Operations Clinical Operations Pharma Jobs Pharma Operations Pharmacovigilance Pharma R&D Pharma Safety GenAI Jobs AI Product Management Generative AI Gen AI Strategy AI Project Management",
-      "skills": [],
-      "_source_type": "iimjobs",
+      "url": "https://www.foundit.in/job/ai-product-owner-schneider-electric-bengaluru-bangalore-48105156",
+      "apply_url": "https://www.foundit.in/job/ai-product-owner-schneider-electric-bengaluru-bangalore-48105156",
+      "description": "The AI Product Owner is a core key role in AI projects within a global organization. Focused on the in-depth integration of AI technology and internal business scenarios, this role delivers core value to the internal functional teams while maintaining a clear grasp of internal team needs and the key goals of AI project implementation. Acting as a critical bridge between internal functional ...",
+      "_source_type": "foundit",
       "_phase": "B",
       "_ontology": {
-        "seniority": "mid",
-        "archetype_match": 0.29,
+        "seniority": "unknown",
+        "archetype_match": 0.5,
         "biz_model": "unknown",
         "preferred_company_match": false
       },
       "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "16e849bbe13f0743",
+      "_canonical_fp": "189457f4c8d36dbf",
       "canonical": true,
-      "canonical_id": "16e849bbe13f0743",
+      "canonical_id": "189457f4c8d36dbf",
       "apply_route": {
-        "best_apply_route": "unknown",
-        "apply_url": "https://www.iimjobs.com/j/agentic-ai-product-manager-1700985",
+        "best_apply_route": "foundit",
+        "apply_url": "https://www.foundit.in/job/ai-product-owner-schneider-electric-bengaluru-bangalore-48105156",
         "backup_urls": [],
-        "reason": "best route: unknown (priority 9)",
-        "risk": "high"
+        "reason": "best route: foundit (priority 4)",
+        "risk": "medium"
       }
     },
     {
@@ -45,7 +44,7 @@
       "_phase": "B",
       "_ontology": {
         "seniority": "unknown",
-        "archetype_match": 0.29,
+        "archetype_match": 1.0,
         "biz_model": "b2b",
         "preferred_company_match": false
       },
@@ -62,13 +61,166 @@
       }
     },
     {
-      "title": "AI/ML Engineer (GenAI, Cloud ML",
+      "title": "Agentic AI Product Manager - iimjobs.com",
       "company": "",
-      "location": "",
-      "url": "https://cutshort.io/job/AI-ML-Engineer-GenAI-Cloud-ML-Bengaluru-Bangalore-Staffnixcom-puQDtt7P",
-      "apply_url": "https://cutshort.io/job/AI-ML-Engineer-GenAI-Cloud-ML-Bengaluru-Bangalore-Staffnixcom-puQDtt7P",
+      "location": "Bangalore",
+      "url": "https://www.iimjobs.com/j/agentic-ai-product-manager-1700985",
+      "apply_url": "https://www.iimjobs.com/j/agentic-ai-product-manager-1700985",
+      "description": "You need to enable JavaScript to run this app. Banking & Finance Jobs Finance & Accounts Banking Corporate Banking Investment Banking Private Equity Equity Research Sales & Marketing Jobs Sales Marketing Brand Management Online Marketing Marketing Communication Market Research Consulting Jobs Strategy Consulting Research Analytics Process Excellence Consulting - BFSI Consulting - Consumer Goods HR & IR Jobs HR Generalist HR Business Partner Talent Acquisition Organization Development Learning and Development Compensation & Benefits IT & Systems Jobs IT Project Management IT Consulting Presales IT Sales IT Product Management IT Business Analyst SCM & Operations Jobs Supply Chain Operations Procurement Inventory Management Plant Operations Demand Planning Legal Jobs Regulatory Compliance Litigation Company Secretary Intellectual Property Rights Legal Jobs in BFSI Legal Jobs in IT/ITeS BPO Jobs BPO Operations BPO Quality BPO Presales BPO Sales BPO Training Customer Service Healthcare Jobs MBBS MD Healthcare Operations Clinical Operations Pharma Jobs Pharma Operations Pharmacovigilance Pharma R&D Pharma Safety GenAI Jobs AI Product Management Generative AI Gen AI Strategy AI Project Management",
+      "skills": [],
+      "_source_type": "iimjobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "mid",
+        "archetype_match": 1.0,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "16e849bbe13f0743",
+      "canonical": true,
+      "canonical_id": "16e849bbe13f0743",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://www.iimjobs.com/j/agentic-ai-product-manager-1700985",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
+    },
+    {
+      "title": "Hevo Data",
+      "company": "AI Solution Engineer",
+      "location": "Bangalore",
+      "url": "https://jobs.lever.co/hevodata/a7f26742-f965-4a59-840d-f7afa0a28176",
+      "apply_url": "https://jobs.lever.co/hevodata/a7f26742-f965-4a59-840d-f7afa0a28176",
+      "description": "Hevo Data - AI Solution Engineer AI Solution Engineer Bangalore, India Strategy – Strategy All / Full time / On-site apply for this job About Hevo: At Hevo, we are changing the way companies leverage data to drive user experience, growth, and business processes.  There has been a fundamental change in the amount of data companies are generating on a day-to-day basis. More and more users in an organization are now looking to use data to drive business decisions. Data is no longer a second-class citizen and companies are seeing data as a competitive advantage. We see this change and we are on a mission to change the way companies leverage their data. With a technology platform processing more than 100 billion records a month and doubling itself every 6 months, Hevo is poised for exponential growth in the coming future. This position provides a unique opportunity to create a massive impact on all existing and future customers of Hevo through technology innovation. If you are the one who is looking to take a leap of faith and work on the technology of the future, if you obsess over customer satisfaction and experience then we are looking for you. Role Summary The AI Solutions Engineer will prototype, test, and deliver internal AI applications that improve efficiency across GTM teams (Marketing, Sales, BizOps). The role combines applied AI/ML knowledge, software engineering skills, and a strong understanding of GTM workflows to deliver practical, business-impacting solutions. Key Responsibilities AI Application Development Build internal applications using LLMs and AI APIs (e.g., OpenAI, Anthropic). Integrate AI into GTM tools like HubSpot, Salesforce, LinkedIn, Outreach, Google Sheets, etc. Develop scripts and automations for data enrichment, copy assistance, and reporting. Prototyping & Experimentation Rapidly test new AI models and APIs, validate feasibility, and create MVPs. Evaluate and document performance, accuracy, and usability for GTM use cases. Cross-functional Collaboration Work closely with Marketing, Sales, and BizOps teams to capture pain points and translate them into AI-driven solutions. Provide demos, documentation, and training to internal users. Operational Support Maintain and optimize deployed tools. Ensure compliance, data privacy, and reliability in AI-driven workflows. What Success Looks Like You’ve delivered 2–3 working AI prototypes that GTM teams actively use. You’ve automated or optimized at least 2 GTM workflows , saving time and improving accuracy. You’ve documented solutions in a way that makes them scalable and transferable. You’ve demonstrated measurable impact on GTM productivity (hours saved, efficiency gains, improved decision-making). What We’re Looking For Knowledge & Skills: Strong understanding of AI/ML fundamentals (NLP, LLMs, embeddings, prompt engineering). Proficiency in Python and working with APIs (REST/GraphQL). Experience with prototyping tools/frameworks (Flask, FastAPI, Streamlit, or similar). Familiarity with GTM systems such as Salesforce, HubSpot, Marketo, or BI tools (Tableau, Looker). Strong problem-solving skills and ability to rapidly prototype creative solutions. Upto 5 years of experience in building end-to-end applications Abilities: Translate messy GTM data into usable inputs for AI models. Map AI outputs into real-world GTM workflows and processes. Communicate technical solutions clearly to non-technical stakeholders. Balance speed of experimentation with reliability and compliance. Why Join Us? Work on cutting-edge AI applications in a high-growth SaaS company. Be part of the GTM innovation function , directly impacting Marketing, Sales, and BizOps productivity. Gain exposure to real-world AI use cases that scale with thousands of customers. Collaborate with cross-functional teams and own end-to-end AI solutions from idea to deployment. We may use artificial intelligence (AI) tools to support parts of the hiring process, such as reviewing applications, analyzing resumes, or assessing responses. These tools assist our recruitment team but do not replace human judgment. Final hiring decisions are ultimately made by humans. If you would like more information about how your data is processed, please contact us. apply for this job Hevo Data Home Page Jobs powered by",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 0.5,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains bangalore",
+      "_canonical_fp": "6eee796365bfb184",
+      "canonical": true,
+      "canonical_id": "6eee796365bfb184",
+      "apply_route": {
+        "best_apply_route": "lever",
+        "apply_url": "https://jobs.lever.co/hevodata/a7f26742-f965-4a59-840d-f7afa0a28176",
+        "backup_urls": [],
+        "reason": "best route: lever (priority 2)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "AI Engineer",
+      "company": "AHOY",
+      "location": "Bangalore",
+      "url": "https://apply.workable.com/ahoy/j/35AE8F2A9A",
+      "apply_url": "https://apply.workable.com/ahoy/j/35AE8F2A9A",
+      "description": "AHOY is seeking a talented AI Engineer to join our innovative team dedicated to pushing the boundaries of artificial intelligence technology. In this role, you will develop and implement AI models and algorithms that enhance our products and services. ...",
+      "_source_type": "google_jobs",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 1.0,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains bangalore",
+      "_canonical_fp": "1159909013dba29f",
+      "canonical": true,
+      "canonical_id": "1159909013dba29f",
+      "apply_route": {
+        "best_apply_route": "unknown",
+        "apply_url": "https://apply.workable.com/ahoy/j/35AE8F2A9A",
+        "backup_urls": [],
+        "reason": "best route: unknown (priority 9)",
+        "risk": "high"
+      }
+    },
+    {
+      "title": "Senior AI Product Manager",
+      "company": "Figr",
+      "location": "Bengaluru, Karnataka, India",
+      "url": "https://careers.antler.co/companies/figr/jobs/80348265-senior-ai-product-manager",
+      "apply_url": "https://tally.so/r/lbYeMk",
       "url_type": "INDIVIDUAL_JOB",
-      "description": "AI/ML Engineer (GenAI, Cloud ML\nat\nStaffnixcom\nApply to this job\nAI/ML Engineer (GenAI, Cloud ML\nStaffnixcom\nCompany\nHome\nAI/ML Engineer (GenAI, Cloud ML\nat\nStaffnixcom\nPosted by\nMayank Choudhary\nApply to this job\n3\n- 5 yrs\n₹20L - ₹25L / yr\nBengaluru (Bangalore)\nSkills\nArtificial Intelligence (AI)\nStrong AI/ML Engineer Profile\nMandatory (Experience) : Must have 3+ years of experience in software engineering with atleast 1+ years in GenAI application development and production deployment\nMandatory (GenAI Application Development): Must have proven experience building GenAI applications covering RAG pipelines, multi-agent systems, Text2SQL, and fine-tuning\nMandatory (Production GenAI Deployment): Must have expertise deploying production-grade GenAI applications including model evaluation, optimisation, and ownership of full production rollouts\nMandatory (ML & Data Science Tooling): Must have strong hands-on experience with core ML and data science tools including pandas, scikit-learn, and PyTorch\nMandatory (Cloud ML Infrastructure): Must have experience building and deploying production-grade ML workloads on at least one of AWS, Azure, or GCP\nMandatory (Communication): Must have strong English communication skills with the ability to work across time zones and collaborate cross-functionally with product, engineering, and business stakeholders\nMandatory (Note 1) : Role is Hybrid, WFH flexibility as well upto 6 days a month\nMandatory (Note 2) : CTC is inclusive of 10% variable\nMandatory (Note 3): Candidates should be available to join within May 31st or June first week max\nRead more\nUsers love Cutshort\nRead about what our users have to say about finding their next opportunity on Cutshort.\nPrevious\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt",
+      "description": "Senior AI Product Manager Bangalore (WFO, HSR Layout) · ₹30-50L + ESOPs · 3-5 years What’s Figr? There are hundreds of ways to solve any product problem. Most teams pick one, ship it, and learn the hard way that it was wrong. Figr is the AI product agent that helps you find the right one the first time. It reads your app, your Figma, your design system, and your docs, then thinks the way your team thinks. Product first. Pixels second. We work out of Bengaluru, backed by Kalaari Capital, Antler and Google for Startups Accelerator. The bar is high, the pace is fast, and the work compounds. Behind it is a small crew of engineers, designers, and growth folks who care deeply about this and ship at startup speed. What Cursor did for code, Figr is doing for product work. We're early, and the next year decides how big this gets. If that's the kind of bet you want to be part of, you'll like it here. How We Work We're a small team. You'll own a lot of ownership Sit with users before drawing anything. Think in flows and constraints, not screens. Ship, watch, iterate the same week. No process layers directly work with Founder (Chirag - CTO) Your job in one line Make Figr think the way best product managers think. Then make it the way they work. What you'll do Design how the agent behaves. When it asks, when it acts, when it shows its work, when it stays out of the way. Decide what we build next. You contribute to the product direction. Live in product analytics. Drop-offs, activation, retention. Run experiments and monitor the full funnel. Use Figr every day. Catch what's broken before users do. Build thorough documentation. clear communication to all stakeholders by thinking through flows, edge cases, and constraints. Set up evals. We need to know if the agent got better this week. Use AI tools to move fast. Don't wait on engineering to prototype every idea. What you need to have B2B SaaS PM, 3-5 years. You've owned a product end-to-end. Shipped AI products in the last 1-2 years. You understand how agents work, how to eval them, and how to improve them. Strong sense of agent UX. You've used tools like Cursor, Claude and know what makes them work or feel broken. Comfortable in product analytics. Mixpanel, SQL when needed. Work well with ambiguity, founders, and across design, engineering, and AI engineering.",
+      "skills": [
+        "B2B SaaS PM",
+        "product analytics",
+        "Mixpanel",
+        "SQL",
+        "agent UX",
+        "AI products"
+      ],
+      "salary": "INR 3,000k-5,000k / year + Equity",
+      "work_mode": "onsite",
+      "_source_type": "scrapegraph",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "senior",
+        "archetype_match": 1.0,
+        "biz_model": "b2b",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains bengaluru",
+      "_canonical_fp": "b301885b2a8d008e",
+      "canonical": true,
+      "canonical_id": "b301885b2a8d008e",
+      "apply_route": {
+        "best_apply_route": "company_site",
+        "apply_url": "https://careers.antler.co/companies/figr/jobs/80348265-senior-ai-product-manager",
+        "backup_urls": [
+          "https://tally.so/r/lbYeMk"
+        ],
+        "reason": "best route: company_site (priority 1)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "Ai Product Engineer",
+      "company": "Internshala",
+      "location": "Bangalore",
+      "url": "https://internshala.com/jobs/ai-product-engineer-jobs-in-bangalore/",
+      "apply_url": "",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "40 Ai Product Engineer Jobs in Bangalore, May | Internshala Close Cancel Close Close Close Close Cancel Yes Oops, your browser does not support Javascript. Please use Internshala in another browser. Loading, please wait... Student Employer / T&P Login with Google OR Email Password Forgot password? Login New to Internshala? Register ( Student / Company ) Your account is put on hold. Your account is put on hold. What happened? We have determined that this account is violation of Internshala's rules . Specifically for, If you wish to appeal this, or seek further clarification, please contact our team at complaints@internshala.com If this has happened by mistake, it will automatically be reverted within 24 hours. Home Internships Jobs Courses OFFER Career Launchpads Get hired faster Online Degrees Study Abroad Contact Us Register - As a Student Register - As an Employer Login One time offer Sign up now to unlock FREE AI Career Guide worth ₹599 Custom job alerts delivered to your inbox Valid only for 05m : 00s By signing up, you agree to our Terms and Conditions . Sign up with Google OR Sign up with Email Filters Profile Location Include work from home also Part-time Annual salary (in lakhs) ₹ 1 lakhs ₹ 2 lakhs ₹ 3 lakhs ₹ 4 lakhs ₹ 5 lakhs ₹ 6 lakhs ₹ 7 lakhs ₹ 8 lakhs ₹ 9 lakhs ₹ 10 lakhs Years of experience Fresher 1 Years 2 Years 3 Years 4 Years 5 Years 5+ Years Clear All Apply Search Home Jobs Ai Product Engineer Jobs Ai Product Engineer Jobs in Bangalore Filters As per my preferences Profile Location Include work from home also Part Time Stipend Salary Experience As per my preferences Profile Location Include work from home also Part Time Stipend Salary Experience All Filters Save this search as alert 40 Ai Product Engineer Jobs in Bangalore Start applying to the latest Ai Product Engineer vacancies in Bangalore at leading companies below. Save this search as alert Filters Profile Engineering Business/MBA Computer Science Humanities Media Creative Writing Graphic Design Finance Civil Engineering Chemical Engineering Ai Product Engineer Ai Product Engineer Location Mumbai Bangalore Delhi Hyderabad Pune Chennai Kolkata Ahmedabad Bangalore Include work from home also Part-time Annual salary (in lakhs) 0 2 4 6 8 10 Years of experience Fresher 1 year 2 years 3 years 4 years 5 years 5+ years Clear all OR Search No more results found matching the profile and location filter. Check out other opportunities below! WAM-CampusHiring EY (Ernst & Young) Bangalore Competitive salary Competitive salary No experience required Key responsibilities: \r\n\r\n1 . Supporting wealth and asset management transformation projects for global and domestic clients.\r\n2 . Assisting in operational efficiency programs aimed at improving financial and business processes.\r\n3 . Contributing to technology-enabled transformation initiatives using emerging technologies.\r\n4 . Working with data and digital teams to enhance client performance and business outcomes.\r\n5 . Supporting front-office and back-office re-platforming activities for asset management systems.\r\n6 . Assisting in implementation of AI, ML, and blockchain-based solutions in financial services.\r\n7 . Participating in requirement analysis and solution development for consulting engagements.\r\n8 . Supporting digital architecture and engineering teams in building customized solutions.\r\n9 . Assisting in testing and validation of developed systems and applications.\r\n10 . Collaborating with cross-functional global teams to deliver consulting solutions.\r\n11 . Supporting data analysis and reporting for financial transformation programs.\r\n12 . Helping improve business efficiency through process automation and digital tools.\r\n13 . Learning and applying cloud, analytics, and digital transformation concepts.\r\n14 . Assisting in documentation and project reporting activities for stakeholders. Java Cloud Computing Python SQL Data Analytics Problem Solving Software Development Life Cycle (SDLC) +1 more 3 days ago Be an early applicant Fresher  Job Senior Executive Deloitte Bangalore Competitive salary Competitive salary 5 year(s) Key responsibilities: \r\n\r\n1. Design, develop, and maintain scalable web applications using Python, JavaScript/TypeScript, React.js, Node.js, and FastAPI.\r\n2. Lead and mentor a team of developers, ensuring adherence to coding standards and best practices.\r\n3. Develop reusable, testable, and efficient code while ensuring high performance, availability, and scalability of applications.\r\n4. Design and implement secure applications by following data protection and security best practices.\r\n5. Build and optimize database solutions using industry-standard RDBMS and NoSQL databases.\r\n6. Develop and deploy cloud-based applications on AWS, Azure, or GCP platforms.\r\n7. Create and maintain unit tests using frameworks such as Jest, Mocha, and PyTest to ensure application quality.\r\n8. Collaborate with cross-functional teams in an Agile environment to deliver innovative and reliable software solutions. JavaScript Python SQL Node.js Microsoft Azure React FastAPI +1 more 3 days ago Be an early applicant Solutions Engineer CISCO Bangalore Competitive salary Competitive salary 5 year(s) Key responsibilities: \r\n\r\n1. Lead the design and execution of AI-enabled cross-architecture solutions across strategic partners and customer environments.\r\n2. Integrate AI, AIOps, observability, and automation capabilities into networking and security solutions to deliver predictive and self-healing systems.\r\n3. Establish and scale Centers of Excellence (CoEs) and partner practices to accelerate AI adoption and innovation.\r\n4. Act as a trusted technical advisor to partner leadership, customers, and executive stakeholders on AI-driven transformation initiatives.\r\n5. Engage with CIOs, CTOs, and business leaders to align AI, automation, and technology strategies with business objectives.\r\n6. Lead technical strategy and solution architecture for large-scale AI-led transformation programs and complex deals.\r\n7. Collaborate with cross-functional teams to develop differentiated, outcome-focused proposals and accelerate deal success.\r\n8. Drive demand generation by identifying high-value AI use cases, leading demonstrations, and developing reusable AI solution frameworks. Presentation skills Machine Learning Artificial intelligence Effective Communication Stakeholder Management 4 days ago Be an early applicant EYP-Ventur Build-Intern EY (Ernst & Young) Bangalore Competitive salary Competitive salary No experience required Key responsibilities: \r\n\r\n1 . Understanding business problems and designing simple, engaging, and effective visual insights for stakeholders.\r\n2 . Supporting product development teams in building technology solutions that address client business challenges.\r\n3 . Assisting in conceptualizing, designing, developing, and maintaining technology products and digital assets.\r\n4 . Working on small and mid-size projects while ensuring timely and smooth delivery of assigned tasks.\r\n5 . Creating dashboards and reports using basic design and development tools for data visualization.\r\n6 . Performing basic data analysis and modeling tasks using tools such as Alteryx.\r\n7 . Collaborating with clients and stakeholders to maintain positive and professional working relationships.\r\n8 . Coordinating with global EY teams to support service delivery and project execution.\r\n9 . Applying structured approaches to complete tasks accurately and within deadlines.\r\n10 . Demonstrating teamwork and responsibility while working with engagement team members.\r\n11 . Adapting to new technologies and tools to improve efficiency and service quality.\r\n12 . Supporting innovation initiatives by learning emerging technologies and digital solutions. SQL Problem Solving Teamwork Effective Communication Data Analysis Alteryx Object Oriented Programming (OOP) 4 days ago Be an early applicant Fresher  Job Professor Indian Academy Group Of Institution Bangalore ₹ 3,00,000 - 5,00,000 ₹ 3,00,000",
+      "skills": [],
+      "salary": "",
+      "work_mode": "",
+      "_source_type": "scrapegraph",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 1.0,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "location contains bangalore",
+      "_canonical_fp": "d3a72fc6153ff9f6",
+      "canonical": true,
+      "canonical_id": "d3a72fc6153ff9f6",
+      "apply_route": {
+        "best_apply_route": "company_site",
+        "apply_url": "https://internshala.com/jobs/ai-product-engineer-jobs-in-bangalore/",
+        "backup_urls": [],
+        "reason": "best route: company_site (priority 1)",
+        "risk": "low"
+      }
+    },
+    {
+      "title": "AI/ML Engineer in Bangalore",
+      "company": "Cutshort",
+      "location": "",
+      "url": "https://cutshort.io/job/AI-ML-Engineer-in-Bangalore-Bengaluru-Bangalore-Trinity-consulting-NPH3hKHc",
+      "apply_url": "https://cutshort.io/job/AI-ML-Engineer-in-Bangalore-Bengaluru-Bangalore-Trinity-consulting-NPH3hKHc",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "AI/ML Engineer in Bangalore\nProduct company\nApply to this job\nAI/ML Engineer in Bangalore\nTrinity consulting\nCompany\nHome\nAI/ML Engineer in Bangalore\nat\nProduct company\nAgency job\nvia\nTrinity consulting\nApply to this job\n3\n- 7 yrs\n₹4L - ₹8L / yr\nRemote, Bengaluru (Bangalore)\nSkills\nArtificial Intelligence (AI)\nMachine Learning (ML)\nRetrieval Augmented Generation (RAG)\nDocker\nKubernetes\nPython\nExperience\n: 3+ years\nResponsibilities:\nBuild, train and fine tune ML models\nDevelop features to improve model accuracy and outcomes.\nDeploy models into production using Docker, kubernetes and cloud services.\nProficiency in Python, MLops, expertise in data processing and large scale data set.\nHands on experience in Cloud AI/ML services.\nExposure in RAG Architecture\nRead more\nUsers love Cutshort\nRead about what our users have to say about finding their next opportunity on Cutshort.\nPrevious\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nNext\n1\n2\n3\n4\nCompanies hiring on Cutshort\nFind your dream job\nSimilar jobs\nTalent Acquisition Associate / Partner\nat\nQrata\n7\nrecruiters\nPosted by\nPrajakta Kulkarni\nApply now\nBengaluru (Bangalore)\n0\n- 3 yrs\n₹2L - ₹5L / yr\nTechnical recruiter\nIT Recruiter\nTechnical recruitment\nIT Recruitment\nTech recruiter\n+6 more\nAt Qrata, we match top talent with highly competitive career opportunities with leading startups in India and globally and address hiring challenges ,recruitment brand marketing, with innovative and collaborative strategic consulting. We ",
       "skills": [],
       "salary": "",
       "work_mode": "",
@@ -76,17 +228,48 @@
       "_phase": "B",
       "_ontology": {
         "seniority": "unknown",
-        "archetype_match": 0.29,
+        "archetype_match": 1.0,
         "biz_model": "unknown",
         "preferred_company_match": false
       },
       "_india_filter": "India-specific job board URL",
-      "_canonical_fp": "c968289d85d43d07",
+      "_canonical_fp": "318c63f5465728d9",
       "canonical": true,
-      "canonical_id": "c968289d85d43d07",
+      "canonical_id": "318c63f5465728d9",
       "apply_route": {
         "best_apply_route": "cutshort",
-        "apply_url": "https://cutshort.io/job/AI-ML-Engineer-GenAI-Cloud-ML-Bengaluru-Bangalore-Staffnixcom-puQDtt7P",
+        "apply_url": "https://cutshort.io/job/AI-ML-Engineer-in-Bangalore-Bengaluru-Bangalore-Trinity-consulting-NPH3hKHc",
+        "backup_urls": [],
+        "reason": "best route: cutshort (priority 4)",
+        "risk": "medium"
+      }
+    },
+    {
+      "title": "AI Engineer",
+      "company": "Cutshort",
+      "location": "",
+      "url": "https://cutshort.io/job/AI-Engineer-Bengaluru-Bangalore-Gyrus-AI-Private-Limited-xJWwDG1f",
+      "apply_url": "https://cutshort.io/job/AI-Engineer-Bengaluru-Bangalore-Gyrus-AI-Private-Limited-xJWwDG1f",
+      "url_type": "INDIVIDUAL_JOB",
+      "description": "AI Engineer\nat\nGyrus AI Private Limited\nApply to this job\nAI Engineer\nGyrus AI Private Limited\nCompany\nHome\nAI Engineer\nat\nGyrus AI Private Limited\nPosted by\nNagaraj Krishnamurthy\nApply to this job\n1\n- 4 yrs\n₹8L - ₹20L / yr (ESOP available)\nBengaluru (Bangalore)\nSkills\nPython\nOpenCV\nPyTorch\nDeep Learning\nImage Processing\nMathematics\nYou will be part of the core engineering team that is working on developing AI/ML models, Algorithms, and Frameworks in the areas of Video Analytics, Business Intelligence, IoT Predictive Analytics.\nFor more information visit www.gyrus.ai\nCandidate must have the following qualifications\n- Engineering or Masters degree in CS, EC, EE or related domains\n- Proficient in OpenCV\n- Profficiency in Python programming\n- Exposure to one of the AI platforms like Tensorflow, Caffe, PyTorch\n- Must have trained and deployed at least one fairly big AI model\n- Exposure to AI models for Audio/Image/Video Analytics\n- Exposure to one of the Cloud Computing platforms AWS/GCP\n- Strong mathematical background with special emphasis towards Linear Algebra and Statistics\nRead more\nUsers love Cutshort\nRead about what our users have to say about finding their next opportunity on Cutshort.\nPrevious\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nShubham Vishwakarma\nFull Stack Developer - Averlon\nI had an amazing experience. It was a delight getting interviewed via Cutshort. The entire end to end process was amazing. I would like to mention Reshika, she was just amazing wrt guiding me through the process. Thank you team.\nAshish Gupta\nGen AI Engineer - Fractal Analytics\nThe process was smooth, and the team was incredibly supportive. A special mention to Eman, who was exceptional - always available with updates and consistently following up with the Fractal team. Her support made the journey seamless.\nParth Lukhi\nSenior Software Developer - Bits In Glass\nIt was a great experience with Cutshort. I would not believe that apart from Naukri and LinkedIn, we could land jobs. But I did through Cutshort.\nApoorv Pandey\nSr. Mobile Developer - Prismberry Technologies Pvt Ltd\nThe entire journey, right from the interview process to the onboarding, has been absolutely seamless and delightful. Every step was meticulously planned and executed with such precision that it made the experience not just smooth but genuinely enjoyable. Kudos to the team!\nNext\n1\n2\n3\n4\nCompanies hiring on Cutshort\nFind your dream job\nAbout\nGyrus AI Private Limited\nFollow\n•\n310\nFounded\n:\n2018\nType\n:\nProducts & Services\nSize\n:\n20-100\nStage\n:\nBootstrapped\nAbout\nGyrus AI is a US-headquartered AI c",
+      "skills": [],
+      "salary": "",
+      "work_mode": "",
+      "_source_type": "generic_http",
+      "_phase": "B",
+      "_ontology": {
+        "seniority": "unknown",
+        "archetype_match": 1.0,
+        "biz_model": "unknown",
+        "preferred_company_match": false
+      },
+      "_india_filter": "India-specific job board URL",
+      "_canonical_fp": "4d9387cadfb28f5e",
+      "canonical": true,
+      "canonical_id": "4d9387cadfb28f5e",
+      "apply_route": {
+        "best_apply_route": "cutshort",
+        "apply_url": "https://cutshort.io/job/AI-Engineer-Bengaluru-Bangalore-Gyrus-AI-Private-Limited-xJWwDG1f",
         "backup_urls": [],
         "reason": "best route: cutshort (priority 4)",
         "risk": "medium"
